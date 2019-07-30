@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD04103922EF702E006A58A5 /* SignUpPersonalDataViewController.swift */; };
+		DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */; };
+		DD5653BF22F05F57003A67C3 /* CharacterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653BE22F05F57003A67C3 /* CharacterExtension.swift */; };
+		DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */; };
+		DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -22,6 +27,11 @@
 /* Begin PBXFileReference section */
 		5EC30CA6717869B180075276 /* Pods-Me2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Me2.debug.xcconfig"; path = "Target Support Files/Pods-Me2/Pods-Me2.debug.xcconfig"; sourceTree = "<group>"; };
 		87EA5E7B2A6E3D65D055AF83 /* Pods-Me2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Me2.release.xcconfig"; path = "Target Support Files/Pods-Me2/Pods-Me2.release.xcconfig"; sourceTree = "<group>"; };
+		DD04103922EF702E006A58A5 /* SignUpPersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPersonalDataViewController.swift; sourceTree = "<group>"; };
+		DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		DD5653BE22F05F57003A67C3 /* CharacterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterExtension.swift; sourceTree = "<group>"; };
+		DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeViewModel.swift; sourceTree = "<group>"; };
+		DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfirmCodeViewController.swift; path = SignUp/ConfirmCodeViewController.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +81,32 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD5653B722F04870003A67C3 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		DD5653B822F04876003A67C3 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */,
+				DD04103922EF702E006A58A5 /* SignUpPersonalDataViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		DD5653BB22F04A09003A67C3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */,
+				DD5653BE22F05F57003A67C3 /* CharacterExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DD67A74422EF33B000D1D51D = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +151,7 @@
 		DD67A76322EF356400D1D51D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				DD5653BB22F04A09003A67C3 /* Extensions */,
 				DD67A77622EF3A7400D1D51D /* Storyboard.swift */,
 			);
 			path = Core;
@@ -171,9 +208,10 @@
 		DD67A77122EF37F700D1D51D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD5653B822F04876003A67C3 /* SignUp */,
+				DD5653B722F04870003A67C3 /* SignIn */,
+				DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */,
 				DD67A77422EF381C00D1D51D /* SignInOrUpViewController.swift */,
-				DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */,
-				DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +226,7 @@
 		DD67A77322EF380500D1D51D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -308,11 +347,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
+				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
+				DD5653BF22F05F57003A67C3 /* CharacterExtension.swift in Sources */,
+				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
 				DD67A77722EF3A7400D1D51D /* Storyboard.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
+				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
