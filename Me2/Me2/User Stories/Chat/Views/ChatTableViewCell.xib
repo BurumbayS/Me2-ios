@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Rounded-Regular.otf">
+            <string>SFProRounded-Regular</string>
+        </array>
+        <array key="SF-Pro-Rounded-Semibold.otf">
+            <string>SFProRounded-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="81" id="KGk-i7-Jjw" customClass="ChatTableViewCell" customModule="Me2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="r5q-6w-XEr">
+                        <rect key="frame" x="11" y="18.5" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="4Fr-iQ-eyM"/>
+                            <constraint firstAttribute="width" constant="48" id="wt1-Mp-emF"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="24"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sailormoon9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxw-87-yAI">
+                        <rect key="frame" x="76" y="18.5" width="186" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="OQj-XZ-eXO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RD-6n-PH6">
+                        <rect key="frame" x="76" y="36" width="204" height="31"/>
+                        <string key="text">Было приятно познакомиться! Давай
+как-ниб повторим :)</string>
+                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:37" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPi-OW-qSA">
+                        <rect key="frame" x="272" y="19" width="40" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="dne-fU-gs8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yPi-OW-qSA" secondAttribute="trailing" constant="8" id="16f-wi-Qch"/>
+                    <constraint firstItem="yPi-OW-qSA" firstAttribute="leading" secondItem="1RD-6n-PH6" secondAttribute="trailing" constant="10" id="CVz-zP-wIA"/>
+                    <constraint firstItem="r5q-6w-XEr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="CXd-Rg-3rs"/>
+                    <constraint firstItem="1RD-6n-PH6" firstAttribute="bottom" secondItem="r5q-6w-XEr" secondAttribute="bottom" id="LIb-lV-pj6"/>
+                    <constraint firstItem="1RD-6n-PH6" firstAttribute="top" secondItem="hxw-87-yAI" secondAttribute="bottom" id="T1u-bK-olE"/>
+                    <constraint firstItem="yPi-OW-qSA" firstAttribute="leading" secondItem="hxw-87-yAI" secondAttribute="trailing" constant="10" id="Ui4-Rr-81v"/>
+                    <constraint firstItem="r5q-6w-XEr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="laW-yP-K40"/>
+                    <constraint firstItem="1RD-6n-PH6" firstAttribute="leading" secondItem="hxw-87-yAI" secondAttribute="leading" id="nr3-0w-gWu"/>
+                    <constraint firstItem="hxw-87-yAI" firstAttribute="leading" secondItem="r5q-6w-XEr" secondAttribute="trailing" constant="17" id="pfo-M8-E6M"/>
+                    <constraint firstItem="yPi-OW-qSA" firstAttribute="centerY" secondItem="hxw-87-yAI" secondAttribute="centerY" id="ydc-dU-Z94"/>
+                    <constraint firstItem="hxw-87-yAI" firstAttribute="top" secondItem="r5q-6w-XEr" secondAttribute="top" id="zSg-hu-iJg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarImageView" destination="r5q-6w-XEr" id="aNC-Ha-Ynp"/>
+                <outlet property="dateTimeLabel" destination="yPi-OW-qSA" id="9Gi-Yz-6vg"/>
+                <outlet property="lastMessageLabel" destination="1RD-6n-PH6" id="tEg-cE-SX4"/>
+                <outlet property="nameLabel" destination="hxw-87-yAI" id="nD6-mp-3vv"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="100.78125"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sample_avatar" width="48" height="48"/>
+    </resources>
+</document>

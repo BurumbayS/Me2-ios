@@ -18,6 +18,17 @@
 		DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653D022F32AA8003A67C3 /* Storyboarded.swift */; };
 		DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653D222F44FB2003A67C3 /* MapViewController.swift */; };
 		DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653D622F45AF5003A67C3 /* Storyboard.swift */; };
+		DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */; };
+		DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653DD22F4B875003A67C3 /* SearchBar.swift */; };
+		DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */; };
+		DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5653E522F4C235003A67C3 /* Chat.storyboard */; };
+		DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */; };
+		DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */; };
+		DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */; };
+		DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653ED22F4CD65003A67C3 /* UITableViewExtensions.swift */; };
+		DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */; };
+		DD5653F222F4DC19003A67C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F122F4DC19003A67C3 /* Color.swift */; };
+		DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -43,6 +54,17 @@
 		DD5653D022F32AA8003A67C3 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		DD5653D222F44FB2003A67C3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DD5653D622F45AF5003A67C3 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBar.xib; sourceTree = "<group>"; };
+		DD5653DD22F4B875003A67C3 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
+		DD5653E522F4C235003A67C3 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewController.swift; sourceTree = "<group>"; };
+		DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
+		DD5653ED22F4CD65003A67C3 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		DD5653F122F4DC19003A67C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */,
+				DD5653ED22F4CD65003A67C3 /* UITableViewExtensions.swift */,
+				DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */,
+				DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -129,9 +154,70 @@
 		DD5653CD22F32740003A67C3 /*  Map */ = {
 			isa = PBXGroup;
 			children = (
-				DD5653D222F44FB2003A67C3 /* MapViewController.swift */,
+				DD5653DA22F4B3D8003A67C3 /* ViewModels */,
+				DD5653D922F4B3CE003A67C3 /* Models */,
+				DD5653D822F4B3C7003A67C3 /* Views */,
 			);
 			path = " Map";
+			sourceTree = "<group>";
+		};
+		DD5653D822F4B3C7003A67C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653D222F44FB2003A67C3 /* MapViewController.swift */,
+				DD5653DD22F4B875003A67C3 /* SearchBar.swift */,
+				DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DD5653D922F4B3CE003A67C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD5653DA22F4B3D8003A67C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DD5653DF22F4BF06003A67C3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653E222F4BF15003A67C3 /* Models */,
+				DD5653E122F4BF10003A67C3 /* ViewModels */,
+				DD5653E022F4BF0B003A67C3 /* Views */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		DD5653E022F4BF0B003A67C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
+				DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */,
+				DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */,
+				DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DD5653E122F4BF10003A67C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DD5653E222F4BF15003A67C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DD67A74422EF33B000D1D51D = {
@@ -181,6 +267,7 @@
 				DD5653BB22F04A09003A67C3 /* Extensions */,
 				DD5653D022F32AA8003A67C3 /* Storyboarded.swift */,
 				DD5653D622F45AF5003A67C3 /* Storyboard.swift */,
+				DD5653F122F4DC19003A67C3 /* Color.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -188,6 +275,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DD5653DF22F4BF06003A67C3 /* Chat */,
 				DD5653CD22F32740003A67C3 /*  Map */,
 				DD5653C822F31CCA003A67C3 /* Main */,
 				DD67A76622EF35B000D1D51D /* Login Page */,
@@ -201,6 +289,7 @@
 				DD67A76722EF35F300D1D51D /* LoginPage.storyboard */,
 				DD67A75422EF33B000D1D51D /* Main.storyboard */,
 				DD5653CE22F32770003A67C3 /* Map.storyboard */,
+				DD5653E522F4C235003A67C3 /* Chat.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -324,10 +413,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
+				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
+				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
+				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,15 +491,23 @@
 			files = (
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
+				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
+				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
+				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
+				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
+				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DD5653C722F07BE7003A67C3 /* GenderBirthdateViewController.swift in Sources */,
+				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
+				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD5653C522F07B03003A67C3 /* FirstLastNameViewController.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
@@ -565,7 +665,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.Me2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.MeTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -585,7 +685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.Me2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.MeTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

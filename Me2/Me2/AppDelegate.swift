@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Set root View Controller
         window?.rootViewController = Storyboard.mainTabsViewController()
-        window?.makeKeyAndVisible()
         
         //Configure IQKeyboard
         IQKeyboardManager.shared.enable = true
@@ -31,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
         GMSPlacesClient.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
         
+        window?.makeKeyAndVisible()
         return true
     }
 
