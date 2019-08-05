@@ -12,4 +12,12 @@ extension UIView {
     func roundCorners(radius : CGFloat) {
         self.layer.cornerRadius = radius
     }
+    
+    func makeTransparent() {
+        self.alpha = 0.3
+    }
+    
+    func makeVisible() {
+        self.alpha = 1.0
+    }
 }

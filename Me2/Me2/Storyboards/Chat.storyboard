@@ -33,31 +33,68 @@
                                 <state key="normal" title="Чаты">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="chatsButtonPressed:" destination="025-BY-0Yr" eventType="touchUpInside" id="HR2-M2-QsS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEk-g3-vSL">
-                                <rect key="frame" x="124" y="118" width="49" height="19"/>
+                                <rect key="frame" x="124" y="118" width="40" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="T3E-3K-ta0"/>
-                                    <constraint firstAttribute="width" constant="49" id="xVO-rQ-8S7"/>
+                                    <constraint firstAttribute="width" constant="40" id="xVO-rQ-8S7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="20"/>
                                 <state key="normal" title="Live">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="liveButtonPressed:" destination="025-BY-0Yr" eventType="touchUpInside" id="NWn-mE-YMm"/>
+                                </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64F-jn-JuQ">
                                 <rect key="frame" x="0.0" y="162" width="414" height="700"/>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4R-jT-bOL">
+                                <rect key="frame" x="25" y="142" width="49" height="3"/>
+                                <color key="backgroundColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="bCx-FF-A3o"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qqj-zg-f6h">
+                                <rect key="frame" x="124" y="142" width="40" height="3"/>
+                                <color key="backgroundColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="Xah-kM-tQg"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rEk-g3-vSL" firstAttribute="leading" secondItem="BVV-0w-aF9" secondAttribute="trailing" constant="50" id="4Sp-7l-4ex"/>
-                            <constraint firstItem="64F-jn-JuQ" firstAttribute="top" secondItem="BVV-0w-aF9" secondAttribute="bottom" constant="25" id="9Xl-Is-tpE"/>
+                            <constraint firstItem="64F-jn-JuQ" firstAttribute="top" secondItem="T4R-jT-bOL" secondAttribute="bottom" constant="17" id="8Jd-Ur-Fzu"/>
+                            <constraint firstItem="T4R-jT-bOL" firstAttribute="top" secondItem="BVV-0w-aF9" secondAttribute="bottom" constant="5" id="94t-oa-zEf"/>
+                            <constraint firstItem="T4R-jT-bOL" firstAttribute="width" secondItem="BVV-0w-aF9" secondAttribute="width" id="ATZ-fA-ny2"/>
                             <constraint firstItem="BVV-0w-aF9" firstAttribute="leading" secondItem="YSQ-UN-vc6" secondAttribute="leading" constant="25" id="EYb-wo-RDA"/>
                             <constraint firstItem="BVV-0w-aF9" firstAttribute="top" secondItem="YSQ-UN-vc6" secondAttribute="top" constant="30" id="OEc-B6-Xqi"/>
+                            <constraint firstItem="T4R-jT-bOL" firstAttribute="leading" secondItem="BVV-0w-aF9" secondAttribute="leading" id="R3Y-1C-gxa"/>
                             <constraint firstItem="64F-jn-JuQ" firstAttribute="leading" secondItem="YSQ-UN-vc6" secondAttribute="leading" id="YcW-Qu-yVf"/>
+                            <constraint firstItem="64F-jn-JuQ" firstAttribute="top" secondItem="Qqj-zg-f6h" secondAttribute="bottom" constant="17" id="dOs-4p-flm"/>
+                            <constraint firstItem="Qqj-zg-f6h" firstAttribute="top" secondItem="rEk-g3-vSL" secondAttribute="bottom" constant="5" id="mzh-h2-mds"/>
                             <constraint firstItem="rEk-g3-vSL" firstAttribute="centerY" secondItem="BVV-0w-aF9" secondAttribute="centerY" id="pKR-2I-CeT"/>
+                            <constraint firstItem="Qqj-zg-f6h" firstAttribute="width" secondItem="rEk-g3-vSL" secondAttribute="width" id="qZb-QW-rgI"/>
                             <constraint firstItem="YSQ-UN-vc6" firstAttribute="trailing" secondItem="64F-jn-JuQ" secondAttribute="trailing" id="tfd-nE-7yh"/>
+                            <constraint firstItem="Qqj-zg-f6h" firstAttribute="leading" secondItem="rEk-g3-vSL" secondAttribute="leading" id="uo8-0c-nnC"/>
                             <constraint firstItem="YSQ-UN-vc6" firstAttribute="bottom" secondItem="64F-jn-JuQ" secondAttribute="bottom" id="yUY-SR-fhM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YSQ-UN-vc6"/>
@@ -65,8 +102,10 @@
                     <navigationItem key="navigationItem" id="efb-Dk-qY3"/>
                     <connections>
                         <outlet property="chatsButton" destination="BVV-0w-aF9" id="x7U-WU-gyE"/>
+                        <outlet property="chatsButtonUnderline" destination="T4R-jT-bOL" id="o17-Y9-LLh"/>
                         <outlet property="containerView" destination="64F-jn-JuQ" id="tyZ-pa-mBz"/>
                         <outlet property="liveButton" destination="rEk-g3-vSL" id="T1C-Fo-H2m"/>
+                        <outlet property="liveButtonUnderline" destination="Qqj-zg-f6h" id="UPb-el-rzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qs-fz-ZZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

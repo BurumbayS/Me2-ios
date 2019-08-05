@@ -14,5 +14,5 @@ enum ContaierScreen {
 }
 
 class ChatTabViewModel {
-    var currentScreen = ContaierScreen.chatList
+    var currentScreen: Dynamic<ContaierScreen> = Dynamic(ContaierScreen.chatList)
 }
