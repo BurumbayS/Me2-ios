@@ -16,6 +16,7 @@ class ChatTabViewController: UIViewController {
     @IBOutlet weak var liveButton: UIButton!
     @IBOutlet weak var chatsButtonUnderline: UIView!
     @IBOutlet weak var liveButtonUnderline: UIView!
+    @IBOutlet weak var additionalActionButton: UIButton!
     
     let viewModel = ChatTabViewModel()
     
@@ -45,11 +46,13 @@ class ChatTabViewController: UIViewController {
     private func setUpButtons() {
         switch viewModel.currentScreen.value {
         case .chatList:
+            additionalActionButton.setImage(UIImage(named: "new_chat_icon"), for: .normal)
             chatsButton.makeVisible()
             liveButton.makeTransparent()
             chatsButtonUnderline.isHidden = false
             liveButtonUnderline.isHidden = true
         default:
+            additionalActionButton.setImage(UIImage(named: "dots_icon"), for: .normal)
             liveButton.makeVisible()
             chatsButton.makeTransparent()
             chatsButtonUnderline.isHidden = true

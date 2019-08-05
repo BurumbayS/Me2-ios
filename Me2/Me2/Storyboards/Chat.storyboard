@@ -78,9 +78,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DD8-nh-ief">
+                                <rect key="frame" x="382" y="116.5" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="U2X-FT-WVQ"/>
+                                    <constraint firstAttribute="height" constant="22" id="aMi-Zv-91I"/>
+                                </constraints>
+                                <state key="normal" image="new_chat_icon"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YSQ-UN-vc6" firstAttribute="trailing" secondItem="DD8-nh-ief" secondAttribute="trailing" constant="10" id="0qy-2n-k3m"/>
+                            <constraint firstItem="DD8-nh-ief" firstAttribute="centerY" secondItem="rEk-g3-vSL" secondAttribute="centerY" id="2A4-Sf-IaO"/>
                             <constraint firstItem="rEk-g3-vSL" firstAttribute="leading" secondItem="BVV-0w-aF9" secondAttribute="trailing" constant="50" id="4Sp-7l-4ex"/>
                             <constraint firstItem="64F-jn-JuQ" firstAttribute="top" secondItem="T4R-jT-bOL" secondAttribute="bottom" constant="17" id="8Jd-Ur-Fzu"/>
                             <constraint firstItem="T4R-jT-bOL" firstAttribute="top" secondItem="BVV-0w-aF9" secondAttribute="bottom" constant="5" id="94t-oa-zEf"/>
@@ -101,6 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="efb-Dk-qY3"/>
                     <connections>
+                        <outlet property="additionalActionButton" destination="DD8-nh-ief" id="kXa-go-kfH"/>
                         <outlet property="chatsButton" destination="BVV-0w-aF9" id="x7U-WU-gyE"/>
                         <outlet property="chatsButtonUnderline" destination="T4R-jT-bOL" id="o17-Y9-LLh"/>
                         <outlet property="containerView" destination="64F-jn-JuQ" id="tyZ-pa-mBz"/>
@@ -200,4 +211,7 @@
             <point key="canvasLocation" x="216" y="43"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="new_chat_icon" width="22" height="22"/>
+    </resources>
 </document>
