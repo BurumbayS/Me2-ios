@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Me2' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Me2
+  pod 'Cartography'
+  pod 'IQKeyboardManagerSwift'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+
+end
