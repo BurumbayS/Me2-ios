@@ -1,0 +1,34 @@
+//
+//  UIViewControllerExtensions.swift
+//  Me2
+//
+//  Created by Sanzhar Burumbay on 8/3/19.
+//  Copyright © 2019 AVSoft. All rights reserved.
+//
+
+import UIKit
+
+typealias VoidBlock = () -> ()
+
+extension UIViewController {
+    func addActionSheet(with titles: [String], and actions: [VoidBlock?], and styles: [UIAlertAction.Style]) {
+        // create an actionSheet
+        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for i in 0..<titles.count {
+            let action = UIAlertAction(title: titles[i], style: styles[i]) { (action) in
+                actions[i]?()
+            }
+            
+            actionSheetController.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action) in
+            actionSheetController.dismiss(animated: true, completion: nil)
+        }
+        actionSheetController.addAction(cancelAction)
+        
+        // present an actionSheet...
+        present(actionSheetController, animated: true, completion: nil)
+    }
+}
