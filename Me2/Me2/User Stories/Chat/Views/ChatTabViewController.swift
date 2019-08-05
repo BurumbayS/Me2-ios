@@ -16,13 +16,17 @@ class ChatTabViewController: UIViewController {
     @IBOutlet weak var liveButton: UIButton!
     
     let chatsListVC = Storyboard.chatsListViewController()
+    let liveChatVC = Storyboard.liveChatViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        containerView.self = chatsListVC.view
-        containerView.addSubview(chatsListVC.view)
-        updateConstraints(for: chatsListVC.view)
+        setUpContainerView()
+    }
+    
+    private func setUpContainerView() {
+        containerView.addSubview(liveChatVC.view)
+        updateConstraints(for: liveChatVC.view)
     }
 
     private func updateConstraints(for view: UIView) {

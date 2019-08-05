@@ -42,4 +42,7 @@ extension Storyboard {
     static var chatsListViewController = {
         return chat.storyboard.instantiateViewController(withIdentifier: "ChatsListViewController")
     }
+    static var liveChatViewController = {
+        return chat.storyboard.instantiateViewController(withIdentifier: "LiveChatViewController")
+    }
 }

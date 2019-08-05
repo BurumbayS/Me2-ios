@@ -73,16 +73,40 @@
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="42.857142857142854"/>
         </scene>
-        <!--View Controller-->
+        <!--Live Chat View Controller-->
         <scene sceneID="1cf-Rs-Vwq">
             <objects>
-                <viewController id="i8v-JS-acQ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LiveChatViewController" id="i8v-JS-acQ" customClass="LiveChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zFy-CJ-PYn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z4Y-P6-qPy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Hm7-l6-emu"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6d2-kf-oro">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z4Y-P6-qPy" firstAttribute="leading" secondItem="JLT-C1-1lD" secondAttribute="leading" id="Vc8-6c-v6c"/>
+                            <constraint firstItem="JLT-C1-1lD" firstAttribute="trailing" secondItem="z4Y-P6-qPy" secondAttribute="trailing" id="al0-Pk-po3"/>
+                            <constraint firstItem="z4Y-P6-qPy" firstAttribute="top" secondItem="JLT-C1-1lD" secondAttribute="top" id="bnx-qL-nHb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JLT-C1-1lD"/>
                     </view>
+                    <connections>
+                        <outlet property="participantsCollectionView" destination="z4Y-P6-qPy" id="FPm-CU-vFt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfm-nR-TMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
