@@ -48,4 +48,7 @@ extension Storyboard {
     static var contactsViewController = {
         return chat.storyboard.instantiateViewController(withIdentifier: "ContactsViewController")
     }
+    static var createGroupViewController = {
+        return chat.storyboard.instantiateViewController(withIdentifier: "CreateGroupViewController")
+    }
 }

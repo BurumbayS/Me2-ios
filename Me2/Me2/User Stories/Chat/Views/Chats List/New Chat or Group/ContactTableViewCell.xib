@@ -32,7 +32,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anna Kravchenko" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6o-1a-8OW">
-                        <rect key="frame" x="65" y="13" width="240" height="20"/>
+                        <rect key="frame" x="65" y="13" width="212" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="vyo-NM-hwP"/>
                         </constraints>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@maria_zzz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ul-jM-KcD">
-                        <rect key="frame" x="65" y="33" width="240" height="15"/>
+                        <rect key="frame" x="65" y="33" width="212" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="XjQ-iK-ENj"/>
                         </constraints>
@@ -49,16 +49,25 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="Zsc-IN-mKa">
+                        <rect key="frame" x="287" y="22" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="HmO-1i-NG3"/>
+                            <constraint firstAttribute="width" constant="22" id="frb-1L-0Gs"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="F6o-1a-8OW" secondAttribute="trailing" constant="15" id="2k4-yZ-VX4"/>
+                    <constraint firstItem="Zsc-IN-mKa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9zc-8c-7tv"/>
+                    <constraint firstItem="Zsc-IN-mKa" firstAttribute="leading" secondItem="F6o-1a-8OW" secondAttribute="trailing" constant="10" id="Kuq-cU-Yk1"/>
                     <constraint firstItem="F6o-1a-8OW" firstAttribute="top" secondItem="oBn-fQ-6nL" secondAttribute="top" id="LHR-ii-7VY"/>
                     <constraint firstItem="3Ul-jM-KcD" firstAttribute="top" secondItem="F6o-1a-8OW" secondAttribute="bottom" id="PQw-cL-xa9"/>
                     <constraint firstItem="3Ul-jM-KcD" firstAttribute="leading" secondItem="F6o-1a-8OW" secondAttribute="leading" id="SHl-ra-iSz"/>
+                    <constraint firstAttribute="trailing" secondItem="Zsc-IN-mKa" secondAttribute="trailing" constant="11" id="Ub4-Ek-aYu"/>
                     <constraint firstItem="oBn-fQ-6nL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vyc-Gm-ZR9"/>
                     <constraint firstItem="oBn-fQ-6nL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="djz-eR-R15"/>
+                    <constraint firstItem="3Ul-jM-KcD" firstAttribute="trailing" secondItem="F6o-1a-8OW" secondAttribute="trailing" id="kQ1-ws-i9U"/>
                     <constraint firstItem="F6o-1a-8OW" firstAttribute="leading" secondItem="oBn-fQ-6nL" secondAttribute="trailing" constant="15" id="v5U-MY-QJ9"/>
-                    <constraint firstAttribute="trailing" secondItem="3Ul-jM-KcD" secondAttribute="trailing" constant="15" id="vVN-7L-sWn"/>
                     <constraint firstAttribute="bottom" secondItem="oBn-fQ-6nL" secondAttribute="bottom" constant="13" id="ytu-o1-bVi"/>
                     <constraint firstItem="oBn-fQ-6nL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yvq-iM-85V"/>
                 </constraints>
@@ -66,13 +75,15 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="oBn-fQ-6nL" id="udZ-FF-DI3"/>
+                <outlet property="checkStatusImageView" destination="Zsc-IN-mKa" id="NQM-s0-kNe"/>
                 <outlet property="nameLabel" destination="F6o-1a-8OW" id="kfQ-IQ-O6w"/>
                 <outlet property="usernameLabel" destination="3Ul-jM-KcD" id="nsn-MP-ERj"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="81.361607142857139"/>
+            <point key="canvasLocation" x="74" y="77"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checked" width="22" height="22"/>
         <image name="sample_avatar" width="48" height="48"/>
     </resources>
 </document>

@@ -29,8 +29,8 @@ class CreateGroupTableViewCell: UITableViewCell {
         self.contentView.addSubview(icon)
         constrain(icon, self.contentView) { icon, view in
             icon.left == view.left + 14
-            icon.top == view.top + 10
-            icon.bottom == view.bottom - 10
+            icon.top == view.top + 15
+            icon.bottom == view.bottom - 15
             icon.height == 18
             icon.width == 26
         }

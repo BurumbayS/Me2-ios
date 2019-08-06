@@ -66,6 +66,8 @@
 		DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */; };
 		DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */; };
 		DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */; };
+		DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */; };
+		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,8 @@
 		DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
+		DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -263,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */,
+				DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -413,10 +418,7 @@
 				DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */,
 				DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */,
 				DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */,
-				DDCE6E7822F8202D006E54D1 /* ContactsViewController.swift */,
-				DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */,
-				DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */,
-				DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */,
+				DDCE6EAA22F98216006E54D1 /* New Chat or Group */,
 			);
 			path = "Chats List";
 			sourceTree = "<group>";
@@ -448,6 +450,18 @@
 				DDCE6E9022F94111006E54D1 /* Roboto-ThinItalic.ttf */,
 			);
 			path = "Roboto-s";
+			sourceTree = "<group>";
+		};
+		DDCE6EAA22F98216006E54D1 /* New Chat or Group */ = {
+			isa = PBXGroup;
+			children = (
+				DDCE6E7822F8202D006E54D1 /* ContactsViewController.swift */,
+				DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */,
+				DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */,
+				DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */,
+				DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */,
+			);
+			path = "New Chat or Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,11 +648,13 @@
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
+				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD5653C522F07B03003A67C3 /* FirstLastNameViewController.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
+				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -100,10 +100,6 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 6
     }
@@ -125,7 +121,18 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(selectable: false)
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let vc = Storyboard.createGroupViewController()
+            present(vc, animated: true, completion: nil)
+        default:
+            break;
         }
     }
 }
