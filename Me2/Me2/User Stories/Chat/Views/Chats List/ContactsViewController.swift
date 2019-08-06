@@ -19,6 +19,7 @@ class ContactsViewController: UIViewController {
         
         setUpNavBar()
         setUpViews()
+        setUpTableView()
     }
 
     private func setUpNavBar() {
@@ -39,7 +40,7 @@ class ContactsViewController: UIViewController {
     }
     
     private func setUpViews() {
-        searchBar.backgroundColor = .lightGray
+        searchBar.backgroundColor = Color.lightGray
         
         self.view.addSubview(searchBar)
         constrain(searchBar, self.view) { bar, view in
@@ -55,6 +56,81 @@ class ContactsViewController: UIViewController {
             table.right == view.right
             table.top == bar.bottom + 10
             table.bottom == view.bottom
+        }
+    }
+    
+    private func setUpTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.registerNib(ContactTableViewCell.self)
+        tableView.register(CreateGroupTableViewCell.self)
+    }
+}
+
+extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = Color.lightGray
+        
+        let letterLabel = UILabel()
+        letterLabel.text = "A"
+        letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
+        letterLabel.textColor = .gray
+        
+        headerView.addSubview(letterLabel)
+        constrain(letterLabel, headerView) { letter, view in
+            letter.left == view.left + 26
+            letter.top == view.top
+            letter.bottom == view.bottom
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        default:
+            return 15
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 40
+        default:
+            return 67
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        default:
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell: CreateGroupTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
+        default:
+            let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
         }
     }
 }
