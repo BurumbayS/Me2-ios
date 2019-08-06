@@ -82,6 +82,11 @@ class ChatTabViewController: UIViewController {
         }
     }
     
+    private func createNewChat() {
+        let contactsVC = Storyboard.contactsViewController()
+        present(contactsVC, animated: true, completion: nil)
+    }
+    
     @IBAction func chatsButtonPressed(_ sender: Any) {
         viewModel.currentScreen.value = .chatList
     }
@@ -89,4 +94,14 @@ class ChatTabViewController: UIViewController {
     @IBAction func liveButtonPressed(_ sender: Any) {
         viewModel.currentScreen.value = .liveChat
     }
+    
+    @IBAction func additionalButtonPressed(_ sender: Any) {
+        switch viewModel.currentScreen.value {
+        case .chatList:
+            createNewChat()
+        default:
+            break;
+        }
+    }
+    
 }

@@ -85,6 +85,9 @@
                                     <constraint firstAttribute="height" constant="22" id="aMi-Zv-91I"/>
                                 </constraints>
                                 <state key="normal" image="new_chat_icon"/>
+                                <connections>
+                                    <action selector="additionalButtonPressed:" destination="025-BY-0Yr" eventType="touchUpInside" id="SPW-lG-D98"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -192,6 +195,34 @@
             </objects>
             <point key="canvasLocation" x="1800" y="-321"/>
         </scene>
+        <!--Contacts View Controller-->
+        <scene sceneID="Txv-QG-qcd">
+            <objects>
+                <viewController id="apK-t2-bVk" customClass="ContactsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d0z-EX-J4V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tjJ-Yk-vxY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tjJ-Yk-vxY" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="QNX-l7-E6R"/>
+                            <constraint firstItem="tjJ-Yk-vxY" firstAttribute="top" secondItem="MTq-fj-Z17" secondAttribute="top" id="TDE-Lc-iRt"/>
+                            <constraint firstItem="MTq-fj-Z17" firstAttribute="trailing" secondItem="tjJ-Yk-vxY" secondAttribute="trailing" id="ft6-W5-LeG"/>
+                            <constraint firstItem="MTq-fj-Z17" firstAttribute="bottom" secondItem="tjJ-Yk-vxY" secondAttribute="bottom" id="mMy-Gx-3hR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MTq-fj-Z17"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2PP-TE-AQB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxE-hP-OCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3367" y="43"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ufS-hr-nyO">
             <objects>
@@ -209,6 +240,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIF-u4-s1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="216" y="43"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D5c-kT-G1C">
+            <objects>
+                <navigationController storyboardIdentifier="ContactsViewController" automaticallyAdjustsScrollViewInsets="NO" id="JPq-Hy-vhY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="CNY-1C-qHh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="apK-t2-bVk" kind="relationship" relationship="rootViewController" id="lm3-dk-hrP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLJ-NR-U5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="43"/>
         </scene>
     </scenes>
     <resources>

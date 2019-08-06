@@ -10,4 +10,5 @@ import UIKit
 
 class Color {
     static let lightGray = UIColor(stringHex: "#FFFFFF")
+    static let red = UIColor(stringHex: "#F95454")
 }
