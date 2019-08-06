@@ -63,6 +63,9 @@ class ContactsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 40
+        
         tableView.registerNib(ContactTableViewCell.self)
         tableView.register(CreateGroupTableViewCell.self)
     }
@@ -101,15 +104,6 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 40
-        default:
-            return 67
-        }
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 6
     }
@@ -127,6 +121,7 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell: CreateGroupTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
         default:
             let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

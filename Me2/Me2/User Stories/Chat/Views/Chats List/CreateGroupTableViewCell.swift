@@ -25,16 +25,24 @@ class CreateGroupTableViewCell: UITableViewCell {
     }
     
     private func setUpViews() {
+        icon.image = UIImage(named: "create_group_icon")
+        self.contentView.addSubview(icon)
+        constrain(icon, self.contentView) { icon, view in
+            icon.left == view.left + 14
+            icon.top == view.top + 10
+            icon.bottom == view.bottom - 10
+            icon.height == 18
+            icon.width == 26
+        }
+        
         label.text = "Создать группу"
         label.font = UIFont(name: "Roboto-Regular", size: 17)
         label.textColor = Color.red
         
         self.contentView.addSubview(label)
-        constrain(label, self.contentView) { label, view in
-            label.left == view.left + 20
-            label.top == view.top + 10
-            label.bottom == view.bottom - 10
-            label.height == 20
+        constrain(label, icon, self.contentView) { label, icon, view in
+            label.left == icon.right + 14
+            label.centerY == icon.centerY
         }
     }
 }

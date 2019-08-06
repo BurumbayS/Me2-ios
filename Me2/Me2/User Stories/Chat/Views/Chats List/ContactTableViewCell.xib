@@ -25,14 +25,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="oBn-fQ-6nL">
-                        <rect key="frame" x="10" y="13.5" width="40" height="40"/>
+                        <rect key="frame" x="10" y="13" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="KAx-CW-Vu2"/>
                             <constraint firstAttribute="height" constant="40" id="xnf-ai-Q5U"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anna Kravchenko" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6o-1a-8OW">
-                        <rect key="frame" x="65" y="13.5" width="240" height="20"/>
+                        <rect key="frame" x="65" y="13" width="240" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="vyo-NM-hwP"/>
                         </constraints>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@maria_zzz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ul-jM-KcD">
-                        <rect key="frame" x="65" y="33.5" width="240" height="15"/>
+                        <rect key="frame" x="65" y="33" width="240" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="XjQ-iK-ENj"/>
                         </constraints>
@@ -56,8 +56,10 @@
                     <constraint firstItem="3Ul-jM-KcD" firstAttribute="top" secondItem="F6o-1a-8OW" secondAttribute="bottom" id="PQw-cL-xa9"/>
                     <constraint firstItem="3Ul-jM-KcD" firstAttribute="leading" secondItem="F6o-1a-8OW" secondAttribute="leading" id="SHl-ra-iSz"/>
                     <constraint firstItem="oBn-fQ-6nL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vyc-Gm-ZR9"/>
+                    <constraint firstItem="oBn-fQ-6nL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="djz-eR-R15"/>
                     <constraint firstItem="F6o-1a-8OW" firstAttribute="leading" secondItem="oBn-fQ-6nL" secondAttribute="trailing" constant="15" id="v5U-MY-QJ9"/>
                     <constraint firstAttribute="trailing" secondItem="3Ul-jM-KcD" secondAttribute="trailing" constant="15" id="vVN-7L-sWn"/>
+                    <constraint firstAttribute="bottom" secondItem="oBn-fQ-6nL" secondAttribute="bottom" constant="13" id="ytu-o1-bVi"/>
                     <constraint firstItem="oBn-fQ-6nL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yvq-iM-85V"/>
                 </constraints>
             </tableViewCellContentView>
