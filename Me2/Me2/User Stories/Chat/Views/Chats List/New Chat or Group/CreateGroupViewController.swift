@@ -37,10 +37,12 @@ class CreateGroupViewController: UIViewController {
         let participantsString = toString(from: participants)
         
         if participantsString == "" {
+            navigationItem.rightBarButtonItem?.isEnabled = false
             participantsLabel.textColor = .lightGray
             participantsLabel.font = UIFont(name: "Roboto-Regular", size: 13)
             participantsLabel.text = "Выберите участников группы"
         } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
             participantsLabel.textColor = .black
             participantsLabel.font = UIFont(name: "Roboto-Regular", size: 17)
             participantsLabel.text = toString(from: participants)
@@ -53,13 +55,21 @@ class CreateGroupViewController: UIViewController {
         
         navigationItem.title = "Участники"
         
-        let rightItem = UIBarButtonItem(title: "Далее", style: .plain, target: self, action: nil)
+        let rightItem = UIBarButtonItem(title: "Далее", style: .plain, target: self, action: #selector(goNext))
         rightItem.tintColor = Color.blue
         navigationItem.rightBarButtonItem = rightItem
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         let leftItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(goBack))
         leftItem.tintColor = Color.red
         navigationItem.leftBarButtonItem = leftItem
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+    
+    @objc private func goNext() {
+        let vc = Storyboard.modifyGroupViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func goBack() {

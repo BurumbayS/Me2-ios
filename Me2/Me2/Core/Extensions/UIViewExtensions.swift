@@ -20,4 +20,13 @@ extension UIView {
     func makeVisible() {
         self.alpha = 1.0
     }
+    
+    func addUnderline(with color : UIColor, and frame : CGSize) {
+        let border = CALayer()
+        border.borderColor = color.cgColor
+        border.borderWidth = 0.5
+        border.frame = CGRect(x: 0, y: frame.height - 0.5, width: frame.width, height: frame.height)
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
 }

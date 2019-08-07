@@ -227,6 +227,36 @@
             </objects>
             <point key="canvasLocation" x="4864" y="43"/>
         </scene>
+        <!--Modfy Group View Controller-->
+        <scene sceneID="CmJ-fX-0iL">
+            <objects>
+                <viewController storyboardIdentifier="ModifyGroupViewController" id="5z1-lP-ELh" customClass="ModfyGroupViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dW9-vO-9Sz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nf8-tF-PNV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="D6q-mY-fWM" firstAttribute="trailing" secondItem="nf8-tF-PNV" secondAttribute="trailing" id="BkP-w0-NHu"/>
+                            <constraint firstItem="nf8-tF-PNV" firstAttribute="top" secondItem="D6q-mY-fWM" secondAttribute="top" id="Ko0-ws-Op9"/>
+                            <constraint firstItem="D6q-mY-fWM" firstAttribute="bottom" secondItem="nf8-tF-PNV" secondAttribute="bottom" id="gxZ-sI-Fef"/>
+                            <constraint firstItem="nf8-tF-PNV" firstAttribute="leading" secondItem="D6q-mY-fWM" secondAttribute="leading" id="pgJ-C8-iSz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="D6q-mY-fWM"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="nf8-tF-PNV" id="3ly-Aw-x65"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wzn-iK-LG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5554" y="43"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ufS-hr-nyO">
             <objects>

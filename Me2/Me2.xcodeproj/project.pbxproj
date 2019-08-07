@@ -68,6 +68,8 @@
 		DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */; };
 		DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */; };
 		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
+		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
+		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +139,8 @@
 		DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
 		DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
+		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
+		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -460,6 +464,8 @@
 				DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */,
 				DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */,
 				DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */,
+				DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */,
+				DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */,
 			);
 			path = "New Chat or Group";
 			sourceTree = "<group>";
@@ -637,6 +643,7 @@
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
+				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DD5653C722F07BE7003A67C3 /* GenderBirthdateViewController.swift in Sources */,
@@ -646,6 +653,7 @@
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
