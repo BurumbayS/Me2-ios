@@ -117,11 +117,3 @@ extension ModfyGroupViewController : PresenterDelegate {
         present(controller, animated: true, completion: nil)
     }
 }
-
-extension ModfyGroupViewController : UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let text = textField.text, text.count > 0 {
-            navigationItem.rightBarButtonItem?.isEnabled = true
-        }
-    }
-}
