@@ -16,6 +16,7 @@ class EditGroupInfoTableViewCell: UITableViewCell {
     let imagePicker = UIImagePickerController()
     
     var presenter: PresenterDelegate!
+    var titleChangeHandler: ((String)->())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,9 +28,10 @@ class EditGroupInfoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure (with delegate: PresenterDelegate) {
+    func configure (with delegate: PresenterDelegate, titleChangeHandler: @escaping ((String) -> ())) {
         presenter = delegate
         imagePicker.delegate = self
+        self.titleChangeHandler = titleChangeHandler
     }
     
     private func setUpViews() {
@@ -53,6 +55,7 @@ class EditGroupInfoTableViewCell: UITableViewCell {
         titleTextField.borderStyle = .none
         titleTextField.font = UIFont(name: "Roboto-Regular", size: 17)
         titleTextField.placeholder = "Название группы"
+        titleTextField.addTarget(self, action: #selector(textFielEdited), for: .editingChanged)
         self.contentView.addSubview(titleTextField)
         constrain(titleTextField, avatarImageView, self.contentView) { title, avatar, view in
             title.left == avatar.right + 17
@@ -62,6 +65,12 @@ class EditGroupInfoTableViewCell: UITableViewCell {
         }
         let frame = CGSize(width: UIScreen.main.bounds.width - 76 - 17 - 20, height: 40)
         titleTextField.addUnderline(with: .lightGray, and: frame)
+    }
+    
+    @objc private func textFielEdited() {
+        if let title = titleTextField.text {
+            titleChangeHandler?(title)
+        }
     }
     
     @objc private func chooseAvatar() {

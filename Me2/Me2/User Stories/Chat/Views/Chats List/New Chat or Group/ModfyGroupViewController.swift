@@ -38,6 +38,7 @@ class ModfyGroupViewController: UIViewController {
         let rightItem = UIBarButtonItem(title: "Создать", style: .plain, target: self, action: nil)
         rightItem.tintColor = Color.blue
         navigationItem.rightBarButtonItem = rightItem
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
 }
 
@@ -87,7 +88,13 @@ extension ModfyGroupViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell: EditGroupInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: self)
+            cell.configure(with: self) { [weak self] (title) in
+                if title == "" {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = false
+                } else {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                }
+            }
             return cell
         default:
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -108,5 +115,13 @@ extension ModfyGroupViewController : PresenterDelegate {
     
     func present(controller: UIViewController) {
         present(controller, animated: true, completion: nil)
+    }
+}
+
+extension ModfyGroupViewController : UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let text = textField.text, text.count > 0 {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
 }
