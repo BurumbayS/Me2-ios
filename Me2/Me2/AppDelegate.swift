@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Set root View Controller
-        window?.rootViewController = Storyboard.mainTabsViewController()
+        window?.rootViewController = Storyboard.signInOrUpViewController()
         
         IQKeyboardManager.shared.enable = true
         
