@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Me2/Pods-Me2-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
+${BUILT_PRODUCTS_DIR}/KKPinCodeTextField/KKPinCodeTextField.framework
