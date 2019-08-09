@@ -88,7 +88,7 @@ extension ModfyGroupViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell: EditGroupInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: self) { [weak self] (title) in
+            cell.configure(controllerPresenter: self, actionSheetPresenter: self) { [weak self] (title) in
                 if title == "" {
                     self?.navigationItem.rightBarButtonItem?.isEnabled = false
                 } else {
@@ -104,12 +104,8 @@ extension ModfyGroupViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-protocol PresenterDelegate {
-    func present(controller: UIViewController)
-    func presentAlert(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style])
-}
-extension ModfyGroupViewController : PresenterDelegate {
-    func presentAlert(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
+extension ModfyGroupViewController : ControllerPresenterDelegate, ActionSheetPresenterDelegate {
+    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
         self.addActionSheet(with: titles, and: actions, and: styles)
     }
     

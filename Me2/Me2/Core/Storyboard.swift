@@ -54,4 +54,7 @@ extension Storyboard {
     static var modifyGroupViewController = {
         return chat.storyboard.instantiateViewController(withIdentifier: "ModifyGroupViewController")
     }
+    static var userProfileViewController = {
+        return chat.storyboard.instantiateViewController(withIdentifier: "UserProfileViewController")
+    }
 }

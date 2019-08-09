@@ -15,7 +15,8 @@ class EditGroupInfoTableViewCell: UITableViewCell {
     let titleTextField = UITextField()
     let imagePicker = UIImagePickerController()
     
-    var presenter: PresenterDelegate!
+    var controllerPresenter: ControllerPresenterDelegate!
+    var actionSheetPresenter: ActionSheetPresenterDelegate!
     var titleChangeHandler: ((String)->())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,8 +29,9 @@ class EditGroupInfoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure (with delegate: PresenterDelegate, titleChangeHandler: @escaping ((String) -> ())) {
-        presenter = delegate
+    func configure (controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate, titleChangeHandler: @escaping ((String) -> ())) {
+        self.controllerPresenter = controllerPresenter
+        self.actionSheetPresenter = actionSheetPresenter
         imagePicker.delegate = self
         self.titleChangeHandler = titleChangeHandler
     }
@@ -79,17 +81,17 @@ class EditGroupInfoTableViewCell: UITableViewCell {
         
         let titles = ["Сделать снимок", "Выбрать фотографию"]
         let actions = [takePicture, chooseImageFromAlbum]
-        presenter.presentAlert(with: titles, actions: actions, styles: [.default, .default])
+        actionSheetPresenter.present(with: titles, actions: actions, styles: [.default, .default])
     }
     
     func chooseImageFromAlbum() {
         imagePicker.sourceType = .photoLibrary
-        self.presenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker)
     }
     
     func takePicture() {
         imagePicker.sourceType = .camera
-        self.presenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker)
     }
 }
 

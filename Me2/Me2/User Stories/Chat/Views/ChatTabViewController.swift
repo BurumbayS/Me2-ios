@@ -20,14 +20,15 @@ class ChatTabViewController: UIViewController {
     
     let viewModel = ChatTabViewModel()
     
-    let chatsListVC = Storyboard.chatsListViewController()
-    let liveChatVC = Storyboard.liveChatViewController()
+    let chatsListVC = Storyboard.chatsListViewController() as! ChatsListViewController
+    let liveChatVC = Storyboard.liveChatViewController() as! LiveChatViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
         bindViewModel()
+        setUpDelegates()
     }
     
     private func bindViewModel() {
@@ -41,6 +42,11 @@ class ChatTabViewController: UIViewController {
                 self?.setUpButtons()
             }
         }
+    }
+    
+    private func setUpDelegates() {
+        chatsListVC.controllerPresenter = self
+        liveChatVC.controllerPresenter = self
     }
     
     private func setUpButtons() {
@@ -103,5 +109,10 @@ class ChatTabViewController: UIViewController {
             break;
         }
     }
-    
+}
+
+extension ChatTabViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }

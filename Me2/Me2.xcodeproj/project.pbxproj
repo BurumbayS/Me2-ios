@@ -70,6 +70,10 @@
 		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
 		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
+		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
+		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
+		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
+		DDF65B1322FD666200441035 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1222FD666200441035 /* Protocols.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +145,10 @@
 		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DDF65B1222FD666200441035 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -260,6 +268,7 @@
 		DD5653E022F4BF0B003A67C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DDCE6E6D22F7E8ED006E54D1 /* Live Chat */,
 				DDCE6E6C22F7E8D1006E54D1 /* Chats List */,
 				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
@@ -332,6 +341,7 @@
 				DD5653D622F45AF5003A67C3 /* Storyboard.swift */,
 				DD5653F122F4DC19003A67C3 /* Color.swift */,
 				DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */,
+				DDF65B1222FD666200441035 /* Protocols.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -470,6 +480,16 @@
 			path = "New Chat or Group";
 			sourceTree = "<group>";
 		};
+		DDF65B0D22FD5CB900441035 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */,
+				DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */,
+				DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */,
+			);
+			path = "User Profile";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,6 +568,7 @@
 				DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
 				DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */,
+				DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
 				DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				DDCE6E9922F94111006E54D1 /* Roboto-Regular.ttf in Resources */,
@@ -628,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
@@ -636,6 +658,7 @@
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
 				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
+				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
@@ -653,6 +676,7 @@
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
