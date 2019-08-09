@@ -31,4 +31,12 @@ extension UIViewController {
         // present an actionSheet...
         present(actionSheetController, animated: true, completion: nil)
     }
+    
+    func setUpBackBarButton(for navItem: UINavigationItem) {
+        navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_button"), style: .plain, target: self, action: #selector(dismissSelf))
+    }
+    
+    @objc func dismissSelf() {
+        navigationController?.popViewController(animated: true)
+    }
 }

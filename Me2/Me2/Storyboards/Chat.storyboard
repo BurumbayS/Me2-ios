@@ -140,7 +140,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Hm7-l6-emu"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6d2-kf-oro">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="6d2-kf-oro">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -265,27 +265,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="72z-YM-rW3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="72z-YM-rW3">
+                                <rect key="frame" x="28" y="88" width="386" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dya-oJ-EVg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="IKg-mX-uMk"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jaM-Ur-eFg" firstAttribute="bottom" secondItem="72z-YM-rW3" secondAttribute="bottom" id="2h2-vp-Oym"/>
-                            <constraint firstItem="jaM-Ur-eFg" firstAttribute="trailing" secondItem="72z-YM-rW3" secondAttribute="trailing" id="BLY-vy-sVw"/>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="top" secondItem="jaM-Ur-eFg" secondAttribute="top" id="LDO-P5-C2x"/>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="leading" secondItem="jaM-Ur-eFg" secondAttribute="leading" id="kI1-HE-cZP"/>
+                            <constraint firstItem="72z-YM-rW3" firstAttribute="bottom" secondItem="jaM-Ur-eFg" secondAttribute="bottom" id="1nG-MI-qH2"/>
+                            <constraint firstItem="dya-oJ-EVg" firstAttribute="leading" secondItem="jaM-Ur-eFg" secondAttribute="leading" id="8fS-Z6-AuV"/>
+                            <constraint firstItem="72z-YM-rW3" firstAttribute="top" secondItem="dya-oJ-EVg" secondAttribute="bottom" id="Fwb-Vn-ZXs"/>
+                            <constraint firstItem="72z-YM-rW3" firstAttribute="trailing" secondItem="jaM-Ur-eFg" secondAttribute="trailing" id="Hfz-yD-o9E"/>
+                            <constraint firstAttribute="trailing" secondItem="dya-oJ-EVg" secondAttribute="trailing" id="LCt-of-jBc"/>
+                            <constraint firstItem="72z-YM-rW3" firstAttribute="leading" secondItem="jaM-Ur-eFg" secondAttribute="leading" constant="28" id="YGF-Xu-gdD"/>
+                            <constraint firstItem="dya-oJ-EVg" firstAttribute="top" secondItem="jaM-Ur-eFg" secondAttribute="top" id="mws-Og-3lj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jaM-Ur-eFg"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="dya-oJ-EVg" id="6X5-k5-b9O"/>
+                        <outlet property="navItem" destination="IKg-mX-uMk" id="aE8-OS-zQU"/>
                         <outlet property="tableView" destination="72z-YM-rW3" id="0Uu-PS-6ZC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BI-DK-ixq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6271" y="43"/>
+            <point key="canvasLocation" x="6269.5652173913049" y="42.857142857142854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ufS-hr-nyO">
