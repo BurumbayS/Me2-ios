@@ -37,17 +37,20 @@ class UserProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 30
         
         tableView.registerNib(UserProfileHeaderTableViewCell.self)
         tableView.register(TextTableViewCell.self)
+        tableView.register(FavouritePlacesTableViewCell.self)
     }
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        headerView.backgroundColor = .white
         
         let label = UILabel()
         label.textColor = .gray
@@ -105,22 +108,29 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
     private func cell(for indexPath: IndexPath) -> UITableViewCell {
         let section = viewModel.sections[indexPath.section]
         
+        let cell: TextTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.selectionStyle = .none
+        
         switch section {
         case .header:
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
         case .username:
-            let cell: TextTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(with: Color.blue, text: "maria_zzz")
-            return cell
         case .bio:
-            let cell: TextTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(with: .black, text: "Люблю экстремальный спорт и прогулки по вечернему городу.")
+        case .favourite_places:
+            let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(with: 10)
             return cell
-        default:
-            break;
+        case .block:
+            cell.configure(with: Color.red, text: "Заблокировать")
+        case .complain:
+            cell.configure(with: Color.red, text: "Пожаловаться на пользователя")
         }
         
-        return UITableViewCell()
+        return cell
     }
 }

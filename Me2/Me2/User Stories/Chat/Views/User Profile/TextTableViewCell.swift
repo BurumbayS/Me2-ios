@@ -35,7 +35,7 @@ class TextTableViewCell: UITableViewCell {
         self.contentView.addSubview(label)
         constrain(label, self.contentView) { label, view in
             label.left == view.left
-            label.top == view.top + 5
+            label.top == view.top + 10
             label.bottom == view.bottom - 10
             label.right == view.right - 20
         }
