@@ -123,6 +123,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.accessoryType = .disclosureIndicator
             cell.configure(with: 10)
             return cell
         case .block:
