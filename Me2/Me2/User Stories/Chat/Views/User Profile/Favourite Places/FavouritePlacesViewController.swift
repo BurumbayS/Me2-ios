@@ -12,6 +12,8 @@ class FavouritePlacesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var cells = 5
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +37,7 @@ class FavouritePlacesViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Любимые места"
         
-        let rightItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: nil)
+        let rightItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editTableView))
         rightItem.tintColor = Color.red
         navigationItem.rightBarButtonItem = rightItem
     }
@@ -48,15 +50,34 @@ class FavouritePlacesViewController: UIViewController {
         
         tableView.registerNib(PlaceTableViewCell.self)
     }
+    
+    @objc private func editTableView() {
+        UIView.animate(withDuration: 0.2) {
+            self.tableView.isEditing = !self.tableView.isEditing
+        }
+        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Готово" : "Править"
+    }
 }
 
 extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return cells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Удалить"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            cells -= 1
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
