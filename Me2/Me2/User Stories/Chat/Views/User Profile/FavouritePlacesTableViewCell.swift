@@ -52,16 +52,13 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         }
         
         if data > 3 {
-            let label = UILabel()
+            x += 10
+            let label = UILabel(frame: CGRect(x: x, y: 0, width: 100, height: 36))
             label.textColor = .gray
             label.font = UIFont(name: "Roboto-Regular", size: 17)
             label.text = "+\(data - 3)"
             
-            self.contentView.addSubview(label)
-            constrain(label, stackView) { label, stack in
-                label.left == stack.right + 10
-                label.centerY == stack.centerY
-            }
+            stackView.addSubview(label)
         }
     }
 }
