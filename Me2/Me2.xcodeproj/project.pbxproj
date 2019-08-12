@@ -77,6 +77,10 @@
 		DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */; };
 		DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1622FD8D0700441035 /* UserProfileViewModel.swift */; };
 		DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */; };
+		DDF65B1C2301504700441035 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B1B2301504700441035 /* Profile.storyboard */; };
+		DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */; };
+		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
+		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +159,10 @@
 		DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B1622FD8D0700441035 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B1B2301504700441035 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewController.swift; sourceTree = "<group>"; };
+		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -274,7 +282,6 @@
 		DD5653E022F4BF0B003A67C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DDCE6E6D22F7E8ED006E54D1 /* Live Chat */,
 				DDCE6E6C22F7E8D1006E54D1 /* Chats List */,
 				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
@@ -356,6 +363,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DD5653DF22F4BF06003A67C3 /* Chat */,
 				DD5653CD22F32740003A67C3 /*  Map */,
 				DD5653C822F31CCA003A67C3 /* Main */,
@@ -371,6 +379,7 @@
 				DD67A75422EF33B000D1D51D /* Main.storyboard */,
 				DD5653CE22F32770003A67C3 /* Map.storyboard */,
 				DD5653E522F4C235003A67C3 /* Chat.storyboard */,
+				DDF65B1B2301504700441035 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -490,13 +499,25 @@
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B1A23014F0C00441035 /* Favourite Places */,
 				DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */,
 				DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */,
 				DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */,
 				DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */,
 				DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */,
 			);
-			path = "User Profile";
+			name = "User Profile";
+			path = "Chat/Views/User Profile";
+			sourceTree = "<group>";
+		};
+		DDF65B1A23014F0C00441035 /* Favourite Places */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */,
+				DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */,
+				DDF65B202301531100441035 /* PlaceTableViewCell.xib */,
+			);
+			path = "Favourite Places";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -572,6 +593,7 @@
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */,
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
+				DDF65B1C2301504700441035 /* Profile.storyboard in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
 				DDCE6E9C22F94111006E54D1 /* Roboto-ThinItalic.ttf in Resources */,
 				DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */,
@@ -588,6 +610,7 @@
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */,
+				DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */,
 				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,7 +710,9 @@
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
 				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
+				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,

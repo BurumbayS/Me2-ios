@@ -257,47 +257,6 @@
             </objects>
             <point key="canvasLocation" x="5554" y="43"/>
         </scene>
-        <!--User Profile View Controller-->
-        <scene sceneID="dyl-MH-nio">
-            <objects>
-                <viewController storyboardIdentifier="UserProfileViewController" id="qp7-sT-cnN" customClass="UserProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gnc-bP-SJk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="72z-YM-rW3">
-                                <rect key="frame" x="28" y="44" width="386" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dya-oJ-EVg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="IKg-mX-uMk"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="bottom" secondItem="jaM-Ur-eFg" secondAttribute="bottom" id="1nG-MI-qH2"/>
-                            <constraint firstItem="dya-oJ-EVg" firstAttribute="leading" secondItem="jaM-Ur-eFg" secondAttribute="leading" id="8fS-Z6-AuV"/>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="top" secondItem="jaM-Ur-eFg" secondAttribute="top" id="8xo-mw-cGc"/>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="trailing" secondItem="jaM-Ur-eFg" secondAttribute="trailing" id="Hfz-yD-o9E"/>
-                            <constraint firstAttribute="trailing" secondItem="dya-oJ-EVg" secondAttribute="trailing" id="LCt-of-jBc"/>
-                            <constraint firstItem="72z-YM-rW3" firstAttribute="leading" secondItem="jaM-Ur-eFg" secondAttribute="leading" constant="28" id="YGF-Xu-gdD"/>
-                            <constraint firstItem="dya-oJ-EVg" firstAttribute="top" secondItem="jaM-Ur-eFg" secondAttribute="top" id="mws-Og-3lj"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="jaM-Ur-eFg"/>
-                    </view>
-                    <connections>
-                        <outlet property="navBar" destination="dya-oJ-EVg" id="6X5-k5-b9O"/>
-                        <outlet property="navItem" destination="IKg-mX-uMk" id="aE8-OS-zQU"/>
-                        <outlet property="tableView" destination="72z-YM-rW3" id="0Uu-PS-6ZC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5BI-DK-ixq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6269.5652173913049" y="42.857142857142854"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ufS-hr-nyO">
             <objects>
