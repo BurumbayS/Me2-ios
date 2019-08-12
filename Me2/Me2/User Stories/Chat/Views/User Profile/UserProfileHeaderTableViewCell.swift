@@ -10,8 +10,43 @@ import UIKit
 
 class UserProfileHeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var firstnameLabel: UILabel!
+    @IBOutlet weak var lastnameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var likedImageView: UIImageView!
+    @IBOutlet weak var likedImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var likedImageWidth: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        configureViews()
+    }
+    
+    private func configureViews() {
+        likedImageHeight.constant = 0
+        likedImageWidth.constant = 0
+    }
+    
+    @IBAction func likedButtonPressed(_ sender: Any) {
+        likedImageView.isHidden = false
+        
+        likedImageHeight.constant = 43
+        likedImageWidth.constant = 51
+        
+        UIView.animate(withDuration: 0.1) {
+            self.contentView.layoutIfNeeded()
+        }
+        
+        likedImageHeight.constant = 33
+        likedImageWidth.constant = 41
+
+        UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveEaseIn, animations: {
+            self.contentView.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @IBAction func writeButtonPressed(_ sender: Any) {
     }
 }

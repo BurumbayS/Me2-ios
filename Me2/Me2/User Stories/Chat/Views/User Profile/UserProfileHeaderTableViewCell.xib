@@ -88,6 +88,9 @@
                             <constraint firstAttribute="height" constant="40" id="XMh-Jt-IGy"/>
                         </constraints>
                         <state key="normal" title="Button" image="like_button"/>
+                        <connections>
+                            <action selector="likedButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="l5V-SC-wLB"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7o-8Q-TYQ">
                         <rect key="frame" x="190" y="164.5" width="146" height="40"/>
@@ -96,26 +99,48 @@
                             <constraint firstAttribute="width" constant="146" id="LmY-vl-Jnh"/>
                         </constraints>
                         <state key="normal" title="Button" image="write_button"/>
+                        <connections>
+                            <action selector="writeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lic-bW-nxS"/>
+                        </connections>
                     </button>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OEC-yp-DL1">
+                        <rect key="frame" x="88" y="106.5" width="41" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="cbi-1b-dJq"/>
+                            <constraint firstAttribute="width" constant="41" id="xWz-xf-dTY"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="T0u-YG-42Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0ij-L1-cYV"/>
                     <constraint firstItem="auW-3Z-Xyw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1Lq-9g-Sa3"/>
+                    <constraint firstItem="OEC-yp-DL1" firstAttribute="bottom" secondItem="auW-3Z-Xyw" secondAttribute="bottom" constant="5" id="2Ie-f0-91q"/>
                     <constraint firstItem="HZD-4a-VpF" firstAttribute="leading" secondItem="auW-3Z-Xyw" secondAttribute="trailing" constant="32" id="3Hk-Zu-su0"/>
                     <constraint firstItem="D7o-8Q-TYQ" firstAttribute="centerY" secondItem="T0u-YG-42Z" secondAttribute="centerY" id="K9A-bd-cmg"/>
                     <constraint firstItem="HZD-4a-VpF" firstAttribute="centerY" secondItem="auW-3Z-Xyw" secondAttribute="centerY" id="NEl-ad-ew9"/>
                     <constraint firstAttribute="trailing" secondItem="D7o-8Q-TYQ" secondAttribute="trailing" constant="28" id="To2-C4-16p"/>
                     <constraint firstItem="T0u-YG-42Z" firstAttribute="top" secondItem="auW-3Z-Xyw" secondAttribute="bottom" constant="30" id="UPg-hq-CyP"/>
+                    <constraint firstItem="OEC-yp-DL1" firstAttribute="trailing" secondItem="auW-3Z-Xyw" secondAttribute="trailing" constant="5" id="XdQ-wS-nAJ"/>
                     <constraint firstAttribute="bottom" secondItem="T0u-YG-42Z" secondAttribute="bottom" constant="20" id="YhQ-Kb-BKB"/>
                     <constraint firstItem="auW-3Z-Xyw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jAZ-68-Cha"/>
                     <constraint firstAttribute="trailing" secondItem="HZD-4a-VpF" secondAttribute="trailing" id="mf8-W3-NHH"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ageLabel" destination="tuL-8Z-c7a" id="eol-6s-kAv"/>
+                <outlet property="avatarImageView" destination="auW-3Z-Xyw" id="evD-U0-oVb"/>
+                <outlet property="firstnameLabel" destination="BTI-mS-IO6" id="5pa-SG-La2"/>
+                <outlet property="lastnameLabel" destination="u5d-kW-SjP" id="YLH-aO-LdU"/>
+                <outlet property="likedImageHeight" destination="cbi-1b-dJq" id="Rzy-bj-U8e"/>
+                <outlet property="likedImageView" destination="OEC-yp-DL1" id="f2A-u5-ON5"/>
+                <outlet property="likedImageWidth" destination="xWz-xf-dTY" id="FsX-Yk-Bhv"/>
+            </connections>
             <point key="canvasLocation" x="82.608695652173921" y="98.772321428571431"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart_icon" width="43" height="35.5"/>
         <image name="like_button" width="146" height="40"/>
         <image name="sample_avatar" width="48" height="48"/>
         <image name="write_button" width="146" height="40"/>
