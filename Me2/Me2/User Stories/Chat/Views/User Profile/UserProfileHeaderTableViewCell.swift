@@ -32,19 +32,12 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBAction func likedButtonPressed(_ sender: Any) {
         likedImageView.isHidden = false
         
-        likedImageHeight.constant = 43
-        likedImageWidth.constant = 51
-        
-        UIView.animate(withDuration: 0.1) {
-            self.contentView.layoutIfNeeded()
-        }
-        
         likedImageHeight.constant = 33
         likedImageWidth.constant = 41
-
-        UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveEaseIn, animations: {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.contentView.layoutIfNeeded()
-        }, completion: nil)
+        })
     }
     
     @IBAction func writeButtonPressed(_ sender: Any) {
