@@ -19,6 +19,8 @@ class MapViewController: UIViewController {
         return SearchBar.instanceFromNib()
     }()
     let imhereButton = UIButton()
+    let imhereIcon = UIImageView()
+    let imhereIconConstraints = ConstraintGroup()
     let helperView = UIView()
     let myLocationButton = UIButton()
     
@@ -42,13 +44,12 @@ class MapViewController: UIViewController {
 
     private func bindViewModel() {
         viewModel.isMyLocationVisible.bind { [weak self] (visible) in
+            self?.animateImhereIcon()
+            
             if visible {
-                self?.helperView.isHidden = true
                 self?.showMyLocation()
             } else {
-                self?.helperView.isHidden = false
-                self?.pinMarker.map = nil
-                self?.radius.map = nil
+                self?.hideMyLocation()
             }
         }
     }
@@ -90,8 +91,19 @@ class MapViewController: UIViewController {
     }
     
     private func setUpImHereButton() {
-        imhereButton.setImage(UIImage(named: "imhere_icon"), for: .normal)
+        imhereButton.backgroundColor = .white
+        imhereButton.layer.cornerRadius = 18
         imhereButton.addTarget(self, action: #selector(imereButtonPressed), for: .touchUpInside)
+        
+        imhereIcon.image = UIImage(named: "inactive_map_marker_icon")
+        imhereIcon.clipsToBounds = false
+        imhereButton.addSubview(imhereIcon)
+        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
+            icon.centerX == button.centerX
+            icon.centerY == button.centerY
+            icon.height == 20
+            icon.width == 12
+        }
         
         self.view.addSubview(imhereButton)
         constrain(imhereButton, searchBar, self.view ) { btn, search, view in
@@ -161,7 +173,16 @@ class MapViewController: UIViewController {
         viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
     }
     
+    private func hideMyLocation() {
+        mapView.animate(toZoom: 15.0)
+        helperView.isHidden = false
+        pinMarker.map = nil
+        radius.map = nil
+    }
+    
     private func showMyLocation() {
+        helperView.isHidden = false
+        
         pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
         pinMarker.icon = UIImage(named: "map_marker_icon")
         pinMarker.appearAnimation = .pop
@@ -186,6 +207,36 @@ class MapViewController: UIViewController {
         myLocationMarker.map = mapView
         
         mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
+    }
+    
+    private func animateImhereIcon() {
+        imhereIcon.image = (viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.active.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
+        let height: CGFloat = (viewModel.isMyLocationVisible.value) ? 29 : 24
+        let width: CGFloat = (viewModel.isMyLocationVisible.value) ? 20 : 15
+        
+        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
+            icon.centerX == button.centerX
+            icon.centerY == button.centerY
+            icon.height == height
+            icon.width == width
+        }
+        
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
+        
+        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
+            icon.centerX == button.centerX
+            icon.centerY == button.centerY
+            icon.height == 20
+            icon.width == 12
+        }
+        
+        UIView.animate(withDuration: 0.1, delay: 0.2, options: .curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+        }) { (_) in
+            self.imhereIcon.image = (self.viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.plain.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
+        }
     }
 }
 

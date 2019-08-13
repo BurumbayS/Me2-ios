@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum ImhereIcon: String {
+    case plain = "map_marker_icon"
+    case active = "active_map_marker_icon"
+    case inactive = "inactive_map_marker_icon"
+}
+
 class MapViewModel {
     var isMyLocationVisible: Dynamic<Bool> = Dynamic(false)
 }
