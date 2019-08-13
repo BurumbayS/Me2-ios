@@ -30,13 +30,29 @@ class MapViewController: UIViewController {
     var pinMarker = GMSMarker()
     var radius = GMSCircle()
     
+    let viewModel = MapViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpViews()
         setUpLocationManager()
+        bindViewModel()
     }
 
+    private func bindViewModel() {
+        viewModel.isMyLocationVisible.bind { [weak self] (visible) in
+            if visible {
+                self?.helperView.isHidden = true
+                self?.showMyLocation()
+            } else {
+                self?.helperView.isHidden = false
+                self?.pinMarker.map = nil
+                self?.radius.map = nil
+            }
+        }
+    }
+    
     private func setUpViews() {
         setUpMap()
         setUpSearchBar()
@@ -75,7 +91,7 @@ class MapViewController: UIViewController {
     
     private func setUpImHereButton() {
         imhereButton.setImage(UIImage(named: "imhere_icon"), for: .normal)
-        imhereButton.addTarget(self, action: #selector(switchVisibility), for: .touchUpInside)
+        imhereButton.addTarget(self, action: #selector(imereButtonPressed), for: .touchUpInside)
         
         self.view.addSubview(imhereButton)
         constrain(imhereButton, searchBar, self.view ) { btn, search, view in
@@ -141,7 +157,11 @@ class MapViewController: UIViewController {
         }
     }
     
-    @objc private func switchVisibility() {
+    @objc private func imereButtonPressed() {
+        viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
+    }
+    
+    private func showMyLocation() {
         pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
         pinMarker.icon = UIImage(named: "map_marker_icon")
         pinMarker.appearAnimation = .pop
