@@ -26,6 +26,10 @@ class MapViewController: UIViewController {
     var mapView: GMSMapView!
     var myLocation = CLLocation()
     
+    var myLocationMarker = GMSMarker()
+    var pinMarker = GMSMarker()
+    var radius = GMSCircle()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +59,7 @@ class MapViewController: UIViewController {
     private func setUpMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 43.238949, longitude: 76.889709, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.delegate = self
         self.view = mapView
     }
     
@@ -70,7 +75,7 @@ class MapViewController: UIViewController {
     
     private func setUpImHereButton() {
         imhereButton.setImage(UIImage(named: "imhere_icon"), for: .normal)
-        imhereButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
+        imhereButton.addTarget(self, action: #selector(switchVisibility), for: .touchUpInside)
         
         self.view.addSubview(imhereButton)
         constrain(imhereButton, searchBar, self.view ) { btn, search, view in
@@ -124,6 +129,7 @@ class MapViewController: UIViewController {
     private func setUpMyLocationButton() {
         myLocationButton.setImage(UIImage(named: "my_location_icon"), for: .normal)
         myLocationButton.drawShadow(forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 3)
+        myLocationButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
         
         let bottomMargin = (tabBarController?.tabBar.frame.height ?? 0.0) + 30
         self.view.addSubview(myLocationButton)
@@ -135,25 +141,65 @@ class MapViewController: UIViewController {
         }
     }
     
-    @objc private func locateMe() {
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
-        marker.icon = UIImage(named: "map_marker_icon")
-        marker.appearAnimation = .pop
-        marker.map = mapView
+    @objc private func switchVisibility() {
+        pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        pinMarker.icon = UIImage(named: "map_marker_icon")
+        pinMarker.appearAnimation = .pop
+        pinMarker.snippet = "Hello"
+        pinMarker.map = mapView
         
-        let circle = GMSCircle(position: CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude), radius: 200)
-        circle.strokeColor = .clear
-        circle.fillColor = UIColor(red: 0, green: 0, blue: 0.5, alpha: 0.1)
-        circle.map = mapView
+        radius.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        radius.radius = 200
+        radius.strokeColor = .clear
+        radius.fillColor = UIColor(red: 0, green: 170, blue: 255, alpha: 0.2)
+        radius.map = mapView
+        
+        myLocationMarker.map = nil
+        
+        mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
+    }
     
+    @objc private func locateMe() {
+        myLocationMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        myLocationMarker.icon = UIImage(named: "my_location_icon")
+        myLocationMarker.appearAnimation = .pop
+        myLocationMarker.map = mapView
+        
         mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         myLocation = locations.last! as CLLocation
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let infoView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
+        
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont(name: "Roboto-Regular", size: 24)
+        titleLabel.textColor = .black
+        titleLabel.textAlignment = .center
+        titleLabel.text = "Traveler's coffee"
+        
+        infoView.addSubview(titleLabel)
+        constrain(titleLabel, infoView) { label, view in
+            label.top == view.top
+            label.left == view.left
+            label.right == view.right
+        }
+        
+        let logoImageView = UIImageView(image: UIImage(named: "sample_place_logo"))
+        infoView.addSubview(logoImageView)
+        constrain(logoImageView, titleLabel, infoView) { logo, label, view in
+            logo.top == label.bottom + 15
+            logo.height == 50
+            logo.width == 50
+            logo.centerX == label.centerX
+        }
+        
+        return infoView
     }
 }
