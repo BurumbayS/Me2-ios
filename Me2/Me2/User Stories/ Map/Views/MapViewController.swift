@@ -9,6 +9,8 @@
 import UIKit
 import GooglePlaces
 import GoogleMaps
+import CoreLocation
+import MapKit
 import Cartography
 
 class MapViewController: UIViewController {
@@ -17,11 +19,14 @@ class MapViewController: UIViewController {
         return SearchBar.instanceFromNib()
     }()
     let imhereButton = UIButton()
+    var locationManager = CLLocationManager()
+    var mapView: GMSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpViews()
+        setUpLocationManager()
     }
 
     private func setUpViews() {
@@ -30,9 +35,20 @@ class MapViewController: UIViewController {
         setUpImHereButton()
     }
     
+    private func setUpLocationManager() {
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     private func setUpMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 43.238949, longitude: 76.889709, zoom: 15.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         view = mapView
@@ -58,5 +74,18 @@ class MapViewController: UIViewController {
             btn.right == view.right - 10
             btn.centerY == search.centerY
         }
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        
+        let location = locations.last! as CLLocation
+        
+        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+                                              longitude: location.coordinate.longitude,
+                                              zoom: 15.0)
+        mapView.animate(to: camera)
     }
 }
