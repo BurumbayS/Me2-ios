@@ -20,14 +20,17 @@ class MapViewController: UIViewController {
     }()
     let imhereButton = UIButton()
     let helperView = UIView()
+    let myLocationButton = UIButton()
+    
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
+    var myLocation = CLLocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpViews()
-//        setUpLocationManager()
+        setUpLocationManager()
     }
 
     private func setUpViews() {
@@ -35,6 +38,7 @@ class MapViewController: UIViewController {
         setUpSearchBar()
         setUpImHereButton()
         setUpHelperView()
+        setUpMyLocationButton()
     }
     
     private func setUpLocationManager() {
@@ -51,9 +55,7 @@ class MapViewController: UIViewController {
     private func setUpMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 43.238949, longitude: 76.889709, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.isMyLocationEnabled = true
-        mapView.settings.myLocationButton = true
-        view = mapView
+        self.view = mapView
     }
     
     private func setUpSearchBar() {
@@ -68,6 +70,8 @@ class MapViewController: UIViewController {
     
     private func setUpImHereButton() {
         imhereButton.setImage(UIImage(named: "imhere_icon"), for: .normal)
+        imhereButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
+        
         self.view.addSubview(imhereButton)
         constrain(imhereButton, searchBar, self.view ) { btn, search, view in
             btn.left == search.right + 10
@@ -116,17 +120,39 @@ class MapViewController: UIViewController {
             helper.width == 245
         }
     }
+    
+    private func setUpMyLocationButton() {
+        myLocationButton.setImage(UIImage(named: "my_location_icon"), for: .normal)
+        
+        let bottomMargin = (tabBarController?.tabBar.frame.height ?? 0.0) + 30
+        self.view.addSubview(myLocationButton)
+        constrain(myLocationButton, self.view) { btn, view in
+            btn.height == 36
+            btn.width == 36
+            btn.bottom == view.bottom - bottomMargin
+            btn.right == view.right - 20
+        }
+    }
+    
+    @objc private func locateMe() {
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        marker.icon = UIImage(named: "map_marker_icon")
+        marker.appearAnimation = .pop
+        marker.map = mapView
+        
+        let circle = GMSCircle(position: CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude), radius: 200)
+        circle.strokeColor = .clear
+        circle.fillColor = UIColor(red: 0, green: 0, blue: 0.5, alpha: 0.1)
+        circle.map = mapView
+    
+        mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
+    }
 }
 
-//extension MapViewController: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-//    {
-//
-//        let location = locations.last! as CLLocation
-//
-//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-//                                              longitude: location.coordinate.longitude,
-//                                              zoom: 15.0)
-//        mapView.animate(to: camera)
-//    }
-//}
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        myLocation = locations.last! as CLLocation
+    }
+}
