@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
         return SearchBar.instanceFromNib()
     }()
     let imhereButton = UIButton()
+    let helperView = UIView()
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
     
@@ -33,6 +34,7 @@ class MapViewController: UIViewController {
         setUpMap()
         setUpSearchBar()
         setUpImHereButton()
+        setUpHelperView()
     }
     
     private func setUpLocationManager() {
@@ -73,6 +75,34 @@ class MapViewController: UIViewController {
             btn.width == 36
             btn.right == view.right - 10
             btn.centerY == search.centerY
+        }
+    }
+    
+    private func setUpHelperView() {
+        helperView.layer.cornerRadius = 10
+        helperView.backgroundColor = .white
+        helperView.alpha = 0.8
+        
+        let label = UILabel()
+        label.text = "Включите видимость, чтобы начать общение с другими пользователями"
+        label.font = UIFont(name: "SFProRounded-Regular", size: 13)
+        label.textColor = .darkGray
+        label.numberOfLines = 0
+        label.textAlignment = .center 
+        
+        helperView.addSubview(label)
+        constrain(label, helperView) { label, view in
+            label.left == view.left + 10
+            label.right == view.right - 10
+            label.top == view.top + 10
+            label.bottom == view.bottom - 10
+        }
+        
+        self.view.addSubview(helperView)
+        constrain(helperView, imhereButton) { helper, btn in
+            helper.trailing == btn.trailing
+            helper.top == btn.bottom + 10
+            helper.width == 245
         }
     }
 }

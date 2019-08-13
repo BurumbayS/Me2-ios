@@ -34,7 +34,8 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости
+</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

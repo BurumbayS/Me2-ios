@@ -43,6 +43,12 @@
 		DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7222F7EB93006E54D1 /* UICollectionViewExtensions.swift */; };
 		DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */; };
 		DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */; };
+		DDF65B23230290A800441035 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76D22EF36C700D1D51D /* SF-Pro-Rounded-Light.otf */; };
+		DDF65B24230290A800441035 /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76E22EF36C700D1D51D /* SF-Pro-Rounded-Medium.otf */; };
+		DDF65B25230290A800441035 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76F22EF36C700D1D51D /* SF-Pro-Rounded-Regular.otf */; };
+		DDF65B26230290A800441035 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A77022EF36C700D1D51D /* SF-Pro-Rounded-Semibold.otf */; };
+		DDF65B27230290A800441035 /* SF-Pro-Rounded-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76C22EF36C700D1D51D /* SF-Pro-Rounded-Thin.otf */; };
+		DDF65B28230290A800441035 /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76B22EF36C700D1D51D /* SF-Pro-Rounded-Ultralight.otf */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -447,11 +453,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
+				DDF65B27230290A800441035 /* SF-Pro-Rounded-Thin.otf in Resources */,
+				DDF65B23230290A800441035 /* SF-Pro-Rounded-Light.otf in Resources */,
+				DDF65B28230290A800441035 /* SF-Pro-Rounded-Ultralight.otf in Resources */,
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
+				DDF65B25230290A800441035 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
+				DDF65B26230290A800441035 /* SF-Pro-Rounded-Semibold.otf in Resources */,
+				DDF65B24230290A800441035 /* SF-Pro-Rounded-Medium.otf in Resources */,
 				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
