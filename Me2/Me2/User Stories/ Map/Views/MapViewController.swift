@@ -27,7 +27,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setUpViews()
-        setUpLocationManager()
+//        setUpLocationManager()
     }
 
     private func setUpViews() {
@@ -82,13 +82,14 @@ class MapViewController: UIViewController {
         helperView.layer.cornerRadius = 10
         helperView.backgroundColor = .white
         helperView.alpha = 0.8
+        helperView.clipsToBounds = false
         
         let label = UILabel()
         label.text = "Включите видимость, чтобы начать общение с другими пользователями"
         label.font = UIFont(name: "SFProRounded-Regular", size: 13)
         label.textColor = .darkGray
         label.numberOfLines = 0
-        label.textAlignment = .center 
+        label.textAlignment = .center
         
         helperView.addSubview(label)
         constrain(label, helperView) { label, view in
@@ -96,6 +97,16 @@ class MapViewController: UIViewController {
             label.right == view.right - 10
             label.top == view.top + 10
             label.bottom == view.bottom - 10
+        }
+        
+        let triangle = UIImageView()
+        triangle.image = UIImage(named: "triangle")
+        helperView.addSubview(triangle)
+        constrain(triangle, helperView) { triangle, view in
+            triangle.height == 10
+            triangle.width == 17
+            triangle.bottom == view.top + 2
+            triangle.right == view.right - 10
         }
         
         self.view.addSubview(helperView)
@@ -107,15 +118,15 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-        
-        let location = locations.last! as CLLocation
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: 15.0)
-        mapView.animate(to: camera)
-    }
-}
+//extension MapViewController: CLLocationManagerDelegate {
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+//    {
+//
+//        let location = locations.last! as CLLocation
+//
+//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+//                                              longitude: location.coordinate.longitude,
+//                                              zoom: 15.0)
+//        mapView.animate(to: camera)
+//    }
+//}
