@@ -123,6 +123,7 @@ class MapViewController: UIViewController {
     
     private func setUpMyLocationButton() {
         myLocationButton.setImage(UIImage(named: "my_location_icon"), for: .normal)
+        myLocationButton.drawShadow(forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 3)
         
         let bottomMargin = (tabBarController?.tabBar.frame.height ?? 0.0) + 30
         self.view.addSubview(myLocationButton)

@@ -20,4 +20,15 @@ extension UIView {
     func makeVisible() {
         self.alpha = 1.0
     }
+    
+    func drawShadow(color: CGColor = UIColor.black.cgColor,
+                    forOpacity opacity: Float,
+                    forOffset offset: CGSize,
+                    radius: CGFloat = 10) {
+        layer.masksToBounds = false
+        layer.shadowColor = color
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offset
+        layer.shadowRadius = radius
+    }
 }
