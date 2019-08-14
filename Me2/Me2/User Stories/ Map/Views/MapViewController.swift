@@ -174,19 +174,19 @@ class MapViewController: UIViewController {
     }
     
     private func hideMyLocation() {
-        mapView.animate(toZoom: 15.0)
         helperView.isHidden = false
+        
+        mapView.animate(toZoom: 15.0)
         pinMarker.map = nil
         radius.map = nil
     }
     
     private func showMyLocation() {
-        helperView.isHidden = false
+        helperView.isHidden = true
         
         pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
         pinMarker.icon = UIImage(named: "map_marker_icon")
         pinMarker.appearAnimation = .pop
-        pinMarker.snippet = "Hello"
         pinMarker.map = mapView
         
         radius.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
