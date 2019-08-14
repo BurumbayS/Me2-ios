@@ -14,7 +14,7 @@ import MapKit
 import Cartography
 
 class MapViewController: UIViewController {
-    
+    var collectionView: UICollectionView!
     let searchBar: SearchBar = {
         return SearchBar.instanceFromNib()
     }()
@@ -40,6 +40,7 @@ class MapViewController: UIViewController {
         setUpViews()
         setUpLocationManager()
         bindViewModel()
+        configureCollectionView()
     }
 
     private func bindViewModel() {
@@ -54,12 +55,37 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func configureCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.registerNib(PlaceCardCollectionViewCell.self)
+    }
+    
     private func setUpViews() {
         setUpMap()
         setUpSearchBar()
         setUpImHereButton()
         setUpHelperView()
         setUpMyLocationButton()
+        setUpCollectionView()
+    }
+    
+    private func setUpCollectionView() {
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.clipsToBounds = false
+        collectionView.isHidden = true
+        setCollectionViewLayout()
+        
+        self.view.addSubview(collectionView)
+        constrain(collectionView, self.view) { collection, view in
+            collection.height == 107
+            collection.left == view.left
+            collection.bottom == view.safeAreaLayoutGuide.bottom - 30
+            collection.right == view.right
+        }
     }
     
     private func setUpLocationManager() {
@@ -159,12 +185,11 @@ class MapViewController: UIViewController {
         myLocationButton.drawShadow(forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 3)
         myLocationButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
         
-        let bottomMargin = (tabBarController?.tabBar.frame.height ?? 0.0) + 30
         self.view.addSubview(myLocationButton)
         constrain(myLocationButton, self.view) { btn, view in
             btn.height == 36
             btn.width == 36
-            btn.bottom == view.bottom - bottomMargin
+            btn.bottom == view.safeAreaLayoutGuide.bottom - 20
             btn.right == view.right - 20
         }
     }
@@ -175,6 +200,7 @@ class MapViewController: UIViewController {
     
     private func hideMyLocation() {
         helperView.isHidden = false
+        collectionView.isHidden = true
         
         mapView.animate(toZoom: 15.0)
         pinMarker.map = nil
@@ -183,6 +209,7 @@ class MapViewController: UIViewController {
     
     private func showMyLocation() {
         helperView.isHidden = true
+        collectionView.isHidden = false
         
         pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
         pinMarker.icon = UIImage(named: "map_marker_icon")
@@ -272,5 +299,31 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         }
         
         return infoView
+    }
+}
+
+extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func setCollectionViewLayout() {
+        let layout = PlacesCollectionViewLayout()
+        //calculate item width with indention
+        let width = UIScreen.main.bounds.width - 40
+        layout.itemSize = CGSize(width: width, height: 107)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.scrollDirection = .horizontal
+        
+        collectionView.collectionViewLayout = layout
+        collectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        return cell
     }
 }

@@ -40,6 +40,8 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости
 </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

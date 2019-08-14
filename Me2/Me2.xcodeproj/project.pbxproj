@@ -82,6 +82,9 @@
 		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
 		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
 		DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B292302FAD800441035 /* MapViewModel.swift */; };
+		DDF65B2F2303D0E600441035 /* PlaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */; };
+		DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */; };
+		DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +168,9 @@
 		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		DDF65B292302FAD800441035 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -251,6 +257,9 @@
 			isa = PBXGroup;
 			children = (
 				DD5653D222F44FB2003A67C3 /* MapViewController.swift */,
+				DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */,
+				DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */,
+				DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -622,6 +631,7 @@
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
 				DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				DDCE6E9922F94111006E54D1 /* Roboto-Regular.ttf in Resources */,
+				DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */,
 				DDCE6E9D22F94111006E54D1 /* Roboto-Thin.ttf in Resources */,
 				DDCE6E7D22F82CD4006E54D1 /* SF-Pro-Rounded-Medium.otf in Resources */,
 				DDCE6E9722F94111006E54D1 /* Roboto-LightItalic.ttf in Resources */,
@@ -728,6 +738,7 @@
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
+				DDF65B2F2303D0E600441035 /* PlaceCardCollectionViewCell.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
@@ -737,6 +748,7 @@
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
+				DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD5653C522F07B03003A67C3 /* FirstLastNameViewController.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
