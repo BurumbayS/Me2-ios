@@ -1,5 +1,6 @@
 PODS:
   - Cartography (4.0.0)
+  - Cosmos (19.0.3)
   - GoogleMaps (3.2.0):
     - GoogleMaps/Maps (= 3.2.0)
   - GoogleMaps/Base (3.2.0)
@@ -11,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Cartography
+  - Cosmos (~> 19.0)
   - GoogleMaps
   - GooglePlaces
   - IQKeyboardManagerSwift
@@ -18,16 +20,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Cartography
+    - Cosmos
     - GoogleMaps
     - GooglePlaces
     - IQKeyboardManagerSwift
 
 SPEC CHECKSUMS:
   Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
   GooglePlaces: 41bc2e480816b1234a48f4bec92e1c886f37cfe1
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
 
-PODFILE CHECKSUM: 34366d066a00376cf215d9a3994ed4ce00f55be5
+PODFILE CHECKSUM: 34be31cab08f96ec664be75d28b6745e387a7f29
 
 COCOAPODS: 1.7.4

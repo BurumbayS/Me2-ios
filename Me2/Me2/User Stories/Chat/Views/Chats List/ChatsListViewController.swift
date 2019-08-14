@@ -13,6 +13,8 @@ class ChatsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var controllerPresenter: ControllerPresenterDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +42,7 @@ extension ChatsListViewController : UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         
         let searchBar = SearchBar.instanceFromNib()
-        searchBar.backgroundColor = .lightGray
+        searchBar.backgroundColor = Color.lightGray
         
         headerView.addSubview(searchBar)
         constrain(searchBar, headerView) { bar, header in

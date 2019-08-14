@@ -28,7 +28,11 @@
 		<string>SF-Pro-Rounded-Semibold.otf</string>
 		<string>SF-Pro-Rounded-Thin.otf</string>
 		<string>SF-Pro-Rounded-Ultralight.otf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Medium.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to take avatar</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
