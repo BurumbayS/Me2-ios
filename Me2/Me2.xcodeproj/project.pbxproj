@@ -43,6 +43,44 @@
 		DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7222F7EB93006E54D1 /* UICollectionViewExtensions.swift */; };
 		DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */; };
 		DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */; };
+		DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7822F8202D006E54D1 /* ContactsViewController.swift */; };
+		DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E7A22F82659006E54D1 /* UINavigationBarExtension.swift */; };
+		DDCE6E7C22F82CD4006E54D1 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76D22EF36C700D1D51D /* SF-Pro-Rounded-Light.otf */; };
+		DDCE6E7D22F82CD4006E54D1 /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76E22EF36C700D1D51D /* SF-Pro-Rounded-Medium.otf */; };
+		DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76F22EF36C700D1D51D /* SF-Pro-Rounded-Regular.otf */; };
+		DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A77022EF36C700D1D51D /* SF-Pro-Rounded-Semibold.otf */; };
+		DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76C22EF36C700D1D51D /* SF-Pro-Rounded-Thin.otf */; };
+		DDCE6E8122F82CD4006E54D1 /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76B22EF36C700D1D51D /* SF-Pro-Rounded-Ultralight.otf */; };
+		DDCE6E9522F94111006E54D1 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8922F94110006E54D1 /* Roboto-BlackItalic.ttf */; };
+		DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8A22F94110006E54D1 /* Roboto-BoldItalic.ttf */; };
+		DDCE6E9722F94111006E54D1 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8B22F94110006E54D1 /* Roboto-LightItalic.ttf */; };
+		DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8C22F94110006E54D1 /* Roboto-Bold.ttf */; };
+		DDCE6E9922F94111006E54D1 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8D22F94111006E54D1 /* Roboto-Regular.ttf */; };
+		DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8E22F94111006E54D1 /* Roboto-Medium.ttf */; };
+		DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E8F22F94111006E54D1 /* Roboto-Black.ttf */; };
+		DDCE6E9C22F94111006E54D1 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E9022F94111006E54D1 /* Roboto-ThinItalic.ttf */; };
+		DDCE6E9D22F94111006E54D1 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E9122F94111006E54D1 /* Roboto-Thin.ttf */; };
+		DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E9222F94111006E54D1 /* Roboto-Light.ttf */; };
+		DDCE6E9F22F94111006E54D1 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E9322F94111006E54D1 /* Roboto-MediumItalic.ttf */; };
+		DDCE6EA022F94111006E54D1 /* Roboto-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E9422F94111006E54D1 /* Roboto-RegularItalic.ttf */; };
+		DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */; };
+		DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */; };
+		DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */; };
+		DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */; };
+		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
+		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
+		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
+		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
+		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
+		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
+		DDF65B1322FD666200441035 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1222FD666200441035 /* Protocols.swift */; };
+		DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */; };
+		DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1622FD8D0700441035 /* UserProfileViewModel.swift */; };
+		DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */; };
+		DDF65B1C2301504700441035 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B1B2301504700441035 /* Profile.storyboard */; };
+		DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */; };
+		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
+		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +131,38 @@
 		DDCE6E7222F7EB93006E54D1 /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTabViewModel.swift; sourceTree = "<group>"; };
 		DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		DDCE6E7822F8202D006E54D1 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		DDCE6E7A22F82659006E54D1 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
+		DDCE6E8922F94110006E54D1 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BlackItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-BlackItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8A22F94110006E54D1 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8B22F94110006E54D1 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-LightItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-LightItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8C22F94110006E54D1 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8D22F94111006E54D1 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8E22F94111006E54D1 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Medium.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E8F22F94111006E54D1 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Black.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Black.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E9022F94111006E54D1 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-ThinItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-ThinItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E9122F94111006E54D1 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Thin.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E9222F94111006E54D1 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Light.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E9322F94111006E54D1 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-MediumItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-MediumItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6E9422F94111006E54D1 /* Roboto-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-RegularItalic.ttf"; path = "Me2/Support/Fonts/Roboto/Roboto-RegularItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
+		DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
+		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
+		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DDF65B1222FD666200441035 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B1622FD8D0700441035 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B1B2301504700441035 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewController.swift; sourceTree = "<group>"; };
+		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +222,7 @@
 				DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */,
 				DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */,
 				DDCE6E7222F7EB93006E54D1 /* UICollectionViewExtensions.swift */,
+				DDCE6E7A22F82659006E54D1 /* UINavigationBarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */,
+				DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */,
+				DDF65B1622FD8D0700441035 /* UserProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -282,6 +355,7 @@
 				DD5653D622F45AF5003A67C3 /* Storyboard.swift */,
 				DD5653F122F4DC19003A67C3 /* Color.swift */,
 				DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */,
+				DDF65B1222FD666200441035 /* Protocols.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -289,6 +363,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DD5653DF22F4BF06003A67C3 /* Chat */,
 				DD5653CD22F32740003A67C3 /*  Map */,
 				DD5653C822F31CCA003A67C3 /* Main */,
@@ -304,6 +379,7 @@
 				DD67A75422EF33B000D1D51D /* Main.storyboard */,
 				DD5653CE22F32770003A67C3 /* Map.storyboard */,
 				DD5653E522F4C235003A67C3 /* Chat.storyboard */,
+				DDF65B1B2301504700441035 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -321,6 +397,7 @@
 		DD67A76922EF367300D1D51D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				DDCE6E8822F93FF7006E54D1 /* Roboto-s */,
 				DD67A76A22EF367F00D1D51D /* SF Pro */,
 			);
 			path = Fonts;
@@ -371,6 +448,7 @@
 				DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */,
 				DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */,
 				DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */,
+				DDCE6EAA22F98216006E54D1 /* New Chat or Group */,
 			);
 			path = "Chats List";
 			sourceTree = "<group>";
@@ -383,6 +461,63 @@
 				DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */,
 			);
 			path = "Live Chat";
+			sourceTree = "<group>";
+		};
+		DDCE6E8822F93FF7006E54D1 /* Roboto-s */ = {
+			isa = PBXGroup;
+			children = (
+				DDCE6E8F22F94111006E54D1 /* Roboto-Black.ttf */,
+				DDCE6E8922F94110006E54D1 /* Roboto-BlackItalic.ttf */,
+				DDCE6E8C22F94110006E54D1 /* Roboto-Bold.ttf */,
+				DDCE6E8A22F94110006E54D1 /* Roboto-BoldItalic.ttf */,
+				DDCE6E9222F94111006E54D1 /* Roboto-Light.ttf */,
+				DDCE6E8B22F94110006E54D1 /* Roboto-LightItalic.ttf */,
+				DDCE6E8E22F94111006E54D1 /* Roboto-Medium.ttf */,
+				DDCE6E9322F94111006E54D1 /* Roboto-MediumItalic.ttf */,
+				DDCE6E8D22F94111006E54D1 /* Roboto-Regular.ttf */,
+				DDCE6E9422F94111006E54D1 /* Roboto-RegularItalic.ttf */,
+				DDCE6E9122F94111006E54D1 /* Roboto-Thin.ttf */,
+				DDCE6E9022F94111006E54D1 /* Roboto-ThinItalic.ttf */,
+			);
+			path = "Roboto-s";
+			sourceTree = "<group>";
+		};
+		DDCE6EAA22F98216006E54D1 /* New Chat or Group */ = {
+			isa = PBXGroup;
+			children = (
+				DDCE6E7822F8202D006E54D1 /* ContactsViewController.swift */,
+				DDCE6EA122F94295006E54D1 /* ContactTableViewCell.swift */,
+				DDCE6EA222F94295006E54D1 /* ContactTableViewCell.xib */,
+				DDCE6EA522F96F48006E54D1 /* CreateGroupTableViewCell.swift */,
+				DDCE6EAB22F9831A006E54D1 /* CreateGroupViewController.swift */,
+				DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */,
+				DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */,
+			);
+			path = "New Chat or Group";
+			sourceTree = "<group>";
+		};
+		DDF65B0D22FD5CB900441035 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B1A23014F0C00441035 /* Favourite Places */,
+				DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */,
+				DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */,
+				DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */,
+				DDF65B1422FD8BEE00441035 /* TextTableViewCell.swift */,
+				DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */,
+			);
+			name = "User Profile";
+			path = "Chat/Views/User Profile";
+			sourceTree = "<group>";
+		};
+		DDF65B1A23014F0C00441035 /* Favourite Places */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */,
+				DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */,
+				DDF65B202301531100441035 /* PlaceTableViewCell.xib */,
+			);
+			path = "Favourite Places";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,14 +581,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */,
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
+				DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */,
+				DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */,
+				DDCE6E9522F94111006E54D1 /* Roboto-BlackItalic.ttf in Resources */,
+				DDCE6E7C22F82CD4006E54D1 /* SF-Pro-Rounded-Light.otf in Resources */,
+				DDCE6EA022F94111006E54D1 /* Roboto-RegularItalic.ttf in Resources */,
+				DDCE6E8122F82CD4006E54D1 /* SF-Pro-Rounded-Ultralight.otf in Resources */,
+				DDCE6E9F22F94111006E54D1 /* Roboto-MediumItalic.ttf in Resources */,
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
+				DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */,
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
+				DDF65B1C2301504700441035 /* Profile.storyboard in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
+				DDCE6E9C22F94111006E54D1 /* Roboto-ThinItalic.ttf in Resources */,
+				DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
+				DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */,
+				DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
+				DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */,
+				DDCE6E9922F94111006E54D1 /* Roboto-Regular.ttf in Resources */,
+				DDCE6E9D22F94111006E54D1 /* Roboto-Thin.ttf in Resources */,
+				DDCE6E7D22F82CD4006E54D1 /* SF-Pro-Rounded-Medium.otf in Resources */,
+				DDCE6E9722F94111006E54D1 /* Roboto-LightItalic.ttf in Resources */,
 				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
+				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
+				DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */,
+				DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */,
 				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,12 +681,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
+				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
+				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
 				DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */,
 				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
+				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
+				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
@@ -537,20 +699,31 @@
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
+				DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */,
+				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DD5653C722F07BE7003A67C3 /* GenderBirthdateViewController.swift in Sources */,
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
+				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
+				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
+				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
+				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
+				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD5653C522F07B03003A67C3 /* FirstLastNameViewController.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
+				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
+				DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
+				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

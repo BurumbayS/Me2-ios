@@ -10,5 +10,6 @@ target 'Me2' do
   pod 'IQKeyboardManagerSwift'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Cosmos', '~> 19.0'
 
 end
