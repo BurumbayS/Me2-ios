@@ -186,8 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				DD5653D222F44FB2003A67C3 /* MapViewController.swift */,
-				DD5653DD22F4B875003A67C3 /* SearchBar.swift */,
-				DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +284,7 @@
 		DD67A76322EF356400D1D51D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B2B2303C99B00441035 /* Views */,
 				DD5653BB22F04A09003A67C3 /* Extensions */,
 				DD5653D022F32AA8003A67C3 /* Storyboarded.swift */,
 				DD5653D622F45AF5003A67C3 /* Storyboard.swift */,
@@ -392,6 +391,23 @@
 				DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */,
 			);
 			path = "Live Chat";
+			sourceTree = "<group>";
+		};
+		DDF65B2B2303C99B00441035 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B2C2303C9B900441035 /* SearchBar */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DDF65B2C2303C9B900441035 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653DD22F4B875003A67C3 /* SearchBar.swift */,
+				DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
