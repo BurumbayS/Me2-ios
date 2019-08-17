@@ -37,6 +37,9 @@
 		DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77422EF381C00D1D51D /* SignInOrUpViewController.swift */; };
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
+		DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */; };
+		DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */; };
+		DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */; };
 		DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E6A22F7E7DA006E54D1 /* LiveChatViewController.swift */; };
 		DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E6E22F7E95F006E54D1 /* ParticipantCollectionViewCell.swift */; };
 		DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */; };
@@ -81,6 +84,7 @@
 		DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */; };
 		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
 		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
+		DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B372308027200441035 /* PlaceProfile.storyboard */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +129,9 @@
 		DD67A77422EF381C00D1D51D /* SignInOrUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInOrUpViewController.swift; sourceTree = "<group>"; };
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewController.swift; sourceTree = "<group>"; };
+		DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderView.swift; sourceTree = "<group>"; };
+		DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileCollectionLayout.swift; sourceTree = "<group>"; };
 		DDCE6E6A22F7E7DA006E54D1 /* LiveChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatViewController.swift; sourceTree = "<group>"; };
 		DDCE6E6E22F7E95F006E54D1 /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParticipantCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -163,6 +170,7 @@
 		DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewController.swift; sourceTree = "<group>"; };
 		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
+		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -363,6 +371,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DDF65B332308022600441035 /* Place Profile */,
 				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DD5653DF22F4BF06003A67C3 /* Chat */,
 				DD5653CD22F32740003A67C3 /*  Map */,
@@ -380,6 +389,7 @@
 				DD5653CE22F32770003A67C3 /* Map.storyboard */,
 				DD5653E522F4C235003A67C3 /* Chat.storyboard */,
 				DDF65B1B2301504700441035 /* Profile.storyboard */,
+				DDF65B372308027200441035 /* PlaceProfile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -520,6 +530,40 @@
 			path = "Favourite Places";
 			sourceTree = "<group>";
 		};
+		DDF65B332308022600441035 /* Place Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B362308024500441035 /* Models */,
+				DDF65B352308023E00441035 /* View Models */,
+				DDF65B342308023900441035 /* Views */,
+			);
+			path = "Place Profile";
+			sourceTree = "<group>";
+		};
+		DDF65B342308023900441035 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */,
+				DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */,
+				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DDF65B352308023E00441035 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		DDF65B362308024500441035 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -585,6 +629,7 @@
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
 				DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */,
 				DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */,
+				DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */,
 				DDCE6E9522F94111006E54D1 /* Roboto-BlackItalic.ttf in Resources */,
 				DDCE6E7C22F82CD4006E54D1 /* SF-Pro-Rounded-Light.otf in Resources */,
 				DDCE6EA022F94111006E54D1 /* Roboto-RegularItalic.ttf in Resources */,
@@ -681,8 +726,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
+				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
@@ -700,6 +747,7 @@
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */,
+				DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
