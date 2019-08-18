@@ -25,6 +25,7 @@ class PlaceProfileViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.collectionViewLayout = PlaceProfileCollectionLayout()
         
+        collectionView.registerNib(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
     }
 }
@@ -41,19 +42,15 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.frame.width, height: 100)
+        return .init(width: self.view.frame.width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlaceCell", for: indexPath)
-        
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        label.text = "Hello world"
-        cell.contentView.addSubview(label)
+        let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
         return cell
     }

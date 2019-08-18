@@ -16,6 +16,8 @@ class PlaceProfileHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.clipsToBounds = true
+        
         setUpViews()
     }
     
@@ -33,6 +35,17 @@ class PlaceProfileHeaderView: UICollectionReusableView {
             image.top == view.top
             image.right == view.right
             image.bottom == view.bottom 
+        }
+        
+        let additionalView = UIView()
+        additionalView.layer.cornerRadius = 20.0
+        additionalView.backgroundColor = .white
+        self.addSubview(additionalView)
+        constrain(additionalView, self) { view, superView in
+            view.left == superView.left
+            view.height == 50
+            view.right == superView.right
+            view.bottom == superView.bottom + 20
         }
     }
 }
