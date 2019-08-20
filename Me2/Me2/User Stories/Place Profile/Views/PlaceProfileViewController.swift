@@ -29,7 +29,9 @@ class PlaceProfileViewController: UIViewController {
         collectionView.collectionViewLayout = PlaceProfileCollectionLayout()
         
         collectionView.registerNib(PlaceDetailsCollectionViewCell.self)
+        collectionView.register(PlaceHeaderCell.self)
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "EmptyHeaderView")
     }
     
     @objc private func enableScroll() {
@@ -39,13 +41,35 @@ class PlaceProfileViewController: UIViewController {
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PlaceHeaderView", for: indexPath)
+        var reuseID = ""
+        
+        switch indexPath.section {
+        case 0:
+            reuseID = "EmptyHeaderView"
+        default:
+            reuseID = "PlaceHeaderView"
+        }
+        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseID, for: indexPath)
         
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: self.view.frame.width, height: 300)
+        switch section {
+        case 0:
+            
+            return .init(width: self.view.frame.width, height: 0)
+            
+        default:
+            
+            return .init(width: self.view.frame.width, height: 300)
+            
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,14 +77,33 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //set the cell size as the rest of the screen
-        return .init(width: self.view.frame.width, height: self.view.frame.height - 200)
+        switch indexPath.section {
+        case 0:
+            
+            return .init(width: self.view.frame.width, height: 200)
+            
+        default:
+            
+            return .init(width: self.view.frame.width, height: self.view.frame.height)
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        switch indexPath.section {
+        case 0:
         
-        return cell
+            let cell: PlaceHeaderCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            return cell
+            
+        default:
+            
+            let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            return cell
+            
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -70,8 +113,8 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        print("Collection view offset \(collectionView.contentOffset.y)")
         if collectionView.contentOffset.y > 100 && collectionView.contentOffset.y > lastContentOffset {
-            collectionView.isScrollEnabled = false
-            NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
+//            collectionView.isScrollEnabled = false
+//            NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
         }
     }
 }

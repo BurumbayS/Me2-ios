@@ -25,6 +25,59 @@ class PlaceProfileHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setUpViews() {
+        self.backgroundColor = Color.blue
+        
+        let label = UILabel()
+        label.textColor = Color.red
+        label.text = "Hi there"
+        label.font = UIFont(name: "Roboto-Regular", size: 23)
+        
+        self.addSubview(label)
+        constrain(label, self) { label, view in
+            label.left == view.left
+            label.top == view.top
+            label.right == view.right
+            label.bottom == view.bottom
+        }
+    }
+//    private func setUpViews() {
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.image = UIImage(named: "sample_place_image")
+//        self.addSubview(imageView)
+//        constrain(imageView, self) { image, view in
+//            image.left == view.left
+//            image.top == view.top
+//            image.right == view.right
+//            image.bottom == view.bottom
+//        }
+//
+//        let additionalView = UIView()
+//        additionalView.layer.cornerRadius = 20.0
+//        additionalView.backgroundColor = .white
+//        self.addSubview(additionalView)
+//        constrain(additionalView, self) { view, superView in
+//            view.left == superView.left
+//            view.height == 40
+//            view.right == superView.right
+//            view.bottom == superView.bottom + 20
+//        }
+//    }
+}
+
+class PlaceHeaderCell: UICollectionViewCell {
+    
+    let imageView = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setUpViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func setUpViews() {
         imageView.contentMode = .scaleAspectFill
@@ -34,7 +87,7 @@ class PlaceProfileHeaderView: UICollectionReusableView {
             image.left == view.left
             image.top == view.top
             image.right == view.right
-            image.bottom == view.bottom 
+            image.bottom == view.bottom
         }
         
         let additionalView = UIView()

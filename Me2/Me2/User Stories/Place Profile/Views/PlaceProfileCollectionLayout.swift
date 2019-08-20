@@ -11,11 +11,12 @@ import UIKit
 class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
     //set original header height manually
     let headerHeight: CGFloat = 300
+    let topBarHeight: CGFloat = 65
     
     override init() {
         super.init()
         
-        self.sectionHeadersPinToVisibleBounds = false
+        self.sectionHeadersPinToVisibleBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,17 +30,19 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
         attributes?.forEach({ (attribute) in
             
             if attribute.representedElementKind == UICollectionView.elementKindSectionHeader {
-                guard let collectionView = collectionView else { return }
-                
-                let contentOffsetY = collectionView.contentOffset.y
-                print(contentOffsetY)
-                
-                if contentOffsetY > 0 { return }
-                
-                let width = collectionView.frame.width
-                let height = attribute.frame.height - contentOffsetY
-                
-                attribute.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
+//                guard let collectionView = collectionView else { return }
+//
+//                let contentOffsetY = collectionView.contentOffset.y
+//                print(contentOffsetY)
+//                
+//                if contentOffsetY > 0 {
+//                    attribute.frame = CGRect(x: 0, y: -topBarHeight, width: attribute.frame.width, height: attribute.frame.height + topBarHeight)
+//                } else {
+//                    let width = collectionView.frame.width
+//                    let height = attribute.frame.height - contentOffsetY
+//
+//                    attribute.frame = CGRect(x: 0, y: contentOffsetY - topBarHeight, width: width, height: height + topBarHeight)
+//                }
             } else {
 //                guard let collectionView = collectionView else { return }
 //                
