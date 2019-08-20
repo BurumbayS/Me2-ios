@@ -12,9 +12,12 @@ class PlaceProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var lastContentOffset: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeCollectionViewScrollable, object: nil)
         configureCollectionView()
     }
     
@@ -28,6 +31,10 @@ class PlaceProfileViewController: UIViewController {
         collectionView.registerNib(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
     }
+    
+    @objc private func enableScroll() {
+        collectionView.isScrollEnabled = true
+    }
 }
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -38,7 +45,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: self.view.frame.width, height: 100)
+        return .init(width: self.view.frame.width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,12 +53,25 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: self.view.frame.width, height: 300)
+        //set the cell size as the rest of the screen
+        return .init(width: self.view.frame.width, height: self.view.frame.height - 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
         return cell
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffset = collectionView.contentOffset.y
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print("Collection view offset \(collectionView.contentOffset.y)")
+        if collectionView.contentOffset.y > 100 && collectionView.contentOffset.y > lastContentOffset {
+            collectionView.isScrollEnabled = false
+            NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
+        }
     }
 }

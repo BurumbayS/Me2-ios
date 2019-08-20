@@ -9,6 +9,9 @@
 import UIKit
 
 class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
+    //set original header height manually
+    let headerHeight: CGFloat = 300
+    
     override init() {
         super.init()
         
@@ -26,10 +29,10 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
         attributes?.forEach({ (attribute) in
             
             if attribute.representedElementKind == UICollectionView.elementKindSectionHeader {
-                
                 guard let collectionView = collectionView else { return }
                 
                 let contentOffsetY = collectionView.contentOffset.y
+                print(contentOffsetY)
                 
                 if contentOffsetY > 0 { return }
                 
@@ -37,6 +40,19 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
                 let height = attribute.frame.height - contentOffsetY
                 
                 attribute.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
+            } else {
+//                guard let collectionView = collectionView else { return }
+//                
+//                let contentOffsetY = collectionView.contentOffset.y
+//                
+//                if contentOffsetY < 0 { return }
+//                
+//                let width = collectionView.frame.width
+//                let height = collectionView.frame.height - self.headerHeight + contentOffsetY
+//                
+//                attribute.frame = CGRect(x: 0, y: self.headerHeight, width: width, height: height)
+//                
+//                collectionView.frame = CGRect(x: 0, y: 0, width: width, height: height + self.headerHeight)
             }
             
         })

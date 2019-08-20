@@ -89,32 +89,47 @@
                             <constraint firstAttribute="height" constant="30" id="ES0-70-728"/>
                         </constraints>
                     </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uvn-Pb-puO">
+                        <rect key="frame" x="0.0" y="139" width="393" height="242"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CDQ-c2-5cW">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="8aq-D1-PtL" firstAttribute="leading" secondItem="0iy-y8-2ds" secondAttribute="leading" id="1r1-zr-A2i"/>
                 <constraint firstItem="JZE-Hz-qRD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="27" id="4KP-Q4-KA1"/>
+                <constraint firstItem="uvn-Pb-puO" firstAttribute="top" secondItem="JRi-Pd-7LK" secondAttribute="bottom" id="4jv-lk-jDO"/>
                 <constraint firstItem="8qw-CD-9lB" firstAttribute="centerY" secondItem="5Y6-hZ-udp" secondAttribute="centerY" id="Cjq-sC-1PG"/>
                 <constraint firstItem="JRi-Pd-7LK" firstAttribute="top" secondItem="8qw-CD-9lB" secondAttribute="bottom" constant="25" id="Dn5-MY-nzm"/>
+                <constraint firstItem="uvn-Pb-puO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FGI-fQ-WNZ"/>
                 <constraint firstItem="exj-Ie-JxT" firstAttribute="leading" secondItem="JZE-Hz-qRD" secondAttribute="leading" id="FLQ-a8-Sq2"/>
                 <constraint firstItem="exj-Ie-JxT" firstAttribute="top" secondItem="JZE-Hz-qRD" secondAttribute="bottom" constant="7" id="JWe-rd-lKS"/>
                 <constraint firstAttribute="trailing" secondItem="JRi-Pd-7LK" secondAttribute="trailing" id="Kmv-15-3oM"/>
                 <constraint firstItem="0iy-y8-2ds" firstAttribute="leading" secondItem="JZE-Hz-qRD" secondAttribute="trailing" constant="10" id="N7u-4j-stp"/>
                 <constraint firstItem="8aq-D1-PtL" firstAttribute="trailing" secondItem="0iy-y8-2ds" secondAttribute="trailing" id="Q6j-TZ-bRL"/>
                 <constraint firstItem="0iy-y8-2ds" firstAttribute="centerY" secondItem="JZE-Hz-qRD" secondAttribute="centerY" id="WmW-bX-7vg"/>
+                <constraint firstAttribute="trailing" secondItem="uvn-Pb-puO" secondAttribute="trailing" id="Wwo-FG-CTY"/>
                 <constraint firstItem="5Y6-hZ-udp" firstAttribute="leading" secondItem="exj-Ie-JxT" secondAttribute="leading" id="Yjz-rT-18p"/>
                 <constraint firstAttribute="trailing" secondItem="0iy-y8-2ds" secondAttribute="trailing" constant="27" id="agU-a7-R2U"/>
                 <constraint firstItem="8aq-D1-PtL" firstAttribute="top" secondItem="0iy-y8-2ds" secondAttribute="bottom" constant="10" id="c2g-dX-ha4"/>
                 <constraint firstItem="JRi-Pd-7LK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cHF-0P-FVO"/>
                 <constraint firstItem="JZE-Hz-qRD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="jyn-Jl-udH"/>
                 <constraint firstItem="5Y6-hZ-udp" firstAttribute="top" secondItem="exj-Ie-JxT" secondAttribute="bottom" constant="7" id="l0K-6r-srz"/>
+                <constraint firstAttribute="bottom" secondItem="uvn-Pb-puO" secondAttribute="bottom" id="wOk-Mr-cR0"/>
                 <constraint firstItem="8qw-CD-9lB" firstAttribute="leading" secondItem="5Y6-hZ-udp" secondAttribute="trailing" constant="7" id="zdr-GL-oi9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="393" height="381"/>
             <connections>
                 <outlet property="categoryLabel" destination="exj-Ie-JxT" id="7WH-UZ-6ge"/>
+                <outlet property="collectionView" destination="uvn-Pb-puO" id="9CT-Vm-Trk"/>
                 <outlet property="liveChatButton" destination="0iy-y8-2ds" id="OZ4-xb-Brz"/>
                 <outlet property="ratingLabel" destination="8qw-CD-9lB" id="3ao-Rs-FuR"/>
                 <outlet property="ratingView" destination="5Y6-hZ-udp" id="sct-JG-wEQ"/>

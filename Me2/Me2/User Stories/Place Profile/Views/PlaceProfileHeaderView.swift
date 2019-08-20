@@ -43,7 +43,7 @@ class PlaceProfileHeaderView: UICollectionReusableView {
         self.addSubview(additionalView)
         constrain(additionalView, self) { view, superView in
             view.left == superView.left
-            view.height == 50
+            view.height == 40
             view.right == superView.right
             view.bottom == superView.bottom + 20
         }
