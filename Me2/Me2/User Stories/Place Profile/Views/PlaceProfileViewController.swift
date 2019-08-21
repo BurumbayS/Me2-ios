@@ -35,8 +35,8 @@ class PlaceProfileViewController: UIViewController {
         collectionView.clipsToBounds = false
         collectionView.collectionViewLayout = PlaceProfileCollectionLayout()
         
-        collectionView.registerNib(PlaceDetailsCollectionViewCell.self)
-        collectionView.register(PlaceHeaderCell.self)
+        collectionView.register(PlaceDetailsCollectionViewCell.self)
+        collectionView.register(PlaceProfileHeaderCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "EmptyHeaderView")
     }
@@ -44,27 +44,16 @@ class PlaceProfileViewController: UIViewController {
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var reuseID = "EmptyHeaderView"
+        var reuseID = ""
         
-//        switch indexPath.section {
-//        case 0:
-//            reuseID = "EmptyHeaderView"
-//        default:
-//            reuseID = "PlaceHeaderView"
-//        }
+        switch indexPath.section {
+        case 0:
+            reuseID = "EmptyHeaderView"
+        default:
+            reuseID = "PlaceHeaderView"
+        }
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseID, for: indexPath)
-        
-        let segmentedControl = CustomSegmentedControl()
-        segmentedControl.backgroundColor = .white
-        segmentedControl.configure(for: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40))
-        header.addSubview(segmentedControl)
-        constrain(segmentedControl, header) { segmentedControl, header in
-            segmentedControl.top == header.top
-            segmentedControl.left == header.left
-            segmentedControl.right == header.right
-            segmentedControl.bottom == header.bottom
-        }
         
         return header
     }
@@ -108,7 +97,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         switch indexPath.section {
         case 0:
         
-            let cell: PlaceHeaderCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен")
             return cell
             

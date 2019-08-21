@@ -7,33 +7,61 @@
 //
 
 import UIKit
-import Cosmos
+import Cartography
 
 class PlaceDetailsCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         configureCollectionView()
+        setCollectionViewLayout()
+        setUpViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpViews() {
+        self.contentView.addSubview(collectionView)
+        constrain(collectionView, self.contentView) { collection, view in
+            collection.left == view.left
+            collection.right == view.right
+            collection.top == view.top
+            collection.bottom == view.bottom
+        }
     }
     
     private func configureCollectionView() {
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height), collectionViewLayout: UICollectionViewLayout())
+            
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.clipsToBounds = true
+        collectionView.isPagingEnabled = true
         
         collectionView.register(PlaceInfoCollectionViewCell.self)
     }
 }
 
 extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+    func setCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize =  CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .horizontal
+        
+        collectionView.collectionViewLayout = layout
+        collectionView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
