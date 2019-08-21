@@ -16,7 +16,6 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         
-        self.sectionHeadersPinToVisibleBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,34 +27,19 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
         let attributes = super.layoutAttributesForElements(in: rect)
         
         attributes?.forEach({ (attribute) in
-            
-            if attribute.representedElementKind == UICollectionView.elementKindSectionHeader {
-//                guard let collectionView = collectionView else { return }
-//
-//                let contentOffsetY = collectionView.contentOffset.y
-//                print(contentOffsetY)
-//                
-//                if contentOffsetY > 0 {
-//                    attribute.frame = CGRect(x: 0, y: -topBarHeight, width: attribute.frame.width, height: attribute.frame.height + topBarHeight)
-//                } else {
-//                    let width = collectionView.frame.width
-//                    let height = attribute.frame.height - contentOffsetY
-//
-//                    attribute.frame = CGRect(x: 0, y: contentOffsetY - topBarHeight, width: width, height: height + topBarHeight)
-//                }
-            } else {
-//                guard let collectionView = collectionView else { return }
-//                
-//                let contentOffsetY = collectionView.contentOffset.y
-//                
-//                if contentOffsetY < 0 { return }
-//                
-//                let width = collectionView.frame.width
-//                let height = collectionView.frame.height - self.headerHeight + contentOffsetY
-//                
-//                attribute.frame = CGRect(x: 0, y: self.headerHeight, width: width, height: height)
-//                
-//                collectionView.frame = CGRect(x: 0, y: 0, width: width, height: height + self.headerHeight)
+            if attribute.indexPath == IndexPath(row: 0, section: 0) {
+                guard let collectionView = collectionView else { return }
+                
+                let contentOffsetY = collectionView.contentOffset.y
+
+                if contentOffsetY > 0 {
+                    attribute.frame = CGRect(x: 0, y: -topBarHeight, width: attribute.frame.width, height: attribute.frame.height + topBarHeight)
+                } else {
+                    let width = collectionView.frame.width
+                    let height = attribute.frame.height - contentOffsetY
+
+                    attribute.frame = CGRect(x: 0, y: contentOffsetY - topBarHeight, width: width, height: height + topBarHeight)
+                }
             }
             
         })
@@ -65,5 +49,12 @@ class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
+    }
+    
+    func turnPinToVisibleBounds() {
+        self.sectionHeadersPinToVisibleBounds = true
+    }
+    func offPinToVisibleBounds() {
+        self.sectionHeadersPinToVisibleBounds = false
     }
 }

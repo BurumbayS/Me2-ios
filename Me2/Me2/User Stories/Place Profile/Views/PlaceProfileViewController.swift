@@ -7,25 +7,32 @@
 //
 
 import UIKit
+import Cartography
 
 class PlaceProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var lastContentOffset: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeCollectionViewScrollable, object: nil)
+        configureNavBar()
         configureCollectionView()
+    }
+    
+    private func configureNavBar() {
+        navBar.makeTransparentBar()
     }
     
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.clipsToBounds = false
         collectionView.collectionViewLayout = PlaceProfileCollectionLayout()
         
         collectionView.registerNib(PlaceDetailsCollectionViewCell.self)
@@ -33,24 +40,31 @@ class PlaceProfileViewController: UIViewController {
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "EmptyHeaderView")
     }
-    
-    @objc private func enableScroll() {
-        collectionView.isScrollEnabled = true
-    }
 }
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var reuseID = ""
+        var reuseID = "EmptyHeaderView"
         
-        switch indexPath.section {
-        case 0:
-            reuseID = "EmptyHeaderView"
-        default:
-            reuseID = "PlaceHeaderView"
-        }
+//        switch indexPath.section {
+//        case 0:
+//            reuseID = "EmptyHeaderView"
+//        default:
+//            reuseID = "PlaceHeaderView"
+//        }
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseID, for: indexPath)
+        
+        let segmentedControl = CustomSegmentedControl()
+        segmentedControl.backgroundColor = .white
+        segmentedControl.configure(for: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40))
+        header.addSubview(segmentedControl)
+        constrain(segmentedControl, header) { segmentedControl, header in
+            segmentedControl.top == header.top
+            segmentedControl.left == header.left
+            segmentedControl.right == header.right
+            segmentedControl.bottom == header.bottom
+        }
         
         return header
     }
@@ -63,7 +77,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             
         default:
             
-            return .init(width: self.view.frame.width, height: 300)
+            return .init(width: self.view.frame.width, height: 40)
             
         }
     }
@@ -80,11 +94,12 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         switch indexPath.section {
         case 0:
             
-            return .init(width: self.view.frame.width, height: 200)
+            return .init(width: self.view.frame.width, height: 300)
             
         default:
             
-            return .init(width: self.view.frame.width, height: self.view.frame.height)
+            //set cell height minus section header height
+            return .init(width: self.view.frame.width, height: self.view.frame.height - 40)
             
         }
     }
@@ -94,7 +109,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceHeaderCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            
+            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен")
             return cell
             
         default:
@@ -111,10 +126,20 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print("Collection view offset \(collectionView.contentOffset.y)")
-        if collectionView.contentOffset.y > 100 && collectionView.contentOffset.y > lastContentOffset {
-//            collectionView.isScrollEnabled = false
-//            NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
+        guard let layout = collectionView.collectionViewLayout as? PlaceProfileCollectionLayout else { return }
+        
+        if collectionView.contentOffset.y > 0 {
+            layout.turnPinToVisibleBounds()
+        } else {
+            layout.offPinToVisibleBounds()
+        }
+        
+        if collectionView.contentOffset.y > 300 {
+            navBar.backgroundColor = .white
+            collectionView.clipsToBounds = true
+        } else {
+            navBar.makeTransparentBar()
+            collectionView.clipsToBounds = false
         }
     }
 }

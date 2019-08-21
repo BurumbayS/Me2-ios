@@ -50,6 +50,8 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="0KZ-Mj-UgD" id="IeS-bz-2xb"/>
+                        <outlet property="navBar" destination="t3Z-f7-7Ud" id="UJc-3p-Yfl"/>
+                        <outlet property="navItem" destination="dxW-xr-wPq" id="CeK-Hg-Tec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVJ-Hi-sv2" userLabel="First Responder" sceneMemberID="firstResponder"/>

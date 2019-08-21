@@ -20,12 +20,14 @@ class CustomSegmentedControl : UIView {
     var currentSegment = 0
     var segmentsCount = 0
     var segmentWidth: CGFloat = 0
+    var segmentHeight: CGFloat = 0
     
-    func configure(for titles : [String], with width : CGFloat) {
+    func configure(for titles : [String], with frame : CGSize) {
         self.titles = titles
         segmentsCount = titles.count
         
-        segmentWidth = width / CGFloat(segmentsCount)
+        segmentWidth = frame.width / CGFloat(segmentsCount)
+        segmentHeight = frame.height
         
         addSegments()
         addFlag()
@@ -35,8 +37,8 @@ class CustomSegmentedControl : UIView {
         var x : CGFloat = 0.0
         let y : CGFloat = 0.0
         for i in 0...segmentsCount - 1 {
-            let segment = UIView(frame: CGRect(x: x, y: y, width: segmentWidth, height: self.bounds.height))
-            segment.addUnderline(with: .lightGray, and: CGSize(width: segmentWidth, height: self.bounds.height))
+            let segment = UIView(frame: CGRect(x: x, y: y, width: segmentWidth, height: segmentHeight))
+            segment.addUnderline(with: .lightGray, and: CGSize(width: segmentWidth, height: segmentHeight))
             segments.append(segment)
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(moveToSegment(_:)))

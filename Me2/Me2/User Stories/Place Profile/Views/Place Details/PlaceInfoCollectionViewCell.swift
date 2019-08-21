@@ -16,7 +16,6 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeTableViewScrollable, object: nil)
         setUpViews()
         configureTableView()
     }
@@ -44,10 +43,6 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         tableView.isScrollEnabled = false
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SampleCell")
-    }
-    
-    @objc private func enableScroll() {
-        tableView.isScrollEnabled = true
     }
 }
 
