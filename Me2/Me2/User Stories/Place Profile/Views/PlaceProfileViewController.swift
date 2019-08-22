@@ -20,6 +20,7 @@ class PlaceProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeCollectionViewScrollable, object: nil)
         configureNavBar()
         configureCollectionView()
     }
@@ -33,12 +34,18 @@ class PlaceProfileViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.clipsToBounds = false
-        collectionView.collectionViewLayout = PlaceProfileCollectionLayout()
+        let layout = PlaceProfileCollectionLayout()
+        layout.configure(with: navBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
+        collectionView.collectionViewLayout = layout
         
         collectionView.register(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "EmptyHeaderView")
+    }
+    
+    @objc private func enableScroll() {
+        collectionView.isScrollEnabled = true
     }
 }
 
@@ -87,8 +94,8 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             
         default:
             
-            //set cell height minus section header height
-            return .init(width: self.view.frame.width, height: self.view.frame.height - 40)
+            //set cell height - section header height + top bar height + bounce
+            return .init(width: self.view.frame.width, height: self.view.frame.height - 150)
             
         }
     }
@@ -123,9 +130,15 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             layout.offPinToVisibleBounds()
         }
         
-        if collectionView.contentOffset.y > 300 {
+        print("Last: \(lastContentOffset) and current: \(collectionView.contentOffset.y)")
+        
+        if collectionView.contentOffset.y > 300  {
             navBar.backgroundColor = .white
             collectionView.clipsToBounds = true
+            
+            if collectionView.contentOffset.y > lastContentOffset {
+                NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
+            }
         } else {
             navBar.makeTransparentBar()
             collectionView.clipsToBounds = false

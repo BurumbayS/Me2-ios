@@ -16,6 +16,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeTableViewScrollable, object: nil)
         setUpViews()
         configureTableView()
     }
@@ -42,7 +43,11 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         tableView.estimatedRowHeight = 40
         tableView.isScrollEnabled = false
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SampleCell")
+        tableView.register(SampleTableViewCell.self)
+    }
+    
+    @objc private func enableScroll() {
+        tableView.isScrollEnabled = true
     }
 }
 
@@ -52,28 +57,20 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SampleCell", for: indexPath)
+        let cell: SampleTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         cell.selectionStyle = .none
-        
-        let label = UILabel()
-        label.font = UIFont(name: "Roboto-Regular", size: 24)
-        label.text = "Hello world"
-        label.textColor = Color.red
-        cell.contentView.addSubview(label)
-        constrain(label, cell.contentView) { label, cell in
-            label.top == cell.top + 10
-            label.bottom == cell.bottom - 10
-            label.left == cell.left + 10
-        }
-        
+        cell.configure(with: indexPath.row)
         return cell
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("Table view offset \(tableView.contentOffset.y)")
+        
+        //stop scrolling table if it reach the top
         if tableView.contentOffset.y < 0 {
             tableView.isScrollEnabled = false
             NotificationCenter.default.post(.init(name: .makeCollectionViewScrollable))
+            print(tableView.contentSize)
         }
     }
 }

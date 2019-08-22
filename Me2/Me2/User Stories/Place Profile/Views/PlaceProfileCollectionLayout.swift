@@ -9,17 +9,11 @@
 import UIKit
 
 class PlaceProfileCollectionLayout: UICollectionViewFlowLayout {
-    //set original header height manually
-    let headerHeight: CGFloat = 300
-    let topBarHeight: CGFloat = 65
+
+    var topBarHeight: CGFloat = 0
     
-    override init() {
-        super.init()
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func configure (with distanceToTop: CGFloat) {
+        topBarHeight = distanceToTop
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
