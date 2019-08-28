@@ -30,6 +30,12 @@
 		DD5653F222F4DC19003A67C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F122F4DC19003A67C3 /* Color.swift */; };
 		DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */; };
 		DD5C2227231649FB00CF66CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2226231649FB00CF66CC /* Constants.swift */; };
+		DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */; };
+		DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */; };
+		DD5C222F23167AF800CF66CC /* PlaceContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5C222D23167AF800CF66CC /* PlaceContactsTableViewCell.xib */; };
+		DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */; };
+		DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */; };
+		DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -48,7 +54,6 @@
 		DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F22C23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift */; };
 		DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F230230BB2A60067C6C7 /* NotificationCenterExtension.swift */; };
 		DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */; };
-		DDC7F23B230E5E0F0067C6C7 /* SampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23A230E5E0F0067C6C7 /* SampleTableViewCell.swift */; };
 		DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23C230EAD350067C6C7 /* TableView.swift */; };
 		DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23E231005200067C6C7 /* CollectionView.swift */; };
 		DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */; };
@@ -126,6 +131,12 @@
 		DD5653F122F4DC19003A67C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		DD5C2226231649FB00CF66CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceContactsTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C222D23167AF800CF66CC /* PlaceContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceContactsTableViewCell.xib; sourceTree = "<group>"; };
+		DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWorkTimeTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSiteTableViewCell.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -152,7 +163,6 @@
 		DDC7F22C23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDC7F230230BB2A60067C6C7 /* NotificationCenterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtension.swift; sourceTree = "<group>"; };
 		DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDC7F23A230E5E0F0067C6C7 /* SampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTableViewCell.swift; sourceTree = "<group>"; };
 		DDC7F23C230EAD350067C6C7 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		DDC7F23E231005200067C6C7 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewModel.swift; sourceTree = "<group>"; };
@@ -511,7 +521,12 @@
 			isa = PBXGroup;
 			children = (
 				DDC7F22C23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift */,
-				DDC7F23A230E5E0F0067C6C7 /* SampleTableViewCell.swift */,
+				DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */,
+				DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */,
+				DD5C222D23167AF800CF66CC /* PlaceContactsTableViewCell.xib */,
+				DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */,
+				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
+				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
 			);
 			path = "Place Details";
 			sourceTree = "<group>";
@@ -723,6 +738,7 @@
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */,
+				DD5C222F23167AF800CF66CC /* PlaceContactsTableViewCell.xib in Resources */,
 				DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */,
 				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
 			);
@@ -795,7 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
-				DDC7F23B230E5E0F0067C6C7 /* SampleTableViewCell.swift in Sources */,
+				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
@@ -814,6 +830,7 @@
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
+				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
@@ -833,6 +850,7 @@
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
+				DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
@@ -841,6 +859,7 @@
 				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
 				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
+				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
@@ -850,6 +869,7 @@
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
 				DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
+				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
 			);

@@ -58,7 +58,6 @@ class PlaceProfileViewController: UIViewController {
     private func updateCollectionViewLayout(with cellHeight: CGFloat) {
         collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
-        viewModel.switchedToNewPage.value = true
     }
 }
 
