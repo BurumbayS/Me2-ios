@@ -11,7 +11,9 @@ import Cartography
 
 class PlaceInfoCollectionViewCell: UICollectionViewCell {
     
-    let tableView = UITableView()
+    let tableView = TableView()
+    var cellsCount = 0
+    var tableSize: Dynamic<CGSize>?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,14 +27,23 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with cellsCount: Int, itemSize: Dynamic<CGSize>?) {
+        self.cellsCount = cellsCount
+        self.tableSize = itemSize
+    }
+    
+    func reload () {
+        tableView.reloadDataWithCompletion {
+            self.tableSize?.value = (Constants.minContentSize.height < self.tableView.contentSize.height) ? self.tableView.contentSize : Constants.minContentSize
+            print("Table view reloaded")
+            let data = ["tableViewHeight": self.tableView.contentSize.height]
+            NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
+        }
+    }
+    
     private func setUpViews() {
         self.contentView.addSubview(tableView)
-        constrain(tableView, self.contentView) { table, view in
-            table.left == view.left
-            table.right == view.right
-            table.top == view.top
-            table.bottom == view.bottom
-        }
+        configureViews()
     }
     
     private func configureTableView() {
@@ -49,11 +60,20 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
     @objc private func enableScroll() {
         tableView.isScrollEnabled = true
     }
+    
+    private func configureViews() {
+        constrain(tableView, self.contentView) { table, view in
+            table.left == view.left
+            table.right == view.right
+            table.top == view.top
+            table.bottom == view.bottom
+        }
+    }
 }
 
 extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return cellsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,16 +81,5 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         cell.selectionStyle = .none
         cell.configure(with: indexPath.row)
         return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("Table view offset \(tableView.contentOffset.y)")
-        
-        //stop scrolling table if it reach the top
-        if tableView.contentOffset.y < 0 {
-            tableView.isScrollEnabled = false
-            NotificationCenter.default.post(.init(name: .makeCollectionViewScrollable))
-            print(tableView.contentSize)
-        }
     }
 }

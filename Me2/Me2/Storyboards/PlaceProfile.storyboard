@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-Mj-UgD">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-Mj-UgD" customClass="CollectionView" customModule="Me2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kJb-nY-Wb5">
@@ -49,7 +49,7 @@
                         <viewLayoutGuide key="safeArea" id="2gW-ph-Pcn"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="0KZ-Mj-UgD" id="IeS-bz-2xb"/>
+                        <outlet property="collectionView" destination="0KZ-Mj-UgD" id="Rv3-HH-ht6"/>
                         <outlet property="navBar" destination="t3Z-f7-7Ud" id="UJc-3p-Yfl"/>
                         <outlet property="navItem" destination="dxW-xr-wPq" id="CeK-Hg-Tec"/>
                     </connections>

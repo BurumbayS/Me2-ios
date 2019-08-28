@@ -22,9 +22,12 @@ class CustomSegmentedControl : UIView {
     var segmentWidth: CGFloat = 0
     var segmentHeight: CGFloat = 0
     
-    func configure(for titles : [String], with frame : CGSize) {
+    var viewModel: CustomSegmentedControlViewModel!
+    
+    func configure(for titles : [String], with frame : CGSize, and viewModel: CustomSegmentedControlViewModel) {
         self.titles = titles
         segmentsCount = titles.count
+        self.viewModel = viewModel
         
         segmentWidth = frame.width / CGFloat(segmentsCount)
         segmentHeight = frame.height
@@ -96,6 +99,8 @@ class CustomSegmentedControl : UIView {
         labels[currentSegment].textColor = .darkGray
         currentSegment = index!
         labels[currentSegment].textColor = Color.red
+        
+        viewModel.valueChangedHandler?()
     }
     
 }

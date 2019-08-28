@@ -11,16 +11,19 @@ import Cartography
 
 class PlaceProfileViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
+    let viewModel = PlaceProfileViewModel()
+    
     var lastContentOffset: CGFloat = 0
+    var collectionViewCellheight: CGFloat = Constants.minContentSize.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeCollectionViewScrollable, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
         configureNavBar()
         configureCollectionView()
     }
@@ -40,29 +43,39 @@ class PlaceProfileViewController: UIViewController {
         
         collectionView.register(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderCollectionViewCell.self)
-        collectionView.register(PlaceProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "PlaceHeaderView")
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "EmptyHeaderView")
+        collectionView.registerHeader(PlaceProfileHeaderView.self)
+        collectionView.registerHeader(UICollectionReusableView.self)
     }
     
-    @objc private func enableScroll() {
-        collectionView.isScrollEnabled = true
+    @objc private func updateCellHeight(_ notification: NSNotification) {
+        if let dict = notification.userInfo as NSDictionary? {
+            if let height = dict["tableViewHeight"] as? CGFloat {
+                self.updateCollectionViewLayout(with: height)
+            }
+        }
+    }
+    
+    private func updateCollectionViewLayout(with cellHeight: CGFloat) {
+        collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
+        collectionView.collectionViewLayout.invalidateLayout()
+        viewModel.switchedToNewPage.value = true
     }
 }
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var reuseID = ""
         
         switch indexPath.section {
         case 0:
-            reuseID = "EmptyHeaderView"
+            let header: UICollectionReusableView = collectionView.dequeueReusableView(for: indexPath, and: kind)
+            return header
         default:
-            reuseID = "PlaceHeaderView"
+            let header: PlaceProfileHeaderView = collectionView.dequeueReusableView(for: indexPath, and: kind)
+            header.configure { [weak self] (selectedSegment) in
+                self?.viewModel.currentPage.value = selectedSegment
+            }
+            return header
         }
-        
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseID, for: indexPath)
-        
-        return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -89,14 +102,13 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            
+
             return .init(width: self.view.frame.width, height: 300)
-            
+
         default:
-            
-            //set cell height - section header height + top bar height + bounce
-            return .init(width: self.view.frame.width, height: self.view.frame.height - 150)
-            
+
+            return .init(width: self.view.frame.width, height: collectionViewCellheight)
+
         }
     }
     
@@ -111,7 +123,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            
+            cell.configure(with: viewModel.currentPage)
             return cell
             
         }
@@ -130,15 +142,9 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             layout.offPinToVisibleBounds()
         }
         
-        print("Last: \(lastContentOffset) and current: \(collectionView.contentOffset.y)")
-        
         if collectionView.contentOffset.y > 300  {
             navBar.backgroundColor = .white
             collectionView.clipsToBounds = true
-            
-            if collectionView.contentOffset.y > lastContentOffset {
-                NotificationCenter.default.post(.init(name: .makeTableViewScrollable))
-            }
         } else {
             navBar.makeTransparentBar()
             collectionView.clipsToBounds = false

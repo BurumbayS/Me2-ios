@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     static let makeTableViewScrollable = Notification.Name("makeTableViewScrollable")
     static let makeCollectionViewScrollable = Notification.Name("makeCollectionViewScrollable")
+    static let updateCellheight = Notification.Name("updateCellheight")
 }

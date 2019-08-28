@@ -25,9 +25,15 @@ class PlaceProfileHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with segmentChangeHadler: @escaping ((Int) -> ())) {
+        let viewModel = CustomSegmentedControlViewModel { [weak self] in
+            segmentChangeHadler(self?.segmentedControl.currentSegment ?? 0)
+        }
+        segmentedControl.configure(for: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40), and: viewModel)
+    }
+    
     private func setUpViews() {
         segmentedControl.backgroundColor = .white
-        segmentedControl.configure(for: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40))
         self.addSubview(segmentedControl)
         constrain(segmentedControl, self) { segmentedControl, header in
             segmentedControl.top == header.top

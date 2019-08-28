@@ -29,6 +29,7 @@
 		DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */; };
 		DD5653F222F4DC19003A67C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F122F4DC19003A67C3 /* Color.swift */; };
 		DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */; };
+		DD5C2227231649FB00CF66CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2226231649FB00CF66CC /* Constants.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -48,6 +49,9 @@
 		DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F230230BB2A60067C6C7 /* NotificationCenterExtension.swift */; };
 		DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */; };
 		DDC7F23B230E5E0F0067C6C7 /* SampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23A230E5E0F0067C6C7 /* SampleTableViewCell.swift */; };
+		DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23C230EAD350067C6C7 /* TableView.swift */; };
+		DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F23E231005200067C6C7 /* CollectionView.swift */; };
+		DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */; };
 		DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E6A22F7E7DA006E54D1 /* LiveChatViewController.swift */; };
 		DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6E6E22F7E95F006E54D1 /* ParticipantCollectionViewCell.swift */; };
 		DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */; };
@@ -121,6 +125,7 @@
 		DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		DD5653F122F4DC19003A67C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		DD5C2226231649FB00CF66CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 		DDC7F230230BB2A60067C6C7 /* NotificationCenterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtension.swift; sourceTree = "<group>"; };
 		DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDC7F23A230E5E0F0067C6C7 /* SampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTableViewCell.swift; sourceTree = "<group>"; };
+		DDC7F23C230EAD350067C6C7 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		DDC7F23E231005200067C6C7 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewModel.swift; sourceTree = "<group>"; };
 		DDCE6E6A22F7E7DA006E54D1 /* LiveChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatViewController.swift; sourceTree = "<group>"; };
 		DDCE6E6E22F7E95F006E54D1 /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParticipantCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -383,6 +391,7 @@
 				DD5653F122F4DC19003A67C3 /* Color.swift */,
 				DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */,
 				DDF65B1222FD666200441035 /* Protocols.swift */,
+				DD5C2226231649FB00CF66CC /* Constants.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -483,6 +492,8 @@
 			isa = PBXGroup;
 			children = (
 				DDC7F22223093FE60067C6C7 /* Views */,
+				DDC7F23C230EAD350067C6C7 /* TableView.swift */,
+				DDC7F23E231005200067C6C7 /* CollectionView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -609,6 +620,7 @@
 		DDF65B352308023E00441035 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -787,6 +799,7 @@
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
+				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
 				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
@@ -799,6 +812,7 @@
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
+				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
@@ -812,7 +826,9 @@
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DDC7F22A230955640067C6C7 /* StringExtensions.swift in Sources */,
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
+				DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
+				DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */,
 				DD5653C722F07BE7003A67C3 /* GenderBirthdateViewController.swift in Sources */,
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
