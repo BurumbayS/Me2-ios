@@ -34,7 +34,8 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
     
     func reload () {
         tableView.reloadDataWithCompletion {
-            self.tableSize?.value = (Constants.minContentSize.height < self.tableView.contentSize.height) ? self.tableView.contentSize : Constants.minContentSize
+            let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
+            self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
@@ -54,6 +55,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.isScrollEnabled = false
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         
         tableView.register(PlaceDescriptionTableViewCell.self)
         tableView.registerNib(PlaceContactsTableViewCell.self)
@@ -61,6 +63,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         tableView.register(PlaceWorkTimeTableViewCell.self)
         tableView.register(MailSiteTableViewCell.self)
         tableView.register(PlaceOptionalsTableViewCell.self)
+        tableView.register(PlaceSubsidiariesTableViewCell.self)
     }
     
     @objc private func enableScroll() {
@@ -79,7 +82,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
 
 extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,6 +112,10 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             return cell
         case 6:
             let cell: PlaceOptionalsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
+        case 7:
+            let cell: PlaceSubsidiariesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: 3)
             return cell
         default:
             return UITableViewCell()
