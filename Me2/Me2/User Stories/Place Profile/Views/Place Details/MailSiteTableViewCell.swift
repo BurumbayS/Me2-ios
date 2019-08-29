@@ -35,6 +35,7 @@ class MailSiteTableViewCell: UITableViewCell {
     }
     
     private func setUpViews() {
+        iconImageView.contentMode = .scaleAspectFit
         self.contentView.addSubview(iconImageView)
         constrain(iconImageView, self.contentView) { icon, view in
             icon.left == view.left + 20

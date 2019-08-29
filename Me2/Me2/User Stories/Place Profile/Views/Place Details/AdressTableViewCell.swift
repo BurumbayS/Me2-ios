@@ -39,7 +39,6 @@ class AdressTableViewCell: UITableViewCell {
             icon.width == 17
             icon.height == 22
             icon.left == view.left + 22
-            icon.centerY == view.centerY
         }
         
         let view = UIView()
@@ -77,6 +76,7 @@ class AdressTableViewCell: UITableViewCell {
             view.right == contentView.right - 22
             view.top == contentView.top
             view.bottom == contentView.bottom - 10
+            view.centerY == icon.centerY
         }
     }
 }

@@ -39,7 +39,6 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
             icon.width == 20
             icon.height == 20
             icon.left == view.left + 20
-            icon.centerY == view.centerY
         }
         
         let view = UIView()
@@ -68,7 +67,6 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
         constrain(availabilityStatusView, closingTimeLabel, view) { status, label, view in
             status.left == label.right + 5
             status.centerY == label.centerY
-            status.right == view.right
             status.height == 6
             status.width == 6
         }
@@ -79,6 +77,7 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
             view.right == contentView.right - 22
             view.top == contentView.top + 10
             view.bottom == contentView.bottom - 15
+            view.centerY == icon.centerY
         }
     }
 }
