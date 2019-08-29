@@ -36,6 +36,8 @@
 		DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */; };
 		DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */; };
 		DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */; };
+		DD5C22372317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */; };
+		DD5C22392317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -137,6 +139,8 @@
 		DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWorkTimeTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSiteTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOptionalsTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOptionalCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 				DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */,
 				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
 				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
+				DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */,
+				DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */,
 			);
 			path = "Place Details";
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
+				DD5C22372317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift in Sources */,
 				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
 				DD04103A22EF702E006A58A5 /* SignUpPersonalDataViewController.swift in Sources */,
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
@@ -827,6 +834,7 @@
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
+				DD5C22392317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,

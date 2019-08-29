@@ -62,12 +62,13 @@ class AdressTableViewCell: UITableViewCell {
         }
         
         distanceLabel.textColor = .darkGray
+        distanceLabel.textAlignment = .right
         distanceLabel.font = UIFont(name: "Roboto-Medium", size: 13)
         view.addSubview(distanceLabel)
         constrain(distanceLabel, adressLabel, view) { distance, adress, view in
             distance.left == adress.right + 10
             distance.centerY == adress.centerY
-            distance.right == adress.right
+            distance.right == view.right
         }
         
         self.contentView.addSubview(view)

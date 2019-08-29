@@ -10,23 +10,26 @@ import UIKit
 
 class CollectionView : UICollectionView {
     private var reloadDataCompletionBlock: (() -> Void)?
-    private var invalidateLayoutCompletionBlock: (() -> Void)?
+    
+    override func reloadData() {
+        super.reloadData()
+        self.invalidateIntrinsicContentSize()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let s = self.collectionViewLayout.collectionViewContentSize
+        return CGSize(width: max(s.width, 1), height: max(s.height,1))
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         reloadDataCompletionBlock?()
         reloadDataCompletionBlock = nil
-//        invalidateLayoutCompletionBlock?()
     }
     
     func reloadDataWithCompletion(completion: @escaping VoidBlock) {
         reloadDataCompletionBlock = completion
         self.reloadData()
-    }
-    
-    func invalidateLayoutWithCompletion(completion: @escaping VoidBlock) {
-        invalidateLayoutCompletionBlock = completion
-        self.collectionViewLayout.invalidateLayout()
     }
 }

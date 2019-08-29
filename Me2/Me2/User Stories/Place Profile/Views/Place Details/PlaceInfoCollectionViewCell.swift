@@ -60,6 +60,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         tableView.register(AdressTableViewCell.self)
         tableView.register(PlaceWorkTimeTableViewCell.self)
         tableView.register(MailSiteTableViewCell.self)
+        tableView.register(PlaceOptionalsTableViewCell.self)
     }
     
     @objc private func enableScroll() {
@@ -78,7 +79,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
 
 extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,6 +106,9 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         case 5:
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(withWebSite: "www.travelers-coffee.com")
+            return cell
+        case 6:
+            let cell: PlaceOptionalsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             return cell
         default:
             return UITableViewCell()
