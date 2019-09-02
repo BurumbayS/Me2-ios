@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class PlaceInfoCollectionViewCell: UICollectionViewCell {
+class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
     let tableView = TableView()
     var tableSize: Dynamic<CGSize>?
@@ -30,7 +30,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         self.tableSize = itemSize
     }
     
-    func reload () {
+    override func reload () {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
             self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize

@@ -42,6 +42,10 @@
 		DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */; };
 		DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */; };
 		DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */; };
+		DD5C2247231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2246231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift */; };
+		DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2248231D183100CF66CC /* PlaceReviewTableViewCell.swift */; };
+		DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */; };
+		DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C224D231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -149,6 +153,10 @@
 		DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFileTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
+		DD5C2246231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD5C2248231D183100CF66CC /* PlaceReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReviewTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailCollectionCell.swift; sourceTree = "<group>"; };
+		DD5C224D231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEventsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -388,6 +396,23 @@
 			path = Info;
 			sourceTree = "<group>";
 		};
+		DD5C2245231D17C900CF66CC /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				DD5C2246231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift */,
+				DD5C2248231D183100CF66CC /* PlaceReviewTableViewCell.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		DD5C224C231D4A7100CF66CC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				DD5C224D231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		DD67A74422EF33B000D1D51D = {
 			isa = PBXGroup;
 			children = (
@@ -559,7 +584,9 @@
 			isa = PBXGroup;
 			children = (
 				DD5C223D231CE28F00CF66CC /* Info */,
+				DD5C224C231D4A7100CF66CC /* Events */,
 				DD5C223C231CE09B00CF66CC /* Menu */,
+				DD5C2245231D17C900CF66CC /* Reviews */,
 			);
 			path = "Place Details";
 			sourceTree = "<group>";
@@ -660,6 +687,7 @@
 				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
 				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
 				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
+				DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */,
 				DDC7F22B23097B240067C6C7 /* Place Details */,
 			);
 			path = Views;
@@ -865,6 +893,7 @@
 				DD5C22392317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
+				DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
@@ -886,9 +915,11 @@
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */,
 				DD5653C722F07BE7003A67C3 /* GenderBirthdateViewController.swift in Sources */,
+				DD5C2247231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift in Sources */,
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
+				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
 				DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
@@ -912,6 +943,7 @@
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
+				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  PlaceMenuCollectionViewCell.swift
+//  PlaceReviewsCollectionViewCell.swift
 //  Me2
 //
 //  Created by Sanzhar Burumbay on 9/2/19.
@@ -9,11 +9,9 @@
 import UIKit
 import Cartography
 
-class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
-    
+class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
     
-    let titles = ["Меню Traveler's Coffee","Бар Меню"]
     var tableSize: Dynamic<CGSize>?
     
     override init(frame: CGRect) {
@@ -41,13 +39,12 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         
-        tableView.register(MenuFileTableViewCell.self)
+        tableView.register(PlaceReviewTableViewCell.self)
     }
     
     func configure(itemSize: Dynamic<CGSize>?) {
@@ -65,15 +62,15 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     }
 }
 
-extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
+extension PlaceReviewsCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MenuFileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: PlaceReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: titles[indexPath.row])
+        cell.configure(with: nil)
         cell.selectionStyle = .none
         
         return cell

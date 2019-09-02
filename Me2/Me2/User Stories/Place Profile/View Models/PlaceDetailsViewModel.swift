@@ -10,6 +10,7 @@ import UIKit
 
 class PlaceDetailsViewModel {
     let pages = [PlaceProfilePage.info, .events, .menu, .reviews]
+    var cells = [String : PlaceDetailCollectionCell]()
     
     func getCellClass(for index: Int) -> UICollectionViewCell.Type {
         let page = pages[index]
@@ -19,8 +20,10 @@ class PlaceDetailsViewModel {
             return PlaceInfoCollectionViewCell.self
         case .menu:
             return PlaceMenuCollectionViewCell.self
-        default:
-            return UICollectionViewCell.self
+        case .reviews:
+            return PlaceReviewsCollectionViewCell.self
+        case .events:
+            return PlaceEventsCollectionViewCell.self
         }
     }
 }
