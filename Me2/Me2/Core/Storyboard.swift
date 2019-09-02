@@ -14,6 +14,7 @@ enum Storyboard: String {
     case map = "Map"
     case chat = "Chat"
     case profile = "Profile"
+    case placeProfile = "PlaceProfile"
     
     private var storyboard: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: nil)
@@ -62,5 +63,10 @@ extension Storyboard {
     }
     static var favouritePlacesViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "FavouritePlacesViewController")
+    }
+    
+    //Place profile controllers
+    static var placeProfileViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
     }
 }
