@@ -8,11 +8,15 @@
 
 import Foundation
 
-enum PlaceProfilePage {
-    case info
-    case events
-    case menu
-    case reviews
+enum PlaceProfilePage: String  {
+    case info = "PlaceInfoCell"
+    case events = "PlaceEventsCell"
+    case menu = "PlaceMenuCell"
+    case reviews = "PlaceReviewsCell"
+    
+    var cellID: String {
+        return self.rawValue
+    }
 }
 
 class PlaceProfileViewModel {

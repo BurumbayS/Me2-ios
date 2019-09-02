@@ -12,7 +12,6 @@ import Cartography
 class PlaceInfoCollectionViewCell: UICollectionViewCell {
     
     let tableView = TableView()
-    var cellsCount = 0
     var tableSize: Dynamic<CGSize>?
     
     override init(frame: CGRect) {
@@ -27,8 +26,7 @@ class PlaceInfoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with cellsCount: Int, itemSize: Dynamic<CGSize>?) {
-        self.cellsCount = cellsCount
+    func configure(itemSize: Dynamic<CGSize>?) {
         self.tableSize = itemSize
     }
     

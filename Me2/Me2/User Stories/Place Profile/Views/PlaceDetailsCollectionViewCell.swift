@@ -17,6 +17,7 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
     var itemSize: Dynamic<CGSize>?
     var cellIDs = [String]()
     var cells = [String : PlaceInfoCollectionViewCell]()
+    let viewModel = PlaceDetailsViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,10 +46,9 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
         collectionView.clipsToBounds = true
         collectionView.isPagingEnabled = true
         
-        for i in 0..<4 {
-            let cellID = "CellID\(i)"
-            cellIDs.append(cellID)
-            collectionView.register(PlaceInfoCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        for i in 0..<viewModel.pages.count {
+//            collectionView.register(viewModel.getCellClass(for: i))
+            collectionView.register(viewModel.getCellClass(for: i), forCellWithReuseIdentifier: viewModel.pages[i].cellID)
         }
     }
     
@@ -100,17 +100,33 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return viewModel.pages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let id = "CellID\(indexPath.row)"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as! PlaceInfoCollectionViewCell
-        cells[id] = cell
-        cell.configure(with: (indexPath.row + 1) * 5, itemSize: self.itemSize)
-        if indexPath.row == currentPage?.value {
-            cell.reload()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: viewModel.pages[indexPath.row].cellID, for: indexPath)
+        
+        switch viewModel.pages[indexPath.row] {
+        case .info:
+            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceInfoCollectionViewCell).reload()
+//        case .events:
+//            (cell as! PlaceInfoCollectionViewCell).reload()
+        case .menu:
+            (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceMenuCollectionViewCell).reload()
+//        case .reviews:
+//            (cell as! PlaceInfoCollectionViewCell).reload()
+        default:
+            break
         }
+//        let id = "CellID\(indexPath.row)"
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as! PlaceInfoCollectionViewCell
+//        cells[id] = cell
+//        cell.configure(with: (indexPath.row + 1) * 5, itemSize: self.itemSize)
+//        if indexPath.row == currentPage?.value {
+//            cell.reload()
+//        }
         return cell
     }
 }

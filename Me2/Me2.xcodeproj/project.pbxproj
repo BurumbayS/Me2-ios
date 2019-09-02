@@ -39,6 +39,9 @@
 		DD5C22372317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */; };
 		DD5C22392317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */; };
 		DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */; };
+		DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */; };
+		DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */; };
+		DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -143,6 +146,9 @@
 		DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOptionalsTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOptionalCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSubsidiariesTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFileTableViewCell.swift; sourceTree = "<group>"; };
+		DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -356,6 +362,32 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DD5C223C231CE09B00CF66CC /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */,
+				DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		DD5C223D231CE28F00CF66CC /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7F22C23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift */,
+				DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */,
+				DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */,
+				DD5C222D23167AF800CF66CC /* PlaceContactsTableViewCell.xib */,
+				DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */,
+				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
+				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
+				DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */,
+				DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */,
+				DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		DD67A74422EF33B000D1D51D = {
 			isa = PBXGroup;
 			children = (
@@ -526,16 +558,8 @@
 		DDC7F22B23097B240067C6C7 /* Place Details */ = {
 			isa = PBXGroup;
 			children = (
-				DDC7F22C23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift */,
-				DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */,
-				DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */,
-				DD5C222D23167AF800CF66CC /* PlaceContactsTableViewCell.xib */,
-				DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */,
-				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
-				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
-				DD5C22362317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift */,
-				DD5C22382317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift */,
-				DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */,
+				DD5C223D231CE28F00CF66CC /* Info */,
+				DD5C223C231CE09B00CF66CC /* Menu */,
 			);
 			path = "Place Details";
 			sourceTree = "<group>";
@@ -645,6 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */,
+				DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -844,12 +869,14 @@
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD67A77522EF381C00D1D51D /* SignInOrUpViewController.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
+				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */,
 				DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */,
 				DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */,
 				DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */,
+				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
@@ -874,6 +901,7 @@
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
+				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD5653C522F07B03003A67C3 /* FirstLastNameViewController.swift in Sources */,
