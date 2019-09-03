@@ -8,6 +8,9 @@ target 'Me2' do
   # Pods for Me2
   pod 'Cartography'
   pod 'IQKeyboardManagerSwift'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'Cosmos', '~> 19.0'
   pod 'KKPinCodeTextField'
 
 end

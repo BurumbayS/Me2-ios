@@ -18,6 +18,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.shouldRemoveShadow(true)
         setUpViews()
     }
     
