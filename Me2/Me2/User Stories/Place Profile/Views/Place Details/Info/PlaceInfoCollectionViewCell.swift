@@ -53,7 +53,7 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.isScrollEnabled = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
         tableView.register(PlaceDescriptionTableViewCell.self)
         tableView.registerNib(PlaceContactsTableViewCell.self)
