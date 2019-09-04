@@ -11,7 +11,7 @@ import UIKit
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordTextField: AttributedTextField!
     @IBOutlet weak var signInWithFacebookView: UIView!
     @IBOutlet weak var signInWithGoogleView: UIView!
     
@@ -19,10 +19,10 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.shouldRemoveShadow(true)
-        setUpViews()
+        configureViews()
     }
     
-    private func setUpViews() {
+    private func configureViews() {
         signInWithGoogleView.backgroundColor = .white
         signInWithGoogleView.layer.borderColor = UIColor.lightGray.cgColor
         signInWithGoogleView.layer.borderWidth = 1.0
@@ -30,6 +30,11 @@ class SignInViewController: UIViewController {
         signInWithFacebookView.backgroundColor = .white
         signInWithFacebookView.layer.borderColor = UIColor.lightGray.cgColor
         signInWithFacebookView.layer.borderWidth = 1.0
+        
+        passwordTextField.delegate = self
+        passwordTextField.rightViewAction = { [weak self] in
+            self?.passwordTextField.isSecureTextEntry = !(self?.passwordTextField.isSecureTextEntry)!
+        }
     }
     
     @IBAction func signInPressed(_ sender: Any) {

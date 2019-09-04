@@ -32,6 +32,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ToSMSCodeConfirmationSegue", sender: nil)
     }
     
     @IBAction func signInPressed(_ sender: Any) {

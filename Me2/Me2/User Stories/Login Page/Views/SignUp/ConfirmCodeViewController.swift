@@ -37,6 +37,7 @@ class ConfirmCodeViewController: UIViewController {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         if codeTextField.text?.count == 4 {
             codeTextField.filledDigitBorderColor = .red
+            performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
         } else {
             codeTextField.filledDigitBorderColor = .blue
         }
