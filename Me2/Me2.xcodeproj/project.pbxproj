@@ -53,6 +53,8 @@
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
+		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
+		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
 		DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */; };
 		DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */; };
 		DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */; };
@@ -171,6 +173,8 @@
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
+		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
+		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
 		DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewController.swift; sourceTree = "<group>"; };
 		DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderView.swift; sourceTree = "<group>"; };
 		DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileCollectionLayout.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */,
+				DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */,
+				DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
 				DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */,
+				DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */,
 				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
 				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
@@ -889,6 +896,7 @@
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD5C22392317C3BD00CF66CC /* PlaceOptionalCollectionViewCell.swift in Sources */,
+				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */,

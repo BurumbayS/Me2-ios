@@ -31,6 +31,9 @@ extension Storyboard {
     static var signInOrUpViewController = {
         return loginPage.storyboard.instantiateViewController(withIdentifier: "SignInOrUpViewController")
     }
+    static var accessCodeViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "AccessCodeViewController")
+    }
     
     //Map tab view controllers
     static var mapViewController = {
