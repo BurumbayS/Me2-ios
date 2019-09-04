@@ -43,3 +43,9 @@ class SignInViewController: UIViewController {
     @IBAction func signUpPressed(_ sender: Any) {
     }
 }
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.isSecureTextEntry = true
+    }
+}
