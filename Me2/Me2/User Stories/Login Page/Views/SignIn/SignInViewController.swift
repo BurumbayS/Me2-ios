@@ -14,6 +14,9 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: AttributedTextField!
     @IBOutlet weak var signInWithFacebookView: UIView!
     @IBOutlet weak var signInWithGoogleView: UIView!
+    @IBOutlet weak var signInButton: UIButton!
+    
+    let viewModel = SignInViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,21 +35,40 @@ class SignInViewController: UIViewController {
         signInWithFacebookView.layer.borderColor = UIColor.lightGray.cgColor
         signInWithFacebookView.layer.borderWidth = 1.0
         
+        loginTextField.delegate = self
+        loginTextField.tag = 1
         passwordTextField.delegate = self
+        passwordTextField.tag = 2
         passwordTextField.rightViewAction = { [weak self] in
             self?.passwordTextField.isSecureTextEntry = !(self?.passwordTextField.isSecureTextEntry)!
         }
+        
+        disableSignInButton()
+    }
+    
+    private func enableSignInButton() {
+        signInButton.isEnabled = true
+        signInButton.alpha = 1.0
+    }
+    private func disableSignInButton() {
+        signInButton.isEnabled = false
+        signInButton.alpha = 0.5
     }
     
     @IBAction func signInPressed(_ sender: Any) {
-    }
-    
-    @IBAction func signUpPressed(_ sender: Any) {
+        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!)
     }
 }
 
 extension SignInViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.isSecureTextEntry = true
+        //check for password text field by tag
+        textField.isSecureTextEntry = (textField.tag == 2) ? true : false
+        
+        if loginTextField.text != "" && passwordTextField.text != "" {
+            enableSignInButton()
+        } else {
+            disableSignInButton()
+        }
     }
 }

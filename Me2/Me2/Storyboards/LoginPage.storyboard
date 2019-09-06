@@ -142,7 +142,6 @@
                                             <color key="titleColor" red="0.26625031230000001" green="0.69434672590000002" blue="0.97626179459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="signUpPressed:" destination="2pP-cX-hqZ" eventType="touchUpInside" id="0HW-yg-pmm"/>
                                             <segue destination="jF6-st-q8H" kind="show" id="Y8d-ii-pFq"/>
                                         </connections>
                                     </button>
@@ -250,6 +249,7 @@
                     <connections>
                         <outlet property="loginTextField" destination="aqS-kk-ZQl" id="1wy-GW-AsH"/>
                         <outlet property="passwordTextField" destination="Srg-T9-ZFN" id="lBp-Qi-UAP"/>
+                        <outlet property="signInButton" destination="qal-JJ-Tf4" id="l10-bZ-ae2"/>
                         <outlet property="signInWithFacebookView" destination="dhj-3s-YxP" id="gTM-4k-n3T"/>
                         <outlet property="signInWithGoogleView" destination="EhY-pQ-7U5" id="pP0-bo-qi1"/>
                     </connections>

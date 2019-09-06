@@ -12,5 +12,7 @@ target 'Me2' do
   pod 'GooglePlaces'
   pod 'Cosmos', '~> 19.0'
   pod 'KKPinCodeTextField'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
 
 end
