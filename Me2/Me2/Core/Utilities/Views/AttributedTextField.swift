@@ -13,7 +13,26 @@ class AttributedTextField: UITextField {
     
     var rightViewAction: VoidBlock?
     
-    // Provides left padding for images
+    let leftPadding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+    
+    override func awakeFromNib() {
+        self.borderStyle = .none
+        self.layer.borderWidth = 1
+        self.layer.borderColor = Color.gray.cgColor
+        self.layer.cornerRadius = 5
+    }
+    
+    // Proides left padding for placeholder and text
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = bounds.inset(by: leftPadding)
+        return rect
+    }
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = bounds.inset(by: leftPadding)
+        return rect
+    }
+    
+    // Provides right padding for images
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rightView = super.rightViewRect(forBounds: bounds)
         rightView.origin.x -= rightPadding
@@ -22,6 +41,7 @@ class AttributedTextField: UITextField {
     
     override var isSecureTextEntry: Bool {
         didSet {
+            if rightViewImage == nil { return }
             rightViewImage = (self.isSecureTextEntry) ? UIImage(named: "hide_eye") : UIImage(named: "eye")
         }
     }

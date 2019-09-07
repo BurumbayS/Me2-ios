@@ -10,7 +10,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var loginTextField: AttributedTextField!
     @IBOutlet weak var passwordTextField: AttributedTextField!
     @IBOutlet weak var signInWithFacebookView: UIView!
     @IBOutlet weak var signInWithGoogleView: UIView!
@@ -37,6 +38,7 @@ class SignInViewController: UIViewController {
         
         loginTextField.delegate = self
         loginTextField.tag = 1
+        
         passwordTextField.delegate = self
         passwordTextField.tag = 2
         passwordTextField.rightViewAction = { [weak self] in
@@ -55,8 +57,33 @@ class SignInViewController: UIViewController {
         signInButton.alpha = 0.5
     }
     
+    private func showError(with message: String) {
+        errorLabel.text = message
+        loginTextField.layer.borderColor = Color.red.cgColor
+        loginTextField.textColor = Color.red
+        passwordTextField.layer.borderColor = Color.red.cgColor
+        passwordTextField.textColor = Color.red
+    }
+    private func hideError() {
+        errorLabel.text = ""
+        loginTextField.layer.borderColor = Color.gray.cgColor
+        loginTextField.textColor = .black
+        passwordTextField.layer.borderColor = Color.gray.cgColor
+        passwordTextField.textColor = .black
+    }
+    
     @IBAction func signInPressed(_ sender: Any) {
-        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!)
+        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                print("ok")
+            case .error:
+                print(message)
+                self?.showError(with: message)
+            case .fail:
+                print("fail")
+            }
+        }
     }
 }
 
@@ -69,6 +96,12 @@ extension SignInViewController: UITextFieldDelegate {
             enableSignInButton()
         } else {
             disableSignInButton()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if errorLabel.text != "" {
+            hideError()
         }
     }
 }

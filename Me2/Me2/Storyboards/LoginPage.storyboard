@@ -159,14 +159,14 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_large" translatesAutoresizingMaskIntoConstraints="NO" id="TOi-EA-Bnb">
-                                <rect key="frame" x="125.5" y="62" width="163" height="135"/>
+                                <rect key="frame" x="125.5" y="52" width="163" height="135"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="135" id="GG3-Wn-ibe"/>
                                     <constraint firstAttribute="width" constant="163" id="MJ4-Xm-ytf"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя или номер" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqS-kk-ZQl">
-                                <rect key="frame" x="87" y="277" width="240" height="43"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя или номер" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqS-kk-ZQl" customClass="AttributedTextField" customModule="Me2" customModuleProvider="target">
+                                <rect key="frame" x="87" y="267" width="240" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="J8q-d8-EU4"/>
                                     <constraint firstAttribute="width" constant="240" id="p3F-Tc-Je9"/>
@@ -176,7 +176,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gce-Uc-RCP">
-                                <rect key="frame" x="233" y="249" width="94" height="28"/>
+                                <rect key="frame" x="233" y="239" width="94" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Sd3-TA-da1"/>
                                 </constraints>
@@ -186,7 +186,7 @@
                                 </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Srg-T9-ZFN" customClass="AttributedTextField" customModule="Me2" customModuleProvider="target">
-                                <rect key="frame" x="87" y="330" width="240" height="43"/>
+                                <rect key="frame" x="87" y="320" width="240" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="JNX-2X-u3c"/>
                                     <constraint firstAttribute="height" constant="43" id="QXN-y1-jPn"/>
@@ -208,10 +208,20 @@
                                     <constraint firstAttribute="height" constant="1" id="7GD-fg-KvE"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXH-YX-fFR">
+                                <rect key="frame" x="207" y="368" width="0.0" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="wFA-8G-gTx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0xq-OT-txS" firstAttribute="leading" secondItem="usj-yY-cNU" secondAttribute="trailing" constant="7.5" id="26x-yj-aEe"/>
+                            <constraint firstItem="qal-JJ-Tf4" firstAttribute="top" secondItem="KXH-YX-fFR" secondAttribute="bottom" constant="10" id="2hG-Qi-Gv9"/>
                             <constraint firstItem="byI-sd-FIz" firstAttribute="leading" secondItem="qal-JJ-Tf4" secondAttribute="leading" id="4bE-DQ-frz"/>
                             <constraint firstItem="usj-yY-cNU" firstAttribute="top" relation="lessThanOrEqual" secondItem="qal-JJ-Tf4" secondAttribute="bottom" constant="40" id="67r-21-DRH"/>
                             <constraint firstItem="0xq-OT-txS" firstAttribute="trailing" secondItem="qal-JJ-Tf4" secondAttribute="trailing" id="7Tv-my-ul7"/>
@@ -226,19 +236,20 @@
                             <constraint firstItem="gce-Uc-RCP" firstAttribute="trailing" secondItem="aqS-kk-ZQl" secondAttribute="trailing" id="Mph-DS-7Am"/>
                             <constraint firstItem="aqS-kk-ZQl" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="N4j-Zt-3Si"/>
                             <constraint firstItem="aqS-kk-ZQl" firstAttribute="top" secondItem="gce-Uc-RCP" secondAttribute="bottom" id="N63-DY-TS3"/>
+                            <constraint firstItem="KXH-YX-fFR" firstAttribute="top" secondItem="Srg-T9-ZFN" secondAttribute="bottom" constant="5" id="Pvg-Yn-Afu"/>
                             <constraint firstItem="cey-zN-Wch" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="R6e-v6-Gxx" secondAttribute="bottom" constant="32" id="Q5g-fy-nU0"/>
                             <constraint firstItem="EhY-pQ-7U5" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="Rjr-6U-13u"/>
                             <constraint firstItem="EhY-pQ-7U5" firstAttribute="top" relation="lessThanOrEqual" secondItem="usj-yY-cNU" secondAttribute="bottom" constant="40" id="Sgg-ZT-5OL"/>
                             <constraint firstItem="aqS-kk-ZQl" firstAttribute="top" relation="lessThanOrEqual" secondItem="TOi-EA-Bnb" secondAttribute="bottom" constant="80" id="US2-P2-Ixf"/>
                             <constraint firstItem="usj-yY-cNU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qal-JJ-Tf4" secondAttribute="bottom" constant="20" id="Vva-2O-36L"/>
                             <constraint firstItem="Srg-T9-ZFN" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="X3s-NU-Cvy"/>
-                            <constraint firstItem="qal-JJ-Tf4" firstAttribute="top" secondItem="Srg-T9-ZFN" secondAttribute="bottom" constant="20" id="YVp-un-Npz"/>
                             <constraint firstItem="byI-sd-FIz" firstAttribute="centerY" secondItem="usj-yY-cNU" secondAttribute="centerY" id="YZj-Fw-Rfc"/>
                             <constraint firstItem="0xq-OT-txS" firstAttribute="centerY" secondItem="usj-yY-cNU" secondAttribute="centerY" id="fCl-Rx-B1y"/>
                             <constraint firstItem="TOi-EA-Bnb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cey-zN-Wch" secondAttribute="top" constant="-30" id="h4g-3p-eV4"/>
                             <constraint firstItem="cey-zN-Wch" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="R6e-v6-Gxx" secondAttribute="bottom" constant="100" id="o9d-Os-1pL"/>
                             <constraint firstItem="TOi-EA-Bnb" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="om8-Uo-z5H"/>
                             <constraint firstItem="qal-JJ-Tf4" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="sp1-ZC-P0p"/>
+                            <constraint firstItem="KXH-YX-fFR" firstAttribute="centerX" secondItem="cey-zN-Wch" secondAttribute="centerX" id="vcq-MU-YOZ"/>
                             <constraint firstItem="dhj-3s-YxP" firstAttribute="top" secondItem="EhY-pQ-7U5" secondAttribute="bottom" constant="10" id="vpo-Q0-WXK"/>
                             <constraint firstItem="usj-yY-cNU" firstAttribute="leading" secondItem="byI-sd-FIz" secondAttribute="trailing" constant="8.5" id="xdZ-Ct-bra"/>
                             <constraint firstItem="R6e-v6-Gxx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dhj-3s-YxP" secondAttribute="bottom" constant="20" id="ydC-Ch-8NE"/>
@@ -247,7 +258,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="g40-I3-Sxj"/>
                     <connections>
-                        <outlet property="loginTextField" destination="aqS-kk-ZQl" id="1wy-GW-AsH"/>
+                        <outlet property="errorLabel" destination="KXH-YX-fFR" id="sqy-gf-xGV"/>
+                        <outlet property="loginTextField" destination="aqS-kk-ZQl" id="nPf-HM-MOw"/>
                         <outlet property="passwordTextField" destination="Srg-T9-ZFN" id="lBp-Qi-UAP"/>
                         <outlet property="signInButton" destination="qal-JJ-Tf4" id="l10-bZ-ae2"/>
                         <outlet property="signInWithFacebookView" destination="dhj-3s-YxP" id="gTM-4k-n3T"/>

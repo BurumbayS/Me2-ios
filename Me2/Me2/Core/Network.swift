@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum RequestStatus {
+    case ok
+    case error
+    case fail
+}
+
 class Network {
     static let host = "http://api.me2.aiba.kz"
     

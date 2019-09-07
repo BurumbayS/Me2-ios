@@ -11,12 +11,12 @@ import Alamofire
 import SwiftyJSON
 
 class SignInViewModel {
-
-    func signIn(with username: String, and password: String) {
+    
+    func signIn(with username: String, and password: String, completion: ((RequestStatus, String) -> ())?) {
         let params = ["username": username, "password": password]
         
         Alamofire.request(authenticateURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getHeaders())
-            .responseJSON { (response) in
+            .responseJSON { [weak self] (response) in
                 switch response.result {
                 case .success(let result):
                     
@@ -24,16 +24,21 @@ class SignInViewModel {
                     let code = json["code"].intValue
                     switch code {
                     case 0:
-                        print("ok")
+                        
+                        completion?(.ok, "")
+                        
                     case 1:
+                        
                         let message = json["message"].stringValue
-                        print(message)
+                        completion?(.error, message)
+                        
                     default:
                         break
                     }
                     
                 case .failure(let error):
                     print(error)
+                    completion?(.fail, "")
                 }
         }
     }
