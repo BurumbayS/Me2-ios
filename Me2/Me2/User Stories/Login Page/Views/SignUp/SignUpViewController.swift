@@ -11,9 +11,13 @@ import SafariServices
 
 class SignUpViewController: UIViewController {
 
-    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var phoneTextField: AttributedTextField!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var googleSignInView: UIView!
     @IBOutlet weak var facebookSignInView: UIView!
+    
+    let viewModel = SignUpViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +33,77 @@ class SignUpViewController: UIViewController {
         facebookSignInView.backgroundColor = .white
         facebookSignInView.layer.borderColor = UIColor.lightGray.cgColor
         facebookSignInView.layer.borderWidth = 1.0
+        
+        phoneTextField.delegate = self
+        phoneTextField.text = "+7 "
+        phoneTextField.addTarget(self, action: #selector(phoneEditing), for: .editingChanged)
+        
+        disableSendButton()
+    }
+    
+    @objc private func phoneEditing() {
+        if phoneTextField.text!.count < 4 {
+            phoneTextField.text = "+7 "
+        }
+        
+        if phoneTextField.text!.count == 13 {
+            enableSendButton()
+        } else {
+            disableSendButton()
+        }
+    }
+    
+    private func enableSendButton() {
+        sendButton.isEnabled = true
+        sendButton.alpha = 1.0
+    }
+    private func disableSendButton() {
+        sendButton.isEnabled = false
+        sendButton.alpha = 0.5
+    }
+    
+    private func showError(with message: String) {
+        errorLabel.text = message
+        phoneTextField.layer.borderColor = Color.red.cgColor
+        phoneTextField.textColor = Color.red
+    }
+    private func hideError() {
+        errorLabel.text = ""
+        phoneTextField.layer.borderColor = Color.gray.cgColor
+        phoneTextField.textColor = .black
     }
     
     @IBAction func sendPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ToSMSCodeConfirmationSegue", sender: nil)
+        
+        viewModel.signUp(with: phoneTextField.text!) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.performSegue(withIdentifier: "ToSMSCodeConfirmationSegue", sender: nil)
+            case .error:
+                self?.showError(with: message)
+            case .fail:
+                break
+            }
+        }
     }
     
     @IBAction func signInPressed(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToSMSCodeConfirmationSegue" {
+            if let destVC = segue.destination as? ConfirmCodeViewController {
+                
+            }
+        }
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if errorLabel.text != "" {
+            hideError()
+        }
     }
 }

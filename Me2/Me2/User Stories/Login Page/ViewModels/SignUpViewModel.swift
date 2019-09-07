@@ -1,8 +1,8 @@
 //
-//  SignInViewModel.swift
+//  SignUpViewModel.swift
 //  Me2
 //
-//  Created by Sanzhar Burumbay on 9/6/19.
+//  Created by Sanzhar Burumbay on 9/7/19.
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
@@ -10,21 +10,26 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class SignInViewModel {
+class SignUpViewModel {
     
-    func signIn(with username: String, and password: String, completion: ((RequestStatus, String) -> ())?) {
-        let params = ["username": username, "password": password]
+    var phoneActivationID = 0
+    
+    func signUp(with phoneNumber: String, completion: ((RequestStatus, String) -> ())?) {
+        let params = ["phone": phoneNumber]
         
-        Alamofire.request(authenticateURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getHeaders())
-            .responseJSON { (response) in
+        Alamofire.request(registerURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getHeaders())
+            .responseJSON { [weak self] (response) in
                 switch response.result {
                 case .success(let result):
                     
                     let json = JSON(result)
+                    print(json)
+                    
                     let code = json["code"].intValue
                     switch code {
                     case 0:
                         
+                        self?.phoneActivationID = json["data"]["activation"]["id"].intValue
                         completion?(.ok, "")
                         
                     case 1:
@@ -43,8 +48,5 @@ class SignInViewModel {
         }
     }
     
-    let authenticateURL = Network.auth + "/authenticate/"
-    let reset_password = Network.auth + "/reset_password"
-    let social = Network.auth + "/social"
-//    let activate = Network.auth + "/\()/activate"
+    let registerURL = Network.auth + "/register/"
 }
