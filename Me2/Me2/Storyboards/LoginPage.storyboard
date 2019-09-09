@@ -349,7 +349,7 @@
                     </view>
                     <connections>
                         <outlet property="codeTextField" destination="7wl-aE-Hsq" id="wzM-oy-h0s"/>
-                        <outlet property="errorLabel" destination="qJl-F5-y1v" id="9vs-If-UQp"/>
+                        <outlet property="errorLabel" destination="qJl-F5-y1v" id="xSU-Kq-RAK"/>
                         <segue destination="4X9-O1-uv8" kind="show" identifier="ToCreatePassSegue" id="M85-tV-toV"/>
                     </connections>
                 </viewController>
@@ -405,14 +405,14 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-Za-D5d">
-                                <rect key="frame" x="87" y="361" width="240" height="43"/>
+                                <rect key="frame" x="87" y="371" width="240" height="43"/>
                                 <color key="backgroundColor" red="0.98666769269999999" green="0.32312586900000001" blue="0.31043636800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="02f-dy-bM4"/>
                                     <constraint firstAttribute="height" constant="43" id="GW0-xu-8Mc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="20"/>
-                                <state key="normal" title="Войти">
+                                <state key="normal" title="Подтвердить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -420,9 +420,12 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confirmPressed:" destination="4X9-O1-uv8" eventType="touchUpInside" id="6cS-rE-okV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkF-B8-Ape">
-                                <rect key="frame" x="78" y="414" width="258" height="30.5"/>
+                                <rect key="frame" x="78" y="424" width="258" height="30.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30.5" id="UHS-HQ-qFu"/>
                                 </constraints>
@@ -432,19 +435,30 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsW-k6-Lln">
+                                <rect key="frame" x="207" y="346" width="0.0" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="2XT-0P-GHQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="D2F-7a-Ivd" firstAttribute="top" secondItem="96N-yJ-MTA" secondAttribute="bottom" constant="10" id="4vm-W9-e0a"/>
                             <constraint firstItem="96N-yJ-MTA" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="56p-Hg-hT4"/>
+                            <constraint firstItem="Fe9-Za-D5d" firstAttribute="top" secondItem="PsW-k6-Lln" secondAttribute="bottom" constant="10" id="7Tf-Mp-AMh"/>
                             <constraint firstItem="N8E-B3-XYj" firstAttribute="top" secondItem="JKe-eg-kZM" secondAttribute="top" priority="750" constant="50" id="FeN-Xp-2u9"/>
                             <constraint firstItem="Fe9-Za-D5d" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="IMR-VV-5ke"/>
                             <constraint firstItem="zkF-B8-Ape" firstAttribute="top" secondItem="Fe9-Za-D5d" secondAttribute="bottom" constant="10" id="NBi-vj-kVJ"/>
                             <constraint firstItem="N8E-B3-XYj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JKe-eg-kZM" secondAttribute="top" constant="10" id="U5K-1x-jQ0"/>
-                            <constraint firstItem="Fe9-Za-D5d" firstAttribute="top" secondItem="D2F-7a-Ivd" secondAttribute="bottom" constant="20" id="V3i-ag-vNJ"/>
                             <constraint firstItem="D2F-7a-Ivd" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="Zx7-Qz-nTT"/>
                             <constraint firstItem="N8E-B3-XYj" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="a4y-Rb-eFT"/>
                             <constraint firstItem="JKe-eg-kZM" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zkF-B8-Ape" secondAttribute="bottom" constant="150" id="dFz-Uj-DXb"/>
+                            <constraint firstItem="PsW-k6-Lln" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="f4M-AI-yxT"/>
+                            <constraint firstItem="PsW-k6-Lln" firstAttribute="top" secondItem="D2F-7a-Ivd" secondAttribute="bottom" constant="5" id="fOd-Zs-Lzv"/>
                             <constraint firstItem="96N-yJ-MTA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="N8E-B3-XYj" secondAttribute="bottom" constant="30" id="mhw-ov-aP5"/>
                             <constraint firstItem="zkF-B8-Ape" firstAttribute="centerX" secondItem="JKe-eg-kZM" secondAttribute="centerX" id="zak-YF-mhM"/>
                             <constraint firstItem="96N-yJ-MTA" firstAttribute="top" secondItem="N8E-B3-XYj" secondAttribute="bottom" priority="750" constant="60" id="zdz-lZ-hee"/>
@@ -452,7 +466,9 @@
                         <viewLayoutGuide key="safeArea" id="JKe-eg-kZM"/>
                     </view>
                     <connections>
+                        <outlet property="confirmButton" destination="Fe9-Za-D5d" id="ev1-mc-dle"/>
                         <outlet property="confirmedPassTextField" destination="D2F-7a-Ivd" id="CpR-K0-FRB"/>
+                        <outlet property="errorLabel" destination="PsW-k6-Lln" id="7Rx-mv-asu"/>
                         <outlet property="newPassTextField" destination="96N-yJ-MTA" id="jVy-OI-k85"/>
                     </connections>
                 </viewController>

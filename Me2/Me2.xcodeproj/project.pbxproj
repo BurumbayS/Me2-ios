@@ -58,6 +58,7 @@
 		DDA1424F23228D4F00C721A3 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424E23228D4F00C721A3 /* SignInViewModel.swift */; };
 		DDA1425123228E2500C721A3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425023228E2500C721A3 /* Network.swift */; };
 		DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA142522323D75000C721A3 /* SignUpViewModel.swift */; };
+		DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14254232644CC00C721A3 /* CreateNewPassViewModel.swift */; };
 		DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */; };
 		DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */; };
 		DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */; };
@@ -181,6 +182,7 @@
 		DDA1424E23228D4F00C721A3 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		DDA1425023228E2500C721A3 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		DDA142522323D75000C721A3 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		DDA14254232644CC00C721A3 /* CreateNewPassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPassViewModel.swift; sourceTree = "<group>"; };
 		DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewController.swift; sourceTree = "<group>"; };
 		DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderView.swift; sourceTree = "<group>"; };
 		DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileCollectionLayout.swift; sourceTree = "<group>"; };
@@ -279,7 +281,6 @@
 			children = (
 				DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */,
 				DD5C2252231E62C900CF66CC /* PrivacyPolicyViewController.swift */,
-				DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -541,6 +542,7 @@
 			children = (
 				DD5653B822F04876003A67C3 /* SignUp */,
 				DD5653B722F04870003A67C3 /* SignIn */,
+				DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */,
 				DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */,
 			);
 			path = Views;
@@ -560,6 +562,7 @@
 				DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */,
 				DDA1424E23228D4F00C721A3 /* SignInViewModel.swift */,
 				DDA142522323D75000C721A3 /* SignUpViewModel.swift */,
+				DDA14254232644CC00C721A3 /* CreateNewPassViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -916,6 +919,7 @@
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
+				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,
 				DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */,
 				DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */,
 				DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */,

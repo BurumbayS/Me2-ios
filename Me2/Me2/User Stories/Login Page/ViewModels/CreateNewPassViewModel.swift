@@ -1,37 +1,38 @@
 //
-//  SignInViewModel.swift
+//  CreateNewPassViewModel.swift
 //  Me2
 //
-//  Created by Sanzhar Burumbay on 9/6/19.
+//  Created by Sanzhar Burumbay on 9/9/19.
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import SwiftyJSON
 
-class SignInViewModel {
+class CreateNewPassViewModel {
     
-    func signIn(with username: String, and password: String, completion: ((RequestStatus, String) -> ())?) {
-        let params = ["username": username, "password": password]
+    func updatePass(with value: String, completion: ((RequestStatus, String) -> ())?) {
+        let params = ["password" : value]
         
-        Alamofire.request(authenticateURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getHeaders())
-            .responseJSON { (response) in
+        Alamofire.request(updatePassURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
+            .responseJSON { [weak self] (response) in
                 switch response.result {
                 case .success(let result):
                     
                     let json = JSON(result)
+                    print(json)
+                    
                     let code = json["code"].intValue
                     switch code {
                     case 0:
-                        
+
                         completion?(.ok, "")
-                        
+
                     case 1:
-                        
+
                         let message = json["message"].stringValue
                         completion?(.error, message)
-                        
+
                     default:
                         break
                     }
@@ -43,7 +44,5 @@ class SignInViewModel {
         }
     }
     
-    let authenticateURL = Network.auth + "/authenticate/"
-//    let reset_password = Network.auth + "/reset_password"
-//    let social = Network.auth + "/social"
+    let updatePassURL = Network.user + "/new_password/"
 }
