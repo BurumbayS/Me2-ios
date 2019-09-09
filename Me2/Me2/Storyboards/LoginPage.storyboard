@@ -328,16 +328,28 @@
                                     <constraint firstItem="7wl-aE-Hsq" firstAttribute="leading" secondItem="8iD-NT-Ebg" secondAttribute="leadingMargin" id="wKa-VK-3gy"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJl-F5-y1v">
+                                <rect key="frame" x="207" y="342" width="0.0" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="66k-qq-n1l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8iD-NT-Ebg" firstAttribute="centerX" secondItem="b0J-z6-6j8" secondAttribute="centerX" id="59t-Pk-KbE"/>
+                            <constraint firstItem="qJl-F5-y1v" firstAttribute="top" secondItem="8iD-NT-Ebg" secondAttribute="bottom" constant="20" id="lOM-pq-i92"/>
                             <constraint firstItem="8iD-NT-Ebg" firstAttribute="centerY" secondItem="b0J-z6-6j8" secondAttribute="centerY" constant="-130" id="xA8-5h-IIx"/>
+                            <constraint firstItem="qJl-F5-y1v" firstAttribute="centerX" secondItem="b0J-z6-6j8" secondAttribute="centerX" id="xLm-kP-oNG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b0J-z6-6j8"/>
                     </view>
                     <connections>
                         <outlet property="codeTextField" destination="7wl-aE-Hsq" id="wzM-oy-h0s"/>
+                        <outlet property="errorLabel" destination="qJl-F5-y1v" id="9vs-If-UQp"/>
                         <segue destination="4X9-O1-uv8" kind="show" identifier="ToCreatePassSegue" id="M85-tV-toV"/>
                     </connections>
                 </viewController>

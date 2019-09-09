@@ -8,12 +8,14 @@
 
 import UIKit
 import KKPinCodeTextField
+import AudioToolbox
 
 class ConfirmCodeViewController: UIViewController {
     
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var codeTextField: KKPinCodeTextField!
     
-    var viewModel = ConfirmPinCodeViewModel()
+    var viewModel: ConfirmPinCodeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +38,29 @@ class ConfirmCodeViewController: UIViewController {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         if codeTextField.text?.count == 4 {
-            codeTextField.filledDigitBorderColor = .red
-            performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
+            activate(smsCode: codeTextField.text!)
         } else {
             codeTextField.filledDigitBorderColor = .blue
+        }
+    }
+    
+    private func activate(smsCode: String) {
+        viewModel.activatePhone(with: smsCode) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
+                
+            case .error:
+                
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                self?.codeTextField.filledDigitBorderColor = .red
+                self?.codeTextField.text = ""
+                self?.errorLabel.text = message
+                
+            case .fail:
+                break
+            }
         }
     }
 }

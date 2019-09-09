@@ -46,5 +46,4 @@ class SignInViewModel {
     let authenticateURL = Network.auth + "/authenticate/"
     let reset_password = Network.auth + "/reset_password"
     let social = Network.auth + "/social"
-//    let activate = Network.auth + "/\()/activate"
 }

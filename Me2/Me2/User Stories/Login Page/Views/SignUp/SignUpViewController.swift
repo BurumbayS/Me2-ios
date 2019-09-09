@@ -94,7 +94,7 @@ class SignUpViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToSMSCodeConfirmationSegue" {
             if let destVC = segue.destination as? ConfirmCodeViewController {
-                
+                destVC.viewModel = ConfirmPinCodeViewModel(activationID: viewModel.phoneActivationID)
             }
         }
     }
