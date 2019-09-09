@@ -76,9 +76,8 @@ class SignInViewController: UIViewController {
         viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
             switch status {
             case .ok:
-                print("ok")
+                window.rootViewController = Storyboard.mapViewController()
             case .error:
-                print(message)
                 self?.showError(with: message)
             case .fail:
                 print("fail")
