@@ -9,6 +9,7 @@
 import UIKit
 
 typealias VoidBlock = () -> ()
+let window = UIApplication.shared.keyWindow!
 
 extension UIViewController {
     func addActionSheet(with titles: [String], and actions: [VoidBlock?], and styles: [UIAlertAction.Style]) {

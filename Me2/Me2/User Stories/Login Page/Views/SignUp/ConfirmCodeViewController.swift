@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import KKPinCodeTextField
+import AudioToolbox
 
 class ConfirmCodeViewController: UIViewController {
-
-    @IBOutlet weak var codeStackView: UIStackView!
-    @IBOutlet weak var textField: UITextField!
     
-    var viewModel = ConfirmPinCodeViewModel()
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var codeTextField: KKPinCodeTextField!
+    
+    var viewModel: ConfirmPinCodeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,40 +24,43 @@ class ConfirmCodeViewController: UIViewController {
     }
     
     private func setUpViews() {
-        codeStackView.arrangedSubviews.forEach { $0.roundCorners(radius: 6) }
-        textField.becomeFirstResponder()
-        textField.keyboardToolbar.isHidden = true
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        codeTextField.becomeFirstResponder()
+        codeTextField.keyboardToolbar.isHidden = true
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        label.text = "Запросить код подтверждения повторно через 30 сек."
+        label.font = UIFont(name: "SFProRounded-Regular", size: 13)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .lightGray
+        codeTextField.inputAccessoryView = label
+        codeTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        updateTextField()
-        
-        let textLength = textField.text?.count ?? 0
-        if textLength > 4 {
-            
-        }
-        if textLength < viewModel.pinCode.count {
-            
-            let index = viewModel.pinCode.count - 1
-            viewModel.pinCode.removeLast(1)
-            codeStackView.arrangedSubviews[index].backgroundColor = .lightGray
-            
-            return
-            
-        }
-        
-        if viewModel.pinCode.count < 4 {
-            if let char = textField.text?.last {
-                viewModel.pinCode += String(char)
-            }
-            let index = viewModel.pinCode.count - 1
-            codeStackView.arrangedSubviews[index].backgroundColor = .black
+        if codeTextField.text?.count == 4 {
+            activate(smsCode: codeTextField.text!)
+        } else {
+            codeTextField.filledDigitBorderColor = .blue
         }
     }
-    private func updateTextField() {
-        if let text = textField.text {
-            if text.count > 4 { textField.text?.removeLast(1) }
+    
+    private func activate(smsCode: String) {
+        viewModel.activatePhone(with: smsCode) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
+                
+            case .error:
+                
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                self?.codeTextField.filledDigitBorderColor = .red
+                self?.codeTextField.text = ""
+                self?.errorLabel.text = message
+                
+            case .fail:
+                break
+            }
         }
     }
 }
