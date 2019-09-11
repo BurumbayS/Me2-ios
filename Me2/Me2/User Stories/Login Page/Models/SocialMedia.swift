@@ -7,6 +7,8 @@
 //
 
 import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 enum SocialMediaType: String {
     case google = "google"
@@ -18,15 +20,30 @@ class SocialMedia: NSObject {
     
     private var signInCompletion: ((String) -> ())?
     
-    func signIn(to socialMedia : SocialMediaType, completion: ((String) -> ())?) {
+    func signIn(to socialMedia : SocialMediaType, from vc: UIViewController?, completion: ((String) -> ())?) {
         signInCompletion = completion
         
         switch socialMedia {
         case .google:
-            GIDSignIn.sharedInstance()?.delegate = self
+            
             GIDSignIn.sharedInstance()?.signIn()
+            
         case .facebook:
-            break
+            
+            let loginManager = LoginManager()
+            loginManager.logIn(permissions: [.publicProfile, .email], viewController: vc) { [unowned self] loginResult in
+                switch loginResult {
+                case .success:
+                    if let token = AccessToken.current?.tokenString {
+                        self.signInCompletion?(token)
+                    }
+                case .cancelled:
+                    print("User cancelled login.")
+                case .failed(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
         }
     }
 }

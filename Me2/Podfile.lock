@@ -7,6 +7,26 @@ PODS:
   - AppAuth/ExternalUserAgent (1.2.0)
   - Cartography (4.0.0)
   - Cosmos (19.0.3)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FacebookShare (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKShareKit (~> 5.0)
+  - FBSDKCoreKit (5.5.0):
+    - FBSDKCoreKit/Basics (= 5.5.0)
+    - FBSDKCoreKit/Core (= 5.5.0)
+  - FBSDKCoreKit/Basics (5.5.0)
+  - FBSDKCoreKit/Core (5.5.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.5.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKShareKit (5.5.0):
+    - FBSDKCoreKit (~> 5.0)
   - GoogleMaps (3.2.0):
     - GoogleMaps/Maps (= 3.2.0)
   - GoogleMaps/Base (3.2.0)
@@ -34,6 +54,9 @@ DEPENDENCIES:
   - Alamofire
   - Cartography
   - Cosmos (~> 19.0)
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - GoogleMaps
   - GooglePlaces
   - GoogleSignIn
@@ -47,6 +70,12 @@ SPEC REPOS:
     - AppAuth
     - Cartography
     - Cosmos
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - GoogleMaps
     - GooglePlaces
     - GoogleSignIn
@@ -61,6 +90,12 @@ SPEC CHECKSUMS:
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
   Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
+  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
+  FBSDKCoreKit: 7ade9cfea30eef2f6cf105a1aa904f89ea68fb7d
+  FBSDKLoginKit: bb28062f24e79590c44ba03297ca9bea4b6436d2
+  FBSDKShareKit: 6316a2dcd2fbc419c87281aa4c50ad0b6ed431e7
   GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
   GooglePlaces: 41bc2e480816b1234a48f4bec92e1c886f37cfe1
   GoogleSignIn: a62edd0516721d2a3db1259a5681b91f9b41c06a
@@ -70,6 +105,6 @@ SPEC CHECKSUMS:
   KKPinCodeTextField: 63a1fb841fd6a412cf664ef64dc065fc6767bd3c
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 3f959a50432d3b41b7b9fa11506a8b93450e00cc
+PODFILE CHECKSUM: 08ef353baa18be9b420d5b14508c03a7992a6356
 
 COCOAPODS: 1.7.4

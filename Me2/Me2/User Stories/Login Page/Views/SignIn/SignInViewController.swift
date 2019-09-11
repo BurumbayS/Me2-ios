@@ -84,7 +84,7 @@ class SignInViewController: UIViewController {
         showPrivacyPolicy { [weak self] (accepted) in
             switch accepted {
             case true:
-                SocialMedia.shared.signIn(to: .google) { (token) in
+                SocialMedia.shared.signIn(to: .google, from: self) { (token) in
                     self?.viewModel.signIn(with: .google, and: token, completion: { (status, message) in
                         switch status {
                         case .ok:
@@ -103,7 +103,25 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func signInWithFacebook() {
-        
+        showPrivacyPolicy { [weak self] (accepted) in
+            switch accepted {
+            case true:
+                SocialMedia.shared.signIn(to: .facebook, from: self) { (token) in
+                    self?.viewModel.signIn(with: .facebook, and: token, completion: { (status, message) in
+                        switch status {
+                        case .ok:
+                            window.rootViewController = Storyboard.mainTabsViewController()
+                        case .error:
+                            break
+                        case .fail:
+                            break
+                        }
+                    })
+                }
+            case false:
+                break
+            }
+        }
     }
     
     private func showPrivacyPolicy(completion: ((Bool) -> ())?) {

@@ -19,6 +19,12 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb395505344494913</string>
+			</array>
+		</dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
@@ -31,8 +37,23 @@
 			</array>
 		</dict>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<string>NO</string>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<string>NO</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>395505344494913</string>
+	<key>FacebookDisplayName</key>
+	<string>MeTwo</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

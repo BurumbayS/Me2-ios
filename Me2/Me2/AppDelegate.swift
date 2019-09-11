@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
 import GoogleSignIn
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Initialize Google sign-in
+        // Configure Facebook sign-in
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Configure Google sign-in
         GIDSignIn.sharedInstance().clientID = "46834004232-eqvmijmtp0n28aitrkcmtpqldso57j1u.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = SocialMedia.shared
         
@@ -41,31 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Google SignIn
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
-    func application(_ application: UIApplication,
-                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
-        if let error = error {
-            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                print("The user has not signed in before or they have since signed out.")
-            } else {
-                print("\(error.localizedDescription)")
-            }
-            return
+        guard let scheme = url.scheme else {
+            return false
         }
         
-        let idToken: NSString = user.authentication.accessToken as NSString;
+        print("Scheme: \(scheme)")
+        
+        if scheme.contains("fb") {
+            return ApplicationDelegate.shared.application(app, open: url, options: options)
+        } else if scheme.contains("google") {
+            return GIDSignIn.sharedInstance().handle(url)
+        }
+        
+        return false
     }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
-
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

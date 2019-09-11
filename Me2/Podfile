@@ -15,5 +15,8 @@ target 'Me2' do
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'GoogleSignIn'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 
 end
