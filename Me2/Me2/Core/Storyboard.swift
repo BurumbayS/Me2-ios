@@ -34,6 +34,12 @@ extension Storyboard {
     static var accessCodeViewController = {
         return loginPage.storyboard.instantiateViewController(withIdentifier: "AccessCodeViewController")
     }
+    static var privacyPolicyViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController")
+    }
+    static var signUpViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
+    }
     
     //Map tab view controllers
     static var mapViewController = {

@@ -8,9 +8,9 @@
 
 import GoogleSignIn
 
-enum SocialMediaType {
-    case google
-    case facebook
+enum SocialMediaType: String {
+    case google = "google"
+    case facebook = "facebook"
 }
 
 class SocialMedia: NSObject {

@@ -19,6 +19,8 @@ class PrivacyPolicyViewController: UIViewController {
     let conditionsLink = "https://www.google.com"
     let privacyPolicyLink = "https://www.google.com"
     
+    var acceptionHandler: ((Bool) -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +56,11 @@ class PrivacyPolicyViewController: UIViewController {
         }
         let offset = string.distance(from: string.startIndex, to: index)
         return NSRange(location: offset, length: subString.count)
+    }
+    
+    @IBAction func acceptPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        acceptionHandler?(true)
     }
 }
 

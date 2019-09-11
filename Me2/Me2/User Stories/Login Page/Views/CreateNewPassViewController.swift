@@ -71,7 +71,7 @@ class CreateNewPassViewController: UIViewController {
         viewModel.updatePass(with: newPassTextField.text!) { [weak self] (status, message) in
             switch status {
             case .ok:
-                window.rootViewController = Storyboard.mapViewController()
+                window.rootViewController = Storyboard.mainTabsViewController()
             case .error:
                 self?.errorLabel.text = message
             case .fail:

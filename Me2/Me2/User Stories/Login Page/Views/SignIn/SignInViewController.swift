@@ -81,8 +81,24 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func signInWithGoogle() {
-        SocialMedia.shared.signIn(to: .google) { (token) in
-            print(token)
+        showPrivacyPolicy { [weak self] (accepted) in
+            switch accepted {
+            case true:
+                SocialMedia.shared.signIn(to: .google) { (token) in
+                    self?.viewModel.signIn(with: .google, and: token, completion: { (status, message) in
+                        switch status {
+                        case .ok:
+                            window.rootViewController = Storyboard.mainTabsViewController()
+                        case .error:
+                            break
+                        case .fail:
+                            break
+                        }
+                    })
+                }
+            case false:
+                break
+            }
         }
     }
     
@@ -90,11 +106,29 @@ class SignInViewController: UIViewController {
         
     }
     
+    private func showPrivacyPolicy(completion: ((Bool) -> ())?) {
+        let vc = Storyboard.privacyPolicyViewController() as! PrivacyPolicyViewController
+        vc.acceptionHandler = completion
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func signUpPressed(_ sender: Any) {
+        showPrivacyPolicy { [weak self] (accepted) in
+            switch accepted {
+            case true:
+                let vc = Storyboard.signUpViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            case false:
+                break
+            }
+        }
+    }
+    
     @IBAction func signInPressed(_ sender: Any) {
         viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
             switch status {
             case .ok:
-                window.rootViewController = Storyboard.mapViewController()
+                window.rootViewController = Storyboard.mainTabsViewController()
             case .error:
                 self?.showError(with: message)
             case .fail:
