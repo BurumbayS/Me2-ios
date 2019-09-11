@@ -78,9 +78,15 @@ class SignUpViewController: UIViewController {
         viewModel.signUp(with: phoneTextField.text!) { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.performSegue(withIdentifier: "ToSMSCodeConfirmationSegue", sender: nil)
+                
+                let vc = Storyboard.confirmCodeViewController() as! ConfirmCodeViewController
+                vc.viewModel = ConfirmPinCodeViewModel(activationID: self?.viewModel.phoneActivationID ?? 0)
+                self?.navigationController?.pushViewController(vc, animated: true)
+                
             case .error:
+                
                 self?.showError(with: message)
+                
             case .fail:
                 break
             }
@@ -89,14 +95,6 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signInPressed(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToSMSCodeConfirmationSegue" {
-            if let destVC = segue.destination as? ConfirmCodeViewController {
-                destVC.viewModel = ConfirmPinCodeViewModel(activationID: viewModel.phoneActivationID)
-            }
-        }
     }
 }
 
