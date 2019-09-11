@@ -13,7 +13,7 @@ import GooglePlaces
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Initialize Google sign-in
         GIDSignIn.sharedInstance().clientID = "46834004232-eqvmijmtp0n28aitrkcmtpqldso57j1u.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().delegate = SocialMedia.shared
         
         //Set root View Controller
         window?.rootViewController = Storyboard.signInOrUpViewController()

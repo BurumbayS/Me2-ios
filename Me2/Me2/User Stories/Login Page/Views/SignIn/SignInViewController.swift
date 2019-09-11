@@ -9,7 +9,7 @@
 import UIKit
 import GoogleSignIn
 
-class SignInViewController: UIViewController, GIDSignInDelegate {
+class SignInViewController: UIViewController {
 
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginTextField: AttributedTextField!
@@ -23,6 +23,9 @@ class SignInViewController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        
         navigationController?.navigationBar.makeTransparentBar()
         navigationController?.navigationBar.shouldRemoveShadow(true)
         configureViews()
@@ -32,10 +35,14 @@ class SignInViewController: UIViewController, GIDSignInDelegate {
         signInWithGoogleView.backgroundColor = .white
         signInWithGoogleView.layer.borderColor = UIColor.lightGray.cgColor
         signInWithGoogleView.layer.borderWidth = 1.0
+        var tap = UITapGestureRecognizer(target: self, action: #selector(signInWithGoogle))
+        signInWithGoogleView.addGestureRecognizer(tap)
         
         signInWithFacebookView.backgroundColor = .white
         signInWithFacebookView.layer.borderColor = UIColor.lightGray.cgColor
         signInWithFacebookView.layer.borderWidth = 1.0
+        tap = UITapGestureRecognizer(target: self, action: #selector(signInWithFacebook))
+        signInWithFacebookView.addGestureRecognizer(tap)
         
         loginTextField.delegate = self
         loginTextField.tag = 1
@@ -73,21 +80,27 @@ class SignInViewController: UIViewController, GIDSignInDelegate {
         passwordTextField.textColor = .black
     }
     
-    @IBAction func signInPressed(_ sender: Any) {
-        let social = SocialMedia(delegate: self)
-        social.signIn(to: .google) { (token) in
+    @objc private func signInWithGoogle() {
+        SocialMedia.shared.signIn(to: .google) { (token) in
             print(token)
         }
-//        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
-//            switch status {
-//            case .ok:
-//                window.rootViewController = Storyboard.mapViewController()
-//            case .error:
-//                self?.showError(with: message)
-//            case .fail:
-//                print("fail")
-//            }
-//        }
+    }
+    
+    @objc private func signInWithFacebook() {
+        
+    }
+    
+    @IBAction func signInPressed(_ sender: Any) {
+        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                window.rootViewController = Storyboard.mapViewController()
+            case .error:
+                self?.showError(with: message)
+            case .fail:
+                print("fail")
+            }
+        }
     }
 }
 

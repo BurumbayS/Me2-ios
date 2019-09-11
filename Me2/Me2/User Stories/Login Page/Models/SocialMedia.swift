@@ -14,22 +14,16 @@ enum SocialMediaType {
 }
 
 class SocialMedia: NSObject {
+    static let shared = SocialMedia()
     
     private var signInCompletion: ((String) -> ())?
-    private var googleDelegate: GIDSignInDelegate
-    
-    init(delegate: GIDSignInDelegate) {
-        googleDelegate = delegate
-        
-        GIDSignIn.sharedInstance()?.presentingViewController = delegate as! UIViewController
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-    }
     
     func signIn(to socialMedia : SocialMediaType, completion: ((String) -> ())?) {
         signInCompletion = completion
         
         switch socialMedia {
         case .google:
+            GIDSignIn.sharedInstance()?.delegate = self
             GIDSignIn.sharedInstance()?.signIn()
         case .facebook:
             break
