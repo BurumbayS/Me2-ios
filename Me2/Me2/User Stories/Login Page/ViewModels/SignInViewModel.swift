@@ -25,6 +25,8 @@ class SignInViewModel {
                     switch code {
                     case 0:
                         
+                        let token = json["data"]["token"].stringValue
+                        UserDefaults().set(token, forKey: "token")
                         completion?(.ok, "")
                         
                     case 1:
