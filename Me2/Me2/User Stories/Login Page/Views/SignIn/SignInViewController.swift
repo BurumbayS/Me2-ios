@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, GIDSignInDelegate {
 
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginTextField: AttributedTextField!
@@ -73,16 +74,20 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: Any) {
-        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                window.rootViewController = Storyboard.mapViewController()
-            case .error:
-                self?.showError(with: message)
-            case .fail:
-                print("fail")
-            }
+        let social = SocialMedia(delegate: self)
+        social.signIn(to: .google) { (token) in
+            print(token)
         }
+//        viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
+//            switch status {
+//            case .ok:
+//                window.rootViewController = Storyboard.mapViewController()
+//            case .error:
+//                self?.showError(with: message)
+//            case .fail:
+//                print("fail")
+//            }
+//        }
     }
 }
 
