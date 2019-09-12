@@ -15,6 +15,7 @@ import Cartography
 
 class MapViewController: UIViewController {
     var collectionView: UICollectionView!
+    let searchContainerView = UIView()
     let searchBar: SearchBar = {
         return SearchBar.instanceFromNib()
     }()
@@ -32,10 +33,14 @@ class MapViewController: UIViewController {
     var pinMarker = GMSMarker()
     var radius = GMSCircle()
     
+    let searchVC = Storyboard.mapSearchViewController()
+    
     let viewModel = MapViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
         
         setUpViews()
         setUpLocationManager()
@@ -64,11 +69,12 @@ class MapViewController: UIViewController {
     
     private func setUpViews() {
         setUpMap()
+        setUpMyLocationButton()
+        setUpCollectionView()
+        setUpContainerView()
         setUpSearchBar()
         setUpImHereButton()
         setUpHelperView()
-        setUpMyLocationButton()
-        setUpCollectionView()
     }
     
     private func setUpCollectionView() {
@@ -114,18 +120,39 @@ class MapViewController: UIViewController {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
 
-        
         mapView.delegate = self
         self.view = mapView
     }
     
     private func setUpSearchBar() {
+        searchBar.configure(with: self, onSearchEnd: searchEnded)
         searchBar.isUserInteractionEnabled = true
+        
         self.view.addSubview(searchBar)
         constrain(searchBar, self.view) { search, view in
             search.left == view.left + 10
             search.top == view.top + 50
             search.height == 36
+        }
+    }
+    
+    private func setUpContainerView() {
+        searchContainerView.addSubview(searchVC.view)
+        constrain(searchVC.view, searchContainerView) { vc, view in
+            vc.top == view.top
+            vc.left == view.left
+            vc.right == view.right
+            vc.bottom == view.bottom
+        }
+        
+        searchContainerView.isHidden = true
+        searchContainerView.alpha = 0
+        self.view.addSubview(searchContainerView)
+        constrain(searchContainerView, self.view) { container, view in
+            container.top == view.top
+            container.left == view.left
+            container.right == view.right
+            container.bottom == view.bottom
         }
     }
     
@@ -313,6 +340,11 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         
         return infoView
     }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("Tapped at coordinate: " + String(coordinate.latitude) + " "
+            + String(coordinate.longitude))
+    }
 }
 
 extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -339,5 +371,27 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configure(with: 10)
         return cell
+    }
+}
+
+extension MapViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        helperView.isHidden = true
+        searchContainerView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.searchContainerView.alpha = 1.0
+        }
+    }
+    
+    private func searchEnded() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchContainerView.alpha = 0
+        }) { (finished) in
+            if finished {
+                self.searchContainerView.isHidden = true
+                self.helperView.isHidden = false
+            }
+        }
     }
 }

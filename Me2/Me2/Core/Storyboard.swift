@@ -48,6 +48,9 @@ extension Storyboard {
     static var mapViewController = {
         return map.storyboard.instantiateViewController(withIdentifier: "MapViewController")
     }
+    static var mapSearchViewController = {
+        return map.storyboard.instantiateViewController(withIdentifier: "MapSearchViewController")
+    }
     
     //Chat tab view controllers
     static var chatTabViewController = {
