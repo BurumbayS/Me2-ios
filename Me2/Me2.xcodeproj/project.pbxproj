@@ -124,6 +124,7 @@
 		DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */; };
 		DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */; };
 		DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B372308027200441035 /* PlaceProfile.storyboard */; };
+		DDF69EDE232A15C600377796 /* MapConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EDD232A15C600377796 /* MapConfig.json */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -244,11 +245,12 @@
 		DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewController.swift; sourceTree = "<group>"; };
 		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
-		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
 		DDF65B292302FAD800441035 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCollectionViewLayout.swift; sourceTree = "<group>"; };
+		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
+		DDF69EDD232A15C600377796 /* MapConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MapConfig.json; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -339,6 +341,7 @@
 				DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */,
 				DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */,
 				DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */,
+				DDF69EDD232A15C600377796 /* MapConfig.json */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -704,6 +707,23 @@
 			path = "Favourite Places";
 			sourceTree = "<group>";
 		};
+		DDF65B2B2303C99B00441035 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DDF65B2C2303C9B900441035 /* SearchBar */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DDF65B2C2303C9B900441035 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				DD5653DD22F4B875003A67C3 /* SearchBar.swift */,
+				DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		DDF65B332308022600441035 /* Place Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,23 +762,6 @@
 			children = (
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		DDF65B2B2303C99B00441035 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DDF65B2C2303C9B900441035 /* SearchBar */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		DDF65B2C2303C9B900441035 /* SearchBar */ = {
-			isa = PBXGroup;
-			children = (
-				DD5653DD22F4B875003A67C3 /* SearchBar.swift */,
-				DD5653DB22F4B3EB003A67C3 /* SearchBar.xib */,
-			);
-			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -852,6 +855,7 @@
 				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
+				DDF69EDE232A15C600377796 /* MapConfig.json in Resources */,
 				DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */,
 				DD5C222F23167AF800CF66CC /* PlaceContactsTableViewCell.xib in Resources */,
 				DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */,

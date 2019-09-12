@@ -102,6 +102,19 @@ class MapViewController: UIViewController {
     private func setUpMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 43.238949, longitude: 76.889709, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        
+        do {
+            // Set the map style by passing the URL of the local file.
+            if let styleURL = Bundle.main.url(forResource: "MapConfig", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find MapConfig.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+
+        
         mapView.delegate = self
         self.view = mapView
     }
