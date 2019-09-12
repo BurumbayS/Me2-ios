@@ -16,4 +16,11 @@ extension UINavigationBar {
             self.setValue(false, forKey: "hidesShadow")
         }
     }
+    
+    func makeTransparentBar() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = true
+        self.backgroundColor = .clear
+    }
 }

@@ -41,6 +41,40 @@ extension UIView {
         layer.shadowRadius = radius
     }
     
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat, size : CGRect) {
+        let path = UIBezierPath(roundedRect: size, byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+    
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat, height : CGFloat, width: CGFloat) {
+        
+        let border = CALayer();
+        
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: width, height: thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x:0, y: height - thickness, width: width, height:thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x:0, y: 0, width: thickness, height: height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x: width - thickness, y: 0, width: thickness, height : height)
+            break
+        default:
+            break
+        }
+        
+        border.backgroundColor = color.cgColor;
+        
+        self.layer.addSublayer(border)
+    }
+    
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide.topAnchor

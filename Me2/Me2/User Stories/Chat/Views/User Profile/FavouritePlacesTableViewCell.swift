@@ -26,7 +26,6 @@ class FavouritePlacesTableViewCell: UITableViewCell {
     private func setUpViews() {
         stackView.spacing = -5
         stackView.alignment = .leading
-        stackView.backgroundColor = .black
         
         self.contentView.addSubview(stackView)
         constrain(stackView, self.contentView) { stack, view in

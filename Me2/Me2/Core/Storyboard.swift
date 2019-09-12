@@ -14,6 +14,7 @@ enum Storyboard: String {
     case map = "Map"
     case chat = "Chat"
     case profile = "Profile"
+    case placeProfile = "PlaceProfile"
     
     private var storyboard: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: nil)
@@ -29,6 +30,18 @@ extension Storyboard {
     //Login page view controllers
     static var signInOrUpViewController = {
         return loginPage.storyboard.instantiateViewController(withIdentifier: "SignInOrUpViewController")
+    }
+    static var accessCodeViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "AccessCodeViewController")
+    }
+    static var privacyPolicyViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController")
+    }
+    static var signUpViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
+    }
+    static var confirmCodeViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "ConfirmCodeViewController")
     }
     
     //Map tab view controllers
@@ -62,5 +75,10 @@ extension Storyboard {
     }
     static var favouritePlacesViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "FavouritePlacesViewController")
+    }
+    
+    //Place profile controllers
+    static var placeProfileViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
     }
 }

@@ -80,4 +80,9 @@ extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSou
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = Storyboard.placeProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
