@@ -13,10 +13,19 @@ class MapSearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel: MapSearchViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.searchValue.bind { [unowned self] (value) in
+            self.tableView.reloadSections([0], with: .automatic)
+        }
     }
     
     private func configureTableView() {
@@ -26,6 +35,7 @@ class MapSearchViewController: UIViewController {
         tableView.separatorStyle = .none
         
         tableView.register(LastSearchTableViewCell.self)
+        tableView.registerNib(PlaceTableViewCell.self)
     }
 }
 
@@ -40,7 +50,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         footer.addSubview(button)
         constrain(button, footer) { btn, view in
-            btn.top == view.top
+            btn.top == view.top + 30
             btn.bottom == view.bottom
             btn.width == 200
             btn.centerX == view.centerX
@@ -54,14 +64,30 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if viewModel.searchResults.count > 0 {
+            return viewModel.searchResults.count
+        } else {
+            return 5
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: LastSearchTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: "Traveler's coffee")
-        
-        return cell
+        switch viewModel.searchResults.count {
+        case 0:
+            
+            let cell: LastSearchTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.configure(with: "Traveler's coffee")
+            
+            return cell
+            
+        default:
+            
+            let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            return cell
+            
+        }
     }
 }

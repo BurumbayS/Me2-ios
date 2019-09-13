@@ -127,6 +127,7 @@
 		DDF69EDE232A15C600377796 /* MapConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EDD232A15C600377796 /* MapConfig.json */; };
 		DDF69EE0232A352900377796 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EDF232A352900377796 /* MapSearchViewController.swift */; };
 		DDF69EE2232A72F500377796 /* LastSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EE1232A72F500377796 /* LastSearchTableViewCell.swift */; };
+		DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EE3232B632F00377796 /* MapSearchViewModel.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -255,6 +256,7 @@
 		DDF69EDD232A15C600377796 /* MapConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MapConfig.json; sourceTree = "<group>"; };
 		DDF69EDF232A352900377796 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		DDF69EE1232A72F500377796 /* LastSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSearchTableViewCell.swift; sourceTree = "<group>"; };
+		DDF69EE3232B632F00377796 /* MapSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewModel.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF65B292302FAD800441035 /* MapViewModel.swift */,
+				DDF69EE3232B632F00377796 /* MapSearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -966,6 +969,7 @@
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
+				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,

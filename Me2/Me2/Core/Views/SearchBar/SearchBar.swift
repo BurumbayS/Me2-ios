@@ -15,6 +15,7 @@ class SearchBar: UIView {
     @IBOutlet weak var searchIcon: UIImageView!
     
     var searchEndHandler: VoidBlock?
+    var searchValue: Dynamic<String> = Dynamic("")
     
     static func instanceFromNib() -> SearchBar {
         return UINib(nibName: "SearchBar", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SearchBar
@@ -25,11 +26,16 @@ class SearchBar: UIView {
         
         backButton.isHidden = true
         textField.addTarget(self, action: #selector(searchActivated), for: .touchUpInside)
+        textField.addTarget(self, action: #selector(searchValueChanged), for: .editingChanged)
     }
     
     func configure(with textFieldDelegate: UITextFieldDelegate, onSearchEnd: VoidBlock?) {
         self.textField.delegate = textFieldDelegate
         self.searchEndHandler = onSearchEnd
+    }
+    
+    @objc private func searchValueChanged() {
+        searchValue.value = textField.text!
     }
     
     @objc private func searchActivated() {

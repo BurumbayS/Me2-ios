@@ -33,7 +33,7 @@ class MapViewController: UIViewController {
     var pinMarker = GMSMarker()
     var radius = GMSCircle()
     
-    let searchVC = Storyboard.mapSearchViewController()
+    let searchVC = Storyboard.mapSearchViewController() as! MapSearchViewController
     
     let viewModel = MapViewModel()
     
@@ -137,6 +137,8 @@ class MapViewController: UIViewController {
     }
     
     private func setUpContainerView() {
+        searchVC.viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
+        
         searchContainerView.addSubview(searchVC.view)
         constrain(searchVC.view, searchContainerView) { vc, view in
             vc.top == view.top
