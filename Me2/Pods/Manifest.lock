@@ -48,6 +48,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.2.2)
   - IQKeyboardManagerSwift (6.4.0)
   - KKPinCodeTextField (1.0.0)
+  - RangeSeekSlider (1.8.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - IQKeyboardManagerSwift
   - KKPinCodeTextField
+  - RangeSeekSlider
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -83,6 +85,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - KKPinCodeTextField
+    - RangeSeekSlider
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -103,8 +106,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   KKPinCodeTextField: 63a1fb841fd6a412cf664ef64dc065fc6767bd3c
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 08ef353baa18be9b420d5b14508c03a7992a6356
+PODFILE CHECKSUM: 51c93668cd9cab7ee26451bb690beb081b30b7d9
 
 COCOAPODS: 1.7.4

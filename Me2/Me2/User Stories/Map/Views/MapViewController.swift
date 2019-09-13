@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     }()
     let imhereButton = UIButton()
     let imhereIcon = UIImageView()
+    let filterButton = UIButton()
     let imhereIconConstraints = ConstraintGroup()
     let helperView = UIView()
     let myLocationButton = UIButton()
@@ -74,6 +75,7 @@ class MapViewController: UIViewController {
         setUpContainerView()
         setUpSearchBar()
         setUpImHereButton()
+        setUpFilterButton()
         setUpHelperView()
     }
     
@@ -183,6 +185,22 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func setUpFilterButton() {
+        filterButton.imageView?.contentMode = .scaleAspectFit
+        filterButton.setImage(UIImage(named: "filter_icon"), for: .normal)
+        filterButton.addTarget(self, action: #selector(showFilter), for: .touchUpInside)
+        filterButton.isHidden = true
+        
+        self.view.addSubview(filterButton)
+        constrain(filterButton, searchBar, self.view ) { btn, search, view in
+            btn.left == search.right + 10
+            btn.height == 36
+            btn.width == 36
+            btn.right == view.right - 10
+            btn.centerY == search.centerY
+        }
+    }
+    
     private func setUpHelperView() {
         helperView.layer.cornerRadius = 10
         helperView.backgroundColor = .white
@@ -220,6 +238,11 @@ class MapViewController: UIViewController {
             helper.top == btn.bottom + 10
             helper.width == 245
         }
+    }
+    
+    @objc private func showFilter() {
+        let vc = Storyboard.mapSearchFilterViewController()
+        present(vc, animated: true, completion: nil)
     }
     
     private func setUpMyLocationButton() {
@@ -378,6 +401,8 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
 
 extension MapViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        imhereButton.isHidden = true
+        filterButton.isHidden = false
         helperView.isHidden = true
         searchContainerView.isHidden = false
         
@@ -387,6 +412,9 @@ extension MapViewController: UITextFieldDelegate {
     }
     
     private func searchEnded() {
+        self.imhereButton.isHidden = false
+        self.filterButton.isHidden = true
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.searchContainerView.alpha = 0
         }) { (finished) in
