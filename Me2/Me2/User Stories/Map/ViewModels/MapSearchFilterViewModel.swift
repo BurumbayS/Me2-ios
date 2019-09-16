@@ -31,10 +31,12 @@ class MapSearchFilterViewModel {
     
     var selectedCheckFilterIndex: Int?
     var selectedSliderFilterIndex: Int?
+    var filtersSelected: Dynamic<Bool>
     
     init() {
         businessLaunchRange = SliderRange(low: 700, high: 3000)
         averageBillRange = SliderRange(low: 1000, high: 50000)
+        filtersSelected = Dynamic(false)
         
         createCells()
     }
@@ -63,5 +65,20 @@ class MapSearchFilterViewModel {
         default:
             break
         }
+        
+        if (selectedSliderFilterIndex != nil || selectedCheckFilterIndex != nil) {
+            filtersSelected.value = true
+        } else {
+            filtersSelected.value = false
+        }
+    }
+    
+    func discardFilters(completion: VoidBlock?) {
+        selectedSliderFilterIndex = nil
+        selectedCheckFilterIndex = nil
+        
+        filtersSelected.value = false
+        
+        completion?()
     }
 }

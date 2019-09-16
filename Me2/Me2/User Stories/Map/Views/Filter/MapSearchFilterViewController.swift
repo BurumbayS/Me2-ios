@@ -21,6 +21,13 @@ class MapSearchFilterViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.filtersSelected.bind { [weak self] (isSelected) in
+            self?.navItem.leftBarButtonItem?.isEnabled = isSelected
+        }
     }
     
     private func configureTableView() {
@@ -36,18 +43,23 @@ class MapSearchFilterViewController: UIViewController {
     
     private func configureNavBar() {
         navBar.isTranslucent = false
+        navBar.tintColor = Color.blue
         navBar.shouldRemoveShadow(true)
         
         navItem.title = "Фильтр"
         
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardChanges))
+        let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
+        leftItem.tintColor = Color.red
+        navItem.leftBarButtonItem = leftItem
         navItem.leftBarButtonItem?.isEnabled = false
         
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
     }
     
-    @objc private func discardChanges() {
-        
+    @objc private func discardFilters() {
+        viewModel.discardFilters { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     @objc private func completeWithFilter() {
