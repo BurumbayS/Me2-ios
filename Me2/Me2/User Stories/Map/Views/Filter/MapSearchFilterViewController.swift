@@ -10,8 +10,6 @@ import UIKit
 
 class MapSearchFilterViewController: UIViewController {
 
-    @IBOutlet weak var navItem: UINavigationItem!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = MapSearchFilterViewModel()
@@ -26,7 +24,7 @@ class MapSearchFilterViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.filtersSelected.bind { [weak self] (isSelected) in
-            self?.navItem.leftBarButtonItem?.isEnabled = isSelected
+            self?.navigationItem.leftBarButtonItem?.isEnabled = isSelected
         }
     }
     
@@ -42,18 +40,19 @@ class MapSearchFilterViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navBar.isTranslucent = false
-        navBar.tintColor = Color.blue
-        navBar.shouldRemoveShadow(true)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shouldRemoveShadow(true)
         
-        navItem.title = "Фильтр"
+        navigationItem.title = "Фильтр"
         
         let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
         leftItem.tintColor = Color.red
-        navItem.leftBarButtonItem = leftItem
-        navItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem = leftItem
+        navigationItem.leftBarButtonItem?.isEnabled = false
         
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
+        let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
+        rightItem.tintColor = Color.blue
+        navigationItem.rightBarButtonItem = rightItem
     }
     
     @objc private func discardFilters() {
@@ -109,7 +108,8 @@ extension MapSearchFilterViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.filters[indexPath.row].type {
         case .selectable:
-            break
+            let vc = Storyboard.listForMapFilterViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             viewModel.selectCell(at: indexPath)
             tableView.reloadData()

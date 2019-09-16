@@ -132,6 +132,8 @@
 		DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EEA232B86E500377796 /* MapSearchFilterViewModel.swift */; };
 		DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EEE232B90A900377796 /* MapSearchFilterTableViewCell.swift */; };
 		DDF69EF1232B90A900377796 /* MapSearchFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EEF232B90A900377796 /* MapSearchFilterTableViewCell.xib */; };
+		DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EF2232F626200377796 /* ListForMapFilterViewController.swift */; };
+		DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +267,8 @@
 		DDF69EEA232B86E500377796 /* MapSearchFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchFilterViewModel.swift; sourceTree = "<group>"; };
 		DDF69EEE232B90A900377796 /* MapSearchFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchFilterTableViewCell.swift; sourceTree = "<group>"; };
 		DDF69EEF232B90A900377796 /* MapSearchFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchFilterTableViewCell.xib; sourceTree = "<group>"; };
+		DDF69EF2232F626200377796 /* ListForMapFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListForMapFilterViewController.swift; sourceTree = "<group>"; };
+		DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -805,6 +809,8 @@
 				DDF69EE8232B809B00377796 /* MapSearchFilterViewController.swift */,
 				DDF69EEE232B90A900377796 /* MapSearchFilterTableViewCell.swift */,
 				DDF69EEF232B90A900377796 /* MapSearchFilterTableViewCell.xib */,
+				DDF69EF2232F626200377796 /* ListForMapFilterViewController.swift */,
+				DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1019,6 +1025,7 @@
 				DDA1425123228E2500C721A3 /* Network.swift in Sources */,
 				DDF69EE2232A72F500377796 /* LastSearchTableViewCell.swift in Sources */,
 				DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */,
+				DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */,
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
+				DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,

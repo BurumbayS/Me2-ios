@@ -59,17 +59,11 @@
         <!--Map Search Filter View Controller-->
         <scene sceneID="1Ba-13-j8W">
             <objects>
-                <viewController storyboardIdentifier="MapSearchFilterViewController" id="n2N-Oo-czr" customClass="MapSearchFilterViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n2N-Oo-czr" customClass="MapSearchFilterViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nnP-w6-g4q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjy-vc-Ne4">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="dyg-Hp-2Uu"/>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aPf-oR-ppm">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,25 +71,51 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9wY-xt-NLO" firstAttribute="trailing" secondItem="Wjy-vc-Ne4" secondAttribute="trailing" id="A7V-G4-9GU"/>
                             <constraint firstItem="aPf-oR-ppm" firstAttribute="leading" secondItem="9wY-xt-NLO" secondAttribute="leading" id="BM5-5S-a63"/>
                             <constraint firstItem="9wY-xt-NLO" firstAttribute="trailing" secondItem="aPf-oR-ppm" secondAttribute="trailing" id="PRH-6W-Dxy"/>
-                            <constraint firstItem="aPf-oR-ppm" firstAttribute="top" secondItem="Wjy-vc-Ne4" secondAttribute="bottom" id="PYH-Ye-RqR"/>
-                            <constraint firstItem="Wjy-vc-Ne4" firstAttribute="top" secondItem="9wY-xt-NLO" secondAttribute="top" id="Q6j-3G-S7p"/>
                             <constraint firstItem="9wY-xt-NLO" firstAttribute="bottom" secondItem="aPf-oR-ppm" secondAttribute="bottom" id="c7j-Oo-JKN"/>
-                            <constraint firstItem="Wjy-vc-Ne4" firstAttribute="leading" secondItem="nnP-w6-g4q" secondAttribute="leading" id="xav-3w-itc"/>
+                            <constraint firstItem="aPf-oR-ppm" firstAttribute="top" secondItem="9wY-xt-NLO" secondAttribute="top" id="ln5-uX-BRK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9wY-xt-NLO"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Rdw-BI-oUA"/>
                     <connections>
-                        <outlet property="navBar" destination="Wjy-vc-Ne4" id="by6-yT-zzo"/>
-                        <outlet property="navItem" destination="dyg-Hp-2Uu" id="7vc-hH-qC3"/>
                         <outlet property="tableView" destination="aPf-oR-ppm" id="Td8-da-qBk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBa-m6-8VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2417" y="147"/>
+            <point key="canvasLocation" x="3326.0869565217395" y="146.65178571428569"/>
+        </scene>
+        <!--List For Map Filter View Controller-->
+        <scene sceneID="Gmq-Of-Siu">
+            <objects>
+                <viewController storyboardIdentifier="ListForMapFilterViewController" id="3RV-21-Bhw" customClass="ListForMapFilterViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="crf-34-xHd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vch-m7-Doo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="faY-x0-1gK" firstAttribute="bottom" secondItem="vch-m7-Doo" secondAttribute="bottom" id="Dzc-Ge-kAa"/>
+                            <constraint firstItem="faY-x0-1gK" firstAttribute="trailing" secondItem="vch-m7-Doo" secondAttribute="trailing" id="HrU-hE-8Y5"/>
+                            <constraint firstItem="vch-m7-Doo" firstAttribute="top" secondItem="faY-x0-1gK" secondAttribute="top" id="ZNi-nV-Zmy"/>
+                            <constraint firstItem="vch-m7-Doo" firstAttribute="leading" secondItem="faY-x0-1gK" secondAttribute="leading" id="sNZ-oH-Zdw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="faY-x0-1gK"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="vch-m7-Doo" id="tIK-Wc-Jso"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MVK-Br-59k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4121.739130434783" y="146.65178571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GLn-wc-AEX">
@@ -114,6 +134,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JyO-Ud-kmx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10.144927536231885" y="146.65178571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Voc-CJ-KsY">
+            <objects>
+                <navigationController storyboardIdentifier="MapSearchFilterViewController" automaticallyAdjustsScrollViewInsets="NO" id="tbL-jZ-DGe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zJj-pK-LYD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="n2N-Oo-czr" kind="relationship" relationship="rootViewController" id="Lai-yM-M9e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FBF-2A-zUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2415.9420289855075" y="146.65178571428569"/>
         </scene>
     </scenes>
 </document>
