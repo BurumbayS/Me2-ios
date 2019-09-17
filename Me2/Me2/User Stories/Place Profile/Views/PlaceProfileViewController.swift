@@ -29,9 +29,21 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navBar.makeTransparentBar()
+        navBar.isHidden = true
+        navBar.shouldRemoveShadow(true)
         
-        navItem.title = ""
+        navItem.title = "Traveler's coffee"
+        
+        setUpBackBarButton(for: navItem)
+        navItem.leftBarButtonItem?.tintColor = .black
+        
+        let rightItem = UIBarButtonItem(image: UIImage(named: "share_icon"), style: .plain, target: self, action: #selector(sharePlace))
+        rightItem.tintColor = .black
+        navItem.rightBarButtonItem = rightItem
+    }
+    
+    @objc private func sharePlace() {
+        
     }
     
     private func configureCollectionView() {
@@ -144,10 +156,10 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         }
         
         if collectionView.contentOffset.y > 300  {
-            navBar.backgroundColor = .white
+            navBar.isHidden = false
             collectionView.clipsToBounds = true
         } else {
-            navBar.makeTransparentBar()
+            navBar.isHidden = true
             collectionView.clipsToBounds = false
         }
     }
