@@ -30,6 +30,8 @@ class PlaceProfileViewController: UIViewController {
     
     private func configureNavBar() {
         navBar.makeTransparentBar()
+        
+        navItem.title = ""
     }
     
     private func configureCollectionView() {
