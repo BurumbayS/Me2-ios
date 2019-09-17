@@ -397,6 +397,11 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
         cell.configure(with: 10)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = Storyboard.placeProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension MapViewController: UITextFieldDelegate {
