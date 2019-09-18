@@ -9,10 +9,11 @@
 import UIKit
 import Cartography
 import Cosmos
+import ImageSlideshow
 
 class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
-    let imageView = UIImageView()
+    let imageCarousel = ImageSlideshow()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
     let ratingView = CosmosView()
@@ -52,10 +53,14 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "sample_place_image")
-        self.addSubview(imageView)
-        constrain(imageView, self) { image, view in
+        imageCarousel.contentScaleMode = .scaleAspectFill
+        imageCarousel.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
+        imageCarousel.setImageInputs([
+            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!,
+            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!
+            ])
+        self.addSubview(imageCarousel)
+        constrain(imageCarousel, self) { image, view in
             image.left == view.left
             image.top == view.top
             image.right == view.right
@@ -119,7 +124,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     private func setUpPlaceHeader() {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 20
         
         titleLabel.textColor = .black
         titleLabel.font = UIFont(name: "Roboto-Medium", size: 24)
@@ -165,7 +170,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         }
         
         self.addSubview(view)
-        constrain(view, imageView, self) { view, image, superview in
+        constrain(view, imageCarousel, self) { view, image, superview in
             view.top == image.bottom - 20
             view.left == superview.left
             view.right == superview.right
