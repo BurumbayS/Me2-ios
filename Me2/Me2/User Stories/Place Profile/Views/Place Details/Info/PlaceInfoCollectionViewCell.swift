@@ -87,7 +87,15 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.row {
         case 0:
             let cell: PlaceDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем")
+            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем") { [weak self] in
+                self?.tableView.beginUpdates()
+                    cell.updateUI()
+                self?.tableView.endUpdates()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                    self?.reload()
+                })
+            }
             return cell
         case 1:
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

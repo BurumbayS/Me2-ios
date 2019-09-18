@@ -72,7 +72,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         
         self.addSubview(backButton)
         constrain(backButton, self) { btn, view in
-            btn.left == view.left + 11
+            btn.left == view.left + 17
             btn.top == view.top + 50
             btn.width == 38
             btn.height == 38
