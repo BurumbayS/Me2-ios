@@ -23,6 +23,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     var followBtnSize = ConstraintGroup()
     var isFollowed: Dynamic<Bool> = Dynamic(false)
+    var parentVC: UIViewController!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,10 +36,11 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(title: String, rating: Double, category: String) {
+    func configureWith(title: String, rating: Double, category: String, viewController: UIViewController) {
         titleLabel.text = title
         ratingView.rating = rating
         categoryLabel.text = category
+        parentVC = viewController
     }
     
     private func bindDynamics() {
@@ -55,6 +57,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     private func setUpViews() {
         imageCarousel.contentScaleMode = .scaleAspectFill
         imageCarousel.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
+        imageCarousel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImages)))
         imageCarousel.setImageInputs([
             KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!,
             KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!
@@ -180,11 +183,15 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func goBack() {
-        
+        parentVC.navigationController?.popViewController(animated: true)
     }
     
     @objc private func shareWithPlace() {
         
+    }
+    
+    @objc private func showImages() {
+        imageCarousel.presentFullScreenController(from: parentVC)
     }
     
     @objc private func followPlace() {

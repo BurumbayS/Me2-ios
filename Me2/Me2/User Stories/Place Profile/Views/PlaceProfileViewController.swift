@@ -130,7 +130,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен")
+            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", viewController: self)
             return cell
             
         default:
