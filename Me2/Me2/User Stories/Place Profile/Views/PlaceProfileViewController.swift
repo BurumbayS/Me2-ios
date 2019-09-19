@@ -20,6 +20,12 @@ class PlaceProfileViewController: UIViewController {
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = Constants.minContentSize.height
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -157,9 +163,11 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         
         if collectionView.contentOffset.y > 300  {
             navBar.isHidden = false
+            navigationController?.navigationBar.barStyle = .default
             collectionView.clipsToBounds = true
         } else {
             navBar.isHidden = true
+            navigationController?.navigationBar.barStyle = .black
             collectionView.clipsToBounds = false
         }
     }
