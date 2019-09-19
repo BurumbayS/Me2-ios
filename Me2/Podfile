@@ -13,5 +13,12 @@ target 'Me2' do
   pod 'Cosmos', '~> 19.0'
   pod 'ImageSlideshow', '~> 1.8'
   pod 'ImageSlideshow/Kingfisher'
+  pod 'KKPinCodeTextField'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'GoogleSignIn'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 
 end
