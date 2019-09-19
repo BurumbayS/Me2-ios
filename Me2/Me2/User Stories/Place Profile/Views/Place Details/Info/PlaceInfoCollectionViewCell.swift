@@ -53,7 +53,7 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.isScrollEnabled = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
         tableView.register(PlaceDescriptionTableViewCell.self)
         tableView.registerNib(PlaceContactsTableViewCell.self)
@@ -86,35 +86,67 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
+            
             let cell: PlaceDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем")
+            cell.selectionStyle = .none
+            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем") { [weak self] in
+                self?.tableView.beginUpdates()
+                    cell.updateUI()
+                self?.tableView.endUpdates()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                    self?.reload()
+                })
+            }
             return cell
+            
         case 1:
+            
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
+            
         case 2:
+            
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: "Желтоксана, 137", additionalInfo: "1 этаж, Алмалинский район", distance: "1.3 км")
             return cell
+            
         case 3:
+            
             let cell: PlaceWorkTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: "Ежедневно 08:00 - 24:00", and: "Закроется через 20 мин", isOpen: true)
             return cell
+            
         case 4:
+            
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(withEmail: "travelers@coffee.com")
             return cell
+            
         case 5:
+            
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(withWebSite: "www.travelers-coffee.com")
             return cell
+            
         case 6:
+            
             let cell: PlaceOptionalsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
+            
         case 7:
+            
             let cell: PlaceSubsidiariesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: 3)
             return cell
+            
         default:
             return UITableViewCell()
         }

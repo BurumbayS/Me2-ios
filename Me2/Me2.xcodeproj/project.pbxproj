@@ -120,6 +120,8 @@
 		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
 		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
 		DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B372308027200441035 /* PlaceProfile.storyboard */; };
+		DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EF92330D21D00377796 /* FollowButton.xib */; };
+		DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EFB2330D53900377796 /* FollowButton.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -241,6 +243,8 @@
 		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
+		DDF69EF92330D21D00377796 /* FollowButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowButton.xib; sourceTree = "<group>"; };
+		DDF69EFB2330D53900377796 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -579,6 +583,7 @@
 		DDC7F22223093FE60067C6C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDF69EF82330D1D500377796 /* Custom follow button */,
 				DDC7F2242309404C0067C6C7 /* Custom Segmented Control */,
 				DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */,
 			);
@@ -733,6 +738,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DDF69EF82330D1D500377796 /* Custom follow button */ = {
+			isa = PBXGroup;
+			children = (
+				DDF69EFB2330D53900377796 /* FollowButton.swift */,
+				DDF69EF92330D21D00377796 /* FollowButton.xib */,
+			);
+			path = "Custom follow button";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -806,6 +820,7 @@
 				DDCE6E9F22F94111006E54D1 /* Roboto-MediumItalic.ttf in Resources */,
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */,
+				DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */,
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
 				DDF65B1C2301504700441035 /* Profile.storyboard in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
@@ -897,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
+				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,

@@ -11,6 +11,8 @@ target 'Me2' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Cosmos', '~> 19.0'
+  pod 'ImageSlideshow', '~> 1.8'
+  pod 'ImageSlideshow/Kingfisher'
   pod 'KKPinCodeTextField'
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'

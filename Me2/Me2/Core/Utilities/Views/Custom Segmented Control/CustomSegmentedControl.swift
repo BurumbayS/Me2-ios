@@ -24,16 +24,19 @@ class CustomSegmentedControl : UIView {
     
     var viewModel: CustomSegmentedControlViewModel!
     
-    func configure(for titles : [String], with frame : CGSize, and viewModel: CustomSegmentedControlViewModel) {
+    func setUp(with titles : [String], with frame : CGSize) {
         self.titles = titles
         segmentsCount = titles.count
-        self.viewModel = viewModel
         
         segmentWidth = frame.width / CGFloat(segmentsCount)
         segmentHeight = frame.height
         
         addSegments()
         addFlag()
+    }
+    
+    func configure(with viewModel: CustomSegmentedControlViewModel) {
+        self.viewModel = viewModel
     }
 
     func addSegments() {
@@ -50,7 +53,7 @@ class CustomSegmentedControl : UIView {
             
             let label = UILabel()
             label.text = titles[i]
-            label.textColor = .darkGray
+            label.textColor = (i == 0) ? Color.red : .darkGray
             label.font = UIFont(name: "Roboto-Medium", size: 13)
             label.sizeToFit()
             label.textAlignment = .center
@@ -68,7 +71,7 @@ class CustomSegmentedControl : UIView {
     }
     
     private func addFlag() {
-        flag.layer.cornerRadius = 10
+        flag.layer.cornerRadius = 2
         flag.backgroundColor = Color.red
         
         self.addSubview(flag)

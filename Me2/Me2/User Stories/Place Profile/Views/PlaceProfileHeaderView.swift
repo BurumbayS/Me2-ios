@@ -29,11 +29,13 @@ class PlaceProfileHeaderView: UICollectionReusableView {
         let viewModel = CustomSegmentedControlViewModel { [weak self] in
             segmentChangeHadler(self?.segmentedControl.currentSegment ?? 0)
         }
-        segmentedControl.configure(for: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40), and: viewModel)
+        segmentedControl.configure(with: viewModel)
     }
     
     private func setUpViews() {
         segmentedControl.backgroundColor = .white
+        segmentedControl.setUp(with: ["Инфо","События","Меню","Отзывы"], with: CGSize(width: UIScreen.main.bounds.width, height: 40))
+        
         self.addSubview(segmentedControl)
         constrain(segmentedControl, self) { segmentedControl, header in
             segmentedControl.top == header.top

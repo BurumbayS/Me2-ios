@@ -17,8 +17,6 @@ class PlaceSubsidiariesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.tintColor = Color.red
-        self.accessoryType = .disclosureIndicator
         setUpViews()
     }
     
@@ -39,14 +37,24 @@ class PlaceSubsidiariesTableViewCell: UITableViewCell {
         constrain(titleLabel, self.contentView) { title, view in
             title.left == view.left + 20
             title.top == view.top + 10
-            title.bottom == view.bottom - 10
+            title.bottom == view.bottom - 30
+        }
+        
+        let disclosure = UIImageView(image: UIImage(named: "left_arrow"))
+        disclosure.contentMode = .scaleAspectFill
+        self.contentView.addSubview(disclosure)
+        constrain(disclosure, titleLabel, self.contentView) { disclosure, title, view in
+            disclosure.right == view.right - 20
+            disclosure.height == 14
+            disclosure.width == 6
+            disclosure.centerY == title.centerY
         }
         
         subsidiariesCountLabel.textColor = .darkGray
         subsidiariesCountLabel.font = UIFont(name: "Roboto-Medium", size: 13)
         self.contentView.addSubview(subsidiariesCountLabel)
-        constrain(subsidiariesCountLabel, titleLabel, self.contentView) { label, title, view in
-            label.right == view.right - 10
+        constrain(subsidiariesCountLabel, titleLabel, disclosure) { label, title, disclosure in
+            label.right == disclosure.left - 10
             label.centerY == title.centerY
         }
     }
