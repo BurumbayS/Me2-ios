@@ -25,6 +25,7 @@ class MapViewController: UIViewController {
     let imhereIconConstraints = ConstraintGroup()
     let helperView = UIView()
     let myLocationButton = UIButton()
+    var labelsView: LabelsView!
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
@@ -43,12 +44,41 @@ class MapViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
+        fetchData()
         setUpViews()
         setUpLocationManager()
         bindViewModel()
         configureCollectionView()
     }
 
+    private func fetchData() {
+        viewModel.getPlacePins { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.setPins()
+            case .error:
+                break;
+            case .fail:
+                break;
+            }
+        }
+    }
+    
+    private func setPins() {
+        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        labelsView.backgroundColor = .clear
+        labelsView.isUserInteractionEnabled = false
+        labelsView.configure(with: viewModel.placePins, on: mapView)
+        
+        self.view.addSubview(labelsView)
+        
+        for (place) in viewModel.placePins {
+            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+            marker.icon = UIImage(named: "default_pin")
+            marker.map = mapView
+        }
+    }
+    
     private func bindViewModel() {
         viewModel.isMyLocationVisible.bind { [weak self] (visible) in
             self?.animateImhereIcon()
@@ -338,32 +368,10 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         myLocation = locations.last! as CLLocation
     }
     
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let infoView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
-        
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: "Roboto-Regular", size: 24)
-        titleLabel.textColor = .black
-        titleLabel.textAlignment = .center
-        titleLabel.text = "Traveler's coffee"
-        
-        infoView.addSubview(titleLabel)
-        constrain(titleLabel, infoView) { label, view in
-            label.top == view.top
-            label.left == view.left
-            label.right == view.right
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if labelsView != nil {
+            labelsView.updateCoordinates()
         }
-        
-        let logoImageView = UIImageView(image: UIImage(named: "sample_place_logo"))
-        infoView.addSubview(logoImageView)
-        constrain(logoImageView, titleLabel, infoView) { logo, label, view in
-            logo.top == label.bottom + 15
-            logo.height == 50
-            logo.width == 50
-            logo.centerX == label.centerX
-        }
-        
-        return infoView
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {

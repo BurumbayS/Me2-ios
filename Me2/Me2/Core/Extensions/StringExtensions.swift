@@ -15,4 +15,11 @@ extension String {
         let size = (self as NSString).size(withAttributes: fontAttributes)
         return size.width
     }
+    
+    func getHeight(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        
+        return ceil(boundingBox.height)
+    }
 }
