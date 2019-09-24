@@ -9,11 +9,17 @@
 import UIKit
 import Cartography
 
+enum EventsListType {
+    case ByCategories
+    case ListOfAll
+}
+
 class EventsTabViewController: UIViewController {
 
     var searchBar: SearchBar!
     let listViewSwitchButton = UIButton()
     let tableView = UITableView()
+    var listType = EventsListType.ByCategories
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +44,7 @@ class EventsTabViewController: UIViewController {
         tableView.register(SavedEventsTableViewCell.self)
         tableView.register(EventsListTableViewCell.self)
         tableView.register(NewPlacesListTableViewCell.self)
+        tableView.registerNib(EventTableViewCell.self)
     }
     
     private func setUpViews() {
@@ -52,6 +59,7 @@ class EventsTabViewController: UIViewController {
         
         listViewSwitchButton.setImage(UIImage(named: "listView_icon"), for: .normal)
         listViewSwitchButton.imageView?.contentMode = .scaleAspectFit
+        listViewSwitchButton.addTarget(self, action: #selector(switchListType), for: .touchUpInside)
         self.view.addSubview(listViewSwitchButton)
         constrain(listViewSwitchButton, searchBar, self.view) { btn, search, view in
             btn.right == view.right - 20
@@ -68,6 +76,18 @@ class EventsTabViewController: UIViewController {
             table.right == view.right
             table.bottom == view.bottom
         }
+    }
+    
+    @objc private func switchListType() {
+        if listType == .ByCategories {
+            listType = .ListOfAll
+            listViewSwitchButton.setImage(UIImage(named: "cardView_icon"), for: .normal)
+        } else {
+            listType = .ByCategories
+            listViewSwitchButton.setImage(UIImage(named: "listView_icon"), for: .normal)
+        }
+        
+        tableView.reloadData()
     }
 }
 
@@ -104,16 +124,26 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 0
+        switch listType {
+        case .ByCategories:
+            switch section {
+            case 0:
+                return 0
+            default:
+                return 40
+            }
         default:
-            return 40
+            return 0
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        switch listType {
+        case .ByCategories:
+            return 3
+        default:
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,8 +164,27 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
         case 1:
             
-            let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            return cell
+            switch listType {
+            case .ByCategories:
+                
+                let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                return cell
+                
+            case .ListOfAll:
+                
+                let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                
+                let event = Event()
+                event.title = "20% скидка на все кальяны! "
+                event.location = "Мята Бар"
+                event.time = "Ежедневно 20:00-00:00"
+                event.eventType = "Акция"
+                
+                cell.configure(wtih: event)
+                
+                return cell
+                
+            }
         
         case 2:
             

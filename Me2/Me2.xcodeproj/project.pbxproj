@@ -132,6 +132,8 @@
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
 		DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */; };
+		DDFEE9EB233A3A2200303797 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */; };
+		DDFEE9EC233A3A2200303797 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +267,8 @@
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesListTableViewCell.swift; sourceTree = "<group>"; };
+		DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -623,6 +627,8 @@
 				DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */,
 				DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */,
 				DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */,
+				DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */,
+				DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -904,6 +910,7 @@
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DDCE6E9B22F94111006E54D1 /* Roboto-Black.ttf in Resources */,
+				DDFEE9EC233A3A2200303797 /* EventTableViewCell.xib in Resources */,
 				DD5C222F23167AF800CF66CC /* PlaceContactsTableViewCell.xib in Resources */,
 				DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */,
 				DD5653DC22F4B3EB003A67C3 /* SearchBar.xib in Resources */,
@@ -1056,6 +1063,7 @@
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
+				DDFEE9EB233A3A2200303797 /* EventTableViewCell.swift in Sources */,
 				DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
