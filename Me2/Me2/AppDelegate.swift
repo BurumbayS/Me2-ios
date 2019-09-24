@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().delegate = SocialMedia.shared
         
         //Set root View Controller
-        window?.rootViewController = Storyboard.signInOrUpViewController()
+        window?.rootViewController = Storyboard.mainTabsViewController()
         
         //Configure IQKeyboard
         IQKeyboardManager.shared.enable = true

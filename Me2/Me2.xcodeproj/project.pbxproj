@@ -62,6 +62,12 @@
 		DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425623277DCA00C721A3 /* SocialMedia.swift */; };
 		DDA142592328F6F400C721A3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA142582328F6F400C721A3 /* ResetPasswordViewController.swift */; };
 		DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */; };
+		DDC18546233909D60052C371 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC18545233909D60052C371 /* Events.storyboard */; };
+		DDC1854823390A370052C371 /* EventsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1854723390A370052C371 /* EventsTabViewController.swift */; };
+		DDC1854A2339EF760052C371 /* SavedEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC185492339EF760052C371 /* SavedEventsTableViewCell.swift */; };
+		DDC18551233A07EA0052C371 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1854F233A07EA0052C371 /* EventCollectionViewCell.swift */; };
+		DDC18552233A07EA0052C371 /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */; };
+		DDC18554233A114E0052C371 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18553233A114E0052C371 /* Event.swift */; };
 		DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */; };
 		DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */; };
 		DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */; };
@@ -122,6 +128,10 @@
 		DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B372308027200441035 /* PlaceProfile.storyboard */; };
 		DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EF92330D21D00377796 /* FollowButton.xib */; };
 		DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EFB2330D53900377796 /* FollowButton.swift */; };
+		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
+		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
+		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
+		DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */; };
 		E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8840C5495255E7A23349552 /* Pods_Me2.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +201,12 @@
 		DDA1425623277DCA00C721A3 /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		DDA142582328F6F400C721A3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		DDC18545233909D60052C371 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		DDC1854723390A370052C371 /* EventsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabViewController.swift; sourceTree = "<group>"; };
+		DDC185492339EF760052C371 /* SavedEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEventsTableViewCell.swift; sourceTree = "<group>"; };
+		DDC1854F233A07EA0052C371 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
+		DDC18553233A114E0052C371 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewController.swift; sourceTree = "<group>"; };
 		DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderView.swift; sourceTree = "<group>"; };
 		DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileCollectionLayout.swift; sourceTree = "<group>"; };
@@ -245,6 +261,10 @@
 		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
 		DDF69EF92330D21D00377796 /* FollowButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowButton.xib; sourceTree = "<group>"; };
 		DDF69EFB2330D53900377796 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
+		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
+		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
+		DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesListTableViewCell.swift; sourceTree = "<group>"; };
 		F8840C5495255E7A23349552 /* Pods_Me2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Me2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -492,6 +512,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DDC18541233909A00052C371 /* Events */,
 				DDF65B332308022600441035 /* Place Profile */,
 				DDF65B0D22FD5CB900441035 /* User Profile */,
 				DD5653DF22F4BF06003A67C3 /* Chat */,
@@ -511,6 +532,7 @@
 				DD5653E522F4C235003A67C3 /* Chat.storyboard */,
 				DDF65B1B2301504700441035 /* Profile.storyboard */,
 				DDF65B372308027200441035 /* PlaceProfile.storyboard */,
+				DDC18545233909D60052C371 /* Events.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -576,6 +598,46 @@
 				DDA142522323D75000C721A3 /* SignUpViewModel.swift */,
 				DDA14254232644CC00C721A3 /* CreateNewPassViewModel.swift */,
 				DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DDC18541233909A00052C371 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				DDC18544233909BE0052C371 /* ViewModels */,
+				DDC18543233909B90052C371 /* Models */,
+				DDC18542233909B30052C371 /* Views */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		DDC18542233909B30052C371 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DDC1854723390A370052C371 /* EventsTabViewController.swift */,
+				DDC185492339EF760052C371 /* SavedEventsTableViewCell.swift */,
+				DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */,
+				DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */,
+				DDC1854F233A07EA0052C371 /* EventCollectionViewCell.swift */,
+				DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */,
+				DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */,
+				DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DDC18543233909B90052C371 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DDC18553233A114E0052C371 /* Event.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DDC18544233909BE0052C371 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -817,6 +879,8 @@
 				DDCE6E7C22F82CD4006E54D1 /* SF-Pro-Rounded-Light.otf in Resources */,
 				DDCE6EA022F94111006E54D1 /* Roboto-RegularItalic.ttf in Resources */,
 				DDCE6E8122F82CD4006E54D1 /* SF-Pro-Rounded-Ultralight.otf in Resources */,
+				DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */,
+				DDC18546233909D60052C371 /* Events.storyboard in Resources */,
 				DDCE6E9F22F94111006E54D1 /* Roboto-MediumItalic.ttf in Resources */,
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */,
@@ -824,6 +888,7 @@
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
 				DDF65B1C2301504700441035 /* Profile.storyboard in Resources */,
 				DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */,
+				DDC18552233A07EA0052C371 /* EventCollectionViewCell.xib in Resources */,
 				DDCE6E9C22F94111006E54D1 /* Roboto-ThinItalic.ttf in Resources */,
 				DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
@@ -923,6 +988,7 @@
 				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
 				DD5C2253231E62C900CF66CC /* PrivacyPolicyViewController.swift in Sources */,
 				DDA1424F23228D4F00C721A3 /* SignInViewModel.swift in Sources */,
+				DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */,
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
 				DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */,
@@ -954,6 +1020,7 @@
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
+				DDC18554233A114E0052C371 /* Event.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DDC7F22A230955640067C6C7 /* StringExtensions.swift in Sources */,
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
@@ -961,11 +1028,13 @@
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */,
 				DDA142592328F6F400C721A3 /* ResetPasswordViewController.swift in Sources */,
+				DDC18551233A07EA0052C371 /* EventCollectionViewCell.swift in Sources */,
 				DD5C2247231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift in Sources */,
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
 				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
+				DDC1854823390A370052C371 /* EventsTabViewController.swift in Sources */,
 				DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
@@ -977,11 +1046,13 @@
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
+				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
+				DDC1854A2339EF760052C371 /* SavedEventsTableViewCell.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
@@ -991,6 +1062,7 @@
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
+				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
