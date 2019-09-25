@@ -11,7 +11,7 @@ import Cartography
 
 enum EventsListType {
     case ByCategories
-    case ListOfAll
+    case AllInOne
 }
 
 class EventsTabViewController: UIViewController {
@@ -137,7 +137,7 @@ class EventsTabViewController: UIViewController {
     
     @objc private func switchListType() {
         if listType == .ByCategories {
-            listType = .ListOfAll
+            listType = .AllInOne
             listViewSwitchButton.setImage(UIImage(named: "cardView_icon"), for: .normal)
         } else {
             listType = .ByCategories
@@ -149,6 +149,12 @@ class EventsTabViewController: UIViewController {
     
     @objc private func showFilter() {
         
+    }
+    
+    @objc private func showFullList() {
+        let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
+        dest.viewModel = ListOfAllViewModel(listItemType: .place)
+        navigationController?.pushViewController(dest, animated: true)
     }
 }
 
@@ -173,6 +179,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         moreButton.setTitle("См.все", for: .normal)
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 17)
+        moreButton.addTarget(self, action: #selector(showFullList), for: .touchUpInside)
         
         header.addSubview(moreButton)
         constrain(moreButton, header) { btn, header in
@@ -227,6 +234,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: SavedEventsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
+            cell.selectionStyle = .none
             cell.accessoryType = .disclosureIndicator
             cell.configure(with: 3)
             
@@ -238,11 +246,13 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             case .ByCategories:
                 
                 let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.selectionStyle = .none
                 return cell
                 
-            case .ListOfAll:
+            case .AllInOne:
                 
                 let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.selectionStyle = .none
                 
                 let event = Event()
                 event.title = "20% скидка на все кальяны! "
@@ -259,6 +269,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             
             let cell: NewPlacesListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
             
         default:

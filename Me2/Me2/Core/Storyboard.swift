@@ -99,4 +99,7 @@ extension Storyboard {
     static var eventsSearchViewController = {
         return events.storyboard.instantiateViewController(withIdentifier: "EventsSearchViewController")
     }
+    static var listOfAllViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "ListOfAllViewController")
+    }
 }

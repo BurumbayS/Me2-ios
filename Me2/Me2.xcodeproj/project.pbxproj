@@ -119,6 +119,8 @@
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
 		DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */; };
 		DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */; };
+		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
+		DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -273,6 +275,8 @@
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
+		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
+		DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewModel.swift; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -675,9 +679,10 @@
 			children = (
 				DDC1854723390A370052C371 /* EventsTabViewController.swift */,
 				DDC185492339EF760052C371 /* SavedEventsTableViewCell.swift */,
-				DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */,
+				DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */,
 				DDE047D2233B323600E33046 /* By Category List */,
-				DDE047D3233B324D00E33046 /* List of All */,
+				DDE047D3233B324D00E33046 /* All in One */,
+				DDE047DA233B7C0400E33046 /* Search */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -694,6 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */,
+				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -806,13 +812,21 @@
 			path = "By Category List";
 			sourceTree = "<group>";
 		};
-		DDE047D3233B324D00E33046 /* List of All */ = {
+		DDE047D3233B324D00E33046 /* All in One */ = {
 			isa = PBXGroup;
 			children = (
 				DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */,
 				DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */,
 			);
-			path = "List of All";
+			path = "All in One";
+			sourceTree = "<group>";
+		};
+		DDE047DA233B7C0400E33046 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
@@ -1109,6 +1123,7 @@
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
 				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
 				DD5C22372317AB6400CF66CC /* PlaceOptionalsTableViewCell.swift in Sources */,
+				DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */,
 				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
 				DD5C2253231E62C900CF66CC /* PrivacyPolicyViewController.swift in Sources */,
 				DDA1424F23228D4F00C721A3 /* SignInViewModel.swift in Sources */,
@@ -1194,6 +1209,7 @@
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
 				DDFEE9EB233A3A2200303797 /* EventTableViewCell.swift in Sources */,
+				DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */,
 				DDF65B1522FD8BEE00441035 /* TextTableViewCell.swift in Sources */,
 				DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */,
 				DD5653D122F32AA8003A67C3 /* Storyboarded.swift in Sources */,
