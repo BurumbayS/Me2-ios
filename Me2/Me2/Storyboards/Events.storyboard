@@ -34,7 +34,7 @@
         <!--Events Search View Controller-->
         <scene sceneID="ROT-b8-6e9">
             <objects>
-                <viewController id="sMQ-NG-wIX" customClass="EventsSearchViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsSearchViewController" id="sMQ-NG-wIX" customClass="EventsSearchViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JdO-cc-EfY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

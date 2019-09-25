@@ -18,9 +18,13 @@ class EventsTabViewController: UIViewController {
 
     var searchBar = SearchBar.instanceFromNib()
     let searchView = UIView()
+    let searchVC = Storyboard.eventsSearchViewController()
+    
     let listViewSwitchButton = UIButton()
-    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
+    let filterButton = UIButton()
     var listType = EventsListType.ByCategories
+    
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +54,16 @@ class EventsTabViewController: UIViewController {
     }
     
     private func setUpViews() {
+        setUpSearchBar()
+        setUpSwitchListButton()
+        setUpFilterButton()
+        setUpTableView()
+        setUpSearchView()
+    }
+    
+    private func setUpSearchBar() {
         searchBar.configure(with: self, onSearchEnd: closeSearchView)
-        searchBar.backgroundColor = Color.gray
+        searchBar.backgroundColor = Color.lightGray
         
         self.view.addSubview(searchBar)
         constrain(searchBar, self.view) { search, view in
@@ -59,7 +71,9 @@ class EventsTabViewController: UIViewController {
             search.top == view.top + 40
             search.height == 36
         }
-        
+    }
+    
+    private func setUpSwitchListButton() {
         listViewSwitchButton.setImage(UIImage(named: "listView_icon"), for: .normal)
         listViewSwitchButton.imageView?.contentMode = .scaleAspectFit
         listViewSwitchButton.addTarget(self, action: #selector(switchListType), for: .touchUpInside)
@@ -71,7 +85,25 @@ class EventsTabViewController: UIViewController {
             btn.height == 25
             btn.width == 25
         }
+    }
+    
+    private func setUpFilterButton() {
+        filterButton.setImage(UIImage(named: "filter_icon"), for: .normal)
+        filterButton.imageView?.contentMode = .scaleAspectFit
+        filterButton.isHidden = true
+        filterButton.addTarget(self, action: #selector(showFilter), for: .touchUpInside)
         
+        self.view.addSubview(filterButton)
+        constrain(filterButton, searchBar, self.view) { btn, search, view in
+            btn.right == view.right - 20
+            btn.centerY == search.centerY
+            btn.left == search.right + 20
+            btn.height == 25
+            btn.width == 25
+        }
+    }
+    
+    private func setUpTableView() {
         self.view.addSubview(tableView)
         constrain(tableView, searchBar, self.view) { table, search, view in
             table.top == search.bottom + 20
@@ -79,9 +111,21 @@ class EventsTabViewController: UIViewController {
             table.right == view.right
             table.bottom == view.bottom
         }
+    }
+    
+    private func setUpSearchView() {
+        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue))
         
-        searchView.backgroundColor = .red
+        searchView.addSubview(searchVC.view)
+        constrain(searchVC.view, searchView) { vc, view in
+            vc.top == view.top
+            vc.left == view.left
+            vc.right == view.right
+            vc.bottom == view.bottom
+        }
+        
         searchView.isHidden = true
+        
         self.view.addSubview(searchView)
         constrain(searchView, searchBar, self.view) { searchView, searchBar, view in
             searchView.left == view.left
@@ -103,8 +147,8 @@ class EventsTabViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private func closeSearchView() {
-        searchView.isHidden = true
+    @objc private func showFilter() {
+        
     }
 }
 
@@ -225,6 +269,16 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension EventsTabViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        listViewSwitchButton.isHidden = true
+        filterButton.isHidden = false
+        
         searchView.isHidden = false
+    }
+    
+    private func closeSearchView() {
+        listViewSwitchButton.isHidden = true
+        filterButton.isHidden = false
+        
+        searchView.isHidden = true
     }
 }

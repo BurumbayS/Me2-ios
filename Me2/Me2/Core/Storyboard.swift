@@ -96,4 +96,7 @@ extension Storyboard {
     static var eventsTabViewController = {
         return events.storyboard.instantiateViewController(withIdentifier: "EventsTabViewController")
     }
+    static var eventsSearchViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventsSearchViewController")
+    }
 }

@@ -13,9 +13,20 @@ class EventsSearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var helperLabel: UILabel!
     
+    var viewModel: EventsSearchViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
+    }
+    
+    func configure(with viewModel: EventsSearchViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    private func configureTableView() {
+        tableView.isHidden = true
     }
 
 }
