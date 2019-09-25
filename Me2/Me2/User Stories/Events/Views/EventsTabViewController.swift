@@ -16,9 +16,10 @@ enum EventsListType {
 
 class EventsTabViewController: UIViewController {
 
-    var searchBar: SearchBar!
+    var searchBar = SearchBar.instanceFromNib()
+    let searchView = UIView()
     let listViewSwitchButton = UIButton()
-    let tableView = UITableView()
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     var listType = EventsListType.ByCategories
     
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class EventsTabViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         
         tableView.register(SavedEventsTableViewCell.self)
         tableView.register(EventsListTableViewCell.self)
@@ -48,8 +50,9 @@ class EventsTabViewController: UIViewController {
     }
     
     private func setUpViews() {
-        searchBar = SearchBar.instanceFromNib()
+        searchBar.configure(with: self, onSearchEnd: closeSearchView)
         searchBar.backgroundColor = Color.gray
+        
         self.view.addSubview(searchBar)
         constrain(searchBar, self.view) { search, view in
             search.left == view.left + 20
@@ -76,6 +79,16 @@ class EventsTabViewController: UIViewController {
             table.right == view.right
             table.bottom == view.bottom
         }
+        
+        searchView.backgroundColor = .red
+        searchView.isHidden = true
+        self.view.addSubview(searchView)
+        constrain(searchView, searchBar, self.view) { searchView, searchBar, view in
+            searchView.left == view.left
+            searchView.top == searchBar.bottom + 10
+            searchView.right == view.right
+            searchView.bottom == view.bottom
+        }
     }
     
     @objc private func switchListType() {
@@ -89,12 +102,17 @@ class EventsTabViewController: UIViewController {
         
         tableView.reloadData()
     }
+    
+    private func closeSearchView() {
+        searchView.isHidden = true
+    }
 }
 
 extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
+        header.backgroundColor = .white
         
         let title = UILabel()
         title.textColor = .black
@@ -135,6 +153,14 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return 0
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -194,5 +220,11 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension EventsTabViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchView.isHidden = false
     }
 }

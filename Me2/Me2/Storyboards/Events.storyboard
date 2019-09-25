@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Events Tab View Controller-->
         <scene sceneID="QHJ-ct-bCq">
@@ -25,6 +30,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sIy-rO-TVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="702.89855072463774" y="148.66071428571428"/>
+        </scene>
+        <!--Events Search View Controller-->
+        <scene sceneID="ROT-b8-6e9">
+            <objects>
+                <viewController id="sMQ-NG-wIX" customClass="EventsSearchViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JdO-cc-EfY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4G-k8-ynT">
+                                <rect key="frame" x="67.5" y="328" width="279.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Zao-Gu-vWa"/>
+                                </constraints>
+                                <string key="text">Ищите события по названиям или 
+тэгам. Например, "акция".</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tSZ-pi-2GV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="o4G-k8-ynT" firstAttribute="centerY" secondItem="tzq-QK-8cR" secondAttribute="centerY" constant="-100" id="0lP-kw-lEx"/>
+                            <constraint firstItem="tzq-QK-8cR" firstAttribute="trailing" secondItem="tSZ-pi-2GV" secondAttribute="trailing" id="2ga-of-vgj"/>
+                            <constraint firstItem="tSZ-pi-2GV" firstAttribute="leading" secondItem="tzq-QK-8cR" secondAttribute="leading" id="3Go-ac-oSL"/>
+                            <constraint firstItem="tSZ-pi-2GV" firstAttribute="top" secondItem="tzq-QK-8cR" secondAttribute="top" id="i29-hR-xXd"/>
+                            <constraint firstItem="o4G-k8-ynT" firstAttribute="centerX" secondItem="tzq-QK-8cR" secondAttribute="centerX" id="pxf-7o-YVf"/>
+                            <constraint firstItem="tzq-QK-8cR" firstAttribute="bottom" secondItem="tSZ-pi-2GV" secondAttribute="bottom" id="vbb-iM-n4O"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tzq-QK-8cR"/>
+                    </view>
+                    <connections>
+                        <outlet property="helperLabel" destination="o4G-k8-ynT" id="ycm-h6-fx3"/>
+                        <outlet property="tableView" destination="tSZ-pi-2GV" id="FQH-5E-rxB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GRk-vF-44l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460.8695652173915" y="148.66071428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PXJ-mi-1vf">
