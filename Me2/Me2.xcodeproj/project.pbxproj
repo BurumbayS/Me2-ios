@@ -621,14 +621,8 @@
 			children = (
 				DDC1854723390A370052C371 /* EventsTabViewController.swift */,
 				DDC185492339EF760052C371 /* SavedEventsTableViewCell.swift */,
-				DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */,
-				DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */,
-				DDC1854F233A07EA0052C371 /* EventCollectionViewCell.swift */,
-				DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */,
-				DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */,
-				DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */,
-				DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */,
-				DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */,
+				DDE047D2233B323600E33046 /* By Category List */,
+				DDE047D3233B324D00E33046 /* List of All */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -740,6 +734,28 @@
 				DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */,
 			);
 			path = "New Chat or Group";
+			sourceTree = "<group>";
+		};
+		DDE047D2233B323600E33046 /* By Category List */ = {
+			isa = PBXGroup;
+			children = (
+				DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */,
+				DDFEE9E5233A36B400303797 /* NewPlacesListTableViewCell.swift */,
+				DDC1854F233A07EA0052C371 /* EventCollectionViewCell.swift */,
+				DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */,
+				DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */,
+				DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */,
+			);
+			path = "By Category List";
+			sourceTree = "<group>";
+		};
+		DDE047D3233B324D00E33046 /* List of All */ = {
+			isa = PBXGroup;
+			children = (
+				DDFEE9E9233A3A2200303797 /* EventTableViewCell.swift */,
+				DDFEE9EA233A3A2200303797 /* EventTableViewCell.xib */,
+			);
+			path = "List of All";
 			sourceTree = "<group>";
 		};
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
