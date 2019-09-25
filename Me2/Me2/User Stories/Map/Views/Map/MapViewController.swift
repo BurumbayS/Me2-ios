@@ -29,7 +29,6 @@ class MapViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
-    var myLocation = CLLocation()
     
     var myLocationMarker = GMSMarker()
     var pinMarker = GMSMarker()
@@ -77,6 +76,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    //MARK: -Configures
     private func configureLocationManager() {
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -95,6 +95,7 @@ class MapViewController: UIViewController {
         collectionView.registerNib(PlaceCardCollectionViewCell.self)
     }
     
+    //MARK: -Selectors
     @objc func showFilter() {
         let vc = Storyboard.mapSearchFilterViewController()
         present(vc, animated: true, completion: nil)
@@ -104,6 +105,16 @@ class MapViewController: UIViewController {
         viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
     }
     
+    @objc func locateMe() {
+        myLocationMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        myLocationMarker.icon = UIImage(named: "my_location_icon")
+        myLocationMarker.appearAnimation = .pop
+        myLocationMarker.map = mapView
+        
+        mapView.animate(to: GMSCameraPosition(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude, zoom: 16.5))
+    }
+    
+    //MARK: -My location actions
     private func hideMyLocation() {
         helperView.isHidden = false
         collectionView.isHidden = true
@@ -111,39 +122,39 @@ class MapViewController: UIViewController {
         mapView.animate(toZoom: 15.0)
         pinMarker.map = nil
         radius.map = nil
+        pulsingRadius.map = nil
     }
     
     private func showMyLocation() {
         helperView.isHidden = true
         collectionView.isHidden = false
+        mapView.clear()
+        labelsView.isHidden = true
         
-        pinMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        setImHerePin()
+        animatePulsingRadius()
+        
+        viewModel.getPlacesInRadius()
+    }
+    
+    private func setImHerePin() {
+        pinMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
         pinMarker.icon = UIImage(named: "map_marker_icon")
         pinMarker.appearAnimation = .pop
         pinMarker.map = mapView
         
-        radius.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
-        radius.radius = 200
+        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        radius.radius = viewModel.radius
         radius.strokeColor = .clear
         radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
         radius.map = mapView
         
         myLocationMarker.map = nil
         
-        mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
-        
-        animatePulsingRadius()
+        mapView.animate(to: GMSCameraPosition(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude, zoom: 16.5))
     }
     
-    @objc func locateMe() {
-        myLocationMarker.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
-        myLocationMarker.icon = UIImage(named: "my_location_icon")
-        myLocationMarker.appearAnimation = .pop
-        myLocationMarker.map = mapView
-        
-        mapView.animate(to: GMSCameraPosition(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude, zoom: 16.5))
-    }
-    
+    //MARK: -Animations
     private func animateImhereIcon() {
         imhereIcon.image = (viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.active.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
         let height: CGFloat = (viewModel.isMyLocationVisible.value) ? 29 : 24
@@ -188,7 +199,7 @@ class MapViewController: UIViewController {
         
         view.layer.add(pulsingAnimation, forKey: "scale")
         
-        pulsingRadius.position = CLLocationCoordinate2D(latitude: myLocation.coordinate.latitude, longitude: myLocation.coordinate.longitude)
+        pulsingRadius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView
     }
@@ -197,7 +208,7 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        myLocation = locations.last! as CLLocation
+        viewModel.myLocation = locations.last! as CLLocation
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
