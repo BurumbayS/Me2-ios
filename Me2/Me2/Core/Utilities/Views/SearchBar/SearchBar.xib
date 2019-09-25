@@ -22,22 +22,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Поиск" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-tm-bUJ">
-                    <rect key="frame" x="34" y="0.0" width="330" height="36"/>
+                    <rect key="frame" x="34" y="0.0" width="360" height="36"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwD-Ec-STK">
-                    <rect key="frame" x="374" y="7" width="30" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="62d-k9-Wnq"/>
-                        <constraint firstAttribute="width" constant="30" id="ojC-CR-lQp"/>
-                    </constraints>
-                    <state key="normal" image="dictation"/>
-                    <connections>
-                        <action selector="dictationPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="shQ-2C-X2C"/>
-                    </connections>
-                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_icon" translatesAutoresizingMaskIntoConstraints="NO" id="a41-p2-fD2">
                     <rect key="frame" x="10" y="11" width="14" height="14"/>
                     <constraints>
@@ -45,19 +34,28 @@
                         <constraint firstAttribute="width" constant="14" id="z7a-LM-u4M"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mD6-Ga-wcQ">
+                    <rect key="frame" x="0.0" y="0.0" width="34" height="36"/>
+                    <state key="normal" image="red_back_button"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="39U-Xl-XJ3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WwD-Ec-STK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="1C5-Kq-chb"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WwD-Ec-STK" secondAttribute="trailing" constant="10" id="3bm-sg-tbj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gjv-tm-bUJ" secondAttribute="trailing" constant="20" id="0x0-w2-r8P"/>
                 <constraint firstItem="a41-p2-fD2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="6ue-O4-d8w"/>
-                <constraint firstItem="WwD-Ec-STK" firstAttribute="leading" secondItem="gjv-tm-bUJ" secondAttribute="trailing" constant="10" id="CmD-5y-gz2"/>
+                <constraint firstItem="gjv-tm-bUJ" firstAttribute="leading" secondItem="mD6-Ga-wcQ" secondAttribute="trailing" id="EJD-RC-y9L"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="a41-p2-fD2" secondAttribute="bottom" constant="11" id="LKD-b7-PGH"/>
+                <constraint firstItem="mD6-Ga-wcQ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="LhW-rf-oHO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gjv-tm-bUJ" secondAttribute="bottom" id="Q5L-6j-xhw"/>
+                <constraint firstItem="mD6-Ga-wcQ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="U4r-26-Hc2"/>
                 <constraint firstItem="a41-p2-fD2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="Waa-mp-hr1"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="WwD-Ec-STK" secondAttribute="bottom" constant="7" id="ePc-bQ-tUt"/>
                 <constraint firstItem="gjv-tm-bUJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="geZ-sy-5uV"/>
+                <constraint firstItem="mD6-Ga-wcQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mki-Ra-gvV"/>
                 <constraint firstItem="gjv-tm-bUJ" firstAttribute="leading" secondItem="a41-p2-fD2" secondAttribute="trailing" constant="10" id="uax-h8-kbO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mD6-Ga-wcQ" secondAttribute="bottom" id="uj2-ss-DST"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -67,13 +65,15 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="backButton" destination="mD6-Ga-wcQ" id="y7o-jC-LZl"/>
+                <outlet property="searchIcon" destination="a41-p2-fD2" id="drw-ZQ-gjC"/>
                 <outlet property="textField" destination="gjv-tm-bUJ" id="QA0-XU-Vso"/>
             </connections>
-            <point key="canvasLocation" x="-16" y="149"/>
+            <point key="canvasLocation" x="-16" y="148.42578710644679"/>
         </view>
     </objects>
     <resources>
-        <image name="dictation" width="12" height="19"/>
+        <image name="red_back_button" width="10" height="17"/>
         <image name="search_icon" width="14" height="14"/>
     </resources>
 </document>
