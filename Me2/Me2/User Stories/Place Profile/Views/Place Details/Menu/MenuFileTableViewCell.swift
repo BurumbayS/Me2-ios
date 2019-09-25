@@ -12,7 +12,6 @@ import Cartography
 class MenuFileTableViewCell: UITableViewCell {
 
     let titleLabel = UILabel()
-    let additionalTitleLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,7 +25,6 @@ class MenuFileTableViewCell: UITableViewCell {
     
     func configure(with title: String) {
         titleLabel.text = title
-        additionalTitleLabel.text = "Документ PDF 250KB"
     }
     
     private func setUpViews() {
@@ -39,31 +37,11 @@ class MenuFileTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "Roboto-Medium", size: 17)
         view.addSubview(titleLabel)
         constrain(titleLabel, view) { title, view in
-            title.top == view.top + 15
+            title.top == view.top + 18
+            title.bottom == view.bottom - 17
             title.left == view.left + 15
+            title.right == view.right - 15
             title.height == 20
-        }
-        
-        additionalTitleLabel.textColor = .darkGray
-        additionalTitleLabel.font = UIFont(name: "Roboto-Regular", size: 13)
-        view.addSubview(additionalTitleLabel)
-        constrain(additionalTitleLabel, titleLabel, view) { secondTitle, title, view in
-            secondTitle.top == title.bottom + 5
-            secondTitle.left == view.left + 15
-            secondTitle.height == 15
-            secondTitle.bottom == view.bottom - 15
-            secondTitle.trailing == title.trailing
-        }
-        
-        let iconImageView = UIImageView()
-        iconImageView.image = UIImage(named: "file_icon")
-        view.addSubview(iconImageView)
-        constrain(iconImageView, titleLabel, view) { icon, title, view in
-            icon.left == title.right + 10
-            icon.right == view.right - 15
-            icon.height == 25
-            icon.width == 20
-            icon.centerY == view.centerY
         }
         
         self.contentView.addSubview(view)

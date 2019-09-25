@@ -181,7 +181,7 @@ class MapViewController: UIViewController {
         
         let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale")
         pulsingAnimation.duration = 1
-        pulsingAnimation.repeatCount = 50
+        pulsingAnimation.repeatCount = 10
         pulsingAnimation.autoreverses = false
         pulsingAnimation.fromValue = 0.1
         pulsingAnimation.toValue = 17
@@ -249,6 +249,7 @@ extension MapViewController: UITextFieldDelegate {
         imhereButton.isHidden = true
         filterButton.isHidden = false
         helperView.isHidden = true
+        labelsView.isHidden = true
         searchContainerView.isHidden = false
         
         UIView.animate(withDuration: 0.3) {
@@ -259,6 +260,7 @@ extension MapViewController: UITextFieldDelegate {
     func searchEnded() {
         self.imhereButton.isHidden = false
         self.filterButton.isHidden = true
+        labelsView.isHidden = false
         
         UIView.animate(withDuration: 0.3, animations: {
             self.searchContainerView.alpha = 0

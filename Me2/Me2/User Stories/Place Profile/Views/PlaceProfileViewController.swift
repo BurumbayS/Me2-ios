@@ -20,6 +20,12 @@ class PlaceProfileViewController: UIViewController {
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = Constants.minContentSize.height
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +35,21 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navBar.makeTransparentBar()
+        navBar.isHidden = true
+        navBar.shouldRemoveShadow(true)
+        
+        navItem.title = "Traveler's coffee"
+        
+        setUpBackBarButton(for: navItem)
+        navItem.leftBarButtonItem?.tintColor = .black
+        
+        let rightItem = UIBarButtonItem(image: UIImage(named: "share_icon"), style: .plain, target: self, action: #selector(sharePlace))
+        rightItem.tintColor = .black
+        navItem.rightBarButtonItem = rightItem
+    }
+    
+    @objc private func sharePlace() {
+        
     }
     
     private func configureCollectionView() {
@@ -116,7 +136,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен")
+            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", viewController: self)
             return cell
             
         default:
@@ -142,10 +162,12 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         }
         
         if collectionView.contentOffset.y > 300  {
-            navBar.backgroundColor = .white
+            navBar.isHidden = false
+            navigationController?.navigationBar.barStyle = .default
             collectionView.clipsToBounds = true
         } else {
-            navBar.makeTransparentBar()
+            navBar.isHidden = true
+            navigationController?.navigationBar.barStyle = .black
             collectionView.clipsToBounds = false
         }
     }
