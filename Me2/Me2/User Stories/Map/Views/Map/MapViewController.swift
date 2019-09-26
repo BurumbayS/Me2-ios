@@ -161,6 +161,7 @@ class MapViewController: UIViewController {
     }
     
     private func setImHerePin() {
+        imHereMarker = GMSMarker()
         imHereMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
         imHereMarker.icon = UIImage(named: "map_marker_icon")
         imHereMarker.appearAnimation = .pop
@@ -248,7 +249,7 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         
         //Move imhere marker to selected position and remove marker pn that position
         if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
-            marker.map = nil
+            pin.map = nil
             imHereMarker.position = marker.position
             
             let index = Int(pin.accessibilityHint!) ?? 0
