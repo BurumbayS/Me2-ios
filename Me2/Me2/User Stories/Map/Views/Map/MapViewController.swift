@@ -31,7 +31,8 @@ class MapViewController: UIViewController {
     var mapView: GMSMapView!
     
     var myLocationMarker = GMSMarker()
-    var pinMarker = GMSMarker()
+    var imHereMarker = GMSMarker()
+    var pinsInRadius = [GMSMarker]()
     var pulsingRadius = GMSMarker()
     var radius = GMSCircle()
     
@@ -120,9 +121,9 @@ class MapViewController: UIViewController {
         collectionView.isHidden = true
         
         mapView.animate(toZoom: 15.0)
-        pinMarker.map = nil
-        radius.map = nil
-        pulsingRadius.map = nil
+        mapView.clear()
+        pinsInRadius = []
+        setPins()
     }
     
     private func showMyLocation() {
@@ -134,14 +135,36 @@ class MapViewController: UIViewController {
         setImHerePin()
         animatePulsingRadius()
         
-        viewModel.getPlacesInRadius()
+        viewModel.getPlacesInRadius { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.showPinsInRadius()
+            case .error:
+                print(message)
+            case .fail:
+                print("Fail")
+            }
+        }
+    }
+    
+    private func showPinsInRadius() {
+        pulsingRadius.map = nil
+        
+        for (i, place) in viewModel.places.enumerated() {
+            let pin = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitute))
+            pin.icon = UIImage(named: "pin_in_radius")
+            pin.accessibilityHint = "\(i)"
+            pin.map = mapView
+            
+            pinsInRadius.append(pin)
+        }
     }
     
     private func setImHerePin() {
-        pinMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
-        pinMarker.icon = UIImage(named: "map_marker_icon")
-        pinMarker.appearAnimation = .pop
-        pinMarker.map = mapView
+        imHereMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        imHereMarker.icon = UIImage(named: "map_marker_icon")
+        imHereMarker.appearAnimation = .pop
+        imHereMarker.map = mapView
         
         radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
         radius.radius = viewModel.radius
@@ -217,9 +240,22 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("Tapped at coordinate: " + String(coordinate.latitude) + " "
-            + String(coordinate.longitude))
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        //Show previous selected marker
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
+            pin.map = mapView
+        }
+        
+        //Move imhere marker to selected position and remove marker pn that position
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
+            marker.map = nil
+            imHereMarker.position = marker.position
+            
+            let index = Int(pin.accessibilityHint!) ?? 0
+            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        }
+        
+        return true
     }
 }
 

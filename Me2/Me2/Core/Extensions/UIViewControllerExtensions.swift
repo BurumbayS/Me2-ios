@@ -8,7 +8,6 @@
 
 import UIKit
 
-typealias VoidBlock = () -> ()
 let window = UIApplication.shared.keyWindow!
 
 extension UIViewController {

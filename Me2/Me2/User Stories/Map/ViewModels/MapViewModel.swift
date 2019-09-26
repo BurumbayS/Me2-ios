@@ -20,6 +20,7 @@ class MapViewModel {
     var isMyLocationVisible: Dynamic<Bool> = Dynamic(false)
     var myLocation = CLLocation()
     var placePins = [PlacePin]()
+    var places = [Place]()
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         Alamofire.request(placesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
@@ -42,7 +43,7 @@ class MapViewModel {
         }
     }
     
-    func getPlacesInRadius() {
+    func getPlacesInRadius(completion: ResponseBlock?) {
         let url = placesURL + "?id_list=\(getPlacesInRadiusAsString())"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
@@ -51,14 +52,16 @@ class MapViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    for item in json["data"]["results"].arrayValue {
+                        let place = Place(json: item)
+                        self.places.append(place)
+                    }
                     
-                    print(json)
-                    
-//                    completion?(.ok, "")
+                    completion?(.ok, "")
                     
                 case .failure(let error):
                     print(error.localizedDescription)
-//                    completion?(.fail, "")
+                    completion?(.fail, "")
                 }
         }
     }
