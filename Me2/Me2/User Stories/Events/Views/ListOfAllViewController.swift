@@ -61,4 +61,9 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dest = Storyboard.eventDetailsViewController()
+        self.present(dest, animated: true, completion: nil)
+    }
 }

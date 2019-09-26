@@ -60,7 +60,7 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(AdressTableViewCell.self)
         tableView.register(PlaceWorkTimeTableViewCell.self)
         tableView.register(MailSiteTableViewCell.self)
-        tableView.register(PlaceOptionalsTableViewCell.self)
+        tableView.register(TagsTableViewCell.self)
         tableView.register(PlaceSubsidiariesTableViewCell.self)
     }
     
@@ -136,7 +136,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
         case 6:
             
-            let cell: PlaceOptionalsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             return cell
             

@@ -153,7 +153,7 @@ class EventsTabViewController: UIViewController {
     
     @objc private func showFullList() {
         let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
-        dest.viewModel = ListOfAllViewModel(listItemType: .place)
+        dest.viewModel = ListOfAllViewModel(listItemType: .event)
         navigationController?.pushViewController(dest, animated: true)
     }
 }

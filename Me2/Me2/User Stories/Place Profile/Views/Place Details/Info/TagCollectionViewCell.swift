@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class PlaceOptionalCollectionViewCell: UICollectionViewCell {
+class TagCollectionViewCell: UICollectionViewCell {
     
     let label = UILabel()
     

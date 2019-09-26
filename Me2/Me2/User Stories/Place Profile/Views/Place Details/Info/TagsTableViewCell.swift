@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class PlaceOptionalsTableViewCell: UITableViewCell {
+class TagsTableViewCell: UITableViewCell {
     var collectionView: CollectionView!
     var collectionViewConstraints = ConstraintGroup()
     
@@ -43,11 +43,11 @@ class PlaceOptionalsTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(PlaceOptionalCollectionViewCell.self)
+        collectionView.register(TagCollectionViewCell.self)
     }
 }
 
-extension PlaceOptionalsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TagsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
@@ -68,7 +68,7 @@ extension PlaceOptionalsTableViewCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PlaceOptionalCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: TagCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
         cell.configure(with: optionals[indexPath.row])
         
