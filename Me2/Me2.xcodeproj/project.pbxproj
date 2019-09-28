@@ -128,6 +128,8 @@
 		DDE047F3233CFA2100E33046 /* EventAddressTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE047F1233CFA2100E33046 /* EventAddressTimeTableViewCell.xib */; };
 		DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047F5233D003200E33046 /* EventFilterViewController.swift */; };
 		DDE047FD233FA04700E33046 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FC233FA04700E33046 /* Tag.swift */; };
+		DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */; };
+		DDE04801233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -291,6 +293,8 @@
 		DDE047F1233CFA2100E33046 /* EventAddressTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventAddressTimeTableViewCell.xib; sourceTree = "<group>"; };
 		DDE047F5233D003200E33046 /* EventFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterViewController.swift; sourceTree = "<group>"; };
 		DDE047FC233FA04700E33046 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSliderFilterTableViewCell.swift; sourceTree = "<group>"; };
+		DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSliderFilterTableViewCell.xib; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -861,6 +865,8 @@
 			isa = PBXGroup;
 			children = (
 				DDE047F5233D003200E33046 /* EventFilterViewController.swift */,
+				DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */,
+				DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1078,6 +1084,7 @@
 				DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */,
 				DDCE6E9D22F94111006E54D1 /* Roboto-Thin.ttf in Resources */,
 				DDCE6E7D22F82CD4006E54D1 /* SF-Pro-Rounded-Medium.otf in Resources */,
+				DDE04801233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib in Resources */,
 				DDCE6E9722F94111006E54D1 /* Roboto-LightItalic.ttf in Resources */,
 				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
 				DDF69EF1232B90A900377796 /* MapSearchFilterTableViewCell.xib in Resources */,
@@ -1220,6 +1227,7 @@
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
 				DDC7F22A230955640067C6C7 /* StringExtensions.swift in Sources */,
 				DDE047E9233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift in Sources */,
+				DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */,
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
 				DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */,
 				DDE047EF233CF59100E33046 /* EventPlaceTableViewCell.swift in Sources */,

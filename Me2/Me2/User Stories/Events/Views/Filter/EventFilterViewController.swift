@@ -54,8 +54,10 @@ class EventFilterViewController: UIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
+        tableView.backgroundColor = .white
         
         tableView.register(TagsTableViewCell.self)
+        tableView.registerNib(EventSliderFilterTableViewCell.self)
     }
 }
 
@@ -107,7 +109,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,10 +117,20 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.selectionStyle = .none
-        cell.configure(tagsType: .selectable, tagsList: self.tagsList)
-        return cell
+        switch indexPath.section {
+        case 0:
+            
+            let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(tagsType: .selectable, tagsList: self.tagsList)
+            return cell
+            
+        default:
+            
+            let cell: EventSliderFilterTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
+            
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
