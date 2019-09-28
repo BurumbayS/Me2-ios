@@ -105,4 +105,7 @@ extension Storyboard {
     static var eventDetailsViewController = {
         return events.storyboard.instantiateViewController(withIdentifier: "EventDetailsViewController")
     }
+    static var eventFilterViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventFilterViewController")
+    }
 }

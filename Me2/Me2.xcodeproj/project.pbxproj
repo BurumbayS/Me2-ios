@@ -34,7 +34,6 @@
 		DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */; };
 		DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */; };
 		DD5C22372317AB6400CF66CC /* TagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22362317AB6400CF66CC /* TagsTableViewCell.swift */; };
-		DD5C22392317C3BD00CF66CC /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C22382317C3BD00CF66CC /* TagCollectionViewCell.swift */; };
 		DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */; };
 		DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */; };
 		DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */; };
@@ -127,6 +126,8 @@
 		DDE047EF233CF59100E33046 /* EventPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047EE233CF59100E33046 /* EventPlaceTableViewCell.swift */; };
 		DDE047F2233CFA2100E33046 /* EventAddressTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047F0233CFA2100E33046 /* EventAddressTimeTableViewCell.swift */; };
 		DDE047F3233CFA2100E33046 /* EventAddressTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE047F1233CFA2100E33046 /* EventAddressTimeTableViewCell.xib */; };
+		DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047F5233D003200E33046 /* EventFilterViewController.swift */; };
+		DDE047FD233FA04700E33046 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FC233FA04700E33046 /* Tag.swift */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -194,7 +195,6 @@
 		DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWorkTimeTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSiteTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C22362317AB6400CF66CC /* TagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTableViewCell.swift; sourceTree = "<group>"; };
-		DD5C22382317C3BD00CF66CC /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSubsidiariesTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C223E231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD5C2240231CE4AD00CF66CC /* MenuFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFileTableViewCell.swift; sourceTree = "<group>"; };
@@ -289,6 +289,8 @@
 		DDE047EE233CF59100E33046 /* EventPlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDE047F0233CFA2100E33046 /* EventAddressTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAddressTimeTableViewCell.swift; sourceTree = "<group>"; };
 		DDE047F1233CFA2100E33046 /* EventAddressTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventAddressTimeTableViewCell.xib; sourceTree = "<group>"; };
+		DDE047F5233D003200E33046 /* EventFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterViewController.swift; sourceTree = "<group>"; };
+		DDE047FC233FA04700E33046 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -491,8 +493,6 @@
 				DD5C22302316813C00CF66CC /* AdressTableViewCell.swift */,
 				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
 				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
-				DD5C22362317AB6400CF66CC /* TagsTableViewCell.swift */,
-				DD5C22382317C3BD00CF66CC /* TagCollectionViewCell.swift */,
 				DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */,
 			);
 			path = Info;
@@ -696,6 +696,7 @@
 				DDE047D2233B323600E33046 /* By Category List */,
 				DDE047D3233B324D00E33046 /* All in One */,
 				DDE047DA233B7C0400E33046 /* Search */,
+				DDE047F4233CFFD500E33046 /* Filter */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -720,6 +721,7 @@
 		DDC7F22223093FE60067C6C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDE047F7233E460D00E33046 /* Tags */,
 				DDF69EF82330D1D500377796 /* Custom follow button */,
 				DDF65B2C2303C9B900441035 /* SearchBar */,
 				DDC7F2242309404C0067C6C7 /* Custom Segmented Control */,
@@ -853,6 +855,23 @@
 				DDE047F1233CFA2100E33046 /* EventAddressTimeTableViewCell.xib */,
 			);
 			path = EventDetails;
+			sourceTree = "<group>";
+		};
+		DDE047F4233CFFD500E33046 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				DDE047F5233D003200E33046 /* EventFilterViewController.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		DDE047F7233E460D00E33046 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				DD5C22362317AB6400CF66CC /* TagsTableViewCell.swift */,
+				DDE047FC233FA04700E33046 /* Tag.swift */,
+			);
+			path = Tags;
 			sourceTree = "<group>";
 		};
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
@@ -1167,15 +1186,16 @@
 				DDE047F2233CFA2100E33046 /* EventAddressTimeTableViewCell.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
-				DD5C22392317C3BD00CF66CC /* TagCollectionViewCell.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
+				DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */,
 				DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
+				DDE047FD233FA04700E33046 /* Tag.swift in Sources */,
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
 				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,

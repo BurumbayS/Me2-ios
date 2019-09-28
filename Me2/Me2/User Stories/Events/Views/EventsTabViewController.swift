@@ -148,7 +148,8 @@ class EventsTabViewController: UIViewController {
     }
     
     @objc private func showFilter() {
-        
+        let dest = Storyboard.eventFilterViewController()
+        present(dest, animated: true, completion: nil)
     }
     
     @objc private func showFullList() {
