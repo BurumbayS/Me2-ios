@@ -23,14 +23,21 @@ enum TagsType {
     }
 }
 
+class TagsList {
+    var list = [String]()
+    var selectedList = [String]()
+}
+
 class TagsTableViewCell: UITableViewCell {
     
     let tags = ["Средний чек 3000тг","Средний чек 3000тг","Заказ на вынос","Бизнес-ланч","Терраса"]
+    var tagsList: TagsList!
     var tagsType: TagsType!
     var layoutSubviews = false
     
-    func configure(with tagsType: TagsType) {
+    func configure(tagsType: TagsType, tagsList: TagsList) {
         self.tagsType = tagsType
+        self.tagsList = tagsList
         
         if !self.layoutSubviews {
             setUpViews()
@@ -56,7 +63,7 @@ class TagsTableViewCell: UITableViewCell {
             }
             
             let tagView = Tag(frame: CGRect(x: x, y: y, width: width, height: height))
-            tagView.configure(with: tag, of: tagsType.tagSize)
+            tagView.configure(with: tag, and: tagsList, of: tagsType.tagSize)
             
             view.addSubview(tagView)
             

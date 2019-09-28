@@ -45,9 +45,18 @@ class Tag: UIView {
     
     let label = UILabel()
     
-    func configure(with text: String, of tagSize: TagSize) {
+    var isSelected = false
+    var tagsList: TagsList!
+    
+    func configure(with text: String, and tagsList: TagsList, of tagSize: TagSize) {
+        self.tagsList = tagsList
+        
         self.backgroundColor = Color.lightGray
         self.layer.cornerRadius = 5
+        self.isUserInteractionEnabled = (tagSize == .large) ? true : false
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(selectTag))
+        self.addGestureRecognizer(tap)
         
         label.textColor = .gray
         label.text = text
@@ -58,4 +67,20 @@ class Tag: UIView {
             label.centerY == view.centerY
         }
     }
+    
+    @objc private func selectTag() {
+        isSelected = !isSelected
+        
+        switch isSelected {
+        case true:
+            self.backgroundColor = Color.red
+            self.label.textColor = .white
+            tagsList.selectedList.append(label.text ?? "")
+        default:
+            self.backgroundColor = Color.lightGray
+            self.label.textColor = .gray
+            tagsList.selectedList.removeAll(where: { $0 == self.label.text })
+        }
+    }
+    
 }

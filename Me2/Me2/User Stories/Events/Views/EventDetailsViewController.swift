@@ -62,7 +62,7 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 2:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: .unselectable)
+//            cell.configure(with: .unselectable)
             return cell
             
         case 3:

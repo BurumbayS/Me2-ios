@@ -288,8 +288,8 @@ extension EventsTabViewController: UITextFieldDelegate {
     }
     
     private func closeSearchView() {
-        listViewSwitchButton.isHidden = true
-        filterButton.isHidden = false
+        listViewSwitchButton.isHidden = false
+        filterButton.isHidden = true
         
         searchView.isHidden = true
     }

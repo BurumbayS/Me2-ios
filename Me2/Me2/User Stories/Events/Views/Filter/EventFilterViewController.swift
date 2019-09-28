@@ -13,10 +13,39 @@ class EventFilterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let tagsList = TagsList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavBar()
         configureTableView()
+    }
+    
+    private func configureNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+        
+        navigationItem.title = "Фильтр"
+        
+        let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
+        leftItem.tintColor = Color.red
+        navigationItem.leftBarButtonItem = leftItem
+        navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
+        rightItem.tintColor = Color.blue
+        navigationItem.rightBarButtonItem = rightItem
+    }
+    
+    @objc private func discardFilters() {
+//        viewModel.discardFilters { [weak self] in
+//            self?.tableView.reloadData()
+//        }
+    }
+    
+    @objc private func completeWithFilter() {
+        dismiss(animated: true, completion: nil)
     }
 
     private func configureTableView() {
@@ -33,6 +62,7 @@ class EventFilterViewController: UIViewController {
 extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
+        header.backgroundColor = .white
         
         let label = UILabel()
         label.textColor = .lightGray
@@ -77,7 +107,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +116,12 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: .selectable)
+        cell.selectionStyle = .none
+        cell.configure(tagsType: .selectable, tagsList: self.tagsList)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(self.tagsList.selectedList)
     }
 }
