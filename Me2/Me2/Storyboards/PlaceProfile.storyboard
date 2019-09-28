@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Place Profile View Controller-->
         <scene sceneID="Z35-ec-ELk">
@@ -35,6 +40,25 @@
                                     <navigationItem title="Hello world" id="dxW-xr-wPq"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JJ-2I-Nl8">
+                                <rect key="frame" x="84.5" y="767" width="245" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="6ku-OV-OVK"/>
+                                    <constraint firstAttribute="width" constant="245" id="Wqf-FG-KKb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionButtonPressed:" destination="5dT-vX-XI3" eventType="touchUpInside" id="Ybs-eW-xVA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -43,12 +67,15 @@
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="JSS-dL-rJh"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="cYv-Bf-a23"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="ewA-J9-JCf"/>
+                            <constraint firstItem="2gW-ph-Pcn" firstAttribute="bottom" secondItem="8JJ-2I-Nl8" secondAttribute="bottom" constant="50" id="hsD-du-F6m"/>
+                            <constraint firstItem="8JJ-2I-Nl8" firstAttribute="centerX" secondItem="2gW-ph-Pcn" secondAttribute="centerX" id="kYb-dI-shk"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="top" secondItem="t3Z-f7-7Ud" secondAttribute="bottom" id="qBM-ve-AXX"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="top" secondItem="2gW-ph-Pcn" secondAttribute="top" id="qDH-V9-dWe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2gW-ph-Pcn"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="8JJ-2I-Nl8" id="TgK-2n-GNl"/>
                         <outlet property="collectionView" destination="0KZ-Mj-UgD" id="Rv3-HH-ht6"/>
                         <outlet property="navBar" destination="t3Z-f7-7Ud" id="UJc-3p-Yfl"/>
                         <outlet property="navItem" destination="dxW-xr-wPq" id="CeK-Hg-Tec"/>

@@ -17,7 +17,6 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeTableViewScrollable, object: nil)
         setUpViews()
         configureTableView()
     }
@@ -62,10 +61,6 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(MailSiteTableViewCell.self)
         tableView.register(PlaceOptionalsTableViewCell.self)
         tableView.register(PlaceSubsidiariesTableViewCell.self)
-    }
-    
-    @objc private func enableScroll() {
-        tableView.isScrollEnabled = true
     }
     
     private func configureViews() {

@@ -12,6 +12,7 @@ import Cartography
 class PlaceProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: CollectionView!
+    @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
@@ -30,8 +31,39 @@ class PlaceProfileViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
+        
         configureNavBar()
         configureCollectionView()
+        configureActionButton()
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.pageToShow.bind { [unowned self] (page) in
+            self.configureActionButton()
+        }
+    }
+    
+    private func configureActionButton() {
+        actionButton.drawShadow(color: UIColor.gray.cgColor, forOpacity: 1, forOffset: CGSize(width: 0, height: 0), radius: 3)
+        
+        switch viewModel.pageToShow.value {
+        case .info:
+            
+            self.actionButton.isHidden = false
+            self.actionButton.backgroundColor = Color.red
+            self.actionButton.setTitle("Забронировать столик", for: .normal)
+            
+        case .reviews:
+            
+            self.actionButton.isHidden = false
+            self.actionButton.backgroundColor = Color.blue
+            self.actionButton.setTitle("Оставить отзыв", for: .normal)
+            
+        default:
+            self.actionButton.setTitle("", for: .normal)
+            self.actionButton.isHidden = true
+        }
     }
     
     private func configureNavBar() {
@@ -78,6 +110,24 @@ class PlaceProfileViewController: UIViewController {
     private func updateCollectionViewLayout(with cellHeight: CGFloat) {
         collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    
+    @IBAction func actionButtonPressed(_ sender: Any) {
+        switch viewModel.pageToShow.value {
+        case .info:
+            
+            break
+            
+        case .reviews:
+            
+            break
+            
+        default:
+            
+            break
+            
+        }
     }
 }
 

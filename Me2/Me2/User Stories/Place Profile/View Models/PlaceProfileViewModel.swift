@@ -21,10 +21,25 @@ enum PlaceProfilePage: String  {
 
 class PlaceProfileViewModel {
     var currentPage: Dynamic<Int>
-    var pageToShow: PlaceProfilePage
+    var pageToShow: Dynamic<PlaceProfilePage>
     
     init() {
-        pageToShow = .info
+        pageToShow = Dynamic(.info)
         currentPage = Dynamic(0)
+        
+        currentPage.bind { [unowned self] (index) in
+            switch index {
+            case 0:
+                self.pageToShow.value = .info
+            case 1:
+                self.pageToShow.value = .events
+            case 2:
+                self.pageToShow.value = .menu
+            case 3:
+                self.pageToShow.value = .reviews
+            default:
+                break
+            }
+        }
     }
 }
