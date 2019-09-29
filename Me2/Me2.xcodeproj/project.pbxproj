@@ -108,6 +108,7 @@
 		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
 		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
+		DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE04803233FD40000E33046 /* WriteReviewViewController.swift */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -231,6 +232,7 @@
 		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DDE04803233FD40000E33046 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		DDC7F22B23097B240067C6C7 /* Place Details */ = {
 			isa = PBXGroup;
 			children = (
+				DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */,
 				DD5C223D231CE28F00CF66CC /* Info */,
 				DD5C224C231D4A7100CF66CC /* Events */,
 				DD5C223C231CE09B00CF66CC /* Menu */,
@@ -674,6 +677,18 @@
 			path = "New Chat or Group";
 			sourceTree = "<group>";
 		};
+		DDE04802233FD3E200E33046 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */,
+				DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */,
+				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
+				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
+				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,13 +726,9 @@
 		DDF65B342308023900441035 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */,
-				DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */,
-				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
-				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
-				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
-				DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */,
+				DDE04802233FD3E200E33046 /* Place */,
 				DDC7F22B23097B240067C6C7 /* Place Details */,
+				DDE04803233FD40000E33046 /* WriteReviewViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -911,6 +922,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */,
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,

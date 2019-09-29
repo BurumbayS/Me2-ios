@@ -121,7 +121,8 @@ class PlaceProfileViewController: UIViewController {
             
         case .reviews:
             
-            break
+            let dest = Storyboard.writeReviewViewController()
+            navigationController?.pushViewController(dest, animated: true)
             
         default:
             
