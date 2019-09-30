@@ -66,24 +66,28 @@ extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
         case .dateTime:
             
             let cell: BookingDateAndTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure()
             return cell
             
         case .numberOfGuest:
             
             let cell: BookingInviteFriendsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure()
             return cell
             
         case .username:
             
             let cell: BookingUsernameTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure()
             return cell
         
         case .phoneNumber:
             
             let cell: BookingPhoneNumberTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure()
             return cell
             

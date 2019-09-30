@@ -45,27 +45,21 @@ class BookingPhoneNumberTableViewCell: BookingTableViewCell {
 }
 
 extension BookingPhoneNumberTableViewCell: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if phoneNumber.count < 11 {
-//            phoneNumber += string
-//        }
-//
-//        let cleanPhoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-//        let mask = "+X (XXX) XXX-XXXX"
-//
-//        var result = ""
-//        var index = cleanPhoneNumber.startIndex
-//        for ch in mask where index < cleanPhoneNumber.endIndex {
-//            if ch == "X" {
-//                result.append(cleanPhoneNumber[index])
-//                index = cleanPhoneNumber.index(after: index)
-//            } else {
-//                result.append(ch)
-//            }
-//        }
-//
-//        textField.text = result
-//
-//        return true
-//    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        if text.count < "+# (###) ###-##-##".count {
+            textField.text = text.applyPatternOnNumbers(pattern: "+# (###) ###-##-##", replacmentCharacter: "#")
+            return true
+        }
+        
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
+        if (isBackSpace == -92) {
+            return true
+        }
+        
+        return false
+    }
 }
