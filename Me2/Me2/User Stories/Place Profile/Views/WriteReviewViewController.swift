@@ -11,7 +11,6 @@ import Cosmos
 
 class WriteReviewViewController: UIViewController {
 
-    
     @IBOutlet weak var thanksViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var thanksView: UIView!
@@ -35,8 +34,6 @@ class WriteReviewViewController: UIViewController {
     
     private func configureNavBar() {
         navBar.tintColor = .black
-        navBar.isTranslucent = false
-        navBar.shouldRemoveShadow(true)
         
         setUpBackBarButton(for: navItem)
         
