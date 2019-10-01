@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NewPlaceCollectionViewCell" customModule="Me2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="106" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="106" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_place_logo" translatesAutoresizingMaskIntoConstraints="NO" id="VoX-5g-5Gi">
+                        <rect key="frame" x="0.0" y="0.0" width="106" height="69"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMw-bD-fyL">
+                        <rect key="frame" x="8" y="125" width="90" height="25"/>
+                        <color key="backgroundColor" red="0.87966800031762138" green="0.88837758447918191" blue="0.88837758447918191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="eRS-Js-rJK"/>
+                            <constraint firstAttribute="height" constant="25" id="zfk-8H-94E"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мята" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyP-kR-PJg">
+                        <rect key="frame" x="5" y="79" width="96" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="t1H-ex-QOg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="NyP-kR-PJg" secondAttribute="trailing" constant="5" id="G9M-Qo-tJV"/>
+                <constraint firstItem="VoX-5g-5Gi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JQd-9H-Zj4"/>
+                <constraint firstItem="XMw-bD-fyL" firstAttribute="top" secondItem="NyP-kR-PJg" secondAttribute="bottom" constant="10" id="Q9V-AY-Ivu"/>
+                <constraint firstItem="VoX-5g-5Gi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZGd-pN-p4a"/>
+                <constraint firstAttribute="bottom" secondItem="XMw-bD-fyL" secondAttribute="bottom" id="dig-z5-lc7"/>
+                <constraint firstItem="XMw-bD-fyL" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="ibs-NV-c7K"/>
+                <constraint firstItem="NyP-kR-PJg" firstAttribute="top" secondItem="VoX-5g-5Gi" secondAttribute="bottom" constant="10" id="mE0-jF-gbH"/>
+                <constraint firstAttribute="trailing" secondItem="VoX-5g-5Gi" secondAttribute="trailing" id="pHL-bN-GrA"/>
+                <constraint firstItem="NyP-kR-PJg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="svb-TK-hTD"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="208" height="272"/>
+            <connections>
+                <outlet property="logoImageView" destination="VoX-5g-5Gi" id="DTF-5t-IEb"/>
+                <outlet property="titleLabel" destination="NyP-kR-PJg" id="Mva-cN-mow"/>
+                <outlet property="typeView" destination="XMw-bD-fyL" id="bLw-lH-W6X"/>
+            </connections>
+            <point key="canvasLocation" x="-81.159420289855078" y="114.17410714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="sample_place_logo" width="48" height="48"/>
+    </resources>
+</document>
