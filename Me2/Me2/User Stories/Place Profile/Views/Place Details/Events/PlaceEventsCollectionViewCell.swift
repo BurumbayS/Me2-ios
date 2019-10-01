@@ -44,7 +44,7 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         
-        tableView.register(PlaceReviewTableViewCell.self)
+        tableView.registerNib(EventTableViewCell.self)
     }
     
     func configure(itemSize: Dynamic<CGSize>?) {
@@ -68,9 +68,15 @@ extension PlaceEventsCollectionViewCell: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PlaceReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: nil)
+        let event = Event()
+        event.title = "20% скидка на все кальяны! "
+        event.location = "Мята Бар"
+        event.time = "Ежедневно 20:00-00:00"
+        event.eventType = "Акция"
+        
+        cell.configure(wtih: event)
         cell.selectionStyle = .none
         
         return cell
