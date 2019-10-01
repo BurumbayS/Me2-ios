@@ -75,7 +75,6 @@ extension MapViewController {
     
     private func setUpSearchBar() {
         searchBar.configure(with: self, onSearchEnd: searchEnded)
-        searchBar.isUserInteractionEnabled = true
         
         self.view.addSubview(searchBar)
         constrain(searchBar, self.view) { search, view in
