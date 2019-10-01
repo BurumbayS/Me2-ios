@@ -50,24 +50,28 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             
             let cell: EventDetailHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: "Акция", and: "https://img-fotki.yandex.ru/get/15555/191838361.33/0_dfde8_53b55031_XXL.jpg")
+            cell.selectionStyle = .none
+            cell.configure(with: "Акция", and: "https://img-fotki.yandex.ru/get/15555/191838361.33/0_dfde8_53b55031_XXL.jpg", on: self)
             return cell
         
         case 1:
             
             let cell: EventDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: "-20% скидка на все кальяны! ", and: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci idunt ut labore et dolore mag aliquaUt en ad minim veniam, quis nostrud.")
             return cell
             
         case 2:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-//            cell.configure(with: .unselectable)
+            cell.selectionStyle = .none
+            cell.configure(tagsType: .unselectable, tagsList: TagsList())
             return cell
             
         case 3:
             
             let cell: EventPlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.accessoryType = .disclosureIndicator
             cell.configure()
             return cell
@@ -75,6 +79,7 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 4:
             
             let cell: EventAddressTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: "Желтоксана, 137, 1 этаж, Алмалинский район", and: "Ежедневно 20:00-00:00")
             return cell
             

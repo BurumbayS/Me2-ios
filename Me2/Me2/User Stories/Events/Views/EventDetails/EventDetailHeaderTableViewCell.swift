@@ -17,6 +17,8 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     let eventTypeLabel = UILabel()
     let followButton = UIButton()
     
+    var parentVC: UIViewController!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -100,14 +102,16 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     }
     
     @objc private func close() {
-        
+        parentVC.dismiss(animated: true, completion: nil)
     }
     
     @objc private func followEvent() {
         
     }
     
-    func configure(with eventType: String, and imageURL: String) {
+    func configure(with eventType: String, and imageURL: String, on vc: UIViewController) {
+        self.parentVC = vc
+        
         eventTypeLabel.text = eventType
         
         layoutIfNeeded()
