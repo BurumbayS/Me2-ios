@@ -6,7 +6,6 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Alamofire
 import SwiftyJSON
 
 class PlacePin {
@@ -25,5 +24,4 @@ class PlacePin {
         
         return placePin
     }
-    
 }
