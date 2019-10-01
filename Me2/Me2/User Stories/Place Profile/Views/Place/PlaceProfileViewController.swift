@@ -103,7 +103,7 @@ class PlaceProfileViewController: UIViewController {
         
         collectionView.register(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderCollectionViewCell.self)
-        collectionView.registerHeader(PlaceProfileHeaderView.self)
+        collectionView.registerHeader(PlaceTabView.self)
         collectionView.registerHeader(UICollectionReusableView.self)
     }
     
@@ -149,7 +149,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             let header: UICollectionReusableView = collectionView.dequeueReusableView(for: indexPath, and: kind)
             return header
         default:
-            let header: PlaceProfileHeaderView = collectionView.dequeueReusableView(for: indexPath, and: kind)
+            let header: PlaceTabView = collectionView.dequeueReusableView(for: indexPath, and: kind)
             header.configure(with: viewModel.placeStatus.pagesTitles) { [weak self] (selectedSegment) in
                 self?.viewModel.currentPage.value = selectedSegment
             }
@@ -196,7 +196,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", viewController: self)
+            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", placeStatus: viewModel.placeStatus, viewController: self)
             return cell
             
         default:

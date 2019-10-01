@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class PlaceProfileHeaderView: UICollectionReusableView {
+class PlaceTabView: UICollectionReusableView {
     
     let segmentedControl = CustomSegmentedControl()
     
