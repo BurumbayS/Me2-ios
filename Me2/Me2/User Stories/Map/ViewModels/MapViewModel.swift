@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import GoogleMaps
 
 enum ImhereIcon: String {
     case plain = "map_marker_icon"
@@ -17,10 +18,12 @@ enum ImhereIcon: String {
 
 class MapViewModel {
     var isMyLocationVisible: Dynamic<Bool> = Dynamic(false)
+    var myLocation = CLLocation()
     var placePins = [PlacePin]()
+    var places = [Place]()
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
-        Alamofire.request(placesPinsURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(placesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -40,5 +43,44 @@ class MapViewModel {
         }
     }
     
-    private let placesPinsURL = Network.core + "/place/"
+    func getPlacesInRadius(completion: ResponseBlock?) {
+        let url = placesURL + "?id_list=\(getPlacesInRadiusAsString())"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    self.places = []
+                    for item in json["data"]["results"].arrayValue {
+                        let place = Place(json: item)
+                        self.places.append(place)
+                    }
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    private func getPlacesInRadiusAsString() -> String {
+        var str = ""
+        
+        for place in placePins {
+            let location = CLLocation(latitude: place.latitude, longitude: place.longitude)
+            if myLocation.distance(from: location) <= 200 {
+                str += "\(place.id ?? 0),"
+            }
+        }
+        
+        return str
+    }
+    
+    private let placesURL = Network.core + "/place/"
+    
+    let radius: CLLocationDistance = 200
 }
