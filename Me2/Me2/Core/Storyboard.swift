@@ -87,4 +87,7 @@ extension Storyboard {
     static var bookTableViewController = {
         return placeProfile.storyboard.instantiateViewController(withIdentifier: "BookTableViewController")
     }
+    static var addGuestsViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "AddGuestsViewController")
+    }
 }

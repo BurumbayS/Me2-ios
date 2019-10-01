@@ -13,8 +13,9 @@ enum BookingParameters: String {
     case numberOfGuest = "Количество гостей"
     case username = "Бронь на имя"
     case phoneNumber = "Телефон"
+    case wishes = "Пожелания к брони"
 }
 
 class BookTableViewModel {
-    let bookingParameters = [BookingParameters.dateTime, .numberOfGuest, .username, .phoneNumber]
+    let bookingParameters = [BookingParameters.dateTime, .numberOfGuest, .username, .phoneNumber, .wishes]
 }

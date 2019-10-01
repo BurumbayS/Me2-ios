@@ -210,7 +210,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUp-lh-m5Y">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUp-lh-m5Y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="YiH-QH-4Oj"/>
@@ -237,7 +237,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLI-yT-qau" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1795.6521739130437" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1758" y="84"/>
+        </scene>
+        <!--Add Guests View Controller-->
+        <scene sceneID="36e-Du-NR7">
+            <objects>
+                <viewController storyboardIdentifier="AddGuestsViewController" id="NGd-oZ-IiL" customClass="AddGuestsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qlf-ew-YsW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5x-p4-fVi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Nzn-TE-JaW"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ESS-Y0-CLe">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8Hv-gX-FqZ" firstAttribute="bottom" secondItem="ESS-Y0-CLe" secondAttribute="bottom" id="2GT-vj-XGJ"/>
+                            <constraint firstItem="ESS-Y0-CLe" firstAttribute="leading" secondItem="8Hv-gX-FqZ" secondAttribute="leading" id="T51-KG-8ie"/>
+                            <constraint firstItem="L5x-p4-fVi" firstAttribute="top" secondItem="8Hv-gX-FqZ" secondAttribute="top" id="fEl-AG-P80"/>
+                            <constraint firstItem="8Hv-gX-FqZ" firstAttribute="trailing" secondItem="L5x-p4-fVi" secondAttribute="trailing" id="qD1-Si-sgt"/>
+                            <constraint firstItem="8Hv-gX-FqZ" firstAttribute="trailing" secondItem="ESS-Y0-CLe" secondAttribute="trailing" id="unn-dO-QTp"/>
+                            <constraint firstItem="L5x-p4-fVi" firstAttribute="leading" secondItem="qlf-ew-YsW" secondAttribute="leading" id="vtQ-wn-HaL"/>
+                            <constraint firstItem="ESS-Y0-CLe" firstAttribute="top" secondItem="L5x-p4-fVi" secondAttribute="bottom" id="zcs-cW-M7l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Hv-gX-FqZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="L5x-p4-fVi" id="sLU-7F-wcR"/>
+                        <outlet property="navItem" destination="Nzn-TE-JaW" id="toy-cO-VKg"/>
+                        <outlet property="tableView" destination="ESS-Y0-CLe" id="a6S-BJ-eJB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="maU-HQ-apt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2480" y="84"/>
         </scene>
     </scenes>
     <resources>

@@ -32,6 +32,7 @@ class BookTableViewController: UIViewController {
         tableView.register(BookingDateAndTimeTableViewCell.self)
         tableView.register(BookingInviteFriendsTableViewCell.self)
         tableView.register(BookingPhoneNumberTableViewCell.self)
+        tableView.register(BookingWishesTableViewCell.self)
     }
     
     private func configureNavBar() {
@@ -57,7 +58,7 @@ class BookTableViewController: UIViewController {
 
 extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.bookingParameters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +75,7 @@ extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: BookingInviteFriendsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure()
+            cell.configure(with: self)
             return cell
             
         case .username:
@@ -89,6 +90,12 @@ extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: BookingPhoneNumberTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure()
+            return cell
+        
+        case .wishes:
+            
+            let cell: BookingWishesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             return cell
             
         }
