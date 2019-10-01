@@ -45,22 +45,30 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func configureActionButton() {
+        if viewModel.placeStatus == .not_registered {
+            self.actionButton.setTitle("", for: .normal)
+            self.actionButton.isHidden = true
+            
+            return
+        }
+        
         actionButton.drawShadow(color: UIColor.gray.cgColor, forOpacity: 1, forOffset: CGSize(width: 0, height: 0), radius: 3)
         
         switch viewModel.pageToShow.value {
         case .info:
             
-            self.actionButton.isHidden = false
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
+            self.actionButton.isHidden = false
             
         case .reviews:
             
-            self.actionButton.isHidden = false
             self.actionButton.backgroundColor = Color.blue
             self.actionButton.setTitle("Оставить отзыв", for: .normal)
+            self.actionButton.isHidden = false
             
         default:
+            
             self.actionButton.setTitle("", for: .normal)
             self.actionButton.isHidden = true
         }
@@ -142,7 +150,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             return header
         default:
             let header: PlaceProfileHeaderView = collectionView.dequeueReusableView(for: indexPath, and: kind)
-            header.configure { [weak self] (selectedSegment) in
+            header.configure(with: viewModel.placeStatus.pagesTitles) { [weak self] (selectedSegment) in
                 self?.viewModel.currentPage.value = selectedSegment
             }
             return header
@@ -194,7 +202,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.currentPage)
+            cell.configure(with: viewModel.currentPage, and: viewModel.placeStatus)
             return cell
             
         }

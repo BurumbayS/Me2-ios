@@ -9,6 +9,29 @@
 import Foundation
 import SwiftyJSON
 
+enum PlaceStatus {
+    case registered
+    case not_registered
+    
+    var pages: [PlaceProfilePage] {
+        switch self {
+        case .registered:
+            return [PlaceProfilePage.info, .events, .menu, .reviews]
+        case .not_registered:
+            return [PlaceProfilePage.info, .reviews]
+        }
+    }
+    
+    var pagesTitles: [String] {
+        switch self {
+        case .registered:
+            return ["Инфо","События","Меню","Отзывы"]
+        case .not_registered:
+            return ["Инфо", "Отзывы"]
+        }
+    }
+}
+
 struct Menu {
     var id: Int
     var file: String

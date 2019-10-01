@@ -17,13 +17,12 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
     var itemSize: Dynamic<CGSize>?
     var cellIDs = [String]()
     var cells = [String : PlaceInfoCollectionViewCell]()
-    let viewModel = PlaceDetailsViewModel()
+    var viewModel: PlaceDetailsViewModel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureCollectionView()
-        setCollectionViewLayout()
         setUpViews()
     }
     
@@ -46,9 +45,12 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
         collectionView.clipsToBounds = true
         collectionView.isPagingEnabled = true
         
-        for i in 0..<viewModel.pages.count {
-            collectionView.register(viewModel.getCellClass(for: i), forCellWithReuseIdentifier: viewModel.pages[i].cellID)
-        }
+        collectionView.register(PlaceProfilePage.info.getCellClass(), forCellWithReuseIdentifier: PlaceProfilePage.info.cellID)
+        collectionView.register(PlaceProfilePage.events.getCellClass(), forCellWithReuseIdentifier: PlaceProfilePage.events.cellID)
+        collectionView.register(PlaceProfilePage.menu.getCellClass(), forCellWithReuseIdentifier: PlaceProfilePage.menu.cellID)
+        collectionView.register(PlaceProfilePage.reviews.getCellClass(), forCellWithReuseIdentifier: PlaceProfilePage.reviews.cellID)
+        
+        setCollectionViewLayout()
     }
     
     private func configureViews() {
@@ -61,7 +63,7 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
     }
     
     private func bindDynamics() {
-        currentPage?.bind({ [weak self] (index) in
+        viewModel.currentPage.bind({ [weak self] (index) in
             let indexPath = IndexPath(row: index, section: 0)
             self?.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             self?.reloadCell(at: indexPath)
@@ -72,17 +74,16 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
     }
     
     private func reloadCell(at indexPath: IndexPath) {
-        let cellID = viewModel.pages[indexPath.row].cellID
+        let cellID = viewModel.placeStatus.pages[indexPath.row].cellID
         
         if let cell = viewModel.cells[cellID] {
             cell.reload()
         }
     }
     
-    func configure(with currentPage: Dynamic<Int>) {
-        self.currentPage = currentPage
-        
-        setCollectionViewLayout()
+    func configure(with currentPage: Dynamic<Int>, and placeStatus: PlaceStatus) {
+        viewModel = PlaceDetailsViewModel(placeStatus: placeStatus, currentPage: currentPage)
+
         bindDynamics()
     }
 }
@@ -105,15 +106,15 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pages.count
+        return viewModel.placeStatus.pages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: viewModel.pages[indexPath.row].cellID, for: indexPath) as! PlaceDetailCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: viewModel.placeStatus.pages[indexPath.row].cellID, for: indexPath) as! PlaceDetailCollectionCell
         
-        viewModel.cells[viewModel.pages[indexPath.row].cellID] = cell
+        viewModel.cells[viewModel.placeStatus.pages[indexPath.row].cellID] = cell
         
-        switch viewModel.pages[indexPath.row] {
+        switch viewModel.placeStatus.pages[indexPath.row] {
         case .info:
             (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize)
         case .events:
