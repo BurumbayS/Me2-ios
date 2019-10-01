@@ -25,7 +25,7 @@ class SearchBar: UIView {
         super.awakeFromNib()
         
         backButton.isHidden = true
-        textField.addTarget(self, action: #selector(searchActivated), for: .touchUpInside)
+        textField.addTarget(self, action: #selector(searchActivated), for: .touchDown)
         textField.addTarget(self, action: #selector(searchValueChanged), for: .editingChanged)
     }
     

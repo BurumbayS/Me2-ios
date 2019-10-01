@@ -15,6 +15,7 @@ enum Storyboard: String {
     case chat = "Chat"
     case profile = "Profile"
     case placeProfile = "PlaceProfile"
+    case events = "Events"
     
     private var storyboard: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: nil)
@@ -89,5 +90,22 @@ extension Storyboard {
     //Place profile controllers
     static var placeProfileViewController = {
         return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
+    }
+    
+    //Events tab controllers
+    static var eventsTabViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventsTabViewController")
+    }
+    static var eventsSearchViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventsSearchViewController")
+    }
+    static var listOfAllViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "ListOfAllViewController")
+    }
+    static var eventDetailsViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventDetailsViewController")
+    }
+    static var eventFilterViewController = {
+        return events.storyboard.instantiateViewController(withIdentifier: "EventFilterViewController")
     }
 }
