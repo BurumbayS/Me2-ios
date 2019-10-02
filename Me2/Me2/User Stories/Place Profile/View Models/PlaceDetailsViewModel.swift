@@ -9,8 +9,6 @@
 import UIKit
 
 class PlaceDetailsViewModel {
-//    let pages = [PlaceProfilePage.info, .events, .menu, .reviews]
-//    let pages = [PlaceProfilePage.info, .reviews]
     var cells = [String : PlaceDetailCollectionCell]()
     let placeStatus: PlaceStatus
     let currentPage: Dynamic<Int>

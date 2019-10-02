@@ -116,7 +116,7 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         
         switch viewModel.placeStatus.pages[indexPath.row] {
         case .info:
-            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, placeStatus: viewModel.placeStatus)
         case .events:
             (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize)
         case .menu:
