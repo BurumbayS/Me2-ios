@@ -40,7 +40,7 @@ class PlaceProfileViewModel {
     init() {
         pageToShow = Dynamic(.info)
         currentPage = Dynamic(0)
-        placeStatus = .not_registered
+        placeStatus = .registered
         
         currentPage.bind { [unowned self] (index) in
             self.pageToShow.value = self.placeStatus.pages[index]

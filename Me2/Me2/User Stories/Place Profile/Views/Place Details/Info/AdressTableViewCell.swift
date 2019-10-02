@@ -75,7 +75,7 @@ class AdressTableViewCell: UITableViewCell {
         constrain(view, iconImageView, self.contentView) { view, icon, contentView in
             view.left == icon.right + 15
             view.right == contentView.right - 22
-            view.top == contentView.top
+            view.top == contentView.top + 20
             view.bottom == contentView.bottom - 10
             view.centerY == icon.centerY
         }
