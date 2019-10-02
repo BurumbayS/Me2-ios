@@ -11,13 +11,16 @@ import Cartography
 
 enum TagSize {
     case large
+    case medium
     case small
     
     var font: UIFont {
         switch self {
         case .large:
             return UIFont(name: "Roboto-Regular", size: 17)!
-        default:
+        case .medium:
+            return UIFont(name: "Roboto-Medium", size: 13)!
+        case .small:
             return UIFont(name: "Roboto-Regular", size: 11)!
         }
     }

@@ -13,17 +13,17 @@
         <!--User Profile View Controller-->
         <scene sceneID="kcm-8Y-SbJ">
             <objects>
-                <viewController storyboardIdentifier="UserProfileViewController" id="hzc-CC-60b" customClass="UserProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hzc-CC-60b" customClass="UserProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qu9-jv-29f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="g61-nd-Y43">
-                                <rect key="frame" x="28" y="44" width="386" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gf-Pz-scF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="Svn-m4-JF2"/>
                                 </items>
@@ -34,13 +34,14 @@
                             <constraint firstItem="g61-nd-Y43" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="7vm-Ql-33U"/>
                             <constraint firstItem="4gf-Pz-scF" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="B90-sP-Bxm"/>
                             <constraint firstAttribute="trailing" secondItem="4gf-Pz-scF" secondAttribute="trailing" id="Tc4-fA-bIY"/>
-                            <constraint firstItem="g61-nd-Y43" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" constant="28" id="ZMp-0K-JFz"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="ZMp-0K-JFz"/>
                             <constraint firstItem="4gf-Pz-scF" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="bBl-wQ-f1P"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="d9d-e4-3sj"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="bottom" secondItem="jiL-YL-71K" secondAttribute="bottom" id="lZg-3d-tPK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jiL-YL-71K"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xe5-EO-utd"/>
                     <connections>
                         <outlet property="navBar" destination="4gf-Pz-scF" id="bKt-ed-uDn"/>
                         <outlet property="navItem" destination="Svn-m4-JF2" id="ED0-AN-xqI"/>
@@ -49,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDr-f4-yg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6269.5652173913049" y="42.857142857142854"/>
+            <point key="canvasLocation" x="7179.7101449275369" y="42.857142857142854"/>
         </scene>
         <!--Favourite Places View Controller-->
         <scene sceneID="Dzj-FY-qxi">
@@ -79,7 +80,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6U-3a-UXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7014" y="43"/>
+            <point key="canvasLocation" x="7923.188405797102" y="42.857142857142854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QRZ-SD-gv9">
+            <objects>
+                <navigationController storyboardIdentifier="UserProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="kiB-Ax-udQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yXK-zV-XzN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hzc-CC-60b" kind="relationship" relationship="rootViewController" id="ryW-z3-ar9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPl-lc-jbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6399" y="43"/>
         </scene>
     </scenes>
 </document>

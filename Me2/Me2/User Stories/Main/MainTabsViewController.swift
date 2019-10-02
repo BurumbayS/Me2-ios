@@ -40,14 +40,23 @@ class MainTabsViewController: UITabBarController {
         return vc
     }()
     
-    
+    private let profileTabViewController : UINavigationController = {
+        let vc = Storyboard.userProfileViewController() as! UINavigationController
+        let image = UIImage(named: "profile_icon")
+        let selectedImage = UIImage(named: "profile_icon_selected")
+        let tabBarItem = UITabBarItem(title: "", image: image, selectedImage: selectedImage)
+        tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        vc.tabBarItem = tabBarItem
+        return vc
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let viewControllers = [mapTabViewController,
                                eventsTabViewController,
-                               chatTabViewController]
+                               chatTabViewController,
+                               profileTabViewController]
         self.setViewControllers(viewControllers, animated: true)
     }
 }

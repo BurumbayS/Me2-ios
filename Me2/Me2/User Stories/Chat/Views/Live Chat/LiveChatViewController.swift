@@ -45,7 +45,7 @@ extension LiveChatViewController : UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Storyboard.userProfileViewController()
-        controllerPresenter.present(controller: vc)
+        let vc = Storyboard.userProfileViewController() as! UINavigationController
+        controllerPresenter.present(controller: vc.viewControllers[0])
     }
 }
