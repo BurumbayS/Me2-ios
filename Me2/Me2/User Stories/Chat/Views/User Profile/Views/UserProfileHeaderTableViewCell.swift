@@ -18,14 +18,14 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var actionToProfileViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bioLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        configureViews()
-    }
-    
-    private func configureViews() {
-    
+    func configure(with profileType: ProfileType) {
+        if profileType == .myProfile {
+            actionToProfileView.isHidden = true
+            actionToProfileViewHeight.constant = 0
+        } else {
+            actionToProfileView.isHidden = false
+            actionToProfileViewHeight.constant = 60
+        }
     }
     
     @IBAction func wavePressed(_ sender: Any) {

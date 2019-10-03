@@ -21,7 +21,7 @@ enum MyProfileAdditionalBlockCell: String {
         case .contacts:
             return UIImage(named: "contacts_icon")!
         case .notifications:
-            return UIImage(named: "notifications_icon")!
+            return UIImage(named: "notification_icon")!
         case .settings:
             return UIImage(named: "settings_icon")!
         case .feedback:
@@ -39,6 +39,15 @@ enum GuestProfileAdditionalBlockCell: String {
     case removeContact = "Удалить из контактов"
     case block = "Заблокировать"
     case compplain = "Пожаловаться на пользователя"
+    
+    var textColor: UIColor {
+        switch self {
+        case .addContact:
+            return Color.blue
+        default:
+            return Color.red
+        }
+    }
 }
 
 enum ProfileType {
@@ -54,7 +63,7 @@ enum UserProfileSection: String {
 }
 
 class UserProfileViewModel {
-    var profileType = ProfileType.guestProfile
+    var profileType = ProfileType.myProfile
     let sections = [UserProfileSection.bio, .interests, .favourite_places, .additional_block]
     let myProfileCells = [MyProfileAdditionalBlockCell.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
     let guestProfileCells = [GuestProfileAdditionalBlockCell.addContact, .block, .compplain]

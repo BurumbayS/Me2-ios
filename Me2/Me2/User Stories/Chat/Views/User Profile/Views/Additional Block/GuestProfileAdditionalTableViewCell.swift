@@ -23,9 +23,9 @@ class GuestProfileAdditionalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(title: String, textColor: UIColor) {
-        label.text = title
-        label.textColor = textColor
+    func configure(with item: GuestProfileAdditionalBlockCell) {
+        label.text = item.rawValue
+        label.textColor = item.textColor
     }
     
     private func setUpViews() {

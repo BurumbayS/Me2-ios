@@ -93,7 +93,6 @@
                                 <rect key="frame" x="168" y="20" width="156" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="156" id="57j-Xu-HjL"/>
-                                    <constraint firstAttribute="height" constant="40" id="MtU-4c-Qay"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="write_button"/>
                                 <connections>
@@ -103,7 +102,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttN-yA-Ba8">
                                 <rect key="frame" x="0.0" y="20" width="156" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="7Vn-o8-qFe"/>
                                     <constraint firstAttribute="width" constant="156" id="dnk-GJ-wtr"/>
                                 </constraints>
                                 <state key="normal" image="wave_button"/>

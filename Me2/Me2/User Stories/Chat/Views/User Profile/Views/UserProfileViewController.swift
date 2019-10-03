@@ -131,6 +131,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.profileType)
             return cell
             
         case .interests:
@@ -158,12 +159,13 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             case .myProfile:
                 
                 let cell: MyProfileAdditionalTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configure(with: viewModel.myProfileCells[indexPath.row])
                 return cell
                 
             case .guestProfile:
                 
                 let cell: GuestProfileAdditionalTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configure(title: viewModel.guestProfileCells[indexPath.row].rawValue, textColor: .red)
+                cell.configure(with: viewModel.guestProfileCells[indexPath.row])
                 return cell
                 
             }
