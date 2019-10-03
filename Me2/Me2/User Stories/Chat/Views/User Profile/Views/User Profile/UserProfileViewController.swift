@@ -47,7 +47,6 @@ class UserProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 30
         
         tableView.registerNib(UserProfileHeaderTableViewCell.self)
-        tableView.register(TextTableViewCell.self)
         tableView.register(TagsTableViewCell.self)
         tableView.register(FavouritePlacesTableViewCell.self)
         tableView.register(AddInterestsTableViewCell.self)
@@ -133,7 +132,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.profileType)
+            cell.configure(with: viewModel.profileType, and: self)
             return cell
             
         case .interests:
@@ -175,5 +174,11 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
 
         }
     
+    }
+}
+
+extension UserProfileViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

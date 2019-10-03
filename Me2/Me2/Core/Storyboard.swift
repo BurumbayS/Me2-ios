@@ -86,10 +86,13 @@ extension Storyboard {
     static var favouritePlacesViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "FavouritePlacesViewController")
     }
+    static var editProfileViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
-        return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
     }
     
     //Events tab controllers

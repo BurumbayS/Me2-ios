@@ -18,7 +18,11 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var actionToProfileViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bioLabel: UILabel!
     
-    func configure(with profileType: ProfileType) {
+    var presenterDelegate: ControllerPresenterDelegate!
+    
+    func configure(with profileType: ProfileType, and delegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = delegate
+        
         if profileType == .myProfile {
             actionToProfileView.isHidden = true
             actionToProfileViewHeight.constant = 0
@@ -28,6 +32,11 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
             actionToProfileViewHeight.constant = 60
             editButton.isHidden = true
         }
+    }
+    
+    @IBAction func editPressed(_ sender: Any) {
+        let vc = Storyboard.editProfileViewController()
+        presenterDelegate.present(controller: vc)
     }
     
     @IBAction func wavePressed(_ sender: Any) {

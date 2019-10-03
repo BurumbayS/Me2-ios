@@ -82,6 +82,47 @@
             </objects>
             <point key="canvasLocation" x="7923.188405797102" y="42.857142857142854"/>
         </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="Eb8-Rn-aOA">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileViewController" id="X8z-bI-X74" customClass="EditProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="93C-J9-SWe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-e2-FEW">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="NRo-um-wjB"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X0i-Fh-UTo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8dm-eK-QEe" firstAttribute="bottom" secondItem="X0i-Fh-UTo" secondAttribute="bottom" id="9vy-lG-p0g"/>
+                            <constraint firstItem="X0i-Fh-UTo" firstAttribute="leading" secondItem="8dm-eK-QEe" secondAttribute="leading" id="A53-Y5-iTg"/>
+                            <constraint firstItem="8dm-eK-QEe" firstAttribute="trailing" secondItem="X0i-Fh-UTo" secondAttribute="trailing" id="OMj-TM-vaA"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="trailing" secondItem="8dm-eK-QEe" secondAttribute="trailing" id="Sc5-RC-ECE"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="top" secondItem="8dm-eK-QEe" secondAttribute="top" id="agW-1q-XOS"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="leading" secondItem="8dm-eK-QEe" secondAttribute="leading" id="jiy-KY-T3q"/>
+                            <constraint firstItem="X0i-Fh-UTo" firstAttribute="top" secondItem="Rpt-e2-FEW" secondAttribute="bottom" id="zud-zn-BFU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8dm-eK-QEe"/>
+                    </view>
+                    <connections>
+                        <outlet property="navItem" destination="NRo-um-wjB" id="l9o-ML-5xF"/>
+                        <outlet property="navbar" destination="Rpt-e2-FEW" id="tz6-39-yN1"/>
+                        <outlet property="tableView" destination="X0i-Fh-UTo" id="pZE-mD-ecN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OuX-1C-qZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8675" y="43"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
             <objects>
