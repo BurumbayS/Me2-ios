@@ -12,6 +12,7 @@ import Cartography
 class AddInterestsTableViewCell: UITableViewCell {
 
     let addButton = UIButton()
+    let placeHolderLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,6 +22,15 @@ class AddInterestsTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(for profileType: ProfileType) {
+        switch profileType {
+        case .myProfile:
+            placeHolderLabel.isHidden = true
+        default:
+            addButton.isHidden = true
+        }
     }
     
     private func setUpViews() {
@@ -34,6 +44,17 @@ class AddInterestsTableViewCell: UITableViewCell {
             btn.bottom == view.bottom
             btn.top == view.top + 25
             btn.height == 20
+        }
+        
+        placeHolderLabel.textColor = .darkGray
+        placeHolderLabel.text = "Интересов пока нет"
+        placeHolderLabel.font = UIFont(name: "Roboto-Regular", size: 15)
+        self.contentView.addSubview(placeHolderLabel)
+        constrain(placeHolderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.bottom == view.bottom
+            label.top == view.top + 25
+            label.height == 20
         }
     }
 }

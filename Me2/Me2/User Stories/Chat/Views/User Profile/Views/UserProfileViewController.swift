@@ -25,6 +25,7 @@ class UserProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navigationController?.navigationBar.isHidden = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
         navBar.isTranslucent = false
@@ -32,7 +33,8 @@ class UserProfileViewController: UIViewController {
         navBar.tintColor = .black
         
         navItem.title = ""
-        setUpBackBarButton(for: navItem)
+        
+        if (viewModel.profileType == .guestProfile) { setUpBackBarButton(for: navItem) }
     }
     
     private func configureTableView() {
@@ -143,6 +145,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 return cell
             } else {
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configure(for: viewModel.profileType)
                 return cell
             }
             
@@ -150,7 +153,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: 10)
+            cell.configure(with: 0, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:

@@ -13,6 +13,7 @@ class FavouritePlacesTableViewCell: UITableViewCell {
     
     let addPlacesButton = UIButton()
     var collectionView: UICollectionView!
+    let placeHolderLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,7 +27,14 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: Int) {
+    func configure(with data: Int, profileType: ProfileType) {
+        switch profileType {
+        case .myProfile:
+            placeHolderLabel.isHidden = true
+        default:
+            addPlacesButton.isHidden = true
+        }
+        
         if data > 0 {
             collectionView.isHidden = false
         } else {
@@ -44,6 +52,16 @@ class FavouritePlacesTableViewCell: UITableViewCell {
             btn.centerX == view.centerX
             btn.centerY == view.centerY
             btn.height == 20
+        }
+        
+        placeHolderLabel.textColor = .darkGray
+        placeHolderLabel.text = "Любимых мест пока нет"
+        placeHolderLabel.font = UIFont(name: "Roboto-Regular", size: 15)
+        self.contentView.addSubview(placeHolderLabel)
+        constrain(placeHolderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.centerY == view.centerY
+            label.height == 20
         }
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())

@@ -22,9 +22,11 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
         if profileType == .myProfile {
             actionToProfileView.isHidden = true
             actionToProfileViewHeight.constant = 0
+            editButton.isHidden = false
         } else {
             actionToProfileView.isHidden = false
             actionToProfileViewHeight.constant = 60
+            editButton.isHidden = true
         }
     }
     
