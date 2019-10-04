@@ -50,6 +50,7 @@ class EditProfileViewController: UIViewController {
         tableView.registerNib(EditProfileHeaderTableViewCell.self)
         tableView.register(EditProfileTableViewCell.self)
         tableView.register(EditProfileBioTableViewCell.self)
+        tableView.register(EditProfileTagsTableViewCell.self)
     }
     
     @objc private func cancelEditing() {
@@ -73,23 +74,41 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         case .mainInfo:
             
             let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.dataFor(cellType: cellType))
+            cell.selectionStyle = .none
+            cell.configure(with: viewModel.dataFor(cellType: cellType), controllerPresenter: self, actionSheetPresenter: self)
             return cell
             
         case .firstname, .lastname, .dateOfBirth, .phoneNumber:
             
             let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
             return cell
             
         case .bio:
             
             let cell: EditProfileBioTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
             return cell
             
-        default:
-            return UITableViewCell()
+        case .interests:
+            
+            let cell: EditProfileTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure()
+            return cell
+
         }
+    }
+}
+
+extension EditProfileViewController: ControllerPresenterDelegate, ActionSheetPresenterDelegate {
+    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
+        self.addActionSheet(with: titles, and: actions, and: styles)
+    }
+    
+    func present(controller: UIViewController) {
+        present(controller, animated: true, completion: nil)
     }
 }

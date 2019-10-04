@@ -79,7 +79,7 @@ class Tag: UIView {
             self.backgroundColor = Color.red
             self.label.textColor = .white
             tagsList.selectedList.append(label.text ?? "")
-        default:
+        default: 
             self.backgroundColor = Color.lightGray
             self.label.textColor = .gray
             tagsList.selectedList.removeAll(where: { $0 == self.label.text })

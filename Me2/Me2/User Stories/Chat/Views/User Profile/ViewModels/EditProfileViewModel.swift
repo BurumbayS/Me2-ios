@@ -19,7 +19,7 @@ enum EditProfileCell: String {
 }
 
 class EditProfileViewModel {
-    let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .phoneNumber]
+    let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .interests, .phoneNumber]
     
     func dataFor(cellType: EditProfileCell) -> [String: String] {
         switch cellType {
