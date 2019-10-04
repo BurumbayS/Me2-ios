@@ -132,7 +132,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.profileType, and: self)
+            cell.configure(profileType: viewModel.profileType, viewController: self)
             return cell
             
         case .interests:

@@ -10,6 +10,8 @@
 		DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B892346099800A5A9A7 /* EditProfileViewController.swift */; };
 		DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */; };
 		DD133B8E23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */; };
+		DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B8F2346152E00A5A9A7 /* EditProfileTableViewCell.swift */; };
+		DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */; };
 		DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */; };
 		DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */; };
 		DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */; };
@@ -182,6 +184,8 @@
 		DD133B892346099800A5A9A7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DD133B8F2346152E00A5A9A7 /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCell.swift; sourceTree = "<group>"; };
+		DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeViewModel.swift; sourceTree = "<group>"; };
 		DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfirmCodeViewController.swift; path = SignUp/ConfirmCodeViewController.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 				DD133B892346099800A5A9A7 /* EditProfileViewController.swift */,
 				DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */,
 				DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */,
+				DD133B8F2346152E00A5A9A7 /* EditProfileTableViewCell.swift */,
 			);
 			path = "Edit Profile";
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */,
+				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1286,6 +1292,7 @@
 				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
+				DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,
@@ -1360,6 +1367,7 @@
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
+				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,

@@ -18,10 +18,10 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var actionToProfileViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bioLabel: UILabel!
     
-    var presenterDelegate: ControllerPresenterDelegate!
+    var parentVC: UIViewController!
     
-    func configure(with profileType: ProfileType, and delegate: ControllerPresenterDelegate) {
-        self.presenterDelegate = delegate
+    func configure(profileType: ProfileType, viewController: UIViewController) {
+        self.parentVC = viewController
         
         if profileType == .myProfile {
             actionToProfileView.isHidden = true
@@ -36,7 +36,7 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     
     @IBAction func editPressed(_ sender: Any) {
         let vc = Storyboard.editProfileViewController()
-        presenterDelegate.present(controller: vc)
+        parentVC.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func wavePressed(_ sender: Any) {

@@ -14,9 +14,11 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
+    let viewModel = EditProfileViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureNavBar()
         configureTableView()
     }
@@ -46,10 +48,11 @@ class EditProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         
         tableView.registerNib(EditProfileHeaderTableViewCell.self)
+        tableView.register(EditProfileTableViewCell.self)
     }
     
     @objc private func cancelEditing() {
-        
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func finishEditing() {
@@ -59,11 +62,30 @@ class EditProfileViewController: UIViewController {
 
 extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        return cell
+        let cellType = viewModel.cells[indexPath.row]
+        
+        switch cellType {
+        case .mainInfo:
+            let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
+        case .firstname:
+            let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(title: cellType.rawValue, placeholder: "")
+            return cell
+        case .lastname:
+            let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(title: cellType.rawValue, placeholder: "")
+            return cell
+        case .dateOfBirth:
+            let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(title: cellType.rawValue, placeholder: "")
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }
