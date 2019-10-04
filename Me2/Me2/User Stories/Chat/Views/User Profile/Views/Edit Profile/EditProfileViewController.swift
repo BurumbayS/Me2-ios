@@ -49,6 +49,7 @@ class EditProfileViewController: UIViewController {
         
         tableView.registerNib(EditProfileHeaderTableViewCell.self)
         tableView.register(EditProfileTableViewCell.self)
+        tableView.register(EditProfileBioTableViewCell.self)
     }
     
     @objc private func cancelEditing() {
@@ -70,20 +71,23 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         
         switch cellType {
         case .mainInfo:
+            
             let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: viewModel.dataFor(cellType: cellType))
             return cell
-        case .firstname:
+            
+        case .firstname, .lastname, .dateOfBirth, .phoneNumber:
+            
             let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(title: cellType.rawValue, placeholder: "")
+            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
             return cell
-        case .lastname:
-            let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(title: cellType.rawValue, placeholder: "")
+            
+        case .bio:
+            
+            let cell: EditProfileBioTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
             return cell
-        case .dateOfBirth:
-            let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(title: cellType.rawValue, placeholder: "")
-            return cell
+            
         default:
             return UITableViewCell()
         }

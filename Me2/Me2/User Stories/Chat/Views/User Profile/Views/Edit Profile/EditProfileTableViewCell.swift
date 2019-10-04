@@ -13,6 +13,9 @@ class EditProfileTableViewCell: UITableViewCell {
 
     let titleLabel = UILabel()
     let textField = UITextField()
+    let datePicker = UIDatePicker()
+    
+    var cellType: EditProfileCell!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,9 +29,42 @@ class EditProfileTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(title: String, placeholder: String) {
-        titleLabel.text = title
-        textField.placeholder = placeholder
+    func configure(with data: [String : String], cellType: EditProfileCell) {
+        titleLabel.text = cellType.rawValue
+        
+        self.cellType = cellType
+        
+        switch cellType {
+        case .firstname:
+            textField.placeholder = data["firstname"]
+        case .lastname:
+            textField.placeholder = data["lastname"]
+        case .dateOfBirth:
+            textField.placeholder = data["dateOfBirth"]
+        case .phoneNumber:
+            textField.placeholder = data["phoneNumber"]
+        default:
+            break
+        }
+        
+        switch cellType {
+        case .dateOfBirth:
+            
+            datePicker.datePickerMode = .date
+            datePicker.locale = Locale(identifier: "ru")
+            datePicker.maximumDate = Calendar.current.date(byAdding: .second, value: 0, to: Date())
+            textField.inputView = datePicker
+            textField.delegate = self
+            
+        case .phoneNumber:
+            
+            textField.keyboardType = .numberPad
+            
+        default:
+            
+            break
+            
+        }
     }
     
     private func setUpViews() {
@@ -40,6 +76,7 @@ class EditProfileTableViewCell: UITableViewCell {
             label.left == view.left + 20
         }
         
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
         textField.borderStyle = .none
         textField.layer.cornerRadius = 5
         textField.backgroundColor = .white
@@ -53,4 +90,35 @@ class EditProfileTableViewCell: UITableViewCell {
             textField.height == 40
         }
     }
+}
+
+extension EditProfileTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch cellType {
+        case .dateOfBirth?:
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.locale = Locale(identifier: "ru")
+            textField.text = formatter.string(from: datePicker.date)
+        default:
+            break
+        }
+    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let text = textField.text else { return false }
+//
+//        if text.count < "+# (###) ###-##-##".count {
+//            textField.text = text.applyPatternOnNumbers(pattern: "+# (###) ###-##-##", replacmentCharacter: "#")
+//            return true
+//        }
+//
+//        let  char = string.cString(using: String.Encoding.utf8)!
+//        let isBackSpace = strcmp(char, "\\b")
+//
+//        if (isBackSpace == -92) {
+//            return true
+//        }
+//
+//        return false
+//    }
 }

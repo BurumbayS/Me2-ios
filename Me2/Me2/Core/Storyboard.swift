@@ -92,7 +92,7 @@ extension Storyboard {
     
     //Place profile controllers
     static var placeProfileViewController = {
-        return placeProfile.storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
     }
     
     //Events tab controllers

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum EditProfileCells: String {
+enum EditProfileCell: String {
     case mainInfo = ""
     case firstname = "Имя"
     case lastname = "Фамилия"
@@ -19,5 +19,25 @@ enum EditProfileCells: String {
 }
 
 class EditProfileViewModel {
-    let cells = [EditProfileCells.mainInfo, .firstname, .lastname, .dateOfBirth]
+    let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .phoneNumber]
+    
+    func dataFor(cellType: EditProfileCell) -> [String: String] {
+        switch cellType {
+        case .mainInfo:
+            return ["avatar" : "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
+                    "username" : "KennyS"]
+        case .firstname:
+            return ["firstname" : "Hello"]
+        case .lastname:
+            return ["lastname" : "World"]
+        case .dateOfBirth:
+            return ["dateOfBirth" : "14 марта 1996"]
+        case .bio:
+            return ["bio" : "Интересуюсь физикой и другими науками. В свободное время выращиваю розы и играю на скрипке. Подписывайтесь на мою страницу в инстаграме @einstein_emc"]
+        case .phoneNumber:
+            return ["phoneNumber" : "+7 (777) *** **77"]
+        case .interests:
+            return ["" : ""]
+        }
+    }
 }
