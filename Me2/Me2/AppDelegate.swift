@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
 import GoogleSignIn
-import FBSDKCoreKitgit flow feat
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
