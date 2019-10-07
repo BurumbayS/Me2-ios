@@ -12,6 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import GoogleSignIn
 import FBSDKCoreKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Configure Google maps
         GMSServices.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
         GMSPlacesClient.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
+        
+        //Configure Firebase
+        FirebaseApp.configure()
         
         window?.makeKeyAndVisible()
         return true
