@@ -14,10 +14,11 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
     var tableSize: Dynamic<CGSize>?
     
+    var viewModel: PlaceInfoViewModel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(enableScroll), name: .makeTableViewScrollable, object: nil)
         setUpViews()
         configureTableView()
     }
@@ -26,8 +27,9 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?) {
+    func configure(itemSize: Dynamic<CGSize>?, placeStatus: PlaceStatus) {
         self.tableSize = itemSize
+        self.viewModel = PlaceInfoViewModel(placeStatus: placeStatus)
     }
     
     override func reload () {
@@ -64,10 +66,6 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(PlaceSubsidiariesTableViewCell.self)
     }
     
-    @objc private func enableScroll() {
-        tableView.isScrollEnabled = true
-    }
-    
     private func configureViews() {
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -80,12 +78,12 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
 
 extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return viewModel.placeSections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        switch viewModel.placeSections[indexPath.row] {
+        case .description:
             
             let cell: PlaceDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
@@ -100,48 +98,48 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             }
             return cell
             
-        case 1:
+        case .contactUs:
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             return cell
             
-        case 2:
+        case .address:
             
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(with: "Желтоксана, 137", additionalInfo: "1 этаж, Алмалинский район", distance: "1.3 км")
             return cell
             
-        case 3:
+        case .workTime:
             
             let cell: PlaceWorkTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(with: "Ежедневно 08:00 - 24:00", and: "Закроется через 20 мин", isOpen: true)
             return cell
             
-        case 4:
+        case .mail:
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(withEmail: "travelers@coffee.com")
             return cell
             
-        case 5:
+        case .site:
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(withWebSite: "www.travelers-coffee.com")
             return cell
             
-        case 6:
+        case .tags:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-//            cell.configure(with: .unselectable)
+            cell.configure(tagsType: .unselectable, tagsList: TagsList())
             cell.selectionStyle = .none
             return cell
             
-        case 7:
+        case .subsidiaries:
             
             let cell: PlaceSubsidiariesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none

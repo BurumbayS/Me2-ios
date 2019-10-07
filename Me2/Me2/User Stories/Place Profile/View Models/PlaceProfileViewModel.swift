@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum PlaceProfilePage: String  {
     case info = "PlaceInfoCell"
@@ -17,14 +17,33 @@ enum PlaceProfilePage: String  {
     var cellID: String {
         return self.rawValue
     }
+    
+    func getCellClass() -> UICollectionViewCell.Type {
+        switch self {
+        case .info:
+            return PlaceInfoCollectionViewCell.self
+        case .menu:
+            return PlaceMenuCollectionViewCell.self
+        case .reviews:
+            return PlaceReviewsCollectionViewCell.self
+        case .events:
+            return PlaceEventsCollectionViewCell.self
+        }
+    }
 }
 
 class PlaceProfileViewModel {
     var currentPage: Dynamic<Int>
-    var pageToShow: PlaceProfilePage
+    var pageToShow: Dynamic<PlaceProfilePage>
+    var placeStatus: PlaceStatus
     
     init() {
-        pageToShow = .info
+        pageToShow = Dynamic(.info)
         currentPage = Dynamic(0)
+        placeStatus = .registered
+        
+        currentPage.bind { [unowned self] (index) in
+            self.pageToShow.value = self.placeStatus.pages[index]
+        }
     }
 }

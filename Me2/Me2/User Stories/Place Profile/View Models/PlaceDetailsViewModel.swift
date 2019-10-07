@@ -9,21 +9,12 @@
 import UIKit
 
 class PlaceDetailsViewModel {
-    let pages = [PlaceProfilePage.info, .events, .menu, .reviews]
     var cells = [String : PlaceDetailCollectionCell]()
+    let placeStatus: PlaceStatus
+    let currentPage: Dynamic<Int>
     
-    func getCellClass(for index: Int) -> UICollectionViewCell.Type {
-        let page = pages[index]
-        
-        switch page {
-        case .info:
-            return PlaceInfoCollectionViewCell.self
-        case .menu:
-            return PlaceMenuCollectionViewCell.self
-        case .reviews:
-            return PlaceReviewsCollectionViewCell.self
-        case .events:
-            return PlaceEventsCollectionViewCell.self
-        }
+    init(placeStatus: PlaceStatus, currentPage: Dynamic<Int>) {
+        self.placeStatus = placeStatus
+        self.currentPage = currentPage
     }
 }

@@ -10,9 +10,12 @@ import UIKit
 import Cartography
 import Cosmos
 import ImageSlideshow
+import Kingfisher
 
 class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
+    let imageView = UIImageView()
+    let wallpaperView = UIView()
     let imageCarousel = ImageSlideshow()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
@@ -24,6 +27,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     var followBtnSize = ConstraintGroup()
     var isFollowed: Dynamic<Bool> = Dynamic(false)
     var parentVC: UIViewController!
+    var placeStatus: PlaceStatus!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,11 +40,26 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(title: String, rating: Double, category: String, viewController: UIViewController) {
+    func configureWith(title: String, rating: Double, category: String, placeStatus: PlaceStatus, viewController: UIViewController) {
+        self.placeStatus = placeStatus
         titleLabel.text = title
         ratingView.rating = rating
         categoryLabel.text = category
         parentVC = viewController
+        
+        configureViews()
+    }
+    
+    private func configureViews() {
+        switch placeStatus {
+        case .registered?:
+            imageView.isHidden = true
+        case .not_registered?:
+            imageCarousel.isHidden = true
+            followButton.isHidden = true
+        default:
+            break
+        }
     }
     
     private func bindDynamics() {
@@ -55,6 +74,36 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
+        setUpWallpaperView()
+        setUpTopBar()
+        setUpPlaceHeader()
+    }
+    
+    private func setUpWallpaperView() {
+        setUpDefaultWalppaper()
+        setupImageCarousel()
+        
+        self.addSubview(wallpaperView)
+        constrain(self.wallpaperView, self) { wallpaper, view in
+            wallpaper.left == view.left
+            wallpaper.top == view.top
+            wallpaper.right == view.right
+        }
+    }
+    
+    private func setUpDefaultWalppaper() {
+        imageView.image = UIImage(named: "default_place_wallpaper")
+        imageView.contentMode = .scaleAspectFill
+        self.wallpaperView.addSubview(imageView)
+        constrain(imageView, self.wallpaperView) { image, view in
+            image.left == view.left
+            image.top == view.top
+            image.right == view.right
+            image.bottom == view.bottom
+        }
+    }
+    
+    private func setupImageCarousel() {
         imageCarousel.contentScaleMode = .scaleAspectFill
         imageCarousel.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
         imageCarousel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImages)))
@@ -62,15 +111,13 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!,
             KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!
             ])
-        self.addSubview(imageCarousel)
-        constrain(imageCarousel, self) { image, view in
+        self.wallpaperView.addSubview(imageCarousel)
+        constrain(imageCarousel, self.wallpaperView) { image, view in
             image.left == view.left
             image.top == view.top
             image.right == view.right
+            image.bottom == view.bottom
         }
-        
-        setUpTopBar()
-        setUpPlaceHeader()
     }
     
     private func setUpTopBar() {
@@ -173,7 +220,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         }
         
         self.addSubview(view)
-        constrain(view, imageCarousel, self) { view, image, superview in
+        constrain(view, wallpaperView, self) { view, image, superview in
             view.top == image.bottom - 20
             view.left == superview.left
             view.right == superview.right

@@ -12,6 +12,7 @@ import Cartography
 class PlaceProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: CollectionView!
+    @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
@@ -30,8 +31,47 @@ class PlaceProfileViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
+        
         configureNavBar()
         configureCollectionView()
+        configureActionButton()
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.pageToShow.bind { [unowned self] (page) in
+            self.configureActionButton()
+        }
+    }
+    
+    private func configureActionButton() {
+        if viewModel.placeStatus == .not_registered {
+            self.actionButton.setTitle("", for: .normal)
+            self.actionButton.isHidden = true
+            
+            return
+        }
+        
+        actionButton.drawShadow(color: UIColor.gray.cgColor, forOpacity: 1, forOffset: CGSize(width: 0, height: 0), radius: 3)
+        
+        switch viewModel.pageToShow.value {
+        case .info:
+            
+            self.actionButton.backgroundColor = Color.red
+            self.actionButton.setTitle("Забронировать столик", for: .normal)
+            self.actionButton.isHidden = false
+            
+        case .reviews:
+            
+            self.actionButton.backgroundColor = Color.blue
+            self.actionButton.setTitle("Оставить отзыв", for: .normal)
+            self.actionButton.isHidden = false
+            
+        default:
+            
+            self.actionButton.setTitle("", for: .normal)
+            self.actionButton.isHidden = true
+        }
     }
     
     private func configureNavBar() {
@@ -63,7 +103,7 @@ class PlaceProfileViewController: UIViewController {
         
         collectionView.register(PlaceDetailsCollectionViewCell.self)
         collectionView.register(PlaceProfileHeaderCollectionViewCell.self)
-        collectionView.registerHeader(PlaceProfileHeaderView.self)
+        collectionView.registerHeader(PlaceTabView.self)
         collectionView.registerHeader(UICollectionReusableView.self)
     }
     
@@ -79,6 +119,26 @@ class PlaceProfileViewController: UIViewController {
         collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    
+    @IBAction func actionButtonPressed(_ sender: Any) {
+        switch viewModel.pageToShow.value {
+        case .info:
+            
+            let dest = Storyboard.bookTableViewController()
+            present(dest, animated: true, completion: nil)
+            
+        case .reviews:
+            
+            let dest = Storyboard.writeReviewViewController()
+            navigationController?.pushViewController(dest, animated: true)
+            
+        default:
+            
+            break
+            
+        }
+    }
 }
 
 extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -89,8 +149,8 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             let header: UICollectionReusableView = collectionView.dequeueReusableView(for: indexPath, and: kind)
             return header
         default:
-            let header: PlaceProfileHeaderView = collectionView.dequeueReusableView(for: indexPath, and: kind)
-            header.configure { [weak self] (selectedSegment) in
+            let header: PlaceTabView = collectionView.dequeueReusableView(for: indexPath, and: kind)
+            header.configure(with: viewModel.placeStatus.pagesTitles) { [weak self] (selectedSegment) in
                 self?.viewModel.currentPage.value = selectedSegment
             }
             return header
@@ -136,13 +196,13 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", viewController: self)
+            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", placeStatus: viewModel.placeStatus, viewController: self)
             return cell
             
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.currentPage)
+            cell.configure(with: viewModel.currentPage, and: viewModel.placeStatus)
             return cell
             
         }

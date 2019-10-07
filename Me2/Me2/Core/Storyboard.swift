@@ -111,4 +111,13 @@ extension Storyboard {
     static var eventFilterViewController = {
         return events.storyboard.instantiateViewController(withIdentifier: "EventFilterViewController")
     }
+    static var writeReviewViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "WriteReviewViewController")
+    }
+    static var bookTableViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "BookTableViewController")
+    }
+    static var addGuestsViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "AddGuestsViewController")
+    }
 }
