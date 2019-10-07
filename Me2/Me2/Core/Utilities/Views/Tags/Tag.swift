@@ -11,13 +11,16 @@ import Cartography
 
 enum TagSize {
     case large
+    case medium
     case small
     
     var font: UIFont {
         switch self {
         case .large:
             return UIFont(name: "Roboto-Regular", size: 17)!
-        default:
+        case .medium:
+            return UIFont(name: "Roboto-Medium", size: 13)!
+        case .small:
             return UIFont(name: "Roboto-Regular", size: 11)!
         }
     }
@@ -76,7 +79,7 @@ class Tag: UIView {
             self.backgroundColor = Color.red
             self.label.textColor = .white
             tagsList.selectedList.append(label.text ?? "")
-        default:
+        default: 
             self.backgroundColor = Color.lightGray
             self.label.textColor = .gray
             tagsList.selectedList.removeAll(where: { $0 == self.label.text })
