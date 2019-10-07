@@ -1531,14 +1531,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2XX9GVMR69;
+				DEVELOPMENT_TEAM = 9V94UZN9HR;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.MeTwo;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1551,14 +1551,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2XX9GVMR69;
+				DEVELOPMENT_TEAM = 9V94UZN9HR;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avsoft.MeTwo;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

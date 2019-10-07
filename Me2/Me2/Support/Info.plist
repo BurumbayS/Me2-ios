@@ -37,6 +37,16 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<string>NO</string>
+	<key>FacebookAppID</key>
+	<string>395505344494913</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<string>NO</string>
+	<key>FacebookDisplayName</key>
+	<string>MeTwo</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbauth2</string>
@@ -44,16 +54,6 @@
 		<string>fb-messenger-api</string>
 		<string>fbshareextension</string>
 	</array>
-	<key>FacebookAutoLogAppEventsEnabled</key>
-	<string>NO</string>
-	<key>FacebookAdvertiserIDCollectionEnabled</key>
-	<string>NO</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>FacebookAppID</key>
-	<string>395505344494913</string>
-	<key>FacebookDisplayName</key>
-	<string>MeTwo</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -63,6 +63,11 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to take avatar</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости
+</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Rounded-Light.otf</string>
@@ -78,11 +83,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости
-</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
