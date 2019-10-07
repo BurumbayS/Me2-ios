@@ -12,12 +12,15 @@ import Cartography
 enum TagsType {
     case selectable
     case unselectable
+    case normal
     
     var tagSize: TagSize {
         switch self {
         case .selectable:
             return .large
-        default:
+        case .normal:
+            return .medium
+        case .unselectable:
             return .small
         }
     }
@@ -80,3 +83,4 @@ class TagsTableViewCell: UITableViewCell {
         }
     }
 }
+ 
