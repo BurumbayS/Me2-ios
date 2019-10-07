@@ -42,10 +42,11 @@ class EditProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         tableView.separatorStyle = .none
         tableView.backgroundColor = Color.lightGray
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 40
+        tableView.estimatedRowHeight = 20
         
         tableView.registerNib(EditProfileHeaderTableViewCell.self)
         tableView.register(EditProfileTableViewCell.self)
@@ -63,6 +64,7 @@ class EditProfileViewController: UIViewController {
 }
 
 extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cells.count
     }
@@ -96,7 +98,11 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: EditProfileTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure()
+            cell.configure { [weak self] in
+                self?.tableView.beginUpdates()
+                    cell.updateHeight()
+                self?.tableView.endUpdates()
+            }
             return cell
 
         }

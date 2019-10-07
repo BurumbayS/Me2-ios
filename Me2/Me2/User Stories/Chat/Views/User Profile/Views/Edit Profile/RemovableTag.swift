@@ -41,8 +41,8 @@ class RemovableTag: UIView {
         removeButton.addTarget(self, action: #selector(removeTag), for: .touchUpInside)
         self.addSubview(removeButton)
         constrain(removeButton, self) { btn, view in
-            btn.height == 10
-            btn.width == 10
+            btn.height == 15
+            btn.width == 15
             btn.right == view.right - 10
             btn.centerY == view.centerY
         }
