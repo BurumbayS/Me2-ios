@@ -11,15 +11,14 @@ import Cartography
 
 class EditProfileTagsTableViewCell: UITableViewCell {
 
-    var tags = ["Танцы", "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос", "Танцы",
-                "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос",
-                "Танцы", "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос"]
+    var tags = ["Танцы", "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос", "Танцы"]
     var tagViews = [RemovableTag]()
     var layoutSubviews = false
     
     let titleLabel = UILabel()
     let tagsView = UIView()
     var addTagButton = UIButton()
+    var textField = UITextField()
     
     var tagsViewHeightConstraint = ConstraintGroup()
     var tagsViewHeight: CGFloat = 0
@@ -129,15 +128,33 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         addTagButton.setTitle("+ Добавить интерес", for: .normal)
         addTagButton.setTitleColor(Color.red, for: .normal)
         addTagButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
+        addTagButton.addTarget(self, action: #selector(addNewTagPressed), for: .touchUpInside)
+        
         tagsView.addSubview(addTagButton)
     }
     
     private func setUpTextField() {
+        textField = UITextField(frame: CGRect(x: x, y: y, width: addTagButtonWidth, height: addTagButtonHeight))
+        textField.font = UIFont(name: "Roboto-Regular", size: 15)
+        textField.textColor = .black
+        textField.delegate = self
+        textField.isHidden = true
         
+        tagsView.addSubview(textField)
+    }
+    
+    @objc private func addNewTagPressed() {
+        textField.becomeFirstResponder()
     }
     
     private func removeTag(at index: Int) {
         tags.remove(at: index)
+        setUpTags()
+        updateHandler?()
+    }
+    
+    private func addTag(with title: String) {
+        tags.append(title)
         setUpTags()
         updateHandler?()
     }
@@ -148,5 +165,21 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         }
         
         layoutIfNeeded()
+    }
+}
+
+extension EditProfileTagsTableViewCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.isHidden = false
+        addTagButton.isHidden = true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let title = textField.text {
+            addTag(with: title)
+        }
+        
+        textField.isHidden = true
+        addTagButton.isHidden = false
     }
 }
