@@ -134,7 +134,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
         case .interests:
             
-            let tags = ["",""]
+            let tags = [String]()
             if tags.count > 0 {
                 
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -146,7 +146,11 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
-                cell.configure(for: viewModel.profileType)
+                cell.configure(for: viewModel.profileType) { [weak self] in
+                    let vc = Storyboard.editProfileViewController() as! EditProfileViewController
+                    vc.viewModel = EditProfileViewModel(activateAddTag: true)
+                    self?.present(vc, animated: true, completion: nil)
+                }
                 return cell
                 
             }

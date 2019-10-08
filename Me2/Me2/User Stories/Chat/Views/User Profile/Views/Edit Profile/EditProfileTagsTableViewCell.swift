@@ -13,7 +13,7 @@ class EditProfileTagsTableViewCell: UITableViewCell {
 
     var tags = ["Танцы", "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос", "Танцы"]
     var tagViews = [RemovableTag]()
-    var layoutSubviews = false
+    var didLayoutSubviews = false
     
     let titleLabel = UILabel()
     let tagsView = UIView()
@@ -42,11 +42,15 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(onUpdate: VoidBlock?) {
+    func configure(activateTagAddition: Bool, onUpdate: VoidBlock?) {
         self.updateHandler = onUpdate
         
-        if !self.layoutSubviews {
+        if !self.didLayoutSubviews {
             setUpViews()
+        }
+        
+        if activateTagAddition {
+            textField.becomeFirstResponder()
         }
     }
     
@@ -54,6 +58,8 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         setUpTitle()
         setUpTags()
         setUpTagsView()
+        
+        didLayoutSubviews = true
     }
     
     private func setUpTitle() {
@@ -175,7 +181,7 @@ extension EditProfileTagsTableViewCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let title = textField.text {
+        if let title = textField.text, title != "" {
             addTag(with: title)
         }
         

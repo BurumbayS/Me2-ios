@@ -21,6 +21,12 @@ enum EditProfileCell: String {
 class EditProfileViewModel {
     let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .interests, .phoneNumber]
     
+    let activateAddTagTextField: Bool
+    
+    init(activateAddTag: Bool = false) {
+        self.activateAddTagTextField = activateAddTag
+    }
+    
     func dataFor(cellType: EditProfileCell) -> [String: String] {
         switch cellType {
         case .mainInfo:
