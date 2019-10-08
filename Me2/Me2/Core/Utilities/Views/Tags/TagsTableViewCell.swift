@@ -33,17 +33,38 @@ class TagsList {
 
 class TagsTableViewCell: UITableViewCell {
     
-    let tags = ["Средний чек 3000тг","Средний чек 3000тг","Заказ на вынос","Бизнес-ланч","Терраса"]
+    let tags = ["Средний чек 3000тг","Средний чек 3000тг","Заказ на вынос","Бизнес-ланч","Терраса", "Заказ на вынос","Бизнес-ланч","Терраса"]
     var tagsList: TagsList!
     var tagsType: TagsType!
+    
+    var expanded: Dynamic<Bool>!
+    
+    var minVisibleTagsViewHeight: CGFloat = 0
+    var originalTagsViewHeight: CGFloat = 0
+    var visibleTagsViewHeight: CGFloat = 0
+    
     var layoutSubviews = false
     
-    func configure(tagsType: TagsType, tagsList: TagsList) {
+    func configure(tagsType: TagsType, tagsList: TagsList, expanded: Dynamic<Bool> = Dynamic(true)) {
         self.tagsType = tagsType
         self.tagsList = tagsList
+        self.expanded = expanded
         
         if !self.layoutSubviews {
             setUpViews()
+        }
+        
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        expanded.bind { [weak self] (isExpanded) in
+            switch isExpanded {
+            case true:
+                self?.visibleTagsViewHeight = self?.originalTagsViewHeight ?? 0
+            case false:
+                self?.visibleTagsViewHeight = self?.minVisibleTagsViewHeight ?? 0
+            }
         }
     }
     
@@ -55,6 +76,8 @@ class TagsTableViewCell: UITableViewCell {
         
         var x: CGFloat = 0
         var y: CGFloat = 0
+        
+        var rows = 1
 
         for tag in tags {
             let height = tagsType.tagSize.height
@@ -63,6 +86,8 @@ class TagsTableViewCell: UITableViewCell {
             if x + width + sidesPadding > UIScreen.main.bounds.width {
                 x = 0
                 y += tagsType.tagSize.height + itemPadding
+                
+                rows += 1
             }
             
             let tagView = Tag(frame: CGRect(x: x, y: y, width: width, height: height))
@@ -73,13 +98,22 @@ class TagsTableViewCell: UITableViewCell {
             x += width + itemPadding
         }
         
+        if rows >= 2 {
+            minVisibleTagsViewHeight = tagsType.tagSize.height * 2
+        } else {
+            minVisibleTagsViewHeight = tagsType.tagSize.height
+        }
+        
+        originalTagsViewHeight = y + tagsType.tagSize.height
+        visibleTagsViewHeight = (expanded.value) ? originalTagsViewHeight : minVisibleTagsViewHeight
+        
         self.contentView.addSubview(view)
         constrain(view, self.contentView) { view, superView in
             view.left == superView.left + sidesPadding
             view.right == superView.right - sidesPadding
             view.top == superView.top + 20
             view.bottom == superView.bottom - 20
-            view.height == y + tagsType.tagSize.height
+            view.height == visibleTagsViewHeight
         }
     }
 }

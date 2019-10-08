@@ -16,8 +16,22 @@ enum ProfileSectionType {
 
 class ProfileSectionHeader: UIView {
     
-    func configure(title: String, type: ProfileSectionType) {
-        setUpViews(with: title, and: type)
+    let expandButton = UIButton()
+    var sectionExpanded = false
+    
+    var actionHandler: VoidBlock?
+    var sectionType: ProfileSectionType!
+    
+    var layoutSubviews = false
+    
+    func configure(title: String, type: ProfileSectionType, action: VoidBlock?) {
+        self.actionHandler = action
+        self.sectionType = type
+        
+        if !self.layoutSubviews {
+            self.layoutSubviews = true
+            setUpViews(with: title, and: type)
+        }
     }
     
     private func setUpViews(with title: String, and type: ProfileSectionType) {
@@ -48,10 +62,11 @@ class ProfileSectionHeader: UIView {
         moreButton.setTitle("См.все", for: .normal)
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 15)
+        moreButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
-        let expandButton = UIButton()
         expandButton.imageView?.contentMode = .scaleAspectFit
         expandButton.setImage(UIImage(named: "red_down_arrow"), for: .normal)
+        expandButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         switch type {
         case .seeMore:
@@ -73,5 +88,18 @@ class ProfileSectionHeader: UIView {
                 btn.width == 30
             }
         }
+    }
+    
+    @objc private func buttonPressed() {
+        if sectionType == .expand {
+            sectionExpanded = !sectionExpanded
+            let rotationAngle = (sectionExpanded) ? Double.pi : Double.pi * 2
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(rotationAngle))
+            })
+        }
+        
+        actionHandler?()
     }
 }

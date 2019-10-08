@@ -15,6 +15,9 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
+    let interestsHeader = ProfileSectionHeader()
+    let favouritePlacesHeader = ProfileSectionHeader()
+    
     let viewModel = UserProfileViewModel()
     
     override func viewDidLoad() {
@@ -60,15 +63,18 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         switch viewModel.sections[section] {
         case .interests:
             
-            let header = ProfileSectionHeader()
-            header.configure(title: viewModel.sections[section].rawValue, type: .expand)
-            return header
+            interestsHeader.configure(title: viewModel.sections[section].rawValue, type: .expand) { [weak self] in
+                self?.viewModel.tagsExpanded.value = !(self?.viewModel.tagsExpanded.value)!
+                self?.tableView.reloadSections([section], with: .automatic)
+            }
+            return interestsHeader
             
         case .favourite_places:
             
-            let header = ProfileSectionHeader()
-            header.configure(title: viewModel.sections[section].rawValue, type: .seeMore)
-            return header
+            favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
+                
+            }
+            return favouritePlacesHeader
             
         default:
             return UIView()
@@ -137,15 +143,21 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
         case .interests:
             
-            let tags = [String]()
+            let tags = ["",""]
             if tags.count > 0 {
+                
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configure(tagsType: .normal, tagsList: TagsList())
+                cell.clipsToBounds = true
+                cell.configure(tagsType: .normal, tagsList: TagsList(), expanded: viewModel.tagsExpanded)
                 return cell
+                
             } else {
+                
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.clipsToBounds = true
                 cell.configure(for: viewModel.profileType)
                 return cell
+                
             }
             
         case .favourite_places:
