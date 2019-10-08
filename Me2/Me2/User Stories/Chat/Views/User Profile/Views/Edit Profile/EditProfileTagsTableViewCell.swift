@@ -87,6 +87,7 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         addTags()
         
         setUpAddTagButton()
+        setUpTextField()
         
         tagsViewHeight = y + itemHeight
         updateHeight()
@@ -129,6 +130,10 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         addTagButton.setTitleColor(Color.red, for: .normal)
         addTagButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
         tagsView.addSubview(addTagButton)
+    }
+    
+    private func setUpTextField() {
+        
     }
     
     private func removeTag(at index: Int) {

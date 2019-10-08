@@ -72,7 +72,8 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
-                
+                let vc = Storyboard.favouritePlacesViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
             return favouritePlacesHeader
             
@@ -118,16 +119,6 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cell(for: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch viewModel.sections[indexPath.section] {
-        case .favourite_places:
-            let vc = Storyboard.favouritePlacesViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
-        }
     }
     
     private func cell(for indexPath: IndexPath) -> UITableViewCell {
