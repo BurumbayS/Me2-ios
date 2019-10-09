@@ -25,12 +25,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="IcH-7h-c89">
-                        <rect key="frame" x="27.5" y="5.5" width="265" height="70"/>
+                        <rect key="frame" x="27.5" y="5" width="265" height="70"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9J-wE-3y1">
                                 <rect key="frame" x="0.0" y="0.0" width="65" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSE-w2-uOI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSE-w2-uOI">
                                         <rect key="frame" x="7.5" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Sy2-As-JLH"/>
@@ -130,7 +130,7 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="IcH-7h-c89" secondAttribute="bottom" constant="25" id="Wfh-UE-Vtf"/>
+                    <constraint firstAttribute="bottom" secondItem="IcH-7h-c89" secondAttribute="bottom" constant="5" id="Wfh-UE-Vtf"/>
                     <constraint firstItem="IcH-7h-c89" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="cLW-iG-Hkm"/>
                     <constraint firstItem="IcH-7h-c89" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="dTR-ll-1rI"/>
                 </constraints>

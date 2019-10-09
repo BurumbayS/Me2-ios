@@ -74,6 +74,7 @@
 		DDB465DA2344E94600EB71B9 /* ProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D92344E94600EB71B9 /* ProfileSectionHeader.swift */; };
 		DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465DC2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift */; };
 		DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */; };
+		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -84,7 +85,7 @@
 		DDC18552233A07EA0052C371 /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */; };
 		DDC18554233A114E0052C371 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18553233A114E0052C371 /* Event.swift */; };
 		DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */; };
-		DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */; };
+		DDC7F21B230806830067C6C7 /* PlaceTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21A230806830067C6C7 /* PlaceTabView.swift */; };
 		DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */; };
 		DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */; };
 		DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC7F225230941080067C6C7 /* CustomSegmentedControl.swift */; };
@@ -146,6 +147,18 @@
 		DDE047FD233FA04700E33046 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FC233FA04700E33046 /* Tag.swift */; };
 		DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */; };
 		DDE04801233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */; };
+		DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE04803233FD40000E33046 /* WriteReviewViewController.swift */; };
+		DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048052341D16700E33046 /* BookTableViewController.swift */; };
+		DDE048092341D71D00E33046 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048072341D71D00E33046 /* BookingTableViewCell.swift */; };
+		DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0480D234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift */; };
+		DDE04810234230B500E33046 /* BookTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0480F234230B500E33046 /* BookTableViewModel.swift */; };
+		DDE04812234235F500E33046 /* BookingInviteFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE04811234235F500E33046 /* BookingInviteFriendsTableViewCell.swift */; };
+		DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048132342378500E33046 /* BookingPhoneNumberTableViewCell.swift */; };
+		DDE048162342380000E33046 /* BookingUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048152342380000E33046 /* BookingUsernameTableViewCell.swift */; };
+		DDE048182342422D00E33046 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048172342422D00E33046 /* CheckBox.swift */; };
+		DDE0481A2343241300E33046 /* BookingWishesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048192343241300E33046 /* BookingWishesTableViewCell.swift */; };
+		DDE0481C234329F400E33046 /* AddGuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0481B234329F400E33046 /* AddGuestsViewController.swift */; };
+		DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -259,6 +272,7 @@
 		DDB465D92344E94600EB71B9 /* ProfileSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionHeader.swift; sourceTree = "<group>"; };
 		DDB465DC2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAdditionalTableViewCell.swift; sourceTree = "<group>"; };
 		DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileAdditionalTableViewCell.swift; sourceTree = "<group>"; };
+		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -269,7 +283,7 @@
 		DDC18550233A07EA0052C371 /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDC18553233A114E0052C371 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileViewController.swift; sourceTree = "<group>"; };
-		DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileHeaderView.swift; sourceTree = "<group>"; };
+		DDC7F21A230806830067C6C7 /* PlaceTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTabView.swift; sourceTree = "<group>"; };
 		DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceProfileCollectionLayout.swift; sourceTree = "<group>"; };
 		DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDC7F225230941080067C6C7 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
@@ -325,6 +339,18 @@
 		DDE047FC233FA04700E33046 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSliderFilterTableViewCell.swift; sourceTree = "<group>"; };
 		DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSliderFilterTableViewCell.xib; sourceTree = "<group>"; };
+		DDE04803233FD40000E33046 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteReviewViewController.swift; path = ../WriteReviewViewController.swift; sourceTree = "<group>"; };
+		DDE048052341D16700E33046 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		DDE048072341D71D00E33046 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
+		DDE0480D234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDateAndTimeTableViewCell.swift; sourceTree = "<group>"; };
+		DDE0480F234230B500E33046 /* BookTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewModel.swift; sourceTree = "<group>"; };
+		DDE04811234235F500E33046 /* BookingInviteFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInviteFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		DDE048132342378500E33046 /* BookingPhoneNumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPhoneNumberTableViewCell.swift; sourceTree = "<group>"; };
+		DDE048152342380000E33046 /* BookingUsernameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingUsernameTableViewCell.swift; sourceTree = "<group>"; };
+		DDE048172342422D00E33046 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		DDE048192343241300E33046 /* BookingWishesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingWishesTableViewCell.swift; sourceTree = "<group>"; };
+		DDE0481B234329F400E33046 /* AddGuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsViewController.swift; sourceTree = "<group>"; };
+		DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsViewModel.swift; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -823,6 +849,7 @@
 				DDF65B2C2303C9B900441035 /* SearchBar */,
 				DDC7F2242309404C0067C6C7 /* Custom Segmented Control */,
 				DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */,
+				DDE048172342422D00E33046 /* CheckBox.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -849,6 +876,7 @@
 		DDC7F22B23097B240067C6C7 /* Place Details */ = {
 			isa = PBXGroup;
 			children = (
+				DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */,
 				DD5C223D231CE28F00CF66CC /* Info */,
 				DD5C224C231D4A7100CF66CC /* Events */,
 				DD5C223C231CE09B00CF66CC /* Menu */,
@@ -973,6 +1001,41 @@
 			path = Tags;
 			sourceTree = "<group>";
 		};
+		DDE04802233FD3E200E33046 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */,
+				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
+				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
+				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
+				DDC7F21A230806830067C6C7 /* PlaceTabView.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		DDE0480B2342255000E33046 /* Write Period */ = {
+			isa = PBXGroup;
+			children = (
+				DDE04803233FD40000E33046 /* WriteReviewViewController.swift */,
+			);
+			path = "Write Period";
+			sourceTree = "<group>";
+		};
+		DDE0480C2342256B00E33046 /* Book Table */ = {
+			isa = PBXGroup;
+			children = (
+				DDE048052341D16700E33046 /* BookTableViewController.swift */,
+				DDE048072341D71D00E33046 /* BookingTableViewCell.swift */,
+				DDE0480D234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift */,
+				DDE04811234235F500E33046 /* BookingInviteFriendsTableViewCell.swift */,
+				DDE048132342378500E33046 /* BookingPhoneNumberTableViewCell.swift */,
+				DDE048152342380000E33046 /* BookingUsernameTableViewCell.swift */,
+				DDE048192343241300E33046 /* BookingWishesTableViewCell.swift */,
+				DDE0481B234329F400E33046 /* AddGuestsViewController.swift */,
+			);
+			path = "Book Table";
+			sourceTree = "<group>";
+		};
 		DDF65B0D22FD5CB900441035 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1016,13 +1079,10 @@
 		DDF65B342308023900441035 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DDC7F218230802D90067C6C7 /* PlaceProfileViewController.swift */,
-				DDC7F21A230806830067C6C7 /* PlaceProfileHeaderView.swift */,
-				DDC7F21C2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift */,
-				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
-				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
-				DD5C224A231D451200CF66CC /* PlaceDetailCollectionCell.swift */,
+				DDE04802233FD3E200E33046 /* Place */,
 				DDC7F22B23097B240067C6C7 /* Place Details */,
+				DDE0480B2342255000E33046 /* Write Period */,
+				DDE0480C2342256B00E33046 /* Book Table */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1032,6 +1092,9 @@
 			children = (
 				DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */,
 				DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */,
+				DDE0480F234230B500E33046 /* BookTableViewModel.swift */,
+				DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */,
+				DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1257,19 +1320,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */,
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
+				DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
 				DDE047E2233C939900E33046 /* WorkingHours.swift in Sources */,
 				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
 				DD5C22372317AB6400CF66CC /* TagsTableViewCell.swift in Sources */,
 				DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */,
+				DD5C22372317AB6400CF66CC /* TagsTableViewCell.swift in Sources */,
+				DDE048162342380000E33046 /* BookingUsernameTableViewCell.swift in Sources */,
 				DDC7F21D2308153C0067C6C7 /* PlaceProfileCollectionLayout.swift in Sources */,
+				DDE0481A2343241300E33046 /* BookingWishesTableViewCell.swift in Sources */,
 				DD5C2253231E62C900CF66CC /* PrivacyPolicyViewController.swift in Sources */,
 				DDA1424F23228D4F00C721A3 /* SignInViewModel.swift in Sources */,
 				DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */,
@@ -1281,6 +1349,7 @@
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
 				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
+				DDE04812234235F500E33046 /* BookingInviteFriendsTableViewCell.swift in Sources */,
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DDE047F2233CFA2100E33046 /* EventAddressTimeTableViewCell.swift in Sources */,
 				DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */,
@@ -1289,6 +1358,7 @@
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */,
+				DDE04810234230B500E33046 /* BookTableViewModel.swift in Sources */,
 				DDC7F24123101CDE0067C6C7 /* PlaceProfileViewModel.swift in Sources */,
 				DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */,
 				DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */,
@@ -1298,6 +1368,7 @@
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */,
 				DDE047FD233FA04700E33046 /* Tag.swift in Sources */,
+				DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */,
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
 				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
@@ -1307,6 +1378,8 @@
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,
 				DDC7F21B230806830067C6C7 /* PlaceProfileHeaderView.swift in Sources */,
+				DDF65B1722FD8D0700441035 /* UserProfileViewModel.swift in Sources */,
+				DDC7F21B230806830067C6C7 /* PlaceTabView.swift in Sources */,
 				DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */,
 				DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */,
 				DDA1425123228E2500C721A3 /* Network.swift in Sources */,
@@ -1350,9 +1423,11 @@
 				DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */,
 				DDE047EB233CE51D00E33046 /* EventDescriptionTableViewCell.swift in Sources */,
 				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
+				DDE0481C234329F400E33046 /* AddGuestsViewController.swift in Sources */,
 				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
 				DDB465DA2344E94600EB71B9 /* ProfileSectionHeader.swift in Sources */,
+				DDE048092341D71D00E33046 /* BookingTableViewCell.swift in Sources */,
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
 				DDE047E0233C8C4500E33046 /* Place.swift in Sources */,
 				DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */,
@@ -1361,8 +1436,11 @@
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
+				DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
+				DDE048182342422D00E33046 /* CheckBox.swift in Sources */,
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
+				DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
@@ -1384,6 +1462,7 @@
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
+				DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
