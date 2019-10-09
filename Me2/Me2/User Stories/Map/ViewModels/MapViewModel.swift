@@ -46,7 +46,15 @@ class MapViewModel {
     }
     
     func getPlacesInRadius(completion: ResponseBlock?) {
-        let url = placesURL + "?id_list=\(getPlacesInRadiusAsString())"
+        getPlaces(idList: getPlacesInRadiusAsString(), completion: completion)
+    }
+    
+    func getPlaceCardInfo(with id: Int, completion: ResponseBlock?) {
+        getPlaces(idList: "\(id)", completion: completion)
+    }
+    
+    private func getPlaces(idList: String, completion: ResponseBlock?) {
+        let url = placesURL + "?id_list=\(idList)"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in

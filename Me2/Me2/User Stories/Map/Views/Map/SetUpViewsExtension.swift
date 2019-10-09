@@ -12,16 +12,12 @@ import GoogleMaps
 
 extension MapViewController {
     func setPins() {
-        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        labelsView.backgroundColor = .clear
-        labelsView.isUserInteractionEnabled = false
         labelsView.configure(with: viewModel.placePins, on: mapView)
         
-        self.view.addSubview(labelsView)
-        
-        for (place) in viewModel.placePins {
+        for (i, place) in viewModel.placePins.enumerated() {
             let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
             marker.icon = UIImage(named: "default_pin")
+            marker.title = "\(i)"
             marker.map = mapView
         }
     }
@@ -29,12 +25,21 @@ extension MapViewController {
     func setUpViews() {
         setUpMap()
         setUpMyLocationButton()
+        setUpLabelsView()
         setUpCollectionView()
         setUpContainerView()
         setUpSearchBar()
         setUpImHereButton()
         setUpFilterButton()
         setUpHelperView()
+    }
+    
+    private func setUpLabelsView() {
+        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        labelsView.backgroundColor = .clear
+        labelsView.isUserInteractionEnabled = false
+        
+        self.view.addSubview(labelsView)
     }
     
     private func setUpCollectionView() {

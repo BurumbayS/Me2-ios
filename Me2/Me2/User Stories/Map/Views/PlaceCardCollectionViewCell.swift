@@ -38,11 +38,12 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     
     func configure(with place: Place) {
         titleLabel.text = place.name
-        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: nil, options: [])
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         
         if let rating = place.rating {
-            ratingView.rating = rating
-            ratingView.text = "\(rating)"
+            let roundedRating = Double(round(rating * 10) / 10)
+            ratingView.rating = roundedRating
+            ratingView.text = "\(roundedRating)"
         } else {
             ratingView.isHidden = true
         }

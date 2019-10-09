@@ -251,6 +251,20 @@ class MapViewController: UIViewController {
             collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
+    
+    private func tappedSinglePlacePin(atIndex index: Int) {
+        viewModel.getPlaceCardInfo(with: viewModel.placePins[index].id) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.isHidden = false
+                self?.collectionView.reloadData()
+            case .error:
+                print(message)
+            case .fail:
+                print("Fail")
+            }
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -260,7 +274,8 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        if labelsView != nil {
+        //update labels coordinates if there are
+        if labelsView.labels.count > 0 {
             labelsView.updateCoordinates()
         }
     }
@@ -268,9 +283,19 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if viewModel.isMyLocationVisible.value {
             tappedPinInRadius(marker: marker)
+        } else {
+            mapView.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 16.5))
+            tappedSinglePlacePin(atIndex: Int(marker.title!)!)
         }
         
         return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //hide place card in case showMyLocation is off
+        if !viewModel.isMyLocationVisible.value {
+            collectionView.isHidden = true
+        }
     }
 }
 
