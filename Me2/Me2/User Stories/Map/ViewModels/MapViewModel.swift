@@ -22,6 +22,8 @@ class MapViewModel {
     var placePins = [PlacePin]()
     var places = [Place]()
     
+    var currentPlaceCardIndex = Dynamic(0)
+    
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         Alamofire.request(placesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in

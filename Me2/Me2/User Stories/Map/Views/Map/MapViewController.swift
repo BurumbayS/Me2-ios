@@ -75,6 +75,10 @@ class MapViewController: UIViewController {
                 self?.hideMyLocation()
             }
         }
+        
+        viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
+            self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
+        }
     }
     
     //MARK: -Configures
@@ -160,6 +164,8 @@ class MapViewController: UIViewController {
             
             pinsInRadius.append(pin)
         }
+        
+        if pinsInRadius.count > 0 { tappedPinInRadius(marker: pinsInRadius[0]) }
     }
     
     private func setImHerePin() {
@@ -229,6 +235,22 @@ class MapViewController: UIViewController {
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView
     }
+    
+    private func tappedPinInRadius(marker: GMSMarker) {
+        //Show previous selected marker
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
+            pin.map = mapView
+        }
+        
+        //Move imhere marker to selected position and remove marker on that position
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
+            pin.map = nil
+            imHereMarker.position = marker.position
+            
+            let index = Int(pin.accessibilityHint!) ?? 0
+            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -244,18 +266,8 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        //Show previous selected marker
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
-            pin.map = mapView
-        }
-        
-        //Move imhere marker to selected position and remove marker pn that position
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
-            pin.map = nil
-            imHereMarker.position = marker.position
-            
-            let index = Int(pin.accessibilityHint!) ?? 0
-            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        if viewModel.isMyLocationVisible.value {
+            tappedPinInRadius(marker: marker)
         }
         
         return true
@@ -266,6 +278,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func setCollectionViewLayout() {
         let layout = PlacesCollectionViewLayout()
+        layout.currentPage = viewModel.currentPlaceCardIndex
         //calculate item width with indention
         let width = UIScreen.main.bounds.width - 40
         layout.itemSize = CGSize(width: width, height: 118)
