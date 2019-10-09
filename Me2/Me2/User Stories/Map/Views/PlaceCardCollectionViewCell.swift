@@ -13,13 +13,13 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var availabilityLabel: UILabel!
     @IBOutlet weak var livaChatButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var availabilityStatusView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +36,16 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
         livaChatButton.layer.borderWidth = 1
     }
     
-    func configure(with data: Int) {
+    func configure(with place: Place) {
+        titleLabel.text = place.name
+        ratingView.rating = place.rating ?? 0
+        
+        configureAvalabilityView(with: place.workingHours)
+        configureRoomInfo()
+    }
+    
+    private func configureRoomInfo() {
+        let data = 4
         let limit = (data > 3) ? 3 : data
         var x = 0
         for _ in 0..<limit {
@@ -57,6 +66,31 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
             label.text = "+\(data - 3)"
             
             stackView.addSubview(label)
+        }
+    }
+    
+    private func configureAvalabilityView(with workingHours: WorkingHours?) {
+        guard let workingHours = workingHours else { return }
+        
+        let today = Date().dayOfTheWeek()
+        let day = workingHours.weekDays.filter { $0.title == today }[0]
+        let time = Date().currentTime()
+        
+        if time > day.start && time < day.end {
+            availabilityLabel.text = "Открыто до \(day.end)"
+            availabilityStatusView.backgroundColor = Color.green
+        }
+        if time < day.start {
+            availabilityLabel.text = "Закрыто до \(day.start)"
+            availabilityStatusView.backgroundColor = Color.red
+        }
+        if time > day.end {
+            availabilityLabel.text = "Закрыто до завтра"
+            availabilityStatusView.backgroundColor = Color.red
+        }
+        if time > day.end && day.end == "00:00" {
+            availabilityLabel.text = "Открыто до \(day.end)"
+            availabilityStatusView.backgroundColor = Color.green
         }
     }
 }

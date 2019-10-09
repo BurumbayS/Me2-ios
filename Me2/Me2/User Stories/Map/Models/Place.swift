@@ -48,6 +48,7 @@ class Place {
     var id: Int!
     var name: String!
     var description: String?
+    var category: String?
     var rating: Double?
     var longitute: Double!
     var latitude: Double!

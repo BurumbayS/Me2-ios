@@ -128,9 +128,9 @@ class MapViewController: UIViewController {
     
     private func showMyLocation() {
         helperView.isHidden = true
-        collectionView.isHidden = false
+        if labelsView != nil { labelsView.isHidden = true }
+        
         mapView.clear()
-        labelsView.isHidden = true
         
         setImHerePin()
         animatePulsingRadius()
@@ -138,6 +138,8 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
+                self?.collectionView.isHidden = false
+                self?.collectionView.reloadData()
                 self?.showPinsInRadius()
             case .error:
                 print(message)
@@ -266,7 +268,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
         let layout = PlacesCollectionViewLayout()
         //calculate item width with indention
         let width = UIScreen.main.bounds.width - 40
-        layout.itemSize = CGSize(width: width, height: 107)
+        layout.itemSize = CGSize(width: width, height: 118)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -277,12 +279,12 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.places.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: 10)
+        cell.configure(with: viewModel.places[indexPath.row])
         return cell
     }
     
