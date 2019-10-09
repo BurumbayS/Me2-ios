@@ -122,7 +122,7 @@ class MapViewController: UIViewController {
     //MARK: -My location actions
     private func hideMyLocation() {
         helperView.isHidden = false
-        collectionView.isHidden = true
+        hideCollectionView()
         
         mapView.animate(toZoom: 15.0)
         mapView.clear()
@@ -142,8 +142,7 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.collectionView.isHidden = false
-                self?.collectionView.reloadData()
+                self?.showCollectionView()
                 self?.showPinsInRadius()
             case .error:
                 print(message)
@@ -256,12 +255,32 @@ class MapViewController: UIViewController {
         viewModel.getPlaceCardInfo(with: viewModel.placePins[index].id) { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.collectionView.isHidden = false
-                self?.collectionView.reloadData()
+                self?.showCollectionView()
             case .error:
                 print(message)
             case .fail:
                 print("Fail")
+            }
+        }
+    }
+    
+    private func showCollectionView() {
+        collectionView.reloadData()
+        
+        collectionView.alpha = 0
+        collectionView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.collectionView.alpha = 1.0
+        }
+    }
+    
+    private func hideCollectionView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.collectionView.alpha = 0
+        }) { (finished) in
+            if finished {
+                self.collectionView.isHidden = true
             }
         }
     }
@@ -294,7 +313,7 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         //hide place card in case showMyLocation is off
         if !viewModel.isMyLocationVisible.value {
-            collectionView.isHidden = true
+            hideCollectionView()
         }
     }
 }
