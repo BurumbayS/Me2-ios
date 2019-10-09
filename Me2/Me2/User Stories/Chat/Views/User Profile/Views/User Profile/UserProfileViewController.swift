@@ -15,6 +15,9 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
+    let interestsHeader = ProfileSectionHeader()
+    let favouritePlacesHeader = ProfileSectionHeader()
+    
     let viewModel = UserProfileViewModel()
     
     override func viewDidLoad() {
@@ -60,15 +63,19 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         switch viewModel.sections[section] {
         case .interests:
             
-            let header = ProfileSectionHeader()
-            header.configure(title: viewModel.sections[section].rawValue, type: .expand)
-            return header
+            interestsHeader.configure(title: viewModel.sections[section].rawValue, type: .expand) { [weak self] in
+                self?.viewModel.tagsExpanded.value = !(self?.viewModel.tagsExpanded.value)!
+                self?.tableView.reloadSections([section], with: .automatic)
+            }
+            return interestsHeader
             
         case .favourite_places:
             
-            let header = ProfileSectionHeader()
-            header.configure(title: viewModel.sections[section].rawValue, type: .seeMore)
-            return header
+            favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
+                let vc = Storyboard.favouritePlacesViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            return favouritePlacesHeader
             
         default:
             return UIView()
@@ -114,16 +121,6 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         return cell(for: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch viewModel.sections[indexPath.section] {
-        case .favourite_places:
-            let vc = Storyboard.favouritePlacesViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
-        }
-    }
-    
     private func cell(for indexPath: IndexPath) -> UITableViewCell {
         let section = viewModel.sections[indexPath.section]
         
@@ -139,13 +136,23 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let tags = [String]()
             if tags.count > 0 {
+                
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configure(tagsType: .normal, tagsList: TagsList())
+                cell.clipsToBounds = true
+                cell.configure(tagsType: .normal, tagsList: TagsList(), expanded: viewModel.tagsExpanded)
                 return cell
+                
             } else {
+                
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configure(for: viewModel.profileType)
+                cell.clipsToBounds = true
+                cell.configure(for: viewModel.profileType) { [weak self] in
+                    let vc = Storyboard.editProfileViewController() as! EditProfileViewController
+                    vc.viewModel = EditProfileViewModel(activateAddTag: true)
+                    self?.present(vc, animated: true, completion: nil)
+                }
                 return cell
+                
             }
             
         case .favourite_places:

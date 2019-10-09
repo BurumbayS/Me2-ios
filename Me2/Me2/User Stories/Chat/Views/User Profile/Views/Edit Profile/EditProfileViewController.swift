@@ -14,7 +14,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = EditProfileViewModel()
+    var viewModel = EditProfileViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +98,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: EditProfileTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure { [weak self] in
+            cell.configure(activateTagAddition: viewModel.activateAddTagTextField) { [weak self] in
                 self?.tableView.beginUpdates()
                     cell.updateHeight()
                 self?.tableView.endUpdates()

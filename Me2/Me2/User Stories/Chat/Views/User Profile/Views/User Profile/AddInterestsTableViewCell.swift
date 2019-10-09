@@ -14,6 +14,8 @@ class AddInterestsTableViewCell: UITableViewCell {
     let addButton = UIButton()
     let placeHolderLabel = UILabel()
     
+    var addActionHandler: VoidBlock?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -24,7 +26,9 @@ class AddInterestsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(for profileType: ProfileType) {
+    func configure(for profileType: ProfileType, onAddAction: VoidBlock?) {
+        self.addActionHandler = onAddAction
+        
         switch profileType {
         case .myProfile:
             placeHolderLabel.isHidden = true
@@ -37,6 +41,7 @@ class AddInterestsTableViewCell: UITableViewCell {
         addButton.setTitleColor(Color.red, for: .normal)
         addButton.setTitle("+ Добавить интересы", for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
+        addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
         self.contentView.addSubview(addButton)
         constrain(addButton, self.contentView) { btn, view in
@@ -56,5 +61,9 @@ class AddInterestsTableViewCell: UITableViewCell {
             label.top == view.top + 25
             label.height == 20
         }
+    }
+    
+    @objc private func addButtonPressed() {
+        addActionHandler?()
     }
 }

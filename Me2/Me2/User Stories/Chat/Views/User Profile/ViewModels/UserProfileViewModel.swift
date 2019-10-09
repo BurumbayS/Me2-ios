@@ -68,6 +68,8 @@ class UserProfileViewModel {
     let myProfileCells = [MyProfileAdditionalBlockCell.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
     let guestProfileCells = [GuestProfileAdditionalBlockCell.addContact, .block, .compplain]
     
+    var tagsExpanded = Dynamic(false)
+    
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
         case .myProfile:
