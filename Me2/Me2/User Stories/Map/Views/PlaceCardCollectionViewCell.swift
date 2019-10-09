@@ -38,7 +38,14 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     
     func configure(with place: Place) {
         titleLabel.text = place.name
-        ratingView.rating = place.rating ?? 0
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: nil, options: [])
+        
+        if let rating = place.rating {
+            ratingView.rating = rating
+            ratingView.text = "\(rating)"
+        } else {
+            ratingView.isHidden = true
+        }
         
         configureAvalabilityView(with: place.workingHours)
         configureRoomInfo()
