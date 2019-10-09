@@ -44,6 +44,22 @@ struct Menu {
     }
 }
 
+struct RoomInfo {
+    var uuid: String
+    var usersCount: Int
+    var avatars: [String]
+    
+    init(json: JSON) {
+        uuid = json["uuid"].stringValue
+        usersCount = json["users_count"].intValue
+        
+        avatars = [String]()
+        for item in json["avatars"].arrayValue {
+            avatars.append(item.stringValue)
+        }
+    }
+}
+
 class Place {
     var id: Int!
     var name: String!
@@ -62,6 +78,7 @@ class Place {
     var menus: [Menu]?
     var images: [String]?
     var workingHours: WorkingHours?
+    var roomInfo: RoomInfo?
     
     init(json: JSON) {
         id = json["id"].intValue
@@ -77,6 +94,7 @@ class Place {
         phone = json["phone"].stringValue
         website = json["website"].stringValue
         workingHours = WorkingHours(json: json["working_hours"])
+        roomInfo = RoomInfo(json: json["room_info"])
         
         images = [String]()
         for image in json["images"].arrayValue {

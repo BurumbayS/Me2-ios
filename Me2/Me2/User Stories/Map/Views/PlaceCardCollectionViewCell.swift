@@ -48,29 +48,32 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
         }
         
         configureAvalabilityView(with: place.workingHours)
-        configureRoomInfo()
+        configureRoomInfo(with: place.roomInfo)
     }
     
-    private func configureRoomInfo() {
-        let data = 4
-        let limit = (data > 3) ? 3 : data
+    private func configureRoomInfo(with data: RoomInfo?) {
+        guard let roomInfo = data else { return }
+        
+        let limit = (roomInfo.usersCount > 3) ? 3 : roomInfo.usersCount
+        
         var x = 0
-        for _ in 0..<limit {
+        for i in 0..<limit {
             let imageView = UIImageView(frame: CGRect(x: x, y: 0, width: 26, height: 26))
+            imageView.kf.setImage(with: URL(string: roomInfo.avatars[i]), placeholder: nil, options: [])
+            imageView.clipsToBounds = true
             imageView.layer.cornerRadius = 13
-            imageView.image = UIImage(named: "sample_place_logo")
             
             stackView.addSubview(imageView)
             
             x += 15
         }
         
-        if data > 3 {
+        if roomInfo.usersCount > 3 {
             x += 15
             let label = UILabel(frame: CGRect(x: x, y: 0, width: 100, height: 26))
             label.textColor = .gray
             label.font = UIFont(name: "Roboto-Regular", size: 13)
-            label.text = "+\(data - 3)"
+            label.text = "+\(roomInfo.usersCount - 3)"
             
             stackView.addSubview(label)
         }
