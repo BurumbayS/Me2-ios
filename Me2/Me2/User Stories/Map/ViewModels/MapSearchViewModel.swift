@@ -41,6 +41,11 @@ class MapSearchViewModel {
         }
     }
     
+    func addToLastSearchResults(result: String) {
+        lastSearchResults.append(result)
+        UserDefaults().set(lastSearchResults, forKey: UserDefaultKeys.lastMapSearchResults.rawValue)
+    }
+    
     private func searchPlace(by searchValue: String) {
         let url = placesURL + "?search=\(searchValue)"
         

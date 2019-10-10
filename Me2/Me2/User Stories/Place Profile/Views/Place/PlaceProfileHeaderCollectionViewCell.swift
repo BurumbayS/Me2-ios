@@ -17,6 +17,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     let imageView = UIImageView()
     let wallpaperView = UIView()
     let imageCarousel = ImageSlideshow()
+    
+    let logoImageView = UIImageView()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
     let ratingView = CosmosView()
@@ -40,11 +42,20 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(title: String, rating: Double, category: String, placeStatus: PlaceStatus, viewController: UIViewController) {
+    func configure(place: Place, placeStatus: PlaceStatus, viewController: UIViewController) {
         self.placeStatus = placeStatus
-        titleLabel.text = title
-        ratingView.rating = rating
-        categoryLabel.text = category
+        titleLabel.text = place.name
+        categoryLabel.text = place.category ?? ""
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        
+        if let rating = place.rating {
+            let roundedRating = Double(round(rating * 10) / 10)
+            ratingView.rating = roundedRating
+            ratingView.text = "\(roundedRating)"
+        } else {
+            ratingView.isHidden = true
+        }
+        
         parentVC = viewController
         
         configureViews()
@@ -176,32 +187,44 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = .white
         view.layer.cornerRadius = 20
         
-        titleLabel.textColor = .black
-        titleLabel.font = UIFont(name: "Roboto-Medium", size: 24)
-        view.addSubview(titleLabel)
-        constrain(titleLabel, view) { title, view in
-            title.left == view.left + 27
-            title.top == view.top + 28
+        logoImageView.layer.cornerRadius = 20
+        logoImageView.clipsToBounds = true
+        view.addSubview(logoImageView)
+        constrain(logoImageView, view) { logo, view in
+            logo.left == view.left + 20
+            logo.top == view.top + 20
+            logo.height == 40
+            logo.width == 40
         }
         
-        categoryLabel.textColor = .darkGray
-        categoryLabel.font = UIFont(name: "Roboto-Regular", size: 15)
-        view.addSubview(categoryLabel)
-        constrain(categoryLabel, titleLabel) { category, title in
-            category.leading == title.leading
-            category.top == title.bottom + 7
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "Roboto-Medium", size: 17)
+        view.addSubview(titleLabel)
+        constrain(titleLabel, logoImageView) { title, logo in
+            title.left == logo.right + 10
+            title.centerY == logo.centerY
+            title.top == logo.top
+            title.bottom == logo.bottom
         }
         
         ratingView.settings.starSize = 10
         ratingView.settings.starMargin = 3
         ratingView.settings.totalStars = 5
-        ratingView.text = "3.2"
         view.addSubview(ratingView)
-        constrain(ratingView, categoryLabel) { rating, category in
-            rating.leading == category.leading
-            rating.top == category.bottom + 7
-            rating.height == 10
-            rating.width == 65
+        constrain(ratingView, logoImageView) { rating, logo in
+            rating.leading == logo.leading
+            rating.top == logo.bottom + 10
+            rating.height == 15
+            rating.width == 90
+        }
+        
+        categoryLabel.textColor = .darkGray
+        categoryLabel.font = UIFont(name: "Roboto-Regular", size: 15)
+        view.addSubview(categoryLabel)
+        constrain(categoryLabel, ratingView) { category, rating in
+            category.leading == rating.leading
+            category.top == rating.bottom + 5
         }
         
         liveChatButton.setTitleColor(Color.blue, for: .normal)

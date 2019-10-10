@@ -139,10 +139,10 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
             
         default:
             
-            viewModel.lastSearchResults.append(viewModel.searchResults[indexPath.row].name)
-            UserDefaults().set(viewModel.lastSearchResults, forKey: UserDefaultKeys.lastMapSearchResults.rawValue)
+            viewModel.addToLastSearchResults(result: viewModel.searchResults[indexPath.row].name)
             
-            let vc = Storyboard.placeProfileViewController()
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.searchResults[indexPath.row])
             presenterDelegate.present(controller: vc)
             
         }

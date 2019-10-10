@@ -16,7 +16,7 @@ class PlaceProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    let viewModel = PlaceProfileViewModel()
+    var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = Constants.minContentSize.height
@@ -78,7 +78,7 @@ class PlaceProfileViewController: UIViewController {
         navBar.isHidden = true
         navBar.shouldRemoveShadow(true)
         
-        navItem.title = "Traveler's coffee"
+        navItem.title = viewModel.place.name
         
         setUpBackBarButton(for: navItem)
         navItem.leftBarButtonItem?.tintColor = .black
@@ -196,7 +196,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", placeStatus: viewModel.placeStatus, viewController: self)
+            cell.configure(place: viewModel.place, placeStatus: viewModel.placeStatus, viewController: self)
             return cell
             
         default:

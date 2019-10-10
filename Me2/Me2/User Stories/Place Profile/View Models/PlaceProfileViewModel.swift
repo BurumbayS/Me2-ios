@@ -36,8 +36,10 @@ class PlaceProfileViewModel {
     var currentPage: Dynamic<Int>
     var pageToShow: Dynamic<PlaceProfilePage>
     var placeStatus: PlaceStatus
+    var place: Place
     
-    init() {
+    init(place: Place) {
+        self.place = place
         pageToShow = Dynamic(.info)
         currentPage = Dynamic(0)
         placeStatus = .registered
