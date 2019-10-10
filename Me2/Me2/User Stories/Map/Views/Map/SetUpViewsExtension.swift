@@ -47,7 +47,6 @@ extension MapViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
-//        collectionView.isHidden = true
         setCollectionViewLayout()
         
         self.view.addSubview(collectionView)
@@ -92,7 +91,8 @@ extension MapViewController {
     }
     
     private func setUpContainerView() {
-        searchVC.viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
+        let viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
+        searchVC.configure(with: viewModel, delegate: self)
         
         searchContainerView.addSubview(searchVC.view)
         constrain(searchVC.view, searchContainerView) { vc, view in

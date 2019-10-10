@@ -76,6 +76,7 @@
 		DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465DC2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift */; };
 		DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */; };
 		DDBCD71F234DBC6500384DD5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD71E234DBC6500384DD5 /* DateExtension.swift */; };
+		DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -275,6 +276,7 @@
 		DDB465DC2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAdditionalTableViewCell.swift; sourceTree = "<group>"; };
 		DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileAdditionalTableViewCell.swift; sourceTree = "<group>"; };
 		DDBCD71E234DBC6500384DD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				DD5C2226231649FB00CF66CC /* Constants.swift */,
 				DDA1425023228E2500C721A3 /* Network.swift */,
 				DDE047E3233CB54C00E33046 /* Typealias.swift */,
+				DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
+				DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */,
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,

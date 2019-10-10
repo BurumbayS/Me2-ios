@@ -19,6 +19,11 @@ class PlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.addUnderline(with: Color.gray, and: CGSize(width: self.frame.width, height: self.frame.height))
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         

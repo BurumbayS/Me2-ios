@@ -14,12 +14,18 @@ class MapSearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel: MapSearchViewModel!
+    var presenterDelegate: ControllerPresenterDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
         bindViewModel()
+    }
+    
+    func configure(with viewModel: MapSearchViewModel, delegate: ControllerPresenterDelegate) {
+        self.viewModel = viewModel
+        self.presenterDelegate = delegate
     }
     
     private func bindViewModel() {
@@ -37,30 +43,40 @@ class MapSearchViewController: UIViewController {
         tableView.register(LastSearchTableViewCell.self)
         tableView.registerNib(PlaceTableViewCell.self)
     }
+    
+    @objc private func clearLastSearchResults() {
+        viewModel.lastSearchResults = []
+        tableView.reloadSections([0], with: .automatic)
+    }
 }
 
 extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
         
-        let button = UIButton()
-        button.setTitle("Очистить историю", for: .normal)
-        button.setTitleColor(Color.red, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 17)
-        
-        footer.addSubview(button)
-        constrain(button, footer) { btn, view in
-            btn.top == view.top + 30
-            btn.bottom == view.bottom
-            btn.width == 200
-            btn.centerX == view.centerX
+        if viewModel.searchResults.count == 0 && viewModel.lastSearchResults.count > 0 {
+            
+            let button = UIButton()
+            button.setTitle("Очистить историю", for: .normal)
+            button.setTitleColor(Color.red, for: .normal)
+            button.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 17)
+            button.addTarget(self, action: #selector(clearLastSearchResults), for: .touchUpInside)
+            
+            footer.addSubview(button)
+            constrain(button, footer) { btn, view in
+                btn.top == view.top + 30
+                btn.bottom == view.bottom
+                btn.width == 200
+                btn.centerX == view.centerX
+            }
+            
         }
         
         return footer
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if viewModel.searchResults.count == 0 {
+        if viewModel.searchResults.count == 0 && viewModel.lastSearchResults.count > 0 {
             return 60
         } else {
             return 0
@@ -71,7 +87,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
         if viewModel.searchValue.value != "" {
             return viewModel.searchResults.count
         } else {
-            return 5
+            return viewModel.lastSearchResults.count
         }
     }
     
@@ -82,7 +98,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: LastSearchTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
-            cell.configure(with: "Traveler's coffee")
+            cell.configure(with: viewModel.lastSearchResults[indexPath.row])
             
             return cell
             
@@ -95,5 +111,24 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.searchResults.count {
+        case 0:
+            
+            viewModel.searchValue.value = viewModel.lastSearchResults[indexPath.row]
+            
+        default:
+            
+            viewModel.lastSearchResults.append(viewModel.searchResults[indexPath.row].name)
+            UserDefaults().set(viewModel.lastSearchResults, forKey: UserDefaultKeys.lastMapSearchResults.rawValue)
+            
+            let vc = Storyboard.placeProfileViewController()
+            presenterDelegate.present(controller: vc)
+            
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

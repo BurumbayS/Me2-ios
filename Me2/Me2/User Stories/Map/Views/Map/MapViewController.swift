@@ -384,3 +384,9 @@ extension MapViewController: UITextFieldDelegate {
         }
     }
 }
+
+extension MapViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}

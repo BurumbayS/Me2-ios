@@ -19,7 +19,7 @@ class MapSearchViewModel {
     init(searchValue: Dynamic<String>) {
         self.searchValue = searchValue
         self.updateSearchResults = Dynamic(false)
-        self.lastSearchResults = UserDefaults().object(forKey: "lastMapSearchResults") as! [String]
+        self.lastSearchResults = UserDefaults().object(forKey: UserDefaultKeys.lastMapSearchResults.rawValue) as? [String] ?? []
         
         self.searchValue.bind { [unowned self] (value) in
             if value != "" {

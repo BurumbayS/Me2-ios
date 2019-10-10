@@ -24,7 +24,7 @@ class Network {
     }
     
     static func getAuthorizedHeaders() -> [String: String] {
-        let token = UserDefaults().object(forKey: "token") as! String
+        let token = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) as! String
         let headers = ["Content-Type" : "application/json", "Accept" : "application/json", "Authorization" : "JWT \(token)"]
         
         return headers
