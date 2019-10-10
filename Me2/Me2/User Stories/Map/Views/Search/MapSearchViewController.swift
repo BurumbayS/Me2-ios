@@ -54,20 +54,38 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
         
+        if viewModel.searchValue.value != "" && viewModel.searchResults.count == 0 {
+            
+            let label = UILabel()
+            label.textColor = .gray
+            label.font = UIFont(name: "Roboto-Regular", size: 17)
+            label.text = "Ничего не найдено"
+            
+            footer.addSubview(label)
+            constrain(label, footer) { label, view in
+                label.centerX == view.centerX
+                label.centerY == view.centerY
+            }
+            
+        } else
         if viewModel.searchResults.count == 0 && viewModel.lastSearchResults.count > 0 {
             
-            let button = UIButton()
-            button.setTitle("Очистить историю", for: .normal)
-            button.setTitleColor(Color.red, for: .normal)
-            button.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 17)
-            button.addTarget(self, action: #selector(clearLastSearchResults), for: .touchUpInside)
-            
-            footer.addSubview(button)
-            constrain(button, footer) { btn, view in
-                btn.top == view.top + 30
-                btn.bottom == view.bottom
-                btn.width == 200
-                btn.centerX == view.centerX
+            if viewModel.searchResults.count == 0 && viewModel.lastSearchResults.count > 0 {
+                
+                let button = UIButton()
+                button.setTitle("Очистить историю", for: .normal)
+                button.setTitleColor(Color.red, for: .normal)
+                button.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 17)
+                button.addTarget(self, action: #selector(clearLastSearchResults), for: .touchUpInside)
+                
+                footer.addSubview(button)
+                constrain(button, footer) { btn, view in
+                    btn.top == view.top + 30
+                    btn.bottom == view.bottom
+                    btn.width == 200
+                    btn.centerX == view.centerX
+                }
+                
             }
             
         }
@@ -76,10 +94,10 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if viewModel.searchResults.count == 0 && viewModel.lastSearchResults.count > 0 {
-            return 60
-        } else {
+        if viewModel.searchResults.count > 0 {
             return 0
+        } else {
+            return 60
         }
     }
     
