@@ -68,6 +68,8 @@ class MapViewModel {
                         self.places.append(place)
                     }
                     
+                    self.sortPlacesByDistance()
+                    
                     completion?(.ok, "")
                     
                 case .failure(let error):
@@ -88,6 +90,15 @@ class MapViewModel {
         }
         
         return str
+    }
+    
+    private func sortPlacesByDistance() {
+        for place in places {
+            let location = CLLocation(latitude: place.latitude, longitude: place.longitute)
+            place.distance = myLocation.distance(from: location)
+        }
+        
+        places.sort(by: { $0.distance! < $1.distance! })
     }
     
     private let placesURL = Network.core + "/place/"

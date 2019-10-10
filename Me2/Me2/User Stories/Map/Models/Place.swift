@@ -68,6 +68,7 @@ class Place {
     var rating: Double?
     var longitute: Double!
     var latitude: Double!
+    var distance: Double?
     var address1: String!
     var address2: String!
     var instagram: String?
