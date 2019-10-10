@@ -23,7 +23,7 @@ class MapSearchViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.searchValue.bind { [unowned self] (value) in
+        viewModel.updateSearchResults.bind { [unowned self] (value) in
             self.tableView.reloadSections([0], with: .automatic)
         }
     }
@@ -89,6 +89,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             
             let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
             
             return cell
             

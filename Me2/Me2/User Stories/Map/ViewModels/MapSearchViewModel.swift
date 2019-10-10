@@ -6,23 +6,60 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import Alamofire
+import SwiftyJSON
 
 class MapSearchViewModel {
     let searchValue: Dynamic<String>
-    var searchResults = [String]()
+    var lastSearchVaue = String()
+    var searchResults = [Place]()
+    let updateSearchResults: Dynamic<Bool>
     
     init(searchValue: Dynamic<String>) {
         self.searchValue = searchValue
+        self.updateSearchResults = Dynamic(false)
         
         self.searchValue.bind { [unowned self] (value) in
             if value != "" {
-                self.searchResults = ["","","",""]
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    if self.searchValue.value == value {
+                        self.searchPlace(by: value)
+                    }
+                    
+                    self.lastSearchVaue = value
+                })
+                
             } else {
                 self.searchResults = []
             }
         }
     }
     
+    private func searchPlace(by searchValue: String) {
+        let url = placesURL + "?search=\(searchValue)"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    self.searchResults = []
+                    for item in json["data"]["results"].arrayValue {
+                        let place = Place(json: item)
+                        self.searchResults.append(place)
+                    }
+                    
+                    self.updateSearchResults.value = true
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.updateSearchResults.value = true
+                }
+        }
+    }
     
+    private let placesURL = Network.core + "/place/"
 }
