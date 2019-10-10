@@ -22,10 +22,12 @@ class MapViewController: UIViewController {
     let imhereButton = UIButton()
     let imhereIcon = UIImageView()
     let filterButton = UIButton()
-    let imhereIconConstraints = ConstraintGroup()
     let helperView = UIView()
     let myLocationButton = UIButton()
     var labelsView: LabelsView!
+    
+    let imhereIconConstraints = ConstraintGroup()
+    let collectionViewConstraints = ConstraintGroup()
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
@@ -126,6 +128,7 @@ class MapViewController: UIViewController {
         
         mapView.animate(toZoom: 15.0)
         mapView.clear()
+        
         pinsInRadius = []
         setPins()
     }
@@ -267,21 +270,22 @@ class MapViewController: UIViewController {
     private func showCollectionView() {
         collectionView.reloadData()
         
-        collectionView.alpha = 0
-        collectionView.isHidden = false
-        
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.bottom == view.safeAreaLayoutGuide.bottom - 30
+        }
+
         UIView.animate(withDuration: 0.3) {
-            self.collectionView.alpha = 1.0
+            self.view.layoutIfNeeded()
         }
     }
     
     private func hideCollectionView() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.collectionView.alpha = 0
-        }) { (finished) in
-            if finished {
-                self.collectionView.isHidden = true
-            }
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.top == view.safeAreaLayoutGuide.bottom
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -313,6 +317,7 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         //hide place card in case showMyLocation is off
         if !viewModel.isMyLocationVisible.value {
+            mapView.animate(toZoom: 15.0)
             hideCollectionView()
         }
     }

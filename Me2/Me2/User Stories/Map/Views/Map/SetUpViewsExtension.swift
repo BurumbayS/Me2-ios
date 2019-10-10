@@ -47,15 +47,17 @@ extension MapViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
-        collectionView.isHidden = true
+//        collectionView.isHidden = true
         setCollectionViewLayout()
         
         self.view.addSubview(collectionView)
         constrain(collectionView, self.view) { collection, view in
             collection.height == 107
             collection.left == view.left
-            collection.bottom == view.safeAreaLayoutGuide.bottom - 30
             collection.right == view.right
+        }
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.top == view.safeAreaLayoutGuide.bottom
         }
     }
     
