@@ -13,11 +13,13 @@ class MapSearchViewModel {
     let searchValue: Dynamic<String>
     var lastSearchVaue = String()
     var searchResults = [Place]()
+    var lastSearchResults = [String]()
     let updateSearchResults: Dynamic<Bool>
     
     init(searchValue: Dynamic<String>) {
         self.searchValue = searchValue
         self.updateSearchResults = Dynamic(false)
+        self.lastSearchResults = UserDefaults().object(forKey: "lastMapSearchResults") as! [String]
         
         self.searchValue.bind { [unowned self] (value) in
             if value != "" {
@@ -31,7 +33,10 @@ class MapSearchViewModel {
                 })
                 
             } else {
+                
                 self.searchResults = []
+                self.updateSearchResults.value = true
+                
             }
         }
     }

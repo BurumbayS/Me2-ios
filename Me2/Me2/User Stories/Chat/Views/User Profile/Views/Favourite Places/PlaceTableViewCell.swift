@@ -23,4 +23,9 @@ class PlaceTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
+    
+    func configure(with place: Place) {
+        placeImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        nameLabel.text = place.name
+    }
 }

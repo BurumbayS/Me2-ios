@@ -68,7 +68,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.searchResults.count > 0 {
+        if viewModel.searchValue.value != "" {
             return viewModel.searchResults.count
         } else {
             return 5
@@ -90,6 +90,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
+            cell.configure(with: viewModel.searchResults[indexPath.row])
             
             return cell
             
