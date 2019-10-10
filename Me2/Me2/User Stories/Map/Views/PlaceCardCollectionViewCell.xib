@@ -66,7 +66,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
-                                        <integer key="value" value="0"/>
+                                        <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filled_star"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="empty_star"/>

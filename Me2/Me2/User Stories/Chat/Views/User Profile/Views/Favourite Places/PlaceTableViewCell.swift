@@ -32,5 +32,7 @@ class PlaceTableViewCell: UITableViewCell {
     func configure(with place: Place) {
         placeImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         nameLabel.text = place.name
+        locationLabel.text = place.address1
+        ratingView.rating = place.rating ?? 0
     }
 }
