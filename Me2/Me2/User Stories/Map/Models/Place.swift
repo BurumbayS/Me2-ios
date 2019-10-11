@@ -84,6 +84,7 @@ class Place {
     init(json: JSON) {
         id = json["id"].intValue
         name = json["name"].stringValue
+        description = json["description"].stringValue
         latitude = json["location"]["latitude"].doubleValue
         longitute = json["location"]["longitude"].doubleValue
         address1 = json["location"]["address1"].stringValue

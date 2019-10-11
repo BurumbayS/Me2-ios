@@ -81,8 +81,8 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(with currentPage: Dynamic<Int>, and placeStatus: PlaceStatus) {
-        viewModel = PlaceDetailsViewModel(placeStatus: placeStatus, currentPage: currentPage)
+    func configure(with placeID: Int, and placeStatus: PlaceStatus, currentPage: Dynamic<Int>) {
+        viewModel = PlaceDetailsViewModel(placeID: placeID, placeStatus: placeStatus, currentPage: currentPage)
 
         bindDynamics()
     }
@@ -116,7 +116,7 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         
         switch viewModel.placeStatus.pages[indexPath.row] {
         case .info:
-            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, placeStatus: viewModel.placeStatus)
+            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.placeID, placeStatus: viewModel.placeStatus)
         case .events:
             (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize)
         case .menu:
@@ -125,9 +125,9 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
             (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize)
         }
         
-        if indexPath.row == currentPage?.value {
-            cell.reload()
-        }
+//        if indexPath.row == currentPage?.value {
+//            cell.reload()
+//        }
 
         return cell
     }
