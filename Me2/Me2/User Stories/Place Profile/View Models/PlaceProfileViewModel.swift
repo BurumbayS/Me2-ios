@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 enum PlaceProfilePage: String  {
     case info = "PlaceInfoCell"
@@ -38,14 +40,47 @@ class PlaceProfileViewModel {
     var placeStatus: PlaceStatus
     var place: Place
     
+    var dataLoaded = false
+    
     init(place: Place) {
         self.place = place
         pageToShow = Dynamic(.info)
         currentPage = Dynamic(0)
-        placeStatus = .registered
+        placeStatus = .registered//place.regStatus
         
         currentPage.bind { [unowned self] (index) in
-            self.pageToShow.value = self.placeStatus.pages[index]
+            self.pageToShow.value = self.place.regStatus.pages[index]
         }
     }
+    
+    func fetchData(completion: ResponseBlock?) {
+        if dataLoaded { return }
+        
+        let url = placeInfoURL + "\(place.id ?? 0)/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    self.place = Place(json: json["data"])
+                    
+                    self.dataLoaded = true
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func numberOfSections() -> Int {
+        return (dataLoaded) ? 2 : 0
+    }
+    
+    private let placeInfoURL = Network.core + "/place/"
 }

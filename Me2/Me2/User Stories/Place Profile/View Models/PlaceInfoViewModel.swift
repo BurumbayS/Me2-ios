@@ -28,39 +28,14 @@ class PlaceInfoViewModel {
     
     var dataLoaded = false
     
-    func configure(placeID: Int, placeStatus: PlaceStatus) {
-        self.placeID = placeID
-        self.placeStatus = placeStatus
-    }
-    
-    func fetchData(completion: ResponseBlock?) {
-        if dataLoaded { return }
+    init(place: Place) {
+        self.placeInfo = place
         
-        let url = placeInfoURL + "\(placeID ?? 0)/"
-        
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
-            .responseJSON { (response) in
-                switch response.result {
-                case .success(let value):
-                    
-                    let json = JSON(value)
-                    print(json)
-                    self.placeInfo = Place(json: json["data"])
-                    
-                    self.dataLoaded = true
-                    self.configureSections()
-                    
-                    completion?(.ok, "")
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    completion?(.fail, "")
-                }
-        }
+        configureSections()
     }
     
     private func configureSections() {
-        switch placeStatus {
+        switch placeInfo.regStatus {
         case .registered?:
             placeSections = [.description, .contactUs, .address, .workTime, .mail, .site, .tags, .subsidiaries]
         case .not_registered?:
@@ -69,6 +44,5 @@ class PlaceInfoViewModel {
             break
         }
     }
-    
-    private let placeInfoURL = Network.core + "/place/"
+
 }

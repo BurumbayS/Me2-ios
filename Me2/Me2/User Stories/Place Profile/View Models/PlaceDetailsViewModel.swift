@@ -12,11 +12,11 @@ class PlaceDetailsViewModel {
     var cells = [String : PlaceDetailCollectionCell]()
     let placeStatus: PlaceStatus
     let currentPage: Dynamic<Int>
-    let placeID: Int
+    let place: Place
     
-    init(placeID: Int, placeStatus: PlaceStatus, currentPage: Dynamic<Int>) {
-        self.placeID = placeID
-        self.placeStatus = placeStatus
+    init(place: Place, currentPage: Dynamic<Int>) {
+        self.place = place
+        self.placeStatus = place.regStatus
         self.currentPage = currentPage
     }
 }

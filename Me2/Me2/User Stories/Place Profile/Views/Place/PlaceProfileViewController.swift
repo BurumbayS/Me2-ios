@@ -32,10 +32,24 @@ class PlaceProfileViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
         
+        fetchData()
         configureNavBar()
         configureCollectionView()
         configureActionButton()
         bindViewModel()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.reloadData()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func bindViewModel() {
@@ -196,13 +210,13 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(place: viewModel.place, placeStatus: viewModel.placeStatus, viewController: self)
+            cell.configure(place: viewModel.place, viewController: self)
             return cell
             
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.place.id, and: viewModel.placeStatus, currentPage: viewModel.currentPage)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage)
             return cell
             
         }

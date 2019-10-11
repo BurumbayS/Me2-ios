@@ -14,7 +14,7 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
     var tableSize: Dynamic<CGSize>?
     
-    var viewModel = PlaceInfoViewModel()
+    var viewModel: PlaceInfoViewModel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,11 +27,9 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, placeID: Int, placeStatus: PlaceStatus) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place) {
         self.tableSize = itemSize
-        self.viewModel.configure(placeID: placeID, placeStatus: placeStatus)
-        
-        fetchData()
+        self.viewModel = PlaceInfoViewModel(place: place)
     }
     
     override func reload () {
@@ -41,19 +39,6 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
-        }
-    }
-    
-    private func fetchData() {
-        viewModel.fetchData { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                self?.reload()
-            case .error:
-                break
-            case .fail:
-                break
-            }
         }
     }
     

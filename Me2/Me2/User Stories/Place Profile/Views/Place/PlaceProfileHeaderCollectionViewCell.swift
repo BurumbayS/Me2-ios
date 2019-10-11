@@ -42,8 +42,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(place: Place, placeStatus: PlaceStatus, viewController: UIViewController) {
-        self.placeStatus = placeStatus
+    func configure(place: Place, viewController: UIViewController) {
+        self.placeStatus = place.regStatus
         titleLabel.text = place.name
         categoryLabel.text = place.category ?? ""
         logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
@@ -56,6 +56,13 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             ratingView.isHidden = true
         }
         
+        var imageInputs = [InputSource]()
+        for imageURL in place.images {
+            let source = KingfisherSource(url: URL(string: imageURL)!, placeholder: UIImage(named: "default_place_wallpaper"), options: [])
+            imageInputs.append(source)
+        }
+        imageCarousel.setImageInputs(imageInputs)
+        
         parentVC = viewController
         
         configureViews()
@@ -65,7 +72,10 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         switch placeStatus {
         case .registered?:
             imageView.isHidden = true
+            imageCarousel.isHidden = false
+            followButton.isHidden = false
         case .not_registered?:
+            imageView.isHidden = false
             imageCarousel.isHidden = true
             followButton.isHidden = true
         default:
@@ -105,6 +115,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     private func setUpDefaultWalppaper() {
         imageView.image = UIImage(named: "default_place_wallpaper")
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         self.wallpaperView.addSubview(imageView)
         constrain(imageView, self.wallpaperView) { image, view in
             image.left == view.left
@@ -118,10 +129,6 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         imageCarousel.contentScaleMode = .scaleAspectFill
         imageCarousel.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
         imageCarousel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImages)))
-        imageCarousel.setImageInputs([
-            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!,
-            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!
-            ])
         self.wallpaperView.addSubview(imageCarousel)
         constrain(imageCarousel, self.wallpaperView) { image, view in
             image.left == view.left

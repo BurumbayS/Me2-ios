@@ -65,6 +65,7 @@ class Place {
     var name: String!
     var description: String?
     var category: String?
+    var regStatus: PlaceStatus!
     var rating: Double?
     var longitute: Double!
     var latitude: Double!
@@ -77,7 +78,7 @@ class Place {
     var website: String?
     var logo: String?
     var menus: [Menu]?
-    var images: [String]?
+    var images = [String]()
     var workingHours: WorkingHours?
     var roomInfo: RoomInfo?
     
@@ -89,6 +90,7 @@ class Place {
         longitute = json["location"]["longitude"].doubleValue
         address1 = json["location"]["address1"].stringValue
         address2 = json["location"]["address2"].stringValue
+        regStatus = (json["reg_status"].stringValue == "REGISTERED") ? .registered : .not_registered
         rating = json["rating"].doubleValue
         logo = json["logo"].stringValue
         instagram = json["instagram"].stringValue
@@ -98,9 +100,9 @@ class Place {
         workingHours = WorkingHours(json: json["working_hours"])
         roomInfo = RoomInfo(json: json["room_info"])
         
-        images = [String]()
+        images = []
         for image in json["images"].arrayValue {
-            images?.append(image.stringValue)
+            images.append(image.stringValue)
         }
         
         menus = [Menu]()
