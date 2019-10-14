@@ -78,6 +78,8 @@
 		DDBCD71F234DBC6500384DD5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD71E234DBC6500384DD5 /* DateExtension.swift */; };
 		DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */; };
 		DDBCD7232354453C00384DD5 /* PlaceEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */; };
+		DDBCD725235458F500384DD5 /* PlaceReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */; };
+		DDBCD72723545A3500384DD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD72623545A3500384DD5 /* Review.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -279,6 +281,8 @@
 		DDBCD71E234DBC6500384DD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEventsViewModel.swift; sourceTree = "<group>"; };
+		DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReviewsViewModel.swift; sourceTree = "<group>"; };
+		DDBCD72623545A3500384DD5 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -1104,6 +1108,7 @@
 				DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */,
 				DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */,
 				DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */,
+				DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1111,6 +1116,7 @@
 		DDF65B362308024500441035 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DDBCD72623545A3500384DD5 /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1373,6 +1379,7 @@
 				DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */,
 				DD5C2249231D183100CF66CC /* PlaceReviewTableViewCell.swift in Sources */,
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
+				DDBCD72723545A3500384DD5 /* Review.swift in Sources */,
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
@@ -1401,6 +1408,7 @@
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
+				DDBCD725235458F500384DD5 /* PlaceReviewsViewModel.swift in Sources */,
 				DDF69EE0232A352900377796 /* MapSearchViewController.swift in Sources */,
 				DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */,
 				DDC18554233A114E0052C371 /* Event.swift in Sources */,
