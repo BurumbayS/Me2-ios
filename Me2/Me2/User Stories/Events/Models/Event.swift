@@ -6,13 +6,22 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class Event {
-    var title = ""
-    var imageURL = ""
+    var title: String!
+    var imageURL: String?
     var location = ""
-    var time = ""
-    var placeLogoURL = ""
-    var eventType = ""
+    var everyday: Bool!
+    var placeLogoURL: String?
+    var eventType: String!
+    
+    init(json: JSON) {
+        title = json["name"].stringValue
+        imageURL = json["image"].stringValue
+        eventType = json["event_type"].stringValue
+        everyday = json["everyday"].boolValue
+        placeLogoURL = json["place"]["logo"].stringValue
+        location = json["place"]["name"].stringValue
+    }
 }

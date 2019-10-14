@@ -20,13 +20,9 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        configureViews()
-    }
-    
     private func configureViews() {
+        layoutIfNeeded()
+        
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
         
         backView.layer.cornerRadius = 5
@@ -36,11 +32,13 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func configure(wtih event: Event) {
-        placeLogoImageView.image = UIImage(named: "sample_place_logo")
-        eventImageView.image = UIImage(named: "sample_place_image")
+        placeLogoImageView.kf.setImage(with: URL(string: event.placeLogoURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
         locationLabel.text = event.location
-        timeLabel.text = event.time
+//        timeLabel.text = event.time
+        
+        configureViews()
     }
 }

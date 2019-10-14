@@ -42,6 +42,6 @@ class EventCollectionViewCell: UICollectionViewCell {
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
         locationLabel.text = event.location
-        timeLabel.text = event.time
+//        timeLabel.text = event.time
     }
 }

@@ -14,6 +14,8 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     
     var tableSize: Dynamic<CGSize>?
     
+    var viewModel = PlaceEventsViewModel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -47,11 +49,26 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.registerNib(EventTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?) {
+    func configure(itemSize: Dynamic<CGSize>?, placeID: Int) {
         self.tableSize = itemSize
+        
+        viewModel.configure(placeID: placeID)
     }
     
     override func reload () {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.reloadTable()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
+    private func reloadTable() {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
             self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
@@ -64,19 +81,13 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
 
 extension PlaceEventsCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        
-        let event = Event()
-        event.title = "20% скидка на все кальяны! "
-        event.location = "Мята Бар"
-        event.time = "Ежедневно 20:00-00:00"
-        event.eventType = "Акция"
-        
-        cell.configure(wtih: event)
+    
+        cell.configure(wtih: viewModel.events[indexPath.row])
         cell.selectionStyle = .none
         
         return cell

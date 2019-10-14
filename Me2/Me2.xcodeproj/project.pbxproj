@@ -77,6 +77,7 @@
 		DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */; };
 		DDBCD71F234DBC6500384DD5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD71E234DBC6500384DD5 /* DateExtension.swift */; };
 		DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */; };
+		DDBCD7232354453C00384DD5 /* PlaceEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -277,6 +278,7 @@
 		DDB465DE2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileAdditionalTableViewCell.swift; sourceTree = "<group>"; };
 		DDBCD71E234DBC6500384DD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEventsViewModel.swift; sourceTree = "<group>"; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -1101,6 +1103,7 @@
 				DDE0480F234230B500E33046 /* BookTableViewModel.swift */,
 				DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */,
 				DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */,
+				DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1378,6 +1381,7 @@
 				DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */,
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
 				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
+				DDBCD7232354453C00384DD5 /* PlaceEventsViewModel.swift in Sources */,
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
 				DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */,
