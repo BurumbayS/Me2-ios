@@ -351,8 +351,9 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Storyboard.placeProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+        present(controller: vc)
     }
 }
 
