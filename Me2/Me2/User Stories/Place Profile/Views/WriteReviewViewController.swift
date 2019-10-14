@@ -18,6 +18,8 @@ class WriteReviewViewController: UIViewController {
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var reviewContent: UITextView!
     
+    var viewModel: WriteReviewViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +48,22 @@ class WriteReviewViewController: UIViewController {
     
     @objc private func sendReview() {
         self.resignFirstResponder()
-        thanksView.isHidden = false
-//        thanksViewTopConstraint.constant = 0
-//
-//        UIView.animate(withDuration: 0.2) { [weak self] in
-//            self?.view.layoutIfNeeded()
-//        }
+        
+        viewModel.writeReview(with: reviewContent.text, and: ratingView.rating) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.thanksView.isHidden = false
+                NotificationCenter.default.post(.init(name: .updateReviews))
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self?.navigationController?.popViewController(animated: true)
+                })
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 

@@ -35,6 +35,7 @@ class PlaceReviewsViewModel {
                     for item in json["data"]["results"].arrayValue {
                         self.reviews.append(Review(json: item))
                     }
+                    self.reviews.reverse()
                     
                     self.dataLoaded = true
                     

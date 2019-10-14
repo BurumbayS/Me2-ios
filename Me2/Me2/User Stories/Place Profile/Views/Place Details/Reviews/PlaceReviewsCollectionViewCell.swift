@@ -19,6 +19,8 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .updateReviews, object: nil)
+        
         setUpViews()
         configureTableView()
     }
@@ -56,7 +58,7 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
         viewModel.configure(placeID: placeID)
     }
     
-    override func reload () {
+    @objc override func reload () {
         viewModel.fetchData { [weak self] (status, message) in
             switch status {
             case .ok:

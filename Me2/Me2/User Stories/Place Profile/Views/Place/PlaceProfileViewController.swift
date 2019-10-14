@@ -144,7 +144,8 @@ class PlaceProfileViewController: UIViewController {
             
         case .reviews:
             
-            let dest = Storyboard.writeReviewViewController()
+            let dest = Storyboard.writeReviewViewController() as! WriteReviewViewController
+            dest.viewModel = WriteReviewViewModel(placeID: viewModel.place.id)
             navigationController?.pushViewController(dest, animated: true)
             
         default:
