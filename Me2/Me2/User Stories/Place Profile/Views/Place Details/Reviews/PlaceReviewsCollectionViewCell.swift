@@ -47,6 +47,7 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.isScrollEnabled = false
         
         tableView.register(PlaceReviewTableViewCell.self)
+        tableView.register(ResponseReviewTableViewCell.self)
     }
     
     func configure(itemSize: Dynamic<CGSize>?, placeID: Int) {
@@ -80,16 +81,33 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
 }
 
 extension PlaceReviewsCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.reviews.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (viewModel.reviews[section].responses.count > 0) ? 2 : 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PlaceReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        
-        cell.configure(with: viewModel.reviews[indexPath.row])
-        cell.selectionStyle = .none
-        
-        return cell
+        switch indexPath.row {
+        case 0:
+            
+            let cell: PlaceReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.configure(with: viewModel.reviews[indexPath.section])
+            cell.selectionStyle = .none
+            
+            return cell
+            
+        default:
+            
+            let cell: ResponseReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.configure(with: viewModel.reviews[indexPath.section].responses[0])
+            cell.selectionStyle = .none
+            
+            return cell
+        }
     }
 }

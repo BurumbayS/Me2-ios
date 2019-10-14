@@ -80,6 +80,7 @@
 		DDBCD7232354453C00384DD5 /* PlaceEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */; };
 		DDBCD725235458F500384DD5 /* PlaceReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */; };
 		DDBCD72723545A3500384DD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD72623545A3500384DD5 /* Review.swift */; };
+		DDBCD72923546A2700384DD5 /* ResponseReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD72823546A2700384DD5 /* ResponseReviewTableViewCell.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -283,6 +284,7 @@
 		DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEventsViewModel.swift; sourceTree = "<group>"; };
 		DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReviewsViewModel.swift; sourceTree = "<group>"; };
 		DDBCD72623545A3500384DD5 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		DDBCD72823546A2700384DD5 /* ResponseReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseReviewTableViewCell.swift; sourceTree = "<group>"; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 			children = (
 				DD5C2246231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift */,
 				DD5C2248231D183100CF66CC /* PlaceReviewTableViewCell.swift */,
+				DDBCD72823546A2700384DD5 /* ResponseReviewTableViewCell.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -1455,6 +1458,7 @@
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
+				DDBCD72923546A2700384DD5 /* ResponseReviewTableViewCell.swift in Sources */,
 				DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
 				DDE048182342422D00E33046 /* CheckBox.swift in Sources */,
