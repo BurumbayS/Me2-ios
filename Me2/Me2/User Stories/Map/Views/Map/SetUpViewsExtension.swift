@@ -113,7 +113,7 @@ extension MapViewController {
             container.top == view.top
             container.left == view.left
             container.right == view.right
-            container.bottom == view.bottom
+            container.bottom == view.safeAreaLayoutGuide.bottom
         }
     }
     

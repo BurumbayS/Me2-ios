@@ -46,6 +46,7 @@ class MapSearchViewController: UIViewController {
     
     @objc private func clearLastSearchResults() {
         viewModel.lastSearchResults = []
+        UserDefaults().set(viewModel.lastSearchResults, forKey: UserDefaultKeys.lastMapSearchResults.rawValue)
         tableView.reloadSections([0], with: .automatic)
     }
 }

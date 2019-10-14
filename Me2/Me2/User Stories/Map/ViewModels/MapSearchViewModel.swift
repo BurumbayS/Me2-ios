@@ -42,6 +42,8 @@ class MapSearchViewModel {
     }
     
     func addToLastSearchResults(result: String) {
+        if lastSearchResults.count > 5 { lastSearchResults.removeFirst() }
+        
         lastSearchResults.append(result)
         UserDefaults().set(lastSearchResults, forKey: UserDefaultKeys.lastMapSearchResults.rawValue)
     }
