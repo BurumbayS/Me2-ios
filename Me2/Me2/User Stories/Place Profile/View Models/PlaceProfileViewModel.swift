@@ -64,7 +64,6 @@ class PlaceProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
                     self.place = Place(json: json["data"])
                     
                     self.dataLoaded = true

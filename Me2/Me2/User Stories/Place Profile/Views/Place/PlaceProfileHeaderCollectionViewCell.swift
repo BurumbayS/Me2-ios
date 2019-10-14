@@ -104,8 +104,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         setUpDefaultWalppaper()
         setupImageCarousel()
         
-        self.addSubview(wallpaperView)
-        constrain(self.wallpaperView, self) { wallpaper, view in
+        self.contentView.addSubview(wallpaperView)
+        constrain(self.wallpaperView, self.contentView) { wallpaper, view in
             wallpaper.left == view.left
             wallpaper.top == view.top
             wallpaper.right == view.right
@@ -143,8 +143,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         backButton.setImage(UIImage(named: "custom_back_button"), for: .normal)
         backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
-        self.addSubview(backButton)
-        constrain(backButton, self) { btn, view in
+        self.contentView.addSubview(backButton)
+        constrain(backButton, self.contentView) { btn, view in
             btn.left == view.left + 17
             btn.top == view.top + 50
             btn.width == 38
@@ -167,8 +167,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             btn.height == 22
         }
         
-        self.addSubview(shareView)
-        constrain(shareView, self) { share, view in
+        self.contentView.addSubview(shareView)
+        constrain(shareView, self.contentView) { share, view in
             share.right == view.right - 17
             share.top == view.top + 50
             share.height == 38
@@ -178,10 +178,10 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         //Follow button
         followButton.configure(with: self.isFollowed)
         followButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(followPlace)))
-        self.addSubview(followButton)
-        constrain(followButton, shareView, self) { btn, share, view in
+        self.contentView.addSubview(followButton)
+        constrain(followButton, shareView, self.contentView) { btn, share, view in
             btn.right == share.left - 16
-            btn.top == view.top + 50
+            btn.top == view.safeAreaLayoutGuide.top + 50
         }
         constrain(followButton, replace: followBtnSize) { btn in
             btn.height == 38
@@ -249,8 +249,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             btn.height == 40
         }
         
-        self.addSubview(view)
-        constrain(view, wallpaperView, self) { view, image, superview in
+        self.contentView.addSubview(view)
+        constrain(view, wallpaperView, self.contentView) { view, image, superview in
             view.top == image.bottom - 20
             view.left == superview.left
             view.right == superview.right

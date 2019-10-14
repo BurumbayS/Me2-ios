@@ -123,7 +123,7 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         case .events:
             (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize)
         case .menu:
-            (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize, menus: viewModel.place.menus ?? [])
         case .reviews:
             (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize)
         }

@@ -21,10 +21,10 @@ class PlaceProfileViewController: UIViewController {
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = Constants.minContentSize.height
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barStyle = .default
     }
     
     override func viewDidLoad() {

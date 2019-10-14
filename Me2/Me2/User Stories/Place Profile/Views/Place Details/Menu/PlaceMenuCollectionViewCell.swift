@@ -14,6 +14,7 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
     
     let titles = ["Меню Traveler's Coffee","Бар Меню"]
+    var menus = [Menu]()
     var tableSize: Dynamic<CGSize>?
     
     override init(frame: CGRect) {
@@ -50,8 +51,11 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(MenuFileTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?) {
+    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu]) {
         self.tableSize = itemSize
+        self.menus = menus
+        
+        tableView.reloadSections([0], with: .automatic)
     }
     
     override func reload () {
@@ -67,13 +71,13 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
 
 extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return menus.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MenuFileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: titles[indexPath.row])
+        cell.configure(with: menus[indexPath.row].menu_type)
         cell.selectionStyle = .none
         
         return cell
