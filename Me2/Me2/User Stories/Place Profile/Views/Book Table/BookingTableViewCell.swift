@@ -15,6 +15,12 @@ class BookingTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let textField = AttributedTextField()
     
+    var bookingParameter: BookingParameter!
+    
+    func configure(parameter: BookingParameter) {
+        self.bookingParameter = parameter
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

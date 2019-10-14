@@ -6,9 +6,10 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import Alamofire
+import SwiftyJSON
 
-enum BookingParameters: String {
+enum BookingParameterType: String {
     case dateTime = "Дата и время"
     case numberOfGuest = "Количество гостей"
     case username = "Бронь на имя"
@@ -16,6 +17,72 @@ enum BookingParameters: String {
     case wishes = "Пожелания к брони"
 }
 
+class BookingParameter {
+    let type: BookingParameterType
+    var filledCorrectly: Bool!
+    var data: Any!
+    var callback = false
+    var remember = false
+    var guests = [String]()
+    
+    init(type: BookingParameterType) {
+        self.type = type
+        self.filledCorrectly = (type == .wishes) ? true : false
+    }
+}
+
 class BookTableViewModel {
-    let bookingParameters = [BookingParameters.dateTime, .numberOfGuest, .username, .phoneNumber, .wishes]
+    let bookingParameters: [BookingParameter] = [BookingParameter(type: .dateTime), BookingParameter(type: .numberOfGuest), BookingParameter(type: .username), BookingParameter(type: .phoneNumber), BookingParameter(type: .wishes)]
+    
+    let placeID: Int
+    
+    init(placeID: Int) {
+        self.placeID = placeID
+    }
+    
+    private func fieldsFilledCorreclty() -> Bool {
+        var filledCorrectly = true
+        
+        for parameter in bookingParameters {
+            if parameter.filledCorrectly == false { filledCorrectly = false}
+        }
+        
+        return filledCorrectly
+    }
+    
+    func bookTable() {
+        if !fieldsFilledCorreclty() { return }
+        
+        var params = ["place" : placeID] as [String : Any]
+        for parameter in bookingParameters {
+            switch parameter.type {
+            case .dateTime:
+                params["date"] = parameter.data
+            case .numberOfGuest:
+                params["amount"] = parameter.data
+            case .phoneNumber:
+                params["booker_phone"] = parameter.data
+                params["callback"] = parameter.callback
+            case .username:
+                params["booker_name"] = parameter.data
+            case .wishes:
+                params["comment"] = parameter.data
+            }
+        }
+        
+        Alamofire.request(bookTableURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    let bookTableURL = Network.core + "/booking/"
 }

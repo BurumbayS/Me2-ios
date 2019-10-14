@@ -139,7 +139,8 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
-            let dest = Storyboard.bookTableViewController()
+            let dest = Storyboard.bookTableViewController() as! BookTableViewController
+            dest.viewModel = BookTableViewModel(placeID: viewModel.place.id)
             present(dest, animated: true, completion: nil)
             
         case .reviews:

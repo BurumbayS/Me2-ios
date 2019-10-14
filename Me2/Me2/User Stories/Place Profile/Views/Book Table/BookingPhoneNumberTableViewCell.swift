@@ -12,18 +12,21 @@ import Cartography
 class BookingPhoneNumberTableViewCell: BookingTableViewCell {
     
     var phoneNumber = String()
+    let callMeCheckBox = CheckBox()
+    let rememberMeCheckBox = CheckBox()
     
-    func configure() {
-        titleLabel.text = BookingParameters.phoneNumber.rawValue
+    override func configure(parameter: BookingParameter) {
+        super.configure(parameter: parameter)
+        
+        titleLabel.text = parameter.type.rawValue
         
         textField.delegate = self
         textField.keyboardType = .phonePad
         
         addCheckBoxes()
     }
-
+    
     private func addCheckBoxes() {
-        let callMeCheckBox = CheckBox()
         callMeCheckBox.configure(with: "Позвонить мне")
         self.contentView.addSubview(callMeCheckBox)
         constrain(callMeCheckBox, textField, self.contentView) { box, label, view in
@@ -32,7 +35,6 @@ class BookingPhoneNumberTableViewCell: BookingTableViewCell {
             box.right == view.right - 20
         }
         
-        let rememberMeCheckBox = CheckBox()
         rememberMeCheckBox.configure(with: "Запомнить")
         self.contentView.addSubview(rememberMeCheckBox)
         constrain(rememberMeCheckBox, callMeCheckBox, self.contentView) { box1, box2, view in
@@ -41,6 +43,11 @@ class BookingPhoneNumberTableViewCell: BookingTableViewCell {
             box1.right == view.right - 20
             box1.bottom == view.bottom
         }
+    }
+    
+    private func handleCheckBoxes() {
+        bookingParameter.callback = callMeCheckBox.isChecked
+        bookingParameter.remember = rememberMeCheckBox.isChecked
     }
 }
 
@@ -61,5 +68,24 @@ extension BookingPhoneNumberTableViewCell: UITextFieldDelegate {
         }
         
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        if text.count < "+# (###) ###-##-##".count {
+            textField.layer.borderWidth = 1.0
+            textField.layer.cornerRadius = 5
+            textField.layer.borderColor = Color.red.cgColor
+            
+            bookingParameter.filledCorrectly = false
+        } else {
+            bookingParameter.filledCorrectly = true
+            bookingParameter.data = textField.text
+            
+            handleCheckBoxes()
+            
+            textField.layer.borderWidth = 0
+        }
     }
 }
