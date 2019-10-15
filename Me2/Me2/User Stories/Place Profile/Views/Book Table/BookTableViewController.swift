@@ -54,7 +54,18 @@ class BookTableViewController: UIViewController {
     }
     
     @objc private func confirmBooking() {
-        viewModel.bookTable()
+        viewModel.bookTable { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.dismiss(animated: true, completion: nil)
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
 }

@@ -19,7 +19,7 @@ enum BookingParameterType: String {
 
 class BookingParameter {
     let type: BookingParameterType
-    var filledCorrectly: Bool!
+    var filledCorrectly: Dynamic<Bool>!
     var data: Any!
     var callback = false
     var remember = false
@@ -27,7 +27,7 @@ class BookingParameter {
     
     init(type: BookingParameterType) {
         self.type = type
-        self.filledCorrectly = (type == .wishes) ? true : false
+        self.filledCorrectly = (type == .wishes) ? Dynamic(true) : Dynamic(false)
     }
 }
 
@@ -44,13 +44,16 @@ class BookTableViewModel {
         var filledCorrectly = true
         
         for parameter in bookingParameters {
-            if parameter.filledCorrectly == false { filledCorrectly = false}
+            if parameter.filledCorrectly.value == false {
+                filledCorrectly = false
+                parameter.filledCorrectly.value = false
+            }
         }
         
         return filledCorrectly
     }
     
-    func bookTable() {
+    func bookTable(completion: ResponseBlock?) {
         if !fieldsFilledCorreclty() { return }
         
         var params = ["place" : placeID] as [String : Any]
@@ -77,9 +80,11 @@ class BookTableViewModel {
                     
                     let json = JSON(value)
                     print(json)
+                    completion?(.ok, "")
                     
                 case .failure(let error):
                     print(error.localizedDescription)
+                    completion?(.error, "")
                 }
         }
     }

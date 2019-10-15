@@ -117,16 +117,10 @@ class BookingInviteFriendsTableViewCell: BookingTableViewCell {
 extension BookingInviteFriendsTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
-            textField.layer.borderWidth = 1.0
-            textField.layer.cornerRadius = 5
-            textField.layer.borderColor = Color.red.cgColor
-            
-            bookingParameter.filledCorrectly = false
+            bookingParameter.filledCorrectly.value = false
         } else {
-            bookingParameter.filledCorrectly = true
+            bookingParameter.filledCorrectly.value = true
             bookingParameter.data = Int(textField.text ?? "0")
-            
-            textField.layer.borderWidth = 0
         }
     }
 }

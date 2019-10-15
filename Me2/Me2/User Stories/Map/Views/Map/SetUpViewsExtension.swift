@@ -60,7 +60,7 @@ extension MapViewController {
             collection.right == view.right
         }
         constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
-            collection.top == view.safeAreaLayoutGuide.bottom
+            collection.top == view.safeAreaLayoutGuide.bottom + 20
         }
     }
     

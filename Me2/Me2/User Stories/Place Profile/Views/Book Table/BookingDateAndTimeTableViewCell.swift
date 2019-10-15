@@ -29,6 +29,8 @@ class BookingDateAndTimeTableViewCell: BookingTableViewCell {
         constrain(textField, self.contentView) { textField, view in
             textField.bottom == view.bottom
         }
+        
+//        bindDynamics()
     }
     
     @objc private func datePicked() {
@@ -42,15 +44,9 @@ class BookingDateAndTimeTableViewCell: BookingTableViewCell {
 extension BookingDateAndTimeTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
-            textField.layer.borderWidth = 1.0
-            textField.layer.cornerRadius = 5
-            textField.layer.borderColor = Color.red.cgColor
-            
-            bookingParameter.filledCorrectly = false
+            bookingParameter.filledCorrectly.value = false
         } else {
-            textField.layer.borderWidth = 0
-            
-            bookingParameter.filledCorrectly = true
+            bookingParameter.filledCorrectly.value = true
             bookingParameter.data = formatDate()
         }
     }

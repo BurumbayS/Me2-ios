@@ -281,7 +281,7 @@ class MapViewController: UIViewController {
     
     private func hideCollectionView() {
         constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
-            collection.top == view.safeAreaLayoutGuide.bottom
+            collection.top == view.safeAreaLayoutGuide.bottom + 20
         }
         
         UIView.animate(withDuration: 0.3) {

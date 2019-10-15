@@ -74,18 +74,12 @@ extension BookingPhoneNumberTableViewCell: UITextFieldDelegate {
         guard let text = textField.text else { return }
         
         if text.count < "+# (###) ###-##-##".count {
-            textField.layer.borderWidth = 1.0
-            textField.layer.cornerRadius = 5
-            textField.layer.borderColor = Color.red.cgColor
-            
-            bookingParameter.filledCorrectly = false
+            bookingParameter.filledCorrectly.value = false
         } else {
-            bookingParameter.filledCorrectly = true
+            bookingParameter.filledCorrectly.value = true
             bookingParameter.data = textField.text
             
             handleCheckBoxes()
-            
-            textField.layer.borderWidth = 0
         }
     }
 }

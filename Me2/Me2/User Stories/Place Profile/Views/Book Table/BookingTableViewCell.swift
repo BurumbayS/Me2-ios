@@ -19,6 +19,19 @@ class BookingTableViewCell: UITableViewCell {
     
     func configure(parameter: BookingParameter) {
         self.bookingParameter = parameter
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        bookingParameter.filledCorrectly.bind { [weak self] (value) in
+            if !value {
+                self?.textField.layer.borderWidth = 1.0
+                self?.textField.layer.cornerRadius = 5
+                self?.textField.layer.borderColor = Color.red.cgColor
+            } else {
+                self?.textField.layer.borderWidth = 0
+            }
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
