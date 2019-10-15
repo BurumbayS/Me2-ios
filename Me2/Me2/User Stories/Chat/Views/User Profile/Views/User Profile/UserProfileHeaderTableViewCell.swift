@@ -20,7 +20,11 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     
     var parentVC: UIViewController!
     
-    func configure(profileType: ProfileType, viewController: UIViewController) {
+    func configure(user: User, profileType: ProfileType, viewController: UIViewController) {
+        usernameLabel.text = user.username
+        nameAndAgeLabel.text = user.fullName ?? ""
+        bioLabel.text = user.bio ?? ""
+        
         self.parentVC = viewController
         
         if profileType == .myProfile {

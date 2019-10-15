@@ -26,6 +26,8 @@ class EventsTabViewController: UIViewController {
     
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     
+    let viewModel = EventsTabViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -254,14 +256,6 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.selectionStyle = .none
-                
-//                let event = Event()
-//                event.title = "20% скидка на все кальяны! "
-//                event.location = "Мята Бар"
-//                event.time = "Ежедневно 20:00-00:00"
-//                event.eventType = "Акция"
-//                
-//                cell.configure(wtih: event)
                 
                 return cell
                 

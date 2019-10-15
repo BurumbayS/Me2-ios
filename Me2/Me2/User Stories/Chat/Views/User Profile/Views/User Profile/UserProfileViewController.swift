@@ -25,6 +25,7 @@ class UserProfileViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        fetchData()
     }
     
     private func configureNavBar() {
@@ -44,6 +45,7 @@ class UserProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.isHidden = true
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
@@ -55,6 +57,22 @@ class UserProfileViewController: UIViewController {
         tableView.register(AddInterestsTableViewCell.self)
         tableView.register(MyProfileAdditionalTableViewCell.self)
         tableView.register(GuestProfileAdditionalTableViewCell.self)
+    }
+    
+    func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.tableView.isHidden = false
+                self?.tableView.reloadData()
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
@@ -129,7 +147,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(profileType: viewModel.profileType, viewController: self)
+            cell.configure(user: viewModel.userInfo, profileType: viewModel.profileType, viewController: self)
             return cell
             
         case .interests:
@@ -180,7 +198,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             }
 
         }
-    
+
     }
 }
 
