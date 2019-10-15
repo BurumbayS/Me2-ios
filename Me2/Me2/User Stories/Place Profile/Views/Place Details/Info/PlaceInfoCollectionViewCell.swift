@@ -102,6 +102,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.placeInfo.phone, ans: viewModel.placeInfo.instagram)
             return cell
             
         case .address:
@@ -145,9 +146,6 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             cell.selectionStyle = .none
             cell.configure(with: 3)
             return cell
-            
-        default:
-            return UITableViewCell()
         }
     }
 }
