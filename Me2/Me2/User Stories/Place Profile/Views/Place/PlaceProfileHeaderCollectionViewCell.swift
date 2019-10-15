@@ -67,6 +67,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             let source = KingfisherSource(url: URL(string: imageURL)!, placeholder: UIImage(named: "default_place_wallpaper"), options: [])
             imageInputs.append(source)
         }
+        if (imageInputs.count == 0) { imageInputs.append(ImageSource(image:  UIImage(named: "default_place_wallpaper")!)) }
         imageCarousel.setImageInputs(imageInputs)
         
         parentVC = viewController
