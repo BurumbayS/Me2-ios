@@ -48,7 +48,9 @@ class BookTableViewController: UIViewController {
     }
 
     @objc private func cancelBooking() {
-        self.dismiss(animated: true, completion: nil)
+        self.showDefaultAlert(with: "Вы уверены, что хотите отменить оформление брони? \n Введенные Вами данные не будут сохранены.") { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc private func confirmBooking() {
