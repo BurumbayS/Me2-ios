@@ -32,12 +32,12 @@ class EventTableViewCell: UITableViewCell {
     }
     
     func configure(wtih event: Event) {
-        placeLogoImageView.kf.setImage(with: URL(string: event.placeLogoURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        placeLogoImageView.kf.setImage(with: URL(string: event.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
-        locationLabel.text = event.location
-//        timeLabel.text = event.time
+        locationLabel.text = event.place.name
+        timeLabel.text = event.getTime()
         
         configureViews()
     }

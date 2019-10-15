@@ -22,7 +22,13 @@ class EventsTabViewController: UIViewController {
     
     let listViewSwitchButton = UIButton()
     let filterButton = UIButton()
-    var listType = EventsListType.ByCategories
+    var listType = EventsListType.ByCategories {
+        didSet {
+            if self.listType == .AllInOne && self.viewModel.allEvents.count == 0 {
+                self.getAllEvents()
+            }
+        }
+    }
     
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     
@@ -34,6 +40,12 @@ class EventsTabViewController: UIViewController {
         configureNavBar()
         setUpViews()
         configureTableView()
+    }
+    
+    private func getAllEvents() {
+        viewModel.getAllEvents { [weak self] (status, message) in
+            self?.tableView.reloadSections([0,1], with: .automatic)
+        }
     }
     
     private func configureNavBar() {
@@ -227,7 +239,12 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch listType {
+        case .ByCategories:
+            return 1
+        default:
+            return viewModel.allEvents.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -256,6 +273,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.selectionStyle = .none
+                cell.configure(wtih: viewModel.allEvents[indexPath.row])
                 
                 return cell
                 
