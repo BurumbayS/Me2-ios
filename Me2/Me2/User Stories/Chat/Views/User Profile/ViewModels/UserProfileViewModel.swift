@@ -112,5 +112,5 @@ class UserProfileViewModel {
         }
     }
     
-    let userProfileURL = Network.host + "/auth/user/get/"
+    let userProfileURL = Network.user + "/get/"
 }
