@@ -60,6 +60,7 @@
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
 		DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4523548027002291CA /* WriteReviewViewModel.swift */; };
 		DD97CB48235574BD002291CA /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */; };
+		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
 		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
 		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
@@ -143,7 +144,6 @@
 		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
 		DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */; };
 		DDE047E0233C8C4500E33046 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DF233C8C4500E33046 /* Place.swift */; };
-		DDE047E2233C939900E33046 /* WorkingHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047E1233C939900E33046 /* WorkingHours.swift */; };
 		DDE047E4233CB54C00E33046 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047E3233CB54C00E33046 /* Typealias.swift */; };
 		DDE047E6233CD4A000E33046 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047E5233CD4A000E33046 /* EventDetailsViewController.swift */; };
 		DDE047E9233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047E8233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift */; };
@@ -266,6 +266,7 @@
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD97CB4523548027002291CA /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
+		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
 		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
@@ -343,7 +344,6 @@
 		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
 		DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewModel.swift; sourceTree = "<group>"; };
 		DDE047DF233C8C4500E33046 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		DDE047E1233C939900E33046 /* WorkingHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingHours.swift; sourceTree = "<group>"; };
 		DDE047E3233CB54C00E33046 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		DDE047E5233CD4A000E33046 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventDetailsViewController.swift; path = ../EventDetailsViewController.swift; sourceTree = "<group>"; };
 		DDE047E8233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 			children = (
 				DDC18536233378420052C371 /* PlacePin.swift */,
 				DDE047DF233C8C4500E33046 /* Place.swift */,
-				DDE047E1233C939900E33046 /* WorkingHours.swift */,
+				DD97CB492355D532002291CA /* PlaceParameters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1355,7 +1355,6 @@
 				DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
-				DDE047E2233C939900E33046 /* WorkingHours.swift in Sources */,
 				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
 				DD5C22372317AB6400CF66CC /* TagsTableViewCell.swift in Sources */,
 				DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */,
@@ -1411,6 +1410,7 @@
 				DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */,
 				DDA1425123228E2500C721A3 /* Network.swift in Sources */,
 				DDF69EE2232A72F500377796 /* LastSearchTableViewCell.swift in Sources */,
+				DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */,
 				DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */,
 				DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */,
 				DDE047E4233CB54C00E33046 /* Typealias.swift in Sources */,

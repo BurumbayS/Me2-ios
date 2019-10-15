@@ -9,57 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-enum PlaceStatus {
-    case registered
-    case not_registered
-    
-    var pages: [PlaceProfilePage] {
-        switch self {
-        case .registered:
-            return [PlaceProfilePage.info, .events, .menu, .reviews]
-        case .not_registered:
-            return [PlaceProfilePage.info, .reviews]
-        }
-    }
-    
-    var pagesTitles: [String] {
-        switch self {
-        case .registered:
-            return ["Инфо","События","Меню","Отзывы"]
-        case .not_registered:
-            return ["Инфо", "Отзывы"]
-        }
-    }
-}
-
-struct Menu {
-    var id: Int
-    var file: String
-    var menu_type: String
-    
-    init(json: JSON) {
-        self.id = json["id"].intValue
-        self.file = json["file"].stringValue
-        self.menu_type = json["menu_type"].stringValue
-    }
-}
-
-struct RoomInfo {
-    var uuid: String
-    var usersCount: Int
-    var avatars: [String]
-    
-    init(json: JSON) {
-        uuid = json["uuid"].stringValue
-        usersCount = json["users_count"].intValue
-        
-        avatars = [String]()
-        for item in json["avatars"].arrayValue {
-            avatars.append(item.stringValue)
-        }
-    }
-}
-
 class Place {
     var id: Int!
     var name: String!

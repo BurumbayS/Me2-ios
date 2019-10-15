@@ -77,7 +77,8 @@ extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MenuFileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: menus[indexPath.row].menu_type)
+        let menu = menus[indexPath.row]
+        cell.configure(with: menu.menu_type.title, and: menu.menu_type.image)
         cell.selectionStyle = .none
         
         return cell
