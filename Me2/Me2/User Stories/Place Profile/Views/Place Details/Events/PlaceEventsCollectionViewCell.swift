@@ -11,6 +11,7 @@ import Cartography
 
 class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
+    let placeholderLabel = UILabel()
     
     var tableSize: Dynamic<CGSize>?
     
@@ -18,6 +19,8 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = .white
         
         setUpViews()
         configureTableView()
@@ -28,6 +31,16 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        placeholderLabel.textColor = .darkGray
+        placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
+        placeholderLabel.text = "Пока нет событий"
+        placeholderLabel.isHidden = true
+        self.contentView.addSubview(placeholderLabel)
+        constrain(placeholderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.top == view.top + 50
+        }
+        
         self.contentView.addSubview(tableView)
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -59,7 +72,16 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
         viewModel.fetchData { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.reloadTable()
+                
+                if (self?.viewModel.events.count)! > 0 {
+                    self?.reloadTable()
+                    self?.tableView.isHidden = false
+                    self?.placeholderLabel.isHidden = true
+                } else {
+                    self?.tableView.isHidden = true
+                    self?.placeholderLabel.isHidden = false
+                }
+
             case .error:
                 break
             case .fail:

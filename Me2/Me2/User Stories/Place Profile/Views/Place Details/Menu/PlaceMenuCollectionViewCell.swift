@@ -12,6 +12,7 @@ import Cartography
 class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     
     let tableView = TableView()
+    let placeholderLabel = UILabel()
     
     let titles = ["Меню Traveler's Coffee","Бар Меню"]
     var menus = [Menu]()
@@ -29,6 +30,16 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        placeholderLabel.textColor = .darkGray
+        placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
+        placeholderLabel.text = "Пока нет меню"
+        placeholderLabel.isHidden = true
+        self.contentView.addSubview(placeholderLabel)
+        constrain(placeholderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.top == view.top + 50
+        }
+        
         self.contentView.addSubview(tableView)
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -55,7 +66,14 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         self.tableSize = itemSize
         self.menus = menus
         
-        tableView.reloadSections([0], with: .automatic)
+        if menus.count > 0 {
+            tableView.reloadSections([0], with: .automatic)
+            tableView.isHidden = false
+            placeholderLabel.isHidden = true
+        } else {
+            tableView.isHidden = true
+            placeholderLabel.isHidden = false
+        }
     }
     
     override func reload () {

@@ -11,6 +11,7 @@ import Cartography
 
 class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
+    let placeholderLabel = UILabel()
     
     var tableSize: Dynamic<CGSize>?
     
@@ -20,6 +21,7 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
         super.init(frame: frame)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .updateReviews, object: nil)
+        self.backgroundColor = .white
         
         setUpViews()
         configureTableView()
@@ -30,6 +32,16 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        placeholderLabel.textColor = .darkGray
+        placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
+        placeholderLabel.text = "Пока нет отзывов"
+        placeholderLabel.isHidden = true
+        self.contentView.addSubview(placeholderLabel)
+        constrain(placeholderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.top == view.top + 50
+        }
+        
         self.contentView.addSubview(tableView)
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -62,7 +74,16 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
         viewModel.fetchData { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.reloadTable()
+                
+                if (self?.viewModel.reviews.count)! > 0 {
+                    self?.reloadTable()
+                    self?.tableView.isHidden = false
+                    self?.placeholderLabel.isHidden = true
+                } else {
+                    self?.tableView.isHidden = true
+                    self?.placeholderLabel.isHidden = false
+                }
+                
             case .error:
                 break
             case .fail:
