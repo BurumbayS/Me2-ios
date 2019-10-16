@@ -22,13 +22,6 @@ class EventsTabViewController: UIViewController {
     
     let listViewSwitchButton = UIButton()
     let filterButton = UIButton()
-    var listType = EventsListType.ByCategories {
-        didSet {
-            if self.listType == .AllInOne && self.viewModel.allEvents.count == 0 {
-                self.getAllEvents()
-            }
-        }
-    }
     
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     
@@ -40,6 +33,16 @@ class EventsTabViewController: UIViewController {
         configureNavBar()
         setUpViews()
         configureTableView()
+        bindDynamics()
+    }
+    
+    
+    private func bindDynamics() {
+        viewModel.listType.bind { [weak self] (value) in
+            if value == .AllInOne && (self?.viewModel.allEvents.count)! == 0 {
+                self?.getAllEvents()
+            }
+        }
     }
     
     private func getAllEvents() {
@@ -150,11 +153,11 @@ class EventsTabViewController: UIViewController {
     }
     
     @objc private func switchListType() {
-        if listType == .ByCategories {
-            listType = .AllInOne
+        if viewModel.listType.value == .ByCategories {
+            viewModel.listType.value = .AllInOne
             listViewSwitchButton.setImage(UIImage(named: "cardView_icon"), for: .normal)
         } else {
-            listType = .ByCategories
+            viewModel.listType.value = .ByCategories
             listViewSwitchButton.setImage(UIImage(named: "listView_icon"), for: .normal)
         }
         
@@ -182,7 +185,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         let title = UILabel()
         title.textColor = .black
         title.font = UIFont(name: "Roboto-Bold", size: 17)
-        title.text = "Популярное сегодня"
+        title.text = viewModel.categories[section].title
         
         header.addSubview(title)
         constrain(title, header) { title, header in
@@ -208,7 +211,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch listType {
+        switch viewModel.listType.value {
         case .ByCategories:
             switch section {
             case 0:
@@ -230,27 +233,22 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch listType {
-        case .ByCategories:
-            return 3
-        default:
-            return 2
-        }
+        return viewModel.categories.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch listType {
-        case .ByCategories:
-            return 1
-        default:
+        if viewModel.categories[section] == .all {
             return viewModel.allEvents.count
         }
+        
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = viewModel.categories[indexPath.section]
         
-        switch indexPath.section {
-        case 0:
+        switch section {
+        case .saved:
             
             let cell: SavedEventsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
@@ -260,33 +258,27 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        case 1:
-            
-            switch listType {
-            case .ByCategories:
-                
-                let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.selectionStyle = .none
-                return cell
-                
-            case .AllInOne:
-                
-                let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.selectionStyle = .none
-                cell.configure(wtih: viewModel.allEvents[indexPath.row])
-                
-                return cell
-                
-            }
+        case .popular, .actual, .favourite:
         
-        case 2:
+            let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(with: CategoryEventsListViewModel(categoryType: section))
+            return cell
+                
+        case .all:
+                
+            let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(wtih: viewModel.allEvents[indexPath.row])
+            
+            return cell
+        
+        case .new_places:
             
             let cell: NewPlacesListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             return cell
             
-        default:
-            return UITableViewCell()
         }
     }
 }

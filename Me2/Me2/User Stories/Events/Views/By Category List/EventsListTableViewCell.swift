@@ -13,6 +13,8 @@ class EventsListTableViewCell: UITableViewCell {
     
     let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
     
+    var viewModel: CategoryEventsListViewModel!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -22,6 +24,18 @@ class EventsListTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with viewModel: CategoryEventsListViewModel) {
+        self.viewModel = viewModel
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            self?.collectionView.reloadData()
+        }
     }
     
     private func configureCollectionView() {
@@ -64,20 +78,18 @@ extension EventsListTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if let viewModel = self.viewModel {
+            return viewModel.eventsList.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell: EventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        
-//        let event = Event()
-//        event.title = "20% скидка на все кальяны! "
-//        event.location = "Мята Бар"
-//        event.time = "Ежедневно 20:00-00:00"
-//        event.eventType = "Акция"
-//        
-//        cell.configure(wtih: event)
+    
+        cell.configure(wtih: viewModel.eventsList[indexPath.row])
         
         return cell
     }

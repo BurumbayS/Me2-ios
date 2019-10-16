@@ -30,8 +30,8 @@ class Event {
     var eventType: String!
     var start: String?
     var end: String?
-    var time_start: String!
-    var time_end: String!
+    var time_start: String?
+    var time_end: String?
     var date_type: DateType!
     
     init(json: JSON) {
@@ -44,12 +44,32 @@ class Event {
         start = json["start"].stringValue
         end = json["end"].stringValue
         time_start = json["time_start"].stringValue
-        time_start.removeLast(3)
         time_end = json["time_end"].stringValue
-        time_end.removeLast(3)
     }
     
     func getTime() -> String {
-        return date_type.title + " " + time_start + "-" + time_end
+        var start = time_start ?? ""
+        var end = time_end ?? ""
+        
+        if start != "" && end != "" {
+            start.removeLast(3)
+            end.removeLast(3)
+            
+            return date_type.title + " " + start + "-" + end
+        }
+        
+        if end != "" {
+            end.removeLast(3)
+
+            return date_type.title + " до " + end
+        }
+        
+        if start != "" {
+            start.removeLast(3)
+            
+            return date_type.title + " с " + start
+        }
+        
+        return date_type.title
     }
 }
