@@ -182,6 +182,15 @@ class EventsTabViewController: UIViewController {
         dest.viewModel = ListOfAllViewModel(listItemType: .event)
         navigationController?.pushViewController(dest, animated: true)
     }
+    
+    private func deleteCategory(in section: EventCategoriesType) {
+        if let index = viewModel.categories.firstIndex(of: section) {
+            viewModel.categories.remove(at: index)
+            viewModel.categoryViewModels.remove(at: index)
+            
+            tableView.deleteSections([index], with: .fade)
+        }
+    }
 }
 
 extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
@@ -274,12 +283,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.configure(with: viewModel.categoryViewModels[indexPath.section]) { [weak self] (itemsCount) in
                 if itemsCount == 0 {
-                    if let index = self?.viewModel.categories.firstIndex(of: section) {
-                        self?.viewModel.categories.remove(at: index)
-                        self?.viewModel.categoryViewModels.remove(at: index)
-//                        self?.tableView.reloadData()
-                        self?.tableView.deleteSections([index], with: .fade)
-                    }
+                    self?.deleteCategory(in: section)
                 }
             }
             return cell
