@@ -46,12 +46,6 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
         case .event:
         
             let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            let event = Event()
-            event.title = "20% скидка на все кальяны! "
-            event.location = "Мята Бар"
-            event.time = "Ежедневно 20:00-00:00"
-            event.eventType = "Акция"
-            cell.configure(wtih: event)
             return cell
         
         case .place:

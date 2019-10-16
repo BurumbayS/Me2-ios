@@ -6,13 +6,50 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
+
+enum DateType: String {
+    case weekdays = "WEEKDAYS"
+    case everyday = "EVERYDAY"
+    
+    var title: String {
+        switch self {
+        case .weekdays:
+            return "Будни"
+        case .everyday:
+            return "Ежедневно"
+        }
+    }
+}
 
 class Event {
-    var title = ""
-    var imageURL = ""
-    var location = ""
-    var time = ""
-    var placeLogoURL = ""
-    var eventType = ""
+    let id: Int
+    var title: String!
+    var imageURL: String?
+    var place: Place!
+    var eventType: String!
+    var start: String?
+    var end: String?
+    var time_start: String!
+    var time_end: String!
+    var date_type: DateType!
+    
+    init(json: JSON) {
+        id = json["id"].intValue
+        title = json["name"].stringValue
+        imageURL = json["image"].stringValue
+        eventType = json["event_type"]["name"].stringValue
+        place = Place(json: json["place"])
+        date_type = DateType(rawValue: json["date_type"].stringValue)
+        start = json["start"].stringValue
+        end = json["end"].stringValue
+        time_start = json["time_start"].stringValue
+        time_start.removeLast(3)
+        time_end = json["time_end"].stringValue
+        time_end.removeLast(3)
+    }
+    
+    func getTime() -> String {
+        return date_type.title + " " + time_start + "-" + time_end
+    }
 }

@@ -68,12 +68,12 @@
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="bottom" secondItem="2gW-ph-Pcn" secondAttribute="bottom" id="B3w-gi-qrQ"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="GXU-og-6vr"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="JSS-dL-rJh"/>
+                            <constraint firstItem="t3Z-f7-7Ud" firstAttribute="top" secondItem="2gW-ph-Pcn" secondAttribute="top" id="NmM-xr-hrw"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="cYv-Bf-a23"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="ewA-J9-JCf"/>
                             <constraint firstItem="2gW-ph-Pcn" firstAttribute="bottom" secondItem="8JJ-2I-Nl8" secondAttribute="bottom" constant="50" id="hsD-du-F6m"/>
                             <constraint firstItem="8JJ-2I-Nl8" firstAttribute="centerX" secondItem="2gW-ph-Pcn" secondAttribute="centerX" id="kYb-dI-shk"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="top" secondItem="t3Z-f7-7Ud" secondAttribute="bottom" id="qBM-ve-AXX"/>
-                            <constraint firstItem="t3Z-f7-7Ud" firstAttribute="top" secondItem="2gW-ph-Pcn" secondAttribute="top" id="qDH-V9-dWe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2gW-ph-Pcn"/>
                     </view>

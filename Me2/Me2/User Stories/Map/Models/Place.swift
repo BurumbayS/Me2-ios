@@ -9,48 +9,16 @@
 import Foundation
 import SwiftyJSON
 
-enum PlaceStatus {
-    case registered
-    case not_registered
-    
-    var pages: [PlaceProfilePage] {
-        switch self {
-        case .registered:
-            return [PlaceProfilePage.info, .events, .menu, .reviews]
-        case .not_registered:
-            return [PlaceProfilePage.info, .reviews]
-        }
-    }
-    
-    var pagesTitles: [String] {
-        switch self {
-        case .registered:
-            return ["Инфо","События","Меню","Отзывы"]
-        case .not_registered:
-            return ["Инфо", "Отзывы"]
-        }
-    }
-}
-
-struct Menu {
-    var id: Int
-    var file: String
-    var menu_type: String
-    
-    init(json: JSON) {
-        self.id = json["id"].intValue
-        self.file = json["file"].stringValue
-        self.menu_type = json["menu_type"].stringValue
-    }
-}
-
 class Place {
     var id: Int!
     var name: String!
     var description: String?
+    var categories = [String]()
+    var regStatus: PlaceStatus!
     var rating: Double?
     var longitute: Double!
     var latitude: Double!
+    var distance: Double?
     var address1: String!
     var address2: String!
     var instagram: String?
@@ -59,16 +27,22 @@ class Place {
     var website: String?
     var logo: String?
     var menus: [Menu]?
-    var images: [String]?
+    var images = [String]()
     var workingHours: WorkingHours?
+    var roomInfo: RoomInfo?
+    var kitchens = [String]()
+    var dishes = [String]()
+    var extras = [String]()
     
     init(json: JSON) {
         id = json["id"].intValue
         name = json["name"].stringValue
+        description = json["description"].stringValue
         latitude = json["location"]["latitude"].doubleValue
         longitute = json["location"]["longitude"].doubleValue
         address1 = json["location"]["address1"].stringValue
         address2 = json["location"]["address2"].stringValue
+        regStatus = (json["reg_status"].stringValue == "REGISTERED") ? .registered : .not_registered
         rating = json["rating"].doubleValue
         logo = json["logo"].stringValue
         instagram = json["instagram"].stringValue
@@ -76,16 +50,22 @@ class Place {
         phone = json["phone"].stringValue
         website = json["website"].stringValue
         workingHours = WorkingHours(json: json["working_hours"])
+        roomInfo = RoomInfo(json: json["room_info"])
         
-        images = [String]()
+        images = []
         for image in json["images"].arrayValue {
-            images?.append(image.stringValue)
+            images.append(image.stringValue)
         }
         
         menus = [Menu]()
         for item in json["menu"].arrayValue {
             let menu = Menu(json: item)
             menus?.append(menu)
+        }
+        
+        categories = []
+        for item in json["place_type"].arrayValue {
+            categories.append(item["name"].stringValue)
         }
      }
 }

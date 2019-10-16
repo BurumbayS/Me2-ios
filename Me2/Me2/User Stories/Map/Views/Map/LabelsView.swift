@@ -15,8 +15,12 @@ class LabelsView: UIView {
     var labels = [UILabel]()
     
     func configure(with places: [PlacePin], on map: GMSMapView) {
+        self.labels.forEach { $0.removeFromSuperview() }
+        self.isHidden = false
+        
         self.places = places
         self.map = map
+        self.labels = []
         
         for place in places {
             let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)

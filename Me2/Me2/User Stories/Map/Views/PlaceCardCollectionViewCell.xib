@@ -21,56 +21,60 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PlaceCardCollectionViewCell" customModule="Me2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="313" height="107"/>
+            <rect key="frame" x="0.0" y="0.0" width="313" height="118"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="313" height="107"/>
+                <rect key="frame" x="0.0" y="0.0" width="313" height="118"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ob-Rz-yx4">
-                        <rect key="frame" x="0.0" y="0.0" width="313" height="107"/>
+                        <rect key="frame" x="0.0" y="0.0" width="313" height="118"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample_place_logo" translatesAutoresizingMaskIntoConstraints="NO" id="a6Z-60-Z7G">
-                                <rect key="frame" x="11" y="11" width="40" height="40"/>
+                                <rect key="frame" x="11" y="11" width="36" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="PBb-JY-cst"/>
-                                    <constraint firstAttribute="height" constant="40" id="kY8-NC-ECe"/>
+                                    <constraint firstAttribute="width" constant="36" id="PBb-JY-cst"/>
+                                    <constraint firstAttribute="height" constant="36" id="kY8-NC-ECe"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traveler's Coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-uZ-Fu6">
-                                <rect key="frame" x="61" y="11" width="149" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traveler's Coffee" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-uZ-Fu6">
+                                <rect key="frame" x="57" y="19" width="153" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nc7-8a-Fzg" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="61" y="41" width="40" height="6"/>
+                                <rect key="frame" x="11" y="55" width="55" height="10"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="lnC-fL-LQU"/>
-                                    <constraint firstAttribute="height" constant="6" id="ovj-Td-Zlc"/>
+                                    <constraint firstAttribute="height" constant="10" id="Yhq-R3-sBN"/>
+                                    <constraint firstAttribute="width" constant="55" id="hkY-jF-Tey"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                        <real key="value" value="6"/>
+                                        <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
-                                        <integer key="value" value="0"/>
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filled_star"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="empty_star"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="3.2000000000000002"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 м" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAd-oR-FXH">
-                                <rect key="frame" x="111" y="36" width="27.5" height="16"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTo-qF-Z6G">
                                 <rect key="frame" x="220" y="11" width="82" height="40"/>
                                 <constraints>
@@ -81,13 +85,13 @@
                                 <state key="normal" title="Live Чат"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сеть кофеен" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed3-4a-awv">
-                                <rect key="frame" x="11" y="61" width="77" height="16"/>
+                                <rect key="frame" x="11" y="70" width="77" height="16"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Открыто до 23:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHw-18-tpM">
-                                <rect key="frame" x="11" y="82" width="108" height="16"/>
+                                <rect key="frame" x="11" y="91" width="108" height="16"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -98,25 +102,39 @@
                                     <constraint firstAttribute="height" constant="26" id="Z0I-f9-aue"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vc-iu-0fY">
+                                <rect key="frame" x="124" y="94" width="10" height="10"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="GaU-5t-w4n"/>
+                                    <constraint firstAttribute="height" constant="10" id="sXe-un-gHk"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="4Vc-iu-0fY" firstAttribute="centerY" secondItem="NHw-18-tpM" secondAttribute="centerY" id="1QX-7C-26o"/>
                             <constraint firstItem="JKJ-1J-wnp" firstAttribute="leading" secondItem="bTo-qF-Z6G" secondAttribute="leading" id="4AE-S3-jut"/>
+                            <constraint firstItem="Ed3-4a-awv" firstAttribute="top" secondItem="nc7-8a-Fzg" secondAttribute="bottom" constant="5" id="5Wj-Zm-glY"/>
                             <constraint firstItem="JKJ-1J-wnp" firstAttribute="top" secondItem="bTo-qF-Z6G" secondAttribute="bottom" constant="10" id="6JW-Ll-giQ"/>
                             <constraint firstAttribute="trailing" secondItem="bTo-qF-Z6G" secondAttribute="trailing" constant="11" id="Bs1-ya-oOS"/>
                             <constraint firstItem="JKJ-1J-wnp" firstAttribute="trailing" secondItem="bTo-qF-Z6G" secondAttribute="trailing" id="DBl-J2-DSP"/>
                             <constraint firstItem="NHw-18-tpM" firstAttribute="leading" secondItem="Ed3-4a-awv" secondAttribute="leading" id="DqA-M0-385"/>
-                            <constraint firstItem="j5e-uZ-Fu6" firstAttribute="top" secondItem="a6Z-60-Z7G" secondAttribute="top" id="EGt-D7-ZyV"/>
-                            <constraint firstItem="nc7-8a-Fzg" firstAttribute="leading" secondItem="j5e-uZ-Fu6" secondAttribute="leading" id="Fcv-Xt-pLf"/>
-                            <constraint firstItem="WAd-oR-FXH" firstAttribute="centerY" secondItem="nc7-8a-Fzg" secondAttribute="centerY" id="JPQ-Tv-EbW"/>
                             <constraint firstItem="bTo-qF-Z6G" firstAttribute="leading" secondItem="j5e-uZ-Fu6" secondAttribute="trailing" constant="10" id="PDU-vt-elj"/>
-                            <constraint firstItem="WAd-oR-FXH" firstAttribute="leading" secondItem="nc7-8a-Fzg" secondAttribute="trailing" constant="10" id="Rds-A5-did"/>
+                            <constraint firstItem="4Vc-iu-0fY" firstAttribute="leading" secondItem="NHw-18-tpM" secondAttribute="trailing" constant="5" id="Pyq-VX-jcw"/>
                             <constraint firstItem="Ed3-4a-awv" firstAttribute="leading" secondItem="a6Z-60-Z7G" secondAttribute="leading" id="RsJ-0z-cSk"/>
                             <constraint firstItem="a6Z-60-Z7G" firstAttribute="top" secondItem="6Ob-Rz-yx4" secondAttribute="top" constant="11" id="V3z-Xw-vzo"/>
+                            <constraint firstItem="j5e-uZ-Fu6" firstAttribute="centerY" secondItem="a6Z-60-Z7G" secondAttribute="centerY" id="YWA-mS-Ih4"/>
+                            <constraint firstItem="nc7-8a-Fzg" firstAttribute="leading" secondItem="a6Z-60-Z7G" secondAttribute="leading" id="dlX-bq-d7k"/>
                             <constraint firstItem="a6Z-60-Z7G" firstAttribute="leading" secondItem="6Ob-Rz-yx4" secondAttribute="leading" constant="11" id="fgO-7m-8Wh"/>
-                            <constraint firstItem="Ed3-4a-awv" firstAttribute="top" secondItem="a6Z-60-Z7G" secondAttribute="bottom" constant="10" id="hu3-5a-cW9"/>
+                            <constraint firstAttribute="bottom" secondItem="NHw-18-tpM" secondAttribute="bottom" constant="11" id="k8p-Qx-CG9"/>
+                            <constraint firstItem="nc7-8a-Fzg" firstAttribute="top" secondItem="a6Z-60-Z7G" secondAttribute="bottom" constant="8" id="mTG-5p-SgV"/>
                             <constraint firstItem="NHw-18-tpM" firstAttribute="top" secondItem="Ed3-4a-awv" secondAttribute="bottom" constant="5" id="myB-nC-A3B"/>
-                            <constraint firstItem="nc7-8a-Fzg" firstAttribute="top" secondItem="j5e-uZ-Fu6" secondAttribute="bottom" constant="10" id="pQU-pY-pyh"/>
                             <constraint firstItem="bTo-qF-Z6G" firstAttribute="top" secondItem="6Ob-Rz-yx4" secondAttribute="top" constant="11" id="sxj-BZ-Xjn"/>
                             <constraint firstItem="j5e-uZ-Fu6" firstAttribute="leading" secondItem="a6Z-60-Z7G" secondAttribute="trailing" constant="10" id="uva-CG-BGO"/>
                         </constraints>
@@ -137,19 +155,21 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="availabilityLabel" destination="NHw-18-tpM" id="wVx-FJ-5BF"/>
+                <outlet property="availabilityStatusView" destination="4Vc-iu-0fY" id="Rci-Ix-Ccm"/>
                 <outlet property="backView" destination="6Ob-Rz-yx4" id="4pY-xP-dBF"/>
                 <outlet property="categoryLabel" destination="Ed3-4a-awv" id="KcZ-jH-Bq0"/>
-                <outlet property="distanceLabel" destination="WAd-oR-FXH" id="eR5-iu-dkG"/>
                 <outlet property="livaChatButton" destination="bTo-qF-Z6G" id="ils-z1-9gu"/>
                 <outlet property="logoImageView" destination="a6Z-60-Z7G" id="IdI-X6-Ndw"/>
                 <outlet property="ratingView" destination="nc7-8a-Fzg" id="Vca-DV-25F"/>
                 <outlet property="stackView" destination="JKJ-1J-wnp" id="OiE-Ar-8aQ"/>
                 <outlet property="titleLabel" destination="j5e-uZ-Fu6" id="slU-PE-tGk"/>
             </connections>
-            <point key="canvasLocation" x="136.95652173913044" y="129.57589285714286"/>
+            <point key="canvasLocation" x="136.95652173913044" y="129.24107142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="empty_star" width="26.5" height="25"/>
+        <image name="filled_star" width="26.5" height="25"/>
         <image name="sample_place_logo" width="48" height="48"/>
     </resources>
 </document>

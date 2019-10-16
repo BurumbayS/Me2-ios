@@ -41,7 +41,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(named: "sample_place_image")
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
-        locationLabel.text = event.location
-        timeLabel.text = event.time
+//        locationLabel.text = event.location
+//        timeLabel.text = event.time
     }
 }

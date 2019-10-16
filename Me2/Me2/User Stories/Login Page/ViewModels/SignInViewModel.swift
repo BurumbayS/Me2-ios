@@ -26,7 +26,7 @@ class SignInViewModel {
                     case 0:
                         
                         let token = json["data"]["token"].stringValue
-                        UserDefaults().set(token, forKey: "token")
+                        UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
                         completion?(.ok, "")
                         
                     case 1:

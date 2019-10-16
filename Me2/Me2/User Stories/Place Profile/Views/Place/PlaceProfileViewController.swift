@@ -16,15 +16,15 @@ class PlaceProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    let viewModel = PlaceProfileViewModel()
+    var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = Constants.minContentSize.height
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barStyle = .default
     }
     
     override func viewDidLoad() {
@@ -32,10 +32,24 @@ class PlaceProfileViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
         
+        fetchData()
         configureNavBar()
         configureCollectionView()
         configureActionButton()
         bindViewModel()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.reloadData()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func bindViewModel() {
@@ -78,7 +92,7 @@ class PlaceProfileViewController: UIViewController {
         navBar.isHidden = true
         navBar.shouldRemoveShadow(true)
         
-        navItem.title = "Traveler's coffee"
+        navItem.title = viewModel.place.name
         
         setUpBackBarButton(for: navItem)
         navItem.leftBarButtonItem?.tintColor = .black
@@ -125,12 +139,14 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
-            let dest = Storyboard.bookTableViewController()
+            let dest = Storyboard.bookTableViewController() as! BookTableViewController
+            dest.viewModel = BookTableViewModel(placeID: viewModel.place.id)
             present(dest, animated: true, completion: nil)
             
         case .reviews:
             
-            let dest = Storyboard.writeReviewViewController()
+            let dest = Storyboard.writeReviewViewController() as! WriteReviewViewController
+            dest.viewModel = WriteReviewViewModel(placeID: viewModel.place.id)
             navigationController?.pushViewController(dest, animated: true)
             
         default:
@@ -196,13 +212,13 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", placeStatus: viewModel.placeStatus, viewController: self)
+            cell.configure(place: viewModel.place, viewController: self)
             return cell
             
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.currentPage, and: viewModel.placeStatus)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage)
             return cell
             
         }

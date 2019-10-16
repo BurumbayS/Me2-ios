@@ -17,6 +17,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     let imageView = UIImageView()
     let wallpaperView = UIView()
     let imageCarousel = ImageSlideshow()
+    
+    let logoImageView = UIImageView()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
     let ratingView = CosmosView()
@@ -40,11 +42,34 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(title: String, rating: Double, category: String, placeStatus: PlaceStatus, viewController: UIViewController) {
-        self.placeStatus = placeStatus
-        titleLabel.text = title
-        ratingView.rating = rating
-        categoryLabel.text = category
+    func configure(place: Place, viewController: UIViewController) {
+        self.placeStatus = place.regStatus
+        titleLabel.text = place.name
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        
+        var categories = ""
+        for (i, category) in place.categories.enumerated() {
+            categories += category
+            categories += (i == place.categories.count - 1) ? ", " : ""
+        }
+        categoryLabel.text = categories
+        
+        if let rating = place.rating {
+            let roundedRating = Double(round(rating * 10) / 10)
+            ratingView.rating = roundedRating
+            ratingView.text = "\(roundedRating)"
+        } else {
+            ratingView.isHidden = true
+        }
+        
+        var imageInputs = [InputSource]()
+        for imageURL in place.images {
+            let source = KingfisherSource(url: URL(string: imageURL)!, placeholder: UIImage(named: "default_place_wallpaper"), options: [])
+            imageInputs.append(source)
+        }
+        if (imageInputs.count == 0) { imageInputs.append(ImageSource(image:  UIImage(named: "default_place_wallpaper")!)) }
+        imageCarousel.setImageInputs(imageInputs)
+        
         parentVC = viewController
         
         configureViews()
@@ -54,7 +79,10 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         switch placeStatus {
         case .registered?:
             imageView.isHidden = true
+            imageCarousel.isHidden = false
+            followButton.isHidden = false
         case .not_registered?:
+            imageView.isHidden = false
             imageCarousel.isHidden = true
             followButton.isHidden = true
         default:
@@ -83,8 +111,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         setUpDefaultWalppaper()
         setupImageCarousel()
         
-        self.addSubview(wallpaperView)
-        constrain(self.wallpaperView, self) { wallpaper, view in
+        self.contentView.addSubview(wallpaperView)
+        constrain(self.wallpaperView, self.contentView) { wallpaper, view in
             wallpaper.left == view.left
             wallpaper.top == view.top
             wallpaper.right == view.right
@@ -94,6 +122,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     private func setUpDefaultWalppaper() {
         imageView.image = UIImage(named: "default_place_wallpaper")
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         self.wallpaperView.addSubview(imageView)
         constrain(imageView, self.wallpaperView) { image, view in
             image.left == view.left
@@ -107,10 +136,6 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         imageCarousel.contentScaleMode = .scaleAspectFill
         imageCarousel.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
         imageCarousel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImages)))
-        imageCarousel.setImageInputs([
-            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!,
-            KingfisherSource(urlString: "https://www.voxpopuli.kz/img/inner/135/41/img_69743.jpg")!
-            ])
         self.wallpaperView.addSubview(imageCarousel)
         constrain(imageCarousel, self.wallpaperView) { image, view in
             image.left == view.left
@@ -125,8 +150,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         backButton.setImage(UIImage(named: "custom_back_button"), for: .normal)
         backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
-        self.addSubview(backButton)
-        constrain(backButton, self) { btn, view in
+        self.contentView.addSubview(backButton)
+        constrain(backButton, self.contentView) { btn, view in
             btn.left == view.left + 17
             btn.top == view.top + 50
             btn.width == 38
@@ -149,8 +174,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             btn.height == 22
         }
         
-        self.addSubview(shareView)
-        constrain(shareView, self) { share, view in
+        self.contentView.addSubview(shareView)
+        constrain(shareView, self.contentView) { share, view in
             share.right == view.right - 17
             share.top == view.top + 50
             share.height == 38
@@ -160,10 +185,10 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         //Follow button
         followButton.configure(with: self.isFollowed)
         followButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(followPlace)))
-        self.addSubview(followButton)
-        constrain(followButton, shareView, self) { btn, share, view in
+        self.contentView.addSubview(followButton)
+        constrain(followButton, shareView, self.contentView) { btn, share, view in
             btn.right == share.left - 16
-            btn.top == view.top + 50
+            btn.top == view.safeAreaLayoutGuide.top + 50
         }
         constrain(followButton, replace: followBtnSize) { btn in
             btn.height == 38
@@ -176,32 +201,44 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = .white
         view.layer.cornerRadius = 20
         
-        titleLabel.textColor = .black
-        titleLabel.font = UIFont(name: "Roboto-Medium", size: 24)
-        view.addSubview(titleLabel)
-        constrain(titleLabel, view) { title, view in
-            title.left == view.left + 27
-            title.top == view.top + 28
+        logoImageView.layer.cornerRadius = 20
+        logoImageView.clipsToBounds = true
+        view.addSubview(logoImageView)
+        constrain(logoImageView, view) { logo, view in
+            logo.left == view.left + 20
+            logo.top == view.top + 20
+            logo.height == 40
+            logo.width == 40
         }
         
-        categoryLabel.textColor = .darkGray
-        categoryLabel.font = UIFont(name: "Roboto-Regular", size: 15)
-        view.addSubview(categoryLabel)
-        constrain(categoryLabel, titleLabel) { category, title in
-            category.leading == title.leading
-            category.top == title.bottom + 7
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "Roboto-Medium", size: 17)
+        view.addSubview(titleLabel)
+        constrain(titleLabel, logoImageView) { title, logo in
+            title.left == logo.right + 10
+            title.centerY == logo.centerY
+            title.top == logo.top
+            title.bottom == logo.bottom
         }
         
         ratingView.settings.starSize = 10
         ratingView.settings.starMargin = 3
         ratingView.settings.totalStars = 5
-        ratingView.text = "3.2"
         view.addSubview(ratingView)
-        constrain(ratingView, categoryLabel) { rating, category in
-            rating.leading == category.leading
-            rating.top == category.bottom + 7
-            rating.height == 10
-            rating.width == 65
+        constrain(ratingView, logoImageView) { rating, logo in
+            rating.leading == logo.leading
+            rating.top == logo.bottom + 10
+            rating.height == 15
+            rating.width == 90
+        }
+        
+        categoryLabel.textColor = .darkGray
+        categoryLabel.font = UIFont(name: "Roboto-Regular", size: 15)
+        view.addSubview(categoryLabel)
+        constrain(categoryLabel, ratingView) { category, rating in
+            category.leading == rating.leading
+            category.top == rating.bottom + 5
         }
         
         liveChatButton.setTitleColor(Color.blue, for: .normal)
@@ -219,8 +256,8 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             btn.height == 40
         }
         
-        self.addSubview(view)
-        constrain(view, wallpaperView, self) { view, image, superview in
+        self.contentView.addSubview(view)
+        constrain(view, wallpaperView, self.contentView) { view, image, superview in
             view.top == image.bottom - 20
             view.left == superview.left
             view.right == superview.right

@@ -39,4 +39,14 @@ extension UIViewController {
     @objc func dismissSelf() {
         navigationController?.popViewController(animated: true)
     }
+    
+    func showDefaultAlert(with message: String, doneAction: VoidBlock?) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.setMessage(font: UIFont(name: "Roboto-Regular", size: 15), color: .black)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { (alert) in
+            doneAction?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

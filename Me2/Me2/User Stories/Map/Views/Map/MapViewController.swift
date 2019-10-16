@@ -22,10 +22,12 @@ class MapViewController: UIViewController {
     let imhereButton = UIButton()
     let imhereIcon = UIImageView()
     let filterButton = UIButton()
-    let imhereIconConstraints = ConstraintGroup()
     let helperView = UIView()
     let myLocationButton = UIButton()
     var labelsView: LabelsView!
+    
+    let imhereIconConstraints = ConstraintGroup()
+    let collectionViewConstraints = ConstraintGroup()
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
@@ -75,6 +77,10 @@ class MapViewController: UIViewController {
                 self?.hideMyLocation()
             }
         }
+        
+        viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
+            self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
+        }
     }
     
     //MARK: -Configures
@@ -118,19 +124,20 @@ class MapViewController: UIViewController {
     //MARK: -My location actions
     private func hideMyLocation() {
         helperView.isHidden = false
-        collectionView.isHidden = true
+        hideCollectionView()
         
         mapView.animate(toZoom: 15.0)
         mapView.clear()
+        
         pinsInRadius = []
         setPins()
     }
     
     private func showMyLocation() {
         helperView.isHidden = true
-        collectionView.isHidden = false
+        if labelsView != nil { labelsView.isHidden = true }
+        
         mapView.clear()
-        labelsView.isHidden = true
         
         setImHerePin()
         animatePulsingRadius()
@@ -138,6 +145,7 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
+                self?.showCollectionView()
                 self?.showPinsInRadius()
             case .error:
                 print(message)
@@ -158,6 +166,8 @@ class MapViewController: UIViewController {
             
             pinsInRadius.append(pin)
         }
+        
+        if pinsInRadius.count > 0 { tappedPinInRadius(marker: pinsInRadius[0]) }
     }
     
     private func setImHerePin() {
@@ -227,6 +237,57 @@ class MapViewController: UIViewController {
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView
     }
+    
+    private func tappedPinInRadius(marker: GMSMarker) {
+        //Show previous selected marker
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
+            pin.map = mapView
+        }
+        
+        //Move imhere marker to selected position and remove marker on that position
+        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
+            pin.map = nil
+            imHereMarker.position = marker.position
+            
+            let index = Int(pin.accessibilityHint!) ?? 0
+            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+    private func tappedSinglePlacePin(atIndex index: Int) {
+        viewModel.getPlaceCardInfo(with: viewModel.placePins[index].id) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.showCollectionView()
+            case .error:
+                print(message)
+            case .fail:
+                print("Fail")
+            }
+        }
+    }
+    
+    private func showCollectionView() {
+        collectionView.reloadData()
+        
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.bottom == view.safeAreaLayoutGuide.bottom - 30
+        }
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func hideCollectionView() {
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.top == view.safeAreaLayoutGuide.bottom + 20
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -236,27 +297,29 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        if labelsView != nil {
+        //update labels coordinates if there are
+        if labelsView.labels.count > 0 {
             labelsView.updateCoordinates()
         }
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        //Show previous selected marker
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
-            pin.map = mapView
-        }
-        
-        //Move imhere marker to selected position and remove marker pn that position
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
-            pin.map = nil
-            imHereMarker.position = marker.position
-            
-            let index = Int(pin.accessibilityHint!) ?? 0
-            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        if viewModel.isMyLocationVisible.value {
+            tappedPinInRadius(marker: marker)
+        } else {
+            mapView.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 16.5))
+            tappedSinglePlacePin(atIndex: Int(marker.title!)!)
         }
         
         return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //hide place card in case showMyLocation is off
+        if !viewModel.isMyLocationVisible.value {
+            mapView.animate(toZoom: 15.0)
+            hideCollectionView()
+        }
     }
 }
 
@@ -264,9 +327,10 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func setCollectionViewLayout() {
         let layout = PlacesCollectionViewLayout()
+        layout.currentPage = viewModel.currentPlaceCardIndex
         //calculate item width with indention
         let width = UIScreen.main.bounds.width - 40
-        layout.itemSize = CGSize(width: width, height: 107)
+        layout.itemSize = CGSize(width: width, height: 118)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -277,18 +341,19 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.places.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: 10)
+        cell.configure(with: viewModel.places[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Storyboard.placeProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+        present(controller: vc)
     }
 }
 
@@ -318,5 +383,11 @@ extension MapViewController: UITextFieldDelegate {
                 self.helperView.isHidden = false
             }
         }
+    }
+}
+
+extension MapViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

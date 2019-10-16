@@ -11,11 +11,16 @@ import Cartography
 
 class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     let tableView = TableView()
+    let placeholderLabel = UILabel()
     
     var tableSize: Dynamic<CGSize>?
     
+    var viewModel = PlaceEventsViewModel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = .white
         
         setUpViews()
         configureTableView()
@@ -26,6 +31,16 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        placeholderLabel.textColor = .darkGray
+        placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
+        placeholderLabel.text = "Пока нет событий"
+        placeholderLabel.isHidden = true
+        self.contentView.addSubview(placeholderLabel)
+        constrain(placeholderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.top == view.top + 50
+        }
+        
         self.contentView.addSubview(tableView)
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -47,11 +62,35 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.registerNib(EventTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?) {
+    func configure(itemSize: Dynamic<CGSize>?, placeID: Int) {
         self.tableSize = itemSize
+        
+        viewModel.configure(placeID: placeID)
     }
     
     override func reload () {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                if (self?.viewModel.events.count)! > 0 {
+                    self?.reloadTable()
+                    self?.tableView.isHidden = false
+                    self?.placeholderLabel.isHidden = true
+                } else {
+                    self?.tableView.isHidden = true
+                    self?.placeholderLabel.isHidden = false
+                }
+
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
+    private func reloadTable() {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
             self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
@@ -64,19 +103,13 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
 
 extension PlaceEventsCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        
-        let event = Event()
-        event.title = "20% скидка на все кальяны! "
-        event.location = "Мята Бар"
-        event.time = "Ежедневно 20:00-00:00"
-        event.eventType = "Акция"
-        
-        cell.configure(wtih: event)
+    
+        cell.configure(wtih: viewModel.events[indexPath.row])
         cell.selectionStyle = .none
         
         return cell

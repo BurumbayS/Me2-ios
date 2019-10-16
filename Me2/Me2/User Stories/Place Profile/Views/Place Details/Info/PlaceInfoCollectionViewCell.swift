@@ -27,9 +27,9 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, placeStatus: PlaceStatus) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place) {
         self.tableSize = itemSize
-        self.viewModel = PlaceInfoViewModel(placeStatus: placeStatus)
+        self.viewModel = PlaceInfoViewModel(place: place)
     }
     
     override func reload () {
@@ -87,7 +87,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем") { [weak self] in
+            cell.configure(with: viewModel.placeInfo.description ?? "") { [weak self] in
                 self?.tableView.beginUpdates()
                     cell.updateUI()
                 self?.tableView.endUpdates()
@@ -102,13 +102,14 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.placeInfo.phone, ans: viewModel.placeInfo.instagram)
             return cell
             
         case .address:
             
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Желтоксана, 137", additionalInfo: "1 этаж, Алмалинский район", distance: "1.3 км")
+            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "1.3 км")
             return cell
             
         case .workTime:
@@ -122,14 +123,14 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(withEmail: "travelers@coffee.com")
+            cell.configure(withEmail: viewModel.placeInfo.email ?? "")
             return cell
             
         case .site:
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(withWebSite: "www.travelers-coffee.com")
+            cell.configure(withWebSite: viewModel.placeInfo.website ?? "")
             return cell
             
         case .tags:
@@ -145,9 +146,6 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             cell.selectionStyle = .none
             cell.configure(with: 3)
             return cell
-            
-        default:
-            return UITableViewCell()
         }
     }
 }

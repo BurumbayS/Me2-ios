@@ -12,8 +12,10 @@ import Cartography
 class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     
     let tableView = TableView()
+    let placeholderLabel = UILabel()
     
     let titles = ["Меню Traveler's Coffee","Бар Меню"]
+    var menus = [Menu]()
     var tableSize: Dynamic<CGSize>?
     
     override init(frame: CGRect) {
@@ -28,6 +30,16 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        placeholderLabel.textColor = .darkGray
+        placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
+        placeholderLabel.text = "Пока нет меню"
+        placeholderLabel.isHidden = true
+        self.contentView.addSubview(placeholderLabel)
+        constrain(placeholderLabel, self.contentView) { label, view in
+            label.centerX == view.centerX
+            label.top == view.top + 50
+        }
+        
         self.contentView.addSubview(tableView)
         constrain(tableView, self.contentView) { table, view in
             table.left == view.left
@@ -50,8 +62,18 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(MenuFileTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?) {
+    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu]) {
         self.tableSize = itemSize
+        self.menus = menus
+        
+        if menus.count > 0 {
+            tableView.reloadSections([0], with: .automatic)
+            tableView.isHidden = false
+            placeholderLabel.isHidden = true
+        } else {
+            tableView.isHidden = true
+            placeholderLabel.isHidden = false
+        }
     }
     
     override func reload () {
@@ -67,13 +89,14 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
 
 extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return menus.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MenuFileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: titles[indexPath.row])
+        let menu = menus[indexPath.row]
+        cell.configure(with: menu.menu_type.title, and: menu.menu_type.image)
         cell.selectionStyle = .none
         
         return cell

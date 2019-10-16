@@ -11,6 +11,7 @@ import SwiftyJSON
 class PlacePin {
     var id: Int!
     var name: String!
+    var logo: String?
     var longitude: Double!
     var latitude: Double!
 
@@ -21,6 +22,7 @@ class PlacePin {
         placePin.name = json["name"].stringValue
         placePin.longitude = json["location"]["longitude"].doubleValue
         placePin.latitude = json["location"]["latitude"].doubleValue
+        placePin.logo = json["logo"].stringValue
         
         return placePin
     }

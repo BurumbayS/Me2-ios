@@ -6,7 +6,8 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import Alamofire
+import SwiftyJSON
 
 enum PlaceInfoSection {
     case description
@@ -21,13 +22,27 @@ enum PlaceInfoSection {
 
 class PlaceInfoViewModel {
     var placeSections = [PlaceInfoSection]()
+    var placeInfo: Place!
+    var placeID: Int!
+    var placeStatus: PlaceStatus!
     
-    init(placeStatus: PlaceStatus) {
-        switch placeStatus {
-        case .registered:
+    var dataLoaded = false
+    
+    init(place: Place) {
+        self.placeInfo = place
+        
+        configureSections()
+    }
+    
+    private func configureSections() {
+        switch placeInfo.regStatus {
+        case .registered?:
             placeSections = [.description, .contactUs, .address, .workTime, .mail, .site, .tags, .subsidiaries]
-        case .not_registered:
+        case .not_registered?:
             placeSections = [.address, .workTime, .mail, .site, .subsidiaries]
+        default:
+            break
         }
     }
+
 }

@@ -30,6 +30,15 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with place: Place, currentPage: Dynamic<Int>) {
+        viewModel = PlaceDetailsViewModel(place: place, currentPage: currentPage)
+        self.currentPage = currentPage
+        
+        collectionView.reloadData()
+        
+        bindDynamics()
+    }
+    
     private func setUpViews() {
         self.contentView.addSubview(collectionView)
         configureViews()
@@ -80,12 +89,6 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
             cell.reload()
         }
     }
-    
-    func configure(with currentPage: Dynamic<Int>, and placeStatus: PlaceStatus) {
-        viewModel = PlaceDetailsViewModel(placeStatus: placeStatus, currentPage: currentPage)
-
-        bindDynamics()
-    }
 }
 
 extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -116,13 +119,13 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         
         switch viewModel.placeStatus.pages[indexPath.row] {
         case .info:
-            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, placeStatus: viewModel.placeStatus)
+            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, place: viewModel.place)
         case .events:
-            (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.place.id)
         case .menu:
-            (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize, menus: viewModel.place.menus ?? [])
         case .reviews:
-            (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize)
+            (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.place.id)
         }
         
         if indexPath.row == currentPage?.value {

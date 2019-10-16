@@ -28,12 +28,12 @@ class PlaceReviewTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with review: NSObject?) {
-        avatarImageView.image = UIImage(named: "sample_avatar")
-        usernameLabel.text = "dana.ar"
-        ratingView.rating = 4.0
+    func configure(with review: Review) {
+        avatarImageView.kf.setImage(with: URL(string: review.user.avatar ?? ""), placeholder: UIImage(named: "sample_avatar"), options: [])//image = UIImage(named: "sample_avatar")
+        usernameLabel.text = review.user.username ?? ""
+        ratingView.rating = review.rating
         dateLabel.text = "15 мин"
-        reviewLabel.text = "Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaaliqua. "
+        reviewLabel.text = review.body
     }
     
     private func setUpViews() {
@@ -68,7 +68,7 @@ class PlaceReviewTableViewCell: UITableViewCell {
         dateLabel.font = UIFont(name: "Roboto-Regular", size: 13)
         self.contentView.addSubview(dateLabel)
         constrain(dateLabel, usernameLabel, self.contentView) { date, username, view in
-            date.right == view.right - 20
+            date.right == view.right - 15
             date.top == username.top
         }
         

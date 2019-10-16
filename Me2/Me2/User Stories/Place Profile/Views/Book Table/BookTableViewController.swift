@@ -15,7 +15,7 @@ class BookTableViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    let viewModel = BookTableViewModel()
+    var viewModel: BookTableViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +48,26 @@ class BookTableViewController: UIViewController {
     }
 
     @objc private func cancelBooking() {
-        self.dismiss(animated: true, completion: nil)
+        self.showDefaultAlert(with: "Вы уверены, что хотите отменить оформление брони? \n Введенные Вами данные не будут сохранены.") { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc private func confirmBooking() {
-        
+        viewModel.bookTable { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.dismiss(animated: true, completion: nil)
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
+    
 }
 
 extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -63,39 +77,41 @@ extension BookTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch viewModel.bookingParameters[indexPath.row] {
+        switch viewModel.bookingParameters[indexPath.row].type {
         case .dateTime:
             
             let cell: BookingDateAndTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure()
+            cell.configure(parameter: viewModel.bookingParameters[indexPath.row])
             return cell
             
         case .numberOfGuest:
             
             let cell: BookingInviteFriendsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: self)
+            cell.configure(parameter: viewModel.bookingParameters[indexPath.row])
+            cell.parentVC = self
             return cell
             
         case .username:
             
             let cell: BookingUsernameTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure()
+            cell.configure(parameter: viewModel.bookingParameters[indexPath.row])
             return cell
         
         case .phoneNumber:
             
             let cell: BookingPhoneNumberTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure()
+            cell.configure(parameter: viewModel.bookingParameters[indexPath.row])
             return cell
         
         case .wishes:
             
             let cell: BookingWishesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(parameter: viewModel.bookingParameters[indexPath.row])
             return cell
             
         }
