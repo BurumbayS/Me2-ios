@@ -1,5 +1,5 @@
 //
-//  CategoryEventsListViewMode.swift
+//  NewPlacesViewModel.swift
 //  Me2
 //
 //  Created by Sanzhar Burumbay on 10/16/19.
@@ -9,15 +9,10 @@
 import Alamofire
 import SwiftyJSON
 
-class CategoryEventsListViewModel {
-    let categoryType: EventCategoriesType
-    var eventsList = [Event]()
+class NewPlacesViewModel {
+    var places = [Place]()
     
     var dataLoaded = false
-    
-    init(categoryType: EventCategoriesType) {
-        self.categoryType = categoryType
-    }
     
     func fetchData(completion: ResponseBlock?) {
         if dataLoaded {
@@ -25,18 +20,16 @@ class CategoryEventsListViewModel {
             return
         }
         
-        let url = eventsListURL + "?limit=5&type=\(categoryType.rawValue)"
-        
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+        Alamofire.request(getNewPlacesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    
-                    self.eventsList = []
+                    print(json)
+                    self.places = []
                     for item in json["data"]["results"].arrayValue {
-                        self.eventsList.append(Event(json: item))
+                        self.places.append(Place(json: item))
                     }
                     
                     self.dataLoaded = true
@@ -44,11 +37,11 @@ class CategoryEventsListViewModel {
                     completion?(.ok, "")
                     
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                     completion?(.fail, "")
                 }
         }
     }
     
-    let eventsListURL = Network.core + "/event/"
+    let getNewPlacesURL = Network.core + "/place/?limit=5&ordering=-created_at"
 }

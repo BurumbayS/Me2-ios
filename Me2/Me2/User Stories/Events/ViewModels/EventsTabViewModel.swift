@@ -12,6 +12,7 @@ import SwiftyJSON
 class EventsTabViewModel {
     var categories = [EventCategoriesType]()
     var categoryViewModels = [CategoryEventsListViewModel]()
+    let newPlacesViewModel = NewPlacesViewModel()
     var allEvents = [Event]()
     var listType: Dynamic<EventsListType>
     

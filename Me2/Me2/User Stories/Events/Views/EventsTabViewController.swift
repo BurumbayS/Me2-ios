@@ -262,7 +262,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         
             let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: CategoryEventsListViewModel(categoryType: section))
+            cell.configure(with: viewModel.categoryViewModels[indexPath.section])
             return cell
                 
         case .all:
@@ -277,6 +277,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: NewPlacesListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.newPlacesViewModel)
             return cell
             
         }

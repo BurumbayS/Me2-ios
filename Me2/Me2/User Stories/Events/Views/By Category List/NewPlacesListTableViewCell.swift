@@ -13,6 +13,8 @@ class NewPlacesListTableViewCell: UITableViewCell {
     
     let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
     
+    var viewModel: NewPlacesViewModel!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -22,6 +24,25 @@ class NewPlacesListTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with viewModel: NewPlacesViewModel) {
+        self.viewModel = viewModel
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.reloadData()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func configureCollectionView() {
@@ -65,14 +86,14 @@ extension NewPlacesListTableViewCell: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if viewModel != nil { return viewModel.places.count } else { return 0}
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
         let cell: NewPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure()
+        cell.configure(place: viewModel.places[indexPath.row])
         
         return cell
         

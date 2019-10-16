@@ -65,6 +65,7 @@
 		DD97CB4E2355FAAD002291CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4D2355FAAD002291CA /* User.swift */; };
 		DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */; };
 		DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */; };
+		DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5523571298002291CA /* NewPlacesViewModel.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
 		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
 		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
@@ -275,6 +276,7 @@
 		DD97CB4D2355FAAD002291CA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategoriesType.swift; sourceTree = "<group>"; };
 		DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventsListViewMode.swift; sourceTree = "<group>"; };
+		DD97CB5523571298002291CA /* NewPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesViewModel.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
 		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 				DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */,
 				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
 				DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */,
+				DD97CB5523571298002291CA /* NewPlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1391,6 +1394,7 @@
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DDE047F2233CFA2100E33046 /* EventAddressTimeTableViewCell.swift in Sources */,
 				DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */,
+				DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
