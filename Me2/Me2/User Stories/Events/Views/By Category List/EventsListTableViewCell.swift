@@ -14,6 +14,7 @@ class EventsListTableViewCell: UITableViewCell {
     let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
     
     var viewModel: CategoryEventsListViewModel!
+    var dataLoadCompletionHandler: ((Int) -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,8 +27,9 @@ class EventsListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with viewModel: CategoryEventsListViewModel) {
+    func configure(with viewModel: CategoryEventsListViewModel, dataLoadCompletion: ((Int) -> ())?) {
         self.viewModel = viewModel
+        self.dataLoadCompletionHandler = dataLoadCompletion
         
         fetchData()
     }
@@ -35,6 +37,7 @@ class EventsListTableViewCell: UITableViewCell {
     private func fetchData() {
         viewModel.fetchData { [weak self] (status, message) in
             self?.collectionView.reloadData()
+            self?.dataLoadCompletionHandler?((self?.viewModel.eventsList.count)!)
         }
     }
     

@@ -26,7 +26,7 @@ class NewPlacesViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
+                    
                     self.places = []
                     for item in json["data"]["results"].arrayValue {
                         self.places.append(Place(json: item))

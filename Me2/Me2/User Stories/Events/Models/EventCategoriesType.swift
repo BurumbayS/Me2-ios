@@ -32,4 +32,17 @@ enum EventCategoriesType: String {
             return ""
         }
     }
+    
+    var cellID: String {
+        switch self {
+        case .popular:
+            return "PopularEventsCell"
+        case .favourite:
+            return "FavouriteEventsCell"
+        case .actual:
+            return "ActualEventsCell"
+        default:
+            return ""
+        }
+    }
 }

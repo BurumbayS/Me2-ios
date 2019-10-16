@@ -65,9 +65,17 @@ class EventsTabViewController: UIViewController {
         tableView.backgroundColor = .white
         
         tableView.register(SavedEventsTableViewCell.self)
-        tableView.register(EventsListTableViewCell.self)
         tableView.register(NewPlacesListTableViewCell.self)
         tableView.registerNib(EventTableViewCell.self)
+        
+        for category in viewModel.categories {
+            switch category {
+            case .actual, .popular, .favourite:
+                tableView.register(EventsListTableViewCell.self, forCellReuseIdentifier: category.cellID)
+            default:
+                break
+            }
+        }
     }
     
     private func setUpViews() {
@@ -179,6 +187,8 @@ class EventsTabViewController: UIViewController {
 extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section >= viewModel.categories.count { return UIView() }
+        
         let header = UIView()
         header.backgroundColor = .white
         
@@ -260,9 +270,18 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .popular, .actual, .favourite:
         
-            let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: section.cellID, for: indexPath) as! EventsListTableViewCell
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.categoryViewModels[indexPath.section])
+            cell.configure(with: viewModel.categoryViewModels[indexPath.section]) { [weak self] (itemsCount) in
+                if itemsCount == 0 {
+                    if let index = self?.viewModel.categories.firstIndex(of: section) {
+                        self?.viewModel.categories.remove(at: index)
+                        self?.viewModel.categoryViewModels.remove(at: index)
+//                        self?.tableView.reloadData()
+                        self?.tableView.deleteSections([index], with: .fade)
+                    }
+                }
+            }
             return cell
                 
         case .all:
