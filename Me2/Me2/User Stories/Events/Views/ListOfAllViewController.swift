@@ -80,7 +80,20 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dest = Storyboard.eventDetailsViewController()
-        self.present(dest, animated: true, completion: nil)
+        switch viewModel.listItemType {
+        case .event:
+            
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
+            present(dest, animated: true, completion: nil)
+            
+        case .place:
+            
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.placesList[indexPath.row])
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
 }
