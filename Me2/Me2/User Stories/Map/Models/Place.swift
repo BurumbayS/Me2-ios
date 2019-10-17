@@ -30,9 +30,7 @@ class Place {
     var images = [String]()
     var workingHours: WorkingHours?
     var roomInfo: RoomInfo?
-    var kitchens = [String]()
-    var dishes = [String]()
-    var extras = [String]()
+    var tags = [String]()
     
     init(json: JSON) {
         id = json["id"].intValue
@@ -62,6 +60,11 @@ class Place {
         for item in json["menu"].arrayValue {
             let menu = Menu(json: item)
             menus?.append(menu)
+        }
+        
+        tags = []
+        for item in json["tags_display"].arrayValue {
+            tags.append(item.stringValue)
         }
      }
 }

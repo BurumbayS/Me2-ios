@@ -136,7 +136,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         case .tags:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(tagsType: .unselectable, tagsList: TagsList())
+            cell.configure(tagsType: .unselectable, tagsList: TagsList(items: viewModel.placeInfo.tags))
             cell.selectionStyle = .none
             return cell
             
