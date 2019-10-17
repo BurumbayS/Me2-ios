@@ -101,4 +101,10 @@ extension NewPlacesListTableViewCell: UICollectionViewDelegate, UICollectionView
         return cell
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+        presenterDelegate.present(controller: vc, presntationType: .push)
+    }
 }

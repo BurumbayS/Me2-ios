@@ -144,7 +144,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
             vc.viewModel = PlaceProfileViewModel(place: viewModel.searchResults[indexPath.row])
-            presenterDelegate.present(controller: vc)
+            presenterDelegate.present(controller: vc, presntationType: .push)
             
         }
         

@@ -112,7 +112,12 @@ class ChatTabViewController: UIViewController {
 }
 
 extension ChatTabViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }

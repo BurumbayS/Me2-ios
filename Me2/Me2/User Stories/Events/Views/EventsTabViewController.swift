@@ -310,6 +310,20 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.categoriesToShow[indexPath.section] {
+        case .all:
+            
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.allEvents[indexPath.row].id)
+            present(dest, animated: true, completion: nil)
+            
+        default:
+            break
+        }
+    }
 }
 
 extension EventsTabViewController: UITextFieldDelegate {
@@ -329,7 +343,12 @@ extension EventsTabViewController: UITextFieldDelegate {
 }
 
 extension EventsTabViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }
