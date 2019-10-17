@@ -346,7 +346,7 @@ extension EventsTabViewController: UITextFieldDelegate {
             self.searchView.alpha = 0
         }) { (finished) in
             if finished {
-                self.searchView.isHidden = true
+                self.searchView.isHidden = truegit merb
             }
         }
     }
