@@ -83,14 +83,14 @@ class MapViewModel {
     private func getPlacesInRadiusAsString() -> String {
         var str = ""
         
-        for (i, place) in placePins.enumerated() {
+        for place in placePins {
             let location = CLLocation(latitude: place.latitude, longitude: place.longitude)
             if myLocation.distance(from: location) <= 200 {
-                str += "\(place.id ?? 0)"
-                if i < placePins.count - 1 { str += "," }
+                str += "\(place.id ?? 0),"
             }
         }
         
+        str.removeLast()
         return str
     }
     
