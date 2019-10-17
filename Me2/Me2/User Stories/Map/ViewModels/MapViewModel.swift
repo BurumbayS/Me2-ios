@@ -55,8 +55,9 @@ class MapViewModel {
     
     private func getPlaces(idList: String, completion: ResponseBlock?) {
         let url = placesURL + "?id_list=\(idList)"
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -82,10 +83,11 @@ class MapViewModel {
     private func getPlacesInRadiusAsString() -> String {
         var str = ""
         
-        for place in placePins {
+        for (i, place) in placePins.enumerated() {
             let location = CLLocation(latitude: place.latitude, longitude: place.longitude)
             if myLocation.distance(from: location) <= 200 {
-                str += "\(place.id ?? 0),"
+                str += "\(place.id ?? 0)"
+                if i < placePins.count - 1 { str += "," }
             }
         }
         
