@@ -145,8 +145,10 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.showCollectionView()
-                self?.showPinsInRadius()
+                if (self?.viewModel.isMyLocationVisible.value)! {
+                    self?.showCollectionView()
+                    self?.showPinsInRadius()
+                }
             case .error:
                 print(message)
             case .fail:
