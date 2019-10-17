@@ -10,7 +10,30 @@ import Alamofire
 import SwiftyJSON
 
 class EventsTabViewModel {
+    var categoriesToShow = [EventCategoriesType]()
+    var categories = [EventCategoriesType.saved, .popular, .new_places, .favourite, .actual]
+    var categoryViewModels = [CategoryEventsListViewModel]()
+    let newPlacesViewModel = NewPlacesViewModel()
     var allEvents = [Event]()
+    var listType: Dynamic<EventsListType>
+    
+    init() {
+        listType = Dynamic(.ByCategories)
+        listType.bind { [weak self] (value) in
+            switch value {
+            case .ByCategories:
+                self?.categoriesToShow = self!.categories
+            case .AllInOne:
+                self?.categoriesToShow = [.saved, .all]
+            }
+        }
+        
+        categories = [.saved, .popular, .new_places, .favourite, .actual]
+        categoriesToShow = categories
+        for category in categories {
+            categoryViewModels.append(CategoryEventsListViewModel(categoryType: category))
+        }
+    }
     
     func getAllEvents(completion: ResponseBlock?) {
         Alamofire.request(eventsURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders()).validate()

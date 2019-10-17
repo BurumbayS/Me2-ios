@@ -19,7 +19,28 @@ class ListOfAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavBar()
         configureTableView()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.tableView.reloadSections([0], with: .automatic)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
+    private func configureNavBar() {
+        navBar.tintColor = .black
+        self.setUpBackBarButton(for: navItem)
+        self.navItem.title = viewModel.category.title
     }
 
     private func configureTableView() {
@@ -38,7 +59,7 @@ class ListOfAllViewController: UIViewController {
 
 extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.getNumberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,18 +67,33 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
         case .event:
         
             let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(wtih: viewModel.eventsList[indexPath.row])
             return cell
         
         case .place:
             
             let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: viewModel.placesList[indexPath.row])
             return cell
             
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dest = Storyboard.eventDetailsViewController()
-        self.present(dest, animated: true, completion: nil)
+        switch viewModel.listItemType {
+        case .event:
+            
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
+            present(dest, animated: true, completion: nil)
+            
+        case .place:
+            
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.placesList[indexPath.row])
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
 }

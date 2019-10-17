@@ -46,13 +46,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         self.placeStatus = place.regStatus
         titleLabel.text = place.name
         logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
-        
-        var categories = ""
-        for (i, category) in place.categories.enumerated() {
-            categories += category
-            categories += (i == place.categories.count - 1) ? ", " : ""
-        }
-        categoryLabel.text = categories
+        categoryLabel.text = place.category
         
         if let rating = place.rating {
             let roundedRating = Double(round(rating * 10) / 10)

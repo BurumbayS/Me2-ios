@@ -48,6 +48,6 @@ extension LiveChatViewController : UICollectionViewDelegate, UICollectionViewDat
         let navigationController = Storyboard.userProfileViewController() as! UINavigationController
         let vc = navigationController.viewControllers[0] as! UserProfileViewController
         vc.viewModel.profileType = .guestProfile
-        controllerPresenter.present(controller: vc)
+        controllerPresenter.present(controller: vc, presntationType: .push)
     }
 }

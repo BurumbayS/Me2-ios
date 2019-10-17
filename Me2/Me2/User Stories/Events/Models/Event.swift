@@ -11,6 +11,7 @@ import SwiftyJSON
 enum DateType: String {
     case weekdays = "WEEKDAYS"
     case everyday = "EVERYDAY"
+    case once = "ONCE"
     
     var title: String {
         switch self {
@@ -18,6 +19,8 @@ enum DateType: String {
             return "Будни"
         case .everyday:
             return "Ежедневно"
+        case .once:
+            return ""
         }
     }
 }
@@ -25,18 +28,21 @@ enum DateType: String {
 class Event {
     let id: Int
     var title: String!
+    var description: String?
     var imageURL: String?
     var place: Place!
     var eventType: String!
-    var start: String?
-    var end: String?
-    var time_start: String!
-    var time_end: String!
+    var start: String!
+    var end: String!
+    var time_start: String?
+    var time_end: String?
     var date_type: DateType!
+    var tags = [String]()
     
     init(json: JSON) {
         id = json["id"].intValue
         title = json["name"].stringValue
+        description = json["description"].stringValue
         imageURL = json["image"].stringValue
         eventType = json["event_type"]["name"].stringValue
         place = Place(json: json["place"])
@@ -44,12 +50,50 @@ class Event {
         start = json["start"].stringValue
         end = json["end"].stringValue
         time_start = json["time_start"].stringValue
-        time_start.removeLast(3)
         time_end = json["time_end"].stringValue
-        time_end.removeLast(3)
+        
+        for item in json["tags"].arrayValue {
+            tags.append(item.stringValue)
+        }
     }
     
     func getTime() -> String {
-        return date_type.title + " " + time_start + "-" + time_end
+        if date_type == .once {
+            return "\(formatDate(str: start))-\(formatDate(str: end))"
+        }
+        
+        var start = time_start ?? ""
+        var end = time_end ?? ""
+        
+        if start != "" && end != "" {
+            start.removeLast(3)
+            end.removeLast(3)
+            
+            return date_type.title + " " + start + "-" + end
+        }
+        
+        if end != "" {
+            end.removeLast(3)
+
+            return date_type.title + " до " + end
+        }
+        
+        if start != "" {
+            start.removeLast(3)
+            
+            return date_type.title + " с " + start
+        }
+        
+        return date_type.title
+    }
+    
+    private func formatDate(str: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = formatter.date(from: str)
+        
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date!)
     }
 }

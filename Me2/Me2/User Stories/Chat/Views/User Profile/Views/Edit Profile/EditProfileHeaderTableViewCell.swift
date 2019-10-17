@@ -46,12 +46,12 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
     
     func chooseImageFromAlbum() {
         imagePicker.sourceType = .photoLibrary
-        controllerPresenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present)
     }
     
     func takePicture() {
         imagePicker.sourceType = .camera
-        controllerPresenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present)
     }
 }
 

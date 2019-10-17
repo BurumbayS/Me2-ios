@@ -66,9 +66,9 @@ class EventPlaceTableViewCell: UITableViewCell {
         }
     }
     
-    func configure() {
-        logoImageView.image = UIImage(named: "sample_place_logo")
-        nameLabel.text = "Мята Бар"
-        typeLabel.text = "Лаунж-бар"
+    func configure(with place: Place) {
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "sample_place_logo"), options: [])
+        nameLabel.text = place.name
+        typeLabel.text = place.category
     }
 }

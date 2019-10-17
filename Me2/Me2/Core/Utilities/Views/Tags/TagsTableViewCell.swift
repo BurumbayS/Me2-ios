@@ -29,6 +29,10 @@ enum TagsType {
 class TagsList {
     var list = [String]()
     var selectedList = [String]()
+    
+    init(items: [String] = []) {
+        self.list = items
+    }
 }
 
 class TagsTableViewCell: UITableViewCell {
@@ -79,7 +83,7 @@ class TagsTableViewCell: UITableViewCell {
         
         var rows = 1
 
-        for tag in tags {
+        for tag in tagsList.list {
             let height = tagsType.tagSize.height
             let width = tag.getWidth(with: tagsType.tagSize.font) + tagsType.tagSize.sidesPadding
             

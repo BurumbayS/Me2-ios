@@ -110,11 +110,16 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension EditProfileViewController: ControllerPresenterDelegate, ActionSheetPresenterDelegate {
-    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
-        self.addActionSheet(with: titles, and: actions, and: styles)
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
     
-    func present(controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
+    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
+        self.addActionSheet(with: titles, and: actions, and: styles)
     }
 }

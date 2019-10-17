@@ -8,8 +8,13 @@
 
 import UIKit
 
+enum PresentationType {
+    case present
+    case push
+}
+
 protocol ControllerPresenterDelegate {
-    func present(controller: UIViewController)
+    func present(controller: UIViewController, presntationType: PresentationType)
 }
 
 protocol ActionSheetPresenterDelegate {

@@ -63,6 +63,10 @@
 		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
 		DD97CB4C2355E58F002291CA /* EventsTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4B2355E58F002291CA /* EventsTabViewModel.swift */; };
 		DD97CB4E2355FAAD002291CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4D2355FAAD002291CA /* User.swift */; };
+		DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */; };
+		DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */; };
+		DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5523571298002291CA /* NewPlacesViewModel.swift */; };
+		DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
 		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
 		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
@@ -271,6 +275,10 @@
 		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
 		DD97CB4B2355E58F002291CA /* EventsTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabViewModel.swift; sourceTree = "<group>"; };
 		DD97CB4D2355FAAD002291CA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategoriesType.swift; sourceTree = "<group>"; };
+		DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventsListViewMode.swift; sourceTree = "<group>"; };
+		DD97CB5523571298002291CA /* NewPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesViewModel.swift; sourceTree = "<group>"; };
+		DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
 		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
@@ -853,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC18553233A114E0052C371 /* Event.swift */,
+				DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -860,9 +869,12 @@
 		DDC18544233909BE0052C371 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */,
-				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
 				DD97CB4B2355E58F002291CA /* EventsTabViewModel.swift */,
+				DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */,
+				DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */,
+				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
+				DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */,
+				DD97CB5523571298002291CA /* NewPlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1375,6 +1387,7 @@
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
 				DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */,
+				DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */,
 				DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */,
 				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
@@ -1384,6 +1397,7 @@
 				DDF65B1322FD666200441035 /* Protocols.swift in Sources */,
 				DDE047F2233CFA2100E33046 /* EventAddressTimeTableViewCell.swift in Sources */,
 				DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */,
+				DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
@@ -1445,6 +1459,7 @@
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
+				DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */,
 				DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */,
 				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
 				DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */,
@@ -1469,6 +1484,7 @@
 				DDE047E0233C8C4500E33046 /* Place.swift in Sources */,
 				DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */,
 				DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */,
+				DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,

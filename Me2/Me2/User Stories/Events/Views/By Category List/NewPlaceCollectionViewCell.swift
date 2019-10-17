@@ -14,9 +14,10 @@ class NewPlaceCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var typeView: UIButton!
     
-    func configure() {
-        titleLabel.text = "Мята"
-        typeView.setTitle("Ресторан", for: .normal)
+    func configure(place: Place) {
+        titleLabel.text = place.name
+        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        typeView.setTitle(place.category, for: .normal)
     }
 
 }

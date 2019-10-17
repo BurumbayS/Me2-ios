@@ -21,12 +21,6 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var infoView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        configureViews()
-    }
-    
     private func configureViews() {
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
         
@@ -37,11 +31,13 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(wtih event: Event) {
-        placeLogoImageView.image = UIImage(named: "sample_place_logo")
-        imageView.image = UIImage(named: "sample_place_image")
+        placeLogoImageView.kf.setImage(with: URL(string: event.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        imageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
-//        locationLabel.text = event.location
-//        timeLabel.text = event.time
+        locationLabel.text = event.place.name
+        timeLabel.text = event.getTime()
+        
+        configureViews()
     }
 }
