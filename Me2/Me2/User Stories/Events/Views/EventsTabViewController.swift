@@ -188,6 +188,8 @@ class EventsTabViewController: UIViewController {
             viewModel.categories.remove(at: index)
             viewModel.categoryViewModels.remove(at: index)
             
+            viewModel.categoriesToShow = viewModel.categories
+            
             tableView.deleteSections([index], with: .fade)
         }
     }
@@ -252,11 +254,11 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.categories.count
+        return viewModel.categoriesToShow.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.categories[section] == .all {
+        if viewModel.categoriesToShow[section] == .all {
             return viewModel.allEvents.count
         }
         
@@ -264,7 +266,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = viewModel.categories[indexPath.section]
+        let section = viewModel.categoriesToShow[indexPath.section]
         
         switch section {
         case .saved:
@@ -281,7 +283,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: section.cellID, for: indexPath) as! EventsListTableViewCell
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.categoryViewModels[indexPath.section]) { [weak self] (itemsCount) in
+            cell.configure(with: viewModel.categoryViewModels[indexPath.section], presenterDelegate: self) { [weak self] (itemsCount) in
                 if itemsCount == 0 {
                     self?.deleteCategory(in: section)
                 }
@@ -300,7 +302,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: NewPlacesListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.newPlacesViewModel)
+            cell.configure(with: viewModel.newPlacesViewModel, presenterDelegate: self)
             return cell
             
         }
@@ -320,5 +322,11 @@ extension EventsTabViewController: UITextFieldDelegate {
         filterButton.isHidden = true
         
         searchView.isHidden = true
+    }
+}
+
+extension EventsTabViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController) {
+        present(controller, animated: true, completion: nil)
     }
 }

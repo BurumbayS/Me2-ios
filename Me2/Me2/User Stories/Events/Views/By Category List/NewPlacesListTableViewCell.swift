@@ -15,6 +15,8 @@ class NewPlacesListTableViewCell: UITableViewCell {
     
     var viewModel: NewPlacesViewModel!
     
+    var presenterDelegate: ControllerPresenterDelegate!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -26,8 +28,9 @@ class NewPlacesListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with viewModel: NewPlacesViewModel) {
+    func configure(with viewModel: NewPlacesViewModel, presenterDelegate: ControllerPresenterDelegate) {
         self.viewModel = viewModel
+        self.presenterDelegate = presenterDelegate
         
         fetchData()
     }

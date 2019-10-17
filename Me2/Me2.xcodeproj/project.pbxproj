@@ -66,6 +66,7 @@
 		DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */; };
 		DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */; };
 		DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5523571298002291CA /* NewPlacesViewModel.swift */; };
+		DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
 		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
 		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
@@ -277,6 +278,7 @@
 		DD97CB4F2356E6FA002291CA /* EventCategoriesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategoriesType.swift; sourceTree = "<group>"; };
 		DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventsListViewMode.swift; sourceTree = "<group>"; };
 		DD97CB5523571298002291CA /* NewPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesViewModel.swift; sourceTree = "<group>"; };
+		DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
 		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 			children = (
 				DD97CB4B2355E58F002291CA /* EventsTabViewModel.swift */,
 				DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */,
+				DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */,
 				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
 				DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */,
 				DD97CB5523571298002291CA /* NewPlacesViewModel.swift */,
@@ -1481,6 +1484,7 @@
 				DDE047E0233C8C4500E33046 /* Place.swift in Sources */,
 				DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */,
 				DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */,
+				DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,

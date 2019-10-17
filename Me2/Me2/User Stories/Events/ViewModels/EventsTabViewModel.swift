@@ -10,7 +10,8 @@ import Alamofire
 import SwiftyJSON
 
 class EventsTabViewModel {
-    var categories = [EventCategoriesType]()
+    var categoriesToShow = [EventCategoriesType]()
+    var categories = [EventCategoriesType.saved, .popular, .new_places, .favourite, .actual]
     var categoryViewModels = [CategoryEventsListViewModel]()
     let newPlacesViewModel = NewPlacesViewModel()
     var allEvents = [Event]()
@@ -21,13 +22,14 @@ class EventsTabViewModel {
         listType.bind { [weak self] (value) in
             switch value {
             case .ByCategories:
-                self?.categories = [.saved, .popular, .new_places, .favourite, .actual]
+                self?.categoriesToShow = self!.categories
             case .AllInOne:
-                self?.categories = [.saved, .all]
+                self?.categoriesToShow = [.saved, .all]
             }
         }
         
         categories = [.saved, .popular, .new_places, .favourite, .actual]
+        categoriesToShow = categories
         for category in categories {
             categoryViewModels.append(CategoryEventsListViewModel(categoryType: category))
         }
