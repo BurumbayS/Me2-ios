@@ -19,7 +19,28 @@ class ListOfAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavBar()
         configureTableView()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.tableView.reloadSections([0], with: .automatic)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
+    private func configureNavBar() {
+        navBar.tintColor = .black
+        self.setUpBackBarButton(for: navItem)
+        self.navItem.title = viewModel.category.title
     }
 
     private func configureTableView() {
@@ -38,7 +59,7 @@ class ListOfAllViewController: UIViewController {
 
 extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.getNumberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,11 +67,13 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
         case .event:
         
             let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(wtih: viewModel.eventsList[indexPath.row])
             return cell
         
         case .place:
             
             let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: viewModel.placesList[indexPath.row])
             return cell
             
         }

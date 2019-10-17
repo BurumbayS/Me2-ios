@@ -177,9 +177,11 @@ class EventsTabViewController: UIViewController {
         present(dest, animated: true, completion: nil)
     }
     
-    @objc private func showFullList() {
+    @objc private func showFullList(_ sender: UIButton) {
         let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
-        dest.viewModel = ListOfAllViewModel(listItemType: .event)
+        
+        dest.viewModel = ListOfAllViewModel(category: viewModel.categoriesToShow[sender.tag])
+        
         navigationController?.pushViewController(dest, animated: true)
     }
     
@@ -218,7 +220,8 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         moreButton.setTitle("См.все", for: .normal)
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 17)
-        moreButton.addTarget(self, action: #selector(showFullList), for: .touchUpInside)
+        moreButton.tag = section
+        moreButton.addTarget(self, action: #selector(showFullList(_ :)), for: .touchUpInside)
         
         header.addSubview(moreButton)
         constrain(moreButton, header) { btn, header in
