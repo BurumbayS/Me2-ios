@@ -172,6 +172,7 @@ class MapViewController: UIViewController {
     
     private func setImHerePin() {
         imHereMarker = GMSMarker()
+        imHereMarker.zIndex = 100000
         imHereMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
         imHereMarker.icon = UIImage(named: "map_marker_icon")
         imHereMarker.appearAnimation = .pop
