@@ -139,17 +139,18 @@ class EventsTabViewController: UIViewController {
     }
     
     private func setUpSearchView() {
-        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue))
+        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue), and: self)
         
         searchView.addSubview(searchVC.view)
         constrain(searchVC.view, searchView) { vc, view in
             vc.top == view.top
             vc.left == view.left
             vc.right == view.right
-            vc.bottom == view.bottom
+            vc.bottom == view.safeAreaLayoutGuide.bottom
         }
         
         searchView.isHidden = true
+        searchView.alpha = 0
         
         self.view.addSubview(searchView)
         constrain(searchView, searchBar, self.view) { searchView, searchBar, view in
@@ -330,15 +331,24 @@ extension EventsTabViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         listViewSwitchButton.isHidden = true
         filterButton.isHidden = false
-        
         searchView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.searchView.alpha = 1.0
+        }
     }
     
     private func closeSearchView() {
         listViewSwitchButton.isHidden = false
         filterButton.isHidden = true
         
-        searchView.isHidden = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchView.alpha = 0
+        }) { (finished) in
+            if finished {
+                self.searchView.isHidden = true
+            }
+        }
     }
 }
 

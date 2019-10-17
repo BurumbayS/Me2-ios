@@ -50,8 +50,9 @@ class MapSearchViewModel {
     
     private func searchPlace(by searchValue: String) {
         let url = placesURL + "?search=\(searchValue)"
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
