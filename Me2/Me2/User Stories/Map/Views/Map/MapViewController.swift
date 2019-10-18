@@ -67,6 +67,22 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func getPlacesInRadius() {
+        viewModel.getPlacesInRadius { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                if (self?.viewModel.isMyLocationVisible.value)! {
+                    self?.showCollectionView()
+                    self?.showPinsInRadius()
+                }
+            case .error:
+                print(message)
+            case .fail:
+                print("Fail")
+            }
+        }
+    }
+    
     private func bindViewModel() {
         viewModel.isMyLocationVisible.bind { [weak self] (visible) in
             self?.animateImhereIcon()
@@ -142,23 +158,20 @@ class MapViewController: UIViewController {
         setImHerePin()
         animatePulsingRadius()
         
-        viewModel.getPlacesInRadius { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                if (self?.viewModel.isMyLocationVisible.value)! {
-                    self?.showCollectionView()
-                    self?.showPinsInRadius()
-                }
-            case .error:
-                print(message)
-            case .fail:
-                print("Fail")
-            }
-        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            self.getPlacesInRadius()
+        })
     }
     
     private func showPinsInRadius() {
         pulsingRadius.map = nil
+        
+        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        radius.radius = viewModel.radius
+        radius.strokeColor = .clear
+        radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
+        radius.map = mapView
         
         for (i, place) in viewModel.places.enumerated() {
             let pin = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitute))
@@ -179,12 +192,6 @@ class MapViewController: UIViewController {
         imHereMarker.icon = UIImage(named: "map_marker_icon")
         imHereMarker.appearAnimation = .pop
         imHereMarker.map = mapView
-        
-        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
-        radius.radius = viewModel.radius
-        radius.strokeColor = .clear
-        radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
-        radius.map = mapView
         
         myLocationMarker.map = nil
         
@@ -223,16 +230,16 @@ class MapViewController: UIViewController {
     }
     
     private func animatePulsingRadius() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        view.layer.cornerRadius = view.frame.height / 2
-        view.backgroundColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.5)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        view.layer.cornerRadius = 5
+        view.backgroundColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
         
-        let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale")
+        let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         pulsingAnimation.duration = 1
-        pulsingAnimation.repeatCount = 10
+        pulsingAnimation.repeatCount = 50
         pulsingAnimation.autoreverses = false
-        pulsingAnimation.fromValue = 0.1
-        pulsingAnimation.toValue = 17
+        pulsingAnimation.fromValue = 0
+        pulsingAnimation.toValue = 30
         
         view.layer.add(pulsingAnimation, forKey: "scale")
         

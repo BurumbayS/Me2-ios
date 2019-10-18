@@ -90,7 +90,7 @@ class MapViewModel {
             }
         }
         
-        str.removeLast()
+        if str != "" { str.removeLast() }
         return str
     }
     
