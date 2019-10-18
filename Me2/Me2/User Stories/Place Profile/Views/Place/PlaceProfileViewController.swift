@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import UIKit
+import UIKit  
 import Cartography
 
 class PlaceProfileViewController: UIViewController {
@@ -19,7 +19,7 @@ class PlaceProfileViewController: UIViewController {
     var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
-    var collectionViewCellheight: CGFloat = Constants.minContentSize.height
+    var collectionViewCellheight: CGFloat = 0
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -35,6 +35,7 @@ class PlaceProfileViewController: UIViewController {
         fetchData()
         configureNavBar()
         configureCollectionView()
+        configureCollectionCellDefaultHeight()
         configureActionButton()
         bindViewModel()
     }
@@ -132,8 +133,13 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func updateCollectionViewLayout(with cellHeight: CGFloat) {
-        collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
+        collectionViewCellheight = max(Constants.shared.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func configureCollectionCellDefaultHeight() {
+        Constants.shared.minContentSize = CGSize(width: safeAreaSize().width, height: safeAreaSize().height - 39)
+        collectionViewCellheight = Constants.shared.minContentSize.height
     }
     
     

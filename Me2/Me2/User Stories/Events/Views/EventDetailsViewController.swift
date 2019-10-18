@@ -103,4 +103,12 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.event.place)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
