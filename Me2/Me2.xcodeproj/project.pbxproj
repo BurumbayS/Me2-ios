@@ -67,6 +67,9 @@
 		DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */; };
 		DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5523571298002291CA /* NewPlacesViewModel.swift */; };
 		DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */; };
+		DD97CB62235996AB002291CA /* PlaceCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD97CB5F235996AB002291CA /* PlaceCardCollectionViewCell.xib */; };
+		DD97CB63235996AB002291CA /* PlaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB60235996AB002291CA /* PlaceCardCollectionViewCell.swift */; };
+		DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB61235996AB002291CA /* PlacesCollectionViewLayout.swift */; };
 		DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */; };
 		DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */; };
 		DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */; };
@@ -183,9 +186,6 @@
 		DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */; };
 		DDF65B222301531100441035 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B202301531100441035 /* PlaceTableViewCell.xib */; };
 		DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B292302FAD800441035 /* MapViewModel.swift */; };
-		DDF65B2F2303D0E600441035 /* PlaceCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */; };
-		DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */; };
-		DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */; };
 		DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B372308027200441035 /* PlaceProfile.storyboard */; };
 		DDF69EDE232A15C600377796 /* MapConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EDD232A15C600377796 /* MapConfig.json */; };
 		DDF69EE0232A352900377796 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EDF232A352900377796 /* MapSearchViewController.swift */; };
@@ -279,6 +279,9 @@
 		DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventsListViewMode.swift; sourceTree = "<group>"; };
 		DD97CB5523571298002291CA /* NewPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacesViewModel.swift; sourceTree = "<group>"; };
 		DD97CB5723582A03002291CA /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
+		DD97CB5F235996AB002291CA /* PlaceCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		DD97CB60235996AB002291CA /* PlaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD97CB61235996AB002291CA /* PlacesCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DDA14246231F7B3D00C721A3 /* AttributedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextField.swift; sourceTree = "<group>"; };
 		DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		DDA1424A231FC87800C721A3 /* AccessCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewModel.swift; sourceTree = "<group>"; };
@@ -389,9 +392,6 @@
 		DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B202301531100441035 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		DDF65B292302FAD800441035 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceCardCollectionViewCell.swift; path = ../PlaceCardCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceCardCollectionViewCell.xib; path = ../PlaceCardCollectionViewCell.xib; sourceTree = "<group>"; };
-		DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlacesCollectionViewLayout.swift; path = ../PlacesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DDF65B372308027200441035 /* PlaceProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceProfile.storyboard; sourceTree = "<group>"; };
 		DDF69EDD232A15C600377796 /* MapConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MapConfig.json; sourceTree = "<group>"; };
 		DDF69EDF232A352900377796 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
@@ -528,9 +528,9 @@
 		DD5653D822F4B3C7003A67C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD97CB65235996B1002291CA /* Place Card */,
 				DDF69EE7232B807E00377796 /* Filter */,
 				DDF69EE6232B806F00377796 /* Search */,
-				DDF69EE5232B802F00377796 /* Place Cards */,
 				DDC1853A233498CD0052C371 /* Map */,
 			);
 			path = Views;
@@ -783,6 +783,16 @@
 				DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DD97CB65235996B1002291CA /* Place Card */ = {
+			isa = PBXGroup;
+			children = (
+				DD97CB60235996AB002291CA /* PlaceCardCollectionViewCell.swift */,
+				DD97CB5F235996AB002291CA /* PlaceCardCollectionViewCell.xib */,
+				DD97CB61235996AB002291CA /* PlacesCollectionViewLayout.swift */,
+			);
+			path = "Place Card";
 			sourceTree = "<group>";
 		};
 		DDB465CE2344AC6D00EB71B9 /* Models */ = {
@@ -1148,16 +1158,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		DDF69EE5232B802F00377796 /* Place Cards */ = {
-			isa = PBXGroup;
-			children = (
-				DDF65B2D2303D0E600441035 /* PlaceCardCollectionViewCell.swift */,
-				DDF65B2E2303D0E600441035 /* PlaceCardCollectionViewCell.xib */,
-				DDF65B312303F0FC00441035 /* PlacesCollectionViewLayout.swift */,
-			);
-			path = "Place Cards";
-			sourceTree = "<group>";
-		};
 		DDF69EE6232B806F00377796 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1251,7 @@
 			files = (
 				DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */,
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
+				DD97CB62235996AB002291CA /* PlaceCardCollectionViewCell.xib in Resources */,
 				DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */,
 				DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */,
 				DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */,
@@ -1277,7 +1278,6 @@
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
 				DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				DDCE6E9922F94111006E54D1 /* Roboto-Regular.ttf in Resources */,
-				DDF65B302303D0E600441035 /* PlaceCardCollectionViewCell.xib in Resources */,
 				DDCE6E9D22F94111006E54D1 /* Roboto-Thin.ttf in Resources */,
 				DDCE6E7D22F82CD4006E54D1 /* SF-Pro-Rounded-Medium.otf in Resources */,
 				DDE04801233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib in Resources */,
@@ -1465,8 +1465,8 @@
 				DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */,
 				DDC1854823390A370052C371 /* EventsTabViewController.swift in Sources */,
 				DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */,
+				DD97CB63235996AB002291CA /* PlaceCardCollectionViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
-				DDF65B2F2303D0E600441035 /* PlaceCardCollectionViewCell.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
@@ -1496,7 +1496,6 @@
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
-				DDF65B322303F0FC00441035 /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD97CB4E2355FAAD002291CA /* User.swift in Sources */,
 				DDC1854A2339EF760052C371 /* SavedEventsTableViewCell.swift in Sources */,
@@ -1515,6 +1514,7 @@
 				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
+				DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
 				DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */,
