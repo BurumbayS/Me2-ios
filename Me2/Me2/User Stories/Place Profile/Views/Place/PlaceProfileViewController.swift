@@ -71,12 +71,14 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
             self.actionButton.isHidden = false
             
         case .reviews:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.blue
             self.actionButton.setTitle("Оставить отзыв", for: .normal)
             self.actionButton.isHidden = false
@@ -224,7 +226,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         lastContentOffset = collectionView.contentOffset.y
     }
     
@@ -245,6 +247,16 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             navBar.isHidden = true
             navigationController?.navigationBar.barStyle = .black
             collectionView.clipsToBounds = false
+        }
+        
+        if collectionView.contentOffset.y > lastContentOffset {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 0
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 1.0
+            }
         }
     }
 }
