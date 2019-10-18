@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import UIKit  
+import UIKit
 import Cartography
 
 class PlaceProfileViewController: UIViewController {
@@ -255,7 +255,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             collectionView.clipsToBounds = false
         }
         
-        if collectionView.contentOffset.y > lastContentOffset {
+        if collectionView.contentOffset.y > lastContentOffset && lastContentOffset >= 0 {
             UIView.animate(withDuration: 0.3) {
                 self.actionButton.alpha = 0
             }
