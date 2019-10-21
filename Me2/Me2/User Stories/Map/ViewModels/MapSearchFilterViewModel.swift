@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum Filter: String {
     case open_now = "Открыто"
@@ -94,8 +94,8 @@ enum FilterType {
 }
 
 class MapSearchFilterViewModel {
-    let businessLaunchRange: SliderRange
-    let averageBillRange: SliderRange
+    var businessLaunchRange: SliderRange!
+    var averageBillRange: SliderRange!
     
     let checkFilterTitles = ["Открыто","Рядом","Круглосуточно","Высокий рейтинг","Наличие событий","Халал"]
     let selectableFilterTitles = ["Тип заведения","Вид кухни","Основное блюдо","Дополнительно"]
@@ -105,19 +105,16 @@ class MapSearchFilterViewModel {
     var tag_ids: Dynamic<[Int]>
     
     var selectedFilters = [Int]()
-    var filtersSelected: Dynamic<Bool>
+    var filtersSelected: Dynamic<Bool>!
     
     var filtersData: Dynamic<[FilterData]>
     
     init(filtersData: Dynamic<[FilterData]>) {
         self.filtersData = filtersData
-        tag_ids = Dynamic([])
-        
-        businessLaunchRange = SliderRange(low: 700, high: 3000)
-        averageBillRange = SliderRange(low: 1000, high: 50000)
-        filtersSelected = Dynamic(false)
+        self.tag_ids = Dynamic([])
         
         createCells()
+        configureFilters()
     }
     
     private func createCells() {
@@ -130,6 +127,42 @@ class MapSearchFilterViewModel {
         for title in sliderFilterTitles {
             filters.append(Filter(rawValue: title)!)
         }
+    }
+    
+    private func configureFilters() {
+        for (i, filter) in filters.enumerated() {
+            if filtersData.value.contains(where: { $0.key == filter.key }) {
+                selectedFilters.append(i)
+            }
+        }
+        
+        if let filter = filtersData.value.first(where: { $0.key == "tag_ids" }) {
+            tag_ids.value = filter.value as! [Int]
+        }
+        
+        if filtersData.value.contains(where: { $0.key == "average_check_min" }) {
+            let min = filtersData.value.first(where: { $0.key == "average_check_min" })?.value as! CGFloat
+            let max = filtersData.value.first(where: { $0.key == "average_check_max" })?.value as! CGFloat
+            
+            averageBillRange = SliderRange(low: min, high: max)
+            let index = filters.firstIndex(of: .average_bill)
+            selectedFilters.append(index!)
+        } else {
+            averageBillRange = SliderRange(low: 1000, high: 50000)
+        }
+        
+        if filtersData.value.contains(where: { $0.key == "business_launch_min" }) {
+            let min = filtersData.value.first(where: { $0.key == "business_launch_min" })?.value as! CGFloat
+            let max = filtersData.value.first(where: { $0.key == "business_launch_max" })?.value as! CGFloat
+            
+            businessLaunchRange = SliderRange(low: min, high: max)
+            let index = filters.firstIndex(of: .business_launch)
+            selectedFilters.append(index!)
+        } else {
+            businessLaunchRange = SliderRange(low: 700, high: 3000)
+        }
+        
+        filtersSelected = (selectedFilters.count > 0) ? Dynamic(true) : Dynamic(false)
     }
     
     func selectCell(at indexPath: IndexPath) {

@@ -48,7 +48,7 @@ class MapSearchFilterViewController: UIViewController {
         let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
         leftItem.tintColor = Color.red
         navigationItem.leftBarButtonItem = leftItem
-        navigationItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = viewModel.filtersSelected.value
         
         let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
         rightItem.tintColor = Color.blue
