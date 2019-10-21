@@ -96,7 +96,7 @@ class TagsTableViewCell: UITableViewCell {
                 rows += 1
             }
             
-            let tagView = Tag(frame: CGRect(x: x, y: y, width: width, height: height))
+            let tagView = TagView(frame: CGRect(x: x, y: y, width: width, height: height))
             tagView.configure(with: tag, and: tagsList, of: tagsType.tagSize)
             
             view.addSubview(tagView)

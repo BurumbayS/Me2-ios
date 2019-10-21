@@ -55,7 +55,7 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
         
-        if viewModel.searchValue.value != "" && viewModel.searchResults.count == 0 {
+        if (viewModel.searchValue.value != "" || viewModel.filterData.value.count > 0) && viewModel.searchResults.count == 0 {
             
             let label = UILabel()
             label.textColor = .gray
@@ -102,8 +102,12 @@ extension MapSearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.searchValue.value != "" {
+        if (viewModel.searchValue.value != "" || viewModel.filterData.value.count > 0) {
             return viewModel.searchResults.count
         } else {
             return viewModel.lastSearchResults.count

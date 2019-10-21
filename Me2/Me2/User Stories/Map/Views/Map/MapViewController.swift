@@ -120,8 +120,10 @@ class MapViewController: UIViewController {
     
     //MARK: -Selectors
     @objc func showFilter() {
-        let vc = Storyboard.mapSearchFilterViewController()
-        present(vc, animated: true, completion: nil)
+        let dest = Storyboard.mapSearchFilterViewController() as! UINavigationController
+        let vc = dest.viewControllers[0] as! MapSearchFilterViewController
+        vc.viewModel = MapSearchFilterViewModel(filtersData: searchVC.viewModel.filterData)
+        present(dest, animated: true, completion: nil)
     }
     
     @objc func imereButtonPressed() {

@@ -15,6 +15,9 @@
 		DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */; };
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
+		DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */; };
+		DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6B235D7D5B00EFB49D /* TagView.swift */; };
+		DD489F6E235D8AEB00EFB49D /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6D235D8AEB00EFB49D /* FilterData.swift */; };
 		DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */; };
 		DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */; };
 		DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */; };
@@ -220,6 +223,9 @@
 		DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBioTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
+		DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListForMapFilterViewModel.swift; sourceTree = "<group>"; };
+		DD489F6B235D7D5B00EFB49D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		DD489F6D235D8AEB00EFB49D /* FilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
 		DD5653BC22F04A1E003A67C3 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DD5653C022F0693E003A67C3 /* ConfirmPinCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPinCodeViewModel.swift; sourceTree = "<group>"; };
 		DD5653C222F06FA1003A67C3 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfirmCodeViewController.swift; path = SignUp/ConfirmCodeViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +550,7 @@
 				DDC18536233378420052C371 /* PlacePin.swift */,
 				DDE047DF233C8C4500E33046 /* Place.swift */,
 				DD97CB492355D532002291CA /* PlaceParameters.swift */,
+				DD489F6D235D8AEB00EFB49D /* FilterData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -554,6 +561,7 @@
 				DDF65B292302FAD800441035 /* MapViewModel.swift */,
 				DDF69EE3232B632F00377796 /* MapSearchViewModel.swift */,
 				DDF69EEA232B86E500377796 /* MapSearchFilterViewModel.swift */,
+				DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1048,6 +1056,7 @@
 			children = (
 				DD5C22362317AB6400CF66CC /* TagsTableViewCell.swift */,
 				DDE047FC233FA04700E33046 /* Tag.swift */,
+				DD489F6B235D7D5B00EFB49D /* TagView.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -1376,6 +1385,7 @@
 				DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
+				DD489F6E235D8AEB00EFB49D /* FilterData.swift in Sources */,
 				DD5C2227231649FB00CF66CC /* Constants.swift in Sources */,
 				DD5C22372317AB6400CF66CC /* TagsTableViewCell.swift in Sources */,
 				DDE047DE233B7EC300E33046 /* ListOfAllViewModel.swift in Sources */,
@@ -1404,6 +1414,7 @@
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
+				DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
 				DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */,
 				DDE04810234230B500E33046 /* BookTableViewModel.swift in Sources */,
@@ -1471,6 +1482,7 @@
 				DD97CB63235996AB002291CA /* PlaceCardCollectionViewCell.swift in Sources */,
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
+				DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
 				DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */,
