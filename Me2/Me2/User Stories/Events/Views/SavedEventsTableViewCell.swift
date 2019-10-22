@@ -30,7 +30,7 @@ class SavedEventsTableViewCell: UITableViewCell {
     }
     
     private func setUpViews() {
-        let flag = UIImageView(image: UIImage(named: "selected_flag"))
+        let flag = UIImageView(image: UIImage(named: "saved_flag"))
         self.contentView.addSubview(flag)
         constrain(flag, self.contentView) { flag, view in
             flag.left == view.left + 20

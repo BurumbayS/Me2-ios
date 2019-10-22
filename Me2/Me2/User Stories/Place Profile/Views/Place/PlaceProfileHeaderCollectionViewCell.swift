@@ -31,6 +31,16 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     var parentVC: UIViewController!
     var placeStatus: PlaceStatus!
     
+    var viewModel: PlaceHeaderViewModel!
+    
+    var didLayoutSubviews: Bool = false {
+        didSet {
+            if self.didLayoutSubviews && !oldValue {
+                self.isFollowed.value = self.viewModel.place.isFavourite
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,13 +52,30 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        didLayoutSubviews = true
+    }
+    
     func configure(place: Place, viewController: UIViewController) {
-        self.placeStatus = place.regStatus
-        titleLabel.text = place.name
-        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
-        categoryLabel.text = place.category
+        viewModel = PlaceHeaderViewModel(place: place)
         
-        if let rating = place.rating {
+        parentVC = viewController
+        
+        configureViewsWithData()
+        configureViews()
+        configureRoomInfo(with: place.roomInfo)
+    }
+    
+    private func configureViewsWithData() {
+        self.placeStatus = viewModel.place.regStatus
+        titleLabel.text = viewModel.place.name
+        logoImageView.kf.setImage(with: URL(string: viewModel.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        categoryLabel.text = viewModel.place.category
+        isFollowed.value = viewModel.place.isFavourite
+        
+        if let rating = viewModel.place.rating {
             let roundedRating = Double(round(rating * 10) / 10)
             ratingView.rating = roundedRating
             ratingView.text = "\(roundedRating)"
@@ -57,17 +84,12 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         }
         
         var imageInputs = [InputSource]()
-        for imageURL in place.images {
+        for imageURL in viewModel.place.images {
             let source = KingfisherSource(url: URL(string: imageURL)!, placeholder: UIImage(named: "default_place_wallpaper"), options: [])
             imageInputs.append(source)
         }
         if (imageInputs.count == 0) { imageInputs.append(ImageSource(image:  UIImage(named: "default_place_wallpaper")!)) }
         imageCarousel.setImageInputs(imageInputs)
-        
-        parentVC = viewController
-        
-        configureViews()
-        configureRoomInfo(with: place.roomInfo)
     }
     
     private func configureViews() {
@@ -313,6 +335,15 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     @objc private func followPlace() {
         isFollowed.value = !isFollowed.value
+        
+        viewModel.followPressed(status: isFollowed.value) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            default:
+                self?.isFollowed.value = !(self?.isFollowed.value)!
+            }
+        }
     }
     
     private func updateFollowBtnSize(with height: CGFloat, and width: CGFloat) {

@@ -45,6 +45,7 @@ class PlaceProfileViewController: UIViewController {
             switch status {
             case .ok:
                 self?.collectionView.reloadData()
+                self?.collectionView.alpha = 1.0
             case .error:
                 break
             case .fail:
@@ -114,6 +115,8 @@ class PlaceProfileViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.clipsToBounds = false
+        collectionView.alpha = 0
+        
         let layout = PlaceProfileCollectionLayout()
         layout.configure(with: navBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
         collectionView.collectionViewLayout = layout

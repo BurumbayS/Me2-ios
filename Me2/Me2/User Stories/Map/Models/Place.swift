@@ -15,6 +15,7 @@ class Place {
     var description: String?
     var category: String!
     var regStatus: PlaceStatus!
+    var isFavourite: Bool
     var rating: Double?
     var longitute: Double!
     var latitude: Double!
@@ -36,6 +37,7 @@ class Place {
         id = json["id"].intValue
         name = json["name"].stringValue
         category = json["place_type"]["name"].stringValue
+        isFavourite = json["is_favourite"].boolValue
         description = json["description"].stringValue
         latitude = json["location"]["latitude"].doubleValue
         longitute = json["location"]["longitude"].doubleValue

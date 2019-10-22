@@ -15,6 +15,7 @@
 		DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */; };
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
+		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */; };
 		DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6B235D7D5B00EFB49D /* TagView.swift */; };
 		DD489F6E235D8AEB00EFB49D /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6D235D8AEB00EFB49D /* FilterData.swift */; };
@@ -223,6 +224,7 @@
 		DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBioTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
+		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListForMapFilterViewModel.swift; sourceTree = "<group>"; };
 		DD489F6B235D7D5B00EFB49D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		DD489F6D235D8AEB00EFB49D /* FilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
@@ -1151,6 +1153,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC7F24023101CDE0067C6C7 /* PlaceProfileViewModel.swift */,
+				DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */,
 				DD5C2243231CF2D300CF66CC /* PlaceDetailsViewModel.swift */,
 				DDE0480F234230B500E33046 /* BookTableViewModel.swift */,
 				DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */,
@@ -1448,6 +1451,7 @@
 				DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */,
 				DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */,
 				DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */,
+				DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */,
 				DDE047E4233CB54C00E33046 /* Typealias.swift in Sources */,
 				DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */,
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,

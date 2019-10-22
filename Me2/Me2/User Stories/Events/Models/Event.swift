@@ -7,6 +7,7 @@
 //
 
 import SwiftyJSON
+import Alamofire
 
 enum DateType: String {
     case weekdays = "WEEKDAYS"
@@ -31,6 +32,7 @@ class Event {
     var description: String?
     var imageURL: String?
     var place: Place!
+    var flagImage = UIImage(named: "unselected_flag")
     var eventType: String!
     var start: String!
     var end: String!
@@ -38,11 +40,13 @@ class Event {
     var time_end: String?
     var date_type: DateType!
     var tags = [String]()
+    var isFavourite: Dynamic<Bool>
     
     init(json: JSON) {
         id = json["id"].intValue
         title = json["name"].stringValue
         description = json["description"].stringValue
+        isFavourite = Dynamic(json["is_favourite"].boolValue)
         imageURL = json["image"].stringValue
         eventType = json["event_type"]["name"].stringValue
         place = Place(json: json["place"])
@@ -55,6 +59,14 @@ class Event {
         for item in json["tags"].arrayValue {
             tags.append(item.stringValue)
         }
+        
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        isFavourite.bindAndFire({ (status) in
+            self.flagImage = (status) ? UIImage(named: "selected_flag") : UIImage(named: "unselected_flag")
+        })
     }
     
     func getTime() -> String {
@@ -95,5 +107,43 @@ class Event {
         
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: date!)
+    }
+    
+    func changeFavouriteStatus(completion: ResponseBlock?) {
+        self.isFavourite.value ? addToFavourite(completion: completion) : removeFromFavourite(completion: completion)
+    }
+    
+    private func addToFavourite(completion: ResponseBlock?) {
+        let url = Network.core + "/event/\(self.id)/add_favourite/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success( _):
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    private func removeFromFavourite(completion: ResponseBlock?) {
+        let url = Network.core + "/event/\(self.id)/remove_favourite/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success( _):
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
     }
 }
