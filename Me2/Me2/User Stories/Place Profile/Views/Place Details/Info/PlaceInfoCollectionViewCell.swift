@@ -119,7 +119,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceWorkTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Ежедневно 08:00 - 24:00", and: "Закроется через 20 мин", isOpen: true)
+            cell.configure(with: viewModel.placeInfo.workingHours)
             return cell
             
         case .mail:
