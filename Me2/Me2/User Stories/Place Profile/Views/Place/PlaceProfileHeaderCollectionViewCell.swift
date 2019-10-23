@@ -326,7 +326,13 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func shareWithPlace() {
+        let str = "\(viewModel.place.name!)\n\(viewModel.place.address1!)\n\(viewModel.place.phone ?? "")\n\(viewModel.place.email ?? "")"
         
+        let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = parentVC.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+        
+        parentVC.present(activityViewController, animated: true, completion: nil)
     }
     
     @objc private func showImages() {
