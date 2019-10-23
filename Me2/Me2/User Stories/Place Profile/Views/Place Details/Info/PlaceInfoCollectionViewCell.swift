@@ -8,6 +8,8 @@
 
 import UIKit
 import Cartography
+import SafariServices
+import MessageUI
 
 class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
@@ -27,7 +29,8 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, place: Place) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.viewModel = PlaceInfoViewModel(place: place)
     }
@@ -147,5 +150,29 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             cell.configure(with: 3)
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.placeSections[indexPath.row] {
+        case .site:
+            guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
+            let svc = SFSafariViewController(url: url)
+            
+            presenterDelegate.present(controller: svc, presntationType: .present)
+        case .mail:
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([viewModel.placeInfo.email ?? ""])
+            
+            presenterDelegate.present(controller: mail, presntationType: .present)
+        default:
+            break
+        }
+    }
+}
+
+extension PlaceInfoCollectionViewCell: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

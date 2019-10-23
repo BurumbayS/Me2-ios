@@ -9,5 +9,11 @@
 import UIKit
 
 class PlaceDetailCollectionCell: UICollectionViewCell {
+    var presenterDelegate: ControllerPresenterDelegate!
+    
+    func configure(presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
+    }
+    
     func reload() {}
 }

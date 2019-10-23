@@ -229,7 +229,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self)
             return cell
             
         }
@@ -266,6 +266,17 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             UIView.animate(withDuration: 0.3) {
                 self.actionButton.alpha = 1.0
             }
+        }
+    }
+}
+
+extension PlaceProfileViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .present:
+            present(controller, animated: true, completion: nil)
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

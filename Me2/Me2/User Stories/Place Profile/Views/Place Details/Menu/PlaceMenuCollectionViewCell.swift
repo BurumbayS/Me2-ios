@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import SafariServices
 
 class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     
@@ -62,7 +63,8 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(MenuFileTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu]) {
+    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu], presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.menus = menus
         
@@ -100,5 +102,11 @@ extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = URL(string: menus[indexPath.row].file) else { return }
+        let svc = SFSafariViewController(url: url)
+        presenterDelegate.present(controller: svc, presntationType: .present)
     }
 }
