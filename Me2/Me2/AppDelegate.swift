@@ -10,21 +10,35 @@ import UIKit
 import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
+import GoogleSignIn
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Configure Facebook sign-in
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // Configure Google sign-in
+        GIDSignIn.sharedInstance().clientID = "46834004232-eqvmijmtp0n28aitrkcmtpqldso57j1u.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = SocialMedia.shared
+        
         //Set root View Controller
-        window?.rootViewController = Storyboard.mainTabsViewController()
+        if let _ = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) {
+            window?.rootViewController = Storyboard.mainTabsViewController()
+        } else {
+            window?.rootViewController = Storyboard.signInOrUpViewController()
+        }
         
         //Configure IQKeyboard
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Готово"
+        IQKeyboardManager.shared.toolbarTintColor = Color.blue
         
         //Configure Google maps
         GMSServices.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
@@ -34,6 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    //Google SignIn
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        guard let scheme = url.scheme else {
+            return false
+        }
+        
+        print("Scheme: \(scheme)")
+        
+        if scheme.contains("fb") {
+            return ApplicationDelegate.shared.application(app, open: url, options: options)
+        } else if scheme.contains("google") {
+            return GIDSignIn.sharedInstance().handle(url)
+        }
+        
+        return false
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

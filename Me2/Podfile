@@ -10,5 +10,16 @@ target 'Me2' do
   pod 'IQKeyboardManagerSwift'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Cosmos', '~> 19.0'
+  pod 'ImageSlideshow', '~> 1.8'
+  pod 'ImageSlideshow/Kingfisher'
+  pod 'KKPinCodeTextField'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'GoogleSignIn'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  pod 'RangeSeekSlider'
 
 end

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Profile View Controller-->
+        <scene sceneID="kcm-8Y-SbJ">
+            <objects>
+                <viewController id="hzc-CC-60b" customClass="UserProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qu9-jv-29f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="g61-nd-Y43">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gf-Pz-scF">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Svn-m4-JF2"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="7vm-Ql-33U"/>
+                            <constraint firstItem="4gf-Pz-scF" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="B90-sP-Bxm"/>
+                            <constraint firstAttribute="trailing" secondItem="4gf-Pz-scF" secondAttribute="trailing" id="Tc4-fA-bIY"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="ZMp-0K-JFz"/>
+                            <constraint firstItem="4gf-Pz-scF" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="bBl-wQ-f1P"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="d9d-e4-3sj"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="bottom" secondItem="jiL-YL-71K" secondAttribute="bottom" id="lZg-3d-tPK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jiL-YL-71K"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xe5-EO-utd"/>
+                    <connections>
+                        <outlet property="navBar" destination="4gf-Pz-scF" id="bKt-ed-uDn"/>
+                        <outlet property="navItem" destination="Svn-m4-JF2" id="ED0-AN-xqI"/>
+                        <outlet property="tableView" destination="g61-nd-Y43" id="M75-wp-k4K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IDr-f4-yg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7179.7101449275369" y="42.857142857142854"/>
+        </scene>
+        <!--Favourite Places View Controller-->
+        <scene sceneID="Dzj-FY-qxi">
+            <objects>
+                <viewController storyboardIdentifier="FavouritePlacesViewController" id="xTn-Wc-HoG" customClass="FavouritePlacesViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="588-hJ-jTX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ety-05-WeL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ety-05-WeL" firstAttribute="top" secondItem="Ex4-9h-kmJ" secondAttribute="top" id="5NY-gM-2Ec"/>
+                            <constraint firstItem="Ex4-9h-kmJ" firstAttribute="bottom" secondItem="ety-05-WeL" secondAttribute="bottom" id="Dba-7N-q0F"/>
+                            <constraint firstItem="Ex4-9h-kmJ" firstAttribute="trailing" secondItem="ety-05-WeL" secondAttribute="trailing" id="Jvm-QH-jDd"/>
+                            <constraint firstItem="ety-05-WeL" firstAttribute="leading" secondItem="Ex4-9h-kmJ" secondAttribute="leading" id="QCP-Pf-bsR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ex4-9h-kmJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ety-05-WeL" id="MQ3-1f-Vgz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r6U-3a-UXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7923.188405797102" y="42.857142857142854"/>
+        </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="Eb8-Rn-aOA">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileViewController" id="X8z-bI-X74" customClass="EditProfileViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="93C-J9-SWe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-e2-FEW">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="NRo-um-wjB"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X0i-Fh-UTo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8dm-eK-QEe" firstAttribute="bottom" secondItem="X0i-Fh-UTo" secondAttribute="bottom" id="9vy-lG-p0g"/>
+                            <constraint firstItem="X0i-Fh-UTo" firstAttribute="leading" secondItem="8dm-eK-QEe" secondAttribute="leading" id="A53-Y5-iTg"/>
+                            <constraint firstItem="8dm-eK-QEe" firstAttribute="trailing" secondItem="X0i-Fh-UTo" secondAttribute="trailing" id="OMj-TM-vaA"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="trailing" secondItem="8dm-eK-QEe" secondAttribute="trailing" id="Sc5-RC-ECE"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="top" secondItem="8dm-eK-QEe" secondAttribute="top" id="agW-1q-XOS"/>
+                            <constraint firstItem="Rpt-e2-FEW" firstAttribute="leading" secondItem="8dm-eK-QEe" secondAttribute="leading" id="jiy-KY-T3q"/>
+                            <constraint firstItem="X0i-Fh-UTo" firstAttribute="top" secondItem="Rpt-e2-FEW" secondAttribute="bottom" id="zud-zn-BFU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8dm-eK-QEe"/>
+                    </view>
+                    <connections>
+                        <outlet property="navItem" destination="NRo-um-wjB" id="l9o-ML-5xF"/>
+                        <outlet property="navbar" destination="Rpt-e2-FEW" id="tz6-39-yN1"/>
+                        <outlet property="tableView" destination="X0i-Fh-UTo" id="pZE-mD-ecN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OuX-1C-qZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8675" y="43"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QRZ-SD-gv9">
+            <objects>
+                <navigationController storyboardIdentifier="UserProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="kiB-Ax-udQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yXK-zV-XzN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hzc-CC-60b" kind="relationship" relationship="rootViewController" id="ryW-z3-ar9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPl-lc-jbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6399" y="43"/>
+        </scene>
+    </scenes>
+</document>

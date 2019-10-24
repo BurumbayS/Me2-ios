@@ -12,6 +12,8 @@ class LiveChatViewController: UIViewController {
 
     @IBOutlet weak var participantsCollectionView: UICollectionView!
     
+    var controllerPresenter: ControllerPresenterDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,5 +44,10 @@ extension LiveChatViewController : UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+        let vc = navigationController.viewControllers[0] as! UserProfileViewController
+        vc.viewModel.profileType = .guestProfile
+        controllerPresenter.present(controller: vc, presntationType: .push)
+    }
 }

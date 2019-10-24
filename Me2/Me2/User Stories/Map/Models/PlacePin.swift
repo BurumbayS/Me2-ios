@@ -1,0 +1,29 @@
+//
+//  PlacePin.swift
+//  Me2
+//
+//  Created by Sanzhar Burumbay on 9/19/19.
+//  Copyright © 2019 AVSoft. All rights reserved.
+//
+
+import SwiftyJSON
+
+class PlacePin {
+    var id: Int!
+    var name: String!
+    var logo: String?
+    var longitude: Double!
+    var latitude: Double!
+
+    static func convert(from json: JSON) -> PlacePin {
+        let placePin = PlacePin()
+    
+        placePin.id = json["id"].intValue
+        placePin.name = json["name"].stringValue
+        placePin.longitude = json["location"]["longitude"].doubleValue
+        placePin.latitude = json["location"]["latitude"].doubleValue
+        placePin.logo = json["logo"].stringValue
+        
+        return placePin
+    }
+}

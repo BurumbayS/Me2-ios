@@ -16,16 +16,19 @@ class ChatTabViewController: UIViewController {
     @IBOutlet weak var liveButton: UIButton!
     @IBOutlet weak var chatsButtonUnderline: UIView!
     @IBOutlet weak var liveButtonUnderline: UIView!
+    @IBOutlet weak var additionalActionButton: UIButton!
     
     let viewModel = ChatTabViewModel()
     
-    let chatsListVC = Storyboard.chatsListViewController()
-    let liveChatVC = Storyboard.liveChatViewController()
+    let chatsListVC = Storyboard.chatsListViewController() as! ChatsListViewController
+    let liveChatVC = Storyboard.liveChatViewController() as! LiveChatViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
         bindViewModel()
+        setUpDelegates()
     }
     
     private func bindViewModel() {
@@ -41,14 +44,21 @@ class ChatTabViewController: UIViewController {
         }
     }
     
+    private func setUpDelegates() {
+        chatsListVC.controllerPresenter = self
+        liveChatVC.controllerPresenter = self
+    }
+    
     private func setUpButtons() {
         switch viewModel.currentScreen.value {
         case .chatList:
+            additionalActionButton.setImage(UIImage(named: "new_chat_icon"), for: .normal)
             chatsButton.makeVisible()
             liveButton.makeTransparent()
             chatsButtonUnderline.isHidden = false
             liveButtonUnderline.isHidden = true
         default:
+            additionalActionButton.setImage(UIImage(named: "dots_icon"), for: .normal)
             liveButton.makeVisible()
             chatsButton.makeTransparent()
             chatsButtonUnderline.isHidden = true
@@ -78,11 +88,36 @@ class ChatTabViewController: UIViewController {
         }
     }
     
+    private func createNewChat() {
+        let contactsVC = Storyboard.contactsViewController()
+        present(contactsVC, animated: true, completion: nil)
+    }
+    
     @IBAction func chatsButtonPressed(_ sender: Any) {
         viewModel.currentScreen.value = .chatList
     }
     
     @IBAction func liveButtonPressed(_ sender: Any) {
         viewModel.currentScreen.value = .liveChat
+    }
+    
+    @IBAction func additionalButtonPressed(_ sender: Any) {
+        switch viewModel.currentScreen.value {
+        case .chatList:
+            createNewChat()
+        default:
+            break;
+        }
+    }
+}
+
+extension ChatTabViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }
