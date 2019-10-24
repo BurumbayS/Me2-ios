@@ -57,8 +57,8 @@ class NewPlacesListTableViewCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
-        collectionView.registerNib(EventCollectionViewCell.self)
         collectionView.registerNib(NewPlaceCollectionViewCell.self)
+        collectionView.registerNib(NewPlacePlaceholderCollectionViewCell.self)
         
         setCollectionViewLayout()
     }
@@ -89,22 +89,36 @@ extension NewPlacesListTableViewCell: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if viewModel != nil { return viewModel.places.count } else { return 0}
+        if viewModel != nil {
+            if viewModel.places.count > 0 {
+                return viewModel.places.count
+            } else {
+                return 3
+            }
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if viewModel.dataLoaded {
             
-        let cell: NewPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: NewPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(place: viewModel.places[indexPath.row])
+            return cell
+            
+        }
         
-        cell.configure(place: viewModel.places[indexPath.row])
-        
+        let cell: NewPlacePlaceholderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
-        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-        presenterDelegate.present(controller: vc, presntationType: .push)
+        if viewModel.dataLoaded {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+            presenterDelegate.present(controller: vc, presntationType: .push)
+        }
     }
 }

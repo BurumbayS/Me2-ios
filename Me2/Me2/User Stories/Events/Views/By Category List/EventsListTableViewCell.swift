@@ -39,7 +39,7 @@ class EventsListTableViewCell: UITableViewCell {
     
     private func fetchData() {
         viewModel.fetchData { [weak self] (status, message) in
-            self?.collectionView.reloadData()
+            self?.collectionView.reloadSections([0])
             self?.dataLoadCompletionHandler?((self?.viewModel.eventsList.count)!)
         }
     }
@@ -54,7 +54,7 @@ class EventsListTableViewCell: UITableViewCell {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         collectionView.registerNib(EventCollectionViewCell.self)
-        collectionView.registerNib(NewPlaceCollectionViewCell.self)
+        collectionView.registerNib(EventPlaceholderCollectionViewCell.self)
         
         setCollectionViewLayout()
     }
@@ -85,25 +85,35 @@ extension EventsListTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let viewModel = self.viewModel {
-            return viewModel.eventsList.count
+            if viewModel.eventsList.count > 0 {
+                return viewModel.eventsList.count
+            } else {
+                return 1
+            }
         }
         
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-        let cell: EventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    
-        cell.configure(wtih: viewModel.eventsList[indexPath.row])
+        if viewModel.eventsList.count > 0 {
+            let cell: EventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.configure(wtih: viewModel.eventsList[indexPath.row])
+            
+            return cell
+        }
         
+        let cell: EventPlaceholderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dest = Storyboard.eventDetailsViewController() as! UINavigationController
-        let vc = dest.viewControllers[0] as! EventDetailsViewController
-        vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
-        presenterDelegate.present(controller: dest, presntationType: .present)
+        if viewModel.dataLoaded {
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
+            presenterDelegate.present(controller: dest, presntationType: .present)
+        }
     }
 }
