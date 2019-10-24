@@ -14,6 +14,8 @@ class EditProfileBioTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let textView = UITextView()
     
+    var dataToSave: UserDataToSave!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -26,9 +28,10 @@ class EditProfileBioTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: [String : String], cellType: EditProfileCell) {
-        titleLabel.text = cellType.rawValue
+    func configure(with data: [String : String], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
+        self.dataToSave = userDataToSave
         
+        titleLabel.text = cellType.rawValue
         textView.text = data["bio"]
     }
     
@@ -60,6 +63,11 @@ class EditProfileBioTableViewCell: UITableViewCell {
 
 extension EditProfileBioTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
         textView.textColor = .black
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        dataToSave.data = textView.text
     }
 }

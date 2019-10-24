@@ -19,14 +19,19 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
     var controllerPresenter: ControllerPresenterDelegate!
     var actionSheetPresenter: ActionSheetPresenterDelegate!
     
+    var dataToSave: UserDataToSave!
+    var data = [String: Any]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         backgroundColor = .clear
         usernameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
+        usernameTextField.delegate = self
     }
     
-    func configure(with data: [String: String], controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
+    func configure(with data: [String: String], userDataToSave: UserDataToSave, controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
+        self.dataToSave = userDataToSave
         self.controllerPresenter = controllerPresenter
         self.actionSheetPresenter = actionSheetPresenter
         self.imagePicker.delegate = self
@@ -55,12 +60,20 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
     }
 }
 
-extension EditProfileHeaderTableViewCell : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditProfileHeaderTableViewCell : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             avatarImageView.image = pickedImage
+            
+            data["avatar"] = pickedImage
+            dataToSave.data = data
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        data["username"] = textField.text
+        dataToSave.data = data
     }
 }

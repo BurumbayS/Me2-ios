@@ -59,7 +59,7 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc private func finishEditing() {
-        
+        viewModel.updateProfile()
     }
 }
 
@@ -77,21 +77,21 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), controllerPresenter: self, actionSheetPresenter: self)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], controllerPresenter: self, actionSheetPresenter: self)
             return cell
             
-        case .firstname, .lastname, .dateOfBirth, .phoneNumber:
+        case .firstname, .lastname, .dateOfBirth:
             
             let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], cellType: cellType)
             return cell
             
         case .bio:
             
             let cell: EditProfileBioTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], cellType: cellType)
             return cell
             
         case .interests:
