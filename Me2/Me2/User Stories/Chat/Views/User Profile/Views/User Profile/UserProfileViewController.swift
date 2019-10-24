@@ -177,7 +177,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: 0, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.userInfo.favouritePlaces, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:

@@ -19,6 +19,7 @@ class User {
     var gender: String?
     var favouritePlaces = [Place]()
     var favouriteEvents = [Event]()
+    var interests = [String]()
     
     init(json: JSON) {
         id = json["id"].intValue
@@ -28,5 +29,9 @@ class User {
         email = json["email"].stringValue
         gender = json["gender"].stringValue
         bio = json["bio"].stringValue
+        
+        for item in json["favourite_places"].arrayValue {
+            favouritePlaces.append(Place(json: item))
+        }
     }
 }
