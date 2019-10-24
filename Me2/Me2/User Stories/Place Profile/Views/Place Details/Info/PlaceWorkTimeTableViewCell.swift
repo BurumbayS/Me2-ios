@@ -16,6 +16,8 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
     let iconImageView = UIImageView()
     let availabilityStatusView = UIView()
     
+    var workingHours: WorkingHours!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -26,10 +28,112 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with workingTime: String, and closingTime: String, isOpen: Bool) {
-        workingTimeLabel.text = workingTime
-        closingTimeLabel.text = closingTime
-        availabilityStatusView.backgroundColor = (isOpen) ? .green : .red
+    func configure(with workingHours: WorkingHours?) {
+        if workingHours != nil {
+            self.workingHours = workingHours
+        } else { return }
+        
+        configureWorkTime()
+        configureClosingTime()
+    }
+    
+    private func configureWorkTime() {
+        if isAllDays() {
+            workingTimeLabel.text = "Ежедневно \(workingHours.weekDays[0].start)-\(workingHours.weekDays[0].end)"
+        } else
+        if isWeekends() {
+            let weekend = workingHours.weekDays.first(where: { $0.isWeekend })
+            workingTimeLabel.text = "Выходные \(weekend!.start)-\(weekend!.end)"
+        } else
+        if isWorkdays() {
+            let workday = workingHours.weekDays.first(where: { !$0.isWeekend })
+            workingTimeLabel.text = "Будни \(workday!.start)-\(workday!.end)"
+        } else {
+            var workTime = ""
+            for day in workingHours.weekDays {
+                workTime += "\(day.name.localShortTitle) \(day.start)-\(day.end) • "
+            }
+            workingTimeLabel.text = workTime
+        }
+    }
+    
+    private func configureClosingTime() {
+        guard let workingHours = workingHours else { return }
+        
+        let today = Date().dayOfTheWeek()
+        let day = workingHours.weekDays.filter { $0.title == today }[0]
+        let time = Date().currentTime()
+        
+        if time > day.start && time < day.end {
+            closingTimeLabel.text = "Открыто до \(day.end)"
+            availabilityStatusView.backgroundColor = Color.green
+        }
+        if time < day.start {
+            closingTimeLabel.text = "Закрыто до \(day.start)"
+            availabilityStatusView.backgroundColor = Color.red
+        }
+        if time > day.end {
+            closingTimeLabel.text = "Закрыто до завтра"
+            availabilityStatusView.backgroundColor = Color.red
+        }
+        if time > day.end && day.end == "00:00" {
+            closingTimeLabel.text = "Открыто до \(day.end)"
+            availabilityStatusView.backgroundColor = Color.green
+        }
+    }
+    
+    private func isAllDays() -> Bool {
+        var isEqual = true
+        
+        for weekday1 in workingHours.weekDays {
+            for weekday2 in workingHours.weekDays {
+                if !weekday1.isEgual(to: weekday2) && weekday1.works && weekday2.works {
+                    isEqual = false
+                }
+            }
+        }
+        
+        return isEqual
+    }
+    
+    private func isWeekends() -> Bool {
+        var isWeekends = true
+        
+        let weekends = workingHours.weekDays.filter({ $0.isWeekend })
+        let workDays = workingHours.weekDays.filter({ !$0.isWeekend })
+        
+        for day in workDays {
+            if day.works {
+                isWeekends = false
+            }
+        }
+        
+        if !(weekends[0].works && weekends[1].works && weekends[0].isEgual(to: weekends[1])) { isWeekends = false }
+        
+        return isWeekends
+    }
+    
+    private func isWorkdays() -> Bool {
+        var isWorkdays = true
+        
+        let weekends = workingHours.weekDays.filter({ $0.isWeekend })
+        let workDays = workingHours.weekDays.filter({ !$0.isWeekend })
+        
+        for day in weekends {
+            if day.works {
+                isWorkdays = false
+            }
+        }
+        
+        for weekday1 in workDays {
+            for weekday2 in workDays {
+                if !weekday1.isEgual(to: weekday2) && weekday1.works && weekday2.works {
+                    isWorkdays = false
+                }
+            }
+        }
+        
+        return isWorkdays
     }
     
     private func setUpViews() {
@@ -44,6 +148,7 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
         let view = UIView()
         
         workingTimeLabel.textColor = .gray
+        workingTimeLabel.numberOfLines = 0
         workingTimeLabel.font = UIFont(name: "Roboto-Regular", size: 13)
         view.addSubview(workingTimeLabel)
         constrain(workingTimeLabel, view) { label, view in

@@ -87,11 +87,59 @@ struct RoomInfo {
         }
     }
 }
+
+enum WeekDayName: String {
+    case sunday
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    
+    var localShortTitle: String {
+        switch self {
+        case .sunday:
+            return "Вс"
+        case .monday:
+            return "Пн"
+        case .tuesday:
+            return "Вт"
+        case .wednesday:
+            return "Ср"
+        case .thursday:
+            return "Чт"
+        case .friday:
+            return "Пт"
+        case .saturday:
+            return "Сб"
+        }
+    }
+}
+
 struct WeekDay {
+    var name: WeekDayName
     var title: String
     var start: String
     var end: String
     var works: Bool
+    
+    var isWeekend: Bool {
+        switch name {
+        case .sunday, .saturday:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    func isEgual(to weekDay: WeekDay) -> Bool {
+        if self.start == weekDay.start && self.end == weekDay.end {
+            return true
+        }
+        
+        return false
+    }
 }
 
 class WorkingHours {
@@ -100,11 +148,12 @@ class WorkingHours {
     init(json: JSON) {
         for item in json.dictionaryValue {
             let title = item.key
+            let name = WeekDayName(rawValue: title)!
             let start = item.value["start"].stringValue
             let end = item.value["end"].stringValue
             let works = item.value["works"].boolValue
             
-            weekDays.append(WeekDay(title: title, start: start, end: end, works: works))
+            weekDays.append(WeekDay(name: name, title: title, start: start, end: end, works: works))
         }
     }
 }

@@ -58,7 +58,7 @@ class PlaceProfileViewModel {
         
         let url = placeInfoURL + "\(place.id ?? 0)/"
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):

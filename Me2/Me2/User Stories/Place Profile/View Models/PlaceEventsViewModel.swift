@@ -24,7 +24,7 @@ class PlaceEventsViewModel {
         
         let url = eventURL + "?place=\(placeID)"
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders()).validate()
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):

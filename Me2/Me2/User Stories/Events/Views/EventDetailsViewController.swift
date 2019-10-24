@@ -67,7 +67,7 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             let cell: EventDetailHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.event.eventType, and: viewModel.event.imageURL ?? "", on: self)
+            cell.configure(with: viewModel.event, on: self)
             return cell
         
         case 1:
@@ -101,6 +101,14 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.event.place)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

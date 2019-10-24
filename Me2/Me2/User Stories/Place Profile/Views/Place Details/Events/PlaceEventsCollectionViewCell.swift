@@ -62,7 +62,8 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.registerNib(EventTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, placeID: Int) {
+    func configure(itemSize: Dynamic<CGSize>?, placeID: Int, presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         
         viewModel.configure(placeID: placeID)
@@ -93,7 +94,7 @@ class PlaceEventsCollectionViewCell: PlaceDetailCollectionCell {
     private func reloadTable() {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
-            self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
+            self.tableSize?.value = (Constants.shared.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.shared.minContentSize
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
@@ -113,5 +114,12 @@ extension PlaceEventsCollectionViewCell: UITableViewDelegate, UITableViewDataSou
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+        let vc = dest.viewControllers[0] as! EventDetailsViewController
+        vc.viewModel = EventDetailsViewModel(eventID: viewModel.events[indexPath.row].id)
+        presenterDelegate.present(controller: dest, presntationType: .present)
     }
 }

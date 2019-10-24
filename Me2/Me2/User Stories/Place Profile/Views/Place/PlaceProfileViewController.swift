@@ -19,7 +19,7 @@ class PlaceProfileViewController: UIViewController {
     var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
-    var collectionViewCellheight: CGFloat = Constants.minContentSize.height
+    var collectionViewCellheight: CGFloat = 0
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -35,6 +35,7 @@ class PlaceProfileViewController: UIViewController {
         fetchData()
         configureNavBar()
         configureCollectionView()
+        configureCollectionCellDefaultHeight()
         configureActionButton()
         bindViewModel()
     }
@@ -44,6 +45,7 @@ class PlaceProfileViewController: UIViewController {
             switch status {
             case .ok:
                 self?.collectionView.reloadData()
+                self?.collectionView.alpha = 1.0
             case .error:
                 break
             case .fail:
@@ -71,12 +73,14 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
             self.actionButton.isHidden = false
             
         case .reviews:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.blue
             self.actionButton.setTitle("Оставить отзыв", for: .normal)
             self.actionButton.isHidden = false
@@ -111,6 +115,8 @@ class PlaceProfileViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.clipsToBounds = false
+        collectionView.alpha = 0
+        
         let layout = PlaceProfileCollectionLayout()
         layout.configure(with: navBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
         collectionView.collectionViewLayout = layout
@@ -130,8 +136,13 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func updateCollectionViewLayout(with cellHeight: CGFloat) {
-        collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
+        collectionViewCellheight = max(Constants.shared.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func configureCollectionCellDefaultHeight() {
+        Constants.shared.minContentSize = CGSize(width: safeAreaSize().width, height: safeAreaSize().height - 39)
+        collectionViewCellheight = Constants.shared.minContentSize.height
     }
     
     
@@ -218,13 +229,13 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self)
             return cell
             
         }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         lastContentOffset = collectionView.contentOffset.y
     }
     
@@ -245,6 +256,27 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             navBar.isHidden = true
             navigationController?.navigationBar.barStyle = .black
             collectionView.clipsToBounds = false
+        }
+        
+        if collectionView.contentOffset.y > lastContentOffset && lastContentOffset >= 0 {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 0
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 1.0
+            }
+        }
+    }
+}
+
+extension PlaceProfileViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .present:
+            present(controller, animated: true, completion: nil)
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

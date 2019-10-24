@@ -12,7 +12,7 @@ class MapSearchFilterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = MapSearchFilterViewModel()
+    var viewModel: MapSearchFilterViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class MapSearchFilterViewController: UIViewController {
         let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
         leftItem.tintColor = Color.red
         navigationItem.leftBarButtonItem = leftItem
-        navigationItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = viewModel.filtersSelected.value
         
         let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
         rightItem.tintColor = Color.blue
@@ -62,6 +62,7 @@ class MapSearchFilterViewController: UIViewController {
     }
     
     @objc private func completeWithFilter() {
+        viewModel.configureFiltersData()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -83,22 +84,22 @@ extension MapSearchFilterViewController: UITableViewDelegate, UITableViewDataSou
         case .slider:
             
             var selected = false
-            if let index = viewModel.selectedSliderFilterIndex, index == indexPath.row { selected = true }
+            if viewModel.selectedFilters.contains(indexPath.row) { selected = true }
             
-            let range: SliderRange = (viewModel.filters[indexPath.row].name == "Бизнес-ланч") ? viewModel.businessLaunchRange : viewModel.averageBillRange
+            let range: SliderRange = (viewModel.filters[indexPath.row] == .business_launch) ? viewModel.businessLaunchRange : viewModel.averageBillRange
             
-            cell.configure(with: viewModel.filters[indexPath.row].name, filterType: viewModel.filters[indexPath.row].type, range: range, selected: selected)
+            cell.configure(with: viewModel.filters[indexPath.row].rawValue, filterType: viewModel.filters[indexPath.row].type, range: range, selected: selected)
             
         case .check:
             
             var selected = false
-            if let index = viewModel.selectedCheckFilterIndex, index == indexPath.row { selected = true }
-            cell.configure(with: viewModel.filters[indexPath.row].name, filterType: viewModel.filters[indexPath.row].type, selected: selected)
+            if viewModel.selectedFilters.contains(indexPath.row) { selected = true }
+            cell.configure(with: viewModel.filters[indexPath.row].rawValue, filterType: viewModel.filters[indexPath.row].type, selected: selected)
             
         case .selectable:
             
             cell.accessoryType = .disclosureIndicator
-            cell.configure(with: viewModel.filters[indexPath.row].name, filterType: viewModel.filters[indexPath.row].type)
+            cell.configure(with: viewModel.filters[indexPath.row].rawValue, filterType: viewModel.filters[indexPath.row].type)
             
         }
         
@@ -108,7 +109,8 @@ extension MapSearchFilterViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.filters[indexPath.row].type {
         case .selectable:
-            let vc = Storyboard.listForMapFilterViewController()
+            let vc = Storyboard.listForMapFilterViewController() as! ListForMapFilterViewController
+            vc.viewModel = ListForMapFilterViewModel(tag_type: viewModel.filters[indexPath.row].tag_type, tag_ids: viewModel.tag_ids)
             navigationController?.pushViewController(vc, animated: true)
         default:
             viewModel.selectCell(at: indexPath)

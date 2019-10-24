@@ -55,8 +55,9 @@ class MapViewModel {
     
     private func getPlaces(idList: String, completion: ResponseBlock?) {
         let url = placesURL + "?id_list=\(idList)"
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -89,6 +90,7 @@ class MapViewModel {
             }
         }
         
+        if str != "" { str.removeLast() }
         return str
     }
     

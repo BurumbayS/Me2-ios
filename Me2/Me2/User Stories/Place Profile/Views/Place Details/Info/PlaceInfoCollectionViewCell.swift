@@ -8,6 +8,8 @@
 
 import UIKit
 import Cartography
+import SafariServices
+import MessageUI
 
 class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
@@ -27,7 +29,8 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, place: Place) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.viewModel = PlaceInfoViewModel(place: place)
     }
@@ -35,7 +38,7 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     override func reload () {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
-            self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
+            self.tableSize?.value = (Constants.shared.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.shared.minContentSize
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
@@ -116,7 +119,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceWorkTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Ежедневно 08:00 - 24:00", and: "Закроется через 20 мин", isOpen: true)
+            cell.configure(with: viewModel.placeInfo.workingHours)
             return cell
             
         case .mail:
@@ -136,7 +139,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         case .tags:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(tagsType: .unselectable, tagsList: TagsList())
+            cell.configure(tagsType: .unselectable, tagsList: TagsList(items: viewModel.placeInfo.tags))
             cell.selectionStyle = .none
             return cell
             
@@ -147,5 +150,29 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             cell.configure(with: 3)
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.placeSections[indexPath.row] {
+        case .site:
+            guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
+            let svc = SFSafariViewController(url: url)
+            
+            presenterDelegate.present(controller: svc, presntationType: .present)
+        case .mail:
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([viewModel.placeInfo.email ?? ""])
+            
+            presenterDelegate.present(controller: mail, presntationType: .present)
+        default:
+            break
+        }
+    }
+}
+
+extension PlaceInfoCollectionViewCell: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

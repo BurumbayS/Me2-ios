@@ -13,9 +13,12 @@ class ListForMapFilterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel: ListForMapFilterViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        fetchData()
         configureNavBar()
         configureTableView()
     }
@@ -30,7 +33,22 @@ class ListForMapFilterViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(ListItemTableViewCell.self)
+        tableView.registerNib(MapSearchFilterTableViewCell.self)
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.tableView.reloadSections([0], with: .automatic)
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
@@ -57,18 +75,21 @@ extension ListForMapFilterViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.tags.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListItemTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: MapSearchFilterTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(with: "Арабская")
+        cell.selectionStyle = .none
+        let selected = viewModel.tag_ids.value.contains(viewModel.tags[indexPath.row].id)
+        cell.configure(with: viewModel.tags[indexPath.row].name, filterType: .check, selected: selected)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.popViewController(animated: true)
+        viewModel.selectTag(at: indexPath)
+        tableView.reloadData()
     }
 }

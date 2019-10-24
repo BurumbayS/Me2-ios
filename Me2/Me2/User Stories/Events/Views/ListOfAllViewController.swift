@@ -67,12 +67,14 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
         case .event:
         
             let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(wtih: viewModel.eventsList[indexPath.row])
             return cell
         
         case .place:
             
             let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
             cell.configure(with: viewModel.placesList[indexPath.row])
             return cell
             

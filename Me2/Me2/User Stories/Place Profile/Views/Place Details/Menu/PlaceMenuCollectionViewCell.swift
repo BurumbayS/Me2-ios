@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import SafariServices
 
 class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     
@@ -62,7 +63,8 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(MenuFileTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu]) {
+    func configure(itemSize: Dynamic<CGSize>?, menus: [Menu], presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.menus = menus
         
@@ -79,7 +81,7 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     override func reload () {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
-            self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
+            self.tableSize?.value = (Constants.shared.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.shared.minContentSize
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
@@ -100,5 +102,11 @@ extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = URL(string: menus[indexPath.row].file) else { return }
+        let svc = SFSafariViewController(url: url)
+        presenterDelegate.present(controller: svc, presntationType: .present)
     }
 }

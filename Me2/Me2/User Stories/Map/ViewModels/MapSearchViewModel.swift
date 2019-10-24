@@ -15,12 +15,18 @@ class MapSearchViewModel {
     var searchResults = [Place]()
     var lastSearchResults = [String]()
     let updateSearchResults: Dynamic<Bool>
+    var filterData: Dynamic<[FilterData]>
     
     init(searchValue: Dynamic<String>) {
         self.searchValue = searchValue
         self.updateSearchResults = Dynamic(false)
+        self.filterData = Dynamic([])
         self.lastSearchResults = UserDefaults().object(forKey: UserDefaultKeys.lastMapSearchResults.rawValue) as? [String] ?? []
         
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
         self.searchValue.bind { [unowned self] (value) in
             if value != "" {
                 
@@ -39,6 +45,10 @@ class MapSearchViewModel {
                 
             }
         }
+        
+        self.filterData.bind { [unowned self] (filters) in
+            self.searchPlace(by: "")
+        }
     }
     
     func addToLastSearchResults(result: String) {
@@ -49,7 +59,7 @@ class MapSearchViewModel {
     }
     
     private func searchPlace(by searchValue: String) {
-        let url = placesURL + "?search=\(searchValue)"
+        let url = placesURL + "?search=\(searchValue)" + filtersToString()
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
         Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
@@ -72,6 +82,31 @@ class MapSearchViewModel {
                     self.updateSearchResults.value = true
                 }
         }
+    }
+    
+    private func filtersToString() -> String {
+        var str = ""
+        
+        for item in filterData.value {
+            str += "&\(item.key)="
+            
+            if item.key == "tag_ids" { str += toString(array: item.value as! [Int]) }
+            else { str += "\(item.value)" }
+        }
+        
+        return str
+    }
+    
+    private func toString(array: [Int]) -> String{
+        var str = ""
+        
+        for item in array {
+            str += "\(item),"
+        }
+        
+        if str != "" { str.removeLast() }
+        
+        return str
     }
     
     private let placesURL = Network.core + "/place/"

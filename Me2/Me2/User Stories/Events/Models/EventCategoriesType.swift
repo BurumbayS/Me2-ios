@@ -11,7 +11,7 @@ import Foundation
 enum EventCategoriesType: String {
     case saved
     case popular
-    case favourite
+    case favourite_places
     case actual
     case new_places
     case all
@@ -22,7 +22,7 @@ enum EventCategoriesType: String {
             return ""
         case .popular:
             return "Популярное сегодня"
-        case .favourite:
+        case .favourite_places:
             return "Подписки"
         case .actual:
             return "Актуальное в Алматы"
@@ -37,7 +37,7 @@ enum EventCategoriesType: String {
         switch self {
         case .popular:
             return "PopularEventsCell"
-        case .favourite:
+        case .favourite_places:
             return "FavouriteEventsCell"
         case .actual:
             return "ActualEventsCell"

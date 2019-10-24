@@ -18,16 +18,16 @@ class EventDetailsViewModel {
     }
     
     func fetchData(completion: ResponseBlock?) {
-        let url = eventDetailsURL + "\(eventID)"
+        let url = eventDetailsURL + "\(eventID)/"
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders()).validate()
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
                     
-                    self.event = Event(json: json["data"])
+                    self.event = Event(json: json["data"]) 
                     
                     completion?(.ok, "")
                     

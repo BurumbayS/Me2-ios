@@ -15,6 +15,7 @@ class Place {
     var description: String?
     var category: String!
     var regStatus: PlaceStatus!
+    var isFavourite: Bool
     var rating: Double?
     var longitute: Double!
     var latitude: Double!
@@ -30,14 +31,13 @@ class Place {
     var images = [String]()
     var workingHours: WorkingHours?
     var roomInfo: RoomInfo?
-    var kitchens = [String]()
-    var dishes = [String]()
-    var extras = [String]()
+    var tags = [String]()
     
     init(json: JSON) {
         id = json["id"].intValue
         name = json["name"].stringValue
         category = json["place_type"]["name"].stringValue
+        isFavourite = json["is_favourite"].boolValue
         description = json["description"].stringValue
         latitude = json["location"]["latitude"].doubleValue
         longitute = json["location"]["longitude"].doubleValue
@@ -62,6 +62,11 @@ class Place {
         for item in json["menu"].arrayValue {
             let menu = Menu(json: item)
             menus?.append(menu)
+        }
+        
+        tags = []
+        for item in json["tags_display"].arrayValue {
+            tags.append(item.stringValue)
         }
      }
 }

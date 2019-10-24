@@ -70,7 +70,7 @@ class EventsTabViewController: UIViewController {
         
         for category in viewModel.categories {
             switch category {
-            case .actual, .popular, .favourite:
+            case .actual, .popular, .favourite_places:
                 tableView.register(EventsListTableViewCell.self, forCellReuseIdentifier: category.cellID)
             default:
                 break
@@ -283,7 +283,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        case .popular, .actual, .favourite:
+        case .popular, .actual, .favourite_places:
         
             let cell = tableView.dequeueReusableCell(withIdentifier: section.cellID, for: indexPath) as! EventsListTableViewCell
             cell.selectionStyle = .none

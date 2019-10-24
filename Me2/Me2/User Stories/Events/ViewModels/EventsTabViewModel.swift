@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class EventsTabViewModel {
     var categoriesToShow = [EventCategoriesType]()
-    var categories = [EventCategoriesType.saved, .popular, .new_places, .favourite, .actual]
+    var categories = [EventCategoriesType.saved, .popular, .new_places, .favourite_places, .actual]
     var categoryViewModels = [CategoryEventsListViewModel]()
     let newPlacesViewModel = NewPlacesViewModel()
     var allEvents = [Event]()
@@ -28,7 +28,7 @@ class EventsTabViewModel {
             }
         }
         
-        categories = [.saved, .popular, .new_places, .favourite, .actual]
+        categories = [.saved, .popular, .new_places, .favourite_places, .actual]
         categoriesToShow = categories
         for category in categories {
             categoryViewModels.append(CategoryEventsListViewModel(categoryType: category))
@@ -36,7 +36,7 @@ class EventsTabViewModel {
     }
     
     func getAllEvents(completion: ResponseBlock?) {
-        Alamofire.request(eventsURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders()).validate()
+        Alamofire.request(eventsURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):

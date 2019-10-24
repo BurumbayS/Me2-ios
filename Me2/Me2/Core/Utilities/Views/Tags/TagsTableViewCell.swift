@@ -37,7 +37,7 @@ class TagsList {
 
 class TagsTableViewCell: UITableViewCell {
     
-    let tags = ["Средний чек 3000тг","Средний чек 3000тг","Заказ на вынос","Бизнес-ланч","Терраса", "Заказ на вынос","Бизнес-ланч","Терраса"]
+    var tags = ["Средний чек 3000тг","Средний чек 3000тг","Заказ на вынос","Бизнес-ланч","Терраса", "Заказ на вынос","Бизнес-ланч","Терраса"]
     var tagsList: TagsList!
     var tagsType: TagsType!
     
@@ -73,6 +73,8 @@ class TagsTableViewCell: UITableViewCell {
     }
     
     private func setUpViews() {
+        self.contentView.subviews.forEach { $0.removeFromSuperview() }
+        
         let view = UIView()
 
         let itemPadding: CGFloat = 10
@@ -94,7 +96,7 @@ class TagsTableViewCell: UITableViewCell {
                 rows += 1
             }
             
-            let tagView = Tag(frame: CGRect(x: x, y: y, width: width, height: height))
+            let tagView = TagView(frame: CGRect(x: x, y: y, width: width, height: height))
             tagView.configure(with: tag, and: tagsList, of: tagsType.tagSize)
             
             view.addSubview(tagView)
@@ -119,6 +121,8 @@ class TagsTableViewCell: UITableViewCell {
             view.bottom == superView.bottom - 20
             view.height == visibleTagsViewHeight
         }
+        
+        self.layoutIfNeeded()
     }
 }
  

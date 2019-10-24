@@ -17,7 +17,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     let imageView = UIImageView()
     let wallpaperView = UIView()
     let imageCarousel = ImageSlideshow()
-    
+    let stackView = UIStackView()
     let logoImageView = UIImageView()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
@@ -31,6 +31,16 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     var parentVC: UIViewController!
     var placeStatus: PlaceStatus!
     
+    var viewModel: PlaceHeaderViewModel!
+    
+    var didLayoutSubviews: Bool = false {
+        didSet {
+            if self.didLayoutSubviews && !oldValue {
+                self.isFollowed.value = self.viewModel.place.isFavourite
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,13 +52,30 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        didLayoutSubviews = true
+    }
+    
     func configure(place: Place, viewController: UIViewController) {
-        self.placeStatus = place.regStatus
-        titleLabel.text = place.name
-        logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
-        categoryLabel.text = place.category
+        viewModel = PlaceHeaderViewModel(place: place)
         
-        if let rating = place.rating {
+        parentVC = viewController
+        
+        configureViewsWithData()
+        configureViews()
+        configureRoomInfo(with: place.roomInfo)
+    }
+    
+    private func configureViewsWithData() {
+        self.placeStatus = viewModel.place.regStatus
+        titleLabel.text = viewModel.place.name
+        logoImageView.kf.setImage(with: URL(string: viewModel.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        categoryLabel.text = viewModel.place.category
+        isFollowed.value = viewModel.place.isFavourite
+        
+        if let rating = viewModel.place.rating {
             let roundedRating = Double(round(rating * 10) / 10)
             ratingView.rating = roundedRating
             ratingView.text = "\(roundedRating)"
@@ -57,16 +84,12 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         }
         
         var imageInputs = [InputSource]()
-        for imageURL in place.images {
+        for imageURL in viewModel.place.images {
             let source = KingfisherSource(url: URL(string: imageURL)!, placeholder: UIImage(named: "default_place_wallpaper"), options: [])
             imageInputs.append(source)
         }
         if (imageInputs.count == 0) { imageInputs.append(ImageSource(image:  UIImage(named: "default_place_wallpaper")!)) }
         imageCarousel.setImageInputs(imageInputs)
-        
-        parentVC = viewController
-        
-        configureViews()
     }
     
     private func configureViews() {
@@ -81,6 +104,34 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             followButton.isHidden = true
         default:
             break
+        }
+    }
+    
+    private func configureRoomInfo(with data: RoomInfo?) {
+        guard let roomInfo = data else { return }
+        
+        let limit = (roomInfo.usersCount > 3) ? 3 : roomInfo.usersCount
+        
+        var x = 0
+        for i in 0..<limit {
+            let imageView = UIImageView(frame: CGRect(x: x, y: 0, width: 26, height: 26))
+            imageView.kf.setImage(with: URL(string: roomInfo.avatars[i]), placeholder: nil, options: [])
+            imageView.clipsToBounds = true
+            imageView.layer.cornerRadius = 13
+            
+            stackView.addSubview(imageView)
+            
+            x += 15
+        }
+        
+        if roomInfo.usersCount > 3 {
+            x += 15
+            let label = UILabel(frame: CGRect(x: x, y: 0, width: 100, height: 26))
+            label.textColor = .gray
+            label.font = UIFont(name: "Roboto-Regular", size: 13)
+            label.text = "+\(roomInfo.usersCount - 3)"
+            
+            stackView.addSubview(label)
         }
     }
     
@@ -250,6 +301,16 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             btn.height == 40
         }
         
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        view.addSubview(stackView)
+        constrain(stackView, liveChatButton) { stack, btn in
+            stack.leading == btn.leading
+            stack.trailing == btn.trailing
+            stack.height == 26
+            stack.top == btn.bottom + 10
+        }
+        
         self.contentView.addSubview(view)
         constrain(view, wallpaperView, self.contentView) { view, image, superview in
             view.top == image.bottom - 20
@@ -265,7 +326,13 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func shareWithPlace() {
+        let str = "\(viewModel.place.name!)\n\(viewModel.place.address1!)\n\(viewModel.place.phone ?? "")\n\(viewModel.place.email ?? "")"
         
+        let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = parentVC.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+        
+        parentVC.present(activityViewController, animated: true, completion: nil)
     }
     
     @objc private func showImages() {
@@ -274,6 +341,15 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     @objc private func followPlace() {
         isFollowed.value = !isFollowed.value
+        
+        viewModel.followPressed(status: isFollowed.value) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            default:
+                self?.isFollowed.value = !(self?.isFollowed.value)!
+            }
+        }
     }
     
     private func updateFollowBtnSize(with height: CGFloat, and width: CGFloat) {
