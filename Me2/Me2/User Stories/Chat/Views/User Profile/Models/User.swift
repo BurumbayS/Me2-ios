@@ -37,9 +37,8 @@ class User {
         bio = json["bio"].stringValue
         birthDate = convertBirthDate(from: json["birth_date"].stringValue)
         
-        for item in json["favourite_places"].arrayValue {
-            favouritePlaces.append(Place(json: item))
-        }
+        json["favourite_places"].arrayValue.forEach({ favouritePlaces.append(Place(json: $0)) })
+        json["interests"].arrayValue.forEach({ interests.append($0.stringValue) })
     }
     
     private func convertBirthDate(from dateString: String?) -> String {

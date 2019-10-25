@@ -107,7 +107,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: EditProfileTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(activateTagAddition: viewModel.activateAddTagTextField) { [weak self] in
+            cell.configure(tags: viewModel.userInfo.value.interests, userDataToSave: viewModel.dataToSave[indexPath.row], activateTagAddition: viewModel.activateAddTagTextField)
+            { [weak self] in
                 self?.tableView.beginUpdates()
                     cell.updateHeight()
                 self?.tableView.endUpdates()

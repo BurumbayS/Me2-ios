@@ -161,12 +161,11 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
         case .interests:
             
-            let tags = [String]()
-            if tags.count > 0 {
+            if viewModel.userInfo.value.interests.count > 0 {
                 
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
-                cell.configure(tagsType: .normal, tagsList: TagsList(), expanded: viewModel.tagsExpanded)
+                cell.configure(tagsType: .normal, tagsList: TagsList(items: viewModel.userInfo.value.interests), expanded: viewModel.tagsExpanded)
                 return cell
                 
             } else {

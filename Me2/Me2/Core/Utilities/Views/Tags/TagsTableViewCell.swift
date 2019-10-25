@@ -89,7 +89,7 @@ class TagsTableViewCell: UITableViewCell {
             let height = tagsType.tagSize.height
             let width = tag.getWidth(with: tagsType.tagSize.font) + tagsType.tagSize.sidesPadding
             
-            if x + width + sidesPadding > UIScreen.main.bounds.width {
+            if x + width + sidesPadding > UIScreen.main.bounds.width - 15 {
                 x = 0
                 y += tagsType.tagSize.height + itemPadding
                 
