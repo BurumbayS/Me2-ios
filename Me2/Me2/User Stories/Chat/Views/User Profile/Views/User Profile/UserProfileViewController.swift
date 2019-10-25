@@ -162,16 +162,18 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .interests:
             
             if viewModel.userInfo.value.interests.count > 0 {
-                
+
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
+                cell.selectionStyle = .none
                 cell.configure(tagsType: .normal, tagsList: TagsList(items: viewModel.userInfo.value.interests), expanded: viewModel.tagsExpanded)
                 return cell
-                
+
             } else {
-                
+            
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
+                cell.selectionStyle = .none
                 cell.configure(for: viewModel.profileType) { [weak self] in
                     let vc = Storyboard.editProfileViewController() as! EditProfileViewController
                     vc.viewModel = EditProfileViewModel(userInfo: (self?.viewModel.userInfo)!, activateAddTag: true)
@@ -206,7 +208,10 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             }
 
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedCell(at: indexPath)
     }
 }
 

@@ -112,5 +112,35 @@ class UserProfileViewModel {
         }
     }
     
+    func selectedCell(at indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .additional_block:
+            
+            switch profileType {
+            case .myProfile:
+                
+                selectedMyProfileCell(at: indexPath)
+                
+            case .guestProfile:
+                
+                selectedGuestProfileCell(at: indexPath)
+                
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    private func selectedMyProfileCell(at indexPath: IndexPath) {
+        
+    }
+    
+    private func selectedGuestProfileCell(at: IndexPath) {
+        
+    }
+    
     let userProfileURL = Network.user + "/get/"
 }
