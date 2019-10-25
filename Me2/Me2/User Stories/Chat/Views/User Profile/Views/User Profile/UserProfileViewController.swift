@@ -59,10 +59,18 @@ class UserProfileViewController: UIViewController {
         tableView.register(GuestProfileAdditionalTableViewCell.self)
     }
     
+    private func byndDynamics() {
+        viewModel.userInfo.bind { [weak self] (user) in
+            self?.tableView.reloadData()
+        }
+    }
+    
     func fetchData() {
         viewModel.fetchData { [weak self] (status, message) in
             switch status {
             case .ok:
+                
+                self?.byndDynamics()
                 
                 self?.tableView.isHidden = false
                 self?.tableView.reloadData()
@@ -74,6 +82,7 @@ class UserProfileViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {
@@ -166,7 +175,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 cell.clipsToBounds = true
                 cell.configure(for: viewModel.profileType) { [weak self] in
                     let vc = Storyboard.editProfileViewController() as! EditProfileViewController
-                    vc.viewModel = EditProfileViewModel(activateAddTag: true)
+                    vc.viewModel = EditProfileViewModel(userInfo: (self?.viewModel.userInfo)!, activateAddTag: true)
                     self?.present(vc, animated: true, completion: nil)
                 }
                 return cell
@@ -177,7 +186,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.userInfo.favouritePlaces, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.userInfo.value.favouritePlaces, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:

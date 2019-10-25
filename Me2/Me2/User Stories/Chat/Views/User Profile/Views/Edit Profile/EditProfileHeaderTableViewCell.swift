@@ -26,18 +26,22 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         backgroundColor = .clear
+        
         usernameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
         usernameTextField.delegate = self
+        usernameTextField.placeholder = "Einstein_emc"
     }
     
-    func configure(with data: [String: String], userDataToSave: UserDataToSave, controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
+    func configure(with data: [String: String?], userDataToSave: UserDataToSave, controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
         self.dataToSave = userDataToSave
         self.controllerPresenter = controllerPresenter
         self.actionSheetPresenter = actionSheetPresenter
         self.imagePicker.delegate = self
         
-        avatarImageView.kf.setImage(with: URL(string: data["avatar"] ?? ""), placeholder: UIImage(named: "placeholder_image"), options: [])
-        usernameTextField.placeholder = data["username"]
+        avatarImageView.kf.setImage(with: URL(string: (data["avatar"] as? String) ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        if let username = data["username"] as? String {
+            usernameTextField.text = username
+        }
     }
     
     @IBAction func changeAvatarPressed(_ sender: Any) {
@@ -65,8 +69,10 @@ extension EditProfileHeaderTableViewCell : UIImagePickerControllerDelegate, UINa
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             avatarImageView.image = pickedImage
             
-            data["avatar"] = pickedImage
-            dataToSave.data = data
+            if let imageData = pickedImage.jpegData(compressionQuality: 0.1) {
+                data["avatar"] = imageData
+                dataToSave.data = data
+            }
         }
         
         imagePicker.dismiss(animated: true, completion: nil)

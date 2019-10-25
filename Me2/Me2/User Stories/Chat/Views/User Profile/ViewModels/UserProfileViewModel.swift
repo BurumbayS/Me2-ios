@@ -82,7 +82,7 @@ class UserProfileViewModel {
         }
     }
     
-    var userInfo: User!
+    var userInfo: Dynamic<User>!//User!
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
@@ -100,7 +100,7 @@ class UserProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    self.userInfo = User(json: json["data"]["user"])
+                    self.userInfo = Dynamic(User(json: json["data"]["user"]))
                     
                     self.dataLoaded = true
                     completion?(.ok, "")

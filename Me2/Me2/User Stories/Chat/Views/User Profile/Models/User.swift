@@ -12,10 +12,13 @@ class User {
     let id: Int
     let username: String
     var fullName: String?
+    var firstName: String?
+    var lastName: String?
+    var avatar: String?
     var phone: String?
     var email: String?
     var bio: String?
-    var birthDate: Date?
+    var birthDate: String?
     var gender: String?
     var favouritePlaces = [Place]()
     var favouriteEvents = [Event]()
@@ -25,13 +28,32 @@ class User {
         id = json["id"].intValue
         username = json["username"].stringValue
         fullName = json["full_name"].stringValue
+        firstName = json["first_name"].stringValue
+        lastName = json["last_name"].stringValue
+        avatar = json["avatar"].stringValue
         phone = json["phone"].stringValue
         email = json["email"].stringValue
         gender = json["gender"].stringValue
         bio = json["bio"].stringValue
+        birthDate = convertBirthDate(from: json["birth_date"].stringValue)
         
         for item in json["favourite_places"].arrayValue {
             favouritePlaces.append(Place(json: item))
         }
+    }
+    
+    private func convertBirthDate(from dateString: String?) -> String {
+        guard dateString != nil else { return "" }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = formatter.date(from: dateString!) {
+            formatter.dateStyle = .long
+            formatter.locale = Locale(identifier: "ru")
+            return formatter.string(from: date)
+        }
+        
+        return ""
     }
 }

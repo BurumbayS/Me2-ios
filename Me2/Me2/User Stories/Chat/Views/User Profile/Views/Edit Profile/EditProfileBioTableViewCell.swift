@@ -28,11 +28,17 @@ class EditProfileBioTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: [String : String], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
+    func configure(with data: [String : String?], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
         self.dataToSave = userDataToSave
         
-        titleLabel.text = cellType.rawValue
-        textView.text = data["bio"]
+        titleLabel.text = cellType.title
+        if let bio = data["bio"] as? String {
+            textView.textColor = .black
+            textView.text = bio
+        } else {
+            titleLabel.textColor = .darkGray
+            textView.text = "Интересуюсь физикой и другими науками. В свободное время выращиваю розы и играю на скрипке. Подписывайтесь на мою страницу в инстаграме @einstein_emc"
+        }
     }
     
     private func setUpViews() {

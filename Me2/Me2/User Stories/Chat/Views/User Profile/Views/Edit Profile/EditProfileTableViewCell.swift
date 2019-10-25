@@ -30,7 +30,7 @@ class EditProfileTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: [String : String], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
+    func configure(with data: [String : String?], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
         self.dataToSave = userDataToSave
         
         titleLabel.text = cellType.title
@@ -40,11 +40,14 @@ class EditProfileTableViewCell: UITableViewCell {
         
         switch cellType {
         case .firstname:
-            textField.placeholder = data["firstname"]
+            textField.placeholder = "Альберт"
+            textField.text = data["firstname"] ?? ""
         case .lastname:
-            textField.placeholder = data["lastname"]
+            textField.placeholder = "Эйнштейн"
+            textField.text = data["lastname"] ?? ""
         case .dateOfBirth:
-            textField.placeholder = data["dateOfBirth"]
+            textField.placeholder = "14 марта 1879"
+            textField.text = data["dateOfBirth"] ?? ""
         default:
             break
         }

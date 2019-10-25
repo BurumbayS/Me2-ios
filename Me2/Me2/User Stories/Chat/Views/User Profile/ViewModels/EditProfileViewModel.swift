@@ -56,9 +56,12 @@ class EditProfileViewModel {
     let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .interests]
     var dataToSave = [UserDataToSave]()
     
+    var userInfo: Dynamic<User>!
+    
     let activateAddTagTextField: Bool
     
-    init(activateAddTag: Bool = false) {
+    init(userInfo: Dynamic<User>, activateAddTag: Bool = false) {
+        self.userInfo = userInfo
         self.activateAddTagTextField = activateAddTag
         
         for cell in cells {
@@ -66,47 +69,92 @@ class EditProfileViewModel {
         }
     }
     
-    func dataFor(cellType: EditProfileCell) -> [String: String] {
+    func dataFor(cellType: EditProfileCell) -> [String: String?] {
         switch cellType {
         case .mainInfo:
-            return ["avatar" : "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg",
-                    "username" : "Einstein_emc"]
+            return ["avatar" : userInfo.value.avatar,
+                    "username" : userInfo.value.username]
         case .firstname:
-            return ["firstname" : "Альберт"]
+            return ["firstname" : userInfo.value.firstName]
         case .lastname:
-            return ["lastname" : "Эйнштейн"]
+            return ["lastname" : userInfo.value.lastName]
         case .dateOfBirth:
-            return ["dateOfBirth" : "14 марта 1879"]
+            return ["dateOfBirth" : userInfo.value.birthDate]
         case .bio:
-            return ["bio" : "Интересуюсь физикой и другими науками. В свободное время выращиваю розы и играю на скрипке. Подписывайтесь на мою страницу в инстаграме @einstein_emc"]
+            return ["bio" : userInfo.value.bio]
         case .interests:
             return ["" : ""]
         }
     }
     
-    func updateProfile() {
+    func updateProfile(completion: ResponseBlock?) {
         var params = [String: Any]()
         dataToSave.forEach{ params[$0.key] = $0.data}
+        params[EditProfileCell.mainInfo.key] = nil
+        
+        var thereIsAvatarToUpdate = false
         
         if let mainInfo = dataToSave.first(where: { $0.key == EditProfileCell.mainInfo.key })?.data as? [String: Any] {
             if let username = mainInfo["username"] as? String {
                 params["username"] = username
             }
+            
+            if let imageData = mainInfo["avatar"] as? Data {
+                thereIsAvatarToUpdate = true
+                
+                uploadAvatar(imageData: imageData) { [weak self] (id) in
+                    params["avatar_id"] = id
+                    
+                    self?.updateData(with: params, completion: completion)
+                }
+            }
         }
         
+        if !thereIsAvatarToUpdate {
+            updateData(with: params, completion: completion)
+        }
+    }
+    
+    private func updateData(with params: [String: Any], completion: ResponseBlock?) {
         Alamofire.request(updateUserProfileURL, method: .put, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
+                    self.userInfo.value = User(json: json["data"]["user"])
                     
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    completion?(.ok, "")
+                    
+                case .failure( _):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
                 }
         }
     }
     
+    private func uploadAvatar(imageData: Data, completion: ((Int) -> ())?) {
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(imageData, withName: "file", fileName: "image.jpeg", mimeType: "image/jpeg")
+            
+        }, usingThreshold: UInt64.init(), to: uploadImageURL, method: .post, headers: Network.getAuthorizedHeaders()) { (result) in
+            switch result{
+            case .success(let upload, _, _):
+                
+                upload.responseJSON { response in
+                    
+                    let json = JSON(response.data as Any)
+                    completion?(json["data"]["id"].intValue)
+                    
+                }
+                
+            case .failure(let error):
+                print("Error in upload: \(error.localizedDescription)")
+                completion?(0)
+            }
+        }
+    }
+    
     let updateUserProfileURL = Network.user + "/update_profile/"
+    let uploadImageURL = Network.host + "/image/"
 }

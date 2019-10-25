@@ -14,7 +14,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel = EditProfileViewModel()
+    var viewModel: EditProfileViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,16 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc private func finishEditing() {
-        viewModel.updateProfile()
+        viewModel.updateProfile { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.dismiss(animated: true, completion: nil)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
