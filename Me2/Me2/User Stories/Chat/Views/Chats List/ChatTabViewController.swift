@@ -1,5 +1,5 @@
 //
-//  ChatsListViewController.swift
+//  ChatTabViewController.swift
 //  Me2
 //
 //  Created by Sanzhar Burumbay on 8/3/19.
@@ -9,57 +9,61 @@
 import UIKit
 import Cartography
 
-class ChatsListViewController: UIViewController {
-
+class ChatTabViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var controllerPresenter: ControllerPresenterDelegate!
+    let viewModel = ChatTabViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configureNavBar()
         configureTableView()
+    }
+    
+    private func configureNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.searchBar.placeholder = "Поиск"
+        search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        navigationItem.searchController = search
+        
+        navigationItem.title = "Чаты"
+        navigationItem.largeTitleDisplayMode = .automatic
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-    
+        
         tableView.registerNib(ChatTableViewCell.self)
     }
     
-    func clearChat() {
+    private func createNewChat() {
+        let contactsVC = Storyboard.contactsViewController()
+        present(contactsVC, animated: true, completion: nil)
+    }
+    
+    private func clearChat() {
         
     }
     
-    func deleteChat() {
+    private func deleteChat() {
         
     }
 }
 
-extension ChatsListViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        
-        let searchBar = SearchBar.instanceFromNib()
-        searchBar.backgroundColor = Color.lightGray
-        
-        headerView.addSubview(searchBar)
-        constrain(searchBar, headerView) { bar, header in
-            bar.left == header.left + 10
-            bar.right == header.right - 10
-            bar.bottom == header.bottom - 17
-            bar.top == header.top + 7
-            bar.height == 36
-        }
-        
-        return headerView
+extension ChatTabViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        print(text)
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
+}
+
+extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }

@@ -35,7 +35,6 @@
 		DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653DD22F4B875003A67C3 /* SearchBar.swift */; };
 		DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */; };
 		DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5653E522F4C235003A67C3 /* Chat.storyboard */; };
-		DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */; };
 		DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */; };
 		DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */; };
 		DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653ED22F4CD65003A67C3 /* UITableViewExtensions.swift */; };
@@ -249,7 +248,6 @@
 		DD5653DD22F4B875003A67C3 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		DD5653E522F4C235003A67C3 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewController.swift; sourceTree = "<group>"; };
 		DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		DD5653ED22F4CD65003A67C3 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -591,9 +589,9 @@
 		DD5653E022F4BF0B003A67C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DDCE6E6D22F7E8ED006E54D1 /* Live Chat */,
 				DDCE6E6C22F7E8D1006E54D1 /* Chats List */,
-				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
+				DDCE6E6D22F7E8ED006E54D1 /* Live Chat */,
+				DDCE6EAA22F98216006E54D1 /* New Chat or Group */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -960,10 +958,9 @@
 		DDCE6E6C22F7E8D1006E54D1 /* Chats List */ = {
 			isa = PBXGroup;
 			children = (
-				DD5653E722F4C97C003A67C3 /* ChatsListViewController.swift */,
+				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
 				DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */,
 				DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */,
-				DDCE6EAA22F98216006E54D1 /* New Chat or Group */,
 			);
 			path = "Chats List";
 			sourceTree = "<group>";
@@ -1458,7 +1455,6 @@
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
 				DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */,
-				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
 				DD2CE36F2361B7E800992D7F /* UserDataToSave.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,
