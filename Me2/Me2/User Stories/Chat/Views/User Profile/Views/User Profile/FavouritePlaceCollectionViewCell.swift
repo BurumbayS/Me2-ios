@@ -24,8 +24,8 @@ class FavouritePlaceCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with logo: UIImage, and title: String) {
-        logoImageView.image = logo
+    func configure(with logoURL: String?, and title: String) {
+        logoImageView.kf.setImage(with: URL(string: logoURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         titleLabel.text = title
     }
     

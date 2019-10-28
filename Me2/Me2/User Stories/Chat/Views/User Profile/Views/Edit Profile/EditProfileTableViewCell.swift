@@ -16,6 +16,7 @@ class EditProfileTableViewCell: UITableViewCell {
     let datePicker = UIDatePicker()
     
     var cellType: EditProfileCell!
+    var dataToSave: UserDataToSave!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,20 +30,24 @@ class EditProfileTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: [String : String], cellType: EditProfileCell) {
-        titleLabel.text = cellType.rawValue
+    func configure(with data: [String : String?], userDataToSave: UserDataToSave, cellType: EditProfileCell) {
+        self.dataToSave = userDataToSave
+        
+        titleLabel.text = cellType.title
+        textField.delegate = self
         
         self.cellType = cellType
         
         switch cellType {
         case .firstname:
-            textField.placeholder = data["firstname"]
+            textField.placeholder = "Альберт"
+            textField.text = data["firstname"] ?? ""
         case .lastname:
-            textField.placeholder = data["lastname"]
+            textField.placeholder = "Эйнштейн"
+            textField.text = data["lastname"] ?? ""
         case .dateOfBirth:
-            textField.placeholder = data["dateOfBirth"]
-        case .phoneNumber:
-            textField.placeholder = data["phoneNumber"]
+            textField.placeholder = "14 марта 1879"
+            textField.text = data["dateOfBirth"] ?? ""
         default:
             break
         }
@@ -54,11 +59,6 @@ class EditProfileTableViewCell: UITableViewCell {
             datePicker.locale = Locale(identifier: "ru")
             datePicker.maximumDate = Calendar.current.date(byAdding: .second, value: 0, to: Date())
             textField.inputView = datePicker
-            textField.delegate = self
-            
-        case .phoneNumber:
-            
-            textField.keyboardType = .numberPad
             
         default:
             
@@ -96,29 +96,17 @@ extension EditProfileTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch cellType {
         case .dateOfBirth?:
+            
             let formatter = DateFormatter()
             formatter.dateStyle = .long
             formatter.locale = Locale(identifier: "ru")
             textField.text = formatter.string(from: datePicker.date)
+            
+            formatter.dateFormat = "yyyy-MM-dd"
+            dataToSave.data = formatter.string(from: datePicker.date)
+            
         default:
-            break
+            dataToSave.data = textField.text
         }
     }
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        guard let text = textField.text else { return false }
-//
-//        if text.count < "+# (###) ###-##-##".count {
-//            textField.text = text.applyPatternOnNumbers(pattern: "+# (###) ###-##-##", replacmentCharacter: "#")
-//            return true
-//        }
-//
-//        let  char = string.cString(using: String.Encoding.utf8)!
-//        let isBackSpace = strcmp(char, "\\b")
-//
-//        if (isBackSpace == -92) {
-//            return true
-//        }
-//
-//        return false
-//    }
 }

@@ -82,7 +82,7 @@ class UserProfileViewModel {
         }
     }
     
-    var userInfo: User!
+    var userInfo: Dynamic<User>!//User!
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
@@ -100,7 +100,7 @@ class UserProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    self.userInfo = User(json: json["data"]["user"])
+                    self.userInfo = Dynamic(User(json: json["data"]["user"]))
                     
                     self.dataLoaded = true
                     completion?(.ok, "")
@@ -110,6 +110,36 @@ class UserProfileViewModel {
                     completion?(.fail, "")
                 }
         }
+    }
+    
+    func selectedCell(at indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .additional_block:
+            
+            switch profileType {
+            case .myProfile:
+                
+                selectedMyProfileCell(at: indexPath)
+                
+            case .guestProfile:
+                
+                selectedGuestProfileCell(at: indexPath)
+                
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    private func selectedMyProfileCell(at indexPath: IndexPath) {
+        
+    }
+    
+    private func selectedGuestProfileCell(at: IndexPath) {
+        
     }
     
     let userProfileURL = Network.user + "/get/"

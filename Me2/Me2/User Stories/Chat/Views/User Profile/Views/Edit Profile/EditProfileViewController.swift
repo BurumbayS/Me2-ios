@@ -14,7 +14,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel = EditProfileViewModel()
+    var viewModel: EditProfileViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,16 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc private func finishEditing() {
-        
+        viewModel.updateProfile { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.dismiss(animated: true, completion: nil)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
@@ -77,28 +86,29 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: EditProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), controllerPresenter: self, actionSheetPresenter: self)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], controllerPresenter: self, actionSheetPresenter: self)
             return cell
             
-        case .firstname, .lastname, .dateOfBirth, .phoneNumber:
+        case .firstname, .lastname, .dateOfBirth:
             
             let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], cellType: cellType)
             return cell
             
         case .bio:
             
             let cell: EditProfileBioTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.dataFor(cellType: cellType), cellType: cellType)
+            cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], cellType: cellType)
             return cell
             
         case .interests:
             
             let cell: EditProfileTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(activateTagAddition: viewModel.activateAddTagTextField) { [weak self] in
+            cell.configure(tags: viewModel.userInfo.value.interests, userDataToSave: viewModel.dataToSave[indexPath.row], activateTagAddition: viewModel.activateAddTagTextField)
+            { [weak self] in
                 self?.tableView.beginUpdates()
                     cell.updateHeight()
                 self?.tableView.endUpdates()

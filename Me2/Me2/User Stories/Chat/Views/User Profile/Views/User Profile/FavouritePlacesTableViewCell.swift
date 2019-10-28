@@ -15,6 +15,8 @@ class FavouritePlacesTableViewCell: UITableViewCell {
     var collectionView: UICollectionView!
     let placeHolderLabel = UILabel()
     
+    var places = [Place]()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -27,7 +29,9 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with data: Int, profileType: ProfileType) {
+    func configure(with places: [Place], profileType: ProfileType) {
+        self.places = places
+        
         switch profileType {
         case .myProfile:
             placeHolderLabel.isHidden = true
@@ -35,7 +39,7 @@ class FavouritePlacesTableViewCell: UITableViewCell {
             addPlacesButton.isHidden = true
         }
         
-        if data > 0 {
+        if places.count > 0 {
             collectionView.isHidden = false
         } else {
             collectionView.isHidden = true
@@ -98,16 +102,12 @@ extension FavouritePlacesTableViewCell: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return places.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FavouritePlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        if indexPath.row % 2 == 0 {
-            cell.configure(with: UIImage(named: "sample_place_logo")!, and: "Мята")
-        } else {
-            cell.configure(with: UIImage(named: "sample_place_logo")!, and: "Traveler's Coffee")
-        }
+        cell.configure(with: places[indexPath.row].logo, and: places[indexPath.row].name)
         return cell
     }
 }

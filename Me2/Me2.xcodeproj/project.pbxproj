@@ -20,6 +20,7 @@
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
 		DD2CE36A236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE368236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.swift */; };
 		DD2CE36B236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE369236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.xib */; };
+		DD2CE36F2361B7E800992D7F /* UserDataToSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */; };
 		DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */; };
 		DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6B235D7D5B00EFB49D /* TagView.swift */; };
 		DD489F6E235D8AEB00EFB49D /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD489F6D235D8AEB00EFB49D /* FilterData.swift */; };
@@ -233,6 +234,7 @@
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD2CE368236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlacePlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE369236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlacePlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
+		DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataToSave.swift; sourceTree = "<group>"; };
 		DD489F69235D78C600EFB49D /* ListForMapFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListForMapFilterViewModel.swift; sourceTree = "<group>"; };
 		DD489F6B235D7D5B00EFB49D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		DD489F6D235D8AEB00EFB49D /* FilterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 			isa = PBXGroup;
 			children = (
 				DD97CB4D2355FAAD002291CA /* User.swift */,
+				DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1456,6 +1459,7 @@
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
 				DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */,
 				DD5653E822F4C97C003A67C3 /* ChatsListViewController.swift in Sources */,
+				DD2CE36F2361B7E800992D7F /* UserDataToSave.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,
 				DDC7F21B230806830067C6C7 /* PlaceTabView.swift in Sources */,
