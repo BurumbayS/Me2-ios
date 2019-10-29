@@ -25,14 +25,15 @@ class ChatTabViewController: UIViewController {
     private func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        navigationItem.title = "Чаты"
+        
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.searchBar.placeholder = "Поиск"
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         navigationItem.searchController = search
         
-        navigationItem.title = "Чаты"
-        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_chat_icon"), style: .plain, target: self, action: nil)
     }
     
     private func configureTableView() {
@@ -64,9 +65,6 @@ extension ChatTabViewController: UISearchResultsUpdating {
 }
 
 extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
