@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Готово"
         IQKeyboardManager.shared.toolbarTintColor = Color.blue
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
         //Configure Google maps
         GMSServices.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")

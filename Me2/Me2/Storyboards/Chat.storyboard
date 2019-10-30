@@ -80,6 +80,99 @@
             </objects>
             <point key="canvasLocation" x="1791" y="43"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="wSc-kE-vXU">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="mvm-Fr-SLS" customClass="ChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="24Q-JT-2Nj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z8R-Bu-EOY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1vs-5m-mmF">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-G3-fsL">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmV-u6-mzY">
+                                        <rect key="frame" x="40" y="7.5" width="363" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="3W0-NR-IMa"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNU-gB-qct">
+                                        <rect key="frame" x="11" y="16" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="WVX-NB-rRK"/>
+                                            <constraint firstAttribute="height" constant="18" id="mXb-Tu-0Ry"/>
+                                        </constraints>
+                                        <state key="normal" image="plus_icon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK3-Nv-H28">
+                                        <rect key="frame" x="369" y="12" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="0kP-KX-L2v"/>
+                                            <constraint firstAttribute="height" constant="26" id="6rG-gH-9ZW"/>
+                                        </constraints>
+                                        <state key="normal" image="send_icon"/>
+                                        <connections>
+                                            <action selector="sendPressed:" destination="mvm-Fr-SLS" eventType="touchUpInside" id="wRV-Ee-kqy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PNU-gB-qct" firstAttribute="centerY" secondItem="vfZ-G3-fsL" secondAttribute="centerY" id="5EC-Wd-1KW"/>
+                                    <constraint firstItem="jmV-u6-mzY" firstAttribute="centerY" secondItem="vfZ-G3-fsL" secondAttribute="centerY" id="5jB-qg-vfd"/>
+                                    <constraint firstItem="PNU-gB-qct" firstAttribute="leading" secondItem="vfZ-G3-fsL" secondAttribute="leading" constant="11" id="HYN-4j-DkK"/>
+                                    <constraint firstItem="FK3-Nv-H28" firstAttribute="centerY" secondItem="jmV-u6-mzY" secondAttribute="centerY" id="bF1-jQ-ep2"/>
+                                    <constraint firstItem="jmV-u6-mzY" firstAttribute="leading" secondItem="PNU-gB-qct" secondAttribute="trailing" constant="11" id="hgL-a8-1D8"/>
+                                    <constraint firstAttribute="trailing" secondItem="jmV-u6-mzY" secondAttribute="trailing" constant="11" id="o1L-et-0Jw"/>
+                                    <constraint firstItem="FK3-Nv-H28" firstAttribute="leading" secondItem="jmV-u6-mzY" secondAttribute="trailing" constant="-34" id="sDn-cl-0cD"/>
+                                    <constraint firstAttribute="height" constant="50" id="yfN-Ck-9p2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z8R-Bu-EOY" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="2oW-kg-cMS"/>
+                            <constraint firstItem="hqV-Fv-O8J" firstAttribute="bottom" secondItem="vfZ-G3-fsL" secondAttribute="bottom" id="4jq-JP-K8c"/>
+                            <constraint firstItem="vfZ-G3-fsL" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="IcT-Rj-hQI"/>
+                            <constraint firstItem="vfZ-G3-fsL" firstAttribute="top" secondItem="z8R-Bu-EOY" secondAttribute="bottom" id="N53-nE-kBZ"/>
+                            <constraint firstItem="hqV-Fv-O8J" firstAttribute="trailing" secondItem="vfZ-G3-fsL" secondAttribute="trailing" id="gNo-vY-hxw"/>
+                            <constraint firstItem="z8R-Bu-EOY" firstAttribute="top" secondItem="hqV-Fv-O8J" secondAttribute="top" id="w5b-NN-NEo"/>
+                            <constraint firstItem="z8R-Bu-EOY" firstAttribute="trailing" secondItem="hqV-Fv-O8J" secondAttribute="trailing" id="zWg-fT-Zck"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hqV-Fv-O8J"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="z8R-Bu-EOY" id="UXU-KF-YwA"/>
+                        <outlet property="inputViewBottomConstraint" destination="4jq-JP-K8c" id="qXG-Ko-TVH"/>
+                        <outlet property="messageInputView" destination="vfZ-G3-fsL" id="uz6-lz-0Cd"/>
+                        <outlet property="messageTextField" destination="jmV-u6-mzY" id="kZq-PW-j05"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Hb-dV-7cp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537.68115942029" y="42.857142857142854"/>
+        </scene>
         <!--Contacts View Controller-->
         <scene sceneID="Txv-QG-qcd">
             <objects>
@@ -94,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxE-hP-OCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3367" y="43"/>
+            <point key="canvasLocation" x="1668" y="752"/>
         </scene>
         <!--Create Group View Controller-->
         <scene sceneID="fac-c9-RvX">
@@ -110,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOh-6v-FMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4864" y="43"/>
+            <point key="canvasLocation" x="3032" y="752"/>
         </scene>
         <!--Modfy Group View Controller-->
         <scene sceneID="CmJ-fX-0iL">
@@ -140,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzn-iK-LG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5554" y="43"/>
+            <point key="canvasLocation" x="3722" y="751"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ufS-hr-nyO">
@@ -177,7 +270,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GLJ-NR-U5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2658" y="43"/>
+            <point key="canvasLocation" x="958" y="752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uzt-bR-Lj6">
@@ -195,7 +288,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsA-wf-bIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4163.768115942029" y="42.857142857142854"/>
+            <point key="canvasLocation" x="2332" y="751"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus_icon" width="18" height="18"/>
+        <image name="send_icon" width="26" height="26"/>
+    </resources>
 </document>

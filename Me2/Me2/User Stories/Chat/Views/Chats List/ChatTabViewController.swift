@@ -86,4 +86,9 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
             self.addActionSheet(with: ["Очистить чат", "Удалить чат"], and: [clearChat, deleteChat], and: [.default, .destructive])
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = Storyboard.chatViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
