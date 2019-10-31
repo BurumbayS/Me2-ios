@@ -62,7 +62,6 @@ class ChatViewController: UIViewController {
     }
     
     private func configureViews() {
-//        messageTextField.keyboardToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
