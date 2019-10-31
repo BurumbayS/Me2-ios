@@ -25,12 +25,14 @@ class ChatViewController: UIViewController {
         view.endEditing(true)
         tabBarController?.tabBar.isHidden = false
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
         IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
     
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        addDismissKeyboard()
         configureViews()
         configureCollectionView()
         setUpConnection()
@@ -59,7 +62,7 @@ class ChatViewController: UIViewController {
     }
     
     private func configureViews() {
-        messageTextField.keyboardToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+//        messageTextField.keyboardToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
@@ -97,6 +100,10 @@ class ChatViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
+        hideKeyboard()
+    }
+    
+    private func hideKeyboard() {
         inputViewBottomConstraint.constant = 0
         UIView.animate(withDuration: 0) {
             self.view.layoutIfNeeded()
@@ -134,5 +141,9 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.view.endEditing(true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
     }
 }

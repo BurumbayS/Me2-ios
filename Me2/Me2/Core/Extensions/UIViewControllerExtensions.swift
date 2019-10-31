@@ -61,4 +61,13 @@ extension UIViewController {
         
         return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - height)
     }
+    
+    func addDismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 }
