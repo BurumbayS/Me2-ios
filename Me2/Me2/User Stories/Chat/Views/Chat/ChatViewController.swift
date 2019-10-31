@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import SwiftyJSON
 
 class ChatViewController: UIViewController {
 
@@ -42,9 +43,23 @@ class ChatViewController: UIViewController {
         
         configureViews()
         configureCollectionView()
+        setUpConnection()
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        viewModel.messages.bind { [unowned self] (messages) in
+            self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
+            self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+        }
+    }
+    
+    private func setUpConnection() {
+        viewModel.setUpConnection()
     }
     
     private func configureViews() {
+        messageTextField.keyboardToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
@@ -73,7 +88,9 @@ class ChatViewController: UIViewController {
             UIView.animate(withDuration: 0, animations: {
                 self.view.layoutIfNeeded()
             }) { (completed) in
-                self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.count - 1, section: 0), at: .bottom, animated: true)
+                if self.viewModel.messages.value.count > 0 {
+                    self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: true)
+                }
             }
         }
         
@@ -89,32 +106,28 @@ class ChatViewController: UIViewController {
     @IBAction func sendPressed(_ sender: Any) {
         guard let text = messageTextField.text else { return }
         
-        let message = Message(text: text, time: "", type: .my)
-        viewModel.messages.append(message)
+        viewModel.sendMessage(with: text)
         
         messageTextField.text = ""
-        
-        collectionView.insertItems(at: [IndexPath(row: viewModel.messages.count - 1, section: 0)])
-        collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.count - 1, section: 0), at: .bottom, animated: true)
     }
     
 }
 
 extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = viewModel.messages[indexPath.row].height
+        let height = viewModel.messages.value[indexPath.row].height
         
         return CGSize(width: self.view.frame.width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.messages.count
+        return viewModel.messages.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.configure(message: viewModel.messages[indexPath.row])
+        cell.configure(message: viewModel.messages.value[indexPath.row])
         
         return cell
     }
