@@ -19,8 +19,16 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var bioLabel: UILabel!
     
     var parentVC: UIViewController!
+    var user: Dynamic<User>!
     
-    func configure(profileType: ProfileType, viewController: UIViewController) {
+    func configure(user: Dynamic<User>, profileType: ProfileType, viewController: UIViewController) {
+        self.user = user
+        
+        avatarImageView.kf.setImage(with: URL(string: user.value.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        usernameLabel.text = user.value.username
+        nameAndAgeLabel.text = user.value.fullName ?? ""
+        bioLabel.text = user.value.bio ?? ""
+        
         self.parentVC = viewController
         
         if profileType == .myProfile {
@@ -35,7 +43,8 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func editPressed(_ sender: Any) {
-        let vc = Storyboard.editProfileViewController()
+        let vc = Storyboard.editProfileViewController() as! EditProfileViewController
+        vc.viewModel = EditProfileViewModel(userInfo: user)
         parentVC.present(vc, animated: true, completion: nil)
     }
     

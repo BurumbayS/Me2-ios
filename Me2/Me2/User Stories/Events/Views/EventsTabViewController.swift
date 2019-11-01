@@ -22,9 +22,10 @@ class EventsTabViewController: UIViewController {
     
     let listViewSwitchButton = UIButton()
     let filterButton = UIButton()
-    var listType = EventsListType.ByCategories
     
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
+    
+    let viewModel = EventsTabViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,22 @@ class EventsTabViewController: UIViewController {
         configureNavBar()
         setUpViews()
         configureTableView()
+        bindDynamics()
+    }
+    
+    
+    private func bindDynamics() {
+        viewModel.listType.bind { [weak self] (value) in
+            if value == .AllInOne && (self?.viewModel.allEvents.count)! == 0 {
+                self?.getAllEvents()
+            }
+        }
+    }
+    
+    private func getAllEvents() {
+        viewModel.getAllEvents { [weak self] (status, message) in
+            self?.tableView.reloadSections([0,1], with: .automatic)
+        }
     }
     
     private func configureNavBar() {
@@ -48,9 +65,17 @@ class EventsTabViewController: UIViewController {
         tableView.backgroundColor = .white
         
         tableView.register(SavedEventsTableViewCell.self)
-        tableView.register(EventsListTableViewCell.self)
         tableView.register(NewPlacesListTableViewCell.self)
         tableView.registerNib(EventTableViewCell.self)
+        
+        for category in viewModel.categories {
+            switch category {
+            case .actual, .popular, .favourite_places:
+                tableView.register(EventsListTableViewCell.self, forCellReuseIdentifier: category.cellID)
+            default:
+                break
+            }
+        }
     }
     
     private func setUpViews() {
@@ -114,17 +139,18 @@ class EventsTabViewController: UIViewController {
     }
     
     private func setUpSearchView() {
-        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue))
+        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue), and: self)
         
         searchView.addSubview(searchVC.view)
         constrain(searchVC.view, searchView) { vc, view in
             vc.top == view.top
             vc.left == view.left
             vc.right == view.right
-            vc.bottom == view.bottom
+            vc.bottom == view.safeAreaLayoutGuide.bottom
         }
         
         searchView.isHidden = true
+        searchView.alpha = 0
         
         self.view.addSubview(searchView)
         constrain(searchView, searchBar, self.view) { searchView, searchBar, view in
@@ -136,11 +162,11 @@ class EventsTabViewController: UIViewController {
     }
     
     @objc private func switchListType() {
-        if listType == .ByCategories {
-            listType = .AllInOne
+        if viewModel.listType.value == .ByCategories {
+            viewModel.listType.value = .AllInOne
             listViewSwitchButton.setImage(UIImage(named: "cardView_icon"), for: .normal)
         } else {
-            listType = .ByCategories
+            viewModel.listType.value = .ByCategories
             listViewSwitchButton.setImage(UIImage(named: "listView_icon"), for: .normal)
         }
         
@@ -152,23 +178,38 @@ class EventsTabViewController: UIViewController {
         present(dest, animated: true, completion: nil)
     }
     
-    @objc private func showFullList() {
+    @objc private func showFullList(_ sender: UIButton) {
         let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
-        dest.viewModel = ListOfAllViewModel(listItemType: .event)
+        
+        dest.viewModel = ListOfAllViewModel(category: viewModel.categoriesToShow[sender.tag])
+        
         navigationController?.pushViewController(dest, animated: true)
+    }
+    
+    private func deleteCategory(in section: EventCategoriesType) {
+        if let index = viewModel.categories.firstIndex(of: section) {
+            viewModel.categories.remove(at: index)
+            viewModel.categoryViewModels.remove(at: index)
+            
+            viewModel.categoriesToShow = viewModel.categories
+            
+            tableView.deleteSections([index], with: .fade)
+        }
     }
 }
 
 extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section >= viewModel.categories.count { return UIView() }
+        
         let header = UIView()
         header.backgroundColor = .white
         
         let title = UILabel()
         title.textColor = .black
         title.font = UIFont(name: "Roboto-Bold", size: 17)
-        title.text = "Популярное сегодня"
+        title.text = viewModel.categories[section].title
         
         header.addSubview(title)
         constrain(title, header) { title, header in
@@ -180,7 +221,8 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         moreButton.setTitle("См.все", for: .normal)
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 17)
-        moreButton.addTarget(self, action: #selector(showFullList), for: .touchUpInside)
+        moreButton.tag = section
+        moreButton.addTarget(self, action: #selector(showFullList(_ :)), for: .touchUpInside)
         
         header.addSubview(moreButton)
         constrain(moreButton, header) { btn, header in
@@ -194,7 +236,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch listType {
+        switch viewModel.listType.value {
         case .ByCategories:
             switch section {
             case 0:
@@ -216,22 +258,22 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch listType {
-        case .ByCategories:
-            return 3
-        default:
-            return 2
-        }
+        return viewModel.categoriesToShow.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.categoriesToShow[section] == .all {
+            return viewModel.allEvents.count
+        }
+        
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = viewModel.categoriesToShow[indexPath.section]
         
-        switch indexPath.section {
-        case 0:
+        switch section {
+        case .saved:
             
             let cell: SavedEventsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
@@ -241,40 +283,46 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        case 1:
-            
-            switch listType {
-            case .ByCategories:
-                
-                let cell: EventsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.selectionStyle = .none
-                return cell
-                
-            case .AllInOne:
-                
-                let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.selectionStyle = .none
-                
-                let event = Event()
-                event.title = "20% скидка на все кальяны! "
-                event.location = "Мята Бар"
-                event.time = "Ежедневно 20:00-00:00"
-                event.eventType = "Акция"
-                
-                cell.configure(wtih: event)
-                
-                return cell
-                
-            }
+        case .popular, .actual, .favourite_places:
         
-        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: section.cellID, for: indexPath) as! EventsListTableViewCell
+            cell.selectionStyle = .none
+            cell.configure(with: viewModel.categoryViewModels[indexPath.section], presenterDelegate: self) { [weak self] (itemsCount) in
+                if itemsCount == 0 {
+                    self?.deleteCategory(in: section)
+                }
+            }
+            return cell
+                
+        case .all:
+                
+            let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(wtih: viewModel.allEvents[indexPath.row])
+            
+            return cell
+        
+        case .new_places:
             
             let cell: NewPlacesListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.newPlacesViewModel, presenterDelegate: self)
             return cell
             
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.categoriesToShow[indexPath.section] {
+        case .all:
+            
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.allEvents[indexPath.row].id)
+            present(dest, animated: true, completion: nil)
+            
         default:
-            return UITableViewCell()
+            break
         }
     }
 }
@@ -283,14 +331,34 @@ extension EventsTabViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         listViewSwitchButton.isHidden = true
         filterButton.isHidden = false
-        
         searchView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.searchView.alpha = 1.0
+        }
     }
     
     private func closeSearchView() {
         listViewSwitchButton.isHidden = false
         filterButton.isHidden = true
         
-        searchView.isHidden = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchView.alpha = 0
+        }) { (finished) in
+            if finished {
+                self.searchView.isHidden = true
+            }
+        }
+    }
+}
+
+extension EventsTabViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }

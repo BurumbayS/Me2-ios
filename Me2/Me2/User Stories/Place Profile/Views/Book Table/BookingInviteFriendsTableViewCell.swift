@@ -17,15 +17,16 @@ class BookingInviteFriendsTableViewCell: BookingTableViewCell {
     
     var parentVC: BookTableViewController!
     
-    func configure(with vc: BookTableViewController) {
-        self.parentVC = vc
+    override func configure(parameter: BookingParameter) {
+        super.configure(parameter: parameter)
         
-        titleLabel.text = BookingParameters.numberOfGuest.rawValue
+        titleLabel.text = parameter.type.rawValue
         textField.rightViewImage = UIImage(named: "down_arrow")
         
         picker.dataSource = self
         picker.delegate = self
         textField.inputView = picker
+        textField.delegate = self
         
         addInviteFriendsView()
         addInvitedFriendsView()
@@ -109,6 +110,17 @@ class BookingInviteFriendsTableViewCell: BookingTableViewCell {
             invitedFriendsView.addSubview(avatar)
             
             x += avatarSize - 10
+        }
+    }
+}
+
+extension BookingInviteFriendsTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            bookingParameter.filledCorrectly.value = false
+        } else {
+            bookingParameter.filledCorrectly.value = true
+            bookingParameter.data = Int(textField.text ?? "0")
         }
     }
 }

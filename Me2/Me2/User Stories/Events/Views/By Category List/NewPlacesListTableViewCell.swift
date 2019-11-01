@@ -13,6 +13,10 @@ class NewPlacesListTableViewCell: UITableViewCell {
     
     let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
     
+    var viewModel: NewPlacesViewModel!
+    
+    var presenterDelegate: ControllerPresenterDelegate!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -24,6 +28,26 @@ class NewPlacesListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with viewModel: NewPlacesViewModel, presenterDelegate: ControllerPresenterDelegate) {
+        self.viewModel = viewModel
+        self.presenterDelegate = presenterDelegate
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.reloadData()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -33,8 +57,8 @@ class NewPlacesListTableViewCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
-        collectionView.registerNib(EventCollectionViewCell.self)
         collectionView.registerNib(NewPlaceCollectionViewCell.self)
+        collectionView.registerNib(NewPlacePlaceholderCollectionViewCell.self)
         
         setCollectionViewLayout()
     }
@@ -65,16 +89,36 @@ extension NewPlacesListTableViewCell: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if viewModel != nil {
+            if viewModel.places.count > 0 {
+                return viewModel.places.count
+            } else {
+                return 3
+            }
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if viewModel.dataLoaded {
             
-        let cell: NewPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: NewPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(place: viewModel.places[indexPath.row])
+            return cell
+            
+        }
         
-        cell.configure()
-        
+        let cell: NewPlacePlaceholderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if viewModel.dataLoaded {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+            presenterDelegate.present(controller: vc, presntationType: .push)
+        }
     }
 }

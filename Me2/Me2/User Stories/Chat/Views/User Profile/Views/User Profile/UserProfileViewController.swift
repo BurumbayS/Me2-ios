@@ -25,6 +25,8 @@ class UserProfileViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        configureViewModel()
+        fetchData()
     }
     
     private func configureNavBar() {
@@ -40,10 +42,15 @@ class UserProfileViewController: UIViewController {
         if (viewModel.profileType == .guestProfile) { setUpBackBarButton(for: navItem) }
     }
     
+    private func configureViewModel() {
+        viewModel.presenterDelegate = self
+    }
+    
     private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.isHidden = true
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
@@ -56,6 +63,31 @@ class UserProfileViewController: UIViewController {
         tableView.register(MyProfileAdditionalTableViewCell.self)
         tableView.register(GuestProfileAdditionalTableViewCell.self)
     }
+    
+    private func byndDynamics() {
+        viewModel.userInfo.bind { [weak self] (user) in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.byndDynamics()
+                
+                self?.tableView.isHidden = false
+                self?.tableView.reloadData()
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
+    
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {
@@ -129,26 +161,27 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(profileType: viewModel.profileType, viewController: self)
+            cell.configure(user: viewModel.userInfo, profileType: viewModel.profileType, viewController: self)
             return cell
             
         case .interests:
             
-            let tags = [String]()
-            if tags.count > 0 {
-                
+            if viewModel.userInfo.value.interests.count > 0 {
+
                 let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
-                cell.configure(tagsType: .normal, tagsList: TagsList(), expanded: viewModel.tagsExpanded)
+                cell.selectionStyle = .none
+                cell.configure(tagsType: .normal, tagsList: TagsList(items: viewModel.userInfo.value.interests), expanded: viewModel.tagsExpanded)
                 return cell
-                
+
             } else {
-                
+            
                 let cell: AddInterestsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.clipsToBounds = true
+                cell.selectionStyle = .none
                 cell.configure(for: viewModel.profileType) { [weak self] in
                     let vc = Storyboard.editProfileViewController() as! EditProfileViewController
-                    vc.viewModel = EditProfileViewModel(activateAddTag: true)
+                    vc.viewModel = EditProfileViewModel(userInfo: (self?.viewModel.userInfo)!, activateAddTag: true)
                     self?.present(vc, animated: true, completion: nil)
                 }
                 return cell
@@ -159,7 +192,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: 0, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.userInfo.value.favouritePlaces, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:
@@ -180,34 +213,22 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             }
 
         }
-    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = viewModel.sections[indexPath.section]
-        guard section == .additional_block else { return }
+        viewModel.selectedCell(at: indexPath)
         
-        switch viewModel.profileType {
-        case .myProfile:
-            
-            let cellType = viewModel.myProfileCells[indexPath.row]
-            
-            switch cellType {
-            case .aboutApp:
-                let vc = Storyboard.aboutAppViewController()
-                navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-            
-        case .guestProfile:
-            break
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension UserProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }

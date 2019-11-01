@@ -32,10 +32,20 @@ class SearchBar: UIView {
     func configure(with textFieldDelegate: UITextFieldDelegate, onSearchEnd: VoidBlock?) {
         self.textField.delegate = textFieldDelegate
         self.searchEndHandler = onSearchEnd
+        
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        searchValue.bind { [weak self] (value) in
+            self?.textField.text = value
+        }
     }
     
     @objc private func searchValueChanged() {
-        searchValue.value = textField.text!
+        if searchValue.value != textField.text {
+            searchValue.value = textField.text!
+        }
     }
     
     @objc private func searchActivated() {

@@ -12,16 +12,18 @@ import GoogleMaps
 
 extension MapViewController {
     func setPins() {
-        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        labelsView.backgroundColor = .clear
-        labelsView.isUserInteractionEnabled = false
         labelsView.configure(with: viewModel.placePins, on: mapView)
         
-        self.view.addSubview(labelsView)
-        
-        for (place) in viewModel.placePins {
+        for (i, place) in viewModel.placePins.enumerated() {
             let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-            marker.icon = UIImage(named: "default_pin")
+            marker.zIndex = Int32(i)
+            let iconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            iconView.contentMode = .scaleAspectFit
+            iconView.layer.cornerRadius = 18
+            iconView.clipsToBounds = true
+            iconView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
+            marker.iconView = iconView
+            marker.title = "\(i)"
             marker.map = mapView
         }
     }
@@ -29,6 +31,7 @@ extension MapViewController {
     func setUpViews() {
         setUpMap()
         setUpMyLocationButton()
+        setUpLabelsView()
         setUpCollectionView()
         setUpContainerView()
         setUpSearchBar()
@@ -37,20 +40,29 @@ extension MapViewController {
         setUpHelperView()
     }
     
+    private func setUpLabelsView() {
+        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        labelsView.backgroundColor = .clear
+        labelsView.isUserInteractionEnabled = false
+        
+        self.view.addSubview(labelsView)
+    }
+    
     private func setUpCollectionView() {
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
-        collectionView.isHidden = true
         setCollectionViewLayout()
         
         self.view.addSubview(collectionView)
         constrain(collectionView, self.view) { collection, view in
             collection.height == 107
             collection.left == view.left
-            collection.bottom == view.safeAreaLayoutGuide.bottom - 30
             collection.right == view.right
+        }
+        constrain(collectionView, self.view, replace: collectionViewConstraints) { collection, view in
+            collection.top == view.safeAreaLayoutGuide.bottom + 20
         }
     }
     
@@ -85,7 +97,8 @@ extension MapViewController {
     }
     
     private func setUpContainerView() {
-        searchVC.viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
+        let viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
+        searchVC.configure(with: viewModel, delegate: self)
         
         searchContainerView.addSubview(searchVC.view)
         constrain(searchVC.view, searchContainerView) { vc, view in
@@ -102,7 +115,7 @@ extension MapViewController {
             container.top == view.top
             container.left == view.left
             container.right == view.right
-            container.bottom == view.bottom
+            container.bottom == view.safeAreaLayoutGuide.bottom
         }
     }
     

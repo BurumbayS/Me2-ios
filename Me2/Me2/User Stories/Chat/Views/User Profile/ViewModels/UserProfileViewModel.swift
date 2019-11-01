@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 enum MyProfileAdditionalBlockCell: String {
     case contacts = "Мои контакты"
@@ -64,11 +66,25 @@ enum UserProfileSection: String {
 
 class UserProfileViewModel {
     var profileType = ProfileType.myProfile
-    let sections = [UserProfileSection.bio, .interests, .favourite_places, .additional_block]
-    let myProfileCells = [MyProfileAdditionalBlockCell.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
-    let guestProfileCells = [GuestProfileAdditionalBlockCell.addContact, .block, .compplain]
+    var sections = [UserProfileSection]()
+    var myProfileCells = [MyProfileAdditionalBlockCell]()
+    var guestProfileCells = [GuestProfileAdditionalBlockCell]()
     
     var tagsExpanded = Dynamic(false)
+    
+    var presenterDelegate: ControllerPresenterDelegate!
+    
+    var dataLoaded: Bool = false {
+        didSet {
+            if self.dataLoaded {
+                self.sections = [.bio, .interests, .favourite_places, .additional_block]
+                self.myProfileCells = [.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
+                self.guestProfileCells = [.addContact, .block, .compplain]
+            }
+        }
+    }
+    
+    var userInfo: Dynamic<User>!//User!
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
@@ -78,4 +94,63 @@ class UserProfileViewModel {
             return guestProfileCells.count
         }
     }
+    
+    func fetchData(completion: ResponseBlock?) {
+        Alamofire.request(userProfileURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    self.userInfo = Dynamic(User(json: json["data"]["user"]))
+                    
+                    self.dataLoaded = true
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func selectedCell(at indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .additional_block:
+            
+            switch profileType {
+            case .myProfile:
+                
+                selectedMyProfileCell(at: indexPath)
+                
+            case .guestProfile:
+                
+                selectedGuestProfileCell(at: indexPath)
+                
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    private func selectedMyProfileCell(at indexPath: IndexPath) {
+        let cellType = myProfileCells[indexPath.row]
+        
+        switch cellType {
+        case .aboutApp:
+            let vc = Storyboard.aboutAppViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+        default:
+            break
+        }
+    }
+    
+    private func selectedGuestProfileCell(at: IndexPath) {
+        
+    }
+    
+    let userProfileURL = Network.user + "/get/"
 }

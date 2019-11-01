@@ -18,6 +18,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     let followButton = UIButton()
     
     var parentVC: UIViewController!
+    var event: Event!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +28,20 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with event: Event, on vc: UIViewController) {
+        self.parentVC = vc
+        self.event = event
+        
+        eventTypeLabel.text = event.eventType
+        followButton.setImage(event.flagImage, for: .normal)
+        eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "placeholder_image"), options: [])
+        
+        layoutIfNeeded()
+        eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
+        
+        bindDynamics()
     }
     
     private func setUpViews() {
@@ -71,7 +86,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
             btn.width == 38
         }
         
-        followButton.setImage(UIImage(named: "unselected_flag"), for: .normal)
+        followButton.imageEdgeInsets = UIEdgeInsets(top: 9, left: 12, bottom: 9, right: 12)
         followButton.backgroundColor = UIColor(red: 71/255, green: 71/255, blue: 71/255, alpha: 0.9)
         followButton.layer.cornerRadius = 19
         followButton.addTarget(self, action: #selector(followEvent), for: .touchUpInside)
@@ -106,17 +121,20 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     }
     
     @objc private func followEvent() {
-        
+        event.isFavourite.value = !event.isFavourite.value
+        event.changeFavouriteStatus { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            default:
+                self?.event.isFavourite.value = !(self?.event.isFavourite.value)!
+            }
+        }
     }
     
-    func configure(with eventType: String, and imageURL: String, on vc: UIViewController) {
-        self.parentVC = vc
-        
-        eventTypeLabel.text = eventType
-        
-        layoutIfNeeded()
-        eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
-        
-        eventImageView.kf.setImage(with: URL(string: imageURL), placeholder: UIImage(named: "placeholder_image"), options: [])
+    private func bindDynamics() {
+        event.isFavourite.bind { [unowned self] (status) in
+            self.followButton.setImage(self.event.flagImage, for: .normal)
+        }
     }
 }

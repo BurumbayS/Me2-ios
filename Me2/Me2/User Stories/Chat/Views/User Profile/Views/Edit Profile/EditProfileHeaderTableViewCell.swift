@@ -19,20 +19,29 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
     var controllerPresenter: ControllerPresenterDelegate!
     var actionSheetPresenter: ActionSheetPresenterDelegate!
     
+    var dataToSave: UserDataToSave!
+    var data = [String: Any]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         backgroundColor = .clear
+        
         usernameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
+        usernameTextField.delegate = self
+        usernameTextField.placeholder = "Einstein_emc"
     }
     
-    func configure(with data: [String: String], controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
+    func configure(with data: [String: String?], userDataToSave: UserDataToSave, controllerPresenter: ControllerPresenterDelegate, actionSheetPresenter: ActionSheetPresenterDelegate) {
+        self.dataToSave = userDataToSave
         self.controllerPresenter = controllerPresenter
         self.actionSheetPresenter = actionSheetPresenter
         self.imagePicker.delegate = self
         
-        avatarImageView.kf.setImage(with: URL(string: data["avatar"] ?? ""), placeholder: UIImage(named: "placeholder_image"), options: [])
-        usernameTextField.placeholder = data["username"]
+        avatarImageView.kf.setImage(with: URL(string: (data["avatar"] as? String) ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        if let username = data["username"] as? String {
+            usernameTextField.text = username
+        }
     }
     
     @IBAction func changeAvatarPressed(_ sender: Any) {
@@ -46,21 +55,31 @@ class EditProfileHeaderTableViewCell: UITableViewCell {
     
     func chooseImageFromAlbum() {
         imagePicker.sourceType = .photoLibrary
-        controllerPresenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present)
     }
     
     func takePicture() {
         imagePicker.sourceType = .camera
-        controllerPresenter.present(controller: imagePicker)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present)
     }
 }
 
-extension EditProfileHeaderTableViewCell : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditProfileHeaderTableViewCell : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             avatarImageView.image = pickedImage
+            
+            if let imageData = pickedImage.jpegData(compressionQuality: 0.1) {
+                data["avatar"] = imageData
+                dataToSave.data = data
+            }
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        data["username"] = textField.text
+        dataToSave.data = data
     }
 }

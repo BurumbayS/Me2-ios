@@ -22,6 +22,8 @@ class MapViewModel {
     var placePins = [PlacePin]()
     var places = [Place]()
     
+    var currentPlaceCardIndex = Dynamic(0)
+    
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         Alamofire.request(placesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
@@ -44,9 +46,18 @@ class MapViewModel {
     }
     
     func getPlacesInRadius(completion: ResponseBlock?) {
-        let url = placesURL + "?id_list=\(getPlacesInRadiusAsString())"
+        getPlaces(idList: getPlacesInRadiusAsString(), completion: completion)
+    }
+    
+    func getPlaceCardInfo(with id: Int, completion: ResponseBlock?) {
+        getPlaces(idList: "\(id)", completion: completion)
+    }
+    
+    private func getPlaces(idList: String, completion: ResponseBlock?) {
+        let url = placesURL + "?id_list=\(idList)"
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -57,6 +68,8 @@ class MapViewModel {
                         let place = Place(json: item)
                         self.places.append(place)
                     }
+                    
+                    self.sortPlacesByDistance()
                     
                     completion?(.ok, "")
                     
@@ -77,7 +90,17 @@ class MapViewModel {
             }
         }
         
+        if str != "" { str.removeLast() }
         return str
+    }
+    
+    private func sortPlacesByDistance() {
+        for place in places {
+            let location = CLLocation(latitude: place.latitude, longitude: place.longitute)
+            place.distance = myLocation.distance(from: location)
+        }
+        
+        places.sort(by: { $0.distance! < $1.distance! })
     }
     
     private let placesURL = Network.core + "/place/"

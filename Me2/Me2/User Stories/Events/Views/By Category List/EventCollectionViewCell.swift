@@ -12,7 +12,7 @@ class EventCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var flagImageView: UIImageView!
+    @IBOutlet weak var flagButton: UIButton!
     @IBOutlet weak var eventTypeView: UIView!
     @IBOutlet weak var eventTypeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,11 +21,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var infoView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        configureViews()
-    }
+    var event: Event!
     
     private func configureViews() {
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
@@ -37,11 +33,46 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(wtih event: Event) {
-        placeLogoImageView.image = UIImage(named: "sample_place_logo")
-        imageView.image = UIImage(named: "sample_place_image")
+        self.event = event
+        
+        placeLogoImageView.kf.setImage(with: URL(string: event.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        imageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
+        flagButton.setBackgroundImage(event.flagImage, for: .normal)
         eventTypeLabel.text = event.eventType
         titleLabel.text = event.title
-        locationLabel.text = event.location
-        timeLabel.text = event.time
+        locationLabel.text = event.place.name
+        timeLabel.text = event.getTime()
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hello)))
+        
+        configureViews()
+        bindDynamics()
+    }
+    
+    @objc func hello() {
+        print("pressed")
+    }
+    
+    private func bindDynamics() {
+        event.isFavourite.bind { [unowned self] (status) in
+            self.updateFlag()
+        }
+    }
+    
+    @IBAction func flagButtonPressed(_ sender: Any) {
+        event.isFavourite.value = !event.isFavourite.value
+        
+        event.changeFavouriteStatus { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            default:
+                self?.event.isFavourite.value = !(self?.event.isFavourite.value)!
+            }
+        }
+    }
+    
+    private func updateFlag() {
+        flagButton.setBackgroundImage(event.flagImage, for: .normal)
     }
 }

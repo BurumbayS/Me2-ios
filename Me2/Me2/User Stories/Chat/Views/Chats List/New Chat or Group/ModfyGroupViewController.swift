@@ -109,7 +109,12 @@ extension ModfyGroupViewController : ControllerPresenterDelegate, ActionSheetPre
         self.addActionSheet(with: titles, and: actions, and: styles)
     }
     
-    func present(controller: UIViewController) {
-        present(controller, animated: true, completion: nil)
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            present(controller, animated: true, completion: nil)
+        }
     }
 }

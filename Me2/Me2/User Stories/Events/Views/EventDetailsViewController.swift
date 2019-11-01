@@ -12,11 +12,27 @@ class EventDetailsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel: EventDetailsViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
         configureTableView()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.tableView.reloadData()
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func configureNavBar() {
@@ -42,7 +58,7 @@ class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if viewModel.event != nil { return 5 } else { return 0 }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,21 +67,21 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             let cell: EventDetailHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Акция", and: "https://img-fotki.yandex.ru/get/15555/191838361.33/0_dfde8_53b55031_XXL.jpg", on: self)
+            cell.configure(with: viewModel.event, on: self)
             return cell
         
         case 1:
             
             let cell: EventDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "-20% скидка на все кальяны! ", and: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci idunt ut labore et dolore mag aliquaUt en ad minim veniam, quis nostrud.")
+            cell.configure(with: viewModel.event.title, and: viewModel.event.description ?? "")
             return cell
             
         case 2:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(tagsType: .unselectable, tagsList: TagsList())
+            cell.configure(tagsType: .unselectable, tagsList: TagsList(items: viewModel.event.tags))
             return cell
             
         case 3:
@@ -73,18 +89,26 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             let cell: EventPlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.accessoryType = .disclosureIndicator
-            cell.configure()
+            cell.configure(with: viewModel.event.place)
             return cell
             
         case 4:
             
             let cell: EventAddressTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Желтоксана, 137, 1 этаж, Алмалинский район", and: "Ежедневно 20:00-00:00")
+            cell.configure(with: viewModel.event.place.address1, and: viewModel.event.getTime())
             return cell
             
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: viewModel.event.place)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

@@ -15,8 +15,12 @@ class LabelsView: UIView {
     var labels = [UILabel]()
     
     func configure(with places: [PlacePin], on map: GMSMapView) {
+        self.labels.forEach { $0.removeFromSuperview() }
+        self.isHidden = false
+        
         self.places = places
         self.map = map
+        self.labels = []
         
         for place in places {
             let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)
@@ -52,7 +56,7 @@ class LabelsView: UIView {
     }
     
     private func hideOverlappingLabels() {
-        let sortedByX = labels.sorted { $0.frame.origin.x > $1.frame.origin.x }
+        var sortedByX = labels.sorted { $0.frame.origin.x > $1.frame.origin.x }
         
         var l = 0
         var r = 0
@@ -64,14 +68,20 @@ class LabelsView: UIView {
             let label1 = sortedByX[l]
             let label2 = sortedByX[r]
             
-            if label2.frame.origin.x + label2.frame.width > label1.frame.origin.x {
-                if label1.frame.origin.y < label2.frame.origin.y && label1.frame.origin.y + label1.frame.height > label2.frame.origin.y {
-                    label2.isHidden = true
-                }
-                if label1.frame.origin.y > label2.frame.origin.y && label2.frame.origin.y + label2.frame.height > label1.frame.origin.y {
-                    label2.isHidden = true
-                }
-                
+            let x1 = label1.frame.origin.x
+            let x2 = label2.frame.origin.x
+            let y1 = label1.frame.origin.y
+            let y2 = label2.frame.origin.y
+            let width2 = label2.frame.width
+            let height1 = label1.frame.height
+            let height2 = label2.frame.height
+            
+            if x2 + width2 >= x1 && y2 + height2 >= y1 && y2 <= y1 {
+                label2.isHidden = true
+                continue
+            }
+            if x2 + width2 >= x1 && y1 + height1 >= y2 && y1 <= y2 {
+                label2.isHidden = true
                 continue
             }
             

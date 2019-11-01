@@ -13,6 +13,11 @@ class EventsListTableViewCell: UITableViewCell {
     
     let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
     
+    var viewModel: CategoryEventsListViewModel!
+    var dataLoadCompletionHandler: ((Int) -> ())?
+    
+    var presenterDelegate: ControllerPresenterDelegate!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -22,6 +27,21 @@ class EventsListTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with viewModel: CategoryEventsListViewModel, presenterDelegate: ControllerPresenterDelegate, dataLoadCompletion: ((Int) -> ())?) {
+        self.viewModel = viewModel
+        self.dataLoadCompletionHandler = dataLoadCompletion
+        self.presenterDelegate = presenterDelegate
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            self?.collectionView.reloadSections([0])
+            self?.dataLoadCompletionHandler?((self?.viewModel.eventsList.count)!)
+        }
     }
     
     private func configureCollectionView() {
@@ -34,7 +54,7 @@ class EventsListTableViewCell: UITableViewCell {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         collectionView.registerNib(EventCollectionViewCell.self)
-        collectionView.registerNib(NewPlaceCollectionViewCell.self)
+        collectionView.registerNib(EventPlaceholderCollectionViewCell.self)
         
         setCollectionViewLayout()
     }
@@ -64,21 +84,36 @@ extension EventsListTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if let viewModel = self.viewModel {
+            if viewModel.eventsList.count > 0 {
+                return viewModel.eventsList.count
+            } else {
+                return 1
+            }
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-        let cell: EventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if viewModel.eventsList.count > 0 {
+            let cell: EventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.configure(wtih: viewModel.eventsList[indexPath.row])
+            
+            return cell
+        }
         
-        let event = Event()
-        event.title = "20% скидка на все кальяны! "
-        event.location = "Мята Бар"
-        event.time = "Ежедневно 20:00-00:00"
-        event.eventType = "Акция"
-        
-        cell.configure(wtih: event)
-        
+        let cell: EventPlaceholderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if viewModel.dataLoaded {
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
+            presenterDelegate.present(controller: dest, presntationType: .present)
+        }
     }
 }

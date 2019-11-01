@@ -13,6 +13,8 @@ class BookingWishesTableViewCell: UITableViewCell {
 
     let textView = UITextView()
     
+    var bookingParameter: BookingParameter!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -21,6 +23,10 @@ class BookingWishesTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(parameter: BookingParameter) {
+        self.bookingParameter = parameter
     }
     
     private func setUpViews() {
@@ -38,6 +44,8 @@ class BookingWishesTableViewCell: UITableViewCell {
         textView.layer.borderWidth = 1.0
         textView.layer.borderColor = Color.gray.cgColor
         textView.layer.cornerRadius = 10
+        textView.font = UIFont(name: "Roboto-Regular", size: 17)
+        textView.delegate = self
         
         self.contentView.addSubview(textView)
         constrain(textView, label, self.contentView) { textView, label, view in
@@ -47,5 +55,11 @@ class BookingWishesTableViewCell: UITableViewCell {
             textView.height == 66
             textView.right == view.right - 20
         }
+    }
+}
+
+extension BookingWishesTableViewCell: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        bookingParameter.data = textView.text
     }
 }

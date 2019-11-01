@@ -16,15 +16,15 @@ class PlaceProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    let viewModel = PlaceProfileViewModel()
+    var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
-    var collectionViewCellheight: CGFloat = Constants.minContentSize.height
+    var collectionViewCellheight: CGFloat = 0
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barStyle = .default
     }
     
     override func viewDidLoad() {
@@ -32,10 +32,26 @@ class PlaceProfileViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
         
+        fetchData()
         configureNavBar()
         configureCollectionView()
+        configureCollectionCellDefaultHeight()
         configureActionButton()
         bindViewModel()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.collectionView.reloadData()
+                self?.collectionView.alpha = 1.0
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func bindViewModel() {
@@ -57,12 +73,14 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
             self.actionButton.isHidden = false
             
         case .reviews:
             
+            self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.blue
             self.actionButton.setTitle("Оставить отзыв", for: .normal)
             self.actionButton.isHidden = false
@@ -78,7 +96,7 @@ class PlaceProfileViewController: UIViewController {
         navBar.isHidden = true
         navBar.shouldRemoveShadow(true)
         
-        navItem.title = "Traveler's coffee"
+        navItem.title = viewModel.place.name
         
         setUpBackBarButton(for: navItem)
         navItem.leftBarButtonItem?.tintColor = .black
@@ -97,6 +115,8 @@ class PlaceProfileViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.clipsToBounds = false
+        collectionView.alpha = 0
+        
         let layout = PlaceProfileCollectionLayout()
         layout.configure(with: navBar.frame.size.height + UIApplication.shared.statusBarFrame.height)
         collectionView.collectionViewLayout = layout
@@ -116,8 +136,13 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func updateCollectionViewLayout(with cellHeight: CGFloat) {
-        collectionViewCellheight = max(Constants.minContentSize.height, cellHeight)
+        collectionViewCellheight = max(Constants.shared.minContentSize.height, cellHeight)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func configureCollectionCellDefaultHeight() {
+        Constants.shared.minContentSize = CGSize(width: safeAreaSize().width, height: safeAreaSize().height - 39)
+        collectionViewCellheight = Constants.shared.minContentSize.height
     }
     
     
@@ -125,12 +150,14 @@ class PlaceProfileViewController: UIViewController {
         switch viewModel.pageToShow.value {
         case .info:
             
-            let dest = Storyboard.bookTableViewController()
+            let dest = Storyboard.bookTableViewController() as! BookTableViewController
+            dest.viewModel = BookTableViewModel(placeID: viewModel.place.id)
             present(dest, animated: true, completion: nil)
             
         case .reviews:
             
-            let dest = Storyboard.writeReviewViewController()
+            let dest = Storyboard.writeReviewViewController() as! WriteReviewViewController
+            dest.viewModel = WriteReviewViewModel(placeID: viewModel.place.id)
             navigationController?.pushViewController(dest, animated: true)
             
         default:
@@ -196,19 +223,19 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configureWith(title: "Traveler's coffee", rating: 3.2, category: "Сеть кофеен", placeStatus: viewModel.placeStatus, viewController: self)
+            cell.configure(place: viewModel.place, viewController: self)
             return cell
             
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.currentPage, and: viewModel.placeStatus)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self)
             return cell
             
         }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         lastContentOffset = collectionView.contentOffset.y
     }
     
@@ -229,6 +256,27 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
             navBar.isHidden = true
             navigationController?.navigationBar.barStyle = .black
             collectionView.clipsToBounds = false
+        }
+        
+        if collectionView.contentOffset.y > lastContentOffset && lastContentOffset >= 0 {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 0
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.actionButton.alpha = 1.0
+            }
+        }
+    }
+}
+
+extension PlaceProfileViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType) {
+        switch presntationType {
+        case .present:
+            present(controller, animated: true, completion: nil)
+        case .push:
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

@@ -31,6 +31,12 @@ class CustomSegmentedControl : UIView {
         segmentWidth = frame.width / CGFloat(segmentsCount)
         segmentHeight = frame.height
         
+        segments.forEach { $0.removeFromSuperview() }
+        labels.forEach { $0.removeFromSuperview() }
+        
+        segments = []
+        labels = []
+        
         addSegments()
         addFlag()
     }
@@ -71,6 +77,8 @@ class CustomSegmentedControl : UIView {
     }
     
     private func addFlag() {
+        flag.removeFromSuperview()
+        
         flag.layer.cornerRadius = 2
         flag.backgroundColor = Color.red
         

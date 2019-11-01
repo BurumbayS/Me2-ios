@@ -11,7 +11,6 @@ import Cartography
 
 class EditProfileTagsTableViewCell: UITableViewCell {
 
-    var tags = ["Танцы", "Танцы", "Литература", "Космос", "Космос", "Космос", "Космос", "Космос", "Танцы"]
     var tagViews = [RemovableTag]()
     var didLayoutSubviews = false
     
@@ -32,6 +31,9 @@ class EditProfileTagsTableViewCell: UITableViewCell {
     
     var updateHandler: VoidBlock?
     
+    var tags = [String]()
+    var dataToSave: UserDataToSave!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -42,8 +44,10 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(activateTagAddition: Bool, onUpdate: VoidBlock?) {
+    func configure(tags: [String], userDataToSave: UserDataToSave, activateTagAddition: Bool, onUpdate: VoidBlock?) {
         self.updateHandler = onUpdate
+        self.tags = tags
+        self.dataToSave = userDataToSave
         
         if !self.didLayoutSubviews {
             setUpViews()
@@ -161,6 +165,8 @@ class EditProfileTagsTableViewCell: UITableViewCell {
     
     private func addTag(with title: String) {
         tags.append(title)
+        dataToSave.data = tags
+        
         setUpTags()
         updateHandler?()
     }

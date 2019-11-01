@@ -8,6 +8,8 @@
 
 import UIKit
 import Cartography
+import SafariServices
+import MessageUI
 
 class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
@@ -27,15 +29,16 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, placeStatus: PlaceStatus) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate) {
+        self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
-        self.viewModel = PlaceInfoViewModel(placeStatus: placeStatus)
+        self.viewModel = PlaceInfoViewModel(place: place)
     }
     
     override func reload () {
         tableView.reloadDataWithCompletion {
             let fullTableViewSize = CGSize(width: self.tableView.contentSize.width, height: self.tableView.contentSize.height + self.tableView.contentInset.bottom)
-            self.tableSize?.value = (Constants.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.minContentSize
+            self.tableSize?.value = (Constants.shared.minContentSize.height < fullTableViewSize.height) ? fullTableViewSize : Constants.shared.minContentSize
             print("Table view reloaded")
             let data = ["tableViewHeight": self.tableView.contentSize.height]
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
@@ -87,7 +90,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Кофейни «Traveler`s Coffee» совмещают в себе концепцию приятного дизайна заведений с демократичным и весьма современным стилем") { [weak self] in
+            cell.configure(with: viewModel.placeInfo.description ?? "") { [weak self] in
                 self?.tableView.beginUpdates()
                     cell.updateUI()
                 self?.tableView.endUpdates()
@@ -102,40 +105,41 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(with: viewModel.placeInfo.phone, ans: viewModel.placeInfo.instagram)
             return cell
             
         case .address:
             
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Желтоксана, 137", additionalInfo: "1 этаж, Алмалинский район", distance: "1.3 км")
+            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "1.3 км")
             return cell
             
         case .workTime:
             
             let cell: PlaceWorkTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: "Ежедневно 08:00 - 24:00", and: "Закроется через 20 мин", isOpen: true)
+            cell.configure(with: viewModel.placeInfo.workingHours)
             return cell
             
         case .mail:
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(withEmail: "travelers@coffee.com")
+            cell.configure(withEmail: viewModel.placeInfo.email ?? "")
             return cell
             
         case .site:
             
             let cell: MailSiteTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(withWebSite: "www.travelers-coffee.com")
+            cell.configure(withWebSite: viewModel.placeInfo.website ?? "")
             return cell
             
         case .tags:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(tagsType: .unselectable, tagsList: TagsList())
+            cell.configure(tagsType: .unselectable, tagsList: TagsList(items: viewModel.placeInfo.tags))
             cell.selectionStyle = .none
             return cell
             
@@ -145,9 +149,30 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             cell.selectionStyle = .none
             cell.configure(with: 3)
             return cell
-            
-        default:
-            return UITableViewCell()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.placeSections[indexPath.row] {
+        case .site:
+            guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
+            let svc = SFSafariViewController(url: url)
+            
+            presenterDelegate.present(controller: svc, presntationType: .present)
+        case .mail:
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([viewModel.placeInfo.email ?? ""])
+            
+            presenterDelegate.present(controller: mail, presntationType: .present)
+        default:
+            break
+        }
+    }
+}
+
+extension PlaceInfoCollectionViewCell: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
