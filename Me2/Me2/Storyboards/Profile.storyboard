@@ -217,6 +217,57 @@ incididunt ut labore et dolore magna aliqua. </string>
             </objects>
             <point key="canvasLocation" x="8653.6231884057979" y="42.857142857142854"/>
         </scene>
+        <!--Feedback View Controller-->
+        <scene sceneID="k2z-Jc-Jac">
+            <objects>
+                <viewController storyboardIdentifier="FeedbackViewController" id="fWp-Kh-hsT" customClass="FeedbackViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zNu-vN-TWJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCO-oS-f6c">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="0Aa-J9-Srq"/>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fXN-zE-mbn">
+                                <rect key="frame" x="15" y="108" width="384" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="RiN-1t-Lfq"/>
+                                </constraints>
+                                <string key="text">Мы всегда рады обратной связи, и ваше 
+мнение очень важно для нас! Ваш отзыв 
+поможет улучшить наше приложение и 
+сделать его еще более удобным. 
+Спасибо, что с нами!</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fXN-zE-mbn" firstAttribute="top" secondItem="SCO-oS-f6c" secondAttribute="bottom" constant="20" id="ED2-pn-rWu"/>
+                            <constraint firstItem="qBL-1f-NBW" firstAttribute="trailing" secondItem="fXN-zE-mbn" secondAttribute="trailing" constant="15" id="Kec-CV-nJl"/>
+                            <constraint firstItem="SCO-oS-f6c" firstAttribute="trailing" secondItem="qBL-1f-NBW" secondAttribute="trailing" id="bDD-qp-0mh"/>
+                            <constraint firstItem="SCO-oS-f6c" firstAttribute="top" secondItem="qBL-1f-NBW" secondAttribute="top" id="d8C-0h-q5x"/>
+                            <constraint firstItem="fXN-zE-mbn" firstAttribute="leading" secondItem="qBL-1f-NBW" secondAttribute="leading" constant="15" id="x6d-K2-Cwt"/>
+                            <constraint firstItem="SCO-oS-f6c" firstAttribute="leading" secondItem="qBL-1f-NBW" secondAttribute="leading" id="yWG-t3-baW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qBL-1f-NBW"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="SCO-oS-f6c" id="hrs-kV-JmO"/>
+                        <outlet property="navItem" destination="0Aa-J9-Srq" id="ddi-uK-WbL"/>
+                        <outlet property="textView" destination="fXN-zE-mbn" id="Lcn-rx-K5k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mum-kp-TeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9373.9130434782619" y="42.857142857142854"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
             <objects>

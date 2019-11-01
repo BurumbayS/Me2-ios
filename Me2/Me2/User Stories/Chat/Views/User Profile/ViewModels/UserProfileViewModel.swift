@@ -141,8 +141,15 @@ class UserProfileViewModel {
         
         switch cellType {
         case .aboutApp:
+            
             let vc = Storyboard.aboutAppViewController()
             presenterDelegate.present(controller: vc, presntationType: .push)
+        
+        case .feedback:
+            
+            let vc = Storyboard.feedbackViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

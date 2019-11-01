@@ -210,6 +210,7 @@
 		DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EF92330D21D00377796 /* FollowButton.xib */; };
 		DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EFB2330D53900377796 /* FollowButton.swift */; };
 		DDF7D05A236C002A0093FF4B /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */; };
+		DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */; };
 		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
@@ -427,6 +428,7 @@
 		DDF69EF92330D21D00377796 /* FollowButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowButton.xib; sourceTree = "<group>"; };
 		DDF69EFB2330D53900377796 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
 		DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -1225,6 +1227,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */,
+				DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */,
 			);
 			path = "Additional pages";
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
 				DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */,
+				DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
