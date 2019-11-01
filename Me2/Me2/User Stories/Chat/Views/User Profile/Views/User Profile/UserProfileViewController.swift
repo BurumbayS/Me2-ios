@@ -182,6 +182,28 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         }
     
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = viewModel.sections[indexPath.section]
+        guard section == .additional_block else { return }
+        
+        switch viewModel.profileType {
+        case .myProfile:
+            
+            let cellType = viewModel.myProfileCells[indexPath.row]
+            
+            switch cellType {
+            case .aboutApp:
+                let vc = Storyboard.aboutAppViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            default:
+                break
+            }
+            
+        case .guestProfile:
+            break
+        }
+    }
 }
 
 extension UserProfileViewController: ControllerPresenterDelegate {

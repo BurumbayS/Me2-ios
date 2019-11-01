@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--User Profile View Controller-->
         <scene sceneID="kcm-8Y-SbJ">
@@ -80,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6U-3a-UXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7923.188405797102" y="42.857142857142854"/>
+            <point key="canvasLocation" x="7180" y="714"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="Eb8-Rn-aOA">
@@ -121,7 +129,80 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OuX-1C-qZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8675" y="43"/>
+            <point key="canvasLocation" x="7906" y="43"/>
+        </scene>
+        <!--About App View Controller-->
+        <scene sceneID="rpl-3K-Cc8">
+            <objects>
+                <viewController storyboardIdentifier="AboutAppViewController" id="iuI-d0-Oly" customClass="AboutAppViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2si-yt-8bb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_app_image" translatesAutoresizingMaskIntoConstraints="NO" id="aoM-ck-zur">
+                                <rect key="frame" x="124.5" y="94" width="165" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="eqO-v6-Qle"/>
+                                    <constraint firstAttribute="height" constant="240" id="n5Q-Pe-yx1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Версия 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMs-Tx-9tm">
+                                <rect key="frame" x="168.5" y="354" width="77" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gni-YZ-dsh">
+                                <rect key="frame" x="42.5" y="392" width="329.5" height="59.5"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur 
+adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. </string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFA-bZ-1J0">
+                                <rect key="frame" x="55" y="501.5" width="304" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bnV-It-DbW"/>
+                                    <constraint firstAttribute="width" constant="304" id="nrV-VA-ekr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="Условия и Политика Конфиденциальности">
+                                    <color key="titleColor" red="0.26625031230000001" green="0.69434672590000002" blue="0.97626179459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKX-Xb-1Qt">
+                                <rect key="frame" x="90" y="561.5" width="234" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ksx-Q1-50h"/>
+                                    <constraint firstAttribute="width" constant="234" id="UIX-eY-K1X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="Оценить приложение в App Store">
+                                    <color key="titleColor" red="0.26625031230000001" green="0.69434672590000002" blue="0.97626179459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XKX-Xb-1Qt" firstAttribute="centerX" secondItem="qaU-us-tVu" secondAttribute="centerX" id="0Ex-Rt-KQ8"/>
+                            <constraint firstItem="XKX-Xb-1Qt" firstAttribute="top" secondItem="ZFA-bZ-1J0" secondAttribute="bottom" constant="30" id="7JH-fb-JXS"/>
+                            <constraint firstItem="Gni-YZ-dsh" firstAttribute="centerX" secondItem="qaU-us-tVu" secondAttribute="centerX" id="7u9-0E-Chk"/>
+                            <constraint firstItem="aoM-ck-zur" firstAttribute="top" secondItem="qaU-us-tVu" secondAttribute="top" constant="50" id="8dF-rm-Lhx"/>
+                            <constraint firstItem="hMs-Tx-9tm" firstAttribute="top" secondItem="aoM-ck-zur" secondAttribute="bottom" constant="20" id="TjL-ut-lFg"/>
+                            <constraint firstItem="hMs-Tx-9tm" firstAttribute="centerX" secondItem="qaU-us-tVu" secondAttribute="centerX" id="ZTd-uK-Jfv"/>
+                            <constraint firstItem="ZFA-bZ-1J0" firstAttribute="top" secondItem="Gni-YZ-dsh" secondAttribute="bottom" constant="50" id="fc3-Mk-1xD"/>
+                            <constraint firstItem="aoM-ck-zur" firstAttribute="centerX" secondItem="qaU-us-tVu" secondAttribute="centerX" id="hVG-w2-lSl"/>
+                            <constraint firstItem="ZFA-bZ-1J0" firstAttribute="centerX" secondItem="qaU-us-tVu" secondAttribute="centerX" id="l28-Mo-5kv"/>
+                            <constraint firstItem="Gni-YZ-dsh" firstAttribute="top" secondItem="hMs-Tx-9tm" secondAttribute="bottom" constant="20" id="yyl-fS-fYL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qaU-us-tVu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OQF-em-CY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8653.6231884057979" y="42.857142857142854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
@@ -142,4 +223,7 @@
             <point key="canvasLocation" x="6399" y="43"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="about_app_image" width="163.5" height="237"/>
+    </resources>
 </document>

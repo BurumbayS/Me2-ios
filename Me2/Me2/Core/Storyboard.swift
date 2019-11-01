@@ -89,6 +89,9 @@ extension Storyboard {
     static var editProfileViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
     }
+    static var aboutAppViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AboutAppViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
