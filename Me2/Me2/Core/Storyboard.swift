@@ -95,6 +95,9 @@ extension Storyboard {
     static var feedbackViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "FeedbackViewController")
     }
+    static var notificationsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "NotificationsViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

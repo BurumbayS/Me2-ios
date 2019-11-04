@@ -150,6 +150,11 @@ class UserProfileViewModel {
             let vc = Storyboard.feedbackViewController()
             presenterDelegate.present(controller: vc, presntationType: .push)
             
+        case .notifications:
+            
+            let vc = Storyboard.notificationsViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

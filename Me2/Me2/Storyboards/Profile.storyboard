@@ -268,6 +268,47 @@ incididunt ut labore et dolore magna aliqua. </string>
             </objects>
             <point key="canvasLocation" x="9373.9130434782619" y="42.857142857142854"/>
         </scene>
+        <!--Notifications View Controller-->
+        <scene sceneID="v6A-wS-a6i">
+            <objects>
+                <viewController storyboardIdentifier="NotificationsViewController" id="h7S-Il-bro" customClass="NotificationsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6sp-X0-tZC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZg-Rv-P59">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="ARQ-Xv-SEi"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O1x-ti-qN9">
+                                <rect key="frame" x="0.0" y="89" width="414" height="773"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F5s-hJ-eTS" firstAttribute="bottom" secondItem="O1x-ti-qN9" secondAttribute="bottom" id="6Q2-3C-vbK"/>
+                            <constraint firstItem="O1x-ti-qN9" firstAttribute="leading" secondItem="F5s-hJ-eTS" secondAttribute="leading" id="BiO-1x-Dzw"/>
+                            <constraint firstItem="F5s-hJ-eTS" firstAttribute="trailing" secondItem="O1x-ti-qN9" secondAttribute="trailing" id="G7P-w1-ZjL"/>
+                            <constraint firstItem="UZg-Rv-P59" firstAttribute="trailing" secondItem="F5s-hJ-eTS" secondAttribute="trailing" id="Myy-y2-34d"/>
+                            <constraint firstItem="O1x-ti-qN9" firstAttribute="top" secondItem="UZg-Rv-P59" secondAttribute="bottom" constant="1" id="RmS-2J-5j0"/>
+                            <constraint firstItem="UZg-Rv-P59" firstAttribute="leading" secondItem="F5s-hJ-eTS" secondAttribute="leading" id="gEK-7a-hO7"/>
+                            <constraint firstItem="UZg-Rv-P59" firstAttribute="top" secondItem="F5s-hJ-eTS" secondAttribute="top" id="kOo-eP-ATv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F5s-hJ-eTS"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="UZg-Rv-P59" id="ILX-eF-47Y"/>
+                        <outlet property="navItem" destination="ARQ-Xv-SEi" id="4du-8R-usR"/>
+                        <outlet property="tableView" destination="O1x-ti-qN9" id="laO-k8-L4p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sQz-hP-oe1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10101" y="43"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
             <objects>
