@@ -98,6 +98,9 @@ extension Storyboard {
     static var notificationsViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "NotificationsViewController")
     }
+    static var manageAccountViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ManageAccountViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

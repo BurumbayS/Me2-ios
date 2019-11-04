@@ -155,6 +155,11 @@ class UserProfileViewModel {
             let vc = Storyboard.notificationsViewController()
             presenterDelegate.present(controller: vc, presntationType: .push)
             
+        case .settings:
+            
+            let vc = Storyboard.manageAccountViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

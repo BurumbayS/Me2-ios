@@ -307,7 +307,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sQz-hP-oe1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10101" y="43"/>
+            <point key="canvasLocation" x="10094" y="43"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
@@ -326,6 +326,47 @@ incididunt ut labore et dolore magna aliqua. </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPl-lc-jbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6399" y="43"/>
+        </scene>
+        <!--Manage Account View Controller-->
+        <scene sceneID="Xba-OC-5ql">
+            <objects>
+                <viewController storyboardIdentifier="ManageAccountViewController" id="dgE-8r-daF" customClass="ManageAccountViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uWi-ab-AkT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puJ-jW-tXa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="E36-fz-hqt"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Zr-3c-jWH">
+                                <rect key="frame" x="0.0" y="89" width="414" height="773"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Uk-3S-bna" firstAttribute="bottom" secondItem="8Zr-3c-jWH" secondAttribute="bottom" id="6b9-6I-dVa"/>
+                            <constraint firstItem="puJ-jW-tXa" firstAttribute="leading" secondItem="1Uk-3S-bna" secondAttribute="leading" id="Mc3-qn-ZEl"/>
+                            <constraint firstItem="puJ-jW-tXa" firstAttribute="trailing" secondItem="1Uk-3S-bna" secondAttribute="trailing" id="ND2-Jg-VQo"/>
+                            <constraint firstItem="puJ-jW-tXa" firstAttribute="top" secondItem="1Uk-3S-bna" secondAttribute="top" id="exT-NO-PEa"/>
+                            <constraint firstItem="8Zr-3c-jWH" firstAttribute="top" secondItem="puJ-jW-tXa" secondAttribute="bottom" constant="1" id="kJg-7V-0et"/>
+                            <constraint firstItem="1Uk-3S-bna" firstAttribute="trailing" secondItem="8Zr-3c-jWH" secondAttribute="trailing" id="oWI-E2-R09"/>
+                            <constraint firstItem="8Zr-3c-jWH" firstAttribute="leading" secondItem="1Uk-3S-bna" secondAttribute="leading" id="thV-pr-hl8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Uk-3S-bna"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="puJ-jW-tXa" id="jxq-Ay-kfE"/>
+                        <outlet property="navItem" destination="E36-fz-hqt" id="c3A-dG-Sbk"/>
+                        <outlet property="tableView" destination="8Zr-3c-jWH" id="fTp-9D-V6W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MEg-DL-9dQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10829" y="43"/>
         </scene>
     </scenes>
     <resources>

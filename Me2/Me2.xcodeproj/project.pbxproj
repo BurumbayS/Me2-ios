@@ -214,6 +214,9 @@
 		DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */; };
 		DDF7D060236C4FD20093FF4B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */; };
 		DDF7D062236C5E510093FF4B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D061236C5E510093FF4B /* Notification.swift */; };
+		DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */; };
+		DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */; };
+		DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */; };
 		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
@@ -435,6 +438,9 @@
 		DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		DDF7D061236C5E510093FF4B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewController.swift; sourceTree = "<group>"; };
+		DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountTableViewCell.swift; sourceTree = "<group>"; };
+		DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewModel.swift; sourceTree = "<group>"; };
 		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -842,6 +848,7 @@
 			children = (
 				DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */,
 				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
+				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1233,12 +1240,22 @@
 		DDF7D058236BFF9E0093FF4B /* Additional pages */ = {
 			isa = PBXGroup;
 			children = (
+				DDF7D063236FF2010093FF4B /* Manage Account */,
 				DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */,
 				DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */,
 				DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */,
 				DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */,
 			);
 			path = "Additional pages";
+			sourceTree = "<group>";
+		};
+		DDF7D063236FF2010093FF4B /* Manage Account */ = {
+			isa = PBXGroup;
+			children = (
+				DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */,
+				DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */,
+			);
+			path = "Manage Account";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1448,6 +1465,7 @@
 				DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */,
 				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
+				DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */,
 				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
 				DDE04812234235F500E33046 /* BookingInviteFriendsTableViewCell.swift in Sources */,
@@ -1566,6 +1584,7 @@
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD97CB4E2355FAAD002291CA /* User.swift in Sources */,
 				DDC1854A2339EF760052C371 /* SavedEventsTableViewCell.swift in Sources */,
+				DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */,
 				DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
@@ -1580,6 +1599,7 @@
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
 				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
+				DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */,
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
 				DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
