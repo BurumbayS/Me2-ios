@@ -35,7 +35,8 @@ class ManageAccountViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 60
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 40
         
         tableView.register(ManageAccountTableViewCell.self)
     }
