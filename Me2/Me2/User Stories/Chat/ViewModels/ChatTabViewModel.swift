@@ -6,13 +6,32 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
-
-enum ContaierScreen {
-    case chatList
-    case liveChat
-}
+import Alamofire
+import SwiftyJSON
 
 class ChatTabViewModel {
-    var currentScreen: Dynamic<ContaierScreen> = Dynamic(ContaierScreen.chatList)
+    
+    var chatsList = [Room]()
+    
+    func getChatList(completion: ResponseBlock?) {
+        Alamofire.request(chatListURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    for item in json["data"]["results"].arrayValue {
+                        self.chatsList.append(Room(json: item))
+                    }
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    let chatListURL = Network.chat + "/room/"
 }

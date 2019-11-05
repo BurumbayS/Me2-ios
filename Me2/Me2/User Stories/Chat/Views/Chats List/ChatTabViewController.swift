@@ -18,8 +18,22 @@ class ChatTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadChatsList()
         configureNavBar()
         configureTableView()
+    }
+    
+    private func loadChatsList() {
+        viewModel.getChatList { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.tableView.reloadSections([0], with: .automatic)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func configureNavBar() {
@@ -67,7 +81,7 @@ extension ChatTabViewController: UISearchResultsUpdating {
 extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.chatsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

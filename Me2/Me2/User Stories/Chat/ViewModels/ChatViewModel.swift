@@ -51,16 +51,16 @@ class ChatViewModel {
     }
     
     func sendMessage(with text: String) {
-        lastMessage = text
-        
-        let message = Message(text: text, time: "", type: .my)
-        messages.value.append(message)
-        
-        let json: JSON = ["message": text, "message_type" : "TEXT"]
-    
-        if let message = json.rawString() {
-            socket.write(string: message)
-        }
+//        lastMessage = text
+//        
+//        let message = Message(text: text, time: "", type: .my)
+//        messages.value.append(message)
+//        
+//        let json: JSON = ["message": text, "message_type" : "TEXT"]
+//    
+//        if let message = json.rawString() {
+//            socket.write(string: message)
+//        }
     }
     
     func loadMessages() {
@@ -85,12 +85,12 @@ extension ChatViewModel: WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let json = JSON(parseJSON: text)
-        
-        guard lastMessage != json["message"]["message"].stringValue else { return }
-        
-        let message = Message(text: json["message"]["message"].stringValue, time: "", type: .partner)
-        messages.value.append(message)
+//        let json = JSON(parseJSON: text)
+//        
+//        guard lastMessage != json["message"]["message"].stringValue else { return }
+//        
+//        let message = Message(text: json["message"]["message"].stringValue, time: "", type: .partner)
+//        messages.value.append(message)
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
