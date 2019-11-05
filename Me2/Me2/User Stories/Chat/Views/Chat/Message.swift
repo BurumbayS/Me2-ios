@@ -43,6 +43,8 @@ class Message {
     }
     
     func isMine() -> Bool {
-        return true
+        if self.sender == 0 { return true }
+        
+        return self.sender == (UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as? Int)
     }
 }

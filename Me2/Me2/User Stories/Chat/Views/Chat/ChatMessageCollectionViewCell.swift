@@ -28,34 +28,34 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(message: Message) {
-//        switch message.type {
-//        case .my:
-//            
-//            self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomLeft], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
-//            self.textBubbleView.backgroundColor = Color.blue
-//            self.dateLabel.textColor = .white
-//            self.dateLabel.alpha = 0.5
-//            self.messageLabel.textColor = .white
-//            
-//            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
-//                bubbleView.right == view.right - 10
-//                bubbleView.width == message.width
-//            }
-//            
-//        case .partner:
-//            
-//            self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomRight], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
-//            self.textBubbleView.backgroundColor = Color.gray
-//            self.dateLabel.textColor = .black
-//            self.dateLabel.alpha = 0.5
-//            self.messageLabel.textColor = .black
-//            
-//            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
-//                bubbleView.left == view.left + 10
-//                bubbleView.width == message.width
-//            }
-//            
-//        }
+        switch message.isMine() {
+        case true:
+            
+            self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomLeft], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
+            self.textBubbleView.backgroundColor = Color.blue
+            self.dateLabel.textColor = .white
+            self.dateLabel.alpha = 0.5
+            self.messageLabel.textColor = .white
+            
+            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
+                bubbleView.right == view.right - 10
+                bubbleView.width == message.width
+            }
+            
+        case false:
+            
+            self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomRight], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
+            self.textBubbleView.backgroundColor = Color.gray
+            self.dateLabel.textColor = .black
+            self.dateLabel.alpha = 0.5
+            self.messageLabel.textColor = .black
+            
+            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
+                bubbleView.left == view.left + 10
+                bubbleView.width == message.width
+            }
+            
+        }
         
         messageLabel.text = message.text
     }

@@ -17,7 +17,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messageInputView: UIView!
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
     
-    let viewModel = ChatViewModel()
+    var viewModel: ChatViewModel!
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
