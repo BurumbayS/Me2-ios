@@ -46,7 +46,7 @@ class ChatViewController: UIViewController {
         addDismissKeyboard()
         configureViews()
         configureCollectionView()
-        setUpConnection()
+        loadMessages()
         bindDynamics()
     }
     
@@ -54,6 +54,22 @@ class ChatViewController: UIViewController {
         viewModel.messages.bind { [unowned self] (messages) in
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
             self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+        }
+    }
+    
+    private func loadMessages() {
+        viewModel.loadMessages { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.setUpConnection()
+                self?.collectionView.reloadData()
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
         }
     }
     
@@ -74,7 +90,7 @@ class ChatViewController: UIViewController {
 
     private func configureCollectionView() {
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         
         collectionView.dataSource = self
         collectionView.delegate = self

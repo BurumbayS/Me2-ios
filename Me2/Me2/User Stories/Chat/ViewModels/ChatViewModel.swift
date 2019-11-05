@@ -8,6 +8,7 @@
 
 import Starscream
 import SwiftyJSON
+import Alamofire
 
 class ChatViewModel {
     var messages: Dynamic<[Message]>
@@ -40,16 +41,30 @@ class ChatViewModel {
         }
     }
     
-    func loadMessages() {
-//        var message = Message(text: "Hello world! My name is Sanzhar", time: "", type: .partner)
-//        messages.append(message)
-//        message = Message(text: "Hi, Sanzhar! How are you?", time: "", type: .my)
-//        messages.append(message)
-//        message = Message(text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", time: "", type: .partner)
-//        messages.append(message)
-//        message = Message(text: "Hello world! My name is Sanzhar", time: "", type: .partner)
-//        messages.append(message)
+    func loadMessages(completion: ResponseBlock?) {
+        let url = messagesListURL + "?room=\(roomUUID)"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { [weak self] (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    for item in json["data"].arrayValue {
+                        self?.messages.value.append(Message(json: item))
+                    }
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
     }
+    
+    let messagesListURL = Network.chat + "/message/"
 }
 
 extension ChatViewModel: WebSocketDelegate {
