@@ -42,7 +42,7 @@ class ChatViewModel {
     }
     
     func loadMessages(completion: ResponseBlock?) {
-        let url = messagesListURL + "?room=\(roomUUID)"
+        let url = messagesListURL + "room=\(roomUUID)"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { [weak self] (response) in
@@ -51,7 +51,7 @@ class ChatViewModel {
                     
                     let json = JSON(value)
                     
-                    for item in json["data"].arrayValue {
+                    for item in json["data"]["results"].arrayValue.reversed() {
                         self?.messages.value.append(Message(json: item))
                     }
                     
@@ -64,7 +64,7 @@ class ChatViewModel {
         }
     }
     
-    let messagesListURL = Network.chat + "/message/"
+    let messagesListURL = Network.chat + "/message/?limit=20&"
 }
 
 extension ChatViewModel: WebSocketDelegate {

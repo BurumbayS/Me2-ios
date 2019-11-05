@@ -100,8 +100,8 @@ class ChatViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            inputViewBottomConstraint.constant = keyboardSize.height
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            inputViewBottomConstraint.constant = keyboardSize.height - self.view.safeAreaInsets.bottom
             
             UIView.animate(withDuration: 0, animations: {
                 self.view.layoutIfNeeded()
