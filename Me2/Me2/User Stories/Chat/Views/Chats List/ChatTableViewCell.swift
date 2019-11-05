@@ -20,4 +20,21 @@ class ChatTableViewCell: UITableViewCell {
         
     }
 
+    func configure(with roomInfo: Room) {
+        switch roomInfo.type {
+        case .SIMPLE:
+            
+            avatarImageView.kf.setImage(with: URL(string: roomInfo.participants[0].avatar), placeholder: UIImage(named: "sample_avatar"), options: [])
+            nameLabel.text = roomInfo.participants[0].username
+            lastMessageLabel.text = roomInfo.lastMessage.text
+        
+        case .LIVE:
+            
+            nameLabel.text = "LIVE"
+            lastMessageLabel.text = roomInfo.lastMessage.text
+            
+        default:
+            break
+        }
+    }
 }

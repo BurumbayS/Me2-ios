@@ -18,11 +18,17 @@ class Room {
     let uuid: String
     let type: RoomType
     let lastMessage: Message
-//    let companion: 
+    var participants = [ChatParticipant]()
     
     init(json: JSON) {
         uuid = json["uuid"].stringValue
         type = RoomType(rawValue: json["room_type"].stringValue) ?? RoomType.SIMPLE
         lastMessage = Message(json: json["last_message"])
+        
+        for item in json["participants"].arrayValue {
+            guard item["id"].intValue != UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as! Int else { continue }
+            
+            participants.append(ChatParticipant(json: item))
+        }
     }
 }

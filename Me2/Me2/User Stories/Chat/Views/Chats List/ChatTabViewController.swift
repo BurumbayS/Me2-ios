@@ -54,6 +54,8 @@ class ChatTabViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.backgroundColor = .white
+        
         tableView.registerNib(ChatTableViewCell.self)
     }
     
@@ -79,6 +81,18 @@ extension ChatTabViewController: UISearchResultsUpdating {
 }
 
 extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.chatsList.count
@@ -86,7 +100,7 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChatTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        
+        cell.configure(with: viewModel.chatsList[indexPath.row])
         return cell
     }
     
