@@ -14,7 +14,6 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
     let messageLabel = UILabel()
     let dateLabel = UILabel()
     let textBubbleView = UIView()
-    let messageView = UIView()
     
     let bubbleViewConstraints = ConstraintGroup()
     
@@ -32,9 +31,9 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
         switch message.isMine() {
         case true:
             
-            constrain(messageView, self.contentView, replace: bubbleViewConstraints) { messageView, view in
-                messageView.right == view.right - 10
-                messageView.width == message.width
+            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
+                bubbleView.right == view.right - 10
+                bubbleView.width == message.width
             }
 
             self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomLeft], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
@@ -45,9 +44,9 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
 
         case false:
             
-            constrain(messageView, self.contentView, replace: bubbleViewConstraints) { messageView, view in
-                messageView.left == view.left + 10
-                messageView.width == message.width
+            constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
+                bubbleView.left == view.left + 10
+                bubbleView.width == message.width
             }
 
             self.textBubbleView.roundCorners([.topLeft, .topRight, .bottomRight], radius: 10, size: CGRect(x: 0, y: 0, width: message.width, height: message.height))
@@ -62,8 +61,6 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
-        messageView.backgroundColor = .white
-        
         messageLabel.numberOfLines = 0
         messageLabel.font = UIFont(name: "Roboto-Regular", size: 15)
         textBubbleView.addSubview(messageLabel)
@@ -83,20 +80,14 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
             date.height == 15
         }
         
-        messageView.addSubview(textBubbleView)
-        constrain(textBubbleView, messageView) { bubbleView, messageView in
-            bubbleView.top == messageView.top
-            bubbleView.bottom == messageView.bottom
-            bubbleView.left == messageView.left
-            bubbleView.right == messageView.right
+        self.contentView.addSubview(textBubbleView)
+        constrain(textBubbleView, self.contentView) { bubbleView, view in
+            bubbleView.top == view.top
+            bubbleView.bottom == view.bottom
         }
-        
-        self.contentView.addSubview(messageView)
-        constrain(messageView, self.contentView, replace: bubbleViewConstraints) { messageView, view in
-            messageView.top == view.top
-            messageView.bottom == view.bottom
-            messageView.left == view.left + 10
-            messageView.right == view.right - 10
+        constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
+            bubbleView.left == view.left + 10
+            bubbleView.right == view.right - 10
 //            bubbleView.width == 250
         }
     }

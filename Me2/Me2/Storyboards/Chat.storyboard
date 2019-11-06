@@ -83,7 +83,7 @@
         <!--Chat View Controller-->
         <scene sceneID="wSc-kE-vXU">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="mvm-Fr-SLS" customClass="ChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" hidesBottomBarWhenPushed="YES" id="mvm-Fr-SLS" customClass="ChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="24Q-JT-2Nj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

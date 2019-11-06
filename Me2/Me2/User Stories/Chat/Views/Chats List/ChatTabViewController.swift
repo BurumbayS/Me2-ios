@@ -38,6 +38,7 @@ class ChatTabViewController: UIViewController {
     
     private func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
 
         navigationItem.title = "Чаты"
         

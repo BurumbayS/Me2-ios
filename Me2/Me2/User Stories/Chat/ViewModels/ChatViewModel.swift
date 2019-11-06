@@ -30,6 +30,12 @@ class ChatViewModel {
         socket.connect()
     }
     
+    func abortConnection() {
+        guard let socket = self.socket else { return }
+        
+        socket.disconnect()
+    }
+    
     func sendMessage(with text: String) {
         let json: JSON = ["text": text, "message_type" : "TEXT"]
         

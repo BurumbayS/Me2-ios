@@ -24,14 +24,15 @@ class ChatViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         view.endEditing(true)
-        tabBarController?.tabBar.isHidden = false
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
+        
+        viewModel.abortConnection()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
@@ -64,7 +65,7 @@ class ChatViewController: UIViewController {
             case .ok:
                 
                 self?.setUpConnection()
-                self?.collectionView.reloadData()
+//                self?.collectionView.reloadSections([0])
                 
             case .error:
                 break
