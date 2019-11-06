@@ -18,6 +18,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
     
     var viewModel: ChatViewModel!
+    var messageCellID = "ChatMessageCell"
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -90,18 +91,23 @@ class ChatViewController: UIViewController {
 
     private func configureCollectionView() {
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(ChatMessageCollectionViewCell.self)
+        for i in 0..<20 {
+            let cellID = "\(messageCellID)\(i)"
+            collectionView.register(ChatMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        }
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            inputViewBottomConstraint.constant = keyboardSize.height - self.view.safeAreaInsets.bottom
+            let keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            inputViewBottomConstraint.constant = keyboardHeight
+            collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: keyboardHeight + messageInputView.frame.height + 20, right: 0)
             
             UIView.animate(withDuration: 0, animations: {
                 self.view.layoutIfNeeded()
@@ -120,6 +126,7 @@ class ChatViewController: UIViewController {
     
     private func hideKeyboard() {
         inputViewBottomConstraint.constant = 0
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         UIView.animate(withDuration: 0) {
             self.view.layoutIfNeeded()
         }
@@ -147,7 +154,8 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: ChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cellID = "\(messageCellID)\(indexPath.row % 20)"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
         
         cell.configure(message: viewModel.messages.value[indexPath.row])
         

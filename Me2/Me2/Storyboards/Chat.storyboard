@@ -89,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z8R-Bu-EOY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1vs-5m-mmF">
                                     <size key="itemSize" width="50" height="50"/>
@@ -154,8 +154,8 @@
                         <constraints>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="2oW-kg-cMS"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="bottom" secondItem="vfZ-G3-fsL" secondAttribute="bottom" id="4jq-JP-K8c"/>
+                            <constraint firstItem="hqV-Fv-O8J" firstAttribute="bottom" secondItem="z8R-Bu-EOY" secondAttribute="bottom" id="B9J-Ro-KEz"/>
                             <constraint firstItem="vfZ-G3-fsL" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="IcT-Rj-hQI"/>
-                            <constraint firstItem="vfZ-G3-fsL" firstAttribute="top" secondItem="z8R-Bu-EOY" secondAttribute="bottom" id="N53-nE-kBZ"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="trailing" secondItem="vfZ-G3-fsL" secondAttribute="trailing" id="gNo-vY-hxw"/>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="top" secondItem="hqV-Fv-O8J" secondAttribute="top" id="w5b-NN-NEo"/>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="trailing" secondItem="hqV-Fv-O8J" secondAttribute="trailing" id="zWg-fT-Zck"/>
