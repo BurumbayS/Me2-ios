@@ -88,7 +88,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z8R-Bu-EOY">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z8R-Bu-EOY" customClass="CollectionView" customModule="Me2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1vs-5m-mmF">
@@ -163,7 +163,7 @@
                         <viewLayoutGuide key="safeArea" id="hqV-Fv-O8J"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="z8R-Bu-EOY" id="UXU-KF-YwA"/>
+                        <outlet property="collectionView" destination="z8R-Bu-EOY" id="5pa-Ap-itq"/>
                         <outlet property="inputViewBottomConstraint" destination="4jq-JP-K8c" id="qXG-Ko-TVH"/>
                         <outlet property="messageInputView" destination="vfZ-G3-fsL" id="uz6-lz-0Cd"/>
                         <outlet property="messageTextField" destination="jmV-u6-mzY" id="kZq-PW-j05"/>

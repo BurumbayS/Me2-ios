@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ChatViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var messageInputView: UIView!
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
@@ -53,10 +53,47 @@ class ChatViewController: UIViewController {
     }
     
     private func bindDynamics() {
-        viewModel.messages.bind { [unowned self] (messages) in
+//        viewModel.messages.bind { [unowned self] (messages) in
+//            self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
+//
+//            //scroll to bottom if the last sended is my message or i'm at the end of chat
+//            if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (messages.last?.isMine())! {
+//                self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+//            }
+//        }
+        
+        viewModel.onNewMessage = ({ messages in
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
-            self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
-        }
+            
+            //scroll to bottom if the last sended is my message or i'm at the end of chat
+            if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (messages.last?.isMine())! {
+                self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
+            }
+        })
+        
+        viewModel.onPrevMessagesLoad = ({ previousMessages, allMessages in
+            var indexPathes = [IndexPath]()
+            for i in 0..<previousMessages.count {
+                indexPathes.append(IndexPath(row: i, section: 0))
+            }
+            
+            let oldContentHeight = self.collectionView.contentSize.height
+            let oldContentOffset = self.collectionView.contentOffset.y
+            self.collectionView.reloadDataWithCompletion {
+                let newContentHeight = self.collectionView.contentSize.height
+                self.collectionView.contentOffset.y = oldContentOffset + (newContentHeight - oldContentHeight)
+                self.collectionView.layoutIfNeeded()
+            }
+            
+//            self.collectionView.insertItems(at: indexPathes)
+//            self.collectionView.scrollToItem(at: IndexPath(row: previousMessages.count - 1, section: 0), at: .top, animated: true)
+        })
+//        viewModel.newMessage.bind { [unowned self] (message) in
+//            if let index = (self.viewModel.messages.value).firstIndex(where: { $0.id == message.id}) {
+//                self.collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+//                self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: true)
+//            }
+//        }
     }
     
     private func loadMessages() {
@@ -167,7 +204,21 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         self.view.endEditing(true)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y < 0 {
+//            loadMessages()
+//        }
+//    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 0 {
+            loadMessages()
+        }
     }
+    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if scrollView.contentOffset.y < -10 {
+//            loadMessages()
+//        }
+//    }
 }

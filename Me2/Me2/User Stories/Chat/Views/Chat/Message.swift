@@ -29,13 +29,15 @@ class Message {
     let time: String
     let sender: Int
     let type: MessageType
+    let createdAt: String
     
     init(json: JSON) {
         self.id = json["id"].int64Value
         self.text = json["text"].stringValue
         self.time = "15:07"
-        self.type = MessageType(rawValue: json["message_type"].stringValue)!
+        self.type = MessageType(rawValue: json["message_type"].stringValue) ?? .TEXT
         self.sender = json["sender"].intValue
+        self.createdAt = json["created_at"].stringValue
         
         //calculate height and width for message view width date and paddings
         self.height = text.getHeight(withConstrainedWidth: maxWidth, font: UIFont(name: "Roboto-Regular", size: 15)!) + 10 + 15

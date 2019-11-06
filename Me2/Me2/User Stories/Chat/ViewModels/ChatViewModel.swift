@@ -12,15 +12,21 @@ import Alamofire
 
 class ChatViewModel {
     var messages: Dynamic<[Message]>
+//    var newMessage: Dynamic<Message>!
     
     let roomUUID: String
+    var loadingMessages = false
     
     var socket: WebSocket!
+    
+    var onNewMessage: (([Message]) -> ())?
+    var onPrevMessagesLoad: (([Message], [Message]) -> ())?
     
     init(uuid: String) {
         self.roomUUID = uuid
         
         messages = Dynamic([])
+//        newMessage = Dynamic(Message(json: JSON()))
     }
     
     func setUpConnection() {
@@ -45,10 +51,18 @@ class ChatViewModel {
         if let message = json.rawString() {
             socket.write(string: message)
         }
+        
+        onNewMessage?(messages.value)
     }
     
     func loadMessages(completion: ResponseBlock?) {
-        let url = messagesListURL + "room=\(roomUUID)"
+        if (!loadingMessages) { loadingMessages = true } else { return }
+        
+        var url = messagesListURL + "room=\(roomUUID)"
+        
+        if messages.value.count > 0 {
+            url += "&created_at=\(messages.value[0].createdAt)"
+        }
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { [weak self] (response) in
@@ -57,10 +71,15 @@ class ChatViewModel {
                     
                     let json = JSON(value)
                     
+                    var messages = [Message]()
                     for item in json["data"]["results"].arrayValue.reversed() {
-                        self?.messages.value.append(Message(json: item))
+                        messages.append(Message(json: item))
                     }
                     
+                    self?.messages.value = messages + ((self?.messages.value) ?? [])
+                    self?.onPrevMessagesLoad?(messages, self?.messages.value ?? [])
+                    
+                    self?.loadingMessages = false
                     completion?(.ok, "")
                     
                 case .failure(let error):
