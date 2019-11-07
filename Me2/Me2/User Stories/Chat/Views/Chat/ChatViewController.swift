@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var messageInputView: UIView!
@@ -107,8 +108,11 @@ class ChatViewController: UIViewController {
     }
     
     private func configureViews() {
+        sendButton.isHidden = true
+        
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
+        messageTextField.addTarget(self, action: #selector(messageEdited), for: .editingChanged)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
         messageTextField.layer.borderWidth = 1
         messageTextField.layer.borderColor = Color.gray.cgColor
@@ -160,8 +164,16 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @objc private func messageEdited() {
+        if messageTextField.text != "" {
+            sendButton.isHidden = false
+        } else {
+            sendButton.isHidden = true
+        }
+    }
+    
     @IBAction func sendPressed(_ sender: Any) {
-        guard let text = messageTextField.text else { return }
+        guard let text = messageTextField.text, text != "" else { return }
         
         viewModel.sendMessage(with: text)
         
