@@ -11,56 +11,44 @@ import SwiftyJSON
 import Alamofire
 
 class ChatViewModel {
-    var messages: Dynamic<[Message]>
+    var messages = [Message]()
     
     let roomUUID: String
-    var loadingMessages: Dynamic<Bool>
+    var loadingMessages = false
     
-    var socket: WebSocket!
+    var adapter: ChatAdapter!
     
     var onNewMessage: (([Message]) -> ())?
     var onPrevMessagesLoad: (([Message], [Message]) -> ())?
     
     init(uuid: String) {
         self.roomUUID = uuid
-        
-        messages = Dynamic([])
-        loadingMessages = Dynamic(false)
     }
     
     func setUpConnection() {
-        guard let token = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) as? String else { return }
-        socket = WebSocket(url: URL(string: "ws://api.me2.aiba.kz/ws/\(roomUUID)/?token=\(token)")!)
-        socket.delegate = self
-        socket.connect()
+        adapter = ChatAdapter(uuid: roomUUID, onNewMessage: { [weak self] (message) in
+            self?.messages.append(message)
+            self?.onNewMessage?(self?.messages ?? [])
+        })
+        
+        adapter.setUpConnection()
     }
     
     func abortConnection() {
-        guard let socket = self.socket else { return }
-        
-        socket.disconnect()
+       adapter.abortConnection()
     }
     
     func sendMessage(with text: String) {
-        let json: JSON = ["text": text, "message_type" : "TEXT"]
-        
-        let message = Message(json: json)
-        messages.value.append(message)
-    
-        if let message = json.rawString() {
-            socket.write(string: message)
-        }
-        
-        onNewMessage?(messages.value)
+        adapter.sendMessage(with: text)
     }
     
     func loadMessages(completion: ResponseBlock?) {
-        if (!loadingMessages.value) { loadingMessages.value = true } else { return }
+        if (!loadingMessages) { loadingMessages = true } else { return }
         
         var url = messagesListURL + "room=\(roomUUID)"
         
-        if messages.value.count > 0 {
-            url += "&created_at=\(messages.value[0].createdAt)"
+        if messages.count > 0 {
+            url += "&created_at=\(messages[0].createdAt)"
         }
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
@@ -68,7 +56,7 @@ class ChatViewModel {
                 switch response.result {
                 case .success(let value):
                     
-                    self?.loadingMessages.value = false
+                    self?.loadingMessages = false
                     
                     let json = JSON(value)
                     
@@ -77,8 +65,8 @@ class ChatViewModel {
                         messages.append(Message(json: item))
                     }
                     
-                    self?.messages.value = messages + ((self?.messages.value) ?? [])
-                    self?.onPrevMessagesLoad?(messages, self?.messages.value ?? [])
+                    self?.messages = messages + ((self?.messages) ?? [])
+                    self?.onPrevMessagesLoad?(messages, self?.messages ?? [])
                     
                     completion?(.ok, "")
                     
@@ -90,28 +78,4 @@ class ChatViewModel {
     }
     
     let messagesListURL = Network.chat + "/message/?limit=20&"
-}
-
-extension ChatViewModel: WebSocketDelegate {
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("websocket is connected")
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocket is disconnected: \(error?.localizedDescription ?? "")")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let json = JSON(parseJSON: text)
-        
-        let message = Message(json: json["message"])
-        if !message.isMine() {
-            messages.value.append(message)
-            onNewMessage?(messages.value)
-        }
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("got some data: \(data.count)")
-    }
 }

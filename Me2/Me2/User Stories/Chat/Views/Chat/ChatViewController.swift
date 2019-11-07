@@ -57,14 +57,11 @@ class ChatViewController: UIViewController {
         configureCollectionView()
         
         setUpConnection()
+        showLoader()
         loadMessages()
     }
     
     private func bindDynamics() {
-        viewModel.loadingMessages.bind { (loading) in
-            self.collectionView.reloadData()
-        }
-        
         viewModel.onNewMessage = ({ messages in
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
             
@@ -83,8 +80,6 @@ class ChatViewController: UIViewController {
             let oldContentHeight = self.collectionView.contentSize.height
             let oldContentOffset = self.collectionView.contentOffset.y
             self.collectionView.reloadDataWithCompletion {
-                self.hideLoader()
-                
                 let newContentHeight = self.collectionView.contentSize.height
                 
                 //if its the first portion of messages
@@ -103,7 +98,7 @@ class ChatViewController: UIViewController {
             switch status {
             case .ok:
                 
-                self?.setUpConnection()
+                self?.hideLoader()
                 
             case .error:
                 break
@@ -156,8 +151,8 @@ class ChatViewController: UIViewController {
             UIView.animate(withDuration: 0, animations: {
                 self.view.layoutIfNeeded()
             }) { (completed) in
-                if self.viewModel.messages.value.count > 0 {
-                    self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: true)
+                if self.viewModel.messages.count > 0 {
+                    self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.count - 1, section: 0), at: .bottom, animated: true)
                 }
             }
         }
@@ -204,20 +199,20 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = viewModel.messages.value[indexPath.row].height
+        let height = viewModel.messages[indexPath.row].height
         
         return CGSize(width: self.view.frame.width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.messages.value.count
+        return viewModel.messages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellID = "\(messageCellID)\(indexPath.row % 20)"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
         
-        cell.configure(message: viewModel.messages.value[indexPath.row])
+        cell.configure(message: viewModel.messages[indexPath.row])
         
         return cell
     }

@@ -215,6 +215,7 @@
 		DDF7D06B237041300093FF4B /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06A237041300093FF4B /* Room.swift */; };
 		DDF7D06D23715D3B0093FF4B /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */; };
 		DDF7D06F2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */; };
+		DDF7D0712374289C0093FF4B /* ChatAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D0702374289C0093FF4B /* ChatAdapter.swift */; };
 		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
@@ -437,6 +438,7 @@
 		DDF7D06A237041300093FF4B /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Room.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/Room.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatParticipant.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ChatParticipant.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDF7D0702374289C0093FF4B /* ChatAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatAdapter.swift; path = "Me2/User Stories/Chat/Views/Chat/ChatAdapter.swift"; sourceTree = SOURCE_ROOT; };
 		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				DD2CE375236854D000992D7F /* Message.swift */,
 				DDF7D06A237041300093FF4B /* Room.swift */,
 				DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */,
+				DDF7D0702374289C0093FF4B /* ChatAdapter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1586,6 +1589,7 @@
 				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
+				DDF7D0712374289C0093FF4B /* ChatAdapter.swift in Sources */,
 				DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
