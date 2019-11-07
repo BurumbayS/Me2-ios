@@ -14,7 +14,7 @@ class ChatViewModel {
     var messages: Dynamic<[Message]>
     
     let roomUUID: String
-    var loadingMessages = false
+    var loadingMessages: Dynamic<Bool>
     
     var socket: WebSocket!
     
@@ -25,6 +25,7 @@ class ChatViewModel {
         self.roomUUID = uuid
         
         messages = Dynamic([])
+        loadingMessages = Dynamic(false)
     }
     
     func setUpConnection() {
@@ -54,7 +55,7 @@ class ChatViewModel {
     }
     
     func loadMessages(completion: ResponseBlock?) {
-        if (!loadingMessages) { loadingMessages = true } else { return }
+        if (!loadingMessages.value) { loadingMessages.value = true } else { return }
         
         var url = messagesListURL + "room=\(roomUUID)"
         
@@ -67,6 +68,8 @@ class ChatViewModel {
                 switch response.result {
                 case .success(let value):
                     
+                    self?.loadingMessages.value = false
+                    
                     let json = JSON(value)
                     
                     var messages = [Message]()
@@ -77,7 +80,6 @@ class ChatViewModel {
                     self?.messages.value = messages + ((self?.messages.value) ?? [])
                     self?.onPrevMessagesLoad?(messages, self?.messages.value ?? [])
                     
-                    self?.loadingMessages = false
                     completion?(.ok, "")
                     
                 case .failure(let error):

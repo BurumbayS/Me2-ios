@@ -61,6 +61,8 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
+        self.backgroundColor = .white
+        
         messageLabel.numberOfLines = 0
         messageLabel.font = UIFont(name: "Roboto-Regular", size: 15)
         textBubbleView.addSubview(messageLabel)

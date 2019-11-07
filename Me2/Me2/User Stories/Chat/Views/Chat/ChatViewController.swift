@@ -9,9 +9,13 @@
 import UIKit
 import IQKeyboardManagerSwift
 import SwiftyJSON
+import NVActivityIndicatorView
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var loader: NVActivityIndicatorView!
+    @IBOutlet weak var loaderView: UIView!
+    @IBOutlet weak var loaderViewHeight: NSLayoutConstraint!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var messageTextField: UITextField!
@@ -48,15 +52,19 @@ class ChatViewController: UIViewController {
         
         addDismissKeyboard()
         
+        bindDynamics()
         configureViews()
         configureCollectionView()
         
         setUpConnection()
         loadMessages()
-        bindDynamics()
     }
     
     private func bindDynamics() {
+        viewModel.loadingMessages.bind { (loading) in
+            self.collectionView.reloadData()
+        }
+        
         viewModel.onNewMessage = ({ messages in
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
             
@@ -75,6 +83,8 @@ class ChatViewController: UIViewController {
             let oldContentHeight = self.collectionView.contentSize.height
             let oldContentOffset = self.collectionView.contentOffset.y
             self.collectionView.reloadDataWithCompletion {
+                self.hideLoader()
+                
                 let newContentHeight = self.collectionView.contentSize.height
                 
                 //if its the first portion of messages
@@ -122,8 +132,9 @@ class ChatViewController: UIViewController {
     }
 
     private func configureCollectionView() {
+        collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -132,6 +143,7 @@ class ChatViewController: UIViewController {
             let cellID = "\(messageCellID)\(i)"
             collectionView.register(ChatMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         }
+        collectionView.register(LoadingMessagesCollectionViewCell.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -162,6 +174,14 @@ class ChatViewController: UIViewController {
         UIView.animate(withDuration: 0) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func showLoader() {
+        loader.startAnimating()
+    }
+    
+    private func hideLoader() {
+        loader.stopAnimating()
     }
     
     @objc private func messageEdited() {
@@ -209,6 +229,13 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y <= 0 {
             loadMessages()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // on reach the top (including top content inset) show loading animation
+        if scrollView.contentOffset.y < -30 {
+            showLoader()
         }
     }
 }
