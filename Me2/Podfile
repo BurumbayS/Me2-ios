@@ -23,5 +23,6 @@ target 'Me2' do
   pod 'RangeSeekSlider'
   pod 'ShimmerSwift'
   pod 'Starscream', '~> 3.0.2'
+  pod 'NVActivityIndicatorView'
 
 end

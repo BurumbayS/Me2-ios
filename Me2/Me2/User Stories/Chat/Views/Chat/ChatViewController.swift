@@ -46,22 +46,16 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         addDismissKeyboard()
+        
         configureViews()
         configureCollectionView()
+        
+        setUpConnection()
         loadMessages()
         bindDynamics()
     }
     
     private func bindDynamics() {
-//        viewModel.messages.bind { [unowned self] (messages) in
-//            self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
-//
-//            //scroll to bottom if the last sended is my message or i'm at the end of chat
-//            if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (messages.last?.isMine())! {
-//                self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
-//            }
-//        }
-        
         viewModel.onNewMessage = ({ messages in
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
             
@@ -81,19 +75,16 @@ class ChatViewController: UIViewController {
             let oldContentOffset = self.collectionView.contentOffset.y
             self.collectionView.reloadDataWithCompletion {
                 let newContentHeight = self.collectionView.contentSize.height
-                self.collectionView.contentOffset.y = oldContentOffset + (newContentHeight - oldContentHeight)
+                
+                //if its the first portion of messages
+                if oldContentHeight == 0 {
+                    self.collectionView.contentOffset.y = newContentHeight - self.collectionView.frame.height + self.collectionView.contentInset.bottom
+                } else {
+                    self.collectionView.contentOffset.y = oldContentOffset + (newContentHeight - oldContentHeight)
+                }
                 self.collectionView.layoutIfNeeded()
             }
-            
-//            self.collectionView.insertItems(at: indexPathes)
-//            self.collectionView.scrollToItem(at: IndexPath(row: previousMessages.count - 1, section: 0), at: .top, animated: true)
         })
-//        viewModel.newMessage.bind { [unowned self] (message) in
-//            if let index = (self.viewModel.messages.value).firstIndex(where: { $0.id == message.id}) {
-//                self.collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
-//                self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: true)
-//            }
-//        }
     }
     
     private func loadMessages() {
@@ -102,7 +93,6 @@ class ChatViewController: UIViewController {
             case .ok:
                 
                 self?.setUpConnection()
-//                self?.collectionView.reloadSections([0])
                 
             case .error:
                 break
@@ -204,21 +194,9 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         self.view.endEditing(true)
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.y < 0 {
-//            loadMessages()
-//        }
-//    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y <= 0 {
             loadMessages()
         }
     }
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if scrollView.contentOffset.y < -10 {
-//            loadMessages()
-//        }
-//    }
 }

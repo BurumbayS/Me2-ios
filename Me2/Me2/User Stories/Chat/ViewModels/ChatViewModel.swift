@@ -12,7 +12,6 @@ import Alamofire
 
 class ChatViewModel {
     var messages: Dynamic<[Message]>
-//    var newMessage: Dynamic<Message>!
     
     let roomUUID: String
     var loadingMessages = false
@@ -26,7 +25,6 @@ class ChatViewModel {
         self.roomUUID = uuid
         
         messages = Dynamic([])
-//        newMessage = Dynamic(Message(json: JSON()))
     }
     
     func setUpConnection() {
@@ -107,6 +105,7 @@ extension ChatViewModel: WebSocketDelegate {
         let message = Message(json: json["message"])
         if !message.isMine() {
             messages.value.append(message)
+            onNewMessage?(messages.value)
         }
     }
     
