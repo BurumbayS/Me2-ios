@@ -113,11 +113,8 @@ class ChatViewController: UIViewController {
     }
     
     private func configureViews() {
-        sendButton.isHidden = true
-        
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
-        messageTextField.addTarget(self, action: #selector(messageEdited), for: .editingChanged)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
         messageTextField.layer.borderWidth = 1
         messageTextField.layer.borderColor = Color.gray.cgColor
@@ -178,14 +175,6 @@ class ChatViewController: UIViewController {
     
     private func hideLoader() {
         loader.stopAnimating()
-    }
-    
-    @objc private func messageEdited() {
-        if messageTextField.text != "" {
-            sendButton.isHidden = false
-        } else {
-            sendButton.isHidden = true
-        }
     }
     
     @IBAction func sendPressed(_ sender: Any) {
