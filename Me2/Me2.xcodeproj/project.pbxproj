@@ -216,6 +216,8 @@
 		DDF7D06D23715D3B0093FF4B /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */; };
 		DDF7D06F2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */; };
 		DDF7D0712374289C0093FF4B /* ChatAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D0702374289C0093FF4B /* ChatAdapter.swift */; };
+		DDF7D073237433D90093FF4B /* LiveChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D072237433D90093FF4B /* LiveChatViewModel.swift */; };
+		DDF7D07523743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D07423743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift */; };
 		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
@@ -439,6 +441,8 @@
 		DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatParticipant.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ChatParticipant.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDF7D0702374289C0093FF4B /* ChatAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatAdapter.swift; path = "Me2/User Stories/Chat/Views/Chat/ChatAdapter.swift"; sourceTree = SOURCE_ROOT; };
+		DDF7D072237433D90093FF4B /* LiveChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatViewModel.swift; sourceTree = "<group>"; };
+		DDF7D07423743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -629,6 +633,7 @@
 				DDCE6E7422F7ECD9006E54D1 /* ChatTabViewModel.swift */,
 				DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */,
 				DD2CE377236855FD00992D7F /* ChatViewModel.swift */,
+				DDF7D072237433D90093FF4B /* LiveChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1003,6 +1008,7 @@
 				DDCE6E6A22F7E7DA006E54D1 /* LiveChatViewController.swift */,
 				DDCE6E6E22F7E95F006E54D1 /* ParticipantCollectionViewCell.swift */,
 				DDCE6E6F22F7E95F006E54D1 /* ParticipantCollectionViewCell.xib */,
+				DDF7D07423743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift */,
 			);
 			path = "Live Chat";
 			sourceTree = "<group>";
@@ -1429,6 +1435,7 @@
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */,
+				DDF7D073237433D90093FF4B /* LiveChatViewModel.swift in Sources */,
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
@@ -1559,6 +1566,7 @@
 				DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
+				DDF7D07523743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
 				DDBCD72923546A2700384DD5 /* ResponseReviewTableViewCell.swift in Sources */,

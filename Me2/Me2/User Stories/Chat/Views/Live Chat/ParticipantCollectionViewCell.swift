@@ -18,4 +18,8 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
         
     }
 
+    func configure(with user: ChatParticipant) {
+        logoImageView.kf.setImage(with: URL(string: user.avatar), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        titleLabel.text = user.username
+    }
 }

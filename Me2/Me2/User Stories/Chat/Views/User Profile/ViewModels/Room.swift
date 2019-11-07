@@ -26,9 +26,13 @@ class Room {
         lastMessage = Message(json: json["last_message"])
         
         for item in json["participants"].arrayValue {
-            guard item["id"].intValue != UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as! Int else { continue }
+//            guard item["id"].intValue != UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as! Int else { continue }
             
             participants.append(ChatParticipant(json: item))
         }
+    }
+    
+    func getSender(of message: Message) -> ChatParticipant? {
+        return participants.first(where: { $0.id == message.sender })
     }
 }

@@ -21,6 +21,8 @@ enum MessageType: String {
 
 class Message {
     let maxWidth: CGFloat = 250
+    let sidePaddings: CGFloat = 20
+    
     let height: CGFloat
     let width: CGFloat
     
@@ -41,7 +43,10 @@ class Message {
         
         //calculate height and width for message view width date and paddings
         self.height = text.getHeight(withConstrainedWidth: maxWidth, font: UIFont(name: "Roboto-Regular", size: 15)!) + 10 + 15
-        self.width = min(ceil(text.getWidth(with: UIFont(name: "Roboto-Regular", size: 15)!)) + 20, maxWidth)
+        
+        let timeTextWidth = ceil(time.getWidth(with: UIFont(name: "Roboto-Regular", size: 11)!)) + sidePaddings
+        let messageTextWidth = ceil(text.getWidth(with: UIFont(name: "Roboto-Regular", size: 15)!)) + sidePaddings
+        self.width = min( max(timeTextWidth, messageTextWidth) , maxWidth)
     }
     
     func isMine() -> Bool {

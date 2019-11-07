@@ -139,6 +139,7 @@ class ChatViewController: UIViewController {
             collectionView.register(ChatMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         }
         collectionView.register(LoadingMessagesCollectionViewCell.self)
+        collectionView.register(LiveChatMessageCollectionViewCell.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -199,7 +200,7 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = viewModel.messages[indexPath.row].height
+        let height = viewModel.heightForCell(at: indexPath)
         
         return CGSize(width: self.view.frame.width, height: height)
     }
@@ -209,12 +210,23 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let message = viewModel.messages[indexPath.row]
+        
+        if viewModel.room.type == .LIVE && !message.isMine() {
+            
+            let cell: LiveChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(with: message, and: viewModel.room.getSender(of: message))
+            return cell
+            
+        }
+        
         let cellID = "\(messageCellID)\(indexPath.row % 20)"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
         
         cell.configure(message: viewModel.messages[indexPath.row])
         
         return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

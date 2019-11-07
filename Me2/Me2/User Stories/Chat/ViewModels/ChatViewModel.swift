@@ -13,7 +13,7 @@ import Alamofire
 class ChatViewModel {
     var messages = [Message]()
     
-    let roomUUID: String
+    let room: Room
     var loadingMessages = false
     
     var adapter: ChatAdapter!
@@ -21,12 +21,12 @@ class ChatViewModel {
     var onNewMessage: (([Message]) -> ())?
     var onPrevMessagesLoad: (([Message], [Message]) -> ())?
     
-    init(uuid: String) {
-        self.roomUUID = uuid
+    init(room: Room) {
+        self.room = room
     }
     
     func setUpConnection() {
-        adapter = ChatAdapter(uuid: roomUUID, onNewMessage: { [weak self] (message) in
+        adapter = ChatAdapter(uuid: room.uuid, onNewMessage: { [weak self] (message) in
             self?.messages.append(message)
             self?.onNewMessage?(self?.messages ?? [])
         })
@@ -45,7 +45,7 @@ class ChatViewModel {
     func loadMessages(completion: ResponseBlock?) {
         if (!loadingMessages) { loadingMessages = true } else { return }
         
-        var url = messagesListURL + "room=\(roomUUID)"
+        var url = messagesListURL + "room=\(room.uuid)"
         
         if messages.count > 0 {
             url += "&created_at=\(messages[0].createdAt)"
@@ -75,6 +75,17 @@ class ChatViewModel {
                     completion?(.fail, "")
                 }
         }
+    }
+    
+    func heightForCell(at indexPath: IndexPath) -> CGFloat {
+        let message = messages[indexPath.row]
+        
+        if room.type == .LIVE && !message.isMine() {
+            let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
+            return height
+        }
+        
+        return message.height
     }
     
     let messagesListURL = Network.chat + "/message/?limit=20&"

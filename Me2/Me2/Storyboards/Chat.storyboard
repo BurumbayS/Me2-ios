@@ -44,7 +44,7 @@
         <!--Live Chat View Controller-->
         <scene sceneID="1cf-Rs-Vwq">
             <objects>
-                <viewController storyboardIdentifier="LiveChatViewController" id="i8v-JS-acQ" customClass="LiveChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LiveChatViewController" hidesBottomBarWhenPushed="YES" id="i8v-JS-acQ" customClass="LiveChatViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zFy-CJ-PYn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,22 +63,31 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erO-aw-NxV">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JLT-C1-1lD" firstAttribute="trailing" secondItem="erO-aw-NxV" secondAttribute="trailing" id="5WJ-tV-ufo"/>
+                            <constraint firstItem="JLT-C1-1lD" firstAttribute="bottom" secondItem="erO-aw-NxV" secondAttribute="bottom" id="6lI-Qx-0tX"/>
+                            <constraint firstItem="erO-aw-NxV" firstAttribute="top" secondItem="z4Y-P6-qPy" secondAttribute="bottom" id="EfW-l7-AHu"/>
                             <constraint firstItem="z4Y-P6-qPy" firstAttribute="leading" secondItem="JLT-C1-1lD" secondAttribute="leading" id="Vc8-6c-v6c"/>
                             <constraint firstItem="JLT-C1-1lD" firstAttribute="trailing" secondItem="z4Y-P6-qPy" secondAttribute="trailing" id="al0-Pk-po3"/>
                             <constraint firstItem="z4Y-P6-qPy" firstAttribute="top" secondItem="JLT-C1-1lD" secondAttribute="top" id="bnx-qL-nHb"/>
+                            <constraint firstItem="erO-aw-NxV" firstAttribute="leading" secondItem="JLT-C1-1lD" secondAttribute="leading" id="gNA-JH-0Y1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JLT-C1-1lD"/>
                     </view>
                     <connections>
+                        <outlet property="chatView" destination="erO-aw-NxV" id="czC-CD-FVd"/>
                         <outlet property="participantsCollectionView" destination="z4Y-P6-qPy" id="FPm-CU-vFt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfm-nR-TMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="43"/>
+            <point key="canvasLocation" x="1789.8550724637682" y="42.857142857142854"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="wSc-kE-vXU">
@@ -88,6 +97,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_chat_background" translatesAutoresizingMaskIntoConstraints="NO" id="UAn-Ku-DKj">
+                                <rect key="frame" x="0.0" y="74" width="414" height="738"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggI-aS-R3Y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="30"/>
                                 <subviews>
@@ -179,13 +191,17 @@
                         <constraints>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="2oW-kg-cMS"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="bottom" secondItem="vfZ-G3-fsL" secondAttribute="bottom" id="4jq-JP-K8c"/>
+                            <constraint firstItem="hqV-Fv-O8J" firstAttribute="trailing" secondItem="UAn-Ku-DKj" secondAttribute="trailing" id="5Sq-Pe-Q6J"/>
                             <constraint firstItem="ggI-aS-R3Y" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="83M-EI-ae9"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="bottom" secondItem="z8R-Bu-EOY" secondAttribute="bottom" id="B9J-Ro-KEz"/>
+                            <constraint firstItem="vfZ-G3-fsL" firstAttribute="top" secondItem="UAn-Ku-DKj" secondAttribute="bottom" id="DgU-ki-7pC"/>
                             <constraint firstItem="ggI-aS-R3Y" firstAttribute="top" secondItem="hqV-Fv-O8J" secondAttribute="top" id="GMN-X2-k79"/>
                             <constraint firstItem="vfZ-G3-fsL" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="IcT-Rj-hQI"/>
+                            <constraint firstItem="UAn-Ku-DKj" firstAttribute="top" secondItem="ggI-aS-R3Y" secondAttribute="bottom" id="Jn9-pr-tao"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="trailing" secondItem="vfZ-G3-fsL" secondAttribute="trailing" id="gNo-vY-hxw"/>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="top" secondItem="hqV-Fv-O8J" secondAttribute="top" id="hcL-E4-Wd5"/>
                             <constraint firstItem="hqV-Fv-O8J" firstAttribute="trailing" secondItem="ggI-aS-R3Y" secondAttribute="trailing" id="pjt-RH-czN"/>
+                            <constraint firstItem="UAn-Ku-DKj" firstAttribute="leading" secondItem="hqV-Fv-O8J" secondAttribute="leading" id="s1J-1R-DGq"/>
                             <constraint firstItem="z8R-Bu-EOY" firstAttribute="trailing" secondItem="hqV-Fv-O8J" secondAttribute="trailing" id="zWg-fT-Zck"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hqV-Fv-O8J"/>
@@ -324,6 +340,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="live_chat_background" width="424" height="698"/>
         <image name="plus_icon" width="18" height="18"/>
         <image name="send_icon" width="26" height="26"/>
     </resources>

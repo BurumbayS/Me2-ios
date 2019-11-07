@@ -117,9 +117,24 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = Storyboard.chatViewController() as! ChatViewController
-        vc.viewModel = ChatViewModel(uuid: viewModel.chatsList[indexPath.row].uuid)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let chat = viewModel.chatsList[indexPath.row]
+        
+        switch chat.type {
+        case .SIMPLE:
+            
+            let vc = Storyboard.chatViewController() as! ChatViewController
+            vc.viewModel = ChatViewModel(room: chat)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        case .LIVE:
+            
+            let vc = Storyboard.liveChatViewController() as! LiveChatViewController
+            vc.viewModel = LiveChatViewModel(room: chat)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        default:
+            break
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

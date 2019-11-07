@@ -61,7 +61,7 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViews() {
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
         
         messageLabel.numberOfLines = 0
         messageLabel.font = UIFont(name: "Roboto-Regular", size: 15)
@@ -90,7 +90,6 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
         constrain(textBubbleView, self.contentView, replace: bubbleViewConstraints) { bubbleView, view in
             bubbleView.left == view.left + 10
             bubbleView.right == view.right - 10
-//            bubbleView.width == 250
         }
     }
 }
