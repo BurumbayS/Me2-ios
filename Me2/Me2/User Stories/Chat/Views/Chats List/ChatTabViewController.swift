@@ -48,7 +48,7 @@ class ChatTabViewController: UIViewController {
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         navigationItem.searchController = search
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_chat_icon"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_chat_icon"), style: .plain, target: self, action: #selector(createNewChat))
     }
     
     private func configureTableView() {
@@ -60,7 +60,7 @@ class ChatTabViewController: UIViewController {
         tableView.registerNib(ChatTableViewCell.self)
     }
     
-    private func createNewChat() {
+    @objc private func createNewChat() {
         let contactsVC = Storyboard.contactsViewController()
         present(contactsVC, animated: true, completion: nil)
     }

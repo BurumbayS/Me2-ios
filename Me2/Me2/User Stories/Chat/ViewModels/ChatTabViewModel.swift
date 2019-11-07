@@ -26,7 +26,7 @@ class ChatTabViewModel {
                     
                     completion?(.ok, "")
                     
-                case .failure(let error):
+                case .failure(_ ):
                     print(JSON(response.data as Any))
                     completion?(.fail, "")
                 }
