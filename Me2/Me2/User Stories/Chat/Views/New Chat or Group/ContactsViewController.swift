@@ -11,53 +11,52 @@ import Cartography
 
 class ContactsViewController: UIViewController {
 
-    let tableView = UITableView()
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
+    
     let searchBar = SearchBar.instanceFromNib()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpNavBar()
-        setUpViews()
         setUpTableView()
     }
 
     private func setUpNavBar() {
-        navigationController?.navigationBar.tintColor = Color.red
-        navigationController?.navigationBar.shouldRemoveShadow(true)
+        navBar.tintColor = Color.red
+        navBar.isTranslucent = false
+        navBar.shouldRemoveShadow(true)
 
-        let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont(name: "SFProRounded-Regular", size: 20)
-        label.text = "Контакты"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
+        navItem.title = "Новый чат"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add_contact_icon"), style: .plain, target: self, action: #selector(addNewContact))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(cancelNewChat))
     }
     
-    @objc private func addNewContact() {
-        
+    @objc private func cancelNewChat() {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    private func setUpViews() {
-        searchBar.backgroundColor = Color.lightGray
-        
-        self.view.addSubview(searchBar)
-        constrain(searchBar, self.view) { bar, view in
-            bar.left == view.left + 10
-            bar.right == view.right - 10
-            bar.top == view.top + 10
-            bar.height == 36
-        }
-        
-        self.view.addSubview(tableView)
-        constrain(tableView, searchBar, self.view) { table, bar, view in
-            table.left == view.left
-            table.right == view.right
-            table.top == bar.bottom + 10
-            table.bottom == view.bottom
-        }
-    }
+//    private func setUpViews() {
+//        searchBar.backgroundColor = Color.lightGray
+//
+//        self.view.addSubview(searchBar)
+//        constrain(searchBar, self.view) { bar, view in
+//            bar.left == view.left + 10
+//            bar.right == view.right - 10
+//            bar.top == view.top + 10
+//            bar.height == 36
+//        }
+//
+//        self.view.addSubview(tableView)
+//        constrain(tableView, searchBar, self.view) { table, bar, view in
+//            table.left == view.left
+//            table.right == view.right
+//            table.top == bar.bottom + 10
+//            table.bottom == view.bottom
+//        }
+//    }
     
     private func setUpTableView() {
         tableView.delegate = self
@@ -74,19 +73,38 @@ class ContactsViewController: UIViewController {
 extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = Color.lightGray
         
-        let letterLabel = UILabel()
-        letterLabel.text = "A"
-        letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
-        letterLabel.textColor = .gray
-        
-        headerView.addSubview(letterLabel)
-        constrain(letterLabel, headerView) { letter, view in
-            letter.left == view.left + 26
-            letter.top == view.top
-            letter.bottom == view.bottom
+        switch section {
+        case 0:
+            
+            searchBar.backgroundColor = Color.lightGray
+    
+            headerView.addSubview(searchBar)
+            constrain(searchBar, headerView) { bar, view in
+                bar.left == view.left + 10
+                bar.right == view.right - 10
+                bar.centerY == view.centerY
+                bar.height == 36
+            }
+            
+        default:
+            
+            headerView.backgroundColor = Color.lightGray
+            
+            let letterLabel = UILabel()
+            letterLabel.text = "A"
+            letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
+            letterLabel.textColor = .gray
+            
+            headerView.addSubview(letterLabel)
+            constrain(letterLabel, headerView) { letter, view in
+                letter.left == view.left + 26
+                letter.top == view.top
+                letter.bottom == view.bottom
+            }
+            
         }
+        
         
         return headerView
     }
@@ -94,7 +112,7 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
-            return 0
+            return 66
         default:
             return 15
         }
@@ -107,7 +125,7 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            return 0
         default:
             return 2
         }
@@ -116,9 +134,9 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell: CreateGroupTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.selectionStyle = .none
-            return cell
+            
+            return UITableViewCell()
+            
         default:
             let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(selectable: false)
