@@ -14,7 +14,7 @@ class ChatTabViewModel {
     var chatsList = [Room]()
     
     func getChatList(completion: ResponseBlock?) {
-        Alamofire.request(chatListURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+        Alamofire.request(roomURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -33,5 +33,25 @@ class ChatTabViewModel {
         }
     }
     
-    let chatListURL = Network.chat + "/room/"
+    func openNewChat(withUser id: Int, completion: ResponseBlock?) {
+        let params = ["room_type": "SIMPLE", "participants": [id]] as [String: Any]
+        
+        Alamofire.request(roomURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(_ ):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    let roomURL = Network.chat + "/room/"
 }

@@ -24,8 +24,8 @@ class ChatTableViewCell: UITableViewCell {
         switch roomInfo.type {
         case .SIMPLE:
             
-            avatarImageView.kf.setImage(with: URL(string: roomInfo.participants[0].avatar), placeholder: UIImage(named: "sample_avatar"), options: [])
-            nameLabel.text = roomInfo.participants[0].username
+            avatarImageView.kf.setImage(with: URL(string: roomInfo.avatarURL), placeholder: UIImage(named: "sample_avatar"), options: [])
+            nameLabel.text = roomInfo.name
             lastMessageLabel.text = roomInfo.lastMessage.text
         
         case .LIVE:

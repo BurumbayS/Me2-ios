@@ -61,7 +61,10 @@ class ChatTabViewController: UIViewController {
     }
     
     @objc private func createNewChat() {
-        let contactsVC = Storyboard.contactsViewController()
+        let contactsVC = Storyboard.contactsViewController() as! ContactsViewController
+        contactsVC.viewModel = ContactsViewModel(onContactSelected: { [weak self] (userID) in
+            self?.openNewChat(withUser: userID)
+        })
         present(contactsVC, animated: true, completion: nil)
     }
     
@@ -71,6 +74,21 @@ class ChatTabViewController: UIViewController {
     
     private func deleteChat() {
         
+    }
+    
+    private func openNewChat(withUser id: Int) {
+        viewModel.openNewChat(withUser: id) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.loadChatsList()
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 

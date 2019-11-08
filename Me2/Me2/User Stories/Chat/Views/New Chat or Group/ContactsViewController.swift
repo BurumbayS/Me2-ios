@@ -17,6 +17,8 @@ class ContactsViewController: UIViewController {
     
     let searchBar = SearchBar.instanceFromNib()
     
+    var viewModel: ContactsViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -146,9 +148,11 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0:
-            let vc = Storyboard.createGroupViewController()
-            present(vc, animated: true, completion: nil)
+        case 1:
+            
+            viewModel.contactSelectionHandler?(9)
+            dismiss(animated: true, completion: nil)
+            
         default:
             break;
         }
