@@ -12,6 +12,7 @@ import SwiftyJSON
 class ChatTabViewModel {
     
     var chatsList = [Room]()
+    var newChatRoom: Room!
     
     func getChatList(completion: ResponseBlock?) {
         Alamofire.request(roomURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
@@ -44,7 +45,8 @@ class ChatTabViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
+//                    print(json)
+                    self.newChatRoom = Room(json: json["data"])
                     
                     completion?(.ok, "")
                     

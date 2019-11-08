@@ -84,12 +84,34 @@ class ChatTabViewController: UIViewController {
             case .ok:
                 
                 self?.loadChatsList()
+                if let room = self?.viewModel.newChatRoom {
+                    self?.goToChat(room: room)
+                }
                 
             case .error:
                 break
             case .fail:
                 break
             }
+        }
+    }
+    
+    private func goToChat(room: Room) {
+        switch room.type {
+        case .SIMPLE:
+            
+            let vc = Storyboard.chatViewController() as! ChatViewController
+            vc.viewModel = ChatViewModel(room: room)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        case .LIVE:
+            
+            let vc = Storyboard.liveChatViewController() as! LiveChatViewController
+            vc.viewModel = LiveChatViewModel(room: room)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        default:
+            break
         }
     }
 }
@@ -137,24 +159,9 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chat = viewModel.chatsList[indexPath.row]
+        let room = viewModel.chatsList[indexPath.row]
         
-        switch chat.type {
-        case .SIMPLE:
-            
-            let vc = Storyboard.chatViewController() as! ChatViewController
-            vc.viewModel = ChatViewModel(room: chat)
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        case .LIVE:
-            
-            let vc = Storyboard.liveChatViewController() as! LiveChatViewController
-            vc.viewModel = LiveChatViewModel(room: chat)
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        default:
-            break
-        }
+        goToChat(room: room)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

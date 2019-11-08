@@ -26,7 +26,7 @@ class ContactTableViewCell: UITableViewCell {
     
     var checked = CheckStatus.unchecked
     
-    func configure(selectable: Bool) {
+    func configure(contact: User, selectable: Bool) {
         switch selectable {
         case true:
             checkStatusImageView.isHidden = false
@@ -34,6 +34,14 @@ class ContactTableViewCell: UITableViewCell {
         default:
             checkStatusImageView.isHidden = true
         }
+        
+        configureViews(for: contact)
+    }
+    
+    private func configureViews(for contact: User) {
+        avatarImageView.kf.setImage(with: URL(string: contact.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        nameLabel.text = contact.fullName
+        usernameLabel.text = contact.username
     }
     
     func select() {

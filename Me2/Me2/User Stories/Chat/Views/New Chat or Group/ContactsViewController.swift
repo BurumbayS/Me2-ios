@@ -14,6 +14,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var emptyContactListStatus: UILabel!
     
     let searchBar = SearchBar.instanceFromNib()
     
@@ -24,8 +25,11 @@ class ContactsViewController: UIViewController {
         
         setUpNavBar()
         setUpTableView()
+        
+        configureSearchBar()
+        bindDynamics()
     }
-
+    
     private func setUpNavBar() {
         navBar.tintColor = Color.red
         navBar.isTranslucent = false
@@ -40,26 +44,6 @@ class ContactsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-//    private func setUpViews() {
-//        searchBar.backgroundColor = Color.lightGray
-//
-//        self.view.addSubview(searchBar)
-//        constrain(searchBar, self.view) { bar, view in
-//            bar.left == view.left + 10
-//            bar.right == view.right - 10
-//            bar.top == view.top + 10
-//            bar.height == 36
-//        }
-//
-//        self.view.addSubview(tableView)
-//        constrain(tableView, searchBar, self.view) { table, bar, view in
-//            table.left == view.left
-//            table.right == view.right
-//            table.top == bar.bottom + 10
-//            table.bottom == view.bottom
-//        }
-//    }
-    
     private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,6 +53,36 @@ class ContactsViewController: UIViewController {
         
         tableView.registerNib(ContactTableViewCell.self)
         tableView.register(CreateGroupTableViewCell.self)
+    }
+    
+    private func configureSearchBar() {
+        searchBar.configure(with: self) {
+            
+        }
+        
+        viewModel.searchValue = searchBar.searchValue
+    }
+    
+    private func bindDynamics() {
+        viewModel.bindDynamics()
+        
+        viewModel.updateSearchResults.bind { [weak self] (update) in
+            self?.tableView.reloadData()
+        }
+    }
+}
+
+extension ContactsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            viewModel.searchActivated = false
+            emptyContactListStatus.isHidden = false
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        emptyContactListStatus.isHidden = true
+        viewModel.searchActivated = true
     }
 }
 
@@ -92,12 +106,12 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         default:
             
             headerView.backgroundColor = Color.lightGray
-            
+
             let letterLabel = UILabel()
             letterLabel.text = "A"
             letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
             letterLabel.textColor = .gray
-            
+
             headerView.addSubview(letterLabel)
             constrain(letterLabel, headerView) { letter, view in
                 letter.left == view.left + 26
@@ -116,12 +130,12 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 66
         default:
-            return 15
+            return CGFloat.leastNormalMagnitude
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,7 +143,7 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 0
         default:
-            return 2
+            return viewModel.searchResults.count
         }
     }
     
@@ -140,9 +154,11 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
             
         default:
+            
             let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(selectable: false)
+            cell.configure(contact: viewModel.searchResults[indexPath.row], selectable: false)
             return cell
+            
         }
     }
     
@@ -150,7 +166,10 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 1:
             
-            viewModel.contactSelectionHandler?(10)
+            self.view.endEditing(true)
+            
+            viewModel.contactSelectionHandler?(viewModel.searchResults[indexPath.row].id)
+            
             dismiss(animated: true, completion: nil)
             
         default:

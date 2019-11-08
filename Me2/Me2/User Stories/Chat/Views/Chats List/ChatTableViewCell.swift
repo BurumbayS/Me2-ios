@@ -24,17 +24,20 @@ class ChatTableViewCell: UITableViewCell {
         switch roomInfo.type {
         case .SIMPLE:
             
-            avatarImageView.kf.setImage(with: URL(string: roomInfo.avatarURL), placeholder: UIImage(named: "sample_avatar"), options: [])
+            avatarImageView.kf.setImage(with: URL(string: roomInfo.avatarURL), placeholder: UIImage(named: "placeholder_avatar"), options: [])
             nameLabel.text = roomInfo.name
-            lastMessageLabel.text = roomInfo.lastMessage.text
+            nameLabel.textColor = .black
         
         case .LIVE:
             
             nameLabel.text = "LIVE"
-            lastMessageLabel.text = roomInfo.lastMessage.text
+            nameLabel.textColor = Color.blue
             
         default:
             break
         }
+        
+        dateTimeLabel.text = roomInfo.lastMessage.getTime()
+        lastMessageLabel.text = roomInfo.lastMessage.text
     }
 }

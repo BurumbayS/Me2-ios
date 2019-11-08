@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Chat Tab View Controller-->
         <scene sceneID="g27-MF-04T">
@@ -229,11 +234,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Obx-rX-fio">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Obx-rX-fio">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDd-zV-low">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш список контактов пока пуст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-6R-o53">
+                                <rect key="frame" x="61.5" y="417" width="291" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="b7S-47-mEu"/>
+                                    <constraint firstAttribute="width" constant="291" id="w4b-PS-nck"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDd-zV-low">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="lFX-O0-lKD"/>
@@ -244,9 +259,11 @@
                         <constraints>
                             <constraint firstItem="XDd-zV-low" firstAttribute="trailing" secondItem="MTq-fj-Z17" secondAttribute="trailing" id="2hZ-hp-VXE"/>
                             <constraint firstItem="MTq-fj-Z17" firstAttribute="trailing" secondItem="Obx-rX-fio" secondAttribute="trailing" id="4zL-ni-BPB"/>
+                            <constraint firstItem="NI0-6R-o53" firstAttribute="centerY" secondItem="MTq-fj-Z17" secondAttribute="centerY" id="Gb6-fG-cL6"/>
                             <constraint firstItem="MTq-fj-Z17" firstAttribute="bottom" secondItem="Obx-rX-fio" secondAttribute="bottom" id="Ik0-Ph-St3"/>
                             <constraint firstItem="XDd-zV-low" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="LdE-Ji-fXh"/>
                             <constraint firstItem="Obx-rX-fio" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="NGf-ZF-vE9"/>
+                            <constraint firstItem="NI0-6R-o53" firstAttribute="centerX" secondItem="MTq-fj-Z17" secondAttribute="centerX" id="RT6-wg-lHq"/>
                             <constraint firstItem="Obx-rX-fio" firstAttribute="top" secondItem="XDd-zV-low" secondAttribute="bottom" id="dtI-ed-kqi"/>
                             <constraint firstItem="XDd-zV-low" firstAttribute="top" secondItem="MTq-fj-Z17" secondAttribute="top" id="vPd-pD-Wtk"/>
                         </constraints>
@@ -254,6 +271,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2PP-TE-AQB"/>
                     <connections>
+                        <outlet property="emptyContactListStatus" destination="NI0-6R-o53" id="nGU-vw-n6I"/>
                         <outlet property="navBar" destination="XDd-zV-low" id="fcS-Ao-I5t"/>
                         <outlet property="navItem" destination="lFX-O0-lKD" id="rO5-9w-ZP4"/>
                         <outlet property="tableView" destination="Obx-rX-fio" id="BWu-W4-nOI"/>
@@ -261,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxE-hP-OCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="728"/>
+            <point key="canvasLocation" x="1789.8550724637682" y="727.90178571428567"/>
         </scene>
         <!--Create Group View Controller-->
         <scene sceneID="fac-c9-RvX">
