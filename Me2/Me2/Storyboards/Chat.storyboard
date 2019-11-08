@@ -97,7 +97,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_chat_background" translatesAutoresizingMaskIntoConstraints="NO" id="UAn-Ku-DKj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="UAn-Ku-DKj">
                                 <rect key="frame" x="0.0" y="74" width="414" height="738"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggI-aS-R3Y">
@@ -117,7 +117,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gNJ-eh-x7v" firstAttribute="top" secondItem="ggI-aS-R3Y" secondAttribute="top" id="ATp-3e-7Jr"/>
                                     <constraint firstAttribute="bottom" secondItem="gNJ-eh-x7v" secondAttribute="bottom" id="bYM-Rc-2af"/>
@@ -348,7 +348,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="live_chat_background" width="424" height="698"/>
+        <image name="chat_wallpaper" width="633" height="1034"/>
         <image name="plus_icon" width="18" height="18"/>
         <image name="send_icon" width="26" height="26"/>
     </resources>

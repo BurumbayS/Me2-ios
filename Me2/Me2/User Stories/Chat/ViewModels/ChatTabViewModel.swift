@@ -20,6 +20,8 @@ class ChatTabViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    
+                    self.chatsList = []
                     for item in json["data"]["results"].arrayValue {
                         self.chatsList.append(Room(json: item))
                     }

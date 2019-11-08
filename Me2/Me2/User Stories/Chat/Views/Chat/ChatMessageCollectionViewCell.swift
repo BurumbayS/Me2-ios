@@ -58,6 +58,7 @@ class ChatMessageCollectionViewCell: UICollectionViewCell {
         }
         
         messageLabel.text = message.text
+        dateLabel.text = message.getTime()
     }
     
     private func setUpViews() {

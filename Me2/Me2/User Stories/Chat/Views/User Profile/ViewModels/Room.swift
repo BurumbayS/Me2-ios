@@ -37,4 +37,10 @@ class Room {
     func getSender(of message: Message) -> ChatParticipant? {
         return participants.first(where: { $0.id == message.sender })
     }
+    
+    func getSecondParticipant() -> ChatParticipant {
+        let participants = self.participants.filter({ $0.id != UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as? Int })
+        
+        return participants[0]
+    }
 }

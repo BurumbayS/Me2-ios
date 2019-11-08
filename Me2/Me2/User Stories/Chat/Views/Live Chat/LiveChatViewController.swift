@@ -41,6 +41,7 @@ class LiveChatViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
         configureViews()
+        configureNavBar()
         configureCollectionView()
     }
 
@@ -55,6 +56,14 @@ class LiveChatViewController: UIViewController {
             chat.top == view.top
             chat.bottom == view.bottom
         }
+    }
+    
+    private func configureNavBar() {
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
+        
+        self.navigationItem.twoLineTitleView(titles: ["Live", ""], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
     }
     
     private func configureCollectionView() {

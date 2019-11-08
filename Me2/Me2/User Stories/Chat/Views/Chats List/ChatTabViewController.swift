@@ -37,6 +37,7 @@ class ChatTabViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
 
@@ -49,6 +50,7 @@ class ChatTabViewController: UIViewController {
         navigationItem.searchController = search
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_chat_icon"), style: .plain, target: self, action: #selector(createNewChat))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     private func configureTableView() {

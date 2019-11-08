@@ -150,7 +150,7 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 1:
             
-            viewModel.contactSelectionHandler?(9)
+            viewModel.contactSelectionHandler?(10)
             dismiss(animated: true, completion: nil)
             
         default:

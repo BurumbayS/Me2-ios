@@ -20,6 +20,18 @@ class UserProfileViewController: UIViewController {
     
     var viewModel = UserProfileViewModel(profileType: .myProfile)
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.shouldRemoveShadow(false)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,10 +41,8 @@ class UserProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shouldRemoveShadow(true)
-        navigationController?.navigationBar.makeTransparentBar()
-        navigationController?.navigationBar.tintColor = .black
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.makeTransparentBar()
     }
     
     private func configureTableView() {

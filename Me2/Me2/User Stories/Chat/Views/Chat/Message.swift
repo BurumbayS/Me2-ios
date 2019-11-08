@@ -54,4 +54,13 @@ class Message {
         
         return self.sender == (UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as? Int)
     }
+    
+    func getTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        let date = dateFormatter.date(from: createdAt)
+        
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date ?? Date())
+    }
 }

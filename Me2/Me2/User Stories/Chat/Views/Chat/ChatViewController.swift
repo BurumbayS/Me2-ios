@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import SwiftyJSON
 import NVActivityIndicatorView
+import Cartography
 
 class ChatViewController: UIViewController {
 
@@ -46,6 +47,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -55,10 +57,31 @@ class ChatViewController: UIViewController {
         bindDynamics()
         configureViews()
         configureCollectionView()
+        configureNavBar()
         
         setUpConnection()
         showLoader()
         loadMessages()
+    }
+    
+    private func configureNavBar() {
+        let participant = viewModel.room.getSecondParticipant()
+        
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        containView.isUserInteractionEnabled = true
+        containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showParticipantProfile)))
+        
+        let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        imageview.kf.setImage(with: URL(string: participant.avatar), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        imageview.contentMode = .scaleAspectFill
+        imageview.layer.cornerRadius = 18
+        imageview.layer.masksToBounds = true
+        containView.addSubview(imageview)
+        
+        let rightBarButton = UIBarButtonItem(customView: containView)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        self.navigationItem.twoLineTitleView(titles: [participant.username, participant.fullName], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
     }
     
     private func bindDynamics() {
@@ -84,7 +107,7 @@ class ChatViewController: UIViewController {
                 
                 //if its the first portion of messages
                 if oldContentHeight == 0 {
-                    self.collectionView.contentOffset.y = newContentHeight - self.collectionView.frame.height + self.collectionView.contentInset.bottom
+                    self.collectionView.contentOffset.y = max(oldContentOffset, newContentHeight - self.collectionView.frame.height + self.collectionView.contentInset.bottom)
                 } else {
                     self.collectionView.contentOffset.y = oldContentOffset + (newContentHeight - oldContentHeight)
                 }
@@ -175,6 +198,13 @@ class ChatViewController: UIViewController {
     
     private func hideLoader() {
         loader.stopAnimating()
+    }
+    
+    @objc private func showParticipantProfile() {
+        let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+        let vc = navigationController.viewControllers[0] as! UserProfileViewController
+        vc.viewModel = UserProfileViewModel(userID: viewModel.room.getSecondParticipant().id, profileType: .guestProfile)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func sendPressed(_ sender: Any) {

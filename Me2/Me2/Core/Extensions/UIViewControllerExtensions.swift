@@ -36,6 +36,10 @@ extension UIViewController {
         navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_button"), style: .plain, target: self, action: #selector(dismissSelf))
     }
     
+    func removeBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+    
     @objc func dismissSelf() {
         navigationController?.popViewController(animated: true)
     }
