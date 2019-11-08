@@ -36,6 +36,7 @@ class LiveChatMessageCollectionViewCell: UICollectionViewCell {
         avatarImageView.kf.setImage(with: URL(string: sender?.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         usernameLabel.text = sender?.username
         messageLabel.text = message.text
+        dateLabel.text = message.getTime()
         
         configureBubbleView(with: message, and: sender)
     }

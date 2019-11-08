@@ -60,6 +60,7 @@ class LiveChatViewController: UIViewController {
     
     private func configureNavBar() {
         navigationController?.navigationBar.shouldRemoveShadow(true)
+        navigationController?.navigationBar.isTranslucent = false
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
         

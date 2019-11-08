@@ -46,9 +46,6 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -82,6 +79,11 @@ class ChatViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButton
         
         self.navigationItem.twoLineTitleView(titles: [participant.username, participant.fullName], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
+        
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func bindDynamics() {
@@ -165,7 +167,7 @@ class ChatViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            let keyboardHeight = keyboardSize.height - (window.rootViewController?.view.safeAreaInsets.bottom ?? 0)//self.view.safeAreaInsets.bottom
             inputViewBottomConstraint.constant = keyboardHeight
             collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: keyboardHeight + messageInputView.frame.height + 20, right: 0)
             
