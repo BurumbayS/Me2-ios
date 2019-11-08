@@ -58,6 +58,8 @@ class ChatTabViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.backgroundColor = .white
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 40
         
         tableView.registerNib(ChatTableViewCell.self)
     }
