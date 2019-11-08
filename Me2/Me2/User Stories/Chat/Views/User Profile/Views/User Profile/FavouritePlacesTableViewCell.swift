@@ -85,6 +85,8 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
         collectionView.register(FavouritePlaceCollectionViewCell.self)
     }
 }
@@ -92,8 +94,8 @@ class FavouritePlacesTableViewCell: UITableViewCell {
 extension FavouritePlacesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 80, height: 90)
         

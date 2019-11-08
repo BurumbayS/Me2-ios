@@ -18,7 +18,7 @@ class UserProfileViewController: UIViewController {
     let interestsHeader = ProfileSectionHeader()
     let favouritePlacesHeader = ProfileSectionHeader()
     
-    let viewModel = UserProfileViewModel()
+    var viewModel = UserProfileViewModel(profileType: .myProfile)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +29,10 @@ class UserProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navigationController?.navigationBar.isHidden = true
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        navBar.isTranslucent = false
-        navBar.shouldRemoveShadow(true)
-        navBar.tintColor = .black
-        
-        navItem.title = ""
-        
-        if (viewModel.profileType == .guestProfile) { setUpBackBarButton(for: navItem) }
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+        navigationController?.navigationBar.makeTransparentBar()
+        navigationController?.navigationBar.tintColor = .black
     }
     
     private func configureTableView() {
@@ -114,7 +108,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .interests, .favourite_places:
             return 50
         default:
-            return 0
+            return 1
         }
     }
     
@@ -127,7 +121,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             return 30
         default:
-            return 0
+            return 1
         }
     }
     

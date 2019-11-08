@@ -38,6 +38,7 @@ class LiveChatViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
         configureViews()
         configureCollectionView()
@@ -83,7 +84,7 @@ extension LiveChatViewController : UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let navigationController = Storyboard.userProfileViewController() as! UINavigationController
         let vc = navigationController.viewControllers[0] as! UserProfileViewController
-        vc.viewModel.profileType = .guestProfile
+        vc.viewModel = UserProfileViewModel(userID: viewModel.room.participants[indexPath.row].id, profileType: .guestProfile)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
