@@ -24,14 +24,16 @@ extension UINavigationItem {
         }
         
         let secondLabel = UILabel()
+        secondLabel.textAlignment = .center
         secondLabel.textColor = colors[1]
         secondLabel.font = fonts[1]
         secondLabel.text = titles[1]
         titleView.addSubview(secondLabel)
-        constrain(secondLabel, firstLabel, titleView) { fullName, username, view in
-            fullName.centerX == view.centerX
-            fullName.top == username.bottom
-            fullName.bottom == view.bottom
+        constrain(secondLabel, firstLabel, titleView) { firstLabel, secondLabel, view in
+            firstLabel.centerX == view.centerX
+            firstLabel.top == secondLabel.bottom
+            firstLabel.bottom == view.bottom
+            firstLabel.width == UIScreen.main.bounds.width * 0.5
         }
         
         self.titleView = titleView

@@ -24,11 +24,16 @@ class LiveChatViewController: UIViewController {
         
         view.endEditing(true)
         
+        navigationController?.navigationBar.shouldRemoveShadow(false)
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+        navigationController?.navigationBar.isTranslucent = false
         
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
@@ -59,12 +64,9 @@ class LiveChatViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navigationController?.navigationBar.shouldRemoveShadow(true)
-        navigationController?.navigationBar.isTranslucent = false
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
         
-        self.navigationItem.twoLineTitleView(titles: ["Live", ""], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
+        self.navigationItem.twoLineTitleView(titles: ["Live", viewModel.room.name], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
     }
     
     private func configureCollectionView() {
@@ -78,7 +80,7 @@ class LiveChatViewController: UIViewController {
 extension LiveChatViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 100)
+        return CGSize(width: 60, height: 105)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

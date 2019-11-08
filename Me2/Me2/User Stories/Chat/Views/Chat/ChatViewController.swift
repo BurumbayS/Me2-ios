@@ -12,7 +12,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Cartography
 
-class ChatViewController: UIViewController {
+class ChatViewController: ListContainedViewController {
 
     @IBOutlet weak var loader: NVActivityIndicatorView!
     @IBOutlet weak var loaderView: UIView!
@@ -39,8 +39,15 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.isTranslucent = false
+        
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
     }
     
     override func viewDidLoad() {
@@ -67,14 +74,14 @@ class ChatViewController: UIViewController {
         let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         containView.isUserInteractionEnabled = true
         containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showParticipantProfile)))
-        
+
         let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         imageview.kf.setImage(with: URL(string: participant.avatar), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         imageview.contentMode = .scaleAspectFill
         imageview.layer.cornerRadius = 18
         imageview.layer.masksToBounds = true
         containView.addSubview(imageview)
-        
+
         let rightBarButton = UIBarButtonItem(customView: containView)
         self.navigationItem.rightBarButtonItem = rightBarButton
         
@@ -82,12 +89,12 @@ class ChatViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func bindDynamics() {
         viewModel.onNewMessage = ({ messages in
+            self.hideEmptyListStatusLabel()
+            
             self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
             
             //scroll to bottom if the last sended is my message or i'm at the end of chat
@@ -97,6 +104,8 @@ class ChatViewController: UIViewController {
         })
         
         viewModel.onPrevMessagesLoad = ({ previousMessages, allMessages in
+            (allMessages.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
+            
             var indexPathes = [IndexPath]()
             for i in 0..<previousMessages.count {
                 indexPathes.append(IndexPath(row: i, section: 0))
@@ -115,6 +124,7 @@ class ChatViewController: UIViewController {
                 }
                 self.collectionView.layoutIfNeeded()
             }
+
         })
     }
     
@@ -165,6 +175,7 @@ class ChatViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        self.hideEmptyListStatusLabel()
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height - (window.rootViewController?.view.safeAreaInsets.bottom ?? 0)//self.view.safeAreaInsets.bottom
@@ -189,8 +200,15 @@ class ChatViewController: UIViewController {
     private func hideKeyboard() {
         inputViewBottomConstraint.constant = 0
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
-        UIView.animate(withDuration: 0) {
+        
+        UIView.animate(withDuration: 0, animations: {
             self.view.layoutIfNeeded()
+        }) { (completed) in
+            if self.messageTextField.text == "" && self.viewModel.messages.count == 0 {
+                self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
+            } else {
+                self.hideEmptyListStatusLabel()
+            }
         }
     }
     
