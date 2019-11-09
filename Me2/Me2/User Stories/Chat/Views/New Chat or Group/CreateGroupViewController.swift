@@ -154,7 +154,7 @@ extension CreateGroupViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableCell\(indexPath.row)", for: indexPath) as! ContactTableViewCell
-        cell.configure(selectable: true)
+//        cell.configure(selectable: true)
         cell.selectionStyle = .none
         return cell
     }

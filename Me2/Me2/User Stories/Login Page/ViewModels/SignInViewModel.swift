@@ -26,7 +26,10 @@ class SignInViewModel {
                     case 0:
                         
                         let token = json["data"]["token"].stringValue
+                        let id = json["data"]["user"]["id"].intValue
                         UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
+                        UserDefaults().set(id, forKey: UserDefaultKeys.userID.rawValue)
+                        
                         completion?(.ok, "")
                         
                     case 1:
@@ -57,6 +60,11 @@ class SignInViewModel {
                     let code = json["code"].intValue
                     switch code {
                     case 0:
+                        
+                        let token = json["data"]["token"].stringValue
+                        let id = json["data"]["user"]["id"].intValue
+                        UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
+                        UserDefaults().set(id, forKey: UserDefaultKeys.userID.rawValue)
                         
                         completion?(.ok, "")
                         

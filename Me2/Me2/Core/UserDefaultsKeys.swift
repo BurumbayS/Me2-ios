@@ -10,5 +10,6 @@ import Foundation
 
 enum UserDefaultKeys: String {
     case token
-    case lastMapSearchResults 
+    case lastMapSearchResults
+    case userID
 }
