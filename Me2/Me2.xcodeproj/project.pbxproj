@@ -15,6 +15,7 @@
 		DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */; };
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
+		DD2037C62376B673000485F2 /* CustomLargeTitleBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -241,6 +242,7 @@
 		DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBioTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
+		DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLargeTitleBarButton.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 				DD5653E322F4C216003A67C3 /* ChatTabViewController.swift */,
 				DD5653E922F4CB92003A67C3 /* ChatTableViewCell.swift */,
 				DD5653EA22F4CB93003A67C3 /* ChatTableViewCell.xib */,
+				DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */,
 			);
 			path = "Chats List";
 			sourceTree = "<group>";
@@ -1470,6 +1473,7 @@
 				DDCE6E7922F8202D006E54D1 /* ContactsViewController.swift in Sources */,
 				DD5653BD22F04A1E003A67C3 /* UIViewExtensions.swift in Sources */,
 				DDCE6E7522F7ECD9006E54D1 /* ChatTabViewModel.swift in Sources */,
+				DD2037C62376B673000485F2 /* CustomLargeTitleBarButton.swift in Sources */,
 				DD97CB542356E8CD002291CA /* CategoryEventsListViewMode.swift in Sources */,
 				DD2CE374236852E900992D7F /* ChatMessageCollectionViewCell.swift in Sources */,
 				DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */,

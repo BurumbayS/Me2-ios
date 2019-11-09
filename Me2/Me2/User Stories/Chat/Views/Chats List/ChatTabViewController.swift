@@ -12,20 +12,31 @@ import Cartography
 class ChatTabViewController: ListContainedViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    let newChatButton = CustomLargeTitleBarButton()
     
     let viewModel = ChatTabViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    
+        loadChatsList()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showNewChatButton(true)
         
         navigationController?.navigationBar.isTranslucent = true
-        loadChatsList()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        showNewChatButton(false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadChatsList()
         configureNavBar()
         configureTableView()
     }
@@ -63,8 +74,11 @@ class ChatTabViewController: ListContainedViewController {
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         navigationItem.searchController = search
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new_chat_icon"), style: .plain, target: self, action: #selector(createNewChat))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        newChatButton.add(to: navigationController!.navigationBar, with: UIImage(named: "new_chat_icon")!) { [weak self] in
+            self?.createNewChat()
+        }
     }
     
     private func configureTableView() {
@@ -78,7 +92,7 @@ class ChatTabViewController: ListContainedViewController {
         tableView.registerNib(ChatTableViewCell.self)
     }
     
-    @objc private func createNewChat() {
+    private func createNewChat() {
         let contactsVC = Storyboard.contactsViewController() as! ContactsViewController
         contactsVC.viewModel = ContactsViewModel(onContactSelected: { [weak self] (userID) in
             self?.openNewChat(withUser: userID)
@@ -86,6 +100,12 @@ class ChatTabViewController: ListContainedViewController {
         present(contactsVC, animated: true, completion: nil)
     }
     
+    private func showNewChatButton(_ show: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            self.newChatButton.alpha = show ? 1.0 : 0.0
+        }
+    }
+        
     private func clearChat() {
         
     }
@@ -139,12 +159,12 @@ extension ChatTabViewController: UISearchResultsUpdating {
     }
 }
 
-extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0001
+        return 0.0001//CGFloat.leastNormalMagnitude
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0001
+        return 0.0001//CGFloat.leastNormalMagnitude
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
@@ -180,5 +200,10 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource {
         goToChat(room: room)
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let height = navigationController?.navigationBar.frame.height else { return }
+        newChatButton.moveAndResizeImage(for: height)
     }
 }
