@@ -62,9 +62,11 @@ class ChatTabViewController: ListContainedViewController {
     }
     
     private func configureNavBar() {
+        extendedLayoutIncludesOpaqueBars = true
+        
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.largeTitleDisplayMode = .always
 
         navigationItem.title = "Чаты"
         
