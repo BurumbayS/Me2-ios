@@ -16,10 +16,10 @@ class CollectionView : UICollectionView {
         self.invalidateIntrinsicContentSize()
     }
 
-    override var intrinsicContentSize: CGSize {
-        let s = self.collectionViewLayout.collectionViewContentSize
-        return CGSize(width: max(s.width, 1), height: max(s.height,1))
-    }
+//    override var intrinsicContentSize: CGSize {
+//        let s = self.collectionViewLayout.collectionViewContentSize
+//        return CGSize(width: max(s.width, 1), height: max(s.height,1))
+//    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -95,7 +95,7 @@ extension AddGuestsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         
         cell.selectionStyle = .none
-        cell.configure(selectable: true)
+//        cell.configure(selectable: true)
         
         return cell
     }

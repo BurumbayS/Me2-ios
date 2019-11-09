@@ -36,6 +36,10 @@ extension UIViewController {
         navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_button"), style: .plain, target: self, action: #selector(dismissSelf))
     }
     
+    func removeBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+    
     @objc func dismissSelf() {
         navigationController?.popViewController(animated: true)
     }
@@ -60,5 +64,14 @@ extension UIViewController {
         }
         
         return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - height)
+    }
+    
+    func addDismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }

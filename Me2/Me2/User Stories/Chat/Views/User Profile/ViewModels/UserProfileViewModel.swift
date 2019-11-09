@@ -65,12 +65,19 @@ enum UserProfileSection: String {
 }
 
 class UserProfileViewModel {
-    var profileType = ProfileType.myProfile
     var sections = [UserProfileSection]()
     var myProfileCells = [MyProfileAdditionalBlockCell]()
     var guestProfileCells = [GuestProfileAdditionalBlockCell]()
     
     var tagsExpanded = Dynamic(false)
+    
+    let userID: Int
+    let profileType: ProfileType
+    
+    init(userID: Int = 0, profileType: ProfileType) {
+        self.userID = userID
+        self.profileType = profileType
+    }
     
     var presenterDelegate: ControllerPresenterDelegate!
     
@@ -96,7 +103,16 @@ class UserProfileViewModel {
     }
     
     func fetchData(completion: ResponseBlock?) {
-        Alamofire.request(userProfileURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+        var url = ""
+
+        switch profileType {
+        case .myProfile:
+            url = myProfileURL
+        case .guestProfile:
+            url = Network.user + "/\(userID)/"
+        }
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -107,8 +123,8 @@ class UserProfileViewModel {
                     self.dataLoaded = true
                     completion?(.ok, "")
                     
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure(_ ):
+                    print(JSON(response.data as Any))
                     completion?(.fail, "")
                 }
         }
@@ -169,5 +185,5 @@ class UserProfileViewModel {
         
     }
     
-    let userProfileURL = Network.user + "/get/"
+    let myProfileURL = Network.user + "/get/"
 }

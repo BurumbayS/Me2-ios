@@ -18,7 +18,19 @@ class UserProfileViewController: UIViewController {
     let interestsHeader = ProfileSectionHeader()
     let favouritePlacesHeader = ProfileSectionHeader()
     
-    let viewModel = UserProfileViewModel()
+    var viewModel = UserProfileViewModel(profileType: .myProfile)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.shouldRemoveShadow(false)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.shouldRemoveShadow(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +42,8 @@ class UserProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        navigationController?.navigationBar.isHidden = true
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        navBar.isTranslucent = false
-        navBar.shouldRemoveShadow(true)
-        navBar.tintColor = .black
-        
-        navItem.title = ""
-        
-        if (viewModel.profileType == .guestProfile) { setUpBackBarButton(for: navItem) }
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.makeTransparentBar()
     }
     
     private func configureViewModel() {
@@ -104,8 +108,8 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
-                let vc = Storyboard.favouritePlacesViewController()
-                self?.navigationController?.pushViewController(vc, animated: true)
+//                let vc = Storyboard.favouritePlacesViewController()
+//                self?.navigationController?.pushViewController(vc, animated: true)
             }
             return favouritePlacesHeader
             
@@ -119,7 +123,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .interests, .favourite_places:
             return 50
         default:
-            return 0
+            return 1
         }
     }
     
@@ -132,7 +136,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             return 30
         default:
-            return 0
+            return 1
         }
     }
     

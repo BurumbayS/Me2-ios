@@ -98,7 +98,7 @@ extension ModfyGroupViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(selectable: false)
+//            cell.configure(selectable: false)
             return cell
         }
     }
