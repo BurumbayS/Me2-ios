@@ -42,9 +42,6 @@ class LiveChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
         configureViews()
         configureNavBar()
         configureCollectionView()
@@ -64,6 +61,8 @@ class LiveChatViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
         
         self.navigationItem.twoLineTitleView(titles: ["Live", viewModel.room.name], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
