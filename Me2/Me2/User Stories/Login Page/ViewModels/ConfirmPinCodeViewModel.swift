@@ -10,11 +10,18 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+enum CodeConfirmationType {
+    case onRegistrartion
+    case onChange
+}
+
 class ConfirmPinCodeViewModel {
     let phoneActivationID: Int
+    let confirmationType: CodeConfirmationType
     
-    init(activationID : Int) {
+    init(activationID : Int, confirmationType: CodeConfirmationType) {
         phoneActivationID = activationID
+        self.confirmationType = confirmationType
     }
     
     func activatePhone(with smsCode: String, completion: ((RequestStatus, String) -> ())?) {

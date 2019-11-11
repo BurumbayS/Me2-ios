@@ -14,6 +14,8 @@ class ConfirmCodeViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var codeTextField: KKPinCodeTextField!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var viewModel: ConfirmPinCodeViewModel!
     
@@ -21,6 +23,20 @@ class ConfirmCodeViewController: UIViewController {
         super.viewDidLoad()
         
         setUpViews()
+        configureNavBar()
+    }
+    
+    private func configureNavBar() {
+        navBar.tintColor = .black
+        navBar.shouldRemoveShadow(true)
+        setUpBackBarButton(for: navItem)
+        
+        switch viewModel.confirmationType {
+        case .onChange:
+            navBar.isHidden = false
+        default:
+            navBar.isHidden = true
+        }
     }
     
     private func setUpViews() {
@@ -49,7 +65,14 @@ class ConfirmCodeViewController: UIViewController {
             switch status {
             case .ok:
                 
-                self?.performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
+                switch self?.viewModel.confirmationType {
+                case .onChange?:
+                    self?.navigationController?.popViewController(animated: true)
+                case .onRegistrartion?:
+                    self?.performSegue(withIdentifier: "ToCreatePassSegue", sender: nil)
+                default:
+                    break
+                }
                 
             case .error:
                 

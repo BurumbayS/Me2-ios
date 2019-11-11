@@ -95,7 +95,10 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
                 navigationController?.pushViewController(vc, animated: true)
                 
             case .changePhoneNumber:
-                break
+                
+                let vc = Storyboard.changePhoneNumberViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
             case .accessCode:
                 break
             }

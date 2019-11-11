@@ -147,13 +147,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Версия 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMs-Tx-9tm">
-                                <rect key="frame" x="168.5" y="398" width="77" height="18"/>
+                                <rect key="frame" x="169.5" y="398" width="75" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gni-YZ-dsh">
-                                <rect key="frame" x="42.5" y="436" width="329.5" height="59.5"/>
+                                <rect key="frame" x="44" y="436" width="326.5" height="60"/>
                                 <string key="text">Lorem ipsum dolor sit amet, consectetur 
 adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. </string>
@@ -162,7 +162,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFA-bZ-1J0">
-                                <rect key="frame" x="55" y="545.5" width="304" height="30"/>
+                                <rect key="frame" x="55" y="546" width="304" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bnV-It-DbW"/>
                                     <constraint firstAttribute="width" constant="304" id="nrV-VA-ekr"/>
@@ -176,7 +176,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKX-Xb-1Qt">
-                                <rect key="frame" x="90" y="585.5" width="234" height="30"/>
+                                <rect key="frame" x="90" y="586" width="234" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ksx-Q1-50h"/>
                                     <constraint firstAttribute="width" constant="234" id="UIX-eY-K1X"/>
@@ -513,6 +513,90 @@ incididunt ut labore et dolore magna aliqua. </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwC-1G-qPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9373.9130434782619" y="728.57142857142856"/>
+        </scene>
+        <!--Change Phone Number View Controller-->
+        <scene sceneID="6h9-mQ-FCh">
+            <objects>
+                <viewController storyboardIdentifier="ChangePhoneNumberViewController" id="pPP-T9-Rw4" customClass="ChangePhoneNumberViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CSh-sf-NDo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qK3-rG-L3K">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="vbm-3m-qfJ"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-vP-s5U">
+                                <rect key="frame" x="20" y="108" width="118" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="hDZ-Ml-ksT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nc6-5X-X0Z" customClass="AttributedTextField" customModule="Me2" customModuleProvider="target">
+                                <rect key="frame" x="20" y="146" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Sur-Bz-qY1"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiK-pn-QAu">
+                                <rect key="frame" x="82" y="216" width="250" height="45"/>
+                                <color key="backgroundColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="bAO-d3-axR"/>
+                                    <constraint firstAttribute="height" constant="45" id="i3k-Ry-08g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <state key="normal" title=" Изменить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changePressed:" destination="pPP-T9-Rw4" eventType="touchUpInside" id="agp-Z3-AFL"/>
+                                    <action selector="savePressed:" destination="Dnu-Hk-Ihl" eventType="touchUpInside" id="jAe-vS-lzw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hiK-pn-QAu" firstAttribute="top" secondItem="nc6-5X-X0Z" secondAttribute="bottom" constant="30" id="1eb-A2-xd7"/>
+                            <constraint firstItem="CKP-vP-s5U" firstAttribute="top" secondItem="qK3-rG-L3K" secondAttribute="bottom" constant="20" id="Ho9-Jq-4VW"/>
+                            <constraint firstItem="CKP-vP-s5U" firstAttribute="leading" secondItem="i9k-OC-ppo" secondAttribute="leading" constant="20" id="TC1-Fl-eWV"/>
+                            <constraint firstItem="qK3-rG-L3K" firstAttribute="trailing" secondItem="i9k-OC-ppo" secondAttribute="trailing" id="aMF-ye-Jd5"/>
+                            <constraint firstItem="nc6-5X-X0Z" firstAttribute="top" secondItem="CKP-vP-s5U" secondAttribute="bottom" constant="20" id="hW6-Ne-Cub"/>
+                            <constraint firstItem="nc6-5X-X0Z" firstAttribute="leading" secondItem="i9k-OC-ppo" secondAttribute="leading" constant="20" id="khj-hE-Rc1"/>
+                            <constraint firstItem="hiK-pn-QAu" firstAttribute="centerX" secondItem="i9k-OC-ppo" secondAttribute="centerX" id="oYU-0W-P8M"/>
+                            <constraint firstItem="i9k-OC-ppo" firstAttribute="trailing" secondItem="nc6-5X-X0Z" secondAttribute="trailing" constant="20" id="qaL-l5-Kcc"/>
+                            <constraint firstItem="qK3-rG-L3K" firstAttribute="top" secondItem="i9k-OC-ppo" secondAttribute="top" id="tNG-Zz-7Wz"/>
+                            <constraint firstItem="qK3-rG-L3K" firstAttribute="leading" secondItem="i9k-OC-ppo" secondAttribute="leading" id="uE1-z0-1Vx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i9k-OC-ppo"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="qK3-rG-L3K" id="0fV-ux-hDg"/>
+                        <outlet property="navItem" destination="vbm-3m-qfJ" id="gMS-Lh-LF8"/>
+                        <outlet property="phoneNumberTextField" destination="nc6-5X-X0Z" id="Lgx-oe-MVU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ta-rB-tyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10093" y="729"/>
         </scene>
     </scenes>
     <resources>

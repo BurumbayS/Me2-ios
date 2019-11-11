@@ -340,10 +340,19 @@
                                 <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-za-39O">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem id="zrN-8J-deY"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="V3x-za-39O" firstAttribute="trailing" secondItem="b0J-z6-6j8" secondAttribute="trailing" id="1Cf-hn-cbi"/>
                             <constraint firstItem="8iD-NT-Ebg" firstAttribute="centerX" secondItem="b0J-z6-6j8" secondAttribute="centerX" id="59t-Pk-KbE"/>
+                            <constraint firstItem="V3x-za-39O" firstAttribute="top" secondItem="b0J-z6-6j8" secondAttribute="top" id="Yfo-UU-eVY"/>
+                            <constraint firstItem="V3x-za-39O" firstAttribute="leading" secondItem="b0J-z6-6j8" secondAttribute="leading" id="eVF-bW-j8k"/>
                             <constraint firstItem="qJl-F5-y1v" firstAttribute="top" secondItem="8iD-NT-Ebg" secondAttribute="bottom" constant="20" id="lOM-pq-i92"/>
                             <constraint firstItem="8iD-NT-Ebg" firstAttribute="centerY" secondItem="b0J-z6-6j8" secondAttribute="centerY" constant="-130" id="xA8-5h-IIx"/>
                             <constraint firstItem="qJl-F5-y1v" firstAttribute="centerX" secondItem="b0J-z6-6j8" secondAttribute="centerX" id="xLm-kP-oNG"/>
@@ -353,6 +362,8 @@
                     <connections>
                         <outlet property="codeTextField" destination="7wl-aE-Hsq" id="wzM-oy-h0s"/>
                         <outlet property="errorLabel" destination="qJl-F5-y1v" id="xSU-Kq-RAK"/>
+                        <outlet property="navBar" destination="V3x-za-39O" id="zEs-S9-0hC"/>
+                        <outlet property="navItem" destination="zrN-8J-deY" id="cPI-h0-MVB"/>
                         <segue destination="4X9-O1-uv8" kind="show" identifier="ToCreatePassSegue" id="M85-tV-toV"/>
                     </connections>
                 </viewController>
@@ -428,7 +439,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkF-B8-Ape">
-                                <rect key="frame" x="78" y="468" width="258" height="30.5"/>
+                                <rect key="frame" x="76.5" y="468" width="261.5" height="30.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30.5" id="UHS-HQ-qFu"/>
                                 </constraints>
