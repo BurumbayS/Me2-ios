@@ -101,6 +101,9 @@ extension Storyboard {
     static var manageAccountViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ManageAccountViewController")
     }
+    static var changePasswordViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

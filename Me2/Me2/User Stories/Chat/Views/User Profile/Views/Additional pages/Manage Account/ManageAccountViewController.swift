@@ -83,4 +83,25 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.sections[indexPath.section] {
+        case .security:
+            
+            switch viewModel.securityParameters[indexPath.row] {
+            case .changePassword:
+                
+                let vc = Storyboard.changePasswordViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
+            case .changePhoneNumber:
+                break
+            case .accessCode:
+                break
+            }
+            
+        default:
+            break
+        }
+    }
 }
