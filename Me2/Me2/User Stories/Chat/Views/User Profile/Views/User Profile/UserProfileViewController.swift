@@ -21,13 +21,6 @@ class UserProfileViewController: UIViewController {
     
     var viewModel = UserProfileViewModel(profileType: .myProfile)
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.shouldRemoveShadow(false)
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -108,9 +101,16 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func moreActions() {
+        self.addActionSheet(with: ["Заблокировать пользователя", "Пожаловаться на пользователя"], and: [blockUser, complainToUser], and: [.destructive, .destructive])
+    }
+    
+    private func blockUser() {
         
     }
     
+    private func complainToUser() {
+        
+    }
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {

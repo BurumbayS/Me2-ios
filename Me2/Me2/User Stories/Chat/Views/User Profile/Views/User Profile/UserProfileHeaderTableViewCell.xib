@@ -61,10 +61,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aea-ws-uMn">
-                                <rect key="frame" x="221" y="5.5" width="18" height="18"/>
+                                <rect key="frame" x="209" y="-0.5" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="5Wt-6h-DzS"/>
-                                    <constraint firstAttribute="width" constant="18" id="EJ1-bY-yhk"/>
+                                    <constraint firstAttribute="height" constant="30" id="5Wt-6h-DzS"/>
+                                    <constraint firstAttribute="width" constant="30" id="EJ1-bY-yhk"/>
                                 </constraints>
                                 <state key="normal" image="edit_icon"/>
                                 <connections>

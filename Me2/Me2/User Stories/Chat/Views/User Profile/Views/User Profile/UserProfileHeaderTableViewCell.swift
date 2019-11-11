@@ -21,6 +21,7 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     
     func configure(user: Dynamic<User>, viewController: UIViewController) {
         self.user = user
+        self.parentVC = viewController
         
         avatarImageView.kf.setImage(with: URL(string: user.value.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         usernameLabel.text = user.value.username

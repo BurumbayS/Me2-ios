@@ -39,6 +39,8 @@ class ChatViewController: ListContainedViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.shouldRemoveShadow(false)
         navigationController?.navigationBar.isTranslucent = false
         
         IQKeyboardManager.shared.enable = false

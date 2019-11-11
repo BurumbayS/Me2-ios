@@ -38,18 +38,9 @@ enum MyProfileAdditionalBlockCell: String {
 
 enum GuestProfileAdditionalBlockCell: String {
     case addContact = "Добавить в контакты"
-    case removeContact = "Удалить из контактов"
-    case block = "Заблокировать"
-    case compplain = "Пожаловаться на пользователя"
-    
-    var textColor: UIColor {
-        switch self {
-        case .addContact:
-            return Color.blue
-        default:
-            return Color.red
-        }
-    }
+//    case removeContact = "Удалить из контактов"
+//    case block = "Заблокировать"
+//    case compplain = "Пожаловаться на пользователя"
 }
 
 enum ProfileType {
@@ -86,7 +77,7 @@ class UserProfileViewModel {
             if self.dataLoaded {
                 self.sections = [.bio, .interests, .favourite_places, .additional_block]
                 self.myProfileCells = [.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
-                self.guestProfileCells = [.addContact, .block, .compplain]
+                self.guestProfileCells = [.addContact]
             }
         }
     }
