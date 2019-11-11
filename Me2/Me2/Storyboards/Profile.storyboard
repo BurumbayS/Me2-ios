@@ -171,6 +171,9 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 <state key="normal" title="Условия и Политика Конфиденциальности">
                                     <color key="titleColor" red="0.26625031230000001" green="0.69434672590000002" blue="0.97626179459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="showPrivacyPolicy:" destination="iuI-d0-Oly" eventType="touchUpInside" id="BVL-Md-7EU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKX-Xb-1Qt">
                                 <rect key="frame" x="90" y="585.5" width="234" height="30"/>
@@ -182,8 +185,11 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 <state key="normal" title="Оценить приложение в App Store">
                                     <color key="titleColor" red="0.26625031230000001" green="0.69434672590000002" blue="0.97626179459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="rateApp:" destination="iuI-d0-Oly" eventType="touchUpInside" id="8ID-ji-Mac"/>
+                                </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1p-MQ-qIX">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1p-MQ-qIX">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="6Fj-SV-SDb"/>
@@ -209,8 +215,10 @@ incididunt ut labore et dolore magna aliqua. </string>
                         <viewLayoutGuide key="safeArea" id="qaU-us-tVu"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="Gni-YZ-dsh" id="g06-Fd-uxu"/>
                         <outlet property="navBar" destination="Z1p-MQ-qIX" id="sqr-mJ-hJ0"/>
                         <outlet property="navItem" destination="6Fj-SV-SDb" id="Xh6-Sa-Ax5"/>
+                        <outlet property="versionLabel" destination="hMs-Tx-9tm" id="Vlt-Tc-aax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQF-em-CY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
