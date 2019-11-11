@@ -27,21 +27,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="g61-nd-Y43">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="832"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaD-6h-WTQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="iAE-UZ-jDU"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="Qu9-jv-29f" secondAttribute="top" id="5qv-rL-k2i"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="7vm-Ql-33U"/>
+                            <constraint firstItem="IaD-6h-WTQ" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="RY0-AV-MYP"/>
+                            <constraint firstItem="IaD-6h-WTQ" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="Ue7-dN-6TD"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="Qu9-jv-29f" secondAttribute="top" constant="30" id="VDc-9Z-heU"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="ZMp-0K-JFz"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="bottom" secondItem="jiL-YL-71K" secondAttribute="bottom" id="lZg-3d-tPK"/>
+                            <constraint firstItem="IaD-6h-WTQ" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="wMH-42-l3l"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jiL-YL-71K"/>
                     </view>
                     <navigationItem key="navigationItem" id="xe5-EO-utd"/>
                     <connections>
+                        <outlet property="navBar" destination="IaD-6h-WTQ" id="Q1i-OD-VCZ"/>
+                        <outlet property="navItem" destination="iAE-UZ-jDU" id="VRH-Nn-tx1"/>
                         <outlet property="tableView" destination="g61-nd-Y43" id="M75-wp-k4K"/>
                     </connections>
                 </viewController>

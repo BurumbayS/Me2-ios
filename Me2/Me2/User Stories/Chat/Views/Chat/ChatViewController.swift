@@ -84,6 +84,8 @@ class ChatViewController: ListContainedViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func bindDynamics() {

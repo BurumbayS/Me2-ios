@@ -16,6 +16,8 @@
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
 		DD2037C62376B673000485F2 /* CustomLargeTitleBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */; };
+		DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */; };
+		DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -213,6 +215,14 @@
 		DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */; };
 		DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EF92330D21D00377796 /* FollowButton.xib */; };
 		DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EFB2330D53900377796 /* FollowButton.swift */; };
+		DDF7D05A236C002A0093FF4B /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */; };
+		DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */; };
+		DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */; };
+		DDF7D060236C4FD20093FF4B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */; };
+		DDF7D062236C5E510093FF4B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D061236C5E510093FF4B /* Notification.swift */; };
+		DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */; };
+		DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */; };
+		DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */; };
 		DDF7D06B237041300093FF4B /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06A237041300093FF4B /* Room.swift */; };
 		DDF7D06D23715D3B0093FF4B /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */; };
 		DDF7D06F2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */; };
@@ -222,14 +232,6 @@
 		DDF7D07723750E1B0093FF4B /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D07623750E1B0093FF4B /* ContactsViewModel.swift */; };
 		DDF7D07B237581970093FF4B /* UINavigationItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D07A237581970093FF4B /* UINavigationItemExtension.swift */; };
 		DDF7D07D2375CDBB0093FF4B /* ListContainedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D07C2375CDBA0093FF4B /* ListContainedViewController.swift */; };
-		DDF7D05A236C002A0093FF4B /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */; };
-		DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */; };
-		DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */; };
-		DDF7D060236C4FD20093FF4B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */; };
-		DDF7D062236C5E510093FF4B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D061236C5E510093FF4B /* Notification.swift */; };
-		DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */; };
-		DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */; };
-		DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */; };
 		DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */; };
 		DDFEE9E2233A2A4B00303797 /* NewPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */; };
 		DDFEE9E4233A363D00303797 /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */; };
@@ -251,6 +253,8 @@
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
 		DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLargeTitleBarButton.swift; sourceTree = "<group>"; };
+		DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -450,6 +454,14 @@
 		DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		DDF69EF92330D21D00377796 /* FollowButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowButton.xib; sourceTree = "<group>"; };
 		DDF69EFB2330D53900377796 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
+		DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		DDF7D061236C5E510093FF4B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewController.swift; sourceTree = "<group>"; };
+		DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountTableViewCell.swift; sourceTree = "<group>"; };
+		DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewModel.swift; sourceTree = "<group>"; };
 		DDF7D06A237041300093FF4B /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Room.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/Room.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatParticipant.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ChatParticipant.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -461,14 +473,6 @@
 		DDF7D0792375326B0093FF4B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DDF7D07A237581970093FF4B /* UINavigationItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationItemExtension.swift; sourceTree = "<group>"; };
 		DDF7D07C2375CDBA0093FF4B /* ListContainedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContainedViewController.swift; sourceTree = "<group>"; };
-		DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
-		DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
-		DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		DDF7D061236C5E510093FF4B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewController.swift; sourceTree = "<group>"; };
-		DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountTableViewCell.swift; sourceTree = "<group>"; };
-		DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewModel.swift; sourceTree = "<group>"; };
 		DDFEE9DF233A2A4B00303797 /* NewPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDFEE9E0233A2A4B00303797 /* NewPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDFEE9E3233A363D00303797 /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -514,6 +518,8 @@
 				DDB465D92344E94600EB71B9 /* ProfileSectionHeader.swift */,
 				DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */,
 				DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */,
+				DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */,
+				DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */,
 				DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */,
 				DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */,
 				DDB465D72344E05B00EB71B9 /* AddInterestsTableViewCell.swift */,
@@ -1372,6 +1378,7 @@
 				DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */,
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
 				DD97CB62235996AB002291CA /* PlaceCardCollectionViewCell.xib in Resources */,
+				DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */,
 				DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */,
 				DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */,
 				DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */,
@@ -1621,6 +1628,7 @@
 				DDF7D062236C5E510093FF4B /* Notification.swift in Sources */,
 				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
+				DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */,
 				DDB465DA2344E94600EB71B9 /* ProfileSectionHeader.swift in Sources */,
 				DDE048092341D71D00E33046 /* BookingTableViewCell.swift in Sources */,
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
