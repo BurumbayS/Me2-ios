@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class AboutAppViewController: UIViewController {
 
@@ -39,5 +40,6 @@ class AboutAppViewController: UIViewController {
     }
     
     @IBAction func rateApp(_ sender: Any) {
+        SKStoreReviewController.requestReview()
     }
 }
