@@ -15,10 +15,18 @@ class EventsTabViewModel {
     var categoryViewModels = [CategoryEventsListViewModel]()
     let newPlacesViewModel = NewPlacesViewModel()
     var allEvents = [Event]()
+    var savedEvents = [Event]()
     var listType: Dynamic<EventsListType>
     
     init() {
         listType = Dynamic(.ByCategories)
+        
+        bindDynamics()
+        configureCategories()
+        loadSavedEvents()
+    }
+    
+    private func bindDynamics() {
         listType.bind { [weak self] (value) in
             switch value {
             case .ByCategories:
@@ -27,11 +35,24 @@ class EventsTabViewModel {
                 self?.categoriesToShow = [.saved, .all]
             }
         }
-        
+    }
+    
+    private func configureCategories() {
         categories = [.saved, .popular, .new_places, .favourite_places, .actual]
         categoriesToShow = categories
         for category in categories {
             categoryViewModels.append(CategoryEventsListViewModel(categoryType: category))
+        }
+    }
+    
+    private func loadSavedEvents() {
+        if let userInfoString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
+            let json = JSON(parseJSON: userInfoString)
+            
+            savedEvents = []
+            for item in json["data"]["user"]["favourite_events"].arrayValue {
+                savedEvents.append(Event(json: item))
+            }
         }
     }
     

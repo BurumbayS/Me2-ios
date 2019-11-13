@@ -178,10 +178,18 @@ class EventsTabViewController: UIViewController {
         present(dest, animated: true, completion: nil)
     }
     
-    @objc private func showFullList(_ sender: UIButton) {
+    @objc private func showAllPressed(_ sender: UIButton) {
+        showFullList(of: viewModel.categoriesToShow[sender.tag])
+    }
+    private func showFullList(of category: EventCategoriesType) {
         let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
         
-        dest.viewModel = ListOfAllViewModel(category: viewModel.categoriesToShow[sender.tag])
+        switch category {
+        case .saved:
+            dest.viewModel = ListOfAllViewModel(category: category, eventsList: viewModel.savedEvents)
+        default:
+            dest.viewModel = ListOfAllViewModel(category: category)
+        }
         
         navigationController?.pushViewController(dest, animated: true)
     }
@@ -222,7 +230,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 17)
         moreButton.tag = section
-        moreButton.addTarget(self, action: #selector(showFullList(_ :)), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(showAllPressed(_ :)), for: .touchUpInside)
         
         header.addSubview(moreButton)
         constrain(moreButton, header) { btn, header in
@@ -279,7 +287,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.selectionStyle = .none
             cell.accessoryType = .disclosureIndicator
-            cell.configure(with: 3)
+            cell.configure(with: viewModel.savedEvents.count)
             
             return cell
             
@@ -320,6 +328,10 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = dest.viewControllers[0] as! EventDetailsViewController
             vc.viewModel = EventDetailsViewModel(eventID: viewModel.allEvents[indexPath.row].id)
             present(dest, animated: true, completion: nil)
+        
+        case .saved:
+            
+            showFullList(of: .saved)
             
         default:
             break

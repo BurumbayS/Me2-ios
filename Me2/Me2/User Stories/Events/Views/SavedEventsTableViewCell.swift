@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import SwiftyJSON
 
 class SavedEventsTableViewCell: UITableViewCell {
 
