@@ -60,7 +60,6 @@ class MapViewController: UIViewController {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             if accepted {
                 OneSignal.setSubscription(true)
-//                PushNotificationService.subscribeForPushNotifications()
             } else {
                 OneSignal.setSubscription(false)
             }

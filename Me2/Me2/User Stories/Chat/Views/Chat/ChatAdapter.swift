@@ -22,7 +22,7 @@ class ChatAdapter {
     
     func setUpConnection() {
         guard let token = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) as? String else { return }
-        socket = WebSocket(url: URL(string: "ws://api.me2.aiba.kz/ws/\(roomUUID)/?token=\(token)")!)
+        socket = WebSocket(url: URL(string: "wss://api.me2.aiba.kz/ws/\(roomUUID)/?token=\(token)")!)
         socket.delegate = self
         socket.connect()
     }

@@ -20,6 +20,7 @@ class ChatTabViewController: ListContainedViewController {
         super.viewWillAppear(animated)
     
         loadChatsList()
+        if viewModel.roomUUIDToOpenFirst != "" { openChatOnPush() }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -152,6 +153,20 @@ class ChatTabViewController: ListContainedViewController {
             break
         }
     }
+    
+    private func openChatOnPush() {
+        viewModel.getRoomInfo(with: viewModel.roomUUIDToOpenFirst) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.viewModel.roomUUIDToOpenFirst = ""
+                self?.goToChat(room: (self?.viewModel.newChatRoom)!)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
 }
 
 extension ChatTabViewController: UISearchResultsUpdating {
@@ -199,7 +214,7 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = viewModel.chatsList[indexPath.row]
         
-        goToChat(room: room)
+        goToChat(room: room) 
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

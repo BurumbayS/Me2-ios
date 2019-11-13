@@ -10,6 +10,8 @@ import UIKit
 
 class MainTabsViewController: UITabBarController {
     
+    let tabs = [Tab.map, .events, .chat, .profile]
+    
     private let mapTabViewController : UIViewController = {
         let vc = Storyboard.mapViewController()
         let image = UIImage(named: "map_icon")
@@ -58,5 +60,23 @@ class MainTabsViewController: UITabBarController {
                                chatTabViewController,
                                profileTabViewController]
         self.setViewControllers(viewControllers, animated: true)
+        openSelectedTab()
+    }
+    
+    func openSelectedTab() {
+        let index = tabs.firstIndex(of: PushNotificationsRouter.shared.pushToTab)
+        self.selectedIndex = index ?? 0
+        
+        switch PushNotificationsRouter.shared.pushToTab {
+        case .chat:
+            if let data = PushNotificationsRouter.shared.data as? String {
+                let vc = chatTabViewController.viewControllers[0] as! ChatTabViewController
+                vc.viewModel.roomUUIDToOpenFirst = data
+            }
+        default:
+            break;
+        }
+        
+        PushNotificationsRouter.shared.pushToTab = .map
     }
 }

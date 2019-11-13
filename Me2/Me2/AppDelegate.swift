@@ -46,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey("AIzaSyC5GiPTioS-d3vyjC1CPNcoPndElqVm8Kg")
         
         //Configure One Signal
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: "b0eff530-df92-42ef-a3d6-70ae339a318e",
-                                        handleNotificationAction: nil,
+                                        handleNotificationAction: PushNotificationService.notificationOpenedBlock,
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
@@ -75,6 +75,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return false
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else { return false }
+        print(url) // В зависимости от URL Вы можете открывать разные экраны приложения.
+        return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

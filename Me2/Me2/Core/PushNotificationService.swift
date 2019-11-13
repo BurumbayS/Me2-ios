@@ -9,8 +9,21 @@
 import Alamofire
 import SwiftyJSON
 import OneSignal
+import UIKit
 
 class PushNotificationService {
+    
+    static let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
+        // This block gets called when the user reacts to a notification received
+        let payload: OSNotificationPayload = result!.notification.payload
+    
+        if payload.additionalData != nil {
+            if let universalLink = payload.additionalData["url"] as? String {
+                PushNotificationsRouter.shared.shouldPush(to: universalLink)
+            }
+        }
+        
+    }
     
     static func subscribeForPushNotifications(by userID: String) {
         if let status = UserDefaults().object(forKey: UserDefaultKeys.notificationsSubscriptionStatus.rawValue) as? Bool {
