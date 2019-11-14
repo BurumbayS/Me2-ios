@@ -15,7 +15,7 @@ enum RequestStatus {
 }
 
 class Network {
-    static let host = "http://api.me2.aiba.kz"
+    static let host = "https://api.me2.aiba.kz"
     
     static func getHeaders() -> [String : String] {
         let headers = ["Content-Type" : "application/json", "Accept" : "application/json"]

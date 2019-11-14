@@ -51,7 +51,16 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func savePressed(_ sender: Any) {
         guard fieldsAreCorrect() else { return }
         
-        viewModel.updatePassword(password: currentPasswordTextField.text!, with: newPasswordTextField.text!)
+        viewModel.updatePassword(password:currentPasswordTextField.text!, with: newPasswordTextField.text!) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.navigationController?.popViewController(animated: true)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
     
     private func fieldsAreCorrect() -> Bool {
