@@ -101,8 +101,23 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
                 
             case .accessCode:
                 
-                let vc = Storyboard.configureAccessCodeViewController()
-                navigationController?.pushViewController(vc, animated: true)
+                if let _ = UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) as? String {
+                    
+                    let vc = Storyboard.accessCodeViewController() as! AccessCodeViewController
+                    
+                    vc.viewModel = AccessCodeViewModel(type: .check, onCorrectAccessCode: {
+                        let vc = Storyboard.configureAccessCodeViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    
+                    present(vc, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let vc = Storyboard.configureAccessCodeViewController()
+                    navigationController?.pushViewController(vc, animated: true)
+                    
+                }
                 
             }
             

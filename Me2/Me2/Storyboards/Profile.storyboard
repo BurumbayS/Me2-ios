@@ -147,13 +147,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Версия 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMs-Tx-9tm">
-                                <rect key="frame" x="168.5" y="398" width="77" height="18"/>
+                                <rect key="frame" x="169.5" y="398" width="75" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gni-YZ-dsh">
-                                <rect key="frame" x="42.5" y="436" width="329.5" height="59.5"/>
+                                <rect key="frame" x="44" y="436" width="326.5" height="60"/>
                                 <string key="text">Lorem ipsum dolor sit amet, consectetur 
 adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. </string>
@@ -162,7 +162,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFA-bZ-1J0">
-                                <rect key="frame" x="55" y="545.5" width="304" height="30"/>
+                                <rect key="frame" x="55" y="546" width="304" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bnV-It-DbW"/>
                                     <constraint firstAttribute="width" constant="304" id="nrV-VA-ekr"/>
@@ -176,7 +176,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKX-Xb-1Qt">
-                                <rect key="frame" x="90" y="585.5" width="234" height="30"/>
+                                <rect key="frame" x="90" y="586" width="234" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ksx-Q1-50h"/>
                                     <constraint firstAttribute="width" constant="234" id="UIX-eY-K1X"/>

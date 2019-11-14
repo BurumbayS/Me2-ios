@@ -14,18 +14,40 @@ class AccessCodeViewController: UIViewController {
     @IBOutlet weak var accessCodeStackView: UIStackView!
     @IBOutlet weak var numberPadCollectionView: UICollectionView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     
-    let viewModel = AccessCodeViewModel()
+    var viewModel = AccessCodeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureNavBar()
         configureViews()
         configureCollectionView()
         bindViewModel()
     }
+    
+    private func configureNavBar() {
+        navBar.tintColor = .black
+        navBar.shouldRemoveShadow(true)
+        
+        navItem.title = ""
+        
+        switch viewModel.accesCodeType {
+        case .check:
+            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "x_icon"), style: .plain, target: self, action: #selector(dismissVC))
+        case .confirm, .create:
+            setUpBackBarButton(for: navItem)
+        default:
+            break
+        }
+    }
 
     private func configureViews() {
+        titleLabel.text = viewModel.accesCodeType.title
+        
         for item in accessCodeStackView.arrangedSubviews {
             item.backgroundColor = .lightGray
         }
@@ -51,11 +73,52 @@ class AccessCodeViewController: UIViewController {
     }
     
     private func checkAccesCode() {
-        if viewModel.accessCode.value.count == 4 {
-            errorLabel.isHidden = false
-            viewModel.accessCode.value = ""
+        guard viewModel.accessCode.value.count == 4 else { return }
+        
+        switch viewModel.accesCodeType {
+        case .enter:
+            
+            if viewModel.accessCode.value == UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) as? String {
+                window.rootViewController = Storyboard.mainTabsViewController()
+            } else {
+                errorLabel.text = "Неверный код доступа"
+                errorLabel.isHidden = false
+            }
+            
+        case .create:
+            
+            viewModel.accesCodeType = .confirm
+            titleLabel.text = viewModel.accesCodeType.title
+            viewModel.createdAccessCode = viewModel.accessCode.value
+            
+        case .confirm:
+            
+            if viewModel.accessCode.value == viewModel.createdAccessCode {
+                UserDefaults().set(viewModel.accessCode.value, forKey: UserDefaultKeys.accessCode.rawValue)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                errorLabel.text = "Код доступа не совпадает"
+                errorLabel.isHidden = false
+            }
+            
+        case .check:
+            
+            if viewModel.accessCode.value == UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) as? String {
+                viewModel.correctAccessCodeHandler?()
+                dismiss(animated: true, completion: nil)
+            } else {
+                errorLabel.text = "Неверный код доступа"
+                errorLabel.isHidden = false
+            }
         }
+        
+        viewModel.accessCode.value = ""
     }
+    
+    @objc private func dismissVC() {
+        dismiss(animated: true, completion: nil)
+    }
+
 }
 
 extension AccessCodeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -77,6 +140,7 @@ extension AccessCodeViewController: UICollectionViewDelegate, UICollectionViewDa
         case 10,12:
             let image = UIImageView()
             image.image = (indexPath.row + 1 == 10) ? UIImage(named: "faceid_icon") : UIImage(named: "delete_button")
+            image.isHidden = (indexPath.row + 1 == 10 && viewModel.accesCodeType != .enter)
             image.contentMode = .scaleAspectFit
             cell.contentView.addSubview(image)
             constrain(image, cell.contentView) { image, cell in

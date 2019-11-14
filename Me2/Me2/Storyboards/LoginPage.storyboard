@@ -439,7 +439,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkF-B8-Ape">
-                                <rect key="frame" x="76.5" y="468" width="261.5" height="30.5"/>
+                                <rect key="frame" x="78" y="468" width="258" height="30.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30.5" id="UHS-HQ-qFu"/>
                                 </constraints>
@@ -493,13 +493,13 @@
         <!--Access Code View Controller-->
         <scene sceneID="Blm-It-nOi">
             <objects>
-                <viewController storyboardIdentifier="AccessCodeViewController" id="Zwz-GF-Edg" customClass="AccessCodeViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccessCodeViewController" hidesBottomBarWhenPushed="YES" id="Zwz-GF-Edg" customClass="AccessCodeViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="34Y-fG-gQT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faf-B6-4Hv">
-                                <rect key="frame" x="20" y="420" width="374" height="392"/>
+                                <rect key="frame" x="20" y="435" width="374" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jE5-y5-s43">
                                     <size key="itemSize" width="50" height="50"/>
@@ -518,17 +518,18 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код доступа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-9e-NUv">
-                                <rect key="frame" x="88" y="238" width="238" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="введите код доступа" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-9e-NUv">
+                                <rect key="frame" x="88.5" y="223" width="237" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="eif-Nl-0PD"/>
+                                    <constraint firstAttribute="height" constant="60" id="eif-Nl-0PD"/>
+                                    <constraint firstAttribute="width" constant="237" id="phn-nH-7D6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pv7-k5-RlH">
-                                <rect key="frame" x="153" y="308" width="108" height="12"/>
+                                <rect key="frame" x="153" y="323" width="108" height="12"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-To-Zr1">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -589,15 +590,24 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неверный код доступа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpo-mh-N10">
-                                <rect key="frame" x="131.5" y="350" width="151" height="16.5"/>
+                                <rect key="frame" x="131.5" y="365" width="151" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrs-RS-07K">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="NlE-fB-1Zp"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mrs-RS-07K" firstAttribute="leading" secondItem="Zkg-OE-dgJ" secondAttribute="leading" id="37d-CC-IKz"/>
                             <constraint firstItem="Pv7-k5-RlH" firstAttribute="centerX" secondItem="Zkg-OE-dgJ" secondAttribute="centerX" id="4sR-DD-ETo"/>
+                            <constraint firstItem="mrs-RS-07K" firstAttribute="top" secondItem="Zkg-OE-dgJ" secondAttribute="top" id="7VM-Ez-qH2"/>
+                            <constraint firstItem="mrs-RS-07K" firstAttribute="trailing" secondItem="Zkg-OE-dgJ" secondAttribute="trailing" id="Cfa-sU-AvN"/>
                             <constraint firstItem="Kpo-mh-N10" firstAttribute="centerX" secondItem="Zkg-OE-dgJ" secondAttribute="centerX" id="Dat-Kp-K1F"/>
                             <constraint firstItem="faf-B6-4Hv" firstAttribute="leading" secondItem="Zkg-OE-dgJ" secondAttribute="leading" constant="20" id="GHu-AH-JFf"/>
                             <constraint firstItem="L6n-9e-NUv" firstAttribute="centerY" secondItem="Zkg-OE-dgJ" secondAttribute="centerY" constant="-200" id="Ov4-65-Lvl"/>
@@ -614,7 +624,10 @@
                     <connections>
                         <outlet property="accessCodeStackView" destination="Pv7-k5-RlH" id="aqg-ft-N1R"/>
                         <outlet property="errorLabel" destination="Kpo-mh-N10" id="Y8f-H0-cXa"/>
+                        <outlet property="navBar" destination="mrs-RS-07K" id="YrU-YW-0kx"/>
+                        <outlet property="navItem" destination="NlE-fB-1Zp" id="WyX-TX-mWj"/>
                         <outlet property="numberPadCollectionView" destination="faf-B6-4Hv" id="6Kr-eC-MWD"/>
+                        <outlet property="titleLabel" destination="L6n-9e-NUv" id="WUx-kj-dXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TG3-b7-08m" userLabel="First Responder" sceneMemberID="firstResponder"/>

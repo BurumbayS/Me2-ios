@@ -18,16 +18,11 @@ class ConfigureAccessCodeViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        configureViews()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
+        configureViews()
     }
     
     private func configureNavBar() {
@@ -44,11 +39,20 @@ class ConfigureAccessCodeViewController: UIViewController {
         
         changeView.isUserInteractionEnabled = true
         changeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeAccessCodePressed)))
+        
+        if let _ = UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) as? String {
+            activationSwitcher.isOn = true
+        } else {
+            activationSwitcher.isOn = false
+        }
     }
     
     @objc private func changeAccessCodePressed() {
-        let vc = Storyboard.accessCodeViewController()
+    
+        let vc = Storyboard.accessCodeViewController() as! AccessCodeViewController
+        vc.viewModel = AccessCodeViewModel(type: .create)
         self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @objc private func switchValueChanged() {        
@@ -56,6 +60,12 @@ class ConfigureAccessCodeViewController: UIViewController {
         
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
+        }
+        
+        if activationSwitcher.isOn {
+            let vc = Storyboard.accessCodeViewController() as! AccessCodeViewController
+            vc.viewModel = AccessCodeViewModel(type: .create)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
