@@ -71,7 +71,7 @@ class MainTabsViewController: UITabBarController {
         case .chat:
             if let data = PushNotificationsRouter.shared.data as? String {
                 let vc = chatTabViewController.viewControllers[0] as! ChatTabViewController
-                vc.viewModel.roomUUIDToOpenFirst = data
+                vc.viewModel.roomUUIDToOpenFirst.value = data
             }
         default:
             break;

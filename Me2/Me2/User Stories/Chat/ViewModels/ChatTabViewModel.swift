@@ -13,7 +13,7 @@ class ChatTabViewModel {
     
     var chatsList = [Room]()
     var newChatRoom: Room!
-    var roomUUIDToOpenFirst = ""
+    var roomUUIDToOpenFirst: Dynamic<String> = Dynamic("")
     
     func getChatList(completion: ResponseBlock?) {
         Alamofire.request(roomURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()

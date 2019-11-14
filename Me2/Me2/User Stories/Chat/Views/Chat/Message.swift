@@ -42,7 +42,7 @@ class Message {
         self.createdAt = json["created_at"].stringValue
         
         //calculate height and width for message view width date and paddings
-        self.height = text.getHeight(withConstrainedWidth: maxWidth, font: UIFont(name: "Roboto-Regular", size: 15)!) + 10 + 15
+        self.height = ceil(text.getHeight(withConstrainedWidth: maxWidth, font: UIFont(name: "Roboto-Regular", size: 16)!)) + 10 + 15
         
         let timeTextWidth = ceil(time.getWidth(with: UIFont(name: "Roboto-Regular", size: 11)!)) + sidePaddings
         let messageTextWidth = ceil(text.getWidth(with: UIFont(name: "Roboto-Regular", size: 15)!)) + sidePaddings
