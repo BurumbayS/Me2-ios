@@ -76,6 +76,7 @@
 		DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76722EF35F300D1D51D /* LoginPage.storyboard */; };
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
+		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4523548027002291CA /* WriteReviewViewModel.swift */; };
 		DD97CB48235574BD002291CA /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */; };
 		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
@@ -324,6 +325,7 @@
 		DD67A77022EF36C700D1D51D /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Semibold.otf"; path = "San Francisco Pro/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD97CB4523548027002291CA /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
@@ -1318,6 +1320,7 @@
 				DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */,
 				DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */,
 				DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */,
+				DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */,
 			);
 			path = "Manage Account";
 			sourceTree = "<group>";
@@ -1660,6 +1663,7 @@
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DD97CB672359DB72002291CA /* PulsingLayer.swift in Sources */,
 				DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */,
+				DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD97CB4E2355FAAD002291CA /* User.swift in Sources */,

@@ -107,6 +107,9 @@ extension Storyboard {
     static var changePhoneNumberViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ChangePhoneNumberViewController")
     }
+    static var configureAccessCodeViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ConfigureAccessCodeViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

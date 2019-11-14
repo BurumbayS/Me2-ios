@@ -100,7 +100,10 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
                 navigationController?.pushViewController(vc, animated: true)
                 
             case .accessCode:
-                break
+                
+                let vc = Storyboard.configureAccessCodeViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
             }
             
         default:
