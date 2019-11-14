@@ -20,8 +20,9 @@ class ListOfAllViewModel {
     var eventsList = [Event]()
     var placesList = [Place]()
     
-    init(category: EventCategoriesType) {
+    init(category: EventCategoriesType, eventsList: [Event] = []) {
         self.category = category
+        self.eventsList = eventsList
         
         if category == .new_places {
             listItemType = .place
@@ -31,6 +32,11 @@ class ListOfAllViewModel {
     }
     
     func fetchData(completion: ResponseBlock?) {
+        if category == .saved {
+            completion?(.ok, "")
+            return
+        }
+        
         switch listItemType {
         case .event:
             getEvents(completion: completion)

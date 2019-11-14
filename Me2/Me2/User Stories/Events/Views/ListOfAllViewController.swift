@@ -38,7 +38,9 @@ class ListOfAllViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navBar.isTranslucent = false
         navBar.tintColor = .black
+        
         self.setUpBackBarButton(for: navItem)
         self.navItem.title = viewModel.category.title
     }
