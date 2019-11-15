@@ -17,11 +17,18 @@ class ManageAccountViewController: UIViewController {
     
     let viewModel = ManageAccountViewModel()
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.updateNotificationData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
         configureNavBar()
+        bindDynamics()
     }
     
     private func configureNavBar() {
@@ -39,6 +46,14 @@ class ManageAccountViewController: UIViewController {
         tableView.estimatedRowHeight = 40
         
         tableView.register(ManageAccountTableViewCell.self)
+    }
+    
+    private func bindDynamics() {
+//        viewModel.notificationParameters.forEach { (parameter) in
+//            parameter.bind({ [unowned self] (value) in
+////                self.viewModel.
+//            })
+//        }
     }
 }
 
@@ -88,7 +103,7 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
         switch viewModel.sections[indexPath.section] {
         case .security:
             
-            switch viewModel.securityParameters[indexPath.row] {
+            switch viewModel.securityTypes[indexPath.row] {
             case .changePassword:
                 
                 let vc = Storyboard.changePasswordViewController()

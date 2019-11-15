@@ -29,9 +29,16 @@ enum ManageAccountSectionType {
     }
 }
 
-struct ManageAccountParameterModel {
+class ManageAccountParameterModel {
     let title: String
     let type: ManageAccountSectionType
+    var notificationParameter: NotificationParameter?
+    
+    init(title: String, type: ManageAccountSectionType, notificationParameter: NotificationParameter? = nil) {
+        self.title = title
+        self.type = type
+        self.notificationParameter = notificationParameter
+    }
 }
 
 class ManageAccountTableViewCell: UITableViewCell {
@@ -39,6 +46,8 @@ class ManageAccountTableViewCell: UITableViewCell {
     let titleLabel = UILabel()
     let valueLabel = UILabel()
     let switcher = UISwitch()
+    
+    var notificationParameter: NotificationParameter?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,7 +60,7 @@ class ManageAccountTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with model: ManageAccountParameterModel) {
+    private func configureViews(with model: ManageAccountParameterModel) {
         titleLabel.textColor = .black
         titleLabel.text = model.title
         
@@ -73,6 +82,12 @@ class ManageAccountTableViewCell: UITableViewCell {
         }
     }
     
+    func configure(with model: ManageAccountParameterModel) {
+        self.notificationParameter = model.notificationParameter
+        
+        configureViews(with: model)
+    }
+    
     private func setUpViews() {
         titleLabel.textColor = .black
         titleLabel.font = UIFont(name: "Roboto-Regular", size: 15)
@@ -92,6 +107,7 @@ class ManageAccountTableViewCell: UITableViewCell {
             value.centerY == view.centerY
         }
         
+        switcher.addTarget(self, action: #selector(switcherValueChanged), for: .valueChanged)
         self.contentView.addSubview(switcher)
         constrain(switcher, self.contentView) { switcher, view in
             switcher.right == view.right - 20
@@ -99,5 +115,9 @@ class ManageAccountTableViewCell: UITableViewCell {
             switcher.width == 52
             switcher.centerY == view.centerY
         }
+    }
+    
+    @objc private func switcherValueChanged() {
+        notificationParameter?.isOn = switcher.isOn
     }
 }
