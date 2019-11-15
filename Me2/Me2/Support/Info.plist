@@ -61,6 +61,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Uses for logging in</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to take avatar</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

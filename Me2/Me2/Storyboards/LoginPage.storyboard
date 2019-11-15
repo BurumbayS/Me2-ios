@@ -499,7 +499,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faf-B6-4Hv">
-                                <rect key="frame" x="20" y="435" width="374" height="377"/>
+                                <rect key="frame" x="20" y="425" width="374" height="387"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jE5-y5-s43">
                                     <size key="itemSize" width="50" height="50"/>
@@ -518,7 +518,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="введите код доступа" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-9e-NUv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код доступа" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-9e-NUv">
                                 <rect key="frame" x="88.5" y="223" width="237" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="eif-Nl-0PD"/>
@@ -529,7 +529,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pv7-k5-RlH">
-                                <rect key="frame" x="153" y="323" width="108" height="12"/>
+                                <rect key="frame" x="153" y="333" width="108" height="12"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzz-To-Zr1">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -590,7 +590,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неверный код доступа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpo-mh-N10">
-                                <rect key="frame" x="131.5" y="365" width="151" height="16.5"/>
+                                <rect key="frame" x="131.5" y="375" width="151" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -612,10 +612,10 @@
                             <constraint firstItem="faf-B6-4Hv" firstAttribute="leading" secondItem="Zkg-OE-dgJ" secondAttribute="leading" constant="20" id="GHu-AH-JFf"/>
                             <constraint firstItem="L6n-9e-NUv" firstAttribute="centerY" secondItem="Zkg-OE-dgJ" secondAttribute="centerY" constant="-200" id="Ov4-65-Lvl"/>
                             <constraint firstItem="Kpo-mh-N10" firstAttribute="top" secondItem="Pv7-k5-RlH" secondAttribute="bottom" constant="30" id="V0P-gj-2Rg"/>
-                            <constraint firstItem="Pv7-k5-RlH" firstAttribute="top" secondItem="L6n-9e-NUv" secondAttribute="bottom" constant="40" id="Ynm-rd-mDu"/>
+                            <constraint firstItem="Pv7-k5-RlH" firstAttribute="top" secondItem="L6n-9e-NUv" secondAttribute="bottom" constant="50" id="Ynm-rd-mDu"/>
                             <constraint firstItem="faf-B6-4Hv" firstAttribute="centerX" secondItem="Zkg-OE-dgJ" secondAttribute="centerX" id="aao-24-Zvj"/>
                             <constraint firstItem="Pv7-k5-RlH" firstAttribute="centerX" secondItem="L6n-9e-NUv" secondAttribute="centerX" id="cAS-8o-wSB"/>
-                            <constraint firstItem="faf-B6-4Hv" firstAttribute="top" secondItem="Pv7-k5-RlH" secondAttribute="bottom" constant="100" id="dH6-tg-Uej"/>
+                            <constraint firstItem="faf-B6-4Hv" firstAttribute="top" secondItem="Pv7-k5-RlH" secondAttribute="bottom" constant="80" id="dH6-tg-Uej"/>
                             <constraint firstItem="Zkg-OE-dgJ" firstAttribute="bottom" secondItem="faf-B6-4Hv" secondAttribute="bottom" constant="50" id="dtq-yz-422"/>
                             <constraint firstItem="Zkg-OE-dgJ" firstAttribute="trailing" secondItem="faf-B6-4Hv" secondAttribute="trailing" constant="20" id="fM2-VC-PIm"/>
                         </constraints>

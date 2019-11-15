@@ -77,6 +77,7 @@
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
+		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4523548027002291CA /* WriteReviewViewModel.swift */; };
 		DD97CB48235574BD002291CA /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */; };
 		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
@@ -326,6 +327,7 @@
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
+		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD97CB4523548027002291CA /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */,
 				E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +508,7 @@
 		0F8E50A9BA03A50C43F5977E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD936086237EB3AA001B783F /* LocalAuthentication.framework */,
 				F8840C5495255E7A23349552 /* Pods_Me2.framework */,
 			);
 			name = Frameworks;

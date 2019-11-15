@@ -66,6 +66,8 @@ class ConfigureAccessCodeViewController: UIViewController {
             let vc = Storyboard.accessCodeViewController() as! AccessCodeViewController
             vc.viewModel = AccessCodeViewModel(type: .create)
             self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            UserDefaults().set(false, forKey: UserDefaultKeys.useBiometrics.rawValue)
         }
     }
 }
