@@ -76,6 +76,7 @@
 		DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76722EF35F300D1D51D /* LoginPage.storyboard */; };
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
+		DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
@@ -327,6 +328,7 @@
 		DD67A77022EF36C700D1D51D /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Semibold.otf"; path = "San Francisco Pro/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
 				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
 				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
+				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1641,6 +1644,7 @@
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
+				DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */,
 				DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */,
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
 				DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */,

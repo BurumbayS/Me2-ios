@@ -15,6 +15,8 @@ class FeedbackViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var textView: UITextView!
     
+    let viewModel = FeedbackViewModel()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -50,7 +52,16 @@ class FeedbackViewController: UIViewController {
     }
     
     @objc private func sendFeedback() {
-        navigationController?.popViewController(animated: true)
+        viewModel.sendFeedback(withText: textView.text) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.navigationController?.popViewController(animated: true)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
