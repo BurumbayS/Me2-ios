@@ -13,18 +13,27 @@ class ChangePhoneNumberViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var phoneNumberTextField: AttributedTextField!
+    @IBOutlet weak var changeButton: UIButton!
+    
+    let viewModel = ChangePhoneViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
-        configureTextField()
+        configureViews()
     }
     
     private func configureNavBar() {
         navBar.tintColor = .black
         navItem.title = "Изменить номер телефонв"
         setUpBackBarButton(for: navItem)
+    }
+    
+    private func configureViews() {
+        disableChangeButton()
+        
+        configureTextField()
     }
     
     private func configureTextField() {
@@ -35,11 +44,31 @@ class ChangePhoneNumberViewController: UIViewController {
         phoneNumberTextField.layer.cornerRadius = 5
         phoneNumberTextField.delegate = self
     }
+    
+    private func enableChangeButton() {
+        changeButton.isEnabled = true
+        changeButton.alpha = 1.0
+    }
+    private func disableChangeButton() {
+        changeButton.isEnabled = false
+        changeButton.alpha = 0.5
+    }
 
     @IBAction func changePressed(_ sender: Any) {
-        let vc = Storyboard.confirmCodeViewController() as! ConfirmCodeViewController
-        vc.viewModel = ConfirmPinCodeViewModel(activationID: 0, confirmationType: .onChange)
-        navigationController?.pushViewController(vc, animated: true)
+        viewModel.updatePhone(with: phoneNumberTextField.text!) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                let vc = Storyboard.confirmCodeViewController() as! ConfirmCodeViewController
+                vc.viewModel = ConfirmPinCodeViewModel(activationID: (self?.viewModel.activationID)!, confirmationType: .onChange)
+                self?.navigationController?.pushViewController(vc, animated: true)
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
 
@@ -47,11 +76,15 @@ extension ChangePhoneNumberViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
         
-        let pattern = "+# (###) ###-####"
+        if text.count == viewModel.phonePattern.count && !string.isBackspace() { return false } else { disableChangeButton() }
         
-        if text.count == pattern.count && !string.isBackspace() { return false }
+        textField.text = text.applyPatternOnNumbers(pattern: viewModel.phonePattern, replacmentCharacter: "#")
         
-        textField.text = text.applyPatternOnNumbers(pattern: pattern, replacmentCharacter: "#")
+        if textField.text!.count + 1 == viewModel.phonePattern.count && !string.isBackspace() {
+            enableChangeButton()
+        } else {
+            disableChangeButton()
+        }
         
         return true
     }

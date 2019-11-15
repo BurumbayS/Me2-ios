@@ -27,7 +27,7 @@ class AccessCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if biometricsUseAvailable() { signInWithBiometrics() }
+        if biometricsUseAvailable() && viewModel.accesCodeType == .enter { signInWithBiometrics() }
         
         configureNavBar()
         configureViews()

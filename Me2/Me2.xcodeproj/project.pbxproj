@@ -78,6 +78,7 @@
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
+		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
 		DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4523548027002291CA /* WriteReviewViewModel.swift */; };
 		DD97CB48235574BD002291CA /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */; };
 		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
@@ -328,6 +329,7 @@
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
 		DD97CB4523548027002291CA /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
 				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
 				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
+				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1552,6 +1555,7 @@
 				DD2CE36A236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.swift in Sources */,
 				DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
+				DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */,
