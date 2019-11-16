@@ -65,10 +65,8 @@ class UserProfileViewModel {
     let userID: Int
     let profileType: ProfileType
     
-    init(userID: Int = 0, profileType: ProfileType) {
-        self.userID = userID
-        self.profileType = profileType
-    }
+    var userInfo: Dynamic<User>!
+    var favouritePlaces: Dynamic<[Place]>!
     
     var presenterDelegate: ControllerPresenterDelegate!
     
@@ -82,7 +80,10 @@ class UserProfileViewModel {
         }
     }
     
-    var userInfo: Dynamic<User>!
+    init(userID: Int = 0, profileType: ProfileType) {
+        self.userID = userID
+        self.profileType = profileType
+    }
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
@@ -95,7 +96,7 @@ class UserProfileViewModel {
     
     func fetchData(completion: ResponseBlock?) {
         var url = ""
-
+        
         switch profileType {
         case .myProfile:
             url = myProfileURL
@@ -110,6 +111,7 @@ class UserProfileViewModel {
                     
                     let json = JSON(value)
                     self.userInfo = Dynamic(User(json: json["data"]["user"]))
+                    self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
                     
                     self.dataLoaded = true
                     completion?(.ok, "")

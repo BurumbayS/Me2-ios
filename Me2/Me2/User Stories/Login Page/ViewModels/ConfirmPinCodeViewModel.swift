@@ -44,7 +44,7 @@ class ConfirmPinCodeViewModel {
                         let id = json["data"]["user"]["id"].intValue
                         UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
                         UserDefaults().set(id, forKey: UserDefaultKeys.userID.rawValue)
-                        UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                        UserDefaults().set(json["data"]["user"].rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                         
                         completion?(.ok, "")
                         

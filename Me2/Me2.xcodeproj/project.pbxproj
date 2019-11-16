@@ -80,6 +80,8 @@
 		DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */; };
 		DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */; };
 		DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */; };
+		DD7206FE238030590090F12C /* AddFavouritePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */; };
+		DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
@@ -335,6 +337,8 @@
 		DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountParameterModel.swift; sourceTree = "<group>"; };
 		DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountEnums.swift; sourceTree = "<group>"; };
 		DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewModel.swift; sourceTree = "<group>"; };
+		DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewController.swift; sourceTree = "<group>"; };
+		DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewModel.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
@@ -930,6 +934,7 @@
 				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
 				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
 				DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */,
+				DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1230,6 +1235,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */,
+				DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */,
 				DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */,
 				DDF65B202301531100441035 /* PlaceTableViewCell.xib */,
 			);
@@ -1532,6 +1538,7 @@
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
+				DD7206FE238030590090F12C /* AddFavouritePlaceViewController.swift in Sources */,
 				DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
@@ -1569,6 +1576,7 @@
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
+				DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,

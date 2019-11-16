@@ -88,8 +88,6 @@ class AddFavouritePlaceViewModel {
                         completion?(.error, json["message"].stringValue)
                     }
                     
-                    self.updateSearchResults.value = true
-                    
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion?(.fail, "")

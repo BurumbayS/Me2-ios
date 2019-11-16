@@ -22,6 +22,7 @@ class AddFavouritePlaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavBar()
         addDismissKeyboard()
         configureTableView()
         configureSearchBar()
@@ -32,6 +33,18 @@ class AddFavouritePlaceViewController: UIViewController {
         viewModel.updateSearchResults.bind { [weak self] (value) in
             self?.tableView.reloadSections([0], with: .automatic)
         }
+    }
+    
+    private func configureNavBar() {
+        navBar.shouldRemoveShadow(true)
+        
+        navItem.title = "Добавить"
+        
+        let leftItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(dismissSelf))
+        leftItem.tintColor = Color.red
+        navItem.leftBarButtonItem = leftItem
+        
+//        let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(done))
     }
     
     private func configureSearchBar() {

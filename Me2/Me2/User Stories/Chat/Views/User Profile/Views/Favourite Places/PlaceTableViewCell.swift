@@ -18,6 +18,11 @@ class PlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var availableTime: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var addPlaceView: UIView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addedLabel: UILabel!
+    
+    var addPressHandler: VoidBlock?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -29,10 +34,24 @@ class PlaceTableViewCell: UITableViewCell {
         
     }
     
-    func configure(with place: Place) {
+    func configure(with place: Place, cellType: PlaceCellType = .toPresent, added: Bool = false, onAdd: VoidBlock? = nil) {
         placeImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         nameLabel.text = place.name
         locationLabel.text = place.address1
         ratingView.rating = place.rating ?? 0
+        addPlaceView.isHidden = (cellType == .toAdd) ? false : true
+        addButton.isHidden = added
+        addedLabel.isHidden = !added
+        
+        self.addPressHandler = onAdd
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        addPressHandler?()
+    }
+}
+
+enum PlaceCellType {
+    case toAdd
+    case toPresent
 }

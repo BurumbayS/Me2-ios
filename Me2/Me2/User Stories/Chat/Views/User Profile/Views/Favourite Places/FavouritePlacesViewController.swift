@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class FavouritePlacesViewController: UIViewController {
 
@@ -46,29 +45,40 @@ class FavouritePlacesViewController: UIViewController {
     }
     
     @objc private func addPlace() {
-//        UIView.animate(withDuration: 0.2) {
-//            self.tableView.isEditing = !self.tableView.isEditing
-//        }
-//        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Готово" : "Править"
+        let vc = Storyboard.addFavouritePlaceViewController() as! AddFavouritePlaceViewController
+        vc.viewModel = AddFavouritePlaceViewModel(favouritePlaces: viewModel.favouritePlaces.value, onAddPlace: { [weak self] (place) in
+            self?.viewModel.favouritePlaces.value.append(place)
+            self?.tableView.reloadSections([0], with: .automatic)
+        })
+        present(vc, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func removePlace() {
         if let indexPath = viewModel.toDeletePlaceIndexPath {
-            viewModel.updatedUserInfo.favouritePlaces.remove(at: indexPath.row)
-            viewModel.userInfo.value = viewModel.updatedUserInfo
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            viewModel.removeFromFavourite(place: viewModel.favouritePlaces.value[indexPath.row]) { [weak self] (status, message) in
+                switch status {
+                case .ok:
+                    self?.viewModel.favouritePlaces.value.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                case .error:
+                    break
+                case .fail:
+                    break
+                }
+            }
         }
     }
 }
 
 extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.updatedUserInfo.favouritePlaces.count
+        return viewModel.favouritePlaces.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: viewModel.updatedUserInfo.favouritePlaces[indexPath.row])
+        cell.configure(with: viewModel.favouritePlaces.value[indexPath.row])
         return cell
     }
     

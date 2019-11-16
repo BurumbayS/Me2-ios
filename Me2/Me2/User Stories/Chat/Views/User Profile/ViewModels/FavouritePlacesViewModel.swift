@@ -6,15 +6,37 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import Alamofire
+import SwiftyJSON
 
 class FavouritePlacesViewModel {
-    var userInfo: Dynamic<User>
-    var updatedUserInfo: User
+
+    var favouritePlaces: Dynamic<[Place]>!
+    var places = [Place]()
     var toDeletePlaceIndexPath: IndexPath?
     
-    init(userInfo: Dynamic<User>) {
-        self.userInfo = userInfo
-        self.updatedUserInfo = userInfo.value
+    init(places: Dynamic<[Place]>) {
+        self.favouritePlaces = places
+        self.places = places.value
+    }
+    
+    func removeFromFavourite(place: Place, completion: ResponseBlock?) {
+        let url = Network.core + "/place/\(place.id ?? 0)/remove_favourite/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
     }
 }

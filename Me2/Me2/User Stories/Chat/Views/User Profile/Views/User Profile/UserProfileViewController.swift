@@ -25,7 +25,6 @@ class UserProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.shouldRemoveShadow(true)
     }
     
     override func viewDidLoad() {
@@ -77,6 +76,9 @@ class UserProfileViewController: UIViewController {
     }
     
     private func byndDynamics() {
+        viewModel.favouritePlaces.bind { [weak self] (places) in
+            self?.tableView.reloadData()
+        }
         viewModel.userInfo.bind { [weak self] (user) in
             self?.tableView.reloadData()
         }
@@ -128,7 +130,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
                 let vc = Storyboard.favouritePlacesViewController() as! FavouritePlacesViewController
-                vc.viewModel = FavouritePlacesViewModel(userInfo: (self?.viewModel.userInfo)!)
+                vc.viewModel = FavouritePlacesViewModel(places: self?.viewModel.favouritePlaces ?? Dynamic([]))
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             return favouritePlacesHeader
@@ -228,7 +230,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.userInfo.value.favouritePlaces, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:

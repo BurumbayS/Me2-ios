@@ -346,6 +346,55 @@ incididunt ut labore et dolore magna aliqua. </string>
             </objects>
             <point key="canvasLocation" x="6399" y="43"/>
         </scene>
+        <!--Add Favourite Place View Controller-->
+        <scene sceneID="68r-c8-PxP">
+            <objects>
+                <viewController storyboardIdentifier="AddFavouritePlaceViewController" id="fie-tO-AG6" customClass="AddFavouritePlaceViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3dt-RN-79t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcJ-Uz-QeI">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="e19-Fl-mxW"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="qlO-kj-qJn">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" translatesAutoresizingMaskIntoConstraints="NO" id="dWs-md-Jxc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dWs-md-Jxc" firstAttribute="leading" secondItem="XZD-zW-CIm" secondAttribute="leading" id="JOO-fX-A3L"/>
+                            <constraint firstItem="dWs-md-Jxc" firstAttribute="top" secondItem="bcJ-Uz-QeI" secondAttribute="bottom" id="QRJ-iP-KVl"/>
+                            <constraint firstItem="bcJ-Uz-QeI" firstAttribute="top" secondItem="XZD-zW-CIm" secondAttribute="top" id="arJ-jh-hgD"/>
+                            <constraint firstItem="bcJ-Uz-QeI" firstAttribute="leading" secondItem="XZD-zW-CIm" secondAttribute="leading" id="dPQ-1w-Fe6"/>
+                            <constraint firstItem="XZD-zW-CIm" firstAttribute="trailing" secondItem="qlO-kj-qJn" secondAttribute="trailing" id="eHw-Zd-T37"/>
+                            <constraint firstItem="XZD-zW-CIm" firstAttribute="bottom" secondItem="qlO-kj-qJn" secondAttribute="bottom" id="gJv-re-y02"/>
+                            <constraint firstItem="qlO-kj-qJn" firstAttribute="leading" secondItem="XZD-zW-CIm" secondAttribute="leading" id="mIq-Zb-1jS"/>
+                            <constraint firstItem="qlO-kj-qJn" firstAttribute="top" secondItem="dWs-md-Jxc" secondAttribute="bottom" id="qXW-pK-roc"/>
+                            <constraint firstItem="dWs-md-Jxc" firstAttribute="trailing" secondItem="XZD-zW-CIm" secondAttribute="trailing" id="rft-uS-End"/>
+                            <constraint firstItem="bcJ-Uz-QeI" firstAttribute="trailing" secondItem="XZD-zW-CIm" secondAttribute="trailing" id="rlU-p9-97u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XZD-zW-CIm"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="bcJ-Uz-QeI" id="Hkz-G4-jqF"/>
+                        <outlet property="navItem" destination="e19-Fl-mxW" id="xst-2I-krp"/>
+                        <outlet property="searchBar" destination="dWs-md-Jxc" id="Lw3-lr-euz"/>
+                        <outlet property="tableView" destination="qlO-kj-qJn" id="isp-tO-H7W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKi-pA-V76" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7905.7971014492759" y="713.83928571428567"/>
+        </scene>
         <!--Manage Account View Controller-->
         <scene sceneID="Xba-OC-5ql">
             <objects>

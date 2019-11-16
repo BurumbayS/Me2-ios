@@ -110,6 +110,9 @@ extension Storyboard {
     static var configureAccessCodeViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ConfigureAccessCodeViewController")
     }
+    static var addFavouritePlaceViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AddFavouritePlaceViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
