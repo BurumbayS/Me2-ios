@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let _ = UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) {
                 window?.rootViewController = Storyboard.accessCodeViewController()
             } else {
-                window?.rootViewController = Storyboard.signInOrUpViewController()
+                window?.rootViewController = Storyboard.mainTabsViewController()
             }
         } else {
             window?.rootViewController = Storyboard.signInOrUpViewController()

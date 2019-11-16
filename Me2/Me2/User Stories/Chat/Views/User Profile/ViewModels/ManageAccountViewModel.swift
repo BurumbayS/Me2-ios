@@ -23,19 +23,23 @@ class ManageAccountViewModel {
     }
     
     private func configureParameters() {
-        configureNotificationParameters()
-        configureVisibilityParameters()
-    }
-    
-    private func configureNotificationParameters() {
-        for type in notificationTypes {
-            notificationParameters.append(NotificationParameter(type: type, value: false))
+        if let userJSONString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
+            let userJSON = JSON(parseJSON: userJSONString)
+            
+            configureVisibilityParameters(with: userJSON["data"]["user"]["privacy_data"])
+            configureNotificationParameters(with: userJSON["data"]["user"]["notification_data"])
         }
     }
     
-    private func configureVisibilityParameters() {
+    private func configureNotificationParameters(with json: JSON) {
+        for type in notificationTypes {
+            notificationParameters.append(NotificationParameter(type: type, value: json[type.requestKey].boolValue))
+        }
+    }
+    
+    private func configureVisibilityParameters(with json: JSON) {
         for type in visibilityTypes {
-            visibilityParameters.append(VisibilityParameter(type: type, value: .NEVER))
+            visibilityParameters.append(VisibilityParameter(type: type, value: VisibilityStatus(rawValue: json[type.requestKey].stringValue) ?? .NEVER))
         }
     }
     

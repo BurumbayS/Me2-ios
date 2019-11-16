@@ -42,10 +42,12 @@ class ManageAccountTableViewCell: UITableViewCell {
             valueLabel.isHidden = false
         case .notification:
             switcher.isHidden = false
+            switcher.isOn = notificationParameter?.isOn ?? false
             valueLabel.isHidden = true
         case .security:
             switcher.isHidden = true
             valueLabel.isHidden = false
+            valueLabel.text = visibilityParameter?.value.title
             self.accessoryType = .disclosureIndicator
         case .delete:
             titleLabel.textColor = Color.red
