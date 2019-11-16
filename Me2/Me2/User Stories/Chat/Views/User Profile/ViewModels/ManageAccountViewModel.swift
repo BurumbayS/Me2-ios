@@ -107,6 +107,7 @@ class ManageAccountViewModel {
                     
                     let json = JSON(value)
                     print(json)
+                    UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")

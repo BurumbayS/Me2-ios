@@ -40,6 +40,7 @@ class ManageAccountTableViewCell: UITableViewCell {
         case .privacy:
             switcher.isHidden = true
             valueLabel.isHidden = false
+            valueLabel.text = visibilityParameter?.value.title
         case .notification:
             switcher.isHidden = false
             switcher.isOn = notificationParameter?.isOn ?? false
@@ -47,7 +48,6 @@ class ManageAccountTableViewCell: UITableViewCell {
         case .security:
             switcher.isHidden = true
             valueLabel.isHidden = false
-            valueLabel.text = visibilityParameter?.value.title
             self.accessoryType = .disclosureIndicator
         case .delete:
             titleLabel.textColor = Color.red
@@ -96,6 +96,7 @@ class ManageAccountTableViewCell: UITableViewCell {
             title.height == 20
             title.top == view.top + 20
             title.bottom == view.bottom - 20
+            title.width == 210
         }
         
         valueLabel.textColor = .darkGray
