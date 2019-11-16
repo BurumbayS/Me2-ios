@@ -25,7 +25,25 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
         usernameLabel.text = user.username
         fullNameLabel.text = user.fullName ?? ""
         bioLabel.text = user.bio ?? ""
-        instagramLabel.text = user.instagram ?? "не указан"
+        if let instagram = user.instagram, instagram != "" {
+            instagramLabel.textColor = Color.blue
+            instagramLabel.isUserInteractionEnabled = true
+            instagramLabel.text = instagram
+        } else {
+            instagramLabel.textColor = .lightGray
+            instagramLabel.isUserInteractionEnabled = false
+            instagramLabel.text = "не указан"
+        }
+    }
+    
+    private func configureViews() {
+        instagramLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInstagram)))
+    }
+    
+    @objc private func openInstagram() {
+        if let url = URL(string: "https://www.instagram.com/\(user.instagram!)") {
+            UIApplication.shared.open(url)
+        }
     }
     
     @IBAction func wavePressed(_ sender: Any) {
