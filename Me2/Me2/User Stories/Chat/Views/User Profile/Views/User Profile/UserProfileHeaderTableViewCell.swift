@@ -15,9 +15,16 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var nameAndAgeLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var instagramLabel: UILabel!
     
     var parentVC: UIViewController!
     var user: Dynamic<User>!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureViews()
+    }
     
     func configure(user: Dynamic<User>, viewController: UIViewController) {
         self.user = user
@@ -27,6 +34,26 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
         usernameLabel.text = user.value.username
         nameAndAgeLabel.text = user.value.fullName ?? ""
         bioLabel.text = user.value.bio ?? ""
+        
+        if let instagram = user.value.instagram, instagram != "" {
+            instagramLabel.textColor = Color.blue
+            instagramLabel.isUserInteractionEnabled = true
+            instagramLabel.text = instagram
+        } else {
+            instagramLabel.textColor = .lightGray
+            instagramLabel.isUserInteractionEnabled = false
+            instagramLabel.text = "не указан"
+        }
+    }
+    
+    private func configureViews() {
+        instagramLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInstagram)))
+    }
+    
+    @objc private func openInstagram() {
+        if let url = URL(string: "https://www.instagram.com/\(user.value.instagram!)") {
+            UIApplication.shared.open(url)
+        }
     }
     
     @IBAction func editPressed(_ sender: Any) {

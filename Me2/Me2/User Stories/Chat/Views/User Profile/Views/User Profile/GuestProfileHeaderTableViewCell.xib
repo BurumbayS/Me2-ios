@@ -20,11 +20,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="294" id="KGk-i7-Jjw" customClass="GuestProfileHeaderTableViewCell" customModule="Me2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="415" height="294"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="311" id="KGk-i7-Jjw" customClass="GuestProfileHeaderTableViewCell" customModule="Me2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="311"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="415" height="293.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="415" height="310.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ir6-5c-Ytk">
@@ -93,23 +93,40 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVw-0N-CpR">
-                        <rect key="frame" x="20" y="239" width="375" height="54.5"/>
+                        <rect key="frame" x="20" y="239" width="375" height="35.5"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                         <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_instagram_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-18-lOv">
+                        <rect key="frame" x="20" y="294.5" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="3i4-RI-3jm"/>
+                            <constraint firstAttribute="width" constant="16" id="SXB-Lg-z1u"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khy-WQ-g87">
+                        <rect key="frame" x="46" y="293.5" width="37" height="18"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7Yf-uo-Itx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8ZD-1o-ZRk"/>
+                    <constraint firstItem="fDe-18-lOv" firstAttribute="top" secondItem="rVw-0N-CpR" secondAttribute="bottom" constant="20" id="9F6-Su-hYn"/>
                     <constraint firstItem="ir6-5c-Ytk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="9IE-DG-R4m"/>
                     <constraint firstItem="7Yf-uo-Itx" firstAttribute="top" secondItem="ir6-5c-Ytk" secondAttribute="bottom" constant="20" id="DB7-q2-R5v"/>
                     <constraint firstItem="Wgk-Wt-uHg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="DL9-0l-ool"/>
                     <constraint firstItem="xEX-pK-hdA" firstAttribute="top" secondItem="7Yf-uo-Itx" secondAttribute="bottom" id="DjX-k5-hcU"/>
                     <constraint firstAttribute="trailing" secondItem="rVw-0N-CpR" secondAttribute="trailing" constant="20" id="MZ6-ni-uQE"/>
+                    <constraint firstAttribute="bottom" secondItem="fDe-18-lOv" secondAttribute="bottom" id="PJ1-fI-EYf"/>
                     <constraint firstAttribute="trailing" secondItem="Wgk-Wt-uHg" secondAttribute="trailing" constant="20" id="Poe-AK-N4R"/>
                     <constraint firstItem="Wgk-Wt-uHg" firstAttribute="top" secondItem="xEX-pK-hdA" secondAttribute="bottom" constant="15" id="SCL-ED-grI"/>
-                    <constraint firstAttribute="bottom" secondItem="rVw-0N-CpR" secondAttribute="bottom" id="gF0-kp-z4F"/>
+                    <constraint firstItem="Khy-WQ-g87" firstAttribute="centerY" secondItem="fDe-18-lOv" secondAttribute="centerY" id="WmV-H7-UVe"/>
                     <constraint firstItem="xEX-pK-hdA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="o3G-Dl-PBz"/>
+                    <constraint firstItem="Khy-WQ-g87" firstAttribute="leading" secondItem="fDe-18-lOv" secondAttribute="trailing" constant="10" id="pBL-wM-rJU"/>
+                    <constraint firstItem="fDe-18-lOv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="skN-GN-y6Q"/>
                     <constraint firstItem="ir6-5c-Ytk" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="tr7-50-CBg"/>
                     <constraint firstItem="rVw-0N-CpR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="uOL-yt-7KJ"/>
                     <constraint firstItem="rVw-0N-CpR" firstAttribute="top" secondItem="Wgk-Wt-uHg" secondAttribute="bottom" constant="30" id="vu7-Ev-RkW"/>
@@ -120,12 +137,14 @@
                 <outlet property="avatarImageView" destination="ir6-5c-Ytk" id="RJW-VK-Uzs"/>
                 <outlet property="bioLabel" destination="rVw-0N-CpR" id="kn8-1I-5Eg"/>
                 <outlet property="fullNameLabel" destination="xEX-pK-hdA" id="hrM-Dq-FBQ"/>
+                <outlet property="instagramLabel" destination="Khy-WQ-g87" id="BlG-hb-FWd"/>
                 <outlet property="usernameLabel" destination="7Yf-uo-Itx" id="rqm-vd-rJt"/>
             </connections>
-            <point key="canvasLocation" x="206.52173913043481" y="198.21428571428569"/>
+            <point key="canvasLocation" x="206.52173913043481" y="203.90625"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="profile_instagram_icon" width="16" height="16"/>
         <image name="wave_button" width="156" height="40"/>
         <image name="write_button" width="156" height="40"/>
     </resources>

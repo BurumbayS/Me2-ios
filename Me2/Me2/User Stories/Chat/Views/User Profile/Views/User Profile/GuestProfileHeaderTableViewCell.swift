@@ -14,6 +14,7 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var instagramLabel: UILabel!
     
     var user: User!
     
@@ -24,6 +25,7 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
         usernameLabel.text = user.username
         fullNameLabel.text = user.fullName ?? ""
         bioLabel.text = user.bio ?? ""
+        instagramLabel.text = user.instagram ?? "не указан"
     }
     
     @IBAction func wavePressed(_ sender: Any) {

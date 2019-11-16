@@ -89,7 +89,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             cell.configure(with: viewModel.dataFor(cellType: cellType), userDataToSave: viewModel.dataToSave[indexPath.row], controllerPresenter: self, actionSheetPresenter: self)
             return cell
             
-        case .firstname, .lastname, .dateOfBirth:
+        case .firstname, .lastname, .dateOfBirth, .instagram:
             
             let cell: EditProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
