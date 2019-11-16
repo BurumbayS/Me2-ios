@@ -12,6 +12,7 @@ enum UserDefaultKeys: String {
     case token
     case lastMapSearchResults
     case userID
+    case userInfo
     case accessCode
     case useBiometrics
 }

@@ -19,7 +19,7 @@ enum EventCategoriesType: String {
     var title: String {
         switch self {
         case .saved:
-            return ""
+            return "Сахраненные"
         case .popular:
             return "Популярное сегодня"
         case .favourite_places:

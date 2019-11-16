@@ -178,20 +178,30 @@ class EventsTabViewController: UIViewController {
         present(dest, animated: true, completion: nil)
     }
     
-    @objc private func showFullList(_ sender: UIButton) {
+    @objc private func showAllPressed(_ sender: UIButton) {
+        guard let category = viewModel.categories.first(where: { $0.title == sender.accessibilityHint }) else { return }
+        
+        showFullList(of: category)
+    }
+    private func showFullList(of category: EventCategoriesType) {
         let dest = Storyboard.listOfAllViewController() as! ListOfAllViewController
         
-        dest.viewModel = ListOfAllViewModel(category: viewModel.categoriesToShow[sender.tag])
+        switch category {
+        case .saved:
+            dest.viewModel = ListOfAllViewModel(category: category, eventsList: viewModel.savedEvents)
+        default:
+            dest.viewModel = ListOfAllViewModel(category: category)
+        }
         
         navigationController?.pushViewController(dest, animated: true)
     }
     
     private func deleteCategory(in section: EventCategoriesType) {
-        if let index = viewModel.categories.firstIndex(of: section) {
-            viewModel.categories.remove(at: index)
+        if let index = viewModel.categoriesToShow.firstIndex(of: section) {
+            viewModel.categoriesToShow.remove(at: index)
             viewModel.categoryViewModels.remove(at: index)
             
-            viewModel.categoriesToShow = viewModel.categories
+//            viewModel.categoriessToShow = viewModel.categories
             
             tableView.deleteSections([index], with: .fade)
         }
@@ -201,7 +211,7 @@ class EventsTabViewController: UIViewController {
 extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section >= viewModel.categories.count { return UIView() }
+        if section >= viewModel.categoriesToShow.count { return UIView() }
         
         let header = UIView()
         header.backgroundColor = .white
@@ -209,7 +219,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         let title = UILabel()
         title.textColor = .black
         title.font = UIFont(name: "Roboto-Bold", size: 17)
-        title.text = viewModel.categories[section].title
+        title.text = viewModel.categoriesToShow[section].title
         
         header.addSubview(title)
         constrain(title, header) { title, header in
@@ -221,8 +231,9 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
         moreButton.setTitle("См.все", for: .normal)
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 17)
-        moreButton.tag = section
-        moreButton.addTarget(self, action: #selector(showFullList(_ :)), for: .touchUpInside)
+        moreButton.accessibilityHint = viewModel.categoriesToShow[section].title
+//        moreButton.tag = section
+        moreButton.addTarget(self, action: #selector(showAllPressed(_ :)), for: .touchUpInside)
         
         header.addSubview(moreButton)
         constrain(moreButton, header) { btn, header in
@@ -279,7 +290,7 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.selectionStyle = .none
             cell.accessoryType = .disclosureIndicator
-            cell.configure(with: 3)
+            cell.configure(with: viewModel.savedEvents.count)
             
             return cell
             
@@ -320,6 +331,10 @@ extension EventsTabViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = dest.viewControllers[0] as! EventDetailsViewController
             vc.viewModel = EventDetailsViewModel(eventID: viewModel.allEvents[indexPath.row].id)
             present(dest, animated: true, completion: nil)
+        
+        case .saved:
+            
+            showFullList(of: .saved)
             
         default:
             break
