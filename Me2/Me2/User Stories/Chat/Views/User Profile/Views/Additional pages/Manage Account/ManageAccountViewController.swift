@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import IQKeyboardManagerSwift
 
 class ManageAccountViewController: UIViewController {
 
@@ -20,7 +21,7 @@ class ManageAccountViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        viewModel.updateNotificationData()
+        viewModel.updateData()
     }
     
     override func viewDidLoad() {
@@ -28,7 +29,6 @@ class ManageAccountViewController: UIViewController {
         
         configureTableView()
         configureNavBar()
-        bindDynamics()
     }
     
     private func configureNavBar() {
@@ -47,14 +47,7 @@ class ManageAccountViewController: UIViewController {
         
         tableView.register(ManageAccountTableViewCell.self)
     }
-    
-    private func bindDynamics() {
-//        viewModel.notificationParameters.forEach { (parameter) in
-//            parameter.bind({ [unowned self] (value) in
-////                self.viewModel.
-//            })
-//        }
-    }
+
 }
 
 extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegate {
@@ -135,6 +128,11 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
                 }
                 
             }
+            
+        case .privacy:
+            
+            let cell = tableView.cellForRow(at: indexPath) as? ManageAccountTableViewCell
+            cell?.pickerTextField.becomeFirstResponder()
             
         default:
             break

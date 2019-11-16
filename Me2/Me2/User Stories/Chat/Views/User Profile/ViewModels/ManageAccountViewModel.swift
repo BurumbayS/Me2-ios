@@ -16,6 +16,7 @@ class ManageAccountViewModel {
     let securityTypes = [SecurityParameterType.changePassword, .changePhoneNumber, .accessCode]
     
     var notificationParameters = [NotificationParameter]()
+    var visibilityParameters = [VisibilityParameter]()
     
     init() {
         configureParameters()
@@ -23,11 +24,18 @@ class ManageAccountViewModel {
     
     private func configureParameters() {
         configureNotificationParameters()
+        configureVisibilityParameters()
     }
     
     private func configureNotificationParameters() {
         for type in notificationTypes {
             notificationParameters.append(NotificationParameter(type: type, value: false))
+        }
+    }
+    
+    private func configureVisibilityParameters() {
+        for type in visibilityTypes {
+            visibilityParameters.append(VisibilityParameter(type: type, value: .NEVER))
         }
     }
     
@@ -49,7 +57,7 @@ class ManageAccountViewModel {
     func modelForCell(at indexPath: IndexPath) -> ManageAccountParameterModel {
         switch sections[indexPath.section] {
         case .privacy:
-            return ManageAccountParameterModel(title: visibilityTypes[indexPath.row].title, type: .privacy)
+            return ManageAccountParameterModel(title: visibilityTypes[indexPath.row].title, type: .privacy, visibilityParameter: visibilityParameters[indexPath.row])
         case .notification:
             return ManageAccountParameterModel(title: notificationTypes[indexPath.row].title, type: .notification, notificationParameter: notificationParameters[indexPath.row])
         case .security:
@@ -59,11 +67,36 @@ class ManageAccountViewModel {
         }
     }
     
-    func updateNotificationData() {
+    func updateData() {
+        updateNotificationData { [unowned self] in
+            self.updatePrivacyData()
+        }
+    }
+    
+    private func updateNotificationData(completion: VoidBlock?) {
         var params = [String: Bool]()
         notificationParameters.forEach { params[$0.type.requestKey] = $0.isOn }
         
         Alamofire.request(updateNotificationDataURL, method: .put, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    completion?()
+                    
+                case .failure(_ ):
+                    print("error = \(JSON(response.data as Any))")
+                }
+        }
+    }
+    
+    private func updatePrivacyData() {
+        var params = [String: String]()
+        visibilityParameters.forEach { params[$0.type.requestKey] = $0.value.rawValue }
+        
+        Alamofire.request(updatePrivacyDataURL, method: .put, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -91,69 +124,12 @@ class NotificationParameter {
     }
 }
 
-enum VisibilityParameterType {
-    case avatar
-    case name
-    case age
+class VisibilityParameter {
+    let type: VisibilityParameterType
+    var value: VisibilityStatus
     
-    var title: String {
-        switch self {
-        case .avatar:
-            return "Видимость аватара"
-        case .name:
-            return "Видимость имени и фамилии"
-        case .age:
-            return "Видимость возраста"
-        }
-    }
-}
-
-enum NotificationsParameterType {
-    case directMessages
-    case liveChat
-    case tableBookingStatus
-    case newEvents
-    
-    var title: String {
-        switch self {
-        case .directMessages:
-            return "Личные сообщения"
-        case .liveChat:
-            return "LIVE-чаты"
-        case .tableBookingStatus:
-            return "Статус брони столика"
-        case .newEvents:
-            return "Новые события и акции"
-        }
-    }
-    
-    var requestKey: String {
-        switch self {
-        case .directMessages:
-            return "inbound_messages"
-        case .liveChat:
-            return "live_chat"
-        case .tableBookingStatus:
-            return "booking_status"
-        case .newEvents:
-            return "events_and_promo"
-        }
-    }
-}
-
-enum SecurityParameterType {
-    case changePassword
-    case changePhoneNumber
-    case accessCode
-    
-    var title: String {
-        switch self {
-        case .changePassword:
-            return "Изменить пароль"
-        case .changePhoneNumber:
-            return "Изменить номер телефона"
-        case .accessCode:
-            return "Код быстрого доступа"
-        }
+    init(type: VisibilityParameterType, value: VisibilityStatus) {
+        self.type = type
+        self.value = value
     }
 }

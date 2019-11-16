@@ -77,6 +77,8 @@
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
 		DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */; };
+		DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */; };
+		DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
@@ -329,6 +331,8 @@
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
+		DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountParameterModel.swift; sourceTree = "<group>"; };
+		DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountEnums.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
@@ -908,6 +912,8 @@
 				DD97CB4D2355FAAD002291CA /* User.swift */,
 				DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */,
 				DDF7D061236C5E510093FF4B /* Notification.swift */,
+				DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */,
+				DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1641,6 +1647,7 @@
 				DD5653D322F44FB2003A67C3 /* MapViewController.swift in Sources */,
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */,
+				DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
@@ -1692,6 +1699,7 @@
 				DDE047E6233CD4A000E33046 /* EventDetailsViewController.swift in Sources */,
 				DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */,
 				DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */,
+				DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */,
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
