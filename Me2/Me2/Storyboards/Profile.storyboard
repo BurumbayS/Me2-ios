@@ -69,26 +69,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ety-05-WeL">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NF-bf-mAC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="npV-VY-uWS"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ety-05-WeL" firstAttribute="top" secondItem="Ex4-9h-kmJ" secondAttribute="top" id="5NY-gM-2Ec"/>
+                            <constraint firstItem="1NF-bf-mAC" firstAttribute="top" secondItem="Ex4-9h-kmJ" secondAttribute="top" id="1fd-l2-xmn"/>
                             <constraint firstItem="Ex4-9h-kmJ" firstAttribute="bottom" secondItem="ety-05-WeL" secondAttribute="bottom" id="Dba-7N-q0F"/>
+                            <constraint firstItem="1NF-bf-mAC" firstAttribute="leading" secondItem="Ex4-9h-kmJ" secondAttribute="leading" id="EQh-c1-Myh"/>
                             <constraint firstItem="Ex4-9h-kmJ" firstAttribute="trailing" secondItem="ety-05-WeL" secondAttribute="trailing" id="Jvm-QH-jDd"/>
                             <constraint firstItem="ety-05-WeL" firstAttribute="leading" secondItem="Ex4-9h-kmJ" secondAttribute="leading" id="QCP-Pf-bsR"/>
+                            <constraint firstItem="ety-05-WeL" firstAttribute="top" secondItem="1NF-bf-mAC" secondAttribute="bottom" id="gaP-Ai-NsE"/>
+                            <constraint firstItem="1NF-bf-mAC" firstAttribute="trailing" secondItem="Ex4-9h-kmJ" secondAttribute="trailing" id="w0g-KO-o53"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ex4-9h-kmJ"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="1NF-bf-mAC" id="1nn-XD-t7e"/>
+                        <outlet property="navItem" destination="npV-VY-uWS" id="0Mg-FK-OaL"/>
                         <outlet property="tableView" destination="ety-05-WeL" id="MQ3-1f-Vgz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6U-3a-UXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7180" y="714"/>
+            <point key="canvasLocation" x="7179.7101449275369" y="713.83928571428567"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="Eb8-Rn-aOA">
@@ -415,7 +426,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHs-Zg-YmU">
-                                <rect key="frame" x="20" y="201" width="101.5" height="18"/>
+                                <rect key="frame" x="20" y="201" width="102.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -653,7 +664,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYO-RZ-NDh">
-                                <rect key="frame" x="20" y="238" width="374" height="52.5"/>
+                                <rect key="frame" x="20" y="238" width="374" height="53"/>
                                 <string key="text">Код доступа позволяет быстрый вход в 
 приложение, а также вход по отпечатку
 пальца TouchID/FaceID.</string>

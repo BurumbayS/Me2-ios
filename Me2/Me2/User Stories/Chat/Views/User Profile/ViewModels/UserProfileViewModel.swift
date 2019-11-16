@@ -82,7 +82,7 @@ class UserProfileViewModel {
         }
     }
     
-    var userInfo: Dynamic<User>!//User!
+    var userInfo: Dynamic<User>!
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {

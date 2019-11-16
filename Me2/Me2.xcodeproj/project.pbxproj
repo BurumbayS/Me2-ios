@@ -79,6 +79,7 @@
 		DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */; };
 		DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */; };
 		DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */; };
+		DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
@@ -333,6 +334,7 @@
 		DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountParameterModel.swift; sourceTree = "<group>"; };
 		DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountEnums.swift; sourceTree = "<group>"; };
+		DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewModel.swift; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
@@ -927,6 +929,7 @@
 				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
 				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
 				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
+				DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1625,6 +1628,7 @@
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
 				DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */,
 				DDF7D07723750E1B0093FF4B /* ContactsViewModel.swift in Sources */,
+				DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */,
 				DDE047EF233CF59100E33046 /* EventPlaceTableViewCell.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */,
