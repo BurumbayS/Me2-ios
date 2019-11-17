@@ -50,8 +50,7 @@ class FavouritePlacesViewController: UIViewController {
             self?.viewModel.favouritePlaces.value.append(place)
             self?.tableView.reloadSections([0], with: .automatic)
         })
-        present(vc, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func removePlace() {

@@ -36,15 +36,11 @@ class AddFavouritePlaceViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navBar.tintColor = .black
         navBar.shouldRemoveShadow(true)
         
         navItem.title = "Добавить"
-        
-        let leftItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(dismissSelf))
-        leftItem.tintColor = Color.red
-        navItem.leftBarButtonItem = leftItem
-        
-//        let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(done))
+        setUpBackBarButton(for: navItem)
     }
     
     private func configureSearchBar() {
