@@ -30,9 +30,11 @@ class FavouritePlacesViewController: UIViewController {
         
         setUpBackBarButton(for: navItem)
         
-        let rightItem = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addPlace))
-        rightItem.tintColor = Color.blue
-        navItem.rightBarButtonItem = rightItem
+        if viewModel.isEditable {
+            let rightItem = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addPlace))
+            rightItem.tintColor = Color.blue
+            navItem.rightBarButtonItem = rightItem
+        }
     }
     
     private func configureTabeView() {
@@ -81,12 +83,16 @@ extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return viewModel.isEditable
+    }
+    
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Удалить"
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+    
         if editingStyle == .delete {
             viewModel.toDeletePlaceIndexPath = indexPath
             addActionSheet(with: ["Удалить"], and: [removePlace], and: [.destructive])

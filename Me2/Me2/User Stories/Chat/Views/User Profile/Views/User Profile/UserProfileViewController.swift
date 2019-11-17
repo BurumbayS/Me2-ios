@@ -130,7 +130,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
                 let vc = Storyboard.favouritePlacesViewController() as! FavouritePlacesViewController
-                vc.viewModel = FavouritePlacesViewModel(places: self?.viewModel.favouritePlaces ?? Dynamic([]))
+                vc.viewModel = FavouritePlacesViewModel(places: self?.viewModel.favouritePlaces ?? Dynamic([]), isEditable: self?.viewModel.profileType == .myProfile)
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             return favouritePlacesHeader

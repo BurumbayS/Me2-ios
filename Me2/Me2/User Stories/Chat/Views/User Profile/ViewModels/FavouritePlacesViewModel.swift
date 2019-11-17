@@ -11,13 +11,15 @@ import SwiftyJSON
 
 class FavouritePlacesViewModel {
 
+    let isEditable: Bool
     var favouritePlaces: Dynamic<[Place]>!
     var places = [Place]()
     var toDeletePlaceIndexPath: IndexPath?
     
-    init(places: Dynamic<[Place]>) {
+    init(places: Dynamic<[Place]>, isEditable: Bool) {
         self.favouritePlaces = places
         self.places = places.value
+        self.isEditable = isEditable
     }
     
     func removeFromFavourite(place: Place, completion: ResponseBlock?) {
