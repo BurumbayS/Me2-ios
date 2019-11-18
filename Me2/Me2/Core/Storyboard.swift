@@ -113,6 +113,12 @@ extension Storyboard {
     static var addFavouritePlaceViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "AddFavouritePlaceViewController")
     }
+    static var myContactsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "MyContactsViewController")
+    }
+    static var addContactViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AddContactViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

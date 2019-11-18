@@ -1,0 +1,108 @@
+//
+//  AddContactViewModel.swift
+//  Me2
+//
+//  Created by Sanzhar Burumbay on 11/18/19.
+//  Copyright © 2019 AVSoft. All rights reserved.
+//
+
+import Alamofire
+import SwiftyJSON
+import Contacts
+
+class AddContactViewModel {
+    var sections = [ContactsListSection.action]
+    var actionTypes = [ContactsActionType.inviteFriend, .synchronizeContacts]
+    var actions = [VoidBlock?]()
+    
+    var synchronizedUsers = [User]()
+    var contactsSynchronized: Dynamic<Bool>
+    
+    var inviteFriends: VoidBlock?
+    var synchronizeContacts: VoidBlock?
+    
+    init() {
+        contactsSynchronized = Dynamic(false)
+    }
+    
+    func configureActions() {
+        inviteFriends = {
+            print("Invite friends pressed")
+        }
+        
+        synchronizeContacts = {
+            let numbers = self.getContactsPhoneNumbers()
+            self.getUsers(with: numbers)
+        }
+        
+        actions = [inviteFriends, synchronizeContacts]
+    }
+    
+    private func getUsers(with numbers: [String]) {
+        let url = Network.user + "/sync/"
+        let editedNumbers = editedPhoneNumbers(from: numbers)
+        let params: [String: Any] = ["phones": editedNumbers]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    self.synchronizedUsers = []
+                    for item in json["data"].arrayValue {
+                        self.synchronizedUsers.append(User(json: item))
+                    }
+                    
+                    self.contactsSynchronized.value = true
+                    
+                case .failure( _):
+                    print(JSON(response.data as Any))
+                }
+        }
+    }
+    
+    private func getContactsPhoneNumbers() -> [String] {
+        var phoneNumbers = [String]()
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+        let contactStore = CNContactStore()
+        
+        do {
+            try contactStore.enumerateContacts(with: request) {
+                (contact, stop) in
+                
+                contact.phoneNumbers.forEach { (phone) in
+                    phoneNumbers.append(phone.value.stringValue)
+                }
+            }
+        }
+        catch {
+            print("unable to fetch contacts")
+        }
+        
+        return phoneNumbers
+    }
+    
+    private func editedPhoneNumbers(from numbers: [String]) -> [String] {
+        var editedNumbers = [String]()
+        
+        numbers.forEach({ editedNumbers.append(convertPhone(from: $0)) })
+        
+        return editedNumbers
+    }
+    
+    private func convertPhone(from phone: String) -> String {
+        var convertedPhone = phone
+        if convertedPhone.first == "8" {
+            convertedPhone.removeFirst()
+            convertedPhone = "+7" + convertedPhone
+        }
+        
+        let pattern = "+###########"
+        convertedPhone = convertedPhone.applyPatternOnNumbers(pattern: pattern, replacmentCharacter: "#")
+        
+        return convertedPhone
+    }
+}

@@ -26,6 +26,12 @@ class ContactTableViewCell: UITableViewCell {
     
     var checked = CheckStatus.unchecked
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.addUnderline(with: Color.gray, and: self.contentView.frame.size)
+    }
+    
     func configure(contact: User, selectable: Bool) {
         switch selectable {
         case true:

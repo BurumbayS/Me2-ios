@@ -169,6 +169,11 @@ class UserProfileViewModel {
             let vc = Storyboard.manageAccountViewController()
             presenterDelegate.present(controller: vc, presntationType: .push)
             
+        case .contacts:
+            
+            let vc = Storyboard.myContactsViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

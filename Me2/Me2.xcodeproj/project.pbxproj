@@ -82,6 +82,10 @@
 		DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */; };
 		DD7206FE238030590090F12C /* AddFavouritePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */; };
 		DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */; };
+		DD720703238152960090F12C /* MyContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD720702238152960090F12C /* MyContactsViewController.swift */; };
+		DD720705238166110090F12C /* MyContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD720704238166110090F12C /* MyContactsViewModel.swift */; };
+		DD72070A23816D060090F12C /* ContactsActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */; };
+		DD72070B23816D060090F12C /* ContactsActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */; };
 		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
 		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
 		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
@@ -176,6 +180,8 @@
 		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
 		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
+		DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */; };
+		DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */; };
 		DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */; };
 		DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */; };
 		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
@@ -339,6 +345,10 @@
 		DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewModel.swift; sourceTree = "<group>"; };
 		DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewController.swift; sourceTree = "<group>"; };
 		DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewModel.swift; sourceTree = "<group>"; };
+		DD720702238152960090F12C /* MyContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewController.swift; sourceTree = "<group>"; };
+		DD720704238166110090F12C /* MyContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewModel.swift; sourceTree = "<group>"; };
+		DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsActionTableViewCell.swift; sourceTree = "<group>"; };
+		DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsActionTableViewCell.xib; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
 		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
@@ -427,6 +437,8 @@
 		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
 		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
@@ -902,6 +914,17 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		DD7207012381525D0090F12C /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				DD720702238152960090F12C /* MyContactsViewController.swift */,
+				DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */,
+				DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */,
+				DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		DD97CB65235996B1002291CA /* Place Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +958,8 @@
 				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
 				DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */,
 				DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */,
+				DD720704238166110090F12C /* MyContactsViewModel.swift */,
+				DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -946,6 +971,7 @@
 				DD133B882346096B00A5A9A7 /* Edit Profile */,
 				DDF7D058236BFF9E0093FF4B /* Additional pages */,
 				DDF65B1A23014F0C00441035 /* Favourite Places */,
+				DD7207012381525D0090F12C /* Contacts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1412,6 +1438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD72070B23816D060090F12C /* ContactsActionTableViewCell.xib in Resources */,
 				DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */,
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
 				DD97CB62235996AB002291CA /* PlaceCardCollectionViewCell.xib in Resources */,
@@ -1532,6 +1559,7 @@
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF7D06B237041300093FF4B /* Room.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
+				DD72070A23816D060090F12C /* ContactsActionTableViewCell.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */,
 				DDF7D073237433D90093FF4B /* LiveChatViewModel.swift in Sources */,
@@ -1575,6 +1603,7 @@
 				DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
 				DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */,
+				DD720703238152960090F12C /* MyContactsViewController.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
@@ -1660,6 +1689,7 @@
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */,
 				DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */,
+				DD720705238166110090F12C /* MyContactsViewModel.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
 				DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
@@ -1702,6 +1732,7 @@
 				DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */,
 				DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
+				DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */,
 				DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
 				DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */,
@@ -1711,6 +1742,7 @@
 				DDE047E6233CD4A000E33046 /* EventDetailsViewController.swift in Sources */,
 				DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */,
 				DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */,
+				DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */,
 				DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */,
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
