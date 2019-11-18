@@ -42,11 +42,11 @@ class AddContactViewController: UIViewController {
             self?.tableView.insertSections(indexSet, with: .fade)
         }
         
-        viewModel.updateSearchResults.bind { [weak self] (_) in
-            if (self?.viewModel.sections.contains(.searchResults))! {
-                
-            }
-        }
+//        viewModel.updateSearchResults.bind { [weak self] (_) in
+//            if (self?.viewModel.sections.contains(.searchResults))! {
+//
+//            }
+//        }
     }
     
     private func configureNavBar() {
@@ -75,7 +75,7 @@ class AddContactViewController: UIViewController {
     
     private func updateSearchResults() {
         if viewModel.sections.contains(.searchResults) {
-            tableView.reloadSections([1], with: .top)
+            tableView.reloadSections([1], with: .fade)
             return
         }
         
@@ -89,7 +89,7 @@ class AddContactViewController: UIViewController {
     }
     
     private func addNewContact(contact: User) {
-        viewModel.myContacts.append(contact)
+        viewModel.myContacts.value.append(contact)
         tableView.reloadData()
         
         viewModel.addToContactsUser(withID: contact.id) { [weak self] (status, message) in
@@ -98,12 +98,12 @@ class AddContactViewController: UIViewController {
                 break
             case .error:
                 
-                self?.viewModel.myContacts.removeAll(where: { $0.id == contact.id })
+                self?.viewModel.myContacts.value.removeAll(where: { $0.id == contact.id })
                 self?.tableView.reloadData()
                 
             case .fail:
                 
-                self?.viewModel.myContacts.removeAll(where: { $0.id == contact.id })
+                self?.viewModel.myContacts.value.removeAll(where: { $0.id == contact.id })
                 self?.tableView.reloadData()
                 
             }
@@ -190,7 +190,8 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
             let contact = viewModel.contactForCell(at: indexPath)
-            let added = viewModel.myContacts.contains(where: { $0.id == contact.id })
+            cell.selectionStyle = .none
+            let added = viewModel.myContacts.value.contains(where: { $0.id == contact.id })
             cell.configure(contact: contact, addable: true, added: added) { [weak self] in
                 self?.addNewContact(contact: contact)
             }

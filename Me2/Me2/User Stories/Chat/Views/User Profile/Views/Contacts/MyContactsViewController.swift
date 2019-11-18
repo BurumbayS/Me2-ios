@@ -25,19 +25,31 @@ class MyContactsViewController: UIViewController {
         configureViewModel()
         configureTableView()
         configureSearchBar()
+        configureNavBar()
         fetchData()
+        bindDynamics()
     }
     
     private func fetchData() {
-        viewModel.fetchMyContacts { [weak self] (status, message) in
-//            self?.viewModel.sections.append(.byLetterContacts)
-            self?.tableView.reloadData()
-        }
+        viewModel.fetchMyContacts()
     }
     
     private func configureViewModel() {
         viewModel = MyContactsViewModel(presenterDelegate: self)
         viewModel.configureActions()
+    }
+    
+    private func bindDynamics() {
+        viewModel.updateContactsList.bind { [weak self] (_) in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func configureNavBar() {
+        navBar.shouldRemoveShadow(true)
+        
+        navItem.title = "Мои контакты"
+        setUpBackBarButton(for: navItem)
     }
     
     private func configureSearchBar() {
@@ -67,7 +79,7 @@ class MyContactsViewController: UIViewController {
             headerView.backgroundColor = Color.lightGray
             
             let letterLabel = UILabel()
-            letterLabel.text = "A"
+            letterLabel.text = (viewModel.byLetterSections[section]?.letter)?.uppercased()
             letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
             letterLabel.textColor = .gray
             
@@ -103,8 +115,10 @@ class MyContactsViewController: UIViewController {
         switch viewModel.sections[section] {
         case .action:
             return viewModel.actions.count
+        case .byLetterContacts:
+            return viewModel.byLetterSections[section]?.contacts.count ?? 0
         default:
-            return viewModel.contacts.count
+            return 0
         }
     }
     
@@ -120,7 +134,7 @@ class MyContactsViewController: UIViewController {
         default:
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-             cell.configure(contact: viewModel.contacts[indexPath.row])
+            cell.configure(contact: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row] ?? User(json: JSON()))
             return cell
             
         }

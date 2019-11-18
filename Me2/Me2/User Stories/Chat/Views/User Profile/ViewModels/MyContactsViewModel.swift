@@ -71,9 +71,15 @@ enum ContactsListSection {
     }
 }
 
+struct ByLetterContactsSection {
+    let letter: String
+    let contacts: [User]
+}
+
 class MyContactsViewModel {
     var sections = [ContactsListSection.action]
     var actionTypes = [ContactsActionType.addContact, .blockedContacts]
+    var byLetterSections = [Int: ByLetterContactsSection]()
     var actions = [VoidBlock?]()
     
     var presenterDelegate: ControllerPresenterDelegate!
@@ -81,10 +87,22 @@ class MyContactsViewModel {
     var addContactAction: VoidBlock?
     var showBlockedContactsAction: VoidBlock?
     
-    var contacts = [User]()
+    var contacts: Dynamic<[User]>
+    var updateContactsList: Dynamic<Bool>
 
     init(presenterDelegate: ControllerPresenterDelegate) {
         self.presenterDelegate = presenterDelegate
+        
+        contacts = Dynamic([])
+        updateContactsList = Dynamic(false)
+        
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        contacts.bind { [weak self] (contacts) in
+            self?.groupContactsByLetters(contactsToGroup: contacts)
+        }
     }
     
     func configureActions() {
@@ -100,7 +118,7 @@ class MyContactsViewModel {
         actions = [addContactAction, showBlockedContactsAction]
     }
     
-    func fetchMyContacts(completion: ResponseBlock?) {
+    func fetchMyContacts() {
         let url = Network.contact + "/"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
@@ -111,20 +129,44 @@ class MyContactsViewModel {
                     let json = JSON(value)
                     print(json)
                     
-                    self.contacts = []
+                    var contacts = [User]()
                     for item in json["data"]["results"].arrayValue {
-                        self.contacts.append(User(json: item))
+                        contacts.append(User(json: item["user2"]))
                     }
                     
-                    self.contacts.sort(by: { $0.username > $1.username })
+                    self.contacts.value = contacts
                     
-                    completion?(.ok, "")
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure( _):
                     print(JSON(response.data as Any))
-                    completion?(.fail, "")
                 }
         }
+    }
+    
+    private func groupContactsByLetters(contactsToGroup: [User]) {
+        var currentContacts = contactsToGroup
+        currentContacts.sort(by: { $0.username < $1.username })
+        
+        var letter = ""
+        var contacts = [User]()
+        
+        self.sections = [.action]
+        
+        for contact in currentContacts {
+            if letter != String(contact.username.first!) {
+                if letter != "" {
+                    sections.append(.byLetterContacts)
+                    
+                    let section = ByLetterContactsSection(letter: letter, contacts: contacts)
+                    byLetterSections[sections.count - 1] = section
+                }
+                
+                letter = String(contact.username.first!)
+                contacts = []
+            }
+            
+            contacts.append(contact)
+        }
+        
+        self.updateContactsList.value = true
     }
 }

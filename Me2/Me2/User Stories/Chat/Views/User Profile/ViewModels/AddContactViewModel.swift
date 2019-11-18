@@ -15,7 +15,7 @@ class AddContactViewModel {
     var actionTypes = [ContactsActionType.inviteFriend, .synchronizeContacts]
     var actions = [VoidBlock?]()
     
-    var myContacts = [User]()
+    var myContacts: Dynamic<[User]>!
     
     var synchronizedUsers = [User]()
     var contactsSynchronized: Dynamic<Bool>
@@ -26,7 +26,7 @@ class AddContactViewModel {
     var inviteFriends: VoidBlock?
     var synchronizeContacts: VoidBlock?
     
-    init(currentContacts: [User]) {
+    init(currentContacts: Dynamic<[User]>) {
         self.myContacts = currentContacts
         
         contactsSynchronized = Dynamic(false)
