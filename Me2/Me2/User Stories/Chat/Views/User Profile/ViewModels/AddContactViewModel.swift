@@ -18,11 +18,15 @@ class AddContactViewModel {
     var synchronizedUsers = [User]()
     var contactsSynchronized: Dynamic<Bool>
     
+    var searchResults = [User]()
+    var updateSearchResults: Dynamic<Bool>
+    
     var inviteFriends: VoidBlock?
     var synchronizeContacts: VoidBlock?
     
     init() {
         contactsSynchronized = Dynamic(false)
+        updateSearchResults = Dynamic(false)
     }
     
     func configureActions() {
@@ -36,6 +40,31 @@ class AddContactViewModel {
         }
         
         actions = [inviteFriends, synchronizeContacts]
+    }
+    
+    func searchUser(by username: String, completion: ResponseBlock?) {
+        let url = Network.user + "/?search=\(username)"
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    self.searchResults = []
+                    for item in json["data"]["results"].arrayValue {
+                        self.searchResults.append(User(json: item))
+                    }
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
     }
     
     private func getUsers(with numbers: [String]) {
@@ -62,7 +91,9 @@ class AddContactViewModel {
                 }
         }
     }
-    
+}
+
+extension AddContactViewModel {
     private func getContactsPhoneNumbers() -> [String] {
         var phoneNumbers = [String]()
         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]

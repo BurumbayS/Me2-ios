@@ -41,6 +41,12 @@ class AddContactViewController: UIViewController {
             let indexSet = IndexSet(arrayLiteral: (self?.viewModel.sections.count)! - 1)
             self?.tableView.insertSections(indexSet, with: .fade)
         }
+        
+        viewModel.updateSearchResults.bind { [weak self] (_) in
+            if (self?.viewModel.sections.contains(.searchResults))! {
+                
+            }
+        }
     }
     
     private func configureNavBar() {
@@ -65,6 +71,21 @@ class AddContactViewController: UIViewController {
         
         tableView.registerNib(ContactTableViewCell.self)
         tableView.registerNib(ContactsActionTableViewCell.self)
+    }
+    
+    private func updateSearchResults() {
+        if viewModel.sections.contains(.searchResults) {
+            tableView.reloadSections([1], with: .top)
+            return
+        }
+        
+        if viewModel.sections.count > 1 {
+            viewModel.sections.replaceSubrange(1...viewModel.sections.count-1, with: [.searchResults, .synchronizedContacts])
+        } else {
+            viewModel.sections.append(.searchResults)
+        }
+        
+        tableView.insertSections([1], with: .top)
     }
 }
 
@@ -126,6 +147,8 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
             return viewModel.actionTypes.count
         case .synchronizedContacts:
             return viewModel.synchronizedUsers.count
+        case .searchResults:
+            return viewModel.searchResults.count
         default:
             return 0
         }
@@ -144,6 +167,12 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(contact: viewModel.synchronizedUsers[indexPath.row], selectable: false)
+            return cell
+            
+        case .searchResults:
+            
+            let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(contact: viewModel.searchResults[indexPath.row], selectable: false)
             return cell
             
         default:
@@ -171,5 +200,20 @@ extension AddContactViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        
+        if let username = searchBar.text, username != "" {
+            viewModel.searchUser(by: username) { [weak self] (status, message) in
+                switch status {
+                case .ok:
+                    
+                    self?.updateSearchResults()
+                    
+                case .error:
+                    break
+                case .fail:
+                    break
+                }
+            }
+        }
     }
 }
