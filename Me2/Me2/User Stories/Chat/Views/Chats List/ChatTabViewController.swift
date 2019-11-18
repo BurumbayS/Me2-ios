@@ -39,6 +39,25 @@ class ChatTabViewController: ListContainedViewController {
         
         configureNavBar()
         configureTableView()
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        viewModel.roomUUIDToOpenFirst.bind { [weak self] (uuid) in
+            if uuid != "" {
+                self?.viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
+                    switch status {
+                    case .ok:
+                        self?.viewModel.roomUUIDToOpenFirst.value = ""
+                        self?.goToChat(room: (self?.viewModel.newChatRoom)!)
+                    case .error:
+                        break
+                    case .fail:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     private func loadChatsList() {
@@ -152,6 +171,20 @@ class ChatTabViewController: ListContainedViewController {
             break
         }
     }
+    
+//    func openChatOnPush(with uuid: String) {
+//        viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
+//            switch status {
+//            case .ok:
+//                self?.viewModel.roomUUIDToOpenFirst = ""
+//                self?.goToChat(room: (self?.viewModel.newChatRoom)!)
+//            case .error:
+//                break
+//            case .fail:
+//                break
+//            }
+//        }
+//    }
 }
 
 extension ChatTabViewController: UISearchResultsUpdating {
@@ -199,7 +232,7 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = viewModel.chatsList[indexPath.row]
         
-        goToChat(room: room)
+        goToChat(room: room) 
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
