@@ -20,11 +20,14 @@ enum CheckStatus: String {
 class ContactTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var checkStatusImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addedLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     
     var checked = CheckStatus.unchecked
+    var addPressHandler: VoidBlock?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -32,13 +35,24 @@ class ContactTableViewCell: UITableViewCell {
         self.contentView.addUnderline(with: Color.gray, and: self.contentView.frame.size)
     }
     
-    func configure(contact: User, selectable: Bool) {
+    func configure(contact: User, selectable: Bool = false, addable: Bool = false, added: Bool = false, onAdd: VoidBlock? = nil) {
+        self.addPressHandler = onAdd
+        
         switch selectable {
         case true:
             checkStatusImageView.isHidden = false
             checkStatusImageView.image = checked.image()
         default:
             checkStatusImageView.isHidden = true
+        }
+        
+        switch addable {
+        case true:
+            addButton.isHidden = added
+            addedLabel.isHidden = !added
+        default:
+            addButton.isHidden = true
+            addedLabel.isHidden = true
         }
         
         configureViews(for: contact)
@@ -60,4 +74,9 @@ class ContactTableViewCell: UITableViewCell {
         
         checkStatusImageView.image = checked.image()
     }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        addPressHandler?()
+    }
+    
 }

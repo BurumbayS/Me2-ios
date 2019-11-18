@@ -15,6 +15,8 @@ class AddContactViewModel {
     var actionTypes = [ContactsActionType.inviteFriend, .synchronizeContacts]
     var actions = [VoidBlock?]()
     
+    var myContacts = [User]()
+    
     var synchronizedUsers = [User]()
     var contactsSynchronized: Dynamic<Bool>
     
@@ -42,6 +44,19 @@ class AddContactViewModel {
         actions = [inviteFriends, synchronizeContacts]
     }
     
+    func contactForCell(at indexPath: IndexPath) -> User {
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .searchResults:
+            return searchResults[indexPath.row]
+        case .synchronizedContacts:
+            return synchronizedUsers[indexPath.row]
+        default:
+            return User(json: JSON())
+        }
+    }
+    
     func searchUser(by username: String, completion: ResponseBlock?) {
         let url = Network.user + "/?search=\(username)"
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
@@ -62,6 +77,28 @@ class AddContactViewModel {
                     
                 case .failure(let error):
                     print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func addToContactsUser(withID id: Int, completion: ResponseBlock?) {
+        let url = Network.contact + "/"
+        let params = ["user2": id] as [String: Any]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    print(JSON(response.data as Any))
                     completion?(.fail, "")
                 }
         }

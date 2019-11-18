@@ -87,6 +87,28 @@ class AddContactViewController: UIViewController {
         
         tableView.insertSections([1], with: .top)
     }
+    
+    private func addNewContact(contact: User) {
+        viewModel.myContacts.append(contact)
+        tableView.reloadData()
+        
+        viewModel.addToContactsUser(withID: contact.id) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            case .error:
+                
+                self?.viewModel.myContacts.removeAll(where: { $0.id == contact.id })
+                self?.tableView.reloadData()
+                
+            case .fail:
+                
+                self?.viewModel.myContacts.removeAll(where: { $0.id == contact.id })
+                self?.tableView.reloadData()
+                
+            }
+        }
+    }
 }
 
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
@@ -163,21 +185,16 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(actionType: viewModel.actionTypes[indexPath.row])
             return cell
             
-        case .synchronizedContacts:
-            
-            let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(contact: viewModel.synchronizedUsers[indexPath.row], selectable: false)
-            return cell
-            
-        case .searchResults:
-            
-            let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(contact: viewModel.searchResults[indexPath.row], selectable: false)
-            return cell
-            
         default:
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            let contact = viewModel.contactForCell(at: indexPath)
+            let added = viewModel.myContacts.contains(where: { $0.id == contact.id })
+            cell.configure(contact: contact, addable: true, added: added) { [weak self] in
+                self?.addNewContact(contact: contact)
+            }
+            
             return cell
         }
     }
