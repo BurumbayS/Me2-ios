@@ -12,6 +12,7 @@ import GoogleMaps
 import CoreLocation
 import MapKit
 import Cartography
+import OneSignal
 
 class MapViewController: UIViewController {
     var collectionView: UICollectionView!
@@ -52,8 +53,19 @@ class MapViewController: UIViewController {
         configureLocationManager()
         bindViewModel()
         configureCollectionView()
+        subscribeForNotifications()
     }
 
+    private func subscribeForNotifications() {
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            if accepted {
+                OneSignal.setSubscription(true)
+            } else {
+                OneSignal.setSubscription(false)
+            }
+        })
+    }
+    
     private func fetchData() {
         viewModel.getPlacePins { [weak self] (status, message) in
             switch status {

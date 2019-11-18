@@ -13,4 +13,5 @@ enum UserDefaultKeys: String {
     case lastMapSearchResults
     case userID
     case userInfo
+    case notificationsSubscriptionStatus
 }

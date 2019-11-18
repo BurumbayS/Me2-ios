@@ -13,6 +13,7 @@ class ChatTabViewModel {
     
     var chatsList = [Room]()
     var newChatRoom: Room!
+    var roomUUIDToOpenFirst: Dynamic<String> = Dynamic("")
     
     func getChatList(completion: ResponseBlock?) {
         Alamofire.request(roomURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
@@ -45,8 +46,27 @@ class ChatTabViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-//                    print(json)
                     self.newChatRoom = Room(json: json["data"])
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(_ ):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func getRoomInfo(with uuid: String, completion: ResponseBlock?) {
+        let url = roomURL + "\(uuid)/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { [weak self] (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    self?.newChatRoom = Room(json: json["data"])
                     
                     completion?(.ok, "")
                     
