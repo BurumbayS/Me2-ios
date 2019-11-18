@@ -68,7 +68,7 @@ class ResetPasswordViewController: UIViewController {
             case .ok:
                 
                 let vc = Storyboard.confirmCodeViewController() as! ConfirmCodeViewController
-                vc.viewModel = ConfirmPinCodeViewModel(activationID: self?.viewModel.phoneActivationID ?? 0)
+                vc.viewModel = ConfirmPinCodeViewModel(activationID: self?.viewModel.phoneActivationID ?? 0, confirmationType: .onRegistrartion)
                 self?.navigationController?.pushViewController(vc, animated: true)
 
             case .error:

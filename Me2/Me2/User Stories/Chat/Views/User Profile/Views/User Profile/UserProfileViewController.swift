@@ -15,21 +15,16 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     
+    
     let interestsHeader = ProfileSectionHeader()
     let favouritePlacesHeader = ProfileSectionHeader()
     
     var viewModel = UserProfileViewModel(profileType: .myProfile)
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.shouldRemoveShadow(false)
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.shouldRemoveShadow(true)
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -37,12 +32,28 @@ class UserProfileViewController: UIViewController {
         
         configureNavBar()
         configureTableView()
+        configureViewModel()
         fetchData()
     }
     
     private func configureNavBar() {
-//        navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.makeTransparentBar()
+        navBar.makeTransparentBar()
+        navItem.title = ""
+        navBar.tintColor = .black
+        
+        switch viewModel.profileType {
+        case .guestProfile:
+            
+            setUpBackBarButton(for: navItem)
+            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
+            
+        default:
+            break
+        }
+    }
+    
+    private func configureViewModel() {
+        viewModel.presenterDelegate = self
     }
     
     private func configureTableView() {
@@ -56,6 +67,7 @@ class UserProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 30
         
         tableView.registerNib(UserProfileHeaderTableViewCell.self)
+        tableView.registerNib(GuestProfileHeaderTableViewCell.self)
         tableView.register(TagsTableViewCell.self)
         tableView.register(FavouritePlacesTableViewCell.self)
         tableView.register(AddInterestsTableViewCell.self)
@@ -64,6 +76,9 @@ class UserProfileViewController: UIViewController {
     }
     
     private func byndDynamics() {
+        viewModel.favouritePlaces.bind { [weak self] (places) in
+            self?.tableView.reloadData()
+        }
         viewModel.userInfo.bind { [weak self] (user) in
             self?.tableView.reloadData()
         }
@@ -87,6 +102,17 @@ class UserProfileViewController: UIViewController {
         }
     }
     
+    @objc private func moreActions() {
+        self.addActionSheet(with: ["Заблокировать пользователя", "Пожаловаться на пользователя"], and: [blockUser, complainToUser], and: [.destructive, .destructive])
+    }
+    
+    private func blockUser() {
+        
+    }
+    
+    private func complainToUser() {
+        
+    }
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {
@@ -103,8 +129,9 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         case .favourite_places:
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in
-//                let vc = Storyboard.favouritePlacesViewController()
-//                self?.navigationController?.pushViewController(vc, animated: true)
+                let vc = Storyboard.favouritePlacesViewController() as! FavouritePlacesViewController
+                vc.viewModel = FavouritePlacesViewModel(places: self?.viewModel.favouritePlaces ?? Dynamic([]), isEditable: self?.viewModel.profileType == .myProfile)
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
             return favouritePlacesHeader
             
@@ -158,10 +185,22 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
         switch section {
         case .bio:
             
-            let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.selectionStyle = .none
-            cell.configure(user: viewModel.userInfo, profileType: viewModel.profileType, viewController: self)
-            return cell
+            switch viewModel.profileType {
+            case .myProfile:
+                
+                let cell: UserProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.selectionStyle = .none
+                cell.configure(user: viewModel.userInfo, viewController: self)
+                return cell
+                
+            case .guestProfile:
+                
+                let cell: GuestProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.selectionStyle = .none
+                cell.configure(user: viewModel.userInfo.value)
+                return cell
+                
+            }
             
         case .interests:
             
@@ -191,7 +230,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.userInfo.value.favouritePlaces, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType)
             return cell
             
         case .additional_block:
@@ -216,6 +255,8 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedCell(at: indexPath)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

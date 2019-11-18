@@ -48,6 +48,9 @@ class EditProfileTableViewCell: UITableViewCell {
         case .dateOfBirth:
             textField.placeholder = "14 марта 1879"
             textField.text = data["dateOfBirth"] ?? ""
+        case .instagram:
+            textField.placeholder = "Einstein_emc"
+            textField.text = data["instagram"] ?? ""
         default:
             break
         }

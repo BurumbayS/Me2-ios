@@ -25,6 +25,11 @@
 		DD2037E92379736C000485F2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037E82379736C000485F2 /* NotificationService.swift */; };
 		DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EC237983EA000485F2 /* PushNotificationService.swift */; };
 		DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */; };
+		DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */; };
+		DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */; };
+		DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */; };
+		DD2037CE2379556E000485F2 /* ChangePassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */; };
+		DD2037D0237967E9000485F2 /* ChangePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -80,6 +85,19 @@
 		DD67A76822EF35F300D1D51D /* LoginPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A76722EF35F300D1D51D /* LoginPage.storyboard */; };
 		DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */; };
 		DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */; };
+		DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */; };
+		DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */; };
+		DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */; };
+		DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */; };
+		DD7206FE238030590090F12C /* AddFavouritePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */; };
+		DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */; };
+		DD720703238152960090F12C /* MyContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD720702238152960090F12C /* MyContactsViewController.swift */; };
+		DD720705238166110090F12C /* MyContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD720704238166110090F12C /* MyContactsViewModel.swift */; };
+		DD72070A23816D060090F12C /* ContactsActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */; };
+		DD72070B23816D060090F12C /* ContactsActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */; };
+		DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */; };
+		DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD936086237EB3AA001B783F /* LocalAuthentication.framework */; };
+		DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */; };
 		DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB4523548027002291CA /* WriteReviewViewModel.swift */; };
 		DD97CB48235574BD002291CA /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */; };
 		DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CB492355D532002291CA /* PlaceParameters.swift */; };
@@ -171,6 +189,8 @@
 		DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */; };
 		DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */; };
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
+		DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */; };
+		DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */; };
 		DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */; };
 		DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */; };
 		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
@@ -222,6 +242,14 @@
 		DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */; };
 		DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF69EF92330D21D00377796 /* FollowButton.xib */; };
 		DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF69EFB2330D53900377796 /* FollowButton.swift */; };
+		DDF7D05A236C002A0093FF4B /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */; };
+		DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */; };
+		DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */; };
+		DDF7D060236C4FD20093FF4B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */; };
+		DDF7D062236C5E510093FF4B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D061236C5E510093FF4B /* Notification.swift */; };
+		DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */; };
+		DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */; };
+		DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */; };
 		DDF7D06B237041300093FF4B /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06A237041300093FF4B /* Room.swift */; };
 		DDF7D06D23715D3B0093FF4B /* ChatParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */; };
 		DDF7D06F2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */; };
@@ -289,6 +317,11 @@
 		DD2037EB237974C6000485F2 /* Me2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Me2.entitlements; sourceTree = "<group>"; };
 		DD2037EC237983EA000485F2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsRouter.swift; sourceTree = "<group>"; };
+		DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassViewModel.swift; sourceTree = "<group>"; };
+		DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberViewController.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -352,6 +385,19 @@
 		DD67A77022EF36C700D1D51D /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Semibold.otf"; path = "San Francisco Pro/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DD67A77E22EF693E00D1D51D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
+		DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountParameterModel.swift; sourceTree = "<group>"; };
+		DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountEnums.swift; sourceTree = "<group>"; };
+		DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesViewModel.swift; sourceTree = "<group>"; };
+		DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewController.swift; sourceTree = "<group>"; };
+		DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewModel.swift; sourceTree = "<group>"; };
+		DD720702238152960090F12C /* MyContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewController.swift; sourceTree = "<group>"; };
+		DD720704238166110090F12C /* MyContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewModel.swift; sourceTree = "<group>"; };
+		DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsActionTableViewCell.swift; sourceTree = "<group>"; };
+		DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsActionTableViewCell.xib; sourceTree = "<group>"; };
+		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
+		DD936086237EB3AA001B783F /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneViewModel.swift; sourceTree = "<group>"; };
 		DD97CB4523548027002291CA /* WriteReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewModel.swift; sourceTree = "<group>"; };
 		DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		DD97CB492355D532002291CA /* PlaceParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceParameters.swift; sourceTree = "<group>"; };
@@ -437,6 +483,8 @@
 		DDCE6EAD22F9AF48006E54D1 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
 		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
@@ -488,6 +536,14 @@
 		DDF69EF4232F653700377796 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		DDF69EF92330D21D00377796 /* FollowButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowButton.xib; sourceTree = "<group>"; };
 		DDF69EFB2330D53900377796 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
+		DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		DDF7D061236C5E510093FF4B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewController.swift; sourceTree = "<group>"; };
+		DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountTableViewCell.swift; sourceTree = "<group>"; };
+		DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountViewModel.swift; sourceTree = "<group>"; };
 		DDF7D06A237041300093FF4B /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Room.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/Room.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06C23715D3B0093FF4B /* ChatParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatParticipant.swift; path = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ChatParticipant.swift"; sourceTree = SOURCE_ROOT; };
 		DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -524,6 +580,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD936087237EB3AA001B783F /* LocalAuthentication.framework in Frameworks */,
 				E7B4395AA7548D9BB5FE8B46 /* Pods_Me2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +591,7 @@
 		0F8E50A9BA03A50C43F5977E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD936086237EB3AA001B783F /* LocalAuthentication.framework */,
 				F8840C5495255E7A23349552 /* Pods_Me2.framework */,
 				DD2037D6237972D0000485F2 /* UserNotifications.framework */,
 				DD2037D8237972D0000485F2 /* UserNotificationsUI.framework */,
@@ -560,6 +618,8 @@
 				DDB465D92344E94600EB71B9 /* ProfileSectionHeader.swift */,
 				DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */,
 				DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */,
+				DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */,
+				DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */,
 				DDF65B1822FDA2FE00441035 /* FavouritePlacesTableViewCell.swift */,
 				DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */,
 				DDB465D72344E05B00EB71B9 /* AddInterestsTableViewCell.swift */,
@@ -933,6 +993,17 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		DD7207012381525D0090F12C /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				DD720702238152960090F12C /* MyContactsViewController.swift */,
+				DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */,
+				DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */,
+				DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		DD97CB65235996B1002291CA /* Place Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,6 +1019,9 @@
 			children = (
 				DD97CB4D2355FAAD002291CA /* User.swift */,
 				DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */,
+				DDF7D061236C5E510093FF4B /* Notification.swift */,
+				DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */,
+				DD7206F7237EFB6C0090F12C /* ManageAccountEnums.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -957,6 +1031,14 @@
 			children = (
 				DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */,
 				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
+				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
+				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
+				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
+				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
+				DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */,
+				DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */,
+				DD720704238166110090F12C /* MyContactsViewModel.swift */,
+				DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -966,7 +1048,9 @@
 			children = (
 				DD133B87234608E200A5A9A7 /* User Profile */,
 				DD133B882346096B00A5A9A7 /* Edit Profile */,
+				DDF7D058236BFF9E0093FF4B /* Additional pages */,
 				DDF65B1A23014F0C00441035 /* Favourite Places */,
+				DD7207012381525D0090F12C /* Contacts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1256,6 +1340,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF65B1D2301519400441035 /* FavouritePlacesViewController.swift */,
+				DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */,
 				DDF65B1F2301531100441035 /* PlaceTableViewCell.swift */,
 				DDF65B202301531100441035 /* PlaceTableViewCell.xib */,
 			);
@@ -1344,6 +1429,30 @@
 				DDF69EF92330D21D00377796 /* FollowButton.xib */,
 			);
 			path = "Custom follow button";
+			sourceTree = "<group>";
+		};
+		DDF7D058236BFF9E0093FF4B /* Additional pages */ = {
+			isa = PBXGroup;
+			children = (
+				DDF7D063236FF2010093FF4B /* Manage Account */,
+				DDF7D059236C002A0093FF4B /* AboutAppViewController.swift */,
+				DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */,
+				DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */,
+				DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */,
+			);
+			path = "Additional pages";
+			sourceTree = "<group>";
+		};
+		DDF7D063236FF2010093FF4B /* Manage Account */ = {
+			isa = PBXGroup;
+			children = (
+				DDF7D064236FF2360093FF4B /* ManageAccountViewController.swift */,
+				DDF7D066236FF8C20093FF4B /* ManageAccountTableViewCell.swift */,
+				DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */,
+				DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */,
+				DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */,
+			);
+			path = "Manage Account";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1456,9 +1565,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD72070B23816D060090F12C /* ContactsActionTableViewCell.xib in Resources */,
 				DDCE6E9622F94111006E54D1 /* Roboto-BoldItalic.ttf in Resources */,
 				DD67A75B22EF33B200D1D51D /* LaunchScreen.storyboard in Resources */,
 				DD97CB62235996AB002291CA /* PlaceCardCollectionViewCell.xib in Resources */,
+				DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */,
 				DDCE6E9822F94111006E54D1 /* Roboto-Bold.ttf in Resources */,
 				DDCE6E8022F82CD4006E54D1 /* SF-Pro-Rounded-Thin.otf in Resources */,
 				DDF65B382308027200441035 /* PlaceProfile.storyboard in Resources */,
@@ -1606,12 +1717,14 @@
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF7D06B237041300093FF4B /* Room.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
+				DD72070A23816D060090F12C /* ContactsActionTableViewCell.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,
 				DDBCD721234F215900384DD5 /* UserDefaultsKeys.swift in Sources */,
 				DDF7D073237433D90093FF4B /* LiveChatViewModel.swift in Sources */,
 				DD5C22352316ACE400CF66CC /* MailSiteTableViewCell.swift in Sources */,
 				DDC7F2202309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift in Sources */,
 				DDF65B1922FDA2FE00441035 /* FavouritePlacesTableViewCell.swift in Sources */,
+				DD7206FE238030590090F12C /* AddFavouritePlaceViewController.swift in Sources */,
 				DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */,
 				DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */,
 				DDF69EF0232B90A900377796 /* MapSearchFilterTableViewCell.swift in Sources */,
@@ -1637,6 +1750,7 @@
 				DDA14249231FB36C00C721A3 /* AccessCodeViewController.swift in Sources */,
 				DD5653F222F4DC19003A67C3 /* Color.swift in Sources */,
 				DD5653DE22F4B875003A67C3 /* SearchBar.swift in Sources */,
+				DDF7D065236FF2360093FF4B /* ManageAccountViewController.swift in Sources */,
 				DDCE6EA322F94295006E54D1 /* ContactTableViewCell.swift in Sources */,
 				DD5653EB22F4CB93003A67C3 /* ChatTableViewCell.swift in Sources */,
 				DDE04812234235F500E33046 /* BookingInviteFriendsTableViewCell.swift in Sources */,
@@ -1646,10 +1760,14 @@
 				DD2CE36A236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.swift in Sources */,
 				DD97CB5623571298002291CA /* NewPlacesViewModel.swift in Sources */,
 				DDC18537233378420052C371 /* PlacePin.swift in Sources */,
+				DD936089237ECD3E001B783F /* ChangePhoneViewModel.swift in Sources */,
+				DD720703238152960090F12C /* MyContactsViewController.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
+				DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD489F6A235D78C600EFB49D /* ListForMapFilterViewModel.swift in Sources */,
 				DD5653EE22F4CD65003A67C3 /* UITableViewExtensions.swift in Sources */,
+				DD2037CE2379556E000485F2 /* ChangePassViewModel.swift in Sources */,
 				DDE047F6233D003200E33046 /* EventFilterViewController.swift in Sources */,
 				DDE04810234230B500E33046 /* BookTableViewModel.swift in Sources */,
 				DDF7D07B237581970093FF4B /* UINavigationItemExtension.swift in Sources */,
@@ -1687,12 +1805,14 @@
 				DD5C223B231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift in Sources */,
 				DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */,
 				DDE047E4233CB54C00E33046 /* Typealias.swift in Sources */,
+				DDF7D05A236C002A0093FF4B /* AboutAppViewController.swift in Sources */,
 				DD2CE3722368522D00992D7F /* ChatViewController.swift in Sources */,
 				DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */,
 				DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */,
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
 				DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */,
+				DDF7D060236C4FD20093FF4B /* NotificationTableViewCell.swift in Sources */,
 				DDBCD725235458F500384DD5 /* PlaceReviewsViewModel.swift in Sources */,
 				DDF69EE0232A352900377796 /* MapSearchViewController.swift in Sources */,
 				DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */,
@@ -1704,6 +1824,7 @@
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
 				DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */,
 				DDF7D07723750E1B0093FF4B /* ContactsViewModel.swift in Sources */,
+				DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */,
 				DDE047EF233CF59100E33046 /* EventPlaceTableViewCell.swift in Sources */,
 				DD67A77F22EF693E00D1D51D /* SignUpViewController.swift in Sources */,
 				DDC7F23D230EAD350067C6C7 /* TableView.swift in Sources */,
@@ -1718,6 +1839,7 @@
 				DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */,
 				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
 				DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */,
+				DD2037D0237967E9000485F2 /* ChangePhoneNumberViewController.swift in Sources */,
 				DD2CE378236855FD00992D7F /* ChatViewModel.swift in Sources */,
 				DDC1854823390A370052C371 /* EventsTabViewController.swift in Sources */,
 				DD5C22332316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift in Sources */,
@@ -1726,16 +1848,22 @@
 				DD5653D722F45AF5003A67C3 /* Storyboard.swift in Sources */,
 				DD489F6C235D7D5B00EFB49D /* TagView.swift in Sources */,
 				DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */,
+				DD7206F6237EFB3C0090F12C /* ManageAccountParameterModel.swift in Sources */,
+				DD720705238166110090F12C /* MyContactsViewModel.swift in Sources */,
 				DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */,
+				DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
+				DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */,
 				DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */,
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
 				DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */,
 				DDE047EB233CE51D00E33046 /* EventDescriptionTableViewCell.swift in Sources */,
 				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
 				DDE0481C234329F400E33046 /* AddGuestsViewController.swift in Sources */,
+				DDF7D062236C5E510093FF4B /* Notification.swift in Sources */,
 				DDF65B1E2301519400441035 /* FavouritePlacesViewController.swift in Sources */,
 				DDCE6EB122FA97ED006E54D1 /* ModfyGroupViewController.swift in Sources */,
+				DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */,
 				DDB465DA2344E94600EB71B9 /* ProfileSectionHeader.swift in Sources */,
 				DDE048092341D71D00E33046 /* BookingTableViewCell.swift in Sources */,
 				DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */,
@@ -1756,12 +1884,16 @@
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DD97CB672359DB72002291CA /* PulsingLayer.swift in Sources */,
 				DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */,
+				DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,
 				DD97CB4E2355FAAD002291CA /* User.swift in Sources */,
 				DDC1854A2339EF760052C371 /* SavedEventsTableViewCell.swift in Sources */,
+				DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */,
 				DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
+				DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */,
+				DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,
 				DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */,
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
@@ -1770,17 +1902,21 @@
 				DDE047E6233CD4A000E33046 /* EventDetailsViewController.swift in Sources */,
 				DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */,
 				DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */,
+				DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */,
+				DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */,
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
 				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,
+				DDF7D06923700E420093FF4B /* ManageAccountViewModel.swift in Sources */,
 				DDFEE9E1233A2A4B00303797 /* NewPlaceCollectionViewCell.swift in Sources */,
 				DDF7D0712374289C0093FF4B /* ChatAdapter.swift in Sources */,
 				DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
 				DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */,
+				DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

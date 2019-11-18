@@ -15,6 +15,7 @@ enum EditProfileCell: String {
     case lastname
     case dateOfBirth
     case bio
+    case instagram
     case interests
     
     var title: String {
@@ -27,6 +28,8 @@ enum EditProfileCell: String {
             return "Дата рождения"
         case .bio:
             return "Био"
+        case .instagram:
+            return "Instagram логин"
         case .interests:
             return "Интересы"
         default:
@@ -44,6 +47,8 @@ enum EditProfileCell: String {
             return "birth_date"
         case .bio:
             return "bio"
+        case .instagram:
+            return "instagram"
         case .interests:
             return "interests"
         default:
@@ -53,7 +58,7 @@ enum EditProfileCell: String {
 }
 
 class EditProfileViewModel {
-    let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .interests]
+    let cells = [EditProfileCell.mainInfo, .firstname, .lastname, .dateOfBirth, .bio, .instagram, .interests]
     var dataToSave = [UserDataToSave]()
     
     var userInfo: Dynamic<User>!
@@ -82,6 +87,8 @@ class EditProfileViewModel {
             return ["dateOfBirth" : userInfo.value.birthDate]
         case .bio:
             return ["bio" : userInfo.value.bio]
+        case .instagram:
+            return ["instagram": userInfo.value.instagram]
         case .interests:
             return ["" : ""]
         }

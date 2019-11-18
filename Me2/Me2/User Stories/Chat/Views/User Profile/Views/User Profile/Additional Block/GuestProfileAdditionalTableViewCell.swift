@@ -25,7 +25,7 @@ class GuestProfileAdditionalTableViewCell: UITableViewCell {
     
     func configure(with item: GuestProfileAdditionalBlockCell) {
         label.text = item.rawValue
-        label.textColor = item.textColor
+        label.textColor = Color.blue
     }
     
     private func setUpViews() {

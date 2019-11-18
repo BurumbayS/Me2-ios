@@ -44,6 +44,8 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         } else {
             collectionView.isHidden = true
         }
+        
+        collectionView.reloadData()
     }
     
     private func setUpViews() {

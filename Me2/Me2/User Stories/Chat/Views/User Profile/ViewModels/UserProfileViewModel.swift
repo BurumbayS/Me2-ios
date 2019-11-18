@@ -38,18 +38,9 @@ enum MyProfileAdditionalBlockCell: String {
 
 enum GuestProfileAdditionalBlockCell: String {
     case addContact = "Добавить в контакты"
-    case removeContact = "Удалить из контактов"
-    case block = "Заблокировать"
-    case compplain = "Пожаловаться на пользователя"
-    
-    var textColor: UIColor {
-        switch self {
-        case .addContact:
-            return Color.blue
-        default:
-            return Color.red
-        }
-    }
+//    case removeContact = "Удалить из контактов"
+//    case block = "Заблокировать"
+//    case compplain = "Пожаловаться на пользователя"
 }
 
 enum ProfileType {
@@ -74,22 +65,25 @@ class UserProfileViewModel {
     let userID: Int
     let profileType: ProfileType
     
-    init(userID: Int = 0, profileType: ProfileType) {
-        self.userID = userID
-        self.profileType = profileType
-    }
+    var userInfo: Dynamic<User>!
+    var favouritePlaces: Dynamic<[Place]>!
+    
+    var presenterDelegate: ControllerPresenterDelegate!
     
     var dataLoaded: Bool = false {
         didSet {
             if self.dataLoaded {
                 self.sections = [.bio, .interests, .favourite_places, .additional_block]
                 self.myProfileCells = [.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
-                self.guestProfileCells = [.addContact, .block, .compplain]
+                self.guestProfileCells = [.addContact]
             }
         }
     }
     
-    var userInfo: Dynamic<User>!//User!
+    init(userID: Int = 0, profileType: ProfileType) {
+        self.userID = userID
+        self.profileType = profileType
+    }
     
     func getNumberOfCellsForAdditionalBlock() -> Int{
         switch profileType {
@@ -102,7 +96,7 @@ class UserProfileViewModel {
     
     func fetchData(completion: ResponseBlock?) {
         var url = ""
-
+        
         switch profileType {
         case .myProfile:
             url = myProfileURL
@@ -117,6 +111,7 @@ class UserProfileViewModel {
                     
                     let json = JSON(value)
                     self.userInfo = Dynamic(User(json: json["data"]["user"]))
+                    self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
                     
                     self.dataLoaded = true
                     completion?(.ok, "")
@@ -151,7 +146,37 @@ class UserProfileViewModel {
     }
     
     private func selectedMyProfileCell(at indexPath: IndexPath) {
+        let cellType = myProfileCells[indexPath.row]
         
+        switch cellType {
+        case .aboutApp:
+            
+            let vc = Storyboard.aboutAppViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+        
+        case .feedback:
+            
+            let vc = Storyboard.feedbackViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
+        case .notifications:
+            
+            let vc = Storyboard.notificationsViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
+        case .settings:
+            
+            let vc = Storyboard.manageAccountViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
+        case .contacts:
+            
+            let vc = Storyboard.myContactsViewController()
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
+        default:
+            break
+        }
     }
     
     private func selectedGuestProfileCell(at: IndexPath) {
