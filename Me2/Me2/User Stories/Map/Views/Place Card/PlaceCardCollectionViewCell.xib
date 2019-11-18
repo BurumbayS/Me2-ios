@@ -83,6 +83,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                 <state key="normal" title="Live Чат"/>
+                                <connections>
+                                    <action selector="liveChatButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="jZ2-28-3D9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сеть кофеен" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed3-4a-awv">
                                 <rect key="frame" x="11" y="70" width="77" height="16"/>

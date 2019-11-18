@@ -21,6 +21,8 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var availabilityStatusView: UIView!
     
+    var roomUUID = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -37,6 +39,8 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with place: Place) {
+        self.roomUUID = place.roomInfo?.uuid ?? ""
+        
         titleLabel.text = place.name
         logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         
@@ -103,5 +107,9 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
             availabilityLabel.text = "Открыто до \(day.end)"
             availabilityStatusView.backgroundColor = Color.green
         }
+    }
+    
+    @IBAction func liveChatButtonPressed(_ sender: Any) {
+        PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(roomUUID)")
     }
 }

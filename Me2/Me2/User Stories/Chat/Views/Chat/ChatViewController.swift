@@ -64,8 +64,10 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func configureNavBar() {
-        let participant = viewModel.room.getSecondParticipant()
+        guard let _ = self.navigationController else { return }
         
+        let participant = viewModel.room.getSecondParticipant()
+
         let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         containView.isUserInteractionEnabled = true
         containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showParticipantProfile)))
@@ -79,9 +81,9 @@ class ChatViewController: ListContainedViewController {
 
         let rightBarButton = UIBarButtonItem(customView: containView)
         self.navigationItem.rightBarButtonItem = rightBarButton
-        
+
         self.navigationItem.twoLineTitleView(titles: [participant.username, participant.fullName], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
-        
+
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
