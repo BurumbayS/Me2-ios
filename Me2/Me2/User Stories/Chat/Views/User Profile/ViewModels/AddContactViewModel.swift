@@ -26,7 +26,9 @@ class AddContactViewModel {
     var inviteFriends: VoidBlock?
     var synchronizeContacts: VoidBlock?
     
-    init() {
+    init(currentContacts: [User]) {
+        self.myContacts = currentContacts
+        
         contactsSynchronized = Dynamic(false)
         updateSearchResults = Dynamic(false)
     }
@@ -93,7 +95,7 @@ class AddContactViewModel {
                     
                     let json = JSON(value)
                     print(json)
-                    
+                
                     completion?(.ok, "")
                     
                 case .failure(let error):

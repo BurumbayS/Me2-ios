@@ -16,7 +16,7 @@ class AddContactViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = AddContactViewModel()
+    var viewModel: AddContactViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -25,6 +25,14 @@ class MyContactsViewController: UIViewController {
         configureViewModel()
         configureTableView()
         configureSearchBar()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.fetchMyContacts { [weak self] (status, message) in
+//            self?.viewModel.sections.append(.byLetterContacts)
+            self?.tableView.reloadData()
+        }
     }
     
     private func configureViewModel() {
@@ -96,7 +104,7 @@ class MyContactsViewController: UIViewController {
         case .action:
             return viewModel.actions.count
         default:
-            return 0
+            return viewModel.contacts.count
         }
     }
     
@@ -112,7 +120,7 @@ class MyContactsViewController: UIViewController {
         default:
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            // cell.configure(contact: User(json: JSON()), selectable: false)
+             cell.configure(contact: viewModel.contacts[indexPath.row])
             return cell
             
         }

@@ -80,6 +80,8 @@ class MyContactsViewModel {
     
     var addContactAction: VoidBlock?
     var showBlockedContactsAction: VoidBlock?
+    
+    var contacts = [User]()
 
     init(presenterDelegate: ControllerPresenterDelegate) {
         self.presenterDelegate = presenterDelegate
@@ -87,7 +89,8 @@ class MyContactsViewModel {
     
     func configureActions() {
         addContactAction = {
-            let vc = Storyboard.addContactViewController()
+            let vc = Storyboard.addContactViewController() as! AddContactViewController
+            vc.viewModel = AddContactViewModel(currentContacts: self.contacts)
             self.presenterDelegate.present(controller: vc, presntationType: .push)
         }
         showBlockedContactsAction = {
@@ -95,5 +98,33 @@ class MyContactsViewModel {
         }
         
         actions = [addContactAction, showBlockedContactsAction]
+    }
+    
+    func fetchMyContacts(completion: ResponseBlock?) {
+        let url = Network.contact + "/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    self.contacts = []
+                    for item in json["data"]["results"].arrayValue {
+                        self.contacts.append(User(json: item))
+                    }
+                    
+                    self.contacts.sort(by: { $0.username > $1.username })
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
+                }
+        }
     }
 }
