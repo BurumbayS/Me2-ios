@@ -23,6 +23,7 @@ class MapViewModel {
     var places = [Place]()
     
     var currentPlaceCardIndex = Dynamic(0)
+    var currentLiveRoomUUID = ""
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         Alamofire.request(placesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
@@ -80,6 +81,54 @@ class MapViewModel {
         }
     }
     
+    func enterNewRoom(at index: Int) {
+        let prevLiveRoomUUID = currentLiveRoomUUID
+        currentLiveRoomUUID = places[index].roomInfo?.uuid ?? ""
+        
+        exitLiveRoom(with: prevLiveRoomUUID)
+        enterLiveRoom(with: currentLiveRoomUUID)
+    }
+    
+    func exitAllRooms() {
+        exitLiveRoom(with: currentLiveRoomUUID)
+        
+        currentLiveRoomUUID = ""
+    }
+    
+    private func enterLiveRoom(with uuid: String) {
+        let url = roomURL + "\(uuid)/enter/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    private func exitLiveRoom(with uuid: String) {
+        let url = roomURL + "\(uuid)/exit/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
     private func getPlacesInRadiusAsString() -> String {
         var str = ""
         
@@ -104,6 +153,7 @@ class MapViewModel {
     }
     
     private let placesURL = Network.core + "/place/"
+    private let roomURL = Network.chat + "/room/"
     
     let radius: CLLocationDistance = 200
 }

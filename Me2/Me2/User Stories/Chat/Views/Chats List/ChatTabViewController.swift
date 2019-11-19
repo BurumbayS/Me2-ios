@@ -26,6 +26,8 @@ class ChatTabViewController: ListContainedViewController {
         
         showNewChatButton(true)
         
+        if viewModel.roomUUIDToOpenFirst.value != "" { openChatOnPush() }
+        
         navigationController?.navigationBar.isTranslucent = true
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,21 +45,21 @@ class ChatTabViewController: ListContainedViewController {
     }
     
     private func bindDynamics() {
-        viewModel.roomUUIDToOpenFirst.bind { [weak self] (uuid) in
-            if uuid != "" {
-                self?.viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
-                    switch status {
-                    case .ok:
-                        self?.viewModel.roomUUIDToOpenFirst.value = ""
-                        self?.goToChat(room: (self?.viewModel.newChatRoom)!)
-                    case .error:
-                        break
-                    case .fail:
-                        break
-                    }
-                }
-            }
-        }
+//        viewModel.roomUUIDToOpenFirst.bind { [weak self] (uuid) in
+//            if uuid != "" {
+//                self?.viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
+//                    switch status {
+//                    case .ok:
+//                        self?.viewModel.roomUUIDToOpenFirst.value = ""
+//                        self?.goToChat(room: (self?.viewModel.newChatRoom)!)
+//                    case .error:
+//                        break
+//                    case .fail:
+//                        break
+//                    }
+//                }
+//            }
+//        }
     }
     
     private func loadChatsList() {
@@ -172,19 +174,21 @@ class ChatTabViewController: ListContainedViewController {
         }
     }
     
-//    func openChatOnPush(with uuid: String) {
-//        viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
-//            switch status {
-//            case .ok:
-//                self?.viewModel.roomUUIDToOpenFirst = ""
-//                self?.goToChat(room: (self?.viewModel.newChatRoom)!)
-//            case .error:
-//                break
-//            case .fail:
-//                break
-//            }
-//        }
-//    }
+    func openChatOnPush() {
+        let uuid = viewModel.roomUUIDToOpenFirst.value
+        
+        viewModel.getRoomInfo(with: uuid) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.viewModel.roomUUIDToOpenFirst.value = ""
+                self?.goToChat(room: (self?.viewModel.newChatRoom)!)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
 }
 
 extension ChatTabViewController: UISearchResultsUpdating {

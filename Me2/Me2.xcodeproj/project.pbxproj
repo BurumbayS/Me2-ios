@@ -17,6 +17,11 @@
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
 		DD2037C62376B673000485F2 /* CustomLargeTitleBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */; };
+		DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */; };
+		DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */; };
+		DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */; };
+		DD2037CE2379556E000485F2 /* ChangePassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */; };
+		DD2037D0237967E9000485F2 /* ChangePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */; };
 		DD2037D7237972D0000485F2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2037D6237972D0000485F2 /* UserNotifications.framework */; };
 		DD2037D9237972D0000485F2 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2037D8237972D0000485F2 /* UserNotificationsUI.framework */; };
 		DD2037DC237972D0000485F2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037DB237972D0000485F2 /* NotificationViewController.swift */; };
@@ -25,11 +30,6 @@
 		DD2037E92379736C000485F2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037E82379736C000485F2 /* NotificationService.swift */; };
 		DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EC237983EA000485F2 /* PushNotificationService.swift */; };
 		DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */; };
-		DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */; };
-		DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */; };
-		DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */; };
-		DD2037CE2379556E000485F2 /* ChangePassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */; };
-		DD2037D0237967E9000485F2 /* ChangePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -306,6 +306,11 @@
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
 		DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLargeTitleBarButton.swift; sourceTree = "<group>"; };
+		DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassViewModel.swift; sourceTree = "<group>"; };
+		DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberViewController.swift; sourceTree = "<group>"; };
 		DD2037D5237972D0000485F2 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2037D6237972D0000485F2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		DD2037D8237972D0000485F2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -317,11 +322,6 @@
 		DD2037EB237974C6000485F2 /* Me2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Me2.entitlements; sourceTree = "<group>"; };
 		DD2037EC237983EA000485F2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsRouter.swift; sourceTree = "<group>"; };
-		DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
-		DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassViewModel.swift; sourceTree = "<group>"; };
-		DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberViewController.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };

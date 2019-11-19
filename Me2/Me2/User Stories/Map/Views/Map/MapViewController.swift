@@ -102,12 +102,14 @@ class MapViewController: UIViewController {
             if visible {
                 self?.showMyLocation()
             } else {
+                self?.viewModel.exitAllRooms()
                 self?.hideMyLocation()
             }
         }
         
         viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
             self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
+            self?.viewModel.enterNewRoom(at: index)
         }
     }
     
@@ -196,7 +198,10 @@ class MapViewController: UIViewController {
             pinsInRadius.append(pin)
         }
         
-        if pinsInRadius.count > 0 { tappedPinInRadius(marker: pinsInRadius[0]) }
+        if pinsInRadius.count > 0 {
+            tappedPinInRadius(marker: pinsInRadius[0])
+            viewModel.currentPlaceCardIndex.value = 0
+        }
     }
     
     private func setImHerePin() {

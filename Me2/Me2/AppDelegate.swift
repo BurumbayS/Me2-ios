@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Configure nav bar
+        
+        
         // Configure Facebook sign-in
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -62,6 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
+    
+//    if #available(iOS 13.0, *), let navigationBar = navigationController?.navigationBar {
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithTransparentBackground()
+//        navigationBar.scrollEdgeAppearance = appearance
+//        navigationBar.compactAppearance = appearance
+//        navigationBar.standardAppearance = appearance
+//    }
 
     //Google SignIn
     @available(iOS 9.0, *)
