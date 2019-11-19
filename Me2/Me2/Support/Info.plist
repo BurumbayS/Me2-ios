@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<string>NO</string>
 	<key>FacebookAppID</key>
@@ -63,6 +63,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to take avatar</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Use contacts for synchronize</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Uses for logging in</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

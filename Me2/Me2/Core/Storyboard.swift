@@ -89,6 +89,36 @@ extension Storyboard {
     static var editProfileViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
     }
+    static var aboutAppViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AboutAppViewController")
+    }
+    static var feedbackViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "FeedbackViewController")
+    }
+    static var notificationsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "NotificationsViewController")
+    }
+    static var manageAccountViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ManageAccountViewController")
+    }
+    static var changePasswordViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController")
+    }
+    static var changePhoneNumberViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ChangePhoneNumberViewController")
+    }
+    static var configureAccessCodeViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ConfigureAccessCodeViewController")
+    }
+    static var addFavouritePlaceViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AddFavouritePlaceViewController")
+    }
+    static var myContactsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "MyContactsViewController")
+    }
+    static var addContactViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "AddContactViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

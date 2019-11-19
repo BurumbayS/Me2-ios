@@ -15,6 +15,7 @@ class User {
     var firstName: String?
     var lastName: String?
     var avatar: String?
+    var instagram: String?
     var phone: String?
     var email: String?
     var bio: String?
@@ -31,6 +32,7 @@ class User {
         firstName = json["first_name"].stringValue
         lastName = json["last_name"].stringValue
         avatar = json["avatar"].stringValue
+        instagram = json["instagram"].stringValue
         phone = json["phone"].stringValue
         email = json["email"].stringValue
         gender = json["gender"].stringValue

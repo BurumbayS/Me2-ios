@@ -61,6 +61,8 @@ class LiveChatViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        extendedLayoutIncludesOpaqueBars = true
+        
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)

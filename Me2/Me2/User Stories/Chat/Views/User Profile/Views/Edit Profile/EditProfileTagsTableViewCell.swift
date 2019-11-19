@@ -159,6 +159,8 @@ class EditProfileTagsTableViewCell: UITableViewCell {
     
     private func removeTag(at index: Int) {
         tags.remove(at: index)
+        dataToSave.data = tags
+        
         setUpTags()
         updateHandler?()
     }

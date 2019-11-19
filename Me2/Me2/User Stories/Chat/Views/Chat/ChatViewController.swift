@@ -39,6 +39,8 @@ class ChatViewController: ListContainedViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.shouldRemoveShadow(false)
         navigationController?.navigationBar.isTranslucent = false
         
         IQKeyboardManager.shared.enable = false
@@ -86,6 +88,8 @@ class ChatViewController: ListContainedViewController {
 
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func bindDynamics() {
