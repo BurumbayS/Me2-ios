@@ -37,7 +37,7 @@ extension MapViewController {
         setUpSearchBar()
         setUpImHereButton()
         setUpFilterButton()
-        setUpHelperView()
+//        setUpHelperView()
     }
     
     private func setUpLabelsView() {
@@ -210,6 +210,14 @@ extension MapViewController {
             btn.width == 36
             btn.bottom == view.safeAreaLayoutGuide.bottom - 20
             btn.right == view.right - 20
+        }
+    }
+    
+    func showHint() {
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil {
+            let vc = Storyboard.mapHintViewController()
+            vc.modalPresentationStyle = .custom
+            present(vc, animated: false, completion: nil)
         }
     }
 }

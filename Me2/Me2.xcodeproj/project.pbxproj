@@ -30,6 +30,7 @@
 		DD2037E92379736C000485F2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037E82379736C000485F2 /* NotificationService.swift */; };
 		DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EC237983EA000485F2 /* PushNotificationService.swift */; };
 		DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */; };
+		DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387C523854182005AFBA6 /* MapHintViewController.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -323,6 +324,7 @@
 		DD2037EB237974C6000485F2 /* Me2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Me2.entitlements; sourceTree = "<group>"; };
 		DD2037EC237983EA000485F2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsRouter.swift; sourceTree = "<group>"; };
+		DD2387C523854182005AFBA6 /* MapHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHintViewController.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1075,6 +1077,7 @@
 				DDC1853B2334E94B0052C371 /* LabelsView.swift */,
 				DD97CB662359DB72002291CA /* PulsingLayer.swift */,
 				DDF69EDD232A15C600377796 /* MapConfig.json */,
+				DD2387C523854182005AFBA6 /* MapHintViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1790,6 +1793,7 @@
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
 				DDBCD72723545A3500384DD5 /* Review.swift in Sources */,
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
+				DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */,
 				DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */,

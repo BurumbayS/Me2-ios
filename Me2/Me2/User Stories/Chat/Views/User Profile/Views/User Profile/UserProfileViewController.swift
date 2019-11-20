@@ -118,7 +118,7 @@ class UserProfileViewController: UIViewController {
     }
     
     private func showHint() {
-//        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil { return }
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil { return }
         
         let vc = Storyboard.profileHintViewController()
         vc.modalPresentationStyle = .custom

@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Map View Controller-->
         <scene sceneID="C0a-hS-V7w">
@@ -25,6 +33,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1mh-jp-VuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768" y="147"/>
+        </scene>
+        <!--Map Hint View Controller-->
+        <scene sceneID="mh6-HY-cxh">
+            <objects>
+                <viewController storyboardIdentifier="MapHintViewController" id="KcV-7V-Lax" customClass="MapHintViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GH9-X6-A2p">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIt-Xf-S6S">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpy-9m-U1c">
+                                        <rect key="frame" x="363" y="45" width="46" height="46"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="5rn-eH-i4h"/>
+                                            <constraint firstAttribute="width" constant="46" id="d5D-6q-FsL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9F1-pf-5vQ">
+                                        <rect key="frame" x="368" y="50" width="36" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="1sH-7x-VYh"/>
+                                            <constraint firstAttribute="width" constant="36" id="BiK-4u-CHd"/>
+                                        </constraints>
+                                        <state key="normal" image="inactive_map_marker_icon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Я тоже тут" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmq-sa-sqN">
+                                        <rect key="frame" x="301" y="111" width="85" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fB-Yk-kGy">
+                                        <rect key="frame" x="167.5" y="141" width="218.5" height="60"/>
+                                        <string key="text">Включите видимость,
+чтобы начать общение
+с другими пользователями</string>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Raj-X8-NC0">
+                                        <rect key="frame" x="256" y="221" width="130" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="BeT-ea-mXg"/>
+                                            <constraint firstAttribute="width" constant="130" id="Ig8-j9-BiI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                        <state key="normal" title="Понятно">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="okPressed:" destination="KcV-7V-Lax" eventType="touchUpInside" id="t3v-id-5QD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="9F1-pf-5vQ" secondAttribute="trailing" constant="10" id="9nn-0T-4fe"/>
+                                    <constraint firstItem="Raj-X8-NC0" firstAttribute="top" secondItem="6fB-Yk-kGy" secondAttribute="bottom" constant="20" id="CRb-Cg-n4n"/>
+                                    <constraint firstItem="Mmq-sa-sqN" firstAttribute="top" secondItem="hpy-9m-U1c" secondAttribute="bottom" constant="20" id="DwD-I1-hJV"/>
+                                    <constraint firstItem="hpy-9m-U1c" firstAttribute="centerX" secondItem="9F1-pf-5vQ" secondAttribute="centerX" id="ZS1-tI-bbR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mmq-sa-sqN" secondAttribute="trailing" constant="28" id="km7-se-a7p"/>
+                                    <constraint firstItem="6fB-Yk-kGy" firstAttribute="trailing" secondItem="Mmq-sa-sqN" secondAttribute="trailing" id="lf4-jK-DmV"/>
+                                    <constraint firstItem="6fB-Yk-kGy" firstAttribute="top" secondItem="Mmq-sa-sqN" secondAttribute="bottom" constant="10" id="pYz-hT-Xli"/>
+                                    <constraint firstItem="Raj-X8-NC0" firstAttribute="trailing" secondItem="6fB-Yk-kGy" secondAttribute="trailing" id="rBa-4X-gFH"/>
+                                    <constraint firstItem="hpy-9m-U1c" firstAttribute="centerY" secondItem="9F1-pf-5vQ" secondAttribute="centerY" id="raa-7Z-eNJ"/>
+                                    <constraint firstItem="9F1-pf-5vQ" firstAttribute="top" secondItem="WIt-Xf-S6S" secondAttribute="top" constant="50" id="vdJ-Lx-Vvf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JRY-Jf-raB" firstAttribute="trailing" secondItem="WIt-Xf-S6S" secondAttribute="trailing" id="6x5-b0-I2W"/>
+                            <constraint firstItem="WIt-Xf-S6S" firstAttribute="top" secondItem="GH9-X6-A2p" secondAttribute="top" id="Gzu-zZ-vgr"/>
+                            <constraint firstAttribute="bottom" secondItem="WIt-Xf-S6S" secondAttribute="bottom" id="SD8-UQ-mPu"/>
+                            <constraint firstItem="WIt-Xf-S6S" firstAttribute="leading" secondItem="JRY-Jf-raB" secondAttribute="leading" id="hBp-k2-1j0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JRY-Jf-raB"/>
+                    </view>
+                    <connections>
+                        <outlet property="backView" destination="WIt-Xf-S6S" id="6RI-wT-puS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qdP-L8-b0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766.66666666666674" y="831.69642857142856"/>
         </scene>
         <!--Map Search View Controller-->
         <scene sceneID="a84-7G-W5v">
@@ -154,4 +268,7 @@
             <point key="canvasLocation" x="2415.9420289855075" y="146.65178571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="inactive_map_marker_icon" width="16" height="25"/>
+    </resources>
 </document>
