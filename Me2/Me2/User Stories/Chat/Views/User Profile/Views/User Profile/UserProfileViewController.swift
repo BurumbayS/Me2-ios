@@ -48,7 +48,9 @@ class UserProfileViewController: UIViewController {
             navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
             
         default:
-            break
+            
+            navBar.isHidden = true
+            
         }
     }
     
