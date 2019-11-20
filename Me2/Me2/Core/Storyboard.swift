@@ -58,6 +58,9 @@ extension Storyboard {
     static var listForMapFilterViewController = {
         return map.storyboard.instantiateViewController(withIdentifier: "ListForMapFilterViewController")
     }
+    static var mapHintViewController = {
+        return map.storyboard.instantiateViewController(withIdentifier: "MapHintViewController")
+    }
     
     //Chat tab view controllers
     static var chatTabViewController = {
@@ -118,6 +121,9 @@ extension Storyboard {
     }
     static var addContactViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "AddContactViewController")
+    }
+    static var profileHintViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ProfileHintViewController")
     }
     
     //Place profile controllers

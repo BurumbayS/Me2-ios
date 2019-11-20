@@ -11,10 +11,10 @@ import Cartography
 
 class UserProfileViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
-    
+    @IBOutlet weak var tableViewTopContraint: NSLayoutConstraint!
     
     let interestsHeader = ProfileSectionHeader()
     let favouritePlacesHeader = ProfileSectionHeader()
@@ -48,7 +48,9 @@ class UserProfileViewController: UIViewController {
             navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
             
         default:
-            break
+            
+            navBar.isHidden = true
+            
         }
     }
     
@@ -60,6 +62,7 @@ class UserProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableViewTopContraint.constant = UIApplication.shared.statusBarFrame.height
         tableView.isHidden = true
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
@@ -92,7 +95,9 @@ class UserProfileViewController: UIViewController {
                 self?.byndDynamics()
                 
                 self?.tableView.isHidden = false
-                self?.tableView.reloadData()
+                self?.tableView.reloadDataWithCompletion {
+                    self?.showHint()
+                }
                 
             case .error:
                 break
@@ -113,6 +118,14 @@ class UserProfileViewController: UIViewController {
     private func complainToUser() {
         
     }
+    
+    private func showHint() {
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil { return }
+        
+        let vc = Storyboard.profileHintViewController()
+        vc.modalPresentationStyle = .custom
+        present(vc, animated: false, completion: nil)
+    }
 }
 
 extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource {
@@ -125,7 +138,6 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 self?.tableView.reloadSections([section], with: .automatic)
             }
             return interestsHeader
-            
         case .favourite_places:
             
             favouritePlacesHeader.configure(title: viewModel.sections[section].rawValue, type: .seeMore) { [weak self] in

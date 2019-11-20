@@ -18,6 +18,104 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Profile Hint View Controller-->
+        <scene sceneID="x2y-sl-1pF">
+            <objects>
+                <viewController storyboardIdentifier="ProfileHintViewController" id="hFd-re-IDO" customClass="ProfileHintViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RNE-CZ-MqG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6W2-Da-Pp3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEz-Aw-iI7">
+                                        <rect key="frame" x="344" y="20" width="60" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Fw7-Iy-AvY"/>
+                                            <constraint firstAttribute="width" constant="60" id="oHF-af-er7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21d-qk-Iib">
+                                        <rect key="frame" x="354" y="30" width="40" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="09i-cc-lWf"/>
+                                            <constraint firstAttribute="width" constant="40" id="maQ-GL-nvd"/>
+                                        </constraints>
+                                        <state key="normal" image="edit_icon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заполните профиль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaR-mS-YuC">
+                                        <rect key="frame" x="216" y="85" width="159.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqj-VF-SvY">
+                                        <rect key="frame" x="245.5" y="115" width="130" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.40700513119999998" blue="0.39747506379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="3BC-s2-1HV"/>
+                                            <constraint firstAttribute="width" constant="130" id="boQ-nQ-gzf"/>
+                                            <constraint firstAttribute="height" constant="35" id="cD2-o8-Smk"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="udA-5S-NRj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                        <state key="normal" title="Хорошо">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="okPressed:" destination="hFd-re-IDO" eventType="touchUpInside" id="dAq-I7-Ns5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RaR-mS-YuC" secondAttribute="trailing" constant="38.5" id="9n5-uz-qdQ"/>
+                                    <constraint firstItem="eqj-VF-SvY" firstAttribute="top" secondItem="RaR-mS-YuC" secondAttribute="bottom" constant="10" id="LVr-9m-ziO"/>
+                                    <constraint firstItem="RaR-mS-YuC" firstAttribute="top" secondItem="FEz-Aw-iI7" secondAttribute="bottom" constant="5" id="Nl4-NV-19p"/>
+                                    <constraint firstItem="eqj-VF-SvY" firstAttribute="trailing" secondItem="RaR-mS-YuC" secondAttribute="trailing" id="VQz-zh-AiJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="21d-qk-Iib" secondAttribute="trailing" constant="20" id="VZ3-e0-FUR"/>
+                                    <constraint firstItem="FEz-Aw-iI7" firstAttribute="centerY" secondItem="21d-qk-Iib" secondAttribute="centerY" id="VvT-iu-UkY"/>
+                                    <constraint firstItem="21d-qk-Iib" firstAttribute="top" secondItem="6W2-Da-Pp3" secondAttribute="top" constant="30" id="cLb-BR-bZR"/>
+                                    <constraint firstItem="FEz-Aw-iI7" firstAttribute="centerX" secondItem="21d-qk-Iib" secondAttribute="centerX" id="uWc-5R-Hsg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6W2-Da-Pp3" secondAttribute="bottom" id="Doy-CV-XME"/>
+                            <constraint firstItem="6W2-Da-Pp3" firstAttribute="leading" secondItem="Tm8-uU-GYy" secondAttribute="leading" id="T2H-QP-2lc"/>
+                            <constraint firstItem="Tm8-uU-GYy" firstAttribute="trailing" secondItem="6W2-Da-Pp3" secondAttribute="trailing" id="YBO-BE-ik3"/>
+                            <constraint firstItem="6W2-Da-Pp3" firstAttribute="top" secondItem="RNE-CZ-MqG" secondAttribute="top" id="syg-X8-239"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tm8-uU-GYy"/>
+                    </view>
+                    <connections>
+                        <outlet property="backView" destination="6W2-Da-Pp3" id="yHQ-bX-WOB"/>
+                        <outlet property="maskTopConstraints" destination="cLb-BR-bZR" id="1vZ-1k-R6M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8do-6c-3aG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7180" y="-629"/>
+        </scene>
         <!--User Profile View Controller-->
         <scene sceneID="kcm-8Y-SbJ">
             <objects>
@@ -26,8 +124,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="g61-nd-Y43">
-                                <rect key="frame" x="0.0" y="30" width="414" height="832"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="g61-nd-Y43" customClass="TableView" customModule="Me2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaD-6h-WTQ">
@@ -42,7 +140,7 @@
                             <constraint firstItem="g61-nd-Y43" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="7vm-Ql-33U"/>
                             <constraint firstItem="IaD-6h-WTQ" firstAttribute="trailing" secondItem="jiL-YL-71K" secondAttribute="trailing" id="RY0-AV-MYP"/>
                             <constraint firstItem="IaD-6h-WTQ" firstAttribute="top" secondItem="jiL-YL-71K" secondAttribute="top" id="Ue7-dN-6TD"/>
-                            <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="Qu9-jv-29f" secondAttribute="top" constant="30" id="VDc-9Z-heU"/>
+                            <constraint firstItem="g61-nd-Y43" firstAttribute="top" secondItem="Qu9-jv-29f" secondAttribute="top" id="VDc-9Z-heU"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="ZMp-0K-JFz"/>
                             <constraint firstItem="g61-nd-Y43" firstAttribute="bottom" secondItem="jiL-YL-71K" secondAttribute="bottom" id="lZg-3d-tPK"/>
                             <constraint firstItem="IaD-6h-WTQ" firstAttribute="leading" secondItem="jiL-YL-71K" secondAttribute="leading" id="wMH-42-l3l"/>
@@ -53,7 +151,8 @@
                     <connections>
                         <outlet property="navBar" destination="IaD-6h-WTQ" id="Q1i-OD-VCZ"/>
                         <outlet property="navItem" destination="iAE-UZ-jDU" id="VRH-Nn-tx1"/>
-                        <outlet property="tableView" destination="g61-nd-Y43" id="M75-wp-k4K"/>
+                        <outlet property="tableView" destination="g61-nd-Y43" id="qAU-79-DpP"/>
+                        <outlet property="tableViewTopContraint" destination="VDc-9Z-heU" id="q4l-DT-zEH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDr-f4-yg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -524,7 +623,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHs-Zg-YmU">
-                                <rect key="frame" x="20" y="201" width="101.5" height="18"/>
+                                <rect key="frame" x="20" y="201" width="102.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -638,7 +737,7 @@ incididunt ut labore et dolore magna aliqua. </string>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-vP-s5U">
-                                <rect key="frame" x="20" y="108" width="119.5" height="18"/>
+                                <rect key="frame" x="20" y="108" width="118" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="hDZ-Ml-ksT"/>
                                 </constraints>
@@ -859,6 +958,7 @@ incididunt ut labore et dolore magna aliqua. </string>
     </scenes>
     <resources>
         <image name="about_app_image" width="163.5" height="237"/>
+        <image name="edit_icon" width="18" height="18"/>
         <image name="eye" width="21.5" height="13"/>
     </resources>
 </document>

@@ -71,6 +71,7 @@ class MapViewController: UIViewController {
             switch status {
             case .ok:
                 self?.setPins()
+                self?.showHint()
             case .error:
                 break;
             case .fail:

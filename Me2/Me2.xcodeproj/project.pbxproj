@@ -30,6 +30,7 @@
 		DD2037E92379736C000485F2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037E82379736C000485F2 /* NotificationService.swift */; };
 		DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EC237983EA000485F2 /* PushNotificationService.swift */; };
 		DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */; };
+		DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387C523854182005AFBA6 /* MapHintViewController.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -191,6 +192,7 @@
 		DDCE6EB322FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */; };
 		DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */; };
 		DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */; };
+		DDD82BE42383F6EB00B878C5 /* ProfileHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */; };
 		DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */; };
 		DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */; };
 		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
@@ -322,6 +324,7 @@
 		DD2037EB237974C6000485F2 /* Me2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Me2.entitlements; sourceTree = "<group>"; };
 		DD2037EC237983EA000485F2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsRouter.swift; sourceTree = "<group>"; };
+		DD2387C523854182005AFBA6 /* MapHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHintViewController.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -485,6 +488,7 @@
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
+		DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHintViewController.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
 		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
@@ -1051,6 +1055,7 @@
 				DDF7D058236BFF9E0093FF4B /* Additional pages */,
 				DDF65B1A23014F0C00441035 /* Favourite Places */,
 				DD7207012381525D0090F12C /* Contacts */,
+				DDD82BE22383F6C700B878C5 /* Hint */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1072,6 +1077,7 @@
 				DDC1853B2334E94B0052C371 /* LabelsView.swift */,
 				DD97CB662359DB72002291CA /* PulsingLayer.swift */,
 				DDF69EDD232A15C600377796 /* MapConfig.json */,
+				DD2387C523854182005AFBA6 /* MapHintViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1221,6 +1227,14 @@
 				DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */,
 			);
 			path = "New Chat or Group";
+			sourceTree = "<group>";
+		};
+		DDD82BE22383F6C700B878C5 /* Hint */ = {
+			isa = PBXGroup;
+			children = (
+				DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */,
+			);
+			path = Hint;
 			sourceTree = "<group>";
 		};
 		DDE047D2233B323600E33046 /* By Category List */ = {
@@ -1779,6 +1793,7 @@
 				DDCE6E6B22F7E7DA006E54D1 /* LiveChatViewController.swift in Sources */,
 				DDBCD72723545A3500384DD5 /* Review.swift in Sources */,
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
+				DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */,
 				DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */,
@@ -1870,6 +1885,7 @@
 				DDE047E0233C8C4500E33046 /* Place.swift in Sources */,
 				DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */,
 				DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */,
+				DDD82BE42383F6EB00B878C5 /* ProfileHintViewController.swift in Sources */,
 				DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,

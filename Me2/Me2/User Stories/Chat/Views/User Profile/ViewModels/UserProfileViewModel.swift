@@ -123,6 +123,22 @@ class UserProfileViewModel {
         }
     }
     
+    private func logout() {
+        let url = Network.user + "/logout/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success( _):
+                    
+                    UserDefaults().removeObject(forKey: UserDefaultKeys.token.rawValue)
+                    
+                case .failure(_ ):
+                    print(JSON(response.data as Any))
+                }
+        }
+    }
+    
     func selectedCell(at indexPath: IndexPath) {
         let section = sections[indexPath.section]
         
@@ -174,8 +190,11 @@ class UserProfileViewModel {
             let vc = Storyboard.myContactsViewController()
             presenterDelegate.present(controller: vc, presntationType: .push)
             
-        default:
-            break
+        case .logout:
+            
+            logout()
+            window.rootViewController = Storyboard.signInOrUpViewController()
+            
         }
     }
     

@@ -67,7 +67,7 @@ class ConfigureAccessCodeViewController: UIViewController {
             vc.viewModel = AccessCodeViewModel(type: .create)
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            UserDefaults().set(false, forKey: UserDefaultKeys.useBiometrics.rawValue)
+            UserDefaults().removeObject(forKey: UserDefaultKeys.useBiometrics.rawValue)
         }
     }
 }
