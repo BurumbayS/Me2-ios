@@ -214,10 +214,10 @@ extension MapViewController {
     }
     
     func showHint() {
-        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil {
-            let vc = Storyboard.mapHintViewController()
-            vc.modalPresentationStyle = .custom
-            present(vc, animated: false, completion: nil)
-        }
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil { return }
+        
+        let vc = Storyboard.mapHintViewController()
+        vc.modalPresentationStyle = .custom
+        present(vc, animated: false, completion: nil)
     }
 }
