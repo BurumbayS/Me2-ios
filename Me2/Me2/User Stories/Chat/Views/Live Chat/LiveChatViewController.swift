@@ -32,6 +32,7 @@ class LiveChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.shouldRemoveShadow(true)
         navigationController?.navigationBar.isTranslucent = false
         
