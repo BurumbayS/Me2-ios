@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().delegate = SocialMedia.shared
         
         //Set root View Controller
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) == nil {
+            window?.rootViewController = Storyboard.onboardingViewController()
+        } else
         if let _ = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) {
             if let _ = UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) {
                 window?.rootViewController = Storyboard.accessCodeViewController()
@@ -42,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             window?.rootViewController = Storyboard.signInOrUpViewController()
         }
-        
+    
         //Configure IQKeyboard
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Готово"

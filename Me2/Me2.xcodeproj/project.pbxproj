@@ -31,6 +31,10 @@
 		DD2037ED237983EA000485F2 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EC237983EA000485F2 /* PushNotificationService.swift */; };
 		DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */; };
 		DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387C523854182005AFBA6 /* MapHintViewController.swift */; };
+		DD2387C92385702C005AFBA6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387C82385702C005AFBA6 /* OnboardingViewController.swift */; };
+		DD2387CB2385815A005AFBA6 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */; };
+		DD2387D023866096005AFBA6 /* OnboardingPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */; };
+		DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -325,6 +329,10 @@
 		DD2037EC237983EA000485F2 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsRouter.swift; sourceTree = "<group>"; };
 		DD2387C523854182005AFBA6 /* MapHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHintViewController.swift; sourceTree = "<group>"; };
+		DD2387C82385702C005AFBA6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -658,6 +666,16 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		DD2387C723856FD9005AFBA6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DD2387C82385702C005AFBA6 /* OnboardingViewController.swift */,
+				DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */,
+				DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		DD2CE3702368521700992D7F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +925,7 @@
 		DD67A76422EF356D00D1D51D /* User Stories */ = {
 			isa = PBXGroup;
 			children = (
+				DD2387C723856FD9005AFBA6 /* Onboarding */,
 				DDC18541233909A00052C371 /* Events */,
 				DDF65B332308022600441035 /* Place Profile */,
 				DDF65B0D22FD5CB900441035 /* User Profile */,
@@ -928,6 +947,7 @@
 				DDF65B1B2301504700441035 /* Profile.storyboard */,
 				DDF65B372308027200441035 /* PlaceProfile.storyboard */,
 				DDC18545233909D60052C371 /* Events.storyboard */,
+				DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1597,6 +1617,7 @@
 				DDCE6E9F22F94111006E54D1 /* Roboto-MediumItalic.ttf in Resources */,
 				DD5653EC22F4CB93003A67C3 /* ChatTableViewCell.xib in Resources */,
 				DDCE6E9A22F94111006E54D1 /* Roboto-Medium.ttf in Resources */,
+				DD2387CB2385815A005AFBA6 /* Onboarding.storyboard in Resources */,
 				DDF69EFA2330D21D00377796 /* FollowButton.xib in Resources */,
 				DDCE6E7122F7E95F006E54D1 /* ParticipantCollectionViewCell.xib in Resources */,
 				DDF65B1C2301504700441035 /* Profile.storyboard in Resources */,
@@ -1618,6 +1639,7 @@
 				DD5653E622F4C235003A67C3 /* Chat.storyboard in Resources */,
 				DDF69EF1232B90A900377796 /* MapSearchFilterTableViewCell.xib in Resources */,
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
+				DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */,
 				DD2CE36B236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.xib in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DDF69EDE232A15C600377796 /* MapConfig.json in Resources */,
@@ -1869,6 +1891,7 @@
 				DDF7D05E236C4E810093FF4B /* NotificationsViewController.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
 				DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */,
+				DD2387C92385702C005AFBA6 /* OnboardingViewController.swift in Sources */,
 				DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */,
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
 				DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */,
@@ -1896,6 +1919,7 @@
 				DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */,
 				DD2CE376236854D000992D7F /* Message.swift in Sources */,
 				DDCE6E7322F7EB93006E54D1 /* UICollectionViewExtensions.swift in Sources */,
+				DD2387D023866096005AFBA6 /* OnboardingPageCollectionViewCell.swift in Sources */,
 				DDE048182342422D00E33046 /* CheckBox.swift in Sources */,
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DD97CB672359DB72002291CA /* PulsingLayer.swift in Sources */,

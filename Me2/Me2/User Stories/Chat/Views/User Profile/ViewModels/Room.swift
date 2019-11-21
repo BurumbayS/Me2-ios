@@ -44,9 +44,9 @@ class Room {
         return participants[0]
     }
     
-    func getLastMessageSender() -> ChatParticipant {
+    func getLastMessageSender() -> ChatParticipant? {
         let participants = self.participants.filter({ $0.id != lastMessage.sender })
         
-        return participants[0]
+        if participants.count > 0 { return participants[0] } else { return nil }
     }
 }
