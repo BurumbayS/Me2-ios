@@ -37,8 +37,10 @@ class ChatTableViewCell: UITableViewCell {
         case .LIVE:
             
             placeNameLabel.text = roomInfo.name
-            let lastMessageSenderName = roomInfo.getLastMessageSender().username
-            liveChatLastMessage.text = "\(lastMessageSenderName): \(roomInfo.lastMessage.text)"
+            
+            if let lastMessageSender = roomInfo.getLastMessageSender() {
+                liveChatLastMessage.text = "\(lastMessageSender.username): \(roomInfo.lastMessage.text)"
+            }
             
             simpleChatContextView.isHidden = true
             liveChatContextView.isHidden = false

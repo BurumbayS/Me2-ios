@@ -9,6 +9,7 @@
 import UIKit
 
 enum Storyboard: String {
+    case onboarding = "Onboarding"
     case main = "Main"
     case loginPage = "LoginPage"
     case map = "Map"
@@ -23,6 +24,14 @@ enum Storyboard: String {
 }
 
 extension Storyboard {
+    //Onboarding
+    static var onboardingViewController = {
+        return onboarding.storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+    }
+    static var onboardingPageViewController = {
+        return onboarding.storyboard.instantiateViewController(withIdentifier: "OnboardingPageViewController")
+    }
+    
     //Main Tabs view controller
     static var mainTabsViewController = {
         return main.storyboard.instantiateViewController(withIdentifier: "MainTabsViewController")
