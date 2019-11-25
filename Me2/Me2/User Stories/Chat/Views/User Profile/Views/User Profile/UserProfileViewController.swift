@@ -35,7 +35,7 @@ class UserProfileViewController: UIViewController {
         configureViewModel()
         fetchData()
     }
-    
+
     private func configureNavBar() {
         navBar.makeTransparentBar()
         navItem.title = ""
