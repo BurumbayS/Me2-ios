@@ -36,7 +36,7 @@ class EditProfileBioTableViewCell: UITableViewCell {
             textView.textColor = .black
             textView.text = bio
         } else {
-            titleLabel.textColor = .darkGray
+            textView.textColor = Color.gray
             textView.text = "Интересуюсь физикой и другими науками. В свободное время выращиваю розы и играю на скрипке. Подписывайтесь на мою страницу в инстаграме @einstein_emc"
         }
     }
@@ -54,7 +54,6 @@ class EditProfileBioTableViewCell: UITableViewCell {
         textView.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
         textView.layer.cornerRadius = 5
         textView.backgroundColor = .white
-        textView.textColor = Color.gray
         textView.font = UIFont(name: "Roboto-Regular", size: 15)
         self.contentView.addSubview(textView)
         constrain(textView, titleLabel, self.contentView) { textView, label, view in
@@ -69,11 +68,20 @@ class EditProfileBioTableViewCell: UITableViewCell {
 
 extension EditProfileBioTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
-        textView.textColor = .black
+        if textView.textColor == Color.gray {
+            textView.text = ""
+            textView.textColor = .black
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        dataToSave.data = textView.text
+        if textView.text == "" {
+            textView.textColor = Color.gray
+            textView.text = "Интересуюсь физикой и другими науками. В свободное время выращиваю розы и играю на скрипке. Подписывайтесь на мою страницу в инстаграме @einstein_emc"
+            
+            dataToSave.data = nil
+        } else {
+            dataToSave.data = textView.text
+        }
     }
 }
