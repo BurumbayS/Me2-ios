@@ -66,6 +66,7 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
             let imageView = UIImageView(frame: CGRect(x: x, y: 0, width: 26, height: 26))
             imageView.kf.setImage(with: URL(string: roomInfo.avatars[i]), placeholder: nil, options: [])
             imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFill
             imageView.layer.cornerRadius = 13
             
             stackView.addSubview(imageView)

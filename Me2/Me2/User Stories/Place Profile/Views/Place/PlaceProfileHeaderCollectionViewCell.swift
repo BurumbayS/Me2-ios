@@ -267,6 +267,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             title.bottom == logo.bottom
         }
         
+        ratingView.isUserInteractionEnabled = false
         ratingView.settings.starSize = 10
         ratingView.settings.starMargin = 3
         ratingView.settings.totalStars = 5
