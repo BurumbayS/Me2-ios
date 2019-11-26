@@ -244,9 +244,16 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType) { [weak self] (place) in
+            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType, onPlaceSelected: { [weak self] (place) in
                 let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
                 vc.viewModel = PlaceProfileViewModel(place: place)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }) { [weak self] in
+                let vc = Storyboard.addFavouritePlaceViewController() as! AddFavouritePlaceViewController
+                vc.viewModel = AddFavouritePlaceViewModel(favouritePlaces: (self?.viewModel.favouritePlaces.value)!, onAddPlace: { [weak self] (place) in
+                    self?.viewModel.favouritePlaces.value.append(place)
+                    self?.tableView.reloadSections([0], with: .automatic)
+                })
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             return cell

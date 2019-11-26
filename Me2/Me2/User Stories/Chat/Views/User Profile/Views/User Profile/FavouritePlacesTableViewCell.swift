@@ -18,6 +18,7 @@ class FavouritePlacesTableViewCell: UITableViewCell {
     var places = [Place]()
     
     var placeSelectionHandler: ((Place) -> ())?
+    var addFirstPlaceHandler: VoidBlock?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,9 +32,10 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with places: [Place], profileType: ProfileType, onPlaceSelected: ((Place) -> ())?) {
+    func configure(with places: [Place], profileType: ProfileType, onPlaceSelected: ((Place) -> ())?, onAddFirstPlace: VoidBlock?) {
         self.places = places
         self.placeSelectionHandler = onPlaceSelected
+        self.addFirstPlaceHandler = onAddFirstPlace
         
         switch profileType {
         case .myProfile:
@@ -55,6 +57,7 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         addPlacesButton.setTitleColor(Color.red, for: .normal)
         addPlacesButton.setTitle("+ Добавить любимое место", for: .normal)
         addPlacesButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
+        addPlacesButton.addTarget(self, action: #selector(addFirstPlace), for: .touchUpInside)
         
         self.contentView.addSubview(addPlacesButton)
         constrain(addPlacesButton, self.contentView) { btn, view in
@@ -93,6 +96,10 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         collectionView.register(FavouritePlaceCollectionViewCell.self)
+    }
+    
+    @objc private func addFirstPlace() {
+        addFirstPlaceHandler?()
     }
 }
 
