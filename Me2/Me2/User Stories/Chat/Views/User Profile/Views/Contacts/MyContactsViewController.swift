@@ -46,6 +46,7 @@ class MyContactsViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navBar.tintColor = .black
         navBar.shouldRemoveShadow(true)
         
         navItem.title = "Мои контакты"
@@ -143,11 +144,22 @@ class MyContactsViewController: UIViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.sections[indexPath.section] {
         case .action:
+            
             let action = viewModel.actions[indexPath.row]
             action?()
+            
+        case .byLetterContacts:
+            
+            let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+            let vc = navigationController.viewControllers[0] as! UserProfileViewController
+            vc.viewModel = UserProfileViewModel(userID: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].id ?? 0, profileType: .guestProfile)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         default:
             break
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
  

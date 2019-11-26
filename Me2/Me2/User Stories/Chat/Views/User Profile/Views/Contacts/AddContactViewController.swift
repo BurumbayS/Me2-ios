@@ -203,8 +203,24 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.sections[indexPath.section] {
         case .action:
+            
             let action = viewModel.actions[indexPath.row]
             action?()
+            
+        case .searchResults:
+            
+            let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+            let vc = navigationController.viewControllers[0] as! UserProfileViewController
+            vc.viewModel = UserProfileViewModel(userID: viewModel.searchResults[indexPath.row].id, profileType: .guestProfile)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        case .synchronizedContacts:
+            
+            let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+            let vc = navigationController.viewControllers[0] as! UserProfileViewController
+            vc.viewModel = UserProfileViewModel(userID: viewModel.synchronizedUsers[indexPath.row].id, profileType: .guestProfile)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         default:
             break
         }
