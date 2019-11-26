@@ -65,7 +65,7 @@ class ManageAccountViewModel {
         case .notification:
             return ManageAccountParameterModel(title: notificationTypes[indexPath.row].title, type: .notification, notificationParameter: notificationParameters[indexPath.row])
         case .security:
-            return ManageAccountParameterModel(title: securityTypes[indexPath.row].title, type: .security)
+            return ManageAccountParameterModel(title: securityTypes[indexPath.row].title, type: .security, securityParameterType: securityTypes[indexPath.row])
         case .delete:
             return ManageAccountParameterModel(title: "Удалить аккаунт", type: .delete)
         }

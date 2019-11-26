@@ -41,18 +41,28 @@ class ManageAccountTableViewCell: UITableViewCell {
             switcher.isHidden = true
             valueLabel.isHidden = false
             valueLabel.text = visibilityParameter?.value.title
+            self.accessoryType = .none
         case .notification:
             switcher.isHidden = false
             switcher.isOn = notificationParameter?.isOn ?? false
             valueLabel.isHidden = true
+            self.accessoryType = .none
         case .security:
             switcher.isHidden = true
             valueLabel.isHidden = false
             self.accessoryType = .disclosureIndicator
+            if model.securityParameterType == .accessCode {
+                if let _ = UserDefaults().object(forKey: UserDefaultKeys.accessCode.rawValue) {
+                    valueLabel.text = "Вкл"
+                } else {
+                    valueLabel.text = "Откл"
+                }
+            }
         case .delete:
             titleLabel.textColor = Color.red
             switcher.isHidden = true
             valueLabel.isHidden = true
+            self.accessoryType = .none
         }
     }
     
