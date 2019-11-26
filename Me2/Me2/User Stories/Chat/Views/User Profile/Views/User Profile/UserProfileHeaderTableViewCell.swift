@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageSlideshow
 
 class UserProfileHeaderTableViewCell: UITableViewCell {
 
@@ -16,6 +17,7 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var instagramLabel: UILabel!
+    @IBOutlet weak var avatarImageSlideShow: ImageSlideshow!
     
     var parentVC: UIViewController!
     var user: Dynamic<User>!
@@ -30,7 +32,12 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
         self.user = user
         self.parentVC = viewController
         
-        avatarImageView.kf.setImage(with: URL(string: user.value.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+        if let url = URL(string: user.value.avatar ?? "") {
+            avatarImageSlideShow.setImageInputs([KingfisherSource(url: url, placeholder: UIImage(named: "placeholder_avatar"), options: [])])
+        } else {
+            avatarImageSlideShow.setImageInputs([ImageSource(image: UIImage(named: "placeholder_avatar")!)])
+        }
+        
         usernameLabel.text = user.value.username
         nameAndAgeLabel.text = user.value.fullName ?? ""
         bioLabel.text = user.value.bio ?? ""
@@ -48,12 +55,18 @@ class UserProfileHeaderTableViewCell: UITableViewCell {
     
     private func configureViews() {
         instagramLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInstagram)))
+        avatarImageSlideShow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBigAvatar)))
+        avatarImageSlideShow.contentScaleMode = .scaleAspectFill
     }
     
     @objc private func openInstagram() {
         if let url = URL(string: "https://www.instagram.com/\(user.value.instagram!)") {
             UIApplication.shared.open(url)
         }
+    }
+    
+    @objc private func showBigAvatar() {
+        avatarImageSlideShow.presentFullScreenController(from: parentVC)
     }
     
     @IBAction func editPressed(_ sender: Any) {

@@ -39,6 +39,19 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4l-4k-xzB" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                        <rect key="frame" x="20" y="10" width="70" height="70"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="ASg-I4-1ff"/>
+                            <constraint firstAttribute="height" constant="70" id="PRu-MW-5c7"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="35"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZD-4a-VpF">
                         <rect key="frame" x="105" y="16" width="239" height="58"/>
                         <subviews>
@@ -108,8 +121,10 @@
                     <constraint firstItem="auW-3Z-Xyw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1Lq-9g-Sa3"/>
                     <constraint firstItem="HZD-4a-VpF" firstAttribute="leading" secondItem="auW-3Z-Xyw" secondAttribute="trailing" constant="15" id="3Hk-Zu-su0"/>
                     <constraint firstItem="xlg-lY-iKj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Fvu-tJ-e6r"/>
+                    <constraint firstItem="t4l-4k-xzB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="IDi-dN-d4d"/>
                     <constraint firstItem="Dp7-fw-4Cu" firstAttribute="top" secondItem="auW-3Z-Xyw" secondAttribute="bottom" constant="30" id="Lv0-RZ-lpC"/>
                     <constraint firstItem="HZD-4a-VpF" firstAttribute="centerY" secondItem="auW-3Z-Xyw" secondAttribute="centerY" id="NEl-ad-ew9"/>
+                    <constraint firstItem="t4l-4k-xzB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="PIx-5C-K3i"/>
                     <constraint firstItem="CSP-R2-A20" firstAttribute="leading" secondItem="xlg-lY-iKj" secondAttribute="trailing" constant="10" id="SLH-SZ-YCW"/>
                     <constraint firstItem="CSP-R2-A20" firstAttribute="centerY" secondItem="xlg-lY-iKj" secondAttribute="centerY" id="Urx-KW-fwR"/>
                     <constraint firstItem="xlg-lY-iKj" firstAttribute="top" secondItem="Dp7-fw-4Cu" secondAttribute="bottom" constant="20" id="iFU-qZ-a3r"/>
@@ -121,6 +136,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarImageSlideShow" destination="t4l-4k-xzB" id="HpW-bY-g5x"/>
                 <outlet property="avatarImageView" destination="auW-3Z-Xyw" id="evD-U0-oVb"/>
                 <outlet property="bioLabel" destination="Dp7-fw-4Cu" id="K8C-nH-7Go"/>
                 <outlet property="editButton" destination="aea-ws-uMn" id="gQz-I6-S0Q"/>

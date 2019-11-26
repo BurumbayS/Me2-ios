@@ -211,7 +211,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 
                 let cell: GuestProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.selectionStyle = .none
-                cell.configure(user: viewModel.userInfo.value)
+                cell.configure(user: viewModel.userInfo.value, viewController: self)
                 return cell
                 
             }
