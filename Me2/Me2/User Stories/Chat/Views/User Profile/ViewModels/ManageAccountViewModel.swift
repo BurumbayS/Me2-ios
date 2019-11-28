@@ -72,12 +72,11 @@ class ManageAccountViewModel {
     }
     
     func updateData() {
-        updateNotificationData { [unowned self] in
-            self.updatePrivacyData()
-        }
+        updateNotificationData()
+        updatePrivacyData()
     }
     
-    private func updateNotificationData(completion: VoidBlock?) {
+    private func updateNotificationData() {
         var params = [String: Bool]()
         notificationParameters.forEach { params[$0.type.requestKey] = $0.isOn }
         
@@ -88,7 +87,7 @@ class ManageAccountViewModel {
                     
                     let json = JSON(value)
                     print(json)
-                    completion?()
+                    UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")

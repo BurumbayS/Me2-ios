@@ -95,27 +95,38 @@ class UserProfileViewModel {
     }
     
     func fetchData(completion: ResponseBlock?) {
-        var url = ""
+        if let jsonString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String, profileType == .myProfile {
+            let userJSON = JSON(parseJSON: jsonString)
+            userInfo = Dynamic(User(json: userJSON))
+            favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
+            
+            dataLoaded = true
+            completion?(.ok, "")
+            
+            return
+        }
         
+        var url = ""
+
         switch profileType {
         case .myProfile:
             url = myProfileURL
         case .guestProfile:
             url = Network.user + "/\(userID)/"
         }
-        
+
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
-                    
+
                     let json = JSON(value)
                     self.userInfo = Dynamic(User(json: json["data"]["user"]))
                     self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
-                    
+
                     self.dataLoaded = true
                     completion?(.ok, "")
-                    
+
                 case .failure(_ ):
                     print(JSON(response.data as Any))
                     completion?(.fail, "")
