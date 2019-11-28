@@ -35,6 +35,8 @@
 		DD2387CB2385815A005AFBA6 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */; };
 		DD2387D023866096005AFBA6 /* OnboardingPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */; };
 		DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */; };
+		DD279549238F9CB000B316A6 /* BlockedContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */; };
+		DD27954B238FA12600B316A6 /* BlockedContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -333,6 +335,8 @@
 		DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageCollectionViewCell.xib; sourceTree = "<group>"; };
+		DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewController.swift; sourceTree = "<group>"; };
+		DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewModel.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1024,6 +1028,7 @@
 				DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */,
 				DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */,
 				DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */,
+				DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1063,6 +1068,7 @@
 				DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */,
 				DD720704238166110090F12C /* MyContactsViewModel.swift */,
 				DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */,
+				DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1822,6 +1828,7 @@
 				DDE047FD233FA04700E33046 /* Tag.swift in Sources */,
 				DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */,
 				DD5C2244231CF2D300CF66CC /* PlaceDetailsViewModel.swift in Sources */,
+				DD279549238F9CB000B316A6 /* BlockedContactsViewController.swift in Sources */,
 				DDF69EE4232B632F00377796 /* MapSearchViewModel.swift in Sources */,
 				DDBCD7232354453C00384DD5 /* PlaceEventsViewModel.swift in Sources */,
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
@@ -1924,6 +1931,7 @@
 				DD5C223F231CE31600CF66CC /* PlaceMenuCollectionViewCell.swift in Sources */,
 				DD97CB672359DB72002291CA /* PulsingLayer.swift in Sources */,
 				DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */,
+				DD27954B238FA12600B316A6 /* BlockedContactsViewModel.swift in Sources */,
 				DD936085237D5159001B783F /* ConfigureAccessCodeViewController.swift in Sources */,
 				DDCE6EAC22F9831A006E54D1 /* CreateGroupViewController.swift in Sources */,
 				DD5653E422F4C216003A67C3 /* ChatTabViewController.swift in Sources */,

@@ -88,6 +88,7 @@ class MyContactsViewModel {
     var showBlockedContactsAction: VoidBlock?
     
     var contacts: Dynamic<[User]>
+    var blockedContacts = [User]()
     var updateContactsList: Dynamic<Bool>
 
     init(presenterDelegate: ControllerPresenterDelegate) {
@@ -112,7 +113,11 @@ class MyContactsViewModel {
             self.presenterDelegate.present(controller: vc, presntationType: .push)
         }
         showBlockedContactsAction = {
-            print("Show blocked users")
+            let vc = Storyboard.blockedContactsViewController() as! BlockedContactsViewController
+            vc.viewModel = BlockedContactsViewModel(contacts: self.blockedContacts, onUnblockUser: { [weak self] (contact) in
+                self?.contacts.value.append(contact)
+            })
+            self.presenterDelegate.present(controller: vc, presntationType: .push)
         }
         
         actions = [addContactAction, showBlockedContactsAction]
@@ -131,7 +136,11 @@ class MyContactsViewModel {
                     
                     var contacts = [User]()
                     for item in json["data"]["results"].arrayValue {
-                        contacts.append(User(json: item["user2"]))
+                        if item["blocked"].boolValue {
+                            self.blockedContacts.append(User(json: item["user2"]))
+                        } else {
+                            contacts.append(User(json: item["user2"]))
+                        }
                     }
                     
                     self.contacts.value = contacts

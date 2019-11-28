@@ -134,6 +134,9 @@ extension Storyboard {
     static var profileHintViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ProfileHintViewController")
     }
+    static var blockedContactsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "BlockedContactsViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
