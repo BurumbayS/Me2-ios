@@ -10,21 +10,21 @@ import Alamofire
 import SwiftyJSON
 
 class BlockedContactsViewModel {
-    var contacts = [User]()
-    var searchResults: Dynamic<[User]>
+    var contacts = [Contact]()
+    var searchResults: Dynamic<[Contact]>
     var searchActivated = false
     
-    var unblockHandler: ((User) -> Void)?
+    var unblockHandler: ((Contact) -> Void)?
     
-    init(contacts: [User], onUnblockUser: ((User) -> Void)?) {
+    init(contacts: [Contact], onUnblockUser: ((Contact) -> Void)?) {
         self.contacts = contacts
         self.unblockHandler = onUnblockUser
         self.searchResults = Dynamic([])
     }
 
     func unblockContact(atIndex index: Int, completion: ResponseBlock?) {
-        let user = contacts[index]
-        let url = Network.contact + "/\(user.id)/unblock/"
+        let contact = contacts[index]
+        let url = Network.contact + "/\(contact.id)/unblock/"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
@@ -47,7 +47,7 @@ class BlockedContactsViewModel {
         searchActivated = true
         
         if substring != "" {
-            searchResults.value = contacts.filter({ $0.username.lowercased().contains(substring.lowercased()) })
+            searchResults.value = contacts.filter({ $0.user2.username.lowercased().contains(substring.lowercased()) })
         } else {
             searchResults.value = contacts
         }

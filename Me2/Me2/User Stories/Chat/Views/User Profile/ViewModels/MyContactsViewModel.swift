@@ -73,7 +73,7 @@ enum ContactsListSection {
 
 struct ByLetterContactsSection {
     let letter: String
-    let contacts: [User]
+    let contacts: [Contact]
 }
 
 class MyContactsViewModel {
@@ -87,8 +87,8 @@ class MyContactsViewModel {
     var addContactAction: VoidBlock?
     var showBlockedContactsAction: VoidBlock?
     
-    var contacts: Dynamic<[User]>
-    var blockedContacts = [User]()
+    var contacts: Dynamic<[Contact]>
+    var blockedContacts = [Contact]()
     var updateContactsList: Dynamic<Bool>
 
     init(presenterDelegate: ControllerPresenterDelegate) {
@@ -134,12 +134,12 @@ class MyContactsViewModel {
                     let json = JSON(value)
                     print(json)
                     
-                    var contacts = [User]()
+                    var contacts = [Contact]()
                     for item in json["data"]["results"].arrayValue {
                         if item["blocked"].boolValue {
-                            self.blockedContacts.append(User(json: item["user2"]))
+                            self.blockedContacts.append(Contact(json: item))
                         } else {
-                            contacts.append(User(json: item["user2"]))
+                            contacts.append(Contact(json: item))
                         }
                     }
                     
@@ -151,17 +151,17 @@ class MyContactsViewModel {
         }
     }
     
-    private func groupContactsByLetters(contactsToGroup: [User]) {
+    private func groupContactsByLetters(contactsToGroup: [Contact]) {
         var currentContacts = contactsToGroup
-        currentContacts.sort(by: { $0.username < $1.username })
+        currentContacts.sort(by: { $0.user2.username < $1.user2.username })
         
         var letter = ""
-        var contacts = [User]()
+        var contacts = [Contact]()
         
         self.sections = [.action]
         
         for contact in currentContacts {
-            if letter != String(contact.username.first!) {
+            if letter != String(contact.user2.username.first!) {
                 if letter != "" {
                     sections.append(.byLetterContacts)
                     
@@ -169,7 +169,7 @@ class MyContactsViewModel {
                     byLetterSections[sections.count - 1] = section
                 }
                 
-                letter = String(contact.username.first!)
+                letter = String(contact.user2.username.first!)
                 contacts = []
             }
             

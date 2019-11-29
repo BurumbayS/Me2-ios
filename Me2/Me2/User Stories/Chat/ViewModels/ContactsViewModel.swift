@@ -14,7 +14,7 @@ class ContactsViewModel {
     var searchValue: Dynamic<String>!
     let updateSearchResults: Dynamic<Bool>
     var lastSearchVaue = String()
-    var searchResults = [User]()
+    var searchResults = [ContactUser]()
     var lastSearchResults = [String]()
     let contactSelectionHandler: ((Int) -> ())?
     
@@ -59,7 +59,7 @@ class ContactsViewModel {
                     
                     self.searchResults = []
                     for item in json["data"]["results"].arrayValue {
-                        self.searchResults.append(User(json: item))
+                        self.searchResults.append(ContactUser(json: item))
                     }
                     
                     self.updateSearchResults.value = true

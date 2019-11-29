@@ -35,7 +35,7 @@ class ContactTableViewCell: UITableViewCell {
         self.contentView.addUnderline(with: Color.gray, and: self.contentView.frame.size)
     }
     
-    func configure(contact: User, selectable: Bool = false, addable: Bool = false, added: Bool = false, onAdd: VoidBlock? = nil) {
+    func configure(contact: ContactUser, selectable: Bool = false, addable: Bool = false, added: Bool = false, onAdd: VoidBlock? = nil) {
         self.addPressHandler = onAdd
         
         switch selectable {
@@ -58,7 +58,7 @@ class ContactTableViewCell: UITableViewCell {
         configureViews(for: contact)
     }
     
-    private func configureViews(for contact: User) {
+    private func configureViews(for contact: ContactUser) {
         avatarImageView.kf.setImage(with: URL(string: contact.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         nameLabel.text = contact.fullName
         usernameLabel.text = contact.username

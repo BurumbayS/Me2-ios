@@ -135,7 +135,7 @@ class MyContactsViewController: UIViewController {
         default:
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(contact: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row] ?? User(json: JSON()))
+            cell.configure(contact: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2 ?? ContactUser(json: JSON()))
             return cell
             
         }
@@ -152,7 +152,7 @@ class MyContactsViewController: UIViewController {
             
             let navigationController = Storyboard.userProfileViewController() as! UINavigationController
             let vc = navigationController.viewControllers[0] as! UserProfileViewController
-            vc.viewModel = UserProfileViewModel(userID: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].id ?? 0, profileType: .guestProfile)
+            vc.viewModel = UserProfileViewModel(userID: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2.id ?? 0, profileType: .guestProfile)
             self.navigationController?.pushViewController(vc, animated: true)
             
         default:

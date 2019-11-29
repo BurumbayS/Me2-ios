@@ -79,7 +79,7 @@ extension BlockedContactsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let contact = (viewModel.searchActivated) ? viewModel.searchResults.value[indexPath.row] : viewModel.contacts[indexPath.row]
-        cell.configure(contact: contact)
+        cell.configure(contact: contact.user2)
         return cell
     }
     

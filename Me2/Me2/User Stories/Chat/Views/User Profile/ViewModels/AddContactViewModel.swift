@@ -15,19 +15,23 @@ class AddContactViewModel {
     var actionTypes = [ContactsActionType.inviteFriend, .synchronizeContacts]
     var actions = [VoidBlock?]()
     
-    var myContacts: Dynamic<[User]>!
+    var myContacts: Dynamic<[Contact]>!
+    var contactUsers = [ContactUser]()
     
-    var synchronizedUsers = [User]()
+    var synchronizedUsers = [ContactUser]()
     var contactsSynchronized: Dynamic<Bool>
     
-    var searchResults = [User]()
+    var searchResults = [ContactUser]()
     var updateSearchResults: Dynamic<Bool>
     
     var inviteFriends: VoidBlock?
     var synchronizeContacts: VoidBlock?
     
-    init(currentContacts: Dynamic<[User]>) {
+    init(currentContacts: Dynamic<[Contact]>) {
         self.myContacts = currentContacts
+        for contact in currentContacts.value {
+            contactUsers.append(contact.user2)
+        }
         
         contactsSynchronized = Dynamic(false)
         updateSearchResults = Dynamic(false)
@@ -46,7 +50,7 @@ class AddContactViewModel {
         actions = [inviteFriends, synchronizeContacts]
     }
     
-    func contactForCell(at indexPath: IndexPath) -> User {
+    func contactForCell(at indexPath: IndexPath) -> ContactUser {
         let section = sections[indexPath.section]
         
         switch section {
@@ -55,7 +59,7 @@ class AddContactViewModel {
         case .synchronizedContacts:
             return synchronizedUsers[indexPath.row]
         default:
-            return User(json: JSON())
+            return ContactUser(json: JSON())
         }
     }
     
@@ -72,7 +76,7 @@ class AddContactViewModel {
                     
                     self.searchResults = []
                     for item in json["data"]["results"].arrayValue {
-                        self.searchResults.append(User(json: item))
+                        self.searchResults.append(ContactUser(json: item))
                     }
                     
                     completion?(.ok, "")
@@ -94,13 +98,18 @@ class AddContactViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
-                
-                    completion?(.ok, "")
                     
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    if json["code"].intValue == 0 {
+                        self.myContacts.value.append(Contact(json: json))
+                        completion?(.ok, "")
+                    } else {
+                        self.contactUsers.removeAll(where: { $0.id == id })
+                        completion?(.error, "")
+                    }
+                    
+                case .failure( _):
                     print(JSON(response.data as Any))
+                    self.contactUsers.removeAll(where: { $0.id == id })
                     completion?(.fail, "")
                 }
         }
@@ -120,7 +129,7 @@ class AddContactViewModel {
                     
                     self.synchronizedUsers = []
                     for item in json["data"].arrayValue {
-                        self.synchronizedUsers.append(User(json: item))
+                        self.synchronizedUsers.append(ContactUser(json: item))
                     }
                     
                     self.contactsSynchronized.value = true

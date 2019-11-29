@@ -8,6 +8,7 @@
 
 import UIKit
 import Cartography
+import SwiftyJSON
 
 class AddContactViewController: UIViewController {
 
@@ -88,22 +89,15 @@ class AddContactViewController: UIViewController {
         tableView.insertSections([1], with: .top)
     }
     
-    private func addNewContact(contact: User) {
-        viewModel.myContacts.value.append(contact)
+    private func addNewContact(forUser contactUser: ContactUser) {
+        viewModel.contactUsers.append(contactUser)
         tableView.reloadData()
         
-        viewModel.addToContactsUser(withID: contact.id) { [weak self] (status, message) in
+        viewModel.addToContactsUser(withID: contactUser.id) { [weak self] (status, message) in
             switch status {
             case .ok:
                 break
-            case .error:
-                
-                self?.viewModel.myContacts.value.removeAll(where: { $0.id == contact.id })
-                self?.tableView.reloadData()
-                
-            case .fail:
-                
-                self?.viewModel.myContacts.value.removeAll(where: { $0.id == contact.id })
+            case .error, .fail:
                 self?.tableView.reloadData()
                 
             }
@@ -189,11 +183,11 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             
-            let contact = viewModel.contactForCell(at: indexPath)
+            let contactUser = viewModel.contactForCell(at: indexPath)
             cell.selectionStyle = .none
-            let added = viewModel.myContacts.value.contains(where: { $0.id == contact.id })
-            cell.configure(contact: contact, addable: true, added: added) { [weak self] in
-                self?.addNewContact(contact: contact)
+            let added = viewModel.contactUsers.contains(where: { $0.id == contactUser.id })
+            cell.configure(contact: contactUser, addable: true, added: added) { [weak self] in
+                self?.addNewContact(forUser: contactUser)
             }
             
             return cell

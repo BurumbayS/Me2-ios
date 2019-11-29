@@ -37,6 +37,8 @@
 		DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */; };
 		DD279549238F9CB000B316A6 /* BlockedContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */; };
 		DD27954B238FA12600B316A6 /* BlockedContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */; };
+		DD27954D238FE11100B316A6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954C238FE11100B316A6 /* Contact.swift */; };
+		DD27954F2390ECFE00B316A6 /* ContactUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954E2390ECFE00B316A6 /* ContactUser.swift */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -337,6 +339,8 @@
 		DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewController.swift; sourceTree = "<group>"; };
 		DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewModel.swift; sourceTree = "<group>"; };
+		DD27954C238FE11100B316A6 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		DD27954E2390ECFE00B316A6 /* ContactUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUser.swift; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1047,6 +1051,8 @@
 			isa = PBXGroup;
 			children = (
 				DD97CB4D2355FAAD002291CA /* User.swift */,
+				DD27954C238FE11100B316A6 /* Contact.swift */,
+				DD27954E2390ECFE00B316A6 /* ContactUser.swift */,
 				DD2CE36E2361B7E800992D7F /* UserDataToSave.swift */,
 				DDF7D061236C5E510093FF4B /* Notification.swift */,
 				DD7206F5237EFB3C0090F12C /* ManageAccountParameterModel.swift */,
@@ -1866,6 +1872,7 @@
 				DDE047E9233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift in Sources */,
 				DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */,
 				DDC7F237230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift in Sources */,
+				DD27954F2390ECFE00B316A6 /* ContactUser.swift in Sources */,
 				DDC7F23F231005200067C6C7 /* CollectionView.swift in Sources */,
 				DDF7D07723750E1B0093FF4B /* ContactsViewModel.swift in Sources */,
 				DD7206FC2380241B0090F12C /* FavouritePlacesViewModel.swift in Sources */,
@@ -1881,6 +1888,7 @@
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
 				DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */,
 				DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */,
+				DD27954D238FE11100B316A6 /* Contact.swift in Sources */,
 				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
 				DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */,
 				DD2037D0237967E9000485F2 /* ChangePhoneNumberViewController.swift in Sources */,
