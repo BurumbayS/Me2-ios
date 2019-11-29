@@ -39,7 +39,10 @@ class ChatViewModel {
     }
     
     func sendMessage(with text: String) {
-        adapter.sendMessage(with: text)
+        let str = "{\n  \"location\" : {\n    \"address1\" : \"Розыбакиева, 247 блок 3, 1 этаж\",\n    \"address2\" : \"Бостандыкский район, Алматы, 050060\",\n    \"latitude\" : 43.203876999999999,\n    \"longitude\" : 76.898396000000005\n  },\n  \"place_type\" : {\n    \"tag_type\" : \"PLACE_TYPE\",\n    \"name\" : \"Кофейня\",\n    \"id\" : 5\n  },\n  \"id\" : 7,\n  \"logo\" : \"https:\\/\\/api.me2.aiba.kz\\/media\\/place\\/None\\/logo\\/kr1v0jxmx5ndandmi3u08icp0.png\",\n  \"rating\" : 5,\n  \"is_favourite\" : true,\n  \"name\" : \"Traveler\'s Coffee на Розыбакиева\",\n  \"working_hours\" : {\n    \"saturday\" : {\n      \"start\" : \"08:00\",\n      \"day_and_night\" : false,\n      \"end_s\" : 0,\n      \"start_s\" : 28800,\n      \"works\" : true,\n      \"end\" : \"00:00\"\n    },\n    \"friday\" : {\n      \"start\" : \"08:00\",\n      \"day_and_night\" : false,\n      \"end_s\" : 0,\n      \"start_s\" : 28800,\n      \"works\" : true,\n      \"end\" : \"00:00\"\n    },\n    \"thursday\" : {\n      \"start_s\" : 28800,\n      \"end\" : \"00:00\",\n      \"end_s\" : 0,\n      \"works\" : true,\n      \"day_and_night\" : false,\n      \"start\" : \"08:00\"\n    },\n    \"tuesday\" : {\n      \"start_s\" : 28800,\n      \"end\" : \"00:00\",\n      \"end_s\" : 0,\n      \"works\" : true,\n      \"day_and_night\" : false,\n      \"start\" : \"08:00\"\n    },\n    \"sunday\" : {\n      \"start_s\" : 28800,\n      \"end\" : \"00:00\",\n      \"end_s\" : 0,\n      \"works\" : false,\n      \"day_and_night\" : false,\n      \"start\" : \"08:00\"\n    },\n    \"monday\" : {\n      \"start\" : \"08:00\",\n      \"day_and_night\" : false,\n      \"end_s\" : 0,\n      \"start_s\" : 28800,\n      \"works\" : true,\n      \"end\" : \"00:00\"\n    },\n    \"wednesday\" : {\n      \"start\" : \"08:00\",\n      \"day_and_night\" : false,\n      \"end_s\" : 0,\n      \"start_s\" : 28800,\n      \"works\" : true,\n      \"end\" : \"00:00\"\n    }\n  },\n  \"reg_status\" : \"REGISTERED\",\n  \"room_info\" : {\n    \"uuid\" : \"bfb68cf4-21cc-4664-aee1-3971cb6d7b75\",\n    \"users_count\" : 0,\n    \"avatars\" : [\n\n    ]\n  }\n}"
+        let place = JSON(parseJSON: str)
+        let data: JSON = ["place": place]
+        adapter.sendMessage(with: text, and: data)
     }
     
     func loadMessages(completion: ResponseBlock?) {
@@ -79,6 +82,10 @@ class ChatViewModel {
     
     func heightForCell(at indexPath: IndexPath) -> CGFloat {
         let message = messages[indexPath.row]
+        
+        if let place = message.place, place.id != 0 {
+            return 200
+        }
         
         if room.type == .LIVE && !message.isMine() {
             let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight

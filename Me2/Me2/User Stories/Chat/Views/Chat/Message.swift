@@ -17,6 +17,8 @@ enum SenderType {
 enum MessageType: String {
     case TEXT
     case FILE
+    case PLACE
+    case EVENT
 }
 
 class Message {
@@ -32,6 +34,8 @@ class Message {
     let sender: Int
     let type: MessageType
     let createdAt: String
+    let place: Place?
+    let event: Event?
     
     init(json: JSON) {
         self.id = json["id"].int64Value
@@ -40,6 +44,8 @@ class Message {
         self.type = MessageType(rawValue: json["message_type"].stringValue) ?? .TEXT
         self.sender = json["sender"].intValue
         self.createdAt = json["created_at"].stringValue
+        self.place = Place(json: json["data"]["place"])
+        self.event = Event(json: json["data"]["event"])
         
         //calculate height and width for message view width date and paddings
         self.height = ceil(text.getHeight(withConstrainedWidth: maxWidth, font: UIFont(name: "Roboto-Regular", size: 16)!)) + 10 + 15

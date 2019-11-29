@@ -15,6 +15,8 @@ class ChatAdapter {
     
     let newMessageHandler: ((Message) -> ())?
     
+    var forcedDisconnect = false
+    
     init(uuid: String, onNewMessage: ((Message) -> ())?) {
         self.roomUUID = uuid
         self.newMessageHandler = onNewMessage
@@ -24,18 +26,20 @@ class ChatAdapter {
         guard let token = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) as? String else { return }
         socket = WebSocket(url: URL(string: "wss://api.me2.aiba.kz/ws/\(roomUUID)/?token=\(token)")!)
         socket.delegate = self
+        
+        forcedDisconnect = false
         socket.connect()
     }
     
     func abortConnection() {
         guard let socket = self.socket else { return }
         
+        forcedDisconnect = true
         socket.disconnect()
     }
     
-    func sendMessage(with text: String) {
-        let json: JSON = ["text": text, "message_type" : "TEXT"]
-        
+    func sendMessage(with text: String, and data: JSON = JSON()) {
+        let json: JSON = ["text": text, "message_type" : "TEXT", "data": data]
         if let message = json.rawString() {
             socket.write(string: message)
         }
@@ -50,6 +54,9 @@ extension ChatAdapter: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if !forcedDisconnect {
+            setUpConnection()
+        }
         print("websocket is disconnected: \(error?.localizedDescription ?? "")")
     }
     

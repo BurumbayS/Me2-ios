@@ -173,6 +173,7 @@ class ChatViewController: ListContainedViewController {
         }
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
+        collectionView.registerNib(SharedPlaceCollectionViewCell.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -251,6 +252,14 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.messages[indexPath.row]
+        
+        if let place = message.place, place.id != 0 {
+            
+            let cell: SharedPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(place: place, senderType: .my)
+            return cell
+            
+        }
         
         if viewModel.room.type == .LIVE && !message.isMine() {
             
