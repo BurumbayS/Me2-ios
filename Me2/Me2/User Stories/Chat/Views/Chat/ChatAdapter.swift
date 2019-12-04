@@ -38,8 +38,18 @@ class ChatAdapter {
         socket.disconnect()
     }
     
-    func sendMessage(with text: String, and data: JSON = JSON()) {
-        let json: JSON = ["text": text, "message_type" : "TEXT", "data": data]
+    func sendMessage(type: MessageType, text: String = "", data: JSON = JSON(), file: Int = 0) {
+        var json = JSON()
+        
+        switch type {
+        case .TEXT:
+            json = ["text": text, "message_type" : type.rawValue, "data": data]
+        case .IMAGE:
+            json = ["text": text, "message_type" : type.rawValue, "file": file]
+        default:
+            break
+        }
+        
         if let message = json.rawString() {
             socket.write(string: message)
         }

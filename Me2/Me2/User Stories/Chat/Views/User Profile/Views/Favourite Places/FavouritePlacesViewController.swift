@@ -95,7 +95,7 @@ extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSou
     
         if editingStyle == .delete {
             viewModel.toDeletePlaceIndexPath = indexPath
-            addActionSheet(with: ["Удалить"], and: [removePlace], and: [.destructive])
+            addActionSheet(titles: ["Удалить"], actions: [removePlace], styles: [.destructive])
         }
 
     }

@@ -69,7 +69,7 @@ class ChatTabViewController: ListContainedViewController {
                 
                 if self?.viewModel.chatsList.count ?? 0 > 0 {
                     self?.hideEmptyListStatusLabel()
-                    self?.tableView.reloadSections([0], with: .automatic)
+                    self?.tableView.reloadData()
                 } else {
                     self?.showEmptyListStatusLabel(withText: "У вас пока нет активных чатов")
                 }
@@ -229,7 +229,7 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            self.addActionSheet(with: ["Очистить чат", "Удалить чат"], and: [clearChat, deleteChat], and: [.default, .destructive])
+            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
         }
     }
     

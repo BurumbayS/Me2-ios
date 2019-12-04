@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import SwiftyJSON
 import NVActivityIndicatorView
 import Cartography
+import MobileCoreServices
 
 class ChatViewController: ListContainedViewController {
 
@@ -22,6 +23,8 @@ class ChatViewController: ListContainedViewController {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var messageInputView: UIView!
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
+    
+    let imagePicker = UIImagePickerController()
     
     var viewModel: ChatViewModel!
     var messageCellID = "ChatMessageCell"
@@ -45,6 +48,8 @@ class ChatViewController: ListContainedViewController {
         
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
+        
+        viewModel.setUpConnection()
     }
     
     override func viewDidLoad() {
@@ -60,7 +65,6 @@ class ChatViewController: ListContainedViewController {
         configureCollectionView()
         configureNavBar()
         
-        setUpConnection()
         showLoader()
         loadMessages()
     }
@@ -144,11 +148,9 @@ class ChatViewController: ListContainedViewController {
         }
     }
     
-    private func setUpConnection() {
-        viewModel.setUpConnection()
-    }
-    
     private func configureViews() {
+        imagePicker.delegate = self
+        
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
@@ -232,11 +234,45 @@ class ChatViewController: ListContainedViewController {
     @IBAction func sendPressed(_ sender: Any) {
         guard let text = messageTextField.text, text != "" else { return }
         
-        viewModel.sendMessage(with: text)
+        viewModel.sendMessage(ofType: .TEXT, text: text)
         
         messageTextField.text = ""
     }
     
+    @IBAction func addAttachmentPressed(_ sender: Any) {
+        self.addActionSheet(titles: ["Камера","Фото/Видео","Местоположение"], images: ["black_camera_icon","image_icon","location_icon"], actions: [takePhotoVideo, openPhotoLibrary, addLocation], styles: [.default, .default, .default], tintColor: .black, textAlignment: .left)
+    }
+    
+    private func takePhotoVideo() {
+        imagePicker.sourceType = .camera
+        imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
+        
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func openPhotoLibrary() {
+        
+    }
+    
+    private func addLocation() {
+    
+    }
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let type = info[.mediaType] as? String {
+            
+            if type == kUTTypeImage as String {
+                if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                    viewModel.sendMessage(ofType: .IMAGE, image: pickedImage)
+                }
+            }
+            
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

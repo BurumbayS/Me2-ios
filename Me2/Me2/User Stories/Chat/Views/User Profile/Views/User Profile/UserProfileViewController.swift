@@ -108,7 +108,7 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func moreActions() {
-        self.addActionSheet(with: ["Заблокировать пользователя", "Пожаловаться на пользователя"], and: [blockUser, complainToUser], and: [.destructive, .destructive])
+        self.addActionSheet(titles:  ["Заблокировать пользователя", "Пожаловаться на пользователя"], actions: [blockUser, complainToUser], styles: [.destructive, .destructive])
     }
     
     private func blockUser() {

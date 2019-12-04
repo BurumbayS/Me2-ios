@@ -10,15 +10,28 @@ import UIKit
 
 let window = UIApplication.shared.keyWindow!
 
+enum ActionSheetTextAlignment: Int {
+    case left = 0
+    case center = 1
+    case right = 2
+}
+
 extension UIViewController {
-    func addActionSheet(with titles: [String], and actions: [VoidBlock?], and styles: [UIAlertAction.Style]) {
+    func addActionSheet(titles: [String], images: [String] = [], actions: [VoidBlock?], styles: [UIAlertAction.Style], tintColor: UIColor = Color.blue, textAlignment: ActionSheetTextAlignment = .center) {
         // create an actionSheet
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheetController.view.tintColor = tintColor
         
         for i in 0..<titles.count {
             let action = UIAlertAction(title: titles[i], style: styles[i]) { (action) in
                 actions[i]?()
             }
+            
+            if images.count > 0 {
+                action.setValue(UIImage(named: images[i]), forKey: "image")
+            }
+            
+            action.setValue(textAlignment.rawValue, forKey: "titleTextAlignment")
             
             actionSheetController.addAction(action)
         }

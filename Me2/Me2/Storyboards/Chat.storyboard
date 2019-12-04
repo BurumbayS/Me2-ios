@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmV-u6-mzY">
-                                        <rect key="frame" x="40" y="7.5" width="318" height="35"/>
+                                        <rect key="frame" x="52" y="7.5" width="306" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="lEH-yG-7tH"/>
@@ -160,12 +160,15 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNU-gB-qct">
-                                        <rect key="frame" x="11" y="16" width="18" height="18"/>
+                                        <rect key="frame" x="11" y="10" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="18" id="WVX-NB-rRK"/>
-                                            <constraint firstAttribute="height" constant="18" id="mXb-Tu-0Ry"/>
+                                            <constraint firstAttribute="width" constant="30" id="WVX-NB-rRK"/>
+                                            <constraint firstAttribute="height" constant="30" id="mXb-Tu-0Ry"/>
                                         </constraints>
                                         <state key="normal" image="plus_icon"/>
+                                        <connections>
+                                            <action selector="addAttachmentPressed:" destination="mvm-Fr-SLS" eventType="touchUpInside" id="iJU-rJ-DSh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK3-Nv-H28">
                                         <rect key="frame" x="369" y="8" width="34" height="34"/>

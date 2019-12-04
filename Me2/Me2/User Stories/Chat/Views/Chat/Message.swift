@@ -16,9 +16,12 @@ enum SenderType {
 
 enum MessageType: String {
     case TEXT
-    case FILE
-    case PLACE
-    case EVENT
+    case AUDIO
+    case IMAGE
+    case VIDEO
+    case LOCATION
+    case WAVE
+    case BOOKING
 }
 
 class Message {
