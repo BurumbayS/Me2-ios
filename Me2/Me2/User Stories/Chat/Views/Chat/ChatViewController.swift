@@ -108,6 +108,10 @@ class ChatViewController: ListContainedViewController {
             }
         })
         
+        viewModel.onMessageUpdate = ({ index in
+            self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+        })
+        
         viewModel.onPrevMessagesLoad = ({ previousMessages, allMessages in
             (allMessages.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
             
@@ -176,6 +180,7 @@ class ChatViewController: ListContainedViewController {
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
         collectionView.registerNib(SharedPlaceCollectionViewCell.self)
+        collectionView.register(MediaMessageCollectionViewCell.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -251,7 +256,10 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func openPhotoLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
         
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     private func addLocation() {
@@ -261,17 +269,25 @@ class ChatViewController: ListContainedViewController {
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let type = info[.mediaType] as? String {
-            
-            if type == kUTTypeImage as String {
-                if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                    viewModel.sendMessage(ofType: .IMAGE, image: pickedImage)
+        picker.dismiss(animated: true) { [weak self] in
+            if let type = info[.mediaType] as? String {
+                
+                if type == kUTTypeImage as String {
+                    guard let image = info[.originalImage] as? UIImage  else { return }
+                    guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+                    
+                    self?.viewModel.sendMessage(ofType: .IMAGE, mediaData: data)
                 }
+                
+                if type == kUTTypeMovie as String {
+                    guard let url = info[.mediaURL] as? URL else { return }
+                    guard let data = try? Data(contentsOf: url) else { return }
+                    
+                    self?.viewModel.sendMessage(ofType: .VIDEO, mediaData: data)
+                }
+                
             }
-            
         }
-        
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -297,20 +313,33 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         
-        if viewModel.room.type == .LIVE && !message.isMine() {
+        switch message.type {
+        case .TEXT:
             
-            let cell: LiveChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: message, and: viewModel.room.getSender(of: message))
+            if viewModel.room.type == .LIVE && !message.isMine() {
+                
+                let cell: LiveChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configure(with: message, and: viewModel.room.getSender(of: message))
+                return cell
+                
+            }
+            
+            let cellID = "\(messageCellID)\(indexPath.row % 20)"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
+            
+            cell.configure(message: message)
+            
             return cell
             
+        case .IMAGE:
+            
+            let cell: MediaMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(message: message)
+            return cell
+            
+        default:
+            return UICollectionViewCell()
         }
-        
-        let cellID = "\(messageCellID)\(indexPath.row % 20)"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
-        
-        cell.configure(message: viewModel.messages[indexPath.row])
-        
-        return cell
         
     }
     
