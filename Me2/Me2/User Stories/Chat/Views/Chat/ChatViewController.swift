@@ -12,6 +12,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Cartography
 import MobileCoreServices
+import AVKit
 
 class ChatViewController: ListContainedViewController {
 
@@ -276,18 +277,34 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                     guard let image = info[.originalImage] as? UIImage  else { return }
                     guard let data = image.jpegData(compressionQuality: 0.5) else { return }
                     
-                    self?.viewModel.sendMessage(ofType: .IMAGE, mediaData: data)
+                    self?.viewModel.sendMessage(ofType: .IMAGE, mediaData: data, thumbnail: image)
                 }
                 
                 if type == kUTTypeMovie as String {
                     guard let url = info[.mediaURL] as? URL else { return }
                     guard let data = try? Data(contentsOf: url) else { return }
                     
-                    self?.viewModel.sendMessage(ofType: .VIDEO, mediaData: data)
+                    self?.viewModel.sendMessage(ofType: .VIDEO, mediaData: data, thumbnail: self?.getVideoThumbnail(fromURL: url))
                 }
                 
             }
         }
+    }
+    
+    private func getVideoThumbnail(fromURL url: URL) -> UIImage? {
+        let asset = AVAsset(url: url)
+        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+        assetImgGenerate.appliesPreferredTrackTransform = true
+        let time = CMTimeMake(value: 1, timescale: 2)
+        do {
+            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+            let frameImg = UIImage(cgImage: img)
+            return frameImg
+        } catch {
+            /* error handling here */
+            print("Fail durring generating thumbnail")
+        }
+        return nil
     }
 }
 

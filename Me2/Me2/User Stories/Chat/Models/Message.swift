@@ -67,10 +67,6 @@ class Message {
         let timeTextWidth = ceil(time.getWidth(with: UIFont(name: "Roboto-Regular", size: 11)!)) + sidePaddings
         let messageTextWidth = ceil(text.getWidth(with: UIFont(name: "Roboto-Regular", size: 15)!)) + sidePaddings
         self.width = min( max(timeTextWidth, messageTextWidth) , maxWidth)
-        
-        if let data = media {
-            file?.thumbnail = UIImage(data: data)
-        }
     }
     
     func isMine() -> Bool {
@@ -86,5 +82,9 @@ class Message {
         
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date ?? Date())
+    }
+    
+    func getVideoThumbnail() {
+        
     }
 }

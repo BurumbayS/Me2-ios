@@ -56,14 +56,18 @@ class ChatViewModel {
         }
     }
     
-    func sendMessage(ofType type: MessageType, text: String = "", mediaData: Data? = nil, audio: Data? = nil) {
+    func sendMessage(ofType type: MessageType, text: String = "", mediaData: Data? = nil, thumbnail: UIImage? = nil, audio: Data? = nil) {
         var messageJSON = JSON()
         
         let uuid = UUID().uuidString
         let data: JSON = ["uuid": uuid]
         
         messageJSON = ["text": text, "message_type": type.rawValue, "file" : JSON(), "data": data]
-        let message = Message(json: messageJSON, media: mediaData, status: .pending)
+        let message = Message(json: messageJSON, status: .pending)
+        
+        if let image = thumbnail {
+            message.file?.thumbnail = image
+        }
         
         addNewMessage(message: message)
         adapter.sendMessage(message: message, mediaData: mediaData)
