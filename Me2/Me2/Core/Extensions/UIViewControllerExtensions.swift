@@ -44,14 +44,14 @@ extension UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func showDefaultAlert(title: String, message: String, doneAction: VoidBlock?, onCancel: VoidBlock? = nil) {
+    func showDefaultAlert(title: String, message: String, doneTitle: String = "Ок", cancelTitle: String = "Отмена", doneAction: VoidBlock?, onCancel: VoidBlock? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.setMessage(font: UIFont(name: "Roboto-Regular", size: 15), color: .black)
-        alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: { (alert) in
-            onCancel?()
-        }))
-        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { (alert) in
+        alert.addAction(UIAlertAction(title: doneTitle, style: .default, handler: { (alert) in
             doneAction?()
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .destructive, handler: { (alert) in
+            onCancel?()
         }))
         self.present(alert, animated: true, completion: nil)
     }

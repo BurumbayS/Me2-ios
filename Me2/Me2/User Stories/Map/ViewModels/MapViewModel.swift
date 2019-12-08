@@ -47,6 +47,14 @@ class MapViewModel {
     }
     
     func getPlacesInRadius(completion: ResponseBlock?) {
+        let idList = getPlacesInRadiusAsString()
+        if idList == "" {
+            places = []
+            completion?(.ok, "")
+            
+            return 
+        }
+        
         getPlaces(idList: getPlacesInRadiusAsString(), completion: completion)
     }
     

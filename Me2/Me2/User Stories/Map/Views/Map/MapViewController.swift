@@ -84,9 +84,16 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
-                if (self?.viewModel.isMyLocationVisible.value)! {
+                if (self?.viewModel.isMyLocationVisible.value)! && (self?.viewModel.places.count)! > 0 {
                     self?.showCollectionView()
                     self?.showPinsInRadius()
+                } else {
+                    self?.viewModel.isMyLocationVisible.value = false
+                    self?.showDefaultAlert(title: "", message: "Возле Вас не обнаружено заведений. Попробуйте снова, когда измените свое местоположение.", doneTitle: "Попробовать снова", cancelTitle: "Отключить \"Я тут\"", doneAction: {
+                        self?.viewModel.isMyLocationVisible.value = true
+                    }, onCancel: {
+                        self?.viewModel.isMyLocationVisible.value = false
+                    })
                 }
             case .error:
                 print(message)
@@ -174,7 +181,6 @@ class MapViewController: UIViewController {
         
         setImHerePin()
         animatePulsingRadius()
-        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.getPlacesInRadius()
