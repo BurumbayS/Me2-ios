@@ -273,7 +273,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
 }
 
 extension UserProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)

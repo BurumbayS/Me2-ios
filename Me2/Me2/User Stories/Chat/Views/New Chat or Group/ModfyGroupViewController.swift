@@ -105,16 +105,16 @@ extension ModfyGroupViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ModfyGroupViewController : ControllerPresenterDelegate, ActionSheetPresenterDelegate {
-    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
-        self.addActionSheet(titles: titles, actions: actions, styles: styles)
-    }
-    
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)
         case .present:
             present(controller, animated: true, completion: nil)
         }
+    }
+    
+    func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
+        self.addActionSheet(titles: titles, actions: actions, styles: styles)
     }
 }

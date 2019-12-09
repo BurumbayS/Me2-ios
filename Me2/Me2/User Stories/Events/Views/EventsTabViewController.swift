@@ -368,7 +368,7 @@ extension EventsTabViewController: UITextFieldDelegate {
 }
 
 extension EventsTabViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)

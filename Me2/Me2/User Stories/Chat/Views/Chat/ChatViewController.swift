@@ -28,7 +28,6 @@ class ChatViewController: ListContainedViewController {
     let imagePicker = UIImagePickerController()
     
     var viewModel: ChatViewModel!
-    var messageCellID = "ChatMessageCell"
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -175,13 +174,17 @@ class ChatViewController: ListContainedViewController {
         collectionView.delegate = self
         
         for i in 0..<20 {
-            let cellID = "\(messageCellID)\(i)"
+            let cellID = "\(Message.messageCellID)\(i)"
             collectionView.register(ChatMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        }
+        for i in 0..<20 {
+            let cellID = "\(MediaFile.mediaFileCellID)\(i)"
+            collectionView.register(MediaMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         }
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
         collectionView.registerNib(SharedPlaceCollectionViewCell.self)
-        collectionView.register(MediaMessageCollectionViewCell.self)
+//        collectionView.register(MediaMessageCollectionViewCell.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -275,36 +278,18 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 
                 if type == kUTTypeImage as String {
                     guard let image = info[.originalImage] as? UIImage  else { return }
-                    guard let data = image.jpegData(compressionQuality: 0.5) else { return }
                     
-                    self?.viewModel.sendMessage(ofType: .IMAGE, mediaData: data, thumbnail: image)
+                    self?.viewModel.sendMessage(ofType: .IMAGE, thumbnail: image)
                 }
                 
                 if type == kUTTypeMovie as String {
                     guard let url = info[.mediaURL] as? URL else { return }
-                    guard let data = try? Data(contentsOf: url) else { return }
                     
-                    self?.viewModel.sendMessage(ofType: .VIDEO, mediaData: data, thumbnail: self?.getVideoThumbnail(fromURL: url))
+                    self?.viewModel.sendMessage(ofType: .VIDEO, videoURL: url, thumbnail: VideoHelper.getVideoThumbnail(fromURL: url))
                 }
                 
             }
         }
-    }
-    
-    private func getVideoThumbnail(fromURL url: URL) -> UIImage? {
-        let asset = AVAsset(url: url)
-        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMake(value: 1, timescale: 2)
-        do {
-            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-            let frameImg = UIImage(cgImage: img)
-            return frameImg
-        } catch {
-            /* error handling here */
-            print("Fail durring generating thumbnail")
-        }
-        return nil
     }
 }
 
@@ -341,19 +326,20 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
             }
             
-            let cellID = "\(messageCellID)\(indexPath.row % 20)"
+            let cellID = "\(Message.messageCellID)\(indexPath.row % 20)"
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
             
             cell.configure(message: message)
             
             return cell
             
-        case .IMAGE:
+        case .IMAGE, .VIDEO:
             
-            let cell: MediaMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(message: message)
+            let cellID = "\(MediaFile.mediaFileCellID)\(indexPath.row % 20)"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MediaMessageCollectionViewCell
+            cell.configure(message: message, presenterDelegate: self)
             return cell
-            
+
         default:
             return UICollectionViewCell()
         }
@@ -374,6 +360,17 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         // on reach the top (including top content inset) show loading animation
         if scrollView.contentOffset.y < -30 {
             showLoader()
+        }
+    }
+}
+
+extension ChatViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
+        switch presntationType {
+        case .push:
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            self.present(controller, animated: true, completion: completion)
         }
     }
 }

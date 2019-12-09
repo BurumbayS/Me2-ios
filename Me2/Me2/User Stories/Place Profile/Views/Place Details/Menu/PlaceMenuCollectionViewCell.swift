@@ -107,6 +107,6 @@ extension PlaceMenuCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let url = URL(string: menus[indexPath.row].file) else { return }
         let svc = SFSafariViewController(url: url)
-        presenterDelegate.present(controller: svc, presntationType: .present)
+        presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
     }
 }

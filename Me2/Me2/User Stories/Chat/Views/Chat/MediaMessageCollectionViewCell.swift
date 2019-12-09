@@ -9,6 +9,7 @@
 import UIKit
 import Cartography
 import NVActivityIndicatorView
+import AVKit
 
 class MediaMessageCollectionViewCell: UICollectionViewCell {
     
@@ -16,6 +17,8 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
     let timeLabel = UILabel()
     var loader: NVActivityIndicatorView!
     let imageSideConstraints = ConstraintGroup()
+    
+    var presenterDelegate: ControllerPresenterDelegate!
     
     var message: Message!
     
@@ -29,22 +32,50 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(message: Message) {
+    func configure(message: Message, presenterDelegate: ControllerPresenterDelegate) {
         self.message = message
+        self.presenterDelegate = presenterDelegate
+        
+        self.timeLabel.text = message.getTime()
         
         if message.status == .pending {
             loader.startAnimating()
         }
         
+        setThumbnail()
+        updateMessagePostiton()
+    }
+    
+    private func setThumbnail() {
         if let media = message.file {
-            if media.file != "" && media.thumbnail == nil {
-                self.thumbnailImageView.kf.setImage(with: URL(string: media.file), placeholder: UIImage(named: "place_default_image"), options: [])
-            } else {
-                self.thumbnailImageView.image = media.thumbnail
+            switch message.type {
+            case .IMAGE:
+                
+                if media.file != "" {
+                    self.thumbnailImageView.kf.setImage(with: URL(string: media.file), placeholder: UIImage(named: "place_default_image"), options: [])
+                } else {
+                    self.thumbnailImageView.image = media.thumbnail
+                }
+                
+            case .VIDEO:
+                
+                if media.file != "" && media.thumbnail == nil {
+                    guard let url = URL(string: media.file) else { break }
+                    
+//                    self.message.file?.thumbnail = VideoHelper.getVideoThumbnail(fromURL: url)
+//                    self.thumbnailImageView.image = self.message.file?.thumbnail
+                    self.thumbnailImageView.image = VideoHelper.getVideoThumbnail(fromURL: url)
+                } else {
+                    self.thumbnailImageView.image = media.thumbnail
+                }
+                
+            default:
+                break
             }
-            self.timeLabel.text = message.getTime()
         }
-        
+    }
+    
+    private func updateMessagePostiton() {
         if message.isMine() {
             constrain(thumbnailImageView, self.contentView, replace: imageSideConstraints) { image, view in
                 image.right == view.right - 10
@@ -78,7 +109,7 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
             time.height == 14
         }
         
-        loader = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: .lineSpinFadeLoader, color: .lightGray, padding: 0)
+        loader = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: .lineSpinFadeLoader, color: .gray, padding: 0)
         thumbnailImageView.addSubview(loader)
         constrain(loader, thumbnailImageView) { loader, image in
             loader.centerX == image.centerX
@@ -87,8 +118,11 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
             loader.height == 20
         }
         
+        thumbnailImageView.isUserInteractionEnabled = true
+        thumbnailImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playVideo)))
+        thumbnailImageView.clipsToBounds = true
         thumbnailImageView.backgroundColor = Color.blue
-        thumbnailImageView.contentMode = .scaleAspectFit
+        thumbnailImageView.contentMode = .scaleAspectFill
         thumbnailImageView.layer.cornerRadius = 5
         self.contentView.addSubview(thumbnailImageView)
         constrain(thumbnailImageView, self.contentView) { image, view in
@@ -99,6 +133,30 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
         }
         constrain(thumbnailImageView, self.contentView, replace: imageSideConstraints) { image, view in
             image.left == view.left + 10
+        }
+    }
+    
+    private func turnSoundOn() {
+        //turn sounds on in silent mode
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+    
+    @objc private func playVideo() {
+        turnSoundOn()
+        
+        let path = message.file?.file ?? ""
+        let encodedPath = path.removingPercentEncoding
+        let player = AVPlayer(url: URL(fileURLWithPath: encodedPath ?? ""))
+        let vc = AVPlayerViewController()
+        vc.player = player
+
+        presenterDelegate.present(controller: vc, presntationType: .present) {
+            vc.player?.play()
         }
     }
 }

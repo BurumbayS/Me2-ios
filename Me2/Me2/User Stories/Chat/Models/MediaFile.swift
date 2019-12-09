@@ -9,6 +9,8 @@
 import SwiftyJSON
 
 class MediaFile {
+    static let mediaFileCellID = "MediaCell"
+    
     let id: Int
     let file: String
     var thumbnail: UIImage?

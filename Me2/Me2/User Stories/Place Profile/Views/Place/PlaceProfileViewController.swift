@@ -271,7 +271,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension PlaceProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .present:
             present(controller, animated: true, completion: nil)

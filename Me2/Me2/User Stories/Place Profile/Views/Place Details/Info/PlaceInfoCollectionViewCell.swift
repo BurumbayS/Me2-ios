@@ -158,13 +158,13 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
             let svc = SFSafariViewController(url: url)
             
-            presenterDelegate.present(controller: svc, presntationType: .present)
+            presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
         case .mail:
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([viewModel.placeInfo.email ?? ""])
             
-            presenterDelegate.present(controller: mail, presntationType: .present)
+            presenterDelegate.present(controller: mail, presntationType: .present, completion: nil)
         default:
             break
         }

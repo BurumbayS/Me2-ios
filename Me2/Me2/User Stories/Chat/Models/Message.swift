@@ -84,7 +84,5 @@ class Message {
         return dateFormatter.string(from: date ?? Date())
     }
     
-    func getVideoThumbnail() {
-        
-    }
+    static let messageCellID = "ChatMessageCell"
 }

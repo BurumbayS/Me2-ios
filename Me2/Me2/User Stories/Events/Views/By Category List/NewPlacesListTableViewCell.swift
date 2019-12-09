@@ -118,7 +118,7 @@ extension NewPlacesListTableViewCell: UICollectionViewDelegate, UICollectionView
         if viewModel.dataLoaded {
             let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
             vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         }
     }
 }

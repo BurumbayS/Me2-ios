@@ -10,6 +10,7 @@
 		B01483BFF5412C8948DD157F /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5628364908D8E8D17EA0AFE9 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		DD07550823967FF0000B15C4 /* MediaMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD07550723967FF0000B15C4 /* MediaMessageCollectionViewCell.swift */; };
 		DD07550F2397AC4E000B15C4 /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD07550E2397AC4E000B15C4 /* MediaFile.swift */; };
+		DD075519239E4520000B15C4 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD075518239E4520000B15C4 /* VideoHelper.swift */; };
 		DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B892346099800A5A9A7 /* EditProfileViewController.swift */; };
 		DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */; };
 		DD133B8E23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */; };
@@ -309,6 +310,7 @@
 		87EA5E7B2A6E3D65D055AF83 /* Pods-Me2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Me2.release.xcconfig"; path = "Target Support Files/Pods-Me2/Pods-Me2.release.xcconfig"; sourceTree = "<group>"; };
 		DD07550723967FF0000B15C4 /* MediaMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD07550E2397AC4E000B15C4 /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
+		DD075518239E4520000B15C4 /* VideoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		DD133B892346099800A5A9A7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 				DDC7F23C230EAD350067C6C7 /* TableView.swift */,
 				DDC7F23E231005200067C6C7 /* CollectionView.swift */,
 				DDF7D07C2375CDBA0093FF4B /* ListContainedViewController.swift */,
+				DD075518239E4520000B15C4 /* VideoHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1849,6 +1852,7 @@
 				DDC7F21B230806830067C6C7 /* PlaceTabView.swift in Sources */,
 				DDC7F231230BB2A60067C6C7 /* NotificationCenterExtension.swift in Sources */,
 				DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */,
+				DD075519239E4520000B15C4 /* VideoHelper.swift in Sources */,
 				DDA1425123228E2500C721A3 /* Network.swift in Sources */,
 				DDF69EE2232A72F500377796 /* LastSearchTableViewCell.swift in Sources */,
 				DD97CB4A2355D532002291CA /* PlaceParameters.swift in Sources */,

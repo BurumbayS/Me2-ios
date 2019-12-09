@@ -56,7 +56,7 @@ class ChatViewModel {
         }
     }
     
-    func sendMessage(ofType type: MessageType, text: String = "", mediaData: Data? = nil, thumbnail: UIImage? = nil, audio: Data? = nil) {
+    func sendMessage(ofType type: MessageType, text: String = "", videoURL: URL? = nil, thumbnail: UIImage? = nil, audio: Data? = nil) {
         var messageJSON = JSON()
         
         let uuid = UUID().uuidString
@@ -70,7 +70,8 @@ class ChatViewModel {
         }
         
         addNewMessage(message: message)
-        adapter.sendMessage(message: message, mediaData: mediaData)
+        
+        adapter.sendMessage(message: message, videoURL: videoURL, thumbnail: thumbnail)
     }
     
     func loadMessages(completion: ResponseBlock?) {
@@ -126,9 +127,9 @@ class ChatViewModel {
             
             return message.height
             
-        case .IMAGE:
+        case .IMAGE, .VIDEO:
             
-            return 200
+            return 250
             
         default:
             return 0

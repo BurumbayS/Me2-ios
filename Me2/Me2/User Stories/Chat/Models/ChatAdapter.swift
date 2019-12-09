@@ -9,6 +9,7 @@
 import Starscream
 import SwiftyJSON
 import Alamofire
+import AVKit
 
 class ChatAdapter {
     let roomUUID: String
@@ -41,16 +42,14 @@ class ChatAdapter {
         socket.disconnect()
     }
     
-    func sendMessage(message: Message, mediaData: Data?) {
+    func sendMessage(message: Message, videoURL: URL? = nil, thumbnail: UIImage? = nil) {
         let data: JSON = ["uuid": message.uuid as Any]
         
         switch message.type {
         case .TEXT:
             sendTextMessage(text: message.text, data: data)
-        case .IMAGE:
-            if let media = mediaData {
-                sendMediaMessage(messageType: message.type, media: media, data: data)
-            }
+        case .IMAGE, .VIDEO:
+            sendMediaMessage(messageType: message.type, videoURL: videoURL, thumbnail: thumbnail, data: data)
         default:
             break
         }
@@ -69,13 +68,39 @@ class ChatAdapter {
         sendMessage(json: json)
     }
     
-    private func sendMediaMessage(messageType: MessageType, media: Data, data: JSON) {
+    private func sendMediaMessage(messageType: MessageType, videoURL: URL?, thumbnail: UIImage?, data: JSON) {
         
-        uploadMedia(ofType: messageType, data: media) { (status, mediaID) in
+        switch messageType {
+        case .IMAGE:
+            
+            if let image = thumbnail {
+                let mediaData = image.jpegData(compressionQuality: 0.5)
+                callUploadMedia(ofType: .IMAGE, media: mediaData, additionalData: data)
+            }
+            
+        case .VIDEO:
+            
+            VideoHelper.encodeVideo(videoUrl: videoURL) { [weak self] (encodedVideoURL) in
+                guard let url = encodedVideoURL else { return }
+                
+                let mediaData = try? Data(contentsOf: url)
+                self?.callUploadMedia(ofType: .VIDEO, media: mediaData, additionalData: data)
+            }
+            
+        default:
+            break
+        }
+
+    }
+    
+    private func callUploadMedia(ofType type: MessageType, media: Data?, additionalData: JSON) {
+        guard let mediaData = media else { return }
+        
+        uploadMedia(ofType: type, data: mediaData) { (status, mediaID) in
             switch status {
             case .ok:
                 
-                let json: JSON = ["text": "", "message_type" : messageType.rawValue, "file": mediaID, "data": data]
+                let json: JSON = ["text": "", "message_type" : type.rawValue, "file": mediaID, "data": additionalData]
                 self.sendMessage(json: json)
                 
             default:
@@ -94,6 +119,9 @@ class ChatAdapter {
         case .IMAGE:
             fileName = "image.jpeg"
             mimeType = "image/jpeg"
+        case .VIDEO:
+            fileName = "video.mp4"
+            mimeType = "video/mp4"
         default:
             break
         }

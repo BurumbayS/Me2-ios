@@ -14,7 +14,7 @@ enum PresentationType {
 }
 
 protocol ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType)
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?)
 }
 
 protocol ActionSheetPresenterDelegate {
