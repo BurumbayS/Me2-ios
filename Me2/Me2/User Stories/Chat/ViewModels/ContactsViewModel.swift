@@ -14,9 +14,12 @@ class ContactsViewModel {
     var searchValue: Dynamic<String>!
     let updateSearchResults: Dynamic<Bool>
     var lastSearchVaue = String()
-    var searchResults = [ContactUser]()
+    var searchResults = [Contact]()
     var lastSearchResults = [String]()
     let contactSelectionHandler: ((Int) -> ())?
+    
+    var byLetterSections = [ByLetterContactsSection]()
+    var contacts = [Contact]()
     
     var searchActivated = false
     
@@ -25,49 +28,58 @@ class ContactsViewModel {
         self.updateSearchResults = Dynamic(false)
     }
     
-    func bindDynamics() {
-        self.searchValue.bind { [unowned self] (value) in
-            if value != "" {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    if self.searchValue.value == value {
-                        self.searchUser(by: value)
-                    }
-                    
-                    self.lastSearchVaue = value
-                })
-                
-            } else {
-                
-                self.searchResults = []
-                self.updateSearchResults.value = true
-                
-            }
-        }
-    }
-    
-    private func searchUser(by str: String) {
-        let url = Network.user + "/?search=\(searchValue.value)"
-        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+    func getContacts(completion: ResponseBlock?) {
+        let url = Network.contact + "/"
         
-        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    print(json)
                     
-                    self.searchResults = []
                     for item in json["data"]["results"].arrayValue {
-                        self.searchResults.append(ContactUser(json: item))
+                        if !item["blocked"].boolValue {
+                            self.contacts.append(Contact(json: item))
+                        }
                     }
+        
+                    self.groupContactsByLetters(contactsToGroup: self.contacts, completion: completion)
                     
-                    self.updateSearchResults.value = true
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self.updateSearchResults.value = true
+                case .failure( _):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
                 }
         }
+    }
+    
+    private func groupContactsByLetters(contactsToGroup: [Contact], completion: ResponseBlock?) {
+        var currentContacts = contactsToGroup
+        currentContacts.sort(by: { $0.user2.username < $1.user2.username })
+        
+        var letter = ""
+        var contacts = [Contact]()
+        
+        for contact in currentContacts {
+            if letter != String(contact.user2.username.first!) {
+                if letter != "" {
+                    let byLetterSection = ByLetterContactsSection(letter: letter.uppercased(), contacts: contacts)
+                    byLetterSections.append(byLetterSection)
+                }
+                
+                letter = String(contact.user2.username.first!)
+                contacts = []
+            }
+            
+            contacts.append(contact)
+        }
+        
+        completion?(.ok, "")
+    }
+    
+    func searchContact(by str: String) {
+        searchResults = contacts.filter({ $0.user2.username.lowercased().contains(str.lowercased()) })
+        updateSearchResults.value = true
     }
 }
