@@ -30,6 +30,7 @@ class NotificationTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(named: "sample_place_logo")
         messageLabel.text = notification.message
         timeLabel.text = notification.time
+        unreadMessageView.isHidden = !notification.isNew
     }
     
     private func setupViews() {
@@ -49,17 +50,18 @@ class NotificationTableViewCell: UITableViewCell {
             icon.width == 48
             icon.left == view.left + 20
             icon.top == view.top + 20
-            icon.bottom == view.bottom - 20
         }
         
         messageLabel.font = UIFont(name: "Roboto-Regular", size: 15)
         messageLabel.numberOfLines = 0
         self.contentView.addSubview(messageLabel)
-        constrain(messageLabel, iconImageView) { message, icon in
+        constrain(messageLabel, iconImageView, self.contentView) { message, icon, view in
             message.left == icon.right + 15
-            message.centerY == icon.centerY
+            message.top == icon.top
+            message.bottom == view.bottom - 20
         }
         
+        timeLabel.textAlignment = .right
         timeLabel.font = UIFont(name: "Roboto-Regular", size: 13)
         self.contentView.addSubview(timeLabel)
         constrain(timeLabel, messageLabel, self.contentView) { time, message, view in

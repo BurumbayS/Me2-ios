@@ -6,16 +6,19 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class UserNotification {
+    let id: Int
     let iconURL: String
     let message: String
     let time: String
+    var isNew = true
     
-    init() {
+    init(json: JSON) {
+        id = json["id"].intValue
         iconURL = ""
-        message = "Traveler's Coffee подтвердил Ваше бронирование"
+        message = json["message"].stringValue
         time = "15 мин"
     }
 }

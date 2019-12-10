@@ -17,4 +17,5 @@ enum UserDefaultKeys: String {
     case accessCode
     case useBiometrics
     case firstLaunch
+    case seenNotifications
 }
