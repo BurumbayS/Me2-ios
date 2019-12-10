@@ -62,9 +62,12 @@ class MediaMessageCollectionViewCell: UICollectionViewCell {
                 if media.file != "" && media.thumbnail == nil {
                     guard let url = URL(string: media.file) else { break }
                     
+//                    VideoHelper.generateVideoTumbnail(fromURL: url) { [weak self] (image) in
+//                        self?.thumbnailImageView.image = image
+//                    }
 //                    self.message.file?.thumbnail = VideoHelper.getVideoThumbnail(fromURL: url)
 //                    self.thumbnailImageView.image = self.message.file?.thumbnail
-                    self.thumbnailImageView.image = VideoHelper.getVideoThumbnail(fromURL: url)
+//                    self.thumbnailImageView.image = VideoHelper.getVideoThumbnail(fromURL: url)
                 } else {
                     self.thumbnailImageView.image = media.thumbnail
                 }
