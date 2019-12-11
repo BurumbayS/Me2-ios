@@ -51,6 +51,10 @@ class MyContactsViewController: UIViewController {
         
         navItem.title = "Мои контакты"
         setUpBackBarButton(for: navItem)
+        
+        let rightBarButton = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editContactsList))
+        rightBarButton.tintColor = Color.blue
+        navItem.rightBarButtonItem = rightBarButton
     }
     
     private func configureSearchBar() {
@@ -69,6 +73,32 @@ class MyContactsViewController: UIViewController {
         tableView.registerNib(ContactsActionTableViewCell.self)
     }
     
+    @objc private func editContactsList() {
+        viewModel.contactsListEditing = !viewModel.contactsListEditing
+        
+        if !viewModel.contactsListEditing {
+            cancelEditing()
+        } else {
+            navItem.rightBarButtonItem?.title = "Удалить"
+            navItem.rightBarButtonItem?.tintColor = Color.red
+            navItem.rightBarButtonItem?.isEnabled = false
+            
+            let leftBarButton = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(cancelEditing))
+            leftBarButton.tintColor = Color.blue
+            navItem.leftBarButtonItem = leftBarButton
+            
+            tableView.reloadData()
+        }
+    }
+    
+    @objc private func cancelEditing() {
+        navItem.rightBarButtonItem?.title = "Првить"
+        navItem.rightBarButtonItem?.tintColor = Color.blue
+        
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        tableView.reloadData()
+    }
 }
  
  extension MyContactsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -135,7 +165,7 @@ class MyContactsViewController: UIViewController {
         default:
             
             let cell: ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(contact: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2 ?? ContactUser(json: JSON()))
+            cell.configure(contact: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2 ?? ContactUser(json: JSON()), selectable: viewModel.contactsListEditing)
             return cell
             
         }
@@ -150,10 +180,19 @@ class MyContactsViewController: UIViewController {
             
         case .byLetterContacts:
             
-            let navigationController = Storyboard.userProfileViewController() as! UINavigationController
-            let vc = navigationController.viewControllers[0] as! UserProfileViewController
-            vc.viewModel = UserProfileViewModel(userID: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2.id ?? 0, profileType: .guestProfile)
-            self.navigationController?.pushViewController(vc, animated: true)
+            if !viewModel.contactsListEditing {
+                
+                let navigationController = Storyboard.userProfileViewController() as! UINavigationController
+                let vc = navigationController.viewControllers[0] as! UserProfileViewController
+                vc.viewModel = UserProfileViewModel(userID: viewModel.byLetterSections[indexPath.section]?.contacts[indexPath.row].user2.id ?? 0, profileType: .guestProfile)
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } else {
+                
+                let cell = tableView.cellForRow(at: indexPath) as! ContactTableViewCell
+                viewModel.select(cell: cell, atIndexPath: indexPath)
+                
+            }
             
         default:
             break

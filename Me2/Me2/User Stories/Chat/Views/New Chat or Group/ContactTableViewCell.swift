@@ -25,6 +25,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addedLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addActionView: UIView!
     
     var checked = CheckStatus.unchecked
     var addPressHandler: VoidBlock?
@@ -48,11 +49,11 @@ class ContactTableViewCell: UITableViewCell {
         
         switch addable {
         case true:
+            addActionView.isHidden = false
             addButton.isHidden = added
             addedLabel.isHidden = !added
         default:
-            addButton.isHidden = true
-            addedLabel.isHidden = true
+            addActionView.isHidden = true
         }
         
         configureViews(for: contact)

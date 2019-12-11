@@ -90,6 +90,12 @@ class MyContactsViewModel {
     var contacts: Dynamic<[Contact]>
     var blockedContacts = [Contact]()
     var updateContactsList: Dynamic<Bool>
+    
+    var contactsListEditing = false
+    var contactsToDelete = [Contact]()
+    
+    var searchActivated = false
+    var searchResults = [Contact]()
 
     init(presenterDelegate: ControllerPresenterDelegate) {
         self.presenterDelegate = presenterDelegate
@@ -121,6 +127,21 @@ class MyContactsViewModel {
         }
         
         actions = [addContactAction, showBlockedContactsAction]
+    }
+    
+    func select(cell : ContactTableViewCell, atIndexPath indexPath: IndexPath) {
+        cell.select()
+        
+        switch cell.checked {
+        case .checked:
+            if let contact = (searchActivated) ? searchResults[indexPath.row] : byLetterSections[indexPath.section]?.contacts[indexPath.row] {
+                contactsToDelete.append(contact)
+            }
+        default:
+            if let contact = (searchActivated) ? searchResults[indexPath.row] : byLetterSections[indexPath.section]?.contacts[indexPath.row] {
+                contactsToDelete.removeAll(where: { contact.id == $0.id })
+            }
+        }
     }
     
     func fetchMyContacts() {

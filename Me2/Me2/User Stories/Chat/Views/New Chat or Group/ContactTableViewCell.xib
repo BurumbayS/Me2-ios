@@ -116,6 +116,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addActionView" destination="M1j-ER-nLI" id="Yx4-ce-i0q"/>
                 <outlet property="addButton" destination="9cc-5C-KLZ" id="fGa-W8-1JP"/>
                 <outlet property="addedLabel" destination="qbW-ZS-baU" id="gpu-ge-Va6"/>
                 <outlet property="avatarImageView" destination="oBn-fQ-6nL" id="udZ-FF-DI3"/>
