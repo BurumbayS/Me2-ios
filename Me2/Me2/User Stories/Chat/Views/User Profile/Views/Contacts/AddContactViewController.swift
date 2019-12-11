@@ -34,6 +34,8 @@ class AddContactViewController: UIViewController {
     }
     
     private func bindDynamics() {
+        viewModel.parentVC = self
+        
         viewModel.contactsSynchronized.bind { [weak self] (value) in
             self?.viewModel.actionTypes = [.inviteFriend]
             self?.tableView.reloadSections([0], with: .none)

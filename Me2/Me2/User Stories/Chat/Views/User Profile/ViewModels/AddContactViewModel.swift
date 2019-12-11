@@ -27,6 +27,8 @@ class AddContactViewModel {
     var inviteFriends: VoidBlock?
     var synchronizeContacts: VoidBlock?
     
+    var parentVC: UIViewController!
+    
     init(currentContacts: Dynamic<[Contact]>) {
         self.myContacts = currentContacts
         for contact in currentContacts.value {
@@ -39,7 +41,13 @@ class AddContactViewModel {
     
     func configureActions() {
         inviteFriends = {
-            print("Invite friends pressed")
+            let str = "Скачай Me2\n Доступно бесплатно в:\n App store: www.me2.kz \n Google play: www.me2.kz"
+            
+            let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.parentVC.view
+            activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+            
+            self.parentVC.present(activityViewController, animated: true, completion: nil)
         }
         
         synchronizeContacts = {

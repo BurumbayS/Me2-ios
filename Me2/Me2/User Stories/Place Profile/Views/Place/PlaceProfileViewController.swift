@@ -107,7 +107,13 @@ class PlaceProfileViewController: UIViewController {
     }
     
     @objc private func sharePlace() {
+        let str = viewModel.place.generateShareInfo()
         
+        let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     private func configureCollectionView() {

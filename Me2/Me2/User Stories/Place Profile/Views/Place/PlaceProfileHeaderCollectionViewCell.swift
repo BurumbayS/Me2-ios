@@ -327,7 +327,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func shareWithPlace() {
-        let str = "\(viewModel.place.name!)\n\(viewModel.place.address1!)\n\(viewModel.place.phone ?? "")\n\(viewModel.place.email ?? "")"
+        let str = viewModel.place.generateShareInfo()
         
         let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = parentVC.view

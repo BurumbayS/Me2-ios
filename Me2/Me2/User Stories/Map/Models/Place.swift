@@ -68,5 +68,23 @@ class Place {
         for item in json["tags_display"].arrayValue {
             tags.append(item.stringValue)
         }
-     }
+    }
+    
+    func generateShareInfo() -> String {
+        var message = ""
+        
+        message =   "\(name!)\n" +
+                    "\(address1!)\n" +
+                    "\(instagram!)" +
+                    "\n" +
+                    "\n" +
+                    "Для просмотра подробной информации откройте в приложении Me2" +
+                    "\n" +
+                    "\n" +
+                    "Доступно бесплатно в:\n" +
+                    "App store: www.me2.kz\n" +
+                    "Google play: www.me2.kz"
+        
+        return message
+    }
 }
