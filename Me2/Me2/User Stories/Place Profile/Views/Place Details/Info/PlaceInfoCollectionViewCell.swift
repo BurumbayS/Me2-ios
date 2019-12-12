@@ -175,6 +175,12 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             vc.subsidiaries = viewModel.placeInfo.subsidiaries ?? []
             presenterDelegate.present(controller: vc, presntationType: .push)
             
+        case .address:
+            
+            let vc = Storyboard.placeOnMapViewController() as! PlaceOnMapViewController
+            vc.place = viewModel.placeInfo
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

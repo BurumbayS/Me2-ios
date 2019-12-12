@@ -89,6 +89,7 @@
 		DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C224D231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift */; };
 		DD5C2253231E62C900CF66CC /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2252231E62C900CF66CC /* PrivacyPolicyViewController.swift */; };
 		DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */; };
+		DD608AF923A2507C00C76F1E /* PlaceOnMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -393,6 +394,7 @@
 		DD5C224D231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceEventsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD5C2252231E62C900CF66CC /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPassViewController.swift; sourceTree = "<group>"; };
+		DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOnMapViewController.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 			isa = PBXGroup;
 			children = (
 				DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */,
+				DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */,
 			);
 			path = "Additional pages";
 			sourceTree = "<group>";
@@ -1963,6 +1966,7 @@
 				DDF7D067236FF8C20093FF4B /* ManageAccountTableViewCell.swift in Sources */,
 				DDB465DF2344FF9C00EB71B9 /* GuestProfileAdditionalTableViewCell.swift in Sources */,
 				DD5653C322F06FA1003A67C3 /* ConfirmCodeViewController.swift in Sources */,
+				DD608AF923A2507C00C76F1E /* PlaceOnMapViewController.swift in Sources */,
 				DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */,
 				DD2037CC23794FA5000485F2 /* ChangePasswordViewController.swift in Sources */,
 				DDA14247231F7B3D00C721A3 /* AttributedTextField.swift in Sources */,

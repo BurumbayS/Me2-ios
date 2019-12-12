@@ -321,6 +321,38 @@
             </objects>
             <point key="canvasLocation" x="3223" y="84"/>
         </scene>
+        <!--Place On Map View Controller-->
+        <scene sceneID="OUP-Zo-b2b">
+            <objects>
+                <viewController storyboardIdentifier="PlaceOnMapViewController" hidesBottomBarWhenPushed="YES" id="eFc-Mk-TUb" customClass="PlaceOnMapViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Dx-ZO-1ON">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cS1-uK-nBC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="h1l-ui-QwA"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cS1-uK-nBC" firstAttribute="trailing" secondItem="Nzk-g1-m27" secondAttribute="trailing" id="WZB-JP-hFV"/>
+                            <constraint firstItem="cS1-uK-nBC" firstAttribute="leading" secondItem="Nzk-g1-m27" secondAttribute="leading" id="nkM-9m-Isj"/>
+                            <constraint firstItem="cS1-uK-nBC" firstAttribute="top" secondItem="Nzk-g1-m27" secondAttribute="top" id="s2T-rH-nCt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nzk-g1-m27"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="cS1-uK-nBC" id="5a6-u7-ikD"/>
+                        <outlet property="navItem" destination="h1l-ui-QwA" id="Q2Q-HC-uds"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QHA-hM-NRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3970" y="84"/>
+        </scene>
     </scenes>
     <resources>
         <image name="empty_star" width="26.5" height="25"/>
