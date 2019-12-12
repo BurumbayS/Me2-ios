@@ -142,6 +142,9 @@ extension Storyboard {
     static var placeProfileViewController = {
         return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
     }
+    static var subsidiariesViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "SubsidiariesViewController")
+    }
     
     //Events tab controllers
     static var eventsTabViewController = {

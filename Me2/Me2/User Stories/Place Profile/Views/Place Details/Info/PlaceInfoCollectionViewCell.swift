@@ -147,7 +147,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceSubsidiariesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: 3)
+            cell.configure(with: viewModel.placeInfo.subsidiaries?.count ?? 0)
             return cell
         }
     }
@@ -155,16 +155,26 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.placeSections[indexPath.row] {
         case .site:
+            
             guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
             let svc = SFSafariViewController(url: url)
             
             presenterDelegate.present(controller: svc, presntationType: .present)
+            
         case .mail:
+            
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([viewModel.placeInfo.email ?? ""])
             
             presenterDelegate.present(controller: mail, presntationType: .present)
+            
+        case .subsidiaries:
+            
+            let vc = Storyboard.subsidiariesViewController() as! SubsidiariesViewController
+            vc.subsidiaries = viewModel.placeInfo.subsidiaries ?? []
+            presenterDelegate.present(controller: vc, presntationType: .push)
+            
         default:
             break
         }

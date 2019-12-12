@@ -37,11 +37,15 @@ class PlaceInfoViewModel {
     private func configureSections() {
         switch placeInfo.regStatus {
         case .registered?:
-            placeSections = [.description, .contactUs, .address, .workTime, .mail, .site, .tags, .subsidiaries]
+            placeSections = [.description, .contactUs, .address, .workTime, .mail, .site, .tags]
         case .not_registered?:
-            placeSections = [.address, .workTime, .mail, .site, .subsidiaries]
+            placeSections = [.address, .workTime, .mail, .site]
         default:
             break
+        }
+        
+        if let subs = placeInfo.subsidiaries, subs.count > 0 {
+            placeSections.append(.subsidiaries)
         }
     }
 

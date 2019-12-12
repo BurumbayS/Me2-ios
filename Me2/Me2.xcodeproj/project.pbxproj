@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B01483BFF5412C8948DD157F /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5628364908D8E8D17EA0AFE9 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		DD07551B239F9C27000B15C4 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */; };
+		DD07551E23A2466B000B15C4 /* SubsidiariesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */; };
 		DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B892346099800A5A9A7 /* EditProfileViewController.swift */; };
 		DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */; };
 		DD133B8E23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */; };
@@ -309,6 +310,7 @@
 		5EC30CA6717869B180075276 /* Pods-Me2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Me2.debug.xcconfig"; path = "Target Support Files/Pods-Me2/Pods-Me2.debug.xcconfig"; sourceTree = "<group>"; };
 		87EA5E7B2A6E3D65D055AF83 /* Pods-Me2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Me2.release.xcconfig"; path = "Target Support Files/Pods-Me2/Pods-Me2.release.xcconfig"; sourceTree = "<group>"; };
 		DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsidiariesViewController.swift; sourceTree = "<group>"; };
 		DD133B892346099800A5A9A7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B8C23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -633,6 +635,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD07551C23A2464A000B15C4 /* Additional pages */ = {
+			isa = PBXGroup;
+			children = (
+				DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */,
+			);
+			path = "Additional pages";
+			sourceTree = "<group>";
+		};
 		DD133B87234608E200A5A9A7 /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +857,7 @@
 				DD5C22322316A60700CF66CC /* PlaceWorkTimeTableViewCell.swift */,
 				DD5C22342316ACE400CF66CC /* MailSiteTableViewCell.swift */,
 				DD5C223A231810F800CF66CC /* PlaceSubsidiariesTableViewCell.swift */,
+				DD07551C23A2464A000B15C4 /* Additional pages */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1966,6 +1977,7 @@
 				DD7206F8237EFB6C0090F12C /* ManageAccountEnums.swift in Sources */,
 				DD5C22312316813C00CF66CC /* AdressTableViewCell.swift in Sources */,
 				DDCE6EAE22F9AF49006E54D1 /* CreateGroupViewModel.swift in Sources */,
+				DD07551E23A2466B000B15C4 /* SubsidiariesViewController.swift in Sources */,
 				DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */,
 				DD133B902346152E00A5A9A7 /* EditProfileTableViewCell.swift in Sources */,
 				DDC7F227230941080067C6C7 /* CustomSegmentedControl.swift in Sources */,

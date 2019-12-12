@@ -280,6 +280,47 @@
             </objects>
             <point key="canvasLocation" x="2480" y="84"/>
         </scene>
+        <!--Subsidiaries View Controller-->
+        <scene sceneID="O9E-Jb-ofj">
+            <objects>
+                <viewController storyboardIdentifier="SubsidiariesViewController" id="GuP-Sq-Jev" customClass="SubsidiariesViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h3b-a0-TI4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="48p-Gc-dfw">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXI-hK-fCE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="JI0-IZ-HZi"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I4O-4K-h7T" firstAttribute="bottom" secondItem="48p-Gc-dfw" secondAttribute="bottom" id="5LB-EP-VUi"/>
+                            <constraint firstItem="TXI-hK-fCE" firstAttribute="leading" secondItem="I4O-4K-h7T" secondAttribute="leading" id="GZh-jc-3Tb"/>
+                            <constraint firstItem="I4O-4K-h7T" firstAttribute="trailing" secondItem="48p-Gc-dfw" secondAttribute="trailing" id="Oxx-Pu-fzH"/>
+                            <constraint firstItem="TXI-hK-fCE" firstAttribute="trailing" secondItem="I4O-4K-h7T" secondAttribute="trailing" id="V9o-ih-5Sx"/>
+                            <constraint firstItem="48p-Gc-dfw" firstAttribute="leading" secondItem="I4O-4K-h7T" secondAttribute="leading" id="ZkT-GJ-mvP"/>
+                            <constraint firstItem="TXI-hK-fCE" firstAttribute="top" secondItem="I4O-4K-h7T" secondAttribute="top" id="dLg-Er-dwC"/>
+                            <constraint firstItem="48p-Gc-dfw" firstAttribute="top" secondItem="TXI-hK-fCE" secondAttribute="bottom" id="dhX-Tv-mON"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I4O-4K-h7T"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="TXI-hK-fCE" id="PRV-jH-Oe7"/>
+                        <outlet property="navItem" destination="JI0-IZ-HZi" id="b9k-aK-v5b"/>
+                        <outlet property="tableView" destination="48p-Gc-dfw" id="816-Kv-a2r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UlC-UD-VQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3223" y="84"/>
+        </scene>
     </scenes>
     <resources>
         <image name="empty_star" width="26.5" height="25"/>
