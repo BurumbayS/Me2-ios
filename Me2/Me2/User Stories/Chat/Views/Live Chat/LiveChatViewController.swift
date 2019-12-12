@@ -66,7 +66,7 @@ class LiveChatViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(showActions))
         
         self.navigationItem.twoLineTitleView(titles: ["Live", viewModel.room.name], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
     }
@@ -76,6 +76,24 @@ class LiveChatViewController: UIViewController {
         participantsCollectionView.dataSource = self
         
         participantsCollectionView.registerNib(ParticipantCollectionViewCell.self)
+    }
+    
+    @objc private func showActions() {
+        if viewModel.notificationsIsOn {
+            self.addActionSheet(with: ["Профиль заведения","Отключить уведомления"], and: [goToPlaceProfile, editNotifications], and: [.default, .destructive])
+        } else {
+            self.addActionSheet(with: ["Профиль заведения","Включить уведомления"], and: [goToPlaceProfile, editNotifications], and: [.default, .default])
+        }
+    }
+    
+    private func goToPlaceProfile() {
+//        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+//        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+//        presenterDelegate.present(controller: vc, presntationType: .push)
+    }
+    
+    private func editNotifications() {
+        viewModel.editNotifications()
     }
 }
 

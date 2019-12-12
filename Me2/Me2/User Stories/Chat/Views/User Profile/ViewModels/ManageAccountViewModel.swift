@@ -26,8 +26,8 @@ class ManageAccountViewModel {
         if let userJSONString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
             let userJSON = JSON(parseJSON: userJSONString)
             
-            configureVisibilityParameters(with: userJSON["data"]["user"]["privacy_data"])
-            configureNotificationParameters(with: userJSON["data"]["user"]["notification_data"])
+            configureVisibilityParameters(with: userJSON["privacy_data"])
+            configureNotificationParameters(with: userJSON["notification_data"])
         }
     }
     
@@ -86,8 +86,8 @@ class ManageAccountViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
-                    UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                    let userJSON = json["data"]["user"]
+                    UserDefaults().set(userJSON.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")
@@ -105,8 +105,8 @@ class ManageAccountViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
-                    UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                    let userJSON = json["data"]["user"]
+                    UserDefaults().set(userJSON.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")
