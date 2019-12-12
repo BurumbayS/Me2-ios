@@ -235,7 +235,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self, viewController: self)
             return cell
             
         }

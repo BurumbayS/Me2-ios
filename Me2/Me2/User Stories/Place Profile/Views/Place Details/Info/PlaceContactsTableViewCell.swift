@@ -12,18 +12,21 @@ class PlaceContactsTableViewCell: UITableViewCell {
 
     var phone: String?
     var instagram: String?
+    var parentVC: UIViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
     
-    func configure(with phone: String?, ans instagram: String?) {
+    func configure(with phone: String?, and instagram: String?, on viewController: UIViewController) {
         self.phone = phone
         self.instagram = instagram
+        self.parentVC = viewController
     }
     
     @IBAction func chatButtonPressed(_ sender: Any) {
+        parentVC.showInfoAlert(title: "Предупреждение", message: "Профиль админа пока отсутствует", onAccept: nil)
     }
     
     @IBAction func instagramButtonPressed(_ sender: Any) {

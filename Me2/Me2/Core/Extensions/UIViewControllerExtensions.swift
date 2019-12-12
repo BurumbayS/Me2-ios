@@ -56,6 +56,15 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showInfoAlert(title: String, message: String, onAccept: VoidBlock?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.setMessage(font: UIFont(name: "Roboto-Regular", size: 15), color: .black)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { (alert) in
+            onAccept?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func safeAreaSize() -> CGSize {
         var height = CGFloat()
         

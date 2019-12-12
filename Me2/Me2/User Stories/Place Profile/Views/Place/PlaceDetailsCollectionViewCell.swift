@@ -20,6 +20,7 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
     var viewModel: PlaceDetailsViewModel!
     
     var presenterDelegate: ControllerPresenterDelegate!
+    var parentVC: UIViewController!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,10 +33,11 @@ class PlaceDetailsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with place: Place, currentPage: Dynamic<Int>, presenterDelegate: ControllerPresenterDelegate) {
+    func configure(with place: Place, currentPage: Dynamic<Int>, presenterDelegate: ControllerPresenterDelegate, viewController: UIViewController) {
         viewModel = PlaceDetailsViewModel(place: place, currentPage: currentPage)
         self.currentPage = currentPage
         self.presenterDelegate = presenterDelegate
+        self.parentVC = viewController
         
         collectionView.reloadData()
         
@@ -122,7 +124,7 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         
         switch viewModel.placeStatus.pages[indexPath.row] {
         case .info:
-            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, place: viewModel.place, presenterDelegate: presenterDelegate)
+            (cell as! PlaceInfoCollectionViewCell).configure(itemSize: self.itemSize, place: viewModel.place, presenterDelegate: presenterDelegate, viewController: parentVC)
         case .events:
             (cell as! PlaceEventsCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.place.id, presenterDelegate: presenterDelegate)
         case .menu:

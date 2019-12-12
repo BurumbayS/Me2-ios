@@ -18,6 +18,8 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
     var viewModel: PlaceInfoViewModel!
     
+    var parentVC: UIViewController!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,10 +31,11 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate, viewController: UIViewController) {
         self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.viewModel = PlaceInfoViewModel(place: place)
+        self.parentVC = viewController
     }
     
     override func reload () {
@@ -105,7 +108,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.placeInfo.phone, ans: viewModel.placeInfo.instagram)
+            cell.configure(with: viewModel.placeInfo.phone, and: viewModel.placeInfo.instagram, on: parentVC)
             return cell
             
         case .address:
