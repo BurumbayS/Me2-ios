@@ -198,6 +198,7 @@ class EventsTabViewController: UIViewController {
     
     private func deleteCategory(in section: EventCategoriesType) {
         if let index = viewModel.categoriesToShow.firstIndex(of: section) {
+            viewModel.categories.remove(at: index)
             viewModel.categoriesToShow.remove(at: index)
             viewModel.categoryViewModels.remove(at: index)
             
