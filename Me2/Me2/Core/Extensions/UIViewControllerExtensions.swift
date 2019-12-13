@@ -50,7 +50,7 @@ extension UIViewController {
     }
     
     func removeBackButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     @objc func dismissSelf() {

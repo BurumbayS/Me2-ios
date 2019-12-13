@@ -37,9 +37,12 @@ class UserProfileViewController: UIViewController {
     }
 
     private func configureNavBar() {
+        self.removeBackButton()
+        
         navBar.makeTransparentBar()
         navItem.title = ""
         navBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
         
         switch viewModel.profileType {
         case .guestProfile:
@@ -211,7 +214,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 
                 let cell: GuestProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.selectionStyle = .none
-                cell.configure(user: viewModel.userInfo.value, viewController: self)
+                cell.configure(viewModel: viewModel, viewController: self)
                 return cell
                 
             }

@@ -222,9 +222,25 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Удалить"
-    }
+//    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+//        return "Удалить"
+//    }
+    
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+//            // delete item at indexPath
+//        }
+//
+//        let share = UITableViewRowAction(style: .default, title: "Disable") { (action, indexPath) in
+//            // share item at indexPath
+//        }
+//
+//        let backImage = UIImageView(image: UIImage(named: "location_icon"))
+//        backImage.contentMode = .scaleAspectFit
+//        share.backgroundColor = UIColor(patternImage: backImage.image!)
+//
+//        return [delete, share]
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         

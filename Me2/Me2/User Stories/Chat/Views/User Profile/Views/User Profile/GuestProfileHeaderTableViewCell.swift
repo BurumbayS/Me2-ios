@@ -19,6 +19,7 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var instagramLabel: UILabel!
     
     var user: User!
+    var viewModel: UserProfileViewModel!
     var parentVC: UIViewController!
     
     override func awakeFromNib() {
@@ -27,8 +28,9 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
         configureViews()
     }
     
-    func configure(user: User, viewController: UIViewController) {
-        self.user = user
+    func configure(viewModel: UserProfileViewModel, viewController: UIViewController) {
+        self.viewModel = viewModel
+        self.user = viewModel.userInfo.value
         self.parentVC = viewController
         
         if let url = URL(string: user.avatar ?? "") {
@@ -71,5 +73,19 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func writePressed(_ sender: Any) {
+        viewModel.getChatWithUser { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                if let room = self?.viewModel.chatRoom {
+                    let vc = Storyboard.chatViewController() as! ChatViewController
+                    vc.viewModel = ChatViewModel(room: room)
+                    self?.parentVC.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+            case .error,.fail:
+                break
+            }
+        }
     }
 }
