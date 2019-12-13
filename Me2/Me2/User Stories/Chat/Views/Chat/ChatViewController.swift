@@ -93,15 +93,9 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func bindDynamics() {
-        viewModel.onNewMessage = ({ messages in
+        viewModel.onNewMessage = ({ message in
             self.hideEmptyListStatusLabel()
-            
-            self.collectionView.insertItems(at: [IndexPath(row: messages.count - 1, section: 0)])
-            
-            //scroll to bottom if the last sended is my message or i'm at the end of chat
-            if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (messages.last?.isMine())! {
-                self.collectionView.scrollToItem(at: IndexPath(row: messages.count - 1, section: 0), at: .bottom, animated: true)
-            }
+            self.insertNewMessage(message: message)
         })
         
         viewModel.onMessagesLoad = ({
@@ -136,6 +130,24 @@ class ChatViewController: ListContainedViewController {
             case .fail:
                 break
             }
+        }
+    }
+    
+    private func insertNewMessage(message: Message) {
+        let lastSection = self.viewModel.sections.count - 1
+        
+        if viewModel.sections[lastSection].date == message.getDateString() {
+            viewModel.sections[lastSection].messages.append(message)
+            self.collectionView.insertItems(at: [IndexPath(row: viewModel.sections[lastSection].messages.count - 1, section: viewModel.sections.count - 1)])
+        } else {
+            let newSection = MessagesSection(date: message.getDateString(), messages: [message])
+            self.viewModel.sections.append(newSection)
+            self.collectionView.insertSections([self.viewModel.sections.count - 1])
+        }
+        
+        //scroll to bottom if the last sended is my message or i'm at the end of chat
+        if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (message.isMine()) {
+            self.collectionView.scrollToItem(at: IndexPath(row: viewModel.sections[lastSection].messages.count - 1, section: viewModel.sections.count - 1), at: .bottom, animated: true)
         }
     }
     

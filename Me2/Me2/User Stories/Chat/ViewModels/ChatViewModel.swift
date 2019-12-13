@@ -12,7 +12,7 @@ import Alamofire
 
 struct MessagesSection {
     let date: String
-    let messages: [Message]
+    var messages: [Message]
 }
 
 class ChatViewModel {
@@ -24,7 +24,7 @@ class ChatViewModel {
     
     var adapter: ChatAdapter!
     
-    var onNewMessage: (([Message]) -> ())?
+    var onNewMessage: ((Message) -> ())?
     var onMessagesLoad: VoidBlock?
     
     init(room: Room) {
@@ -33,8 +33,8 @@ class ChatViewModel {
     
     func setUpConnection() {
         adapter = ChatAdapter(uuid: room.uuid, onNewMessage: { [weak self] (message) in
-            self?.messages.append(message)
-            self?.onNewMessage?(self?.messages ?? [])
+//            self?.messages.append(message)
+            self?.onNewMessage?(message)
         })
         
         adapter.setUpConnection()
