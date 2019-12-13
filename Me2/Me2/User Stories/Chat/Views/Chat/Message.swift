@@ -63,4 +63,21 @@ class Message {
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date ?? Date())
     }
+    
+    func getDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        guard let date = dateFormatter.date(from: createdAt) else { return "" }
+        
+        dateFormatter.dateFormat = "dd.MM"
+        
+        if date.isToday() {
+            return "Сегодня"
+        }
+        if date.isYesterday() {
+            return "Вчера"
+        }
+        
+        return dateFormatter.string(from: date)
+    }
 }

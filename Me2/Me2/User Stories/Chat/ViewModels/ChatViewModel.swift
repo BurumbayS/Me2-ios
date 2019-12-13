@@ -10,8 +10,14 @@ import Starscream
 import SwiftyJSON
 import Alamofire
 
+struct MessagesSection {
+    let date: String
+    let messages: [Message]
+}
+
 class ChatViewModel {
     var messages = [Message]()
+    var sections = [MessagesSection]()
     
     let room: Room
     var loadingMessages = false
@@ -19,7 +25,7 @@ class ChatViewModel {
     var adapter: ChatAdapter!
     
     var onNewMessage: (([Message]) -> ())?
-    var onPrevMessagesLoad: (([Message], [Message]) -> ())?
+    var onMessagesLoad: VoidBlock?
     
     init(room: Room) {
         self.room = room
@@ -66,9 +72,8 @@ class ChatViewModel {
                     }
                     
                     self?.messages = messages + ((self?.messages) ?? [])
-                    self?.onPrevMessagesLoad?(messages, self?.messages ?? [])
-                    
-                    completion?(.ok, "")
+                    self?.messages.sort(by: { $0.getDateString() < $1.getDateString() })
+                    self?.groupMessagesByDate(completion: completion)
                     
                 case .failure(let error):
                     print(error)
@@ -77,8 +82,37 @@ class ChatViewModel {
         }
     }
     
+    private func groupMessagesByDate(completion: ResponseBlock?) {
+        var currentDate = ""
+        var byDateMessages = [Message]()
+        var messageSections = [MessagesSection]()
+        
+        for message in messages {
+            if currentDate != "" && message.getDateString() != currentDate {
+                let messageSection = MessagesSection(date: currentDate, messages: byDateMessages)
+                messageSections.append(messageSection)
+                
+                currentDate = message.getDateString()
+                byDateMessages = [message]
+            } else {
+                currentDate = message.getDateString()
+                byDateMessages.append(message)
+            }
+        }
+        
+        if byDateMessages.count > 0 {
+            let messageSection = MessagesSection(date: currentDate, messages: byDateMessages)
+            messageSections.append(messageSection)
+        }
+        
+        self.sections = messageSections
+        
+        self.onMessagesLoad?()
+        completion?(.ok, "")
+    }
+    
     func heightForCell(at indexPath: IndexPath) -> CGFloat {
-        let message = messages[indexPath.row]
+        let message = sections[indexPath.section].messages[indexPath.row]
         
         if room.type == .LIVE && !message.isMine() {
             let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight

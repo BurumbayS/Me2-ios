@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Date {
     
@@ -32,5 +32,25 @@ extension Date {
         formatter.dateFormat = "HH:mm"
         
         return formatter.string(from: self)
+    }
+    
+    func isToday() -> Bool {
+        let today = Date()
+        
+        let order = Calendar.current.compare(today, to: self, toGranularity: .day)
+        return order == .orderedSame
+    }
+    
+    func isYesterday() -> Bool {
+        let today = Date()
+        guard let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today) else { return false }
+        
+        let order = Calendar.current.compare(yesterday, to: self, toGranularity: .day)
+        return order == .orderedSame
+    }
+    
+    func isEqual(to date: Date) -> Bool {
+        let order = Calendar.current.compare(date, to: self, toGranularity: .day)
+        return order == .orderedSame
     }
 }

@@ -104,13 +104,8 @@ class ChatViewController: ListContainedViewController {
             }
         })
         
-        viewModel.onPrevMessagesLoad = ({ previousMessages, allMessages in
-            (allMessages.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
-            
-            var indexPathes = [IndexPath]()
-            for i in 0..<previousMessages.count {
-                indexPathes.append(IndexPath(row: i, section: 0))
-            }
+        viewModel.onMessagesLoad = ({
+            (self.viewModel.messages.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
             
             let oldContentHeight = self.collectionView.contentSize.height
             let oldContentOffset = self.collectionView.contentOffset.y
@@ -162,7 +157,11 @@ class ChatViewController: ListContainedViewController {
     private func configureCollectionView() {
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionHeadersPinToVisibleBounds = true
+        }
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -173,6 +172,7 @@ class ChatViewController: ListContainedViewController {
         }
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
+        collectionView.registerHeader(SectionDateHeaderCollectionReusableView.self)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -187,7 +187,8 @@ class ChatViewController: ListContainedViewController {
                 self.view.layoutIfNeeded()
             }) { (completed) in
                 if self.viewModel.messages.count > 0 {
-                    self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.messages.count - 1, section: 0), at: .bottom, animated: true)
+                    let lastSection = self.viewModel.sections.count - 1
+                    self.collectionView.scrollToItem(at: IndexPath(row: self.viewModel.sections[lastSection].messages.count - 1, section: lastSection), at: .bottom, animated: true)
                 }
             }
         }
@@ -214,10 +215,12 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func showLoader() {
+        collectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         loader.startAnimating()
     }
     
     private func hideLoader() {
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         loader.stopAnimating()
     }
     
@@ -245,12 +248,30 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return CGSize(width: self.view.frame.width, height: height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 40)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.messages.count
+        return viewModel.sections[section].messages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let sectionHeader: SectionDateHeaderCollectionReusableView = collectionView.dequeueReusableView(for: indexPath, and: UICollectionView.elementKindSectionHeader)
+            sectionHeader.configure(with: viewModel.sections[indexPath.section].date)
+            return sectionHeader
+        } else {
+            return UICollectionReusableView()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = viewModel.messages[indexPath.row]
+        let message = viewModel.sections[indexPath.section].messages[indexPath.row]
         
         if viewModel.room.type == .LIVE && !message.isMine() {
             
@@ -263,7 +284,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cellID = "\(messageCellID)\(indexPath.row % 20)"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
         
-        cell.configure(message: viewModel.messages[indexPath.row])
+        cell.configure(message: message)
         
         return cell
         
