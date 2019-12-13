@@ -87,9 +87,9 @@ class LiveChatViewController: UIViewController {
     }
     
     private func goToPlaceProfile() {
-//        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
-//        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-//        presenterDelegate.present(controller: vc, presntationType: .push)
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.room.place)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func editNotifications() {

@@ -93,6 +93,8 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navigationController?.navigationBar.isHidden = true
+        
         navBar.isHidden = true
         navBar.shouldRemoveShadow(true)
         

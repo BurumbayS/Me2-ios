@@ -48,7 +48,7 @@ class UserProfileViewController: UIViewController {
         case .guestProfile:
             
             setUpBackBarButton(for: navItem)
-            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
+//            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
             
         default:
             
