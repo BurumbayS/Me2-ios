@@ -40,12 +40,12 @@
 		DD2387CB2385815A005AFBA6 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */; };
 		DD2387D023866096005AFBA6 /* OnboardingPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */; };
 		DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */; };
-		DD2795512391239600B316A6 /* SharedPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2795502391239600B316A6 /* SharedPlaceCollectionViewCell.swift */; };
-		DD2795532391241100B316A6 /* SharedPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */; };
 		DD279549238F9CB000B316A6 /* BlockedContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */; };
 		DD27954B238FA12600B316A6 /* BlockedContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */; };
 		DD27954D238FE11100B316A6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954C238FE11100B316A6 /* Contact.swift */; };
 		DD27954F2390ECFE00B316A6 /* ContactUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27954E2390ECFE00B316A6 /* ContactUser.swift */; };
+		DD2795512391239600B316A6 /* SharedPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2795502391239600B316A6 /* SharedPlaceCollectionViewCell.swift */; };
+		DD2795532391241100B316A6 /* SharedPlaceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */; };
 		DD2CE363235ECB9E00992D7F /* PlaceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */; };
 		DD2CE36523617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */; };
 		DD2CE3672361805200992D7F /* EventPlaceholderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */; };
@@ -96,6 +96,7 @@
 		DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */; };
 		DD608AF923A2507C00C76F1E /* PlaceOnMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */; };
 		DD608AFB23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608AFA23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift */; };
+		DD608AFD23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD608AFC23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift */; };
 		DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67A75022EF33B000D1D51D /* AppDelegate.swift */; };
 		DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75422EF33B000D1D51D /* Main.storyboard */; };
 		DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD67A75722EF33B200D1D51D /* Assets.xcassets */; };
@@ -351,12 +352,12 @@
 		DD2387CA2385815A005AFBA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		DD2387CE23866096005AFBA6 /* OnboardingPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2387CF23866096005AFBA6 /* OnboardingPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPageCollectionViewCell.xib; sourceTree = "<group>"; };
-		DD2795502391239600B316A6 /* SharedPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
-		DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD279548238F9CB000B316A6 /* BlockedContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewController.swift; sourceTree = "<group>"; };
 		DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewModel.swift; sourceTree = "<group>"; };
 		DD27954C238FE11100B316A6 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		DD27954E2390ECFE00B316A6 /* ContactUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUser.swift; sourceTree = "<group>"; };
+		DD2795502391239600B316A6 /* SharedPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedPlaceCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD2CE362235ECB9E00992D7F /* PlaceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHeaderViewModel.swift; sourceTree = "<group>"; };
 		DD2CE36423617EBD00992D7F /* EventPlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD2CE3662361805200992D7F /* EventPlaceholderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventPlaceholderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -407,6 +408,7 @@
 		DD5C2254231E7C6400CF66CC /* CreateNewPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPassViewController.swift; sourceTree = "<group>"; };
 		DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOnMapViewController.swift; sourceTree = "<group>"; };
 		DD608AFA23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDateHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		DD608AFC23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileExtensionForGuest.swift; sourceTree = "<group>"; };
 		DD67A74D22EF33B000D1D51D /* Me2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Me2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD67A75022EF33B000D1D51D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD67A75522EF33B000D1D51D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -649,15 +651,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		DD07551C23A2464A000B15C4 /* Additional pages */ = {
-			isa = PBXGroup;
-			children = (
-				DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */,
-				DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */,
-			);
-			path = "Additional pages";
-			sourceTree = "<group>";
-		};
 		DD07550D2397AC2A000B15C4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +661,15 @@
 				DD07550E2397AC4E000B15C4 /* MediaFile.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DD07551C23A2464A000B15C4 /* Additional pages */ = {
+			isa = PBXGroup;
+			children = (
+				DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */,
+				DD608AF823A2507C00C76F1E /* PlaceOnMapViewController.swift */,
+			);
+			path = "Additional pages";
 			sourceTree = "<group>";
 		};
 		DD133B87234608E200A5A9A7 /* User Profile */ = {
@@ -1098,6 +1100,7 @@
 			isa = PBXGroup;
 			children = (
 				DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */,
+				DD608AFC23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift */,
 				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
 				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
 				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
@@ -1927,6 +1930,7 @@
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
 				DDCE6EA622F96F48006E54D1 /* CreateGroupTableViewCell.swift in Sources */,
 				DD608AFB23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift in Sources */,
+				DD608AFD23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift in Sources */,
 				DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */,
 				DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */,
 				DD27954D238FE11100B316A6 /* Contact.swift in Sources */,

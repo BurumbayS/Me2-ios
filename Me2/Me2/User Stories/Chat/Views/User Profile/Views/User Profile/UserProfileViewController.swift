@@ -59,6 +59,7 @@ class UserProfileViewController: UIViewController {
     
     private func configureViewModel() {
         viewModel.presenterDelegate = self
+        viewModel.parentVC = self
     }
     
     private func configureTableView() {

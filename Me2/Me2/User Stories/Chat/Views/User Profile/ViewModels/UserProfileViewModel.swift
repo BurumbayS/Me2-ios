@@ -38,7 +38,7 @@ enum MyProfileAdditionalBlockCell: String {
 
 enum GuestProfileAdditionalBlockCell: String {
     case addContact = "Добавить в контакты"
-//    case removeContact = "Удалить из контактов"
+    case removeContact = "Удалить из контактов"
 //    case block = "Заблокировать"
 //    case compplain = "Пожаловаться на пользователя"
 }
@@ -70,13 +70,20 @@ class UserProfileViewModel {
     var favouritePlaces: Dynamic<[Place]>!
     
     var presenterDelegate: ControllerPresenterDelegate!
+    var parentVC: UserProfileViewController!
     
     var dataLoaded: Bool = false {
         didSet {
             if self.dataLoaded {
                 self.sections = [.bio, .interests, .favourite_places, .additional_block]
                 self.myProfileCells = [.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
-                self.guestProfileCells = [.addContact]
+                
+                if let contactID = self.userInfo.value.contact?.id, contactID != 0 {
+                    self.guestProfileCells = [.removeContact]
+                } else {
+                    self.guestProfileCells = [.addContact]
+                }
+                
             }
         }
     }
@@ -128,27 +135,6 @@ class UserProfileViewModel {
                     self.dataLoaded = true
                     completion?(.ok, "")
 
-                case .failure(_ ):
-                    print(JSON(response.data as Any))
-                    completion?(.fail, "")
-                }
-        }
-    }
-    
-    func getChatWithUser(completion: ResponseBlock?) {
-        let params = ["room_type": "SIMPLE", "participants": [userInfo.value.id]] as [String: Any]
-        let url = Network.chat + "/room/"
-        
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
-            .responseJSON { (response) in
-                switch response.result {
-                case .success(let value):
-                    
-                    let json = JSON(value)
-                    self.chatRoom = Room(json: json["data"])
-                    
-                    completion?(.ok, "")
-                    
                 case .failure(_ ):
                     print(JSON(response.data as Any))
                     completion?(.fail, "")
@@ -229,10 +215,6 @@ class UserProfileViewModel {
             window.rootViewController = Storyboard.signInOrUpViewController()
             
         }
-    }
-    
-    private func selectedGuestProfileCell(at: IndexPath) {
-        
     }
     
     let myProfileURL = Network.user + "/get/"
