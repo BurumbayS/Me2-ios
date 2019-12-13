@@ -80,9 +80,9 @@ class LiveChatViewController: UIViewController {
     
     @objc private func showActions() {
         if viewModel.notificationsIsOn {
-            self.addActionSheet(with: ["Профиль заведения","Отключить уведомления"], and: [goToPlaceProfile, editNotifications], and: [.default, .destructive])
+            self.addActionSheet(titles: ["Профиль заведения","Отключить уведомления"], actions: [goToPlaceProfile, editNotifications], styles: [.default, .destructive])
         } else {
-            self.addActionSheet(with: ["Профиль заведения","Включить уведомления"], and: [goToPlaceProfile, editNotifications], and: [.default, .default])
+            self.addActionSheet(titles: ["Профиль заведения","Включить уведомления"], actions: [goToPlaceProfile, editNotifications], styles: [.default, .default])
         }
     }
     

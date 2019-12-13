@@ -116,14 +116,14 @@ class MyContactsViewModel {
         addContactAction = {
             let vc = Storyboard.addContactViewController() as! AddContactViewController
             vc.viewModel = AddContactViewModel(currentContacts: self.contacts)
-            self.presenterDelegate.present(controller: vc, presntationType: .push)
+            self.presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         }
         showBlockedContactsAction = {
             let vc = Storyboard.blockedContactsViewController() as! BlockedContactsViewController
             vc.viewModel = BlockedContactsViewModel(contacts: self.blockedContacts, onUnblockUser: { [weak self] (contact) in
                 self?.contacts.value.append(contact)
             })
-            self.presenterDelegate.present(controller: vc, presntationType: .push)
+            self.presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         }
         
         actions = [addContactAction, showBlockedContactsAction]

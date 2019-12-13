@@ -53,4 +53,12 @@ extension Date {
         let order = Calendar.current.compare(date, to: self, toGranularity: .day)
         return order == .orderedSame
     }
+    
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        let stringDate = dateFormatter.string(from: self)
+        
+        return stringDate
+    }
 }

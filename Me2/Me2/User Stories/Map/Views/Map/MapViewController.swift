@@ -389,7 +389,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
         vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-        present(controller: vc, presntationType: .push)
+        present(controller: vc, presntationType: .push, completion: nil)
     }
 }
 
@@ -423,7 +423,7 @@ extension MapViewController: UITextFieldDelegate {
 }
 
 extension MapViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)

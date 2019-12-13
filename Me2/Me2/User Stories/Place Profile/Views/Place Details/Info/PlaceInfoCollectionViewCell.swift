@@ -162,27 +162,26 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
             let svc = SFSafariViewController(url: url)
             
-            presenterDelegate.present(controller: svc, presntationType: .present)
-            
+            presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
         case .mail:
             
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([viewModel.placeInfo.email ?? ""])
             
-            presenterDelegate.present(controller: mail, presntationType: .present)
+            presenterDelegate.present(controller: mail, presntationType: .present, completion: nil)
             
         case .subsidiaries:
             
             let vc = Storyboard.subsidiariesViewController() as! SubsidiariesViewController
             vc.subsidiaries = viewModel.placeInfo.subsidiaries ?? []
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .address:
             
             let vc = Storyboard.placeOnMapViewController() as! PlaceOnMapViewController
             vc.place = viewModel.placeInfo
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         default:
             break

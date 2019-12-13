@@ -59,10 +59,10 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Used to take avatar</string>
+	<string>This app requires to access your camera to show image on profile and send via chat</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Use contacts for synchronize</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -72,6 +72,12 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Доступ к Вашему местоположению позволит показывать заведения поблизости
 </string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires to access your microphone to record audio</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app requires to access your photo library to show image on profile and send via chat</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires to access your photo library to show image on profile and send via chat</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Rounded-Light.otf</string>

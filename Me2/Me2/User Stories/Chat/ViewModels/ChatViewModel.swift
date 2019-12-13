@@ -26,17 +26,23 @@ class ChatViewModel {
     
     var onNewMessage: ((Message) -> ())?
     var onMessagesLoad: VoidBlock?
+    var onMessageUpdate: ((Int) -> ())?
     
     init(room: Room) {
         self.room = room
+        
+        self.configureAdapter()
+    }
+    
+    private func configureAdapter() {
+        adapter = ChatAdapter(uuid: room.uuid, onNewMessage: { [weak self] (message) in
+            self?.addNewMessage(message: message)
+            }, onMessageUpdate: { [weak self] (message) in
+                self?.updateMessage(message: message)
+        })
     }
     
     func setUpConnection() {
-        adapter = ChatAdapter(uuid: room.uuid, onNewMessage: { [weak self] (message) in
-//            self?.messages.append(message)
-            self?.onNewMessage?(message)
-        })
-        
         adapter.setUpConnection()
     }
     
@@ -44,8 +50,34 @@ class ChatViewModel {
        adapter.abortConnection()
     }
     
-    func sendMessage(with text: String) {
-        adapter.sendMessage(with: text)
+    private func addNewMessage(message: Message) {
+        onNewMessage?(message)
+    }
+    
+    private func updateMessage(message: Message) {
+        let lastSection = sections.count - 1
+        if let index = sections[lastSection].messages.firstIndex(where: { message.uuid == $0.uuid }) {
+            sections[lastSection].messages[index] = message
+            onMessageUpdate?(index)
+        }
+    }
+    
+    func sendMessage(ofType type: MessageType, text: String = "", videoURL: URL? = nil, thumbnail: UIImage? = nil, audio: Data? = nil) {
+        var messageJSON = JSON()
+        
+        let uuid = UUID().uuidString
+        let data: JSON = ["uuid": uuid]
+        
+        messageJSON = ["text": text, "created_at": Date().toString(), "message_type": type.rawValue, "file" : JSON(), "data": data]
+        let message = Message(json: messageJSON, status: .pending)
+        
+        if let image = thumbnail {
+            message.file?.thumbnail = image
+        }
+        
+        addNewMessage(message: message)
+        
+        adapter.sendMessage(message: message, videoURL: videoURL, thumbnail: thumbnail)
     }
     
     func loadMessages(completion: ResponseBlock?) {
@@ -114,12 +146,24 @@ class ChatViewModel {
     func heightForCell(at indexPath: IndexPath) -> CGFloat {
         let message = sections[indexPath.section].messages[indexPath.row]
         
-        if room.type == .LIVE && !message.isMine() {
-            let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
-            return height
-        }
+        switch message.type {
+        case .TEXT:
         
-        return message.height
+            if room.type == .LIVE && !message.isMine() {
+                let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
+                return height
+            }
+            
+            return message.height
+            
+        case .IMAGE, .VIDEO:
+            
+            return 250
+            
+        default:
+            return 0
+        }
+    
     }
     
     let messagesListURL = Network.chat + "/message/?limit=20&"

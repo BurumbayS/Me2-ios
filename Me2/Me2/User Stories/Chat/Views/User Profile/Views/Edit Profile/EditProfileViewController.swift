@@ -120,7 +120,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension EditProfileViewController: ControllerPresenterDelegate, ActionSheetPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)
@@ -130,6 +130,6 @@ extension EditProfileViewController: ControllerPresenterDelegate, ActionSheetPre
     }
     
     func present(with titles: [String], actions: [VoidBlock?], styles: [UIAlertAction.Style]) {
-        self.addActionSheet(with: titles, and: actions, and: styles)
+        self.addActionSheet(titles: titles, actions: actions, styles: styles)
     }
 }

@@ -86,12 +86,12 @@ class EditGroupInfoTableViewCell: UITableViewCell {
     
     func chooseImageFromAlbum() {
         imagePicker.sourceType = .photoLibrary
-        controllerPresenter.present(controller: imagePicker, presntationType: .present)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present, completion: nil)
     }
     
     func takePicture() {
         imagePicker.sourceType = .camera
-        controllerPresenter.present(controller: imagePicker, presntationType: .present)
+        controllerPresenter.present(controller: imagePicker, presntationType: .present, completion: nil)
     }
 }
 

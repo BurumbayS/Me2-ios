@@ -11,6 +11,8 @@ import IQKeyboardManagerSwift
 import SwiftyJSON
 import NVActivityIndicatorView
 import Cartography
+import MobileCoreServices
+import AVKit
 
 class ChatViewController: ListContainedViewController {
 
@@ -23,8 +25,9 @@ class ChatViewController: ListContainedViewController {
     @IBOutlet weak var messageInputView: UIView!
     @IBOutlet weak var inputViewBottomConstraint: NSLayoutConstraint!
     
+    let imagePicker = UIImagePickerController()
+    
     var viewModel: ChatViewModel!
-    var messageCellID = "ChatMessageCell"
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -45,6 +48,8 @@ class ChatViewController: ListContainedViewController {
         
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
+        
+        viewModel.setUpConnection()
     }
     
     override func viewDidLoad() {
@@ -60,7 +65,6 @@ class ChatViewController: ListContainedViewController {
         configureCollectionView()
         configureNavBar()
         
-        setUpConnection()
         showLoader()
         loadMessages()
     }
@@ -96,6 +100,10 @@ class ChatViewController: ListContainedViewController {
         viewModel.onNewMessage = ({ message in
             self.hideEmptyListStatusLabel()
             self.insertNewMessage(message: message)
+        })
+        
+        viewModel.onMessageUpdate = ({ index in
+            self.collectionView.reloadItems(at: [IndexPath(row: index, section: self.viewModel.sections.count - 1)])
         })
         
         viewModel.onMessagesLoad = ({
@@ -134,7 +142,7 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func insertNewMessage(message: Message) {
-        let lastSection = self.viewModel.sections.count - 1
+        var lastSection = self.viewModel.sections.count - 1
         
         if viewModel.sections[lastSection].date == message.getDateString() {
             viewModel.sections[lastSection].messages.append(message)
@@ -146,6 +154,7 @@ class ChatViewController: ListContainedViewController {
         }
         
         //scroll to bottom if the last sended is my message or i'm at the end of chat
+        lastSection = self.viewModel.sections.count - 1
         if self.collectionView.contentOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.height - 100 || (message.isMine()) {
             self.collectionView.scrollToItem(at: IndexPath(row: viewModel.sections[lastSection].messages.count - 1, section: viewModel.sections.count - 1), at: .bottom, animated: true)
         }
@@ -156,6 +165,8 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func configureViews() {
+        imagePicker.delegate = self
+        
         messageTextField.autocapitalizationType = .sentences
         messageTextField.font = UIFont(name: "Roboto-Regular", size: 15)
         messageTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
@@ -179,11 +190,17 @@ class ChatViewController: ListContainedViewController {
         collectionView.delegate = self
         
         for i in 0..<20 {
-            let cellID = "\(messageCellID)\(i)"
+            let cellID = "\(Message.messageCellID)\(i)"
             collectionView.register(ChatMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        }
+        for i in 0..<20 {
+            let cellID = "\(MediaFile.mediaFileCellID)\(i)"
+            collectionView.register(MediaMessageCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         }
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
+        collectionView.registerNib(SharedPlaceCollectionViewCell.self)
+//        collectionView.register(MediaMessageCollectionViewCell.self)
         collectionView.registerHeader(SectionDateHeaderCollectionReusableView.self)
     }
     
@@ -193,7 +210,7 @@ class ChatViewController: ListContainedViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height - (window.rootViewController?.view.safeAreaInsets.bottom ?? 0)//self.view.safeAreaInsets.bottom
             inputViewBottomConstraint.constant = keyboardHeight
-            collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: keyboardHeight + messageInputView.frame.height + 20, right: 0)
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + messageInputView.frame.height + 20, right: 0)
             
             UIView.animate(withDuration: 0, animations: {
                 self.view.layoutIfNeeded()
@@ -213,7 +230,7 @@ class ChatViewController: ListContainedViewController {
     
     private func hideKeyboard() {
         inputViewBottomConstraint.constant = 0
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageInputView.frame.height + 20, right: 0)
         
         UIView.animate(withDuration: 0, animations: {
             self.view.layoutIfNeeded()
@@ -246,11 +263,54 @@ class ChatViewController: ListContainedViewController {
     @IBAction func sendPressed(_ sender: Any) {
         guard let text = messageTextField.text, text != "" else { return }
         
-        viewModel.sendMessage(with: text)
+        viewModel.sendMessage(ofType: .TEXT, text: text)
         
         messageTextField.text = ""
     }
     
+    @IBAction func addAttachmentPressed(_ sender: Any) {
+        self.addActionSheet(titles: ["Камера","Фото/Видео","Местоположение"], images: ["black_camera_icon","image_icon","location_icon"], actions: [takePhotoVideo, openPhotoLibrary, addLocation], styles: [.default, .default, .default], tintColor: .black, textAlignment: .left)
+    }
+    
+    private func takePhotoVideo() {
+        imagePicker.sourceType = .camera
+        imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
+        
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func openPhotoLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
+        
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func addLocation() {
+    
+    }
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) { [weak self] in
+            if let type = info[.mediaType] as? String {
+                
+                if type == kUTTypeImage as String {
+                    guard let image = info[.originalImage] as? UIImage  else { return }
+                    
+                    self?.viewModel.sendMessage(ofType: .IMAGE, thumbnail: image)
+                }
+                
+                if type == kUTTypeMovie as String {
+                    guard let url = info[.mediaURL] as? URL else { return }
+                    
+                    self?.viewModel.sendMessage(ofType: .VIDEO, videoURL: url, thumbnail: VideoHelper.getVideoThumbnail(fromURL: url))
+                }
+                
+            }
+        }
+    }
 }
 
 extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -285,20 +345,42 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let message = viewModel.sections[indexPath.section].messages[indexPath.row]
         
-        if viewModel.room.type == .LIVE && !message.isMine() {
+        if let place = message.place, place.id != 0 {
             
-            let cell: LiveChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: message, and: viewModel.room.getSender(of: message))
+            let cell: SharedPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(place: place, senderType: .my)
             return cell
             
         }
         
-        let cellID = "\(messageCellID)\(indexPath.row % 20)"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
-        
-        cell.configure(message: message)
-        
-        return cell
+        switch message.type {
+        case .TEXT:
+            
+            if viewModel.room.type == .LIVE && !message.isMine() {
+                
+                let cell: LiveChatMessageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configure(with: message, and: viewModel.room.getSender(of: message))
+                return cell
+                
+            }
+            
+            let cellID = "\(Message.messageCellID)\(indexPath.row % 20)"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChatMessageCollectionViewCell
+            
+            cell.configure(message: message)
+            
+            return cell
+            
+        case .IMAGE, .VIDEO:
+            
+            let cellID = "\(MediaFile.mediaFileCellID)\(indexPath.row % 20)"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MediaMessageCollectionViewCell
+            cell.configure(message: message, presenterDelegate: self)
+            return cell
+
+        default:
+            return UICollectionViewCell()
+        }
         
     }
     
@@ -316,6 +398,17 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         // on reach the top (including top content inset) show loading animation
         if scrollView.contentOffset.y < -30 {
             showLoader()
+        }
+    }
+}
+
+extension ChatViewController: ControllerPresenterDelegate {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
+        switch presntationType {
+        case .push:
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .present:
+            self.present(controller, animated: true, completion: completion)
         }
     }
 }

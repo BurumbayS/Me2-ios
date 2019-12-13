@@ -113,7 +113,7 @@ extension EventsListTableViewCell: UICollectionViewDelegate, UICollectionViewDat
             let dest = Storyboard.eventDetailsViewController() as! UINavigationController
             let vc = dest.viewControllers[0] as! EventDetailsViewController
             vc.viewModel = EventDetailsViewModel(eventID: viewModel.eventsList[indexPath.row].id)
-            presenterDelegate.present(controller: dest, presntationType: .present)
+            presenterDelegate.present(controller: dest, presntationType: .present, completion: nil)
         }
     }
 }

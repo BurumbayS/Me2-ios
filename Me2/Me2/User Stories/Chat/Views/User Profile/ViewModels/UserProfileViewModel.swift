@@ -179,27 +179,27 @@ class UserProfileViewModel {
         case .aboutApp:
             
             let vc = Storyboard.aboutAppViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         
         case .feedback:
             
             let vc = Storyboard.feedbackViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .notifications:
             
             let vc = Storyboard.notificationsViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .settings:
             
             let vc = Storyboard.manageAccountViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .contacts:
             
             let vc = Storyboard.myContactsViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .logout:
             

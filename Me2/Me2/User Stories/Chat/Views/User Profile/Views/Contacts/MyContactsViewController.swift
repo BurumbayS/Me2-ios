@@ -213,7 +213,7 @@ extension MyContactsViewController: UISearchBarDelegate {
 }
  
  extension MyContactsViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)
@@ -221,4 +221,4 @@ extension MyContactsViewController: UISearchBarDelegate {
             present(controller, animated: true, completion: nil)
         }
     }
- }
+}

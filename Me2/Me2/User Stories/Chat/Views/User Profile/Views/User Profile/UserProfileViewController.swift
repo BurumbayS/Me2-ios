@@ -108,7 +108,7 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func moreActions() {
-        self.addActionSheet(with: ["Заблокировать пользователя", "Пожаловаться на пользователя"], and: [blockUser, complainToUser], and: [.destructive, .destructive])
+        self.addActionSheet(titles:  ["Заблокировать пользователя", "Пожаловаться на пользователя"], actions: [blockUser, complainToUser], styles: [.destructive, .destructive])
     }
     
     private func blockUser() {
@@ -286,7 +286,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
 }
 
 extension UserProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)
