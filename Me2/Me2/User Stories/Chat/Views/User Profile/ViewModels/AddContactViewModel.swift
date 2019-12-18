@@ -108,7 +108,7 @@ class AddContactViewModel {
                     let json = JSON(value)
                     
                     if json["code"].intValue == 0 {
-                        self.myContacts.value.append(Contact(json: json))
+                        self.myContacts.value.append(Contact(json: json["data"]))
                         completion?(.ok, "")
                     } else {
                         self.contactUsers.removeAll(where: { $0.id == id })

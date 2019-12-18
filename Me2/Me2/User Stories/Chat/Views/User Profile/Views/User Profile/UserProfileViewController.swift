@@ -112,10 +112,22 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func moreActions() {
-        self.addActionSheet(titles:  ["Заблокировать пользователя", "Пожаловаться на пользователя"], actions: [blockUser, complainToUser], styles: [.destructive, .destructive])
+        if let contact = viewModel.userInfo.value.contact, contact.id != 0 {
+            if contact.blocked {
+                self.addActionSheet(titles:  ["Разблокировать пользователя", "Пожаловаться на пользователя"], actions: [unblockUser, complainToUser], styles: [.default, .destructive])
+            } else {
+                self.addActionSheet(titles:  ["Заблокировать пользователя", "Пожаловаться на пользователя"], actions: [blockUser, complainToUser], styles: [.destructive, .destructive])
+            }
+        } else {
+            self.addActionSheet(titles:  ["Пожаловаться на пользователя"], actions: [complainToUser], styles: [.destructive])
+        }
     }
     
     private func blockUser() {
+        
+    }
+    
+    private func unblockUser() {
         
     }
     
