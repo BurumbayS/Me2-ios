@@ -140,6 +140,8 @@
 		DDA1425723277DCA00C721A3 /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425623277DCA00C721A3 /* SocialMedia.swift */; };
 		DDA142592328F6F400C721A3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA142582328F6F400C721A3 /* ResetPasswordViewController.swift */; };
 		DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */; };
+		DDA2808B23AA337F00632297 /* ComplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2808A23AA337F00632297 /* ComplainViewController.swift */; };
+		DDA2808D23AA393B00632297 /* ComplainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2808C23AA393B00632297 /* ComplainViewModel.swift */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -320,7 +322,7 @@
 		DD07550723967FF0000B15C4 /* MediaMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD07550E2397AC4E000B15C4 /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
 		DD075518239E4520000B15C4 /* VideoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
-		DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationsViewModel.swift; path = ../NotificationsViewModel.swift; sourceTree = "<group>"; };
 		DD07551D23A2466B000B15C4 /* SubsidiariesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsidiariesViewController.swift; sourceTree = "<group>"; };
 		DD133B892346099800A5A9A7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		DD133B8B23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -431,7 +433,7 @@
 		DD7206FD238030590090F12C /* AddFavouritePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewController.swift; sourceTree = "<group>"; };
 		DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritePlaceViewModel.swift; sourceTree = "<group>"; };
 		DD720702238152960090F12C /* MyContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewController.swift; sourceTree = "<group>"; };
-		DD720704238166110090F12C /* MyContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsViewModel.swift; sourceTree = "<group>"; };
+		DD720704238166110090F12C /* MyContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyContactsViewModel.swift; path = ../MyContactsViewModel.swift; sourceTree = "<group>"; };
 		DD72070823816D060090F12C /* ContactsActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsActionTableViewCell.swift; sourceTree = "<group>"; };
 		DD72070923816D060090F12C /* ContactsActionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsActionTableViewCell.xib; sourceTree = "<group>"; };
 		DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureAccessCodeViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +462,8 @@
 		DDA1425623277DCA00C721A3 /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		DDA142582328F6F400C721A3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		DDA2808A23AA337F00632297 /* ComplainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainViewController.swift; sourceTree = "<group>"; };
+		DDA2808C23AA393B00632297 /* ComplainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainViewModel.swift; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -523,7 +527,7 @@
 		DDCE6EB022FA97ED006E54D1 /* ModfyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModfyGroupViewController.swift; sourceTree = "<group>"; };
 		DDCE6EB222FA9FEA006E54D1 /* EditGroupInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
-		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
+		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddContactViewModel.swift; path = ../AddContactViewModel.swift; sourceTree = "<group>"; };
 		DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHintViewController.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
@@ -1082,6 +1086,39 @@
 			path = "Place Card";
 			sourceTree = "<group>";
 		};
+		DDA2808F23AA396200632297 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				DD720704238166110090F12C /* MyContactsViewModel.swift */,
+				DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */,
+				DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */,
+			);
+			name = Contacts;
+			path = ../Contacts;
+			sourceTree = "<group>";
+		};
+		DDA2809023AA39C100632297 /* Manage account */ = {
+			isa = PBXGroup;
+			children = (
+				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
+				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
+				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
+			);
+			path = "Manage account";
+			sourceTree = "<group>";
+		};
+		DDA2809123AA3AF100632297 /* Additional Block */ = {
+			isa = PBXGroup;
+			children = (
+				DDA2808F23AA396200632297 /* Contacts */,
+				DDA2809023AA39C100632297 /* Manage account */,
+				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
+				DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */,
+				DDA2808C23AA393B00632297 /* ComplainViewModel.swift */,
+			);
+			path = "Additional Block";
+			sourceTree = "<group>";
+		};
 		DDB465CE2344AC6D00EB71B9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,16 +1139,9 @@
 				DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */,
 				DD608AFC23A3B49E00C76F1E /* UserProfileExtensionForGuest.swift */,
 				DD133B912346173000A5A9A7 /* EditProfileViewModel.swift */,
-				DDF7D06823700E420093FF4B /* ManageAccountViewModel.swift */,
-				DD2037CD2379556E000485F2 /* ChangePassViewModel.swift */,
-				DD936088237ECD3E001B783F /* ChangePhoneViewModel.swift */,
-				DD7206F3237EE3E40090F12C /* FeedbackViewModel.swift */,
 				DD7206FB2380241B0090F12C /* FavouritePlacesViewModel.swift */,
 				DD7206FF238039070090F12C /* AddFavouritePlaceViewModel.swift */,
-				DD720704238166110090F12C /* MyContactsViewModel.swift */,
-				DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */,
-				DD27954A238FA12600B316A6 /* BlockedContactsViewModel.swift */,
-				DD07551A239F9C27000B15C4 /* NotificationsViewModel.swift */,
+				DDA2809123AA3AF100632297 /* Additional Block */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1523,6 +1553,7 @@
 				DDF7D05B236C27250093FF4B /* FeedbackViewController.swift */,
 				DDF7D05D236C4E810093FF4B /* NotificationsViewController.swift */,
 				DDF7D05F236C4FD20093FF4B /* NotificationTableViewCell.swift */,
+				DDA2808A23AA337F00632297 /* ComplainViewController.swift */,
 			);
 			path = "Additional pages";
 			sourceTree = "<group>";
@@ -1925,6 +1956,7 @@
 				DDA142592328F6F400C721A3 /* ResetPasswordViewController.swift in Sources */,
 				DDBCD71F234DBC6500384DD5 /* DateExtension.swift in Sources */,
 				DDC18551233A07EA0052C371 /* EventCollectionViewCell.swift in Sources */,
+				DDA2808B23AA337F00632297 /* ComplainViewController.swift in Sources */,
 				DD5C2247231D17DF00CF66CC /* PlaceReviewsCollectionViewCell.swift in Sources */,
 				DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */,
 				DD5653CA22F31CDB003A67C3 /* MainTabsViewController.swift in Sources */,
@@ -2002,6 +2034,7 @@
 				DDCE6E7B22F82659006E54D1 /* UINavigationBarExtension.swift in Sources */,
 				DDF7D06F2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift in Sources */,
 				DDFEE9EB233A3A2200303797 /* EventTableViewCell.swift in Sources */,
+				DDA2808D23AA393B00632297 /* ComplainViewModel.swift in Sources */,
 				DDE047E6233CD4A000E33046 /* EventDetailsViewController.swift in Sources */,
 				DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */,
 				DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */,

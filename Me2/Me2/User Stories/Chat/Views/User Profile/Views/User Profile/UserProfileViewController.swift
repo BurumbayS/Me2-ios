@@ -48,7 +48,7 @@ class UserProfileViewController: UIViewController {
         case .guestProfile:
             
             setUpBackBarButton(for: navItem)
-//            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
+            navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(moreActions))
             
         default:
             
@@ -120,7 +120,9 @@ class UserProfileViewController: UIViewController {
     }
     
     private func complainToUser() {
-        
+        let vc = Storyboard.complainViewController() as! ComplainViewController
+        vc.viewModel = ComplainViewModel(userID: viewModel.userID)
+        present(vc, animated: true, completion: nil)
     }
     
     private func showHint() {

@@ -137,6 +137,9 @@ extension Storyboard {
     static var blockedContactsViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "BlockedContactsViewController")
     }
+    static var complainViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ComplainViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
