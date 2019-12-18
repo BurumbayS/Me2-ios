@@ -142,6 +142,44 @@ class UserProfileViewModel {
         }
     }
     
+    func blockUser() {
+        userInfo.value.contact!.blocked = true
+        
+        let url = Network.contact + "/\(userInfo.value.contact!.id)/block/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(_):
+                    break
+                }
+        }
+    }
+    
+    func unblockUser() {
+        userInfo.value.contact!.blocked = true
+        
+        let url = Network.contact + "/\(userInfo.value.contact!.id)/unblock/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(_):
+                    break
+                }
+        }
+    }
+    
     private func logout() {
         let url = Network.user + "/logout/"
         

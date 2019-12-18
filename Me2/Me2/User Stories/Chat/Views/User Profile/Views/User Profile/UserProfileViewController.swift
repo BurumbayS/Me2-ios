@@ -124,11 +124,11 @@ class UserProfileViewController: UIViewController {
     }
     
     private func blockUser() {
-        
+        viewModel.blockUser()
     }
     
     private func unblockUser() {
-        
+        viewModel.unblockUser()
     }
     
     private func complainToUser() {

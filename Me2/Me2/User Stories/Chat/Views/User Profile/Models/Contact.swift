@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class Contact {
     let id: Int
-    let blocked: Bool
+    var blocked: Bool
     var user2: ContactUser
     
     init(json: JSON) {
