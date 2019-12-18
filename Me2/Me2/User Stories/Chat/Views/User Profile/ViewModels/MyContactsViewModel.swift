@@ -144,6 +144,37 @@ class MyContactsViewModel {
         }
     }
     
+    func deleteContacts(completion: ResponseBlock?) {
+        let url = Network.contact + "/delete_many/"
+        var contactIDs = [Int]()
+        contactsToDelete.forEach({ contactIDs.append($0.id) })
+        
+        let params = ["contact_ids": contactIDs]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    if json["code"].intValue == 0 {
+                        for contact in self.contactsToDelete {
+                            self.contacts.value.removeAll(where: { $0.id == contact.id })
+                        }
+                        
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, json["message"].stringValue)
+                    }
+
+                case .failure( _):
+                    print(JSON(response.data as Any))
+                }
+        }
+    }
+    
     func fetchMyContacts() {
         let url = Network.contact + "/"
         

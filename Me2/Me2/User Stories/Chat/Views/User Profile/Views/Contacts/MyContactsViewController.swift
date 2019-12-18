@@ -74,11 +74,11 @@ class MyContactsViewController: UIViewController {
     }
     
     @objc private func editContactsList() {
-        viewModel.contactsListEditing = !viewModel.contactsListEditing
-        
-        if !viewModel.contactsListEditing {
-            cancelEditing()
+        if viewModel.contactsListEditing {
+            deleteContacts()
         } else {
+            viewModel.contactsListEditing = true
+            
             navItem.rightBarButtonItem?.title = "Удалить"
             navItem.rightBarButtonItem?.tintColor = Color.red
             navItem.rightBarButtonItem?.isEnabled = false
@@ -92,12 +92,31 @@ class MyContactsViewController: UIViewController {
     }
     
     @objc private func cancelEditing() {
-        navItem.rightBarButtonItem?.title = "Првить"
+        viewModel.contactsListEditing = false
+        viewModel.contactsToDelete = []
+        
+        navItem.rightBarButtonItem?.title = "Править"
         navItem.rightBarButtonItem?.tintColor = Color.blue
+        navItem.rightBarButtonItem?.isEnabled = true
         
         navItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
         tableView.reloadData()
+    }
+    
+    private func deleteContacts() {
+        viewModel.deleteContacts { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                self?.cancelEditing()
+                
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
     }
 }
  
@@ -191,6 +210,7 @@ class MyContactsViewController: UIViewController {
                 
                 let cell = tableView.cellForRow(at: indexPath) as! ContactTableViewCell
                 viewModel.select(cell: cell, atIndexPath: indexPath)
+                navItem.rightBarButtonItem?.isEnabled = (viewModel.contactsToDelete.count > 0)
                 
             }
             
