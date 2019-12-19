@@ -14,13 +14,19 @@ class WaveCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var blockButton: UIButton!
     @IBOutlet weak var wavBackButton: UIButton!
     
+    var waveBackHandler: VoidBlock?
+    var blockUserHandler: VoidBlock?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureViews()
     }
 
-    func configure(message: Message, secondParticipantName: String) {
+    func configure(message: Message, secondParticipantName: String, onWaveBack: VoidBlock?, onBlockUser: VoidBlock?) {
+        self.waveBackHandler = onWaveBack
+        self.blockUserHandler = onBlockUser
+        
         if message.isMine() {
             let text = "Вы помахали \(secondParticipantName)"
             

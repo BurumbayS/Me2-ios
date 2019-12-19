@@ -390,7 +390,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .WAVE:
             
             let cell: WaveCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(message: message, secondParticipantName: viewModel.room.getSecondParticipant().username)
+            cell.configure(message: message, secondParticipantName: viewModel.room.getSecondParticipant().username, onWaveBack: self.wave, onBlockUser: nil)
             return cell
 
         default:
