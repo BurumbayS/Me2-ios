@@ -165,6 +165,10 @@ class ChatViewModel {
             
         case .WAVE:
             
+            if message.isMine() {
+                return 50
+            }
+            
             return 110
             
         default:

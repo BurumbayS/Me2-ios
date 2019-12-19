@@ -50,7 +50,7 @@ class ChatAdapter {
         let data: JSON = ["uuid": message.uuid as Any]
         
         switch message.type {
-        case .TEXT, .WAVE:
+        case .TEXT, .WAVE :
             sendDefaultMessage(type: message.type, text: message.text, data: data)
         case .IMAGE, .VIDEO:
             sendMediaMessage(messageType: message.type, videoURL: videoURL, thumbnail: thumbnail, data: data)

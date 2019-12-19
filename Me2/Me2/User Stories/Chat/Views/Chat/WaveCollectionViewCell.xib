@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
-        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -28,23 +25,17 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RtG-nj-0NS">
-                        <rect key="frame" x="94.5" y="15" width="205.5" height="20"/>
+                        <rect key="frame" x="119" y="15" width="156.5" height="20"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wave_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ecR-WL-f41">
-                                <rect key="frame" x="185.5" y="0.0" width="20" height="20"/>
+                                <rect key="frame" x="136.5" y="0.0" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="p7q-L5-jLY"/>
                                     <constraint firstAttribute="width" constant="20" id="qeb-U1-mjB"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOF-m1-I2a">
-                                <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вам помахал(а)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUM-0y-gQO">
-                                <rect key="frame" x="49" y="0.0" width="126.5" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="126.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -56,17 +47,14 @@
                             <constraint firstItem="ecR-WL-f41" firstAttribute="top" secondItem="RtG-nj-0NS" secondAttribute="top" id="DIn-2E-zt0"/>
                             <constraint firstAttribute="height" constant="20" id="EIz-fh-i4y"/>
                             <constraint firstItem="ecR-WL-f41" firstAttribute="leading" secondItem="cUM-0y-gQO" secondAttribute="trailing" constant="10" id="EQV-7G-4Mp"/>
-                            <constraint firstAttribute="bottom" secondItem="NOF-m1-I2a" secondAttribute="bottom" id="Mjf-DL-zxr"/>
-                            <constraint firstItem="NOF-m1-I2a" firstAttribute="leading" secondItem="RtG-nj-0NS" secondAttribute="leading" id="bOJ-ld-LBq"/>
-                            <constraint firstItem="NOF-m1-I2a" firstAttribute="top" secondItem="RtG-nj-0NS" secondAttribute="top" id="fTj-kM-98a"/>
-                            <constraint firstItem="cUM-0y-gQO" firstAttribute="leading" secondItem="NOF-m1-I2a" secondAttribute="trailing" constant="5" id="jU0-Lu-N1s"/>
+                            <constraint firstItem="cUM-0y-gQO" firstAttribute="leading" secondItem="RtG-nj-0NS" secondAttribute="leading" id="Lpj-mO-u2M"/>
                             <constraint firstAttribute="bottom" secondItem="ecR-WL-f41" secondAttribute="bottom" id="lqK-BW-I2O"/>
                             <constraint firstItem="cUM-0y-gQO" firstAttribute="top" secondItem="RtG-nj-0NS" secondAttribute="top" id="nCa-iy-aUo"/>
                             <constraint firstAttribute="bottom" secondItem="cUM-0y-gQO" secondAttribute="bottom" id="zWb-Wt-a1F"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMa-LV-mzg">
-                        <rect key="frame" x="42" y="61" width="310" height="36"/>
+                        <rect key="frame" x="42" y="60" width="310" height="36"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GyU-Vc-TUo">
                                 <rect key="frame" x="0.0" y="0.0" width="145" height="36"/>
@@ -107,14 +95,14 @@
             <constraints>
                 <constraint firstItem="RtG-nj-0NS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="GQG-ZZ-It5"/>
                 <constraint firstItem="yMa-LV-mzg" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Hb9-UF-aEH"/>
-                <constraint firstAttribute="bottom" secondItem="yMa-LV-mzg" secondAttribute="bottom" constant="13" id="SW3-2J-eIU"/>
+                <constraint firstItem="yMa-LV-mzg" firstAttribute="top" secondItem="RtG-nj-0NS" secondAttribute="bottom" constant="25" id="I34-24-Xbx"/>
                 <constraint firstItem="RtG-nj-0NS" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="sUY-jh-nYk"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="394" height="120"/>
             <connections>
                 <outlet property="blockButton" destination="GyU-Vc-TUo" id="b1J-ql-6Dr"/>
-                <outlet property="usernameLabel" destination="NOF-m1-I2a" id="RH0-5l-Xhf"/>
+                <outlet property="textLabel" destination="cUM-0y-gQO" id="vm1-Ny-bey"/>
                 <outlet property="wavBackButton" destination="bHs-sa-Deq" id="Uba-fi-qkf"/>
             </connections>
             <point key="canvasLocation" x="253.62318840579712" y="114.50892857142857"/>

@@ -10,7 +10,7 @@ import UIKit
 
 class WaveCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var blockButton: UIButton!
     @IBOutlet weak var wavBackButton: UIButton!
     
@@ -20,6 +20,18 @@ class WaveCollectionViewCell: UICollectionViewCell {
         configureViews()
     }
 
+    func configure(message: Message, secondParticipantName: String) {
+        if message.isMine() {
+            let text = "Вы помахали \(secondParticipantName)"
+            
+            textLabel.attributedText = getHighlighted(username: secondParticipantName, inString: text)
+        } else {
+            let text = "\(secondParticipantName) Вам помахал(а)"
+            
+            textLabel.attributedText = getHighlighted(username: secondParticipantName, inString: text)
+        }
+    }
+    
     private func configureViews() {
         blockButton.layer.borderWidth = 1
         blockButton.layer.borderColor = Color.red.cgColor
@@ -28,5 +40,14 @@ class WaveCollectionViewCell: UICollectionViewCell {
         wavBackButton.layer.borderWidth = 1
         wavBackButton.layer.borderColor = Color.blue.cgColor
         wavBackButton.layer.cornerRadius = 18
+    }
+    
+    private func getHighlighted(username: String, inString text: String) -> NSMutableAttributedString {
+        let usernameRange = (text as NSString).range(of: username)
+        let attributedString = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font : UIFont(name: "Roboto-Regular", size: 17) as Any])
+        
+        attributedString.setAttributes([NSAttributedString.Key.font : UIFont(name: "Roboto-Medium", size: 17) as Any, NSAttributedString.Key.foregroundColor : UIColor.darkGray], range: usernameRange)
+        
+        return attributedString
     }
 }
