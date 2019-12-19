@@ -49,7 +49,7 @@ class ChatViewController: ListContainedViewController {
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
         
-        viewModel.setUpConnection()
+        setUpConnection()
     }
     
     override func viewDidLoad() {
@@ -64,9 +64,6 @@ class ChatViewController: ListContainedViewController {
         configureViews()
         configureCollectionView()
         configureNavBar()
-        
-        showLoader()
-        loadMessages()
     }
     
     private func configureNavBar() {
@@ -121,8 +118,9 @@ class ChatViewController: ListContainedViewController {
                     self.collectionView.contentOffset.y = oldContentOffset + (newContentHeight - oldContentHeight)
                 }
                 self.collectionView.layoutIfNeeded()
+                
+                self.wave()
             }
-
         })
     }
     
@@ -142,9 +140,9 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func insertNewMessage(message: Message) {
-        var lastSection = self.viewModel.sections.count - 1
+        var lastSection = self.viewModel.sections.count - 1 
         
-        if viewModel.sections[lastSection].date == message.getDateString() {
+        if lastSection > 0 && viewModel.sections[lastSection].date == message.getDateString() {
             viewModel.sections[lastSection].messages.append(message)
             self.collectionView.insertItems(at: [IndexPath(row: viewModel.sections[lastSection].messages.count - 1, section: viewModel.sections.count - 1)])
         } else {
@@ -161,7 +159,10 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func setUpConnection() {
-        viewModel.setUpConnection()
+        viewModel.setUpConnection { [weak self] in
+            self?.showLoader()
+            self?.loadMessages()
+        }
     }
     
     private func configureViews() {
@@ -200,7 +201,7 @@ class ChatViewController: ListContainedViewController {
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
         collectionView.registerNib(SharedPlaceCollectionViewCell.self)
-//        collectionView.register(MediaMessageCollectionViewCell.self)
+        collectionView.registerNib(WaveCollectionViewCell.self)
         collectionView.registerHeader(SectionDateHeaderCollectionReusableView.self)
     }
     
@@ -270,6 +271,14 @@ class ChatViewController: ListContainedViewController {
     
     @IBAction func addAttachmentPressed(_ sender: Any) {
         self.addActionSheet(titles: ["Камера","Фото/Видео","Местоположение"], images: ["black_camera_icon","image_icon","location_icon"], actions: [takePhotoVideo, openPhotoLibrary, addLocation], styles: [.default, .default, .default], tintColor: .black, textAlignment: .left)
+    }
+    
+    private func wave() {
+        guard viewModel.shouldWaveOnPresent else { return }
+        
+        viewModel.shouldWaveOnPresent = false
+        
+        viewModel.sendMessage(ofType: .WAVE)
     }
     
     private func takePhotoVideo() {
@@ -376,6 +385,11 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cellID = "\(MediaFile.mediaFileCellID)\(indexPath.row % 20)"
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MediaMessageCollectionViewCell
             cell.configure(message: message, presenterDelegate: self)
+            return cell
+            
+        case .WAVE:
+            
+            let cell: WaveCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             return cell
 
         default:

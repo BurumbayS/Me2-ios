@@ -28,8 +28,11 @@ class ChatViewModel {
     var onMessagesLoad: VoidBlock?
     var onMessageUpdate: ((Int) -> ())?
     
-    init(room: Room) {
+    var shouldWaveOnPresent = false
+    
+    init(room: Room, shouldWave: Bool = false) {
         self.room = room
+        self.shouldWaveOnPresent = shouldWave
         
         self.configureAdapter()
     }
@@ -42,8 +45,8 @@ class ChatViewModel {
         })
     }
     
-    func setUpConnection() {
-        adapter.setUpConnection()
+    func setUpConnection(completion: VoidBlock?) {
+        adapter.setUpConnection(completion: completion)
     }
     
     func abortConnection() {
@@ -159,6 +162,10 @@ class ChatViewModel {
         case .IMAGE, .VIDEO:
             
             return 250
+            
+        case .WAVE:
+            
+            return 110
             
         default:
             return 0

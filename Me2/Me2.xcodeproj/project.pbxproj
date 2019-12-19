@@ -142,6 +142,8 @@
 		DDA1425B2328F7A300C721A3 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */; };
 		DDA2808B23AA337F00632297 /* ComplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2808A23AA337F00632297 /* ComplainViewController.swift */; };
 		DDA2808D23AA393B00632297 /* ComplainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2808C23AA393B00632297 /* ComplainViewModel.swift */; };
+		DDA2809423AB46D800632297 /* WaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */; };
+		DDA2809523AB46D800632297 /* WaveCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA2809323AB46D800632297 /* WaveCollectionViewCell.xib */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -464,6 +466,8 @@
 		DDA1425A2328F7A300C721A3 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		DDA2808A23AA337F00632297 /* ComplainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainViewController.swift; sourceTree = "<group>"; };
 		DDA2808C23AA393B00632297 /* ComplainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainViewModel.swift; sourceTree = "<group>"; };
+		DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDA2809323AB46D800632297 /* WaveCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaveCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -739,6 +743,8 @@
 				DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */,
 				DD07550723967FF0000B15C4 /* MediaMessageCollectionViewCell.swift */,
 				DD608AFA23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift */,
+				DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */,
+				DDA2809323AB46D800632297 /* WaveCollectionViewCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1709,6 +1715,7 @@
 				DDCE6E7E22F82CD4006E54D1 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
 				DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */,
+				DDA2809523AB46D800632297 /* WaveCollectionViewCell.xib in Resources */,
 				DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
 				DDCE6E7F22F82CD4006E54D1 /* SF-Pro-Rounded-Semibold.otf in Resources */,
@@ -1912,6 +1919,7 @@
 				DDF69EE9232B809B00377796 /* MapSearchFilterViewController.swift in Sources */,
 				DDF65B2A2302FAD800441035 /* MapViewModel.swift in Sources */,
 				DD133B922346173000A5A9A7 /* EditProfileViewModel.swift in Sources */,
+				DDA2809423AB46D800632297 /* WaveCollectionViewCell.swift in Sources */,
 				DD2CE36F2361B7E800992D7F /* UserDataToSave.swift in Sources */,
 				DD67A77D22EF60FE00D1D51D /* SignInViewController.swift in Sources */,
 				DDA14255232644CC00C721A3 /* CreateNewPassViewModel.swift in Sources */,

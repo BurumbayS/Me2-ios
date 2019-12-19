@@ -18,6 +18,8 @@ class ChatAdapter {
     let newMessageHandler: ((Message) -> ())?
     let messageStatusUpdateHandler: ((Message) -> ())?
     
+    var connectionCompletion: VoidBlock?
+    
     var forcedDisconnect = false
     
     init(uuid: String, onNewMessage: ((Message) -> ())?, onMessageUpdate: ((Message) -> ())?) {
@@ -26,7 +28,9 @@ class ChatAdapter {
         self.messageStatusUpdateHandler = onMessageUpdate
     }
     
-    func setUpConnection() {
+    func setUpConnection(completion: VoidBlock?) {
+        self.connectionCompletion = completion
+        
         guard let token = UserDefaults().object(forKey: UserDefaultKeys.token.rawValue) as? String else { return }
         socket = WebSocket(url: URL(string: "wss://api.me2.aiba.kz/ws/\(roomUUID)/?token=\(token)")!)
         socket.delegate = self
@@ -46,8 +50,8 @@ class ChatAdapter {
         let data: JSON = ["uuid": message.uuid as Any]
         
         switch message.type {
-        case .TEXT:
-            sendTextMessage(text: message.text, data: data)
+        case .TEXT, .WAVE:
+            sendDefaultMessage(type: message.type, text: message.text, data: data)
         case .IMAGE, .VIDEO:
             sendMediaMessage(messageType: message.type, videoURL: videoURL, thumbnail: thumbnail, data: data)
         default:
@@ -61,9 +65,9 @@ class ChatAdapter {
         }
     }
     
-    private func sendTextMessage(text: String, data: JSON) {
+    private func sendDefaultMessage(type: MessageType, text: String, data: JSON) {
         var json = JSON()
-        json = ["text": text, "message_type" : "TEXT", "data": data]
+        json = ["text": text, "message_type" : type.rawValue, "data": data]
         
         sendMessage(json: json)
     }
@@ -152,12 +156,13 @@ class ChatAdapter {
 
 extension ChatAdapter: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
+        connectionCompletion?()
         print("websocket is connected")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if !forcedDisconnect {
-            setUpConnection()
+            setUpConnection(completion: nil)
         }
         print("websocket is disconnected: \(error?.localizedDescription ?? "")")
     }

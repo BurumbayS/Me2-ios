@@ -70,6 +70,20 @@ class GuestProfileHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func wavePressed(_ sender: Any) {
+        viewModel.getChatWithUser { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                
+                if let room = self?.viewModel.chatRoom {
+                    let vc = Storyboard.chatViewController() as! ChatViewController
+                    vc.viewModel = ChatViewModel(room: room, shouldWave: true)
+                    self?.parentVC.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+            case .error,.fail:
+                break
+            }
+        }
     }
     
     @IBAction func writePressed(_ sender: Any) {
