@@ -144,6 +144,7 @@
 		DDA2808D23AA393B00632297 /* ComplainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2808C23AA393B00632297 /* ComplainViewModel.swift */; };
 		DDA2809423AB46D800632297 /* WaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */; };
 		DDA2809523AB46D800632297 /* WaveCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA2809323AB46D800632297 /* WaveCollectionViewCell.xib */; };
+		DDA2809723AB871C00632297 /* EventFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2809623AB871C00632297 /* EventFilterViewModel.swift */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -468,6 +469,7 @@
 		DDA2808C23AA393B00632297 /* ComplainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainViewModel.swift; sourceTree = "<group>"; };
 		DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDA2809323AB46D800632297 /* WaveCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaveCollectionViewCell.xib; sourceTree = "<group>"; };
+		DDA2809623AB871C00632297 /* EventFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilterViewModel.swift; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1230,6 +1232,7 @@
 				DDE047DD233B7EC300E33046 /* ListOfAllViewModel.swift */,
 				DD97CB532356E8CD002291CA /* CategoryEventsListViewMode.swift */,
 				DD97CB5523571298002291CA /* NewPlacesViewModel.swift */,
+				DDA2809623AB871C00632297 /* EventFilterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1841,6 +1844,7 @@
 				DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */,
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF7D06B237041300093FF4B /* Room.swift in Sources */,
+				DDA2809723AB871C00632297 /* EventFilterViewModel.swift in Sources */,
 				DDF69EFC2330D53900377796 /* FollowButton.swift in Sources */,
 				DD72070A23816D060090F12C /* ContactsActionTableViewCell.swift in Sources */,
 				DDC7F219230802D90067C6C7 /* PlaceProfileViewController.swift in Sources */,

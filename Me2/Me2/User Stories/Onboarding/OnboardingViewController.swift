@@ -36,6 +36,7 @@ class OnboardingViewController: UIViewController {
     }
 
     @IBAction func startPressed(_ sender: Any) {
+        UserDefaults().set(false, forKey: UserDefaultKeys.firstLaunch.rawValue)
         window.rootViewController = Storyboard.signInOrUpViewController()
     }
 }
