@@ -40,6 +40,7 @@ class EventFilterViewModel {
         }
     }
     var tagsLists = [String: TagsList]()
+    var tagIDsToSearch: Dynamic<[Int]>!
     
     var filtersLoadCompletion: VoidBlock?
     
@@ -51,10 +52,16 @@ class EventFilterViewModel {
         }
     }
     
+    init(tagIDsToSearch: Dynamic<[Int]>) {
+        self.tagIDsToSearch = tagIDsToSearch
+    }
+    
     func discardFilters(completion: VoidBlock?) {
         for tagsList in tagsLists {
             tagsList.value.selectedList = []
         }
+        
+        tagIDsToSearch.value = []
         
         completion?()
     }
@@ -95,6 +102,30 @@ class EventFilterViewModel {
         }
     }
     
+    func completeTagsChoice(completion: VoidBlock?) {
+        var tagIDs = [Int]()
+        for tagsList in tagsLists {
+            for item in tagsList.value.selectedList {
+                if let id = getSelectedTagID(for: item) {
+                    tagIDs.append(id)
+                }
+            }
+        }
+        
+        tagIDsToSearch.value = tagIDs
+        completion?()
+    }
+    
+    private func getSelectedTagID(for tagName: String) -> Int? {
+        for filter in filterTypes {
+            if let tag = filters[filter.rawValue]?.first(where: { $0.name == tagName }) {
+                return tag.id
+            }
+        }
+        
+        return nil
+    }
+    
     private func loadFilters(ofType type: EventFilterType, completion: (([Tag]) -> Void)?) {
         let url = Network.core + "/tag/?tag_type=\(type.rawValue)"
         
@@ -122,10 +153,15 @@ class EventFilterViewModel {
     
     private func addTagsList(with tags: [Tag], to filterType: EventFilterType) {
         var items = [String]()
+        var selectedItems = [String]()
+        
         for tag in tags {
             items.append(tag.name)
+            if tagIDsToSearch.value.contains(where: { $0 == tag.id }) {
+                selectedItems.append(tag.name)
+            }
         }
         
-        tagsLists[filterType.rawValue] = TagsList(items: items)
+        tagsLists[filterType.rawValue] = TagsList(items: items, selectedItems: selectedItems)
     }
 }

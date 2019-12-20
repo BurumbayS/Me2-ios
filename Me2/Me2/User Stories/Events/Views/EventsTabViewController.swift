@@ -139,7 +139,7 @@ class EventsTabViewController: UIViewController {
     }
     
     private func setUpSearchView() {
-        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue), and: self)
+        (searchVC as! EventsSearchViewController).configure(with: EventsSearchViewModel(searchValue: searchBar.searchValue, tagIDsToSearch: viewModel.tagIDsToSearch), and: self)
         
         searchView.addSubview(searchVC.view)
         constrain(searchVC.view, searchView) { vc, view in
@@ -174,7 +174,9 @@ class EventsTabViewController: UIViewController {
     }
     
     @objc private func showFilter() {
-        let dest = Storyboard.eventFilterViewController()
+        let dest = Storyboard.eventFilterViewController() as! UINavigationController
+        let vc = dest.viewControllers[0] as! EventFilterViewController
+        vc.viewModel = EventFilterViewModel(tagIDsToSearch: viewModel.tagIDsToSearch)
         present(dest, animated: true, completion: nil)
     }
     

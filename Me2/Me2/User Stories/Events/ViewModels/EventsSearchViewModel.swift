@@ -14,11 +14,17 @@ class EventsSearchViewModel {
     let updateSearchResults: Dynamic<Bool>
     var lastSearchVaue = String()
     var searchResults = [Event]()
+    var tagIDsToSearch: Dynamic<[Int]>!
     
-    init(searchValue: Dynamic<String>) {
+    init(searchValue: Dynamic<String>, tagIDsToSearch: Dynamic<[Int]>) {
         self.searchValue = searchValue
+        self.tagIDsToSearch = tagIDsToSearch
         self.updateSearchResults = Dynamic(false)
         
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
         self.searchValue.bind { [unowned self] (value) in
             if value != "" {
                 
@@ -37,10 +43,19 @@ class EventsSearchViewModel {
                 
             }
         }
+        
+        self.tagIDsToSearch.bind { [weak self] (tagIDs) in
+            if self?.searchValue.value == "" && (self?.tagIDsToSearch.value.count)! == 0 {
+                self?.searchResults = []
+                self?.updateSearchResults.value = true
+            } else {
+                self?.searchEvents(by: self?.searchValue.value ?? "")
+            }
+        }
     }
     
     private func searchEvents(by subStr: String) {
-        let url = searchEventsURL + "\(subStr)"
+        let url = searchEventsURL + "\(subStr)" + "&tag_ids=\(tagIDsToString())"
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
         Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.prettyPrinted, headers: Network.getHeaders()).validate()
@@ -62,6 +77,15 @@ class EventsSearchViewModel {
                     self.updateSearchResults.value = true
                 }
         }
+    }
+    
+    private func tagIDsToString() -> String {
+        var str = ""
+        for tagID in tagIDsToSearch.value {
+            str += "\(tagID),"
+        }
+        
+        return str
     }
     
     let searchEventsURL = Network.core + "/event/?search="

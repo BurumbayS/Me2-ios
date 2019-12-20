@@ -30,8 +30,9 @@ class TagsList {
     var list = [String]()
     var selectedList = [String]()
     
-    init(items: [String] = []) {
+    init(items: [String] = [], selectedItems: [String] = []) {
         self.list = items
+        self.selectedList = selectedItems
     }
 }
 

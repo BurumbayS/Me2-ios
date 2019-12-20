@@ -15,7 +15,7 @@ class EventFilterViewController: UIViewController {
     
     let tagsList = TagsList()
     
-    let viewModel = EventFilterViewModel()
+    var viewModel: EventFilterViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,9 @@ class EventFilterViewController: UIViewController {
     }
     
     @objc private func completeWithFilter() {
-        dismiss(animated: true, completion: nil)
+        viewModel.completeTagsChoice { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
     private func configureTableView() {
@@ -101,7 +103,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 15)
         
-        let btnWidth: CGFloat = (viewModel.shouldShowMore(forSection: section)) ? 60 : 0
+        let btnWidth: CGFloat = 0//(viewModel.shouldShowMore(forSection: section)) ? 60 : 0
         header.addSubview(moreButton)
         constrain(moreButton, line, label, header) { btn, line, label, header in
             btn.left == line.right + 10
@@ -139,7 +141,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(tagsType: .selectable, tagsList: TagsList(items: viewModel.getVisibleTagsList(ofType: type)))
+            cell.configure(tagsType: .selectable, tagsList: viewModel.tagsLists[type.rawValue] ?? TagsList(items: []))
             return cell
             
         }

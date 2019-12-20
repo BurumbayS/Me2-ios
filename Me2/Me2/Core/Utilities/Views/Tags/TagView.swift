@@ -61,7 +61,13 @@ class TagView: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(selectTag))
         self.addGestureRecognizer(tap)
         
-        label.textColor = .gray
+        if tagsList.selectedList.contains(text) {
+            self.backgroundColor = Color.red
+            self.label.textColor = .white
+        } else {
+            self.label.textColor = .gray
+            self.backgroundColor = Color.lightGray
+        }
         label.text = text
         label.font = tagSize.font
         self.addSubview(label)
