@@ -134,6 +134,11 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
             let cell = tableView.cellForRow(at: indexPath) as? ManageAccountTableViewCell
             cell?.pickerTextField.becomeFirstResponder()
             
+        case .delete:
+            
+            let vc = Storyboard.deleteAccountViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
         default:
             break
         }

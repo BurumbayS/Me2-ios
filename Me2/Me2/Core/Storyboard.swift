@@ -140,6 +140,9 @@ extension Storyboard {
     static var complainViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ComplainViewController")
     }
+    static var deleteAccountViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "DeleteAccountViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

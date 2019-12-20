@@ -244,7 +244,7 @@
         <!--About App View Controller-->
         <scene sceneID="rpl-3K-Cc8">
             <objects>
-                <viewController storyboardIdentifier="AboutAppViewController" id="iuI-d0-Oly" customClass="AboutAppViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutAppViewController" hidesBottomBarWhenPushed="YES" id="iuI-d0-Oly" customClass="AboutAppViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2si-yt-8bb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,7 +338,7 @@ incididunt ut labore et dolore magna aliqua. </string>
         <!--Feedback View Controller-->
         <scene sceneID="k2z-Jc-Jac">
             <objects>
-                <viewController storyboardIdentifier="FeedbackViewController" id="fWp-Kh-hsT" customClass="FeedbackViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedbackViewController" hidesBottomBarWhenPushed="YES" id="fWp-Kh-hsT" customClass="FeedbackViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zNu-vN-TWJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,7 +389,7 @@ incididunt ut labore et dolore magna aliqua. </string>
         <!--Notifications View Controller-->
         <scene sceneID="v6A-wS-a6i">
             <objects>
-                <viewController storyboardIdentifier="NotificationsViewController" id="h7S-Il-bro" customClass="NotificationsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationsViewController" hidesBottomBarWhenPushed="YES" id="h7S-Il-bro" customClass="NotificationsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6sp-X0-tZC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -473,6 +473,47 @@ incididunt ut labore et dolore magna aliqua. </string>
             </objects>
             <point key="canvasLocation" x="10830" y="43"/>
         </scene>
+        <!--Delete Account View Controller-->
+        <scene sceneID="AW8-DC-I37">
+            <objects>
+                <viewController storyboardIdentifier="DeleteAccountViewController" hidesBottomBarWhenPushed="YES" id="GsJ-l9-Ylu" customClass="DeleteAccountViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2d2-Xo-7K8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SF-K9-mon">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Hvq-Id-Yud"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gcd-Nn-zlX">
+                                <rect key="frame" x="0.0" y="89" width="414" height="773"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gcd-Nn-zlX" firstAttribute="leading" secondItem="IdT-BW-dna" secondAttribute="leading" id="09y-oY-yCa"/>
+                            <constraint firstItem="5SF-K9-mon" firstAttribute="leading" secondItem="IdT-BW-dna" secondAttribute="leading" id="2qU-Ad-8FV"/>
+                            <constraint firstItem="gcd-Nn-zlX" firstAttribute="top" secondItem="5SF-K9-mon" secondAttribute="bottom" constant="1" id="4kp-IK-hbp"/>
+                            <constraint firstItem="IdT-BW-dna" firstAttribute="bottom" secondItem="gcd-Nn-zlX" secondAttribute="bottom" id="5cm-Ii-9Kh"/>
+                            <constraint firstItem="IdT-BW-dna" firstAttribute="trailing" secondItem="gcd-Nn-zlX" secondAttribute="trailing" id="NJU-vY-Gzg"/>
+                            <constraint firstAttribute="trailing" secondItem="5SF-K9-mon" secondAttribute="trailing" id="Wj4-Bh-chX"/>
+                            <constraint firstItem="5SF-K9-mon" firstAttribute="top" secondItem="IdT-BW-dna" secondAttribute="top" id="qNb-In-DXb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IdT-BW-dna"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="5SF-K9-mon" id="t4D-VB-ISA"/>
+                        <outlet property="navItem" destination="Hvq-Id-Yud" id="xrg-4i-Rxq"/>
+                        <outlet property="tableView" destination="gcd-Nn-zlX" id="UZM-Hj-tO8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BhX-dv-kjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11558" y="43"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QRZ-SD-gv9">
             <objects>
@@ -543,7 +584,7 @@ incididunt ut labore et dolore magna aliqua. </string>
         <!--My Contacts View Controller-->
         <scene sceneID="dGE-Ps-2bl">
             <objects>
-                <viewController storyboardIdentifier="MyContactsViewController" id="XWy-nd-Dbi" customClass="MyContactsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyContactsViewController" hidesBottomBarWhenPushed="YES" id="XWy-nd-Dbi" customClass="MyContactsViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pkK-Vx-L5T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -592,7 +633,7 @@ incididunt ut labore et dolore magna aliqua. </string>
         <!--Manage Account View Controller-->
         <scene sceneID="Xba-OC-5ql">
             <objects>
-                <viewController storyboardIdentifier="ManageAccountViewController" id="dgE-8r-daF" customClass="ManageAccountViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageAccountViewController" hidesBottomBarWhenPushed="YES" id="dgE-8r-daF" customClass="ManageAccountViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uWi-ab-AkT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
