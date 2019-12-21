@@ -15,6 +15,8 @@ class DeleteAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var reasonTextView: UITextView!
     @IBOutlet weak var reasonTextViewHeight: NSLayoutConstraint!
     
+    var reason: Dynamic<String>!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -31,9 +33,13 @@ class DeleteAccountTableViewCell: UITableViewCell {
         reasonTextView.layer.borderWidth = 1
         reasonTextView.layer.borderColor = Color.gray.cgColor
         reasonTextView.layer.cornerRadius = 5
+        
+        reasonTextView.delegate = self
     }
     
-    func configure(reasonType: DeleteReason, selected: Bool) {
+    func configure(reasonType: DeleteReason, reasonText: Dynamic<String>, selected: Bool) {
+        self.reason = reasonText
+        
         titleLabel.text = reasonType.title
         titleLabel.textColor = (selected) ? Color.blue : .black
         
@@ -51,5 +57,11 @@ class DeleteAccountTableViewCell: UITableViewCell {
         } else {
             reasonTextView.layer.borderColor = Color.gray.cgColor
         }
+    }
+}
+
+extension DeleteAccountTableViewCell: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        reason.value = textView.text
     }
 }

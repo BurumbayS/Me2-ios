@@ -65,4 +65,33 @@ enum DeleteReason {
 class DeleteAccountViewModel {
     let reasons = [DeleteReason.ANOTHER_ACCOUNT, .TAKES_ALOTOF_TIME, .SECURITY_ISSUES, .PRIVATE_ISSUES, .NO_FAV_PLACES, .NO_PEOPLE, .DONT_LIKE_APP, .OTHER]
     var selectedReasonIndex = -1
+    var password: Dynamic<String> = Dynamic("")
+    var reasonText: Dynamic<String> = Dynamic("")
+    
+    func deleteAccount(completion: ResponseBlock?) {
+        let url = Network.user + "/deactivate/"
+        let params = [  "deactivation_types": [reasons[selectedReasonIndex].key],
+                        "text": reasonText.value,
+                        "password": password.value] as [String : Any]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    if json["code"].intValue == 0 {
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, json["message"].stringValue)
+                    }
+                    
+                case .failure(_):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
+                }
+        }
+    }
 }

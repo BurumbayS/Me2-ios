@@ -15,6 +15,8 @@ class DeleteAccountViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
+    let deleteButton = UIButton()
+    
     let viewModel = DeleteAccountViewModel()
     
     override func viewDidLoad() {
@@ -42,7 +44,23 @@ class DeleteAccountViewController: UIViewController {
     }
     
     @objc private func deleteAccount() {
-        print("Delete pressed")
+        viewModel.deleteAccount { (status, message) in
+            switch status {
+            case .ok:
+                window.rootViewController = Storyboard.signInOrUpViewController()
+            default:
+                break
+            }
+        }
+    }
+    
+    private func enableDeleteButton() {
+        deleteButton.isEnabled = true
+        deleteButton.alpha = 1.0
+    }
+    private func disableDeleteButton() {
+        deleteButton.isEnabled = false
+        deleteButton.alpha = 0.5
     }
 }
 
@@ -69,14 +87,15 @@ extension DeleteAccountViewController: UITableViewDelegate, UITableViewDataSourc
         let footer = UIView()
         footer.clipsToBounds = true
         
-        let button = UIButton()
-        button.setTitleColor(Color.red, for: .normal)
-        button.setTitle("Удалить аккаунт", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 17)
-        button.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
+        deleteButton.setTitleColor(Color.red, for: .normal)
+        deleteButton.setTitle("Удалить аккаунт", for: .normal)
+        deleteButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 17)
+        deleteButton.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
         
-        footer.addSubview(button)
-        constrain(button, footer) { button, footer in
+        if viewModel.selectedReasonIndex == -1 { disableDeleteButton() }
+        
+        footer.addSubview(deleteButton)
+        constrain(deleteButton, footer) { button, footer in
             button.top == footer.top
             button.left == footer.left
             button.right == footer.right
@@ -123,19 +142,22 @@ extension DeleteAccountViewController: UITableViewDelegate, UITableViewDataSourc
             
             let cell: DeleteAccountTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(reasonType: viewModel.reasons[indexPath.row], selected: viewModel.selectedReasonIndex == indexPath.row)
+            cell.configure(reasonType: viewModel.reasons[indexPath.row], reasonText: viewModel.reasonText, selected: viewModel.selectedReasonIndex == indexPath.row)
             return cell
             
         default:
             
             let cell: ConfirmPasswordTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
+            cell.configure(password: viewModel.password)
             return cell
             
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        enableDeleteButton()
+        
         if indexPath.section == 0 {
             viewModel.selectedReasonIndex = indexPath.row
             tableView.reloadData()
