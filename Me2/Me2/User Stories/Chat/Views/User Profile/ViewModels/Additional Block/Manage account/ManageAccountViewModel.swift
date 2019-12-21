@@ -43,6 +43,15 @@ class ManageAccountViewModel {
         }
     }
     
+    func hasPassword() -> Bool {
+        if let userJSONString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
+            let userJSON = JSON(parseJSON: userJSONString)
+            return userJSON["has_password"].boolValue
+        }
+        
+        return false
+    }
+    
     func cellsCount(for section: Int) -> Int {
         let type = sections[section]
         

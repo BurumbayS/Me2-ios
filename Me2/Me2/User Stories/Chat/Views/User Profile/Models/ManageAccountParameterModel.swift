@@ -6,7 +6,7 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class ManageAccountParameterModel {
     let title: String

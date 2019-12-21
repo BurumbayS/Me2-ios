@@ -143,6 +143,9 @@ extension Storyboard {
     static var deleteAccountViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "DeleteAccountViewController")
     }
+    static var setPasswordViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "SetPasswordViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {

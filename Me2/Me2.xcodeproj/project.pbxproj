@@ -151,6 +151,7 @@
 		DDA280A023AD143D00632297 /* DeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2809F23AD143D00632297 /* DeleteAccountViewModel.swift */; };
 		DDA280A323AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA280A123AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift */; };
 		DDA280A423AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA280A223AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib */; };
+		DDA280A623AE036900632297 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA280A523AE036900632297 /* SetPasswordViewController.swift */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -482,6 +483,7 @@
 		DDA2809F23AD143D00632297 /* DeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		DDA280A123AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordTableViewCell.swift; sourceTree = "<group>"; };
 		DDA280A223AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmPasswordTableViewCell.xib; sourceTree = "<group>"; };
+		DDA280A523AE036900632297 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1601,6 +1603,7 @@
 				DD2037CB23794FA5000485F2 /* ChangePasswordViewController.swift */,
 				DD2037CF237967E9000485F2 /* ChangePhoneNumberViewController.swift */,
 				DD936084237D5159001B783F /* ConfigureAccessCodeViewController.swift */,
+				DDA280A523AE036900632297 /* SetPasswordViewController.swift */,
 			);
 			path = "Manage Account";
 			sourceTree = "<group>";
@@ -2033,6 +2036,7 @@
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
 				DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */,
 				DDE047EB233CE51D00E33046 /* EventDescriptionTableViewCell.swift in Sources */,
+				DDA280A623AE036900632297 /* SetPasswordViewController.swift in Sources */,
 				DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */,
 				DDE0481C234329F400E33046 /* AddGuestsViewController.swift in Sources */,
 				DDF7D062236C5E510093FF4B /* Notification.swift in Sources */,

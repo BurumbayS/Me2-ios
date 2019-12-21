@@ -99,8 +99,13 @@ extension ManageAccountViewController: UITableViewDataSource, UITableViewDelegat
             switch viewModel.securityTypes[indexPath.row] {
             case .changePassword:
                 
-                let vc = Storyboard.changePasswordViewController()
-                navigationController?.pushViewController(vc, animated: true)
+                if viewModel.hasPassword() {
+                    let vc = Storyboard.changePasswordViewController()
+                    navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let vc = Storyboard.setPasswordViewController()
+                    navigationController?.pushViewController(vc, animated: true)
+                }
                 
             case .changePhoneNumber:
                 

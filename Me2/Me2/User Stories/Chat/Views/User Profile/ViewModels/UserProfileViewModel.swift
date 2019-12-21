@@ -110,8 +110,6 @@ class UserProfileViewModel {
             
             dataLoaded = true
             completion?(.ok, "")
-            
-            return
         }
         
         var url = ""
@@ -131,6 +129,9 @@ class UserProfileViewModel {
                     let json = JSON(value)
                     self.userInfo = Dynamic(User(json: json["data"]["user"]))
                     self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
+                    if self.profileType == .myProfile {
+                        UserDefaults().set(json["data"]["user"].rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                    }
 
                     self.dataLoaded = true
                     completion?(.ok, "")
