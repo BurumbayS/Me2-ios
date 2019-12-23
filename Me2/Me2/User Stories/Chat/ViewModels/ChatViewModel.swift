@@ -24,6 +24,8 @@ class ChatViewModel {
     
     var adapter: ChatAdapter!
     
+    var isFirstLaunch = true
+    
     var onNewMessage: ((Message) -> ())?
     var onMessagesLoad: VoidBlock?
     var onMessageUpdate: ((Int) -> ())?
@@ -43,6 +45,10 @@ class ChatViewModel {
             }, onMessageUpdate: { [weak self] (message) in
                 self?.updateMessage(message: message)
         })
+    }
+    
+    func reconnect() {
+        adapter.setUpConnection(completion: nil)
     }
     
     func setUpConnection(completion: VoidBlock?) {
@@ -75,7 +81,7 @@ class ChatViewModel {
         let message = Message(json: messageJSON, status: .pending)
         
         if let image = thumbnail {
-            message.file?.thumbnail = image
+            message.file?.thumbnailImage = image
         }
         
         addNewMessage(message: message)

@@ -47,6 +47,7 @@ class DeleteAccountViewController: UIViewController {
         viewModel.deleteAccount { (status, message) in
             switch status {
             case .ok:
+                UserDefaults().removeObject(forKey: UserDefaultKeys.token.rawValue)
                 window.rootViewController = Storyboard.signInOrUpViewController()
             default:
                 break

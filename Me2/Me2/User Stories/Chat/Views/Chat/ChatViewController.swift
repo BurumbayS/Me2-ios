@@ -49,7 +49,7 @@ class ChatViewController: ListContainedViewController {
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.enableAutoToolbar = false
         
-        setUpConnection()
+        if !viewModel.isFirstLaunch { viewModel.reconnect() }
     }
     
     override func viewDidLoad() {
@@ -64,6 +64,7 @@ class ChatViewController: ListContainedViewController {
         configureViews()
         configureCollectionView()
         configureNavBar()
+        setUpConnection()
     }
     
     private func configureNavBar() {
@@ -162,6 +163,7 @@ class ChatViewController: ListContainedViewController {
         viewModel.setUpConnection { [weak self] in
             self?.showLoader()
             self?.loadMessages()
+            self?.viewModel.isFirstLaunch = false
         }
     }
     
@@ -384,7 +386,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             let cellID = "\(MediaFile.mediaFileCellID)\(indexPath.row % 20)"
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MediaMessageCollectionViewCell
-            cell.configure(message: message, presenterDelegate: self)
+            cell.configure(message: message, vc: self)
             return cell
             
         case .WAVE:

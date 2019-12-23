@@ -13,11 +13,13 @@ class MediaFile {
     
     let id: Int
     let file: String
-    var thumbnail: UIImage?
+    let thumbnail: String
+    var thumbnailImage: UIImage?
     
     init(json: JSON = JSON()) {
         id = json["id"].intValue
         file = json["file"].stringValue
+        thumbnail = json["thumbnail"].stringValue
     }
 
 }
