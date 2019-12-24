@@ -12,6 +12,7 @@ import SwiftyJSON
 class PlaceReviewsViewModel {
     var placeID = 0
     var reviews = [Review]()
+    var reviewToDeleteIndex = 0
     
     var dataLoaded = false
     
@@ -43,6 +44,31 @@ class PlaceReviewsViewModel {
                     
                 case .failure(let error):
                     print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func deleteReview(completion: ResponseBlock?) {
+        let url = reviewsURL + "\(reviews[reviewToDeleteIndex].id)/"
+        
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    if json["code"].intValue == 0 {
+                        self.reviews.remove(at: self.reviewToDeleteIndex)
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, "")
+                    }
+                    
+                case .failure(_):
+                    print(JSON(response.data as Any))
                     completion?(.fail, "")
                 }
         }

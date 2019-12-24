@@ -130,7 +130,7 @@ extension PlaceDetailsCollectionViewCell: UICollectionViewDelegate, UICollection
         case .menu:
             (cell as! PlaceMenuCollectionViewCell).configure(itemSize: self.itemSize, menus: viewModel.place.menus ?? [], presenterDelegate: presenterDelegate)
         case .reviews:
-            (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.place.id)
+            (cell as! PlaceReviewsCollectionViewCell).configure(itemSize: self.itemSize, placeID: viewModel.place.id, vc: parentVC)
         }
         
         if indexPath.row == currentPage?.value {
