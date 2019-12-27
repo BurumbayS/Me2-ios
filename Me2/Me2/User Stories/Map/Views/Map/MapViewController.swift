@@ -324,6 +324,14 @@ class MapViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    private func goToLiveChat(in place: Place) {
+        if viewModel.isMyLocationVisible.value {
+            PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(place.roomInfo?.uuid ?? "")")
+        } else {
+            self.showInfoAlert(title: "Предупреждение", message: "Вы не находитесь в этом заведении", onAccept: nil)
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -382,7 +390,10 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: viewModel.places[indexPath.row])
+        let place = viewModel.places[indexPath.row]
+        cell.configure(with: place) { [weak self] in
+            self?.goToLiveChat(in: place)
+        }
         return cell
     }
     

@@ -22,6 +22,7 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var availabilityStatusView: UIView!
     
     var roomUUID = ""
+    var liveChatPressHandler: VoidBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,8 +39,9 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
         livaChatButton.layer.borderWidth = 1
     }
     
-    func configure(with place: Place) {
+    func configure(with place: Place, onLiveChatPressed: VoidBlock?) {
         self.roomUUID = place.roomInfo?.uuid ?? ""
+        self.liveChatPressHandler = onLiveChatPressed
         
         titleLabel.text = place.name
         logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
@@ -111,6 +113,6 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func liveChatButtonPressed(_ sender: Any) {
-        PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(roomUUID)")
+        self.liveChatPressHandler?()
     }
 }
