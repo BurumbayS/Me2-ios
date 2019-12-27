@@ -155,6 +155,10 @@ class ChatViewModel {
     func heightForCell(at indexPath: IndexPath) -> CGFloat {
         let message = sections[indexPath.section].messages[indexPath.row]
         
+        if let place = message.place, place.id != 0 {
+            return 200
+        }
+        
         switch message.type {
         case .TEXT:
         

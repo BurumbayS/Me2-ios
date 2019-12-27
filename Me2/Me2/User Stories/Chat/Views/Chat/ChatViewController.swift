@@ -58,7 +58,7 @@ class ChatViewController: ListContainedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        addDismissKeyboard()
+//        addDismissKeyboard()
         
         bindDynamics()
         configureViews()
@@ -403,6 +403,14 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.view.endEditing(true)
+        
+        let message = viewModel.sections[indexPath.section].messages[indexPath.row]
+        
+        if let place = message.place, place.id != 0 {
+            let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+            vc.viewModel = PlaceProfileViewModel(place: place)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
