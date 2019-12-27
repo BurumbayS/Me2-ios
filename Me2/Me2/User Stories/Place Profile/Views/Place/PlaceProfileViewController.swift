@@ -108,7 +108,11 @@ class PlaceProfileViewController: UIViewController {
         navItem.rightBarButtonItem = rightItem
     }
     
-    @objc private func sharePlace() {
+    @objc func sharePlace() {
+        self.addActionSheet(titles: ["Личным сообщением","Другие соц.сети"], actions: [sharePlaceInApp, sharePlaceViaSocial], styles: [.default, .default])
+    }
+    
+    private func sharePlaceViaSocial() {
         let str = viewModel.place.generateShareInfo()
         
         let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
@@ -116,6 +120,12 @@ class PlaceProfileViewController: UIViewController {
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
         
         self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func sharePlaceInApp() {
+        let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
+        vc.viewModel = ShareInAppViewModel(data: viewModel.placeJSON)
+        self.present(vc, animated: true, completion: nil)
     }
     
     private func configureCollectionView() {
@@ -231,7 +241,8 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(place: viewModel.place, viewController: self)
+            cell.configure(place: viewModel.place, viewController: self, onSharePressed: sharePlace)
+            
             return cell
             
         default:

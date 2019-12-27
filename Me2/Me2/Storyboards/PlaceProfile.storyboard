@@ -353,6 +353,47 @@
             </objects>
             <point key="canvasLocation" x="3970" y="84"/>
         </scene>
+        <!--Share In App View Controller-->
+        <scene sceneID="kg6-Xd-ygm">
+            <objects>
+                <viewController storyboardIdentifier="ShareInAppViewController" id="eBd-L3-qrR" customClass="ShareInAppViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c2f-hG-5mf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7n-a2-b2D">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Xai-hI-qPk"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l2E-Nc-ted">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eSX-Rc-S2t" firstAttribute="bottom" secondItem="l2E-Nc-ted" secondAttribute="bottom" id="Dv9-Jg-0rw"/>
+                            <constraint firstItem="q7n-a2-b2D" firstAttribute="trailing" secondItem="eSX-Rc-S2t" secondAttribute="trailing" id="QNu-m8-xnn"/>
+                            <constraint firstItem="q7n-a2-b2D" firstAttribute="top" secondItem="eSX-Rc-S2t" secondAttribute="top" id="VcI-Df-Ot1"/>
+                            <constraint firstItem="l2E-Nc-ted" firstAttribute="leading" secondItem="eSX-Rc-S2t" secondAttribute="leading" id="a7t-P9-XX0"/>
+                            <constraint firstItem="l2E-Nc-ted" firstAttribute="top" secondItem="q7n-a2-b2D" secondAttribute="bottom" id="n0m-3i-P8u"/>
+                            <constraint firstItem="q7n-a2-b2D" firstAttribute="leading" secondItem="eSX-Rc-S2t" secondAttribute="leading" id="sxJ-TE-FtG"/>
+                            <constraint firstItem="eSX-Rc-S2t" firstAttribute="trailing" secondItem="l2E-Nc-ted" secondAttribute="trailing" id="xBz-G9-Fbg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eSX-Rc-S2t"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="q7n-a2-b2D" id="InL-QI-oQ8"/>
+                        <outlet property="navItem" destination="Xai-hI-qPk" id="Y9I-83-twn"/>
+                        <outlet property="tableView" destination="l2E-Nc-ted" id="jaX-Gb-6fI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgX-Tm-kgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4696" y="84"/>
+        </scene>
     </scenes>
     <resources>
         <image name="empty_star" width="26.5" height="25"/>

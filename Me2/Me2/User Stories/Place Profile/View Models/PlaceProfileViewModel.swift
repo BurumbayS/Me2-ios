@@ -39,6 +39,7 @@ class PlaceProfileViewModel {
     var pageToShow: Dynamic<PlaceProfilePage>
     var placeStatus: PlaceStatus
     var place: Place
+    var placeJSON: JSON!
     
     var dataLoaded = false
     
@@ -64,6 +65,7 @@ class PlaceProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    self.placeJSON = json["data"]
                     self.place = Place(json: json["data"])
                     
                     self.getSubsidiaries(completion: completion)

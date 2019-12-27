@@ -157,6 +157,9 @@ extension Storyboard {
     static var placeOnMapViewController = {
         return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceOnMapViewController")
     }
+    static var ShareInAppViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "ShareInAppViewController")
+    }
     
     //Events tab controllers
     static var eventsTabViewController = {

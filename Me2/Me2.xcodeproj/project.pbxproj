@@ -152,6 +152,8 @@
 		DDA280A323AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA280A123AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift */; };
 		DDA280A423AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA280A223AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib */; };
 		DDA280A623AE036900632297 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA280A523AE036900632297 /* SetPasswordViewController.swift */; };
+		DDB2576E23B6149F00DF1EB4 /* ShareInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2576D23B6149F00DF1EB4 /* ShareInAppViewController.swift */; };
+		DDB2577023B617BD00DF1EB4 /* SahreInAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2576F23B617BD00DF1EB4 /* SahreInAppViewModel.swift */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -484,6 +486,8 @@
 		DDA280A123AD1AFE00632297 /* ConfirmPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPasswordTableViewCell.swift; sourceTree = "<group>"; };
 		DDA280A223AD1AFE00632297 /* ConfirmPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmPasswordTableViewCell.xib; sourceTree = "<group>"; };
 		DDA280A523AE036900632297 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
+		DDB2576D23B6149F00DF1EB4 /* ShareInAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInAppViewController.swift; sourceTree = "<group>"; };
+		DDB2576F23B617BD00DF1EB4 /* SahreInAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SahreInAppViewModel.swift; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1448,6 +1452,7 @@
 				DDC7F236230D4EF50067C6C7 /* PlaceProfileHeaderCollectionViewCell.swift */,
 				DDC7F21E2309251E0067C6C7 /* PlaceDetailsCollectionViewCell.swift */,
 				DDC7F21A230806830067C6C7 /* PlaceTabView.swift */,
+				DDB2576D23B6149F00DF1EB4 /* ShareInAppViewController.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -1539,6 +1544,7 @@
 				DDBCD7222354453C00384DD5 /* PlaceEventsViewModel.swift */,
 				DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */,
 				DD97CB4523548027002291CA /* WriteReviewViewModel.swift */,
+				DDB2576F23B617BD00DF1EB4 /* SahreInAppViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1988,6 +1994,7 @@
 				DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */,
 				DDC18554233A114E0052C371 /* Event.swift in Sources */,
 				DDCE6E7022F7E95F006E54D1 /* ParticipantCollectionViewCell.swift in Sources */,
+				DDB2576E23B6149F00DF1EB4 /* ShareInAppViewController.swift in Sources */,
 				DDC7F22A230955640067C6C7 /* StringExtensions.swift in Sources */,
 				DDE047E9233CD5CF00E33046 /* EventDetailHeaderTableViewCell.swift in Sources */,
 				DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */,
@@ -2050,6 +2057,7 @@
 				DDB465DD2344FF8A00EB71B9 /* MyProfileAdditionalTableViewCell.swift in Sources */,
 				DDF69EF3232F626200377796 /* ListForMapFilterViewController.swift in Sources */,
 				DDD82BE42383F6EB00B878C5 /* ProfileHintViewController.swift in Sources */,
+				DDB2577023B617BD00DF1EB4 /* SahreInAppViewModel.swift in Sources */,
 				DD97CB5823582A03002291CA /* EventDetailsViewModel.swift in Sources */,
 				DDCE6E7722F7EED8006E54D1 /* Dynamic.swift in Sources */,
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
