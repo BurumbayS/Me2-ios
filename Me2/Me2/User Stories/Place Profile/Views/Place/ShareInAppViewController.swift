@@ -34,6 +34,7 @@ class ShareInAppViewController: UIViewController {
     private func configureNavBar() {
         navBar.tintColor = .black
         
+        navItem.title = "Поделиться заведением"
         navItem.rightBarButtonItem = UIBarButtonItem(title: "Отправить", style: .plain, target: self, action: #selector(shareWithContacts))
         navItem.rightBarButtonItem?.tintColor = Color.blue
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(goBack))
@@ -48,6 +49,10 @@ class ShareInAppViewController: UIViewController {
     
     @objc private func shareWithContacts() {
         viewModel.shareWithContacts()
+        
+        self.showInfoAlert(title: "Успешно", message: "Вы поделились заведением с друзьями") { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc private func goBack() {
