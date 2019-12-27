@@ -124,7 +124,8 @@ class PlaceProfileViewController: UIViewController {
     
     private func sharePlaceInApp() {
         let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
-        vc.viewModel = ShareInAppViewModel(data: viewModel.placeJSON)
+        let data = ["place": viewModel.placeJSON.dictionaryObject]
+        vc.viewModel = ShareInAppViewModel(data: data)
         self.present(vc, animated: true, completion: nil)
     }
     

@@ -54,6 +54,27 @@ class EventDetailsViewController: UIViewController {
         tableView.register(EventPlaceTableViewCell.self)
         tableView.registerNib(EventAddressTimeTableViewCell.self)
     }
+    
+    private func shareEvent() {
+        self.addActionSheet(titles: ["Личным сообщением","Другие соц.сети"], actions: [shareEventInApp, shareEventViaSocial], styles: [.default, .default])
+    }
+    
+    private func shareEventViaSocial() {
+        let str = viewModel.event.generateShareInfo()
+        
+        let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func shareEventInApp() {
+        let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
+        let data = ["event": viewModel.eventJSON.dictionaryObject]
+        vc.viewModel = ShareInAppViewModel(data: data)
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +88,9 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             let cell: EventDetailHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.event, on: self)
+            cell.configure(with: viewModel.event, on: self) { [weak self] in
+                self?.shareEvent()
+            }
             return cell
         
         case 1:

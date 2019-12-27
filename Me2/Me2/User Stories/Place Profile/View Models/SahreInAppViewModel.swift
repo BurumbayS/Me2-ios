@@ -14,9 +14,9 @@ class ShareInAppViewModel {
     var byLetterSections = [ByLetterContactsSection]()
     var selectedContacts = [Contact]()
     
-    let data: JSON
+    let data: [String: Any]
     
-    init(data: JSON) {
+    init(data: [String: Any]) {
         self.data = data
     }
     
@@ -86,11 +86,10 @@ class ShareInAppViewModel {
     }
     
     private func sendMessage(toRoom room: Room) {
-        let place = ["place": data.dictionaryObject]
         let params = [  "room": room.uuid,
                         "text": "share place",
                         "message_type": "TEXT",
-                        "data": place] as [String : Any]
+                        "data": data as Any] as [String : Any]
         
         let url = Network.chat + "/message/"
         
