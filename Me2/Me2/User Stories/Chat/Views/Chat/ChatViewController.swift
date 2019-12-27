@@ -203,6 +203,7 @@ class ChatViewController: ListContainedViewController {
         collectionView.register(LoadingMessagesCollectionViewCell.self)
         collectionView.register(LiveChatMessageCollectionViewCell.self)
         collectionView.registerNib(SharedPlaceCollectionViewCell.self)
+        collectionView.registerNib(SharedEventCollectionViewCell.self)
         collectionView.registerNib(WaveCollectionViewCell.self)
         collectionView.registerHeader(SectionDateHeaderCollectionReusableView.self)
     }
@@ -359,7 +360,17 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let place = message.place, place.id != 0 {
             
             let cell: SharedPlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(place: place, senderType: .my)
+            let senderType = (message.isMine()) ? SenderType.my : .partner
+            cell.configure(place: place, senderType: senderType)
+            return cell
+            
+        }
+        
+        if let event = message.event, event.id != 0 {
+            
+            let cell: SharedEventCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let senderType = (message.isMine()) ? SenderType.my : .partner
+            cell.configure(event: event, senderType: senderType)
             return cell
             
         }
@@ -410,6 +421,13 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
             vc.viewModel = PlaceProfileViewModel(place: place)
             navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if let event = message.event, event.id != 0 {
+            let dest = Storyboard.eventDetailsViewController() as! UINavigationController
+            let vc = dest.viewControllers[0] as! EventDetailsViewController
+            vc.viewModel = EventDetailsViewModel(eventID: event.id)
+            present(dest, animated: true, completion: nil)
         }
     }
     

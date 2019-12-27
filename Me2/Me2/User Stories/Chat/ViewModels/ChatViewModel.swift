@@ -159,6 +159,10 @@ class ChatViewModel {
             return 200
         }
         
+        if let event = message.event, event.id != 0 {
+            return 200
+        }
+        
         switch message.type {
         case .TEXT:
         

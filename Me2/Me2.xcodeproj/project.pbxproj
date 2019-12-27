@@ -154,6 +154,8 @@
 		DDA280A623AE036900632297 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA280A523AE036900632297 /* SetPasswordViewController.swift */; };
 		DDB2576E23B6149F00DF1EB4 /* ShareInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2576D23B6149F00DF1EB4 /* ShareInAppViewController.swift */; };
 		DDB2577023B617BD00DF1EB4 /* SahreInAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2576F23B617BD00DF1EB4 /* SahreInAppViewModel.swift */; };
+		DDB2577323B685D500DF1EB4 /* SharedEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB2577123B685D500DF1EB4 /* SharedEventCollectionViewCell.swift */; };
+		DDB2577423B685D500DF1EB4 /* SharedEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB2577223B685D500DF1EB4 /* SharedEventCollectionViewCell.xib */; };
 		DDB465CD234473CA00EB71B9 /* PlaceInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */; };
 		DDB465D12344AC8500EB71B9 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */; };
 		DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */; };
@@ -488,6 +490,8 @@
 		DDA280A523AE036900632297 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		DDB2576D23B6149F00DF1EB4 /* ShareInAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInAppViewController.swift; sourceTree = "<group>"; };
 		DDB2576F23B617BD00DF1EB4 /* SahreInAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SahreInAppViewModel.swift; sourceTree = "<group>"; };
+		DDB2577123B685D500DF1EB4 /* SharedEventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedEventCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDB2577223B685D500DF1EB4 /* SharedEventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedEventCollectionViewCell.xib; sourceTree = "<group>"; };
 		DDB465CC234473CA00EB71B9 /* PlaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoViewModel.swift; sourceTree = "<group>"; };
 		DDB465D02344AC8500EB71B9 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		DDB465D22344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlaceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -761,6 +765,8 @@
 				DDF7D06E2373DAB90093FF4B /* LoadingMessagesCollectionViewCell.swift */,
 				DD2795502391239600B316A6 /* SharedPlaceCollectionViewCell.swift */,
 				DD2795522391241100B316A6 /* SharedPlaceCollectionViewCell.xib */,
+				DDB2577123B685D500DF1EB4 /* SharedEventCollectionViewCell.swift */,
+				DDB2577223B685D500DF1EB4 /* SharedEventCollectionViewCell.xib */,
 				DD07550723967FF0000B15C4 /* MediaMessageCollectionViewCell.swift */,
 				DD608AFA23A2748700C76F1E /* SectionDateHeaderCollectionReusableView.swift */,
 				DDA2809223AB46D800632297 /* WaveCollectionViewCell.swift */,
@@ -1768,6 +1774,7 @@
 				DDF69EF1232B90A900377796 /* MapSearchFilterTableViewCell.xib in Resources */,
 				DDCE6E9E22F94111006E54D1 /* Roboto-Light.ttf in Resources */,
 				DD2387D123866096005AFBA6 /* OnboardingPageCollectionViewCell.xib in Resources */,
+				DDB2577423B685D500DF1EB4 /* SharedEventCollectionViewCell.xib in Resources */,
 				DD2CE36B236187B200992D7F /* NewPlacePlaceholderCollectionViewCell.xib in Resources */,
 				DD67A75622EF33B000D1D51D /* Main.storyboard in Resources */,
 				DDF69EDE232A15C600377796 /* MapConfig.json in Resources */,
@@ -2038,6 +2045,7 @@
 				DDA280A023AD143D00632297 /* DeleteAccountViewModel.swift in Sources */,
 				DDC7F22D23097CFB0067C6C7 /* PlaceInfoCollectionViewCell.swift in Sources */,
 				DD7206F4237EE3E40090F12C /* FeedbackViewModel.swift in Sources */,
+				DDB2577323B685D500DF1EB4 /* SharedEventCollectionViewCell.swift in Sources */,
 				DD2387C92385702C005AFBA6 /* OnboardingViewController.swift in Sources */,
 				DD97CB4623548027002291CA /* WriteReviewViewModel.swift in Sources */,
 				DDF65B212301531100441035 /* PlaceTableViewCell.swift in Sources */,
