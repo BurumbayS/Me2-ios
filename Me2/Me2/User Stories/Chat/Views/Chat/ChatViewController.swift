@@ -388,7 +388,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         switch message.type {
-        case .TEXT:
+        case .TEXT, .BOOKING:
             
             if viewModel.room.type == .LIVE && !message.isMine() {
                 

@@ -164,7 +164,7 @@ class ChatViewModel {
         }
         
         switch message.type {
-        case .TEXT:
+        case .TEXT, .BOOKING:
         
             if room.type == .LIVE && !message.isMine() {
                 let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
