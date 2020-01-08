@@ -12,6 +12,7 @@ enum RoomType: String {
     case SIMPLE
     case GROUP
     case LIVE
+    case SERVICE
 }
 
 class Room {

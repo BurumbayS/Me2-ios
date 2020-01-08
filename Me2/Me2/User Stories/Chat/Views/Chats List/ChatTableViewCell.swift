@@ -26,7 +26,7 @@ class ChatTableViewCell: UITableViewCell {
 
     func configure(with roomInfo: Room) {
         switch roomInfo.type {
-        case .SIMPLE:
+        case .SIMPLE, .SERVICE:
             
             simpleChatNameLabel.text = roomInfo.name
             simpleChatLastMessage.text = getLastMessageString(from: roomInfo.lastMessage)

@@ -158,7 +158,7 @@ class ChatTabViewController: ListContainedViewController {
     
     private func goToChat(room: Room) {
         switch room.type {
-        case .SIMPLE:
+        case .SIMPLE, .SERVICE:
             
             let vc = Storyboard.chatViewController() as! ChatViewController
             vc.viewModel = ChatViewModel(room: room)

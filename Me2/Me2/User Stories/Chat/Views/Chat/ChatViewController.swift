@@ -70,14 +70,11 @@ class ChatViewController: ListContainedViewController {
     private func configureNavBar() {
         guard let _ = self.navigationController else { return }
         
-        let participant = viewModel.room.getSecondParticipant()
-
         let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         containView.isUserInteractionEnabled = true
         containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showParticipantProfile)))
 
         let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
-        imageview.kf.setImage(with: URL(string: participant.avatar), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         imageview.contentMode = .scaleAspectFill
         imageview.layer.cornerRadius = 18
         imageview.layer.masksToBounds = true
@@ -86,7 +83,22 @@ class ChatViewController: ListContainedViewController {
         let rightBarButton = UIBarButtonItem(customView: containView)
         self.navigationItem.rightBarButtonItem = rightBarButton
 
-        self.navigationItem.twoLineTitleView(titles: [participant.username, participant.fullName], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
+        switch viewModel.room.type {
+        case .SIMPLE:
+            
+            let participant = viewModel.room.getSecondParticipant()
+            imageview.kf.setImage(with: URL(string: participant.avatar), placeholder: UIImage(named: "placeholder_avatar"), options: [])
+            self.navigationItem.twoLineTitleView(titles: [participant.username, participant.fullName], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
+            
+        case .SERVICE:
+            
+            let place = viewModel.room.place.name ?? ""
+            let adress = viewModel.room.place.address1 ?? ""
+            self.navigationItem.twoLineTitleView(titles: [place, adress], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
+            
+        default:
+            break
+        }
 
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
