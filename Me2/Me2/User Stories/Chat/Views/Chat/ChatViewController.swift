@@ -117,7 +117,7 @@ class ChatViewController: ListContainedViewController {
         })
         
         viewModel.onMessagesLoad = ({
-            (self.viewModel.messages.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
+            (self.viewModel.sections.count > 0) ? self.hideEmptyListStatusLabel() : self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
             
             let oldContentHeight = self.collectionView.contentSize.height
             let oldContentOffset = self.collectionView.contentOffset.y
@@ -251,7 +251,7 @@ class ChatViewController: ListContainedViewController {
         UIView.animate(withDuration: 0, animations: {
             self.view.layoutIfNeeded()
         }) { (completed) in
-            if self.messageTextField.text == "" && self.viewModel.messages.count == 0 {
+            if self.messageTextField.text == "" && self.viewModel.sections.count == 0 {
                 self.showEmptyListStatusLabel(withText: "У вас пока нет сообщений")
             } else {
                 self.hideEmptyListStatusLabel()
