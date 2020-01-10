@@ -805,8 +805,8 @@
 				DDC7F229230955640067C6C7 /* StringExtensions.swift */,
 				DDC7F230230BB2A60067C6C7 /* NotificationCenterExtension.swift */,
 				DDBCD71E234DBC6500384DD5 /* DateExtension.swift */,
-				DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */,
 				DDF7D07A237581970093FF4B /* UINavigationItemExtension.swift */,
+				DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2166,7 +2166,7 @@
 			baseConfigurationReference = 38987799EB551EDBA6B7702E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9V94UZN9HR;
+				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2174,7 +2174,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2187,7 +2187,7 @@
 			baseConfigurationReference = FA1FDE4A691C48A23CD6A467 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9V94UZN9HR;
+				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2195,7 +2195,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2329,14 +2329,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Me2/Me2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9V94UZN9HR;
+				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2351,14 +2351,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Me2/Me2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9V94UZN9HR;
+				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kz.avsoft.metwo;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

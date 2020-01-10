@@ -155,7 +155,7 @@ class ChatViewController: ListContainedViewController {
     private func insertNewMessage(message: Message) {
         var lastSection = self.viewModel.sections.count - 1 
         
-        if lastSection > 0 && viewModel.sections[lastSection].date == message.getDateString() {
+        if lastSection >= 0 && viewModel.sections[lastSection].date == message.getDateString() {
             viewModel.sections[lastSection].messages.append(message)
             self.collectionView.insertItems(at: [IndexPath(row: viewModel.sections[lastSection].messages.count - 1, section: viewModel.sections.count - 1)])
         } else {
