@@ -16,8 +16,8 @@ class PrivacyPolicyViewController: UIViewController {
     let privacyPolicyText = "Используя это приложение, Вы принимаете наши Условия и Политику Конфиденциальности."
     let conditions = "Условия"
     let privacyPolicy = "Политику Конфиденциальности"
-    let conditionsLink = "https://www.google.com"
-    let privacyPolicyLink = "https://www.google.com"
+    let conditionsLink = "https://api.me2.aiba.kz/static/privacy.pdf"
+    let privacyPolicyLink = "https://api.me2.aiba.kz/static/privacy.pdf"
     
     var acceptionHandler: ((Bool) -> ())?
     

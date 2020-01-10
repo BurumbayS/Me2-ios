@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SafariServices
 
 class AboutAppViewController: UIViewController {
 
@@ -37,6 +38,9 @@ class AboutAppViewController: UIViewController {
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {
+        guard let url = URL(string: "https://api.me2.aiba.kz/static/privacy.pdf") else { return }
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
     }
     
     @IBAction func rateApp(_ sender: Any) {
