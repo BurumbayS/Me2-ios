@@ -23,12 +23,23 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showFirstPrivacyPolicy()
+        
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         
         navigationController?.navigationBar.makeTransparentBar()
         navigationController?.navigationBar.shouldRemoveShadow(true)
         configureViews()
+    }
+    
+    private func showFirstPrivacyPolicy() {
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) == nil {
+            UserDefaults().set(false, forKey: UserDefaultKeys.firstLaunch.rawValue)
+            
+            let vc = Storyboard.privacyPolicyViewController() as! PrivacyPolicyViewController
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     private func configureViews() {
@@ -131,15 +142,17 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signUpPressed(_ sender: Any) {
-        showPrivacyPolicy { [weak self] (accepted) in
-            switch accepted {
-            case true:
-                let vc = Storyboard.signUpViewController()
-                self?.navigationController?.pushViewController(vc, animated: true)
-            case false:
-                break
-            }
-        }
+        let vc = Storyboard.signUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+//        showPrivacyPolicy { [weak self] (accepted) in
+//            switch accepted {
+//            case true:
+//                let vc = Storyboard.signUpViewController()
+//                self?.navigationController?.pushViewController(vc, animated: true)
+//            case false:
+//                break
+//            }
+//        }
     }
     
     @IBAction func signInPressed(_ sender: Any) {
