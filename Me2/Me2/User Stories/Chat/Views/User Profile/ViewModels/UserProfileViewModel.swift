@@ -144,9 +144,9 @@ class UserProfileViewModel {
     }
     
     func blockUser() {
-        userInfo.value.contact!.blocked = true
+        userInfo.value.blocked = true
         
-        let url = Network.contact + "/\(userInfo.value.contact!.id)/block/"
+        let url = Network.user + "/\(userInfo.value.id)/block/"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
@@ -163,9 +163,9 @@ class UserProfileViewModel {
     }
     
     func unblockUser() {
-        userInfo.value.contact!.blocked = true
+        userInfo.value.blocked = true
         
-        let url = Network.contact + "/\(userInfo.value.contact!.id)/unblock/"
+        let url = Network.user + "/\(userInfo.value.id)/unblock/"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in

@@ -142,17 +142,15 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signUpPressed(_ sender: Any) {
-        let vc = Storyboard.signUpViewController()
-        navigationController?.pushViewController(vc, animated: true)
-//        showPrivacyPolicy { [weak self] (accepted) in
-//            switch accepted {
-//            case true:
-//                let vc = Storyboard.signUpViewController()
-//                self?.navigationController?.pushViewController(vc, animated: true)
-//            case false:
-//                break
-//            }
-//        }
+        showPrivacyPolicy { [weak self] (accepted) in
+            switch accepted {
+            case true:
+                let vc = Storyboard.signUpViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            case false:
+                break
+            }
+        }
     }
     
     @IBAction func signInPressed(_ sender: Any) {

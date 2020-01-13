@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>808414884908-4da147qrcu6m51k4vtateehhrntnrn47.apps.googleusercontent.com</string>
+	<string>808414884908-anr9s9l2k1roq337e8iejg9rqmom35pm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.808414884908-4da147qrcu6m51k4vtateehhrntnrn47</string>
+	<string>com.googleusercontent.apps.808414884908-anr9s9l2k1roq337e8iejg9rqmom35pm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>808414884908-046s9ok0bhmal6vhqtqnk60fs09rcnin.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDtBCJdqP3IBHegrMf8fbMd-t1ZOT3SkI8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>kz.avsoft.metwo</string>
+	<string>kz.me2.me2app</string>
 	<key>PROJECT_ID</key>
 	<string>me2-project-37bf6</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:808414884908:ios:c1c15442f95b1897198d89</string>
+	<string>1:808414884908:ios:c062b5452ea1d9f3198d89</string>
 	<key>DATABASE_URL</key>
 	<string>https://me2-project-37bf6.firebaseio.com</string>
 </dict>
