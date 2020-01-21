@@ -116,7 +116,7 @@ class ChatTabViewController: ListContainedViewController {
         tableView.registerNib(ChatTableViewCell.self)
     }
     
-    private func createNewChat() {
+    @objc private func createNewChat() {
         let contactsVC = Storyboard.contactsViewController() as! ContactsViewController
         contactsVC.viewModel = ContactsViewModel(onContactSelected: { [weak self] (userID) in
             self?.openNewChat(withUser: userID)
