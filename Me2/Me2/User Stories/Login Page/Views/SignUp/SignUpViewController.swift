@@ -96,7 +96,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
 

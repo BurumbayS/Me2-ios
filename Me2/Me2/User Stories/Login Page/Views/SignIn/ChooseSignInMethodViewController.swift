@@ -21,7 +21,8 @@ class ChooseSignInMethodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.makeTransparentBar()
+        navigationController?.navigationBar.shouldRemoveShadow(true)
         configureViews()
     }
     
@@ -48,8 +49,8 @@ class ChooseSignInMethodViewController: UIViewController {
     }
     
     @IBAction func otherSignInPressed(_ sender: Any) {
-        let vc = Storyboard.signInOrUpViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = Storyboard.signInOrUpViewController() as! UINavigationController
+        navigationController?.pushViewController(vc.viewControllers[0], animated: true)
     }
 }
 
