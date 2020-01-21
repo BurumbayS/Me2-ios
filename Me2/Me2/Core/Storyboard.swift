@@ -53,6 +53,9 @@ extension Storyboard {
     static var confirmCodeViewController = {
         return loginPage.storyboard.instantiateViewController(withIdentifier: "ConfirmCodeViewController")
     }
+    static var chooseSignInMethodViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "ChooseSignInMethodViewController")
+    }
     
     //Map tab view controllers
     static var mapViewController = {

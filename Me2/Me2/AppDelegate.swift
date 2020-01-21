@@ -43,7 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window?.rootViewController = Storyboard.mainTabsViewController()
             }
         } else {
-            window?.rootViewController = Storyboard.signInOrUpViewController()
+            if #available(iOS 13.0, *) {
+                window?.rootViewController = Storyboard.chooseSignInMethodViewController()
+            } else {
+                window?.rootViewController = Storyboard.signInOrUpViewController()
+            }
         }
     
         //Configure IQKeyboard

@@ -36,7 +36,11 @@ class OnboardingViewController: UIViewController {
     }
 
     @IBAction func startPressed(_ sender: Any) {
-        window.rootViewController = Storyboard.signInOrUpViewController()
+        if #available(iOS 13.0, *) {
+            window.rootViewController = Storyboard.chooseSignInMethodViewController()
+        } else {
+            window.rootViewController = Storyboard.signInOrUpViewController()
+        }
     }
 }
 

@@ -76,6 +76,7 @@
 		DD5653F022F4D59E003A67C3 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */; };
 		DD5653F222F4DC19003A67C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F122F4DC19003A67C3 /* Color.swift */; };
 		DD5653F422F4DC8D003A67C3 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */; };
+		DD59D9ED23CFAD540085ED1F /* ChooseSignInMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD59D9EC23CFAD540085ED1F /* ChooseSignInMethodViewController.swift */; };
 		DD5C2227231649FB00CF66CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C2226231649FB00CF66CC /* Constants.swift */; };
 		DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */; };
 		DD5C222E23167AF800CF66CC /* PlaceContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */; };
@@ -404,6 +405,7 @@
 		DD5653EF22F4D59E003A67C3 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		DD5653F122F4DC19003A67C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DD5653F322F4DC8D003A67C3 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		DD59D9EC23CFAD540085ED1F /* ChooseSignInMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSignInMethodViewController.swift; sourceTree = "<group>"; };
 		DD5C2226231649FB00CF66CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD5C222823166E1500CF66CC /* PlaceDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		DD5C222C23167AF800CF66CC /* PlaceContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 			children = (
 				DD67A77C22EF60FE00D1D51D /* SignInViewController.swift */,
 				DDA14248231FB36C00C721A3 /* AccessCodeViewController.swift */,
+				DD59D9EC23CFAD540085ED1F /* ChooseSignInMethodViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -2071,6 +2074,7 @@
 				DDFEE9E6233A36B400303797 /* NewPlacesListTableViewCell.swift in Sources */,
 				DDF7D07523743F7C0093FF4B /* LiveChatMessageCollectionViewCell.swift in Sources */,
 				DDB465D82344E05B00EB71B9 /* AddInterestsTableViewCell.swift in Sources */,
+				DD59D9ED23CFAD540085ED1F /* ChooseSignInMethodViewController.swift in Sources */,
 				DDA142532323D75000C721A3 /* SignUpViewModel.swift in Sources */,
 				DDBCD72923546A2700384DD5 /* ResponseReviewTableViewCell.swift in Sources */,
 				DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */,
