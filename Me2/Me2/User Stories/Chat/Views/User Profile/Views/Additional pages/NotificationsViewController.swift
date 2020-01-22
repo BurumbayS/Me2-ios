@@ -14,11 +14,20 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
+    let viewModel = NotificationViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
         configureTableView()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.getNotifications { [weak self] (status, message) in
+            self?.tableView.reloadData()
+        }
     }
     
     private func configureNavBar() {
@@ -42,12 +51,12 @@ class NotificationsViewController: UIViewController {
 
 extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.notifications.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NotificationTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(notification: UserNotification())
+        cell.configure(notification: viewModel.notifications[indexPath.row])
         return cell
     }
 }

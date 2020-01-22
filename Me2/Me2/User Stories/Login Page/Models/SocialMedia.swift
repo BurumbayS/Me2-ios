@@ -13,6 +13,7 @@ import FacebookLogin
 enum SocialMediaType: String {
     case google = "google"
     case facebook = "facebook"
+    case apple = "apple"
 }
 
 class SocialMedia: NSObject {
@@ -43,7 +44,9 @@ class SocialMedia: NSObject {
                     print(error.localizedDescription)
                 }
             }
-            
+        
+        case .apple:
+            break
         }
     }
 }

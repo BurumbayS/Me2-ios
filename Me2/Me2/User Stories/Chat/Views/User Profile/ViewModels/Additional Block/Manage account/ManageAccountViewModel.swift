@@ -26,8 +26,8 @@ class ManageAccountViewModel {
         if let userJSONString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
             let userJSON = JSON(parseJSON: userJSONString)
             
-            configureVisibilityParameters(with: userJSON["data"]["user"]["privacy_data"])
-            configureNotificationParameters(with: userJSON["data"]["user"]["notification_data"])
+            configureVisibilityParameters(with: userJSON["privacy_data"])
+            configureNotificationParameters(with: userJSON["notification_data"])
         }
     }
     
@@ -41,6 +41,15 @@ class ManageAccountViewModel {
         for type in visibilityTypes {
             visibilityParameters.append(VisibilityParameter(type: type, value: VisibilityStatus(rawValue: json[type.requestKey].stringValue) ?? .NEVER))
         }
+    }
+    
+    func hasPassword() -> Bool {
+        if let userJSONString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
+            let userJSON = JSON(parseJSON: userJSONString)
+            return userJSON["has_password"].boolValue
+        }
+        
+        return false
     }
     
     func cellsCount(for section: Int) -> Int {
@@ -65,19 +74,18 @@ class ManageAccountViewModel {
         case .notification:
             return ManageAccountParameterModel(title: notificationTypes[indexPath.row].title, type: .notification, notificationParameter: notificationParameters[indexPath.row])
         case .security:
-            return ManageAccountParameterModel(title: securityTypes[indexPath.row].title, type: .security)
+            return ManageAccountParameterModel(title: securityTypes[indexPath.row].title, type: .security, securityParameterType: securityTypes[indexPath.row])
         case .delete:
             return ManageAccountParameterModel(title: "Удалить аккаунт", type: .delete)
         }
     }
     
     func updateData() {
-        updateNotificationData { [unowned self] in
-            self.updatePrivacyData()
-        }
+        updateNotificationData()
+        updatePrivacyData()
     }
     
-    private func updateNotificationData(completion: VoidBlock?) {
+    private func updateNotificationData() {
         var params = [String: Bool]()
         notificationParameters.forEach { params[$0.type.requestKey] = $0.isOn }
         
@@ -87,8 +95,8 @@ class ManageAccountViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
-                    completion?()
+                    let userJSON = json["data"]["user"]
+                    UserDefaults().set(userJSON.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")
@@ -106,8 +114,8 @@ class ManageAccountViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    print(json)
-                    UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                    let userJSON = json["data"]["user"]
+                    UserDefaults().set(userJSON.rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
                     
                 case .failure(_ ):
                     print("error = \(JSON(response.data as Any))")

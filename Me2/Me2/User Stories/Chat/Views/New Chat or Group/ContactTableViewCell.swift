@@ -25,6 +25,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addedLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addActionView: UIView!
     
     var checked = CheckStatus.unchecked
     var addPressHandler: VoidBlock?
@@ -35,7 +36,7 @@ class ContactTableViewCell: UITableViewCell {
         self.contentView.addUnderline(with: Color.gray, and: self.contentView.frame.size)
     }
     
-    func configure(contact: User, selectable: Bool = false, addable: Bool = false, added: Bool = false, onAdd: VoidBlock? = nil) {
+    func configure(contact: ContactUser, selectable: Bool = false, addable: Bool = false, added: Bool = false, onAdd: VoidBlock? = nil) {
         self.addPressHandler = onAdd
         
         switch selectable {
@@ -48,17 +49,17 @@ class ContactTableViewCell: UITableViewCell {
         
         switch addable {
         case true:
+            addActionView.isHidden = false
             addButton.isHidden = added
             addedLabel.isHidden = !added
         default:
-            addButton.isHidden = true
-            addedLabel.isHidden = true
+            addActionView.isHidden = true
         }
         
         configureViews(for: contact)
     }
     
-    private func configureViews(for contact: User) {
+    private func configureViews(for contact: ContactUser) {
         avatarImageView.kf.setImage(with: URL(string: contact.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         nameLabel.text = contact.fullName
         usernameLabel.text = contact.username

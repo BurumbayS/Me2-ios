@@ -32,6 +32,7 @@ class LiveChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.shouldRemoveShadow(true)
         navigationController?.navigationBar.isTranslucent = false
         
@@ -65,7 +66,7 @@ class LiveChatViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "dots_icon"), style: .plain, target: self, action: #selector(showActions))
         
         self.navigationItem.twoLineTitleView(titles: ["Live", viewModel.room.name], colors: [Color.blue, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
     }
@@ -75,6 +76,24 @@ class LiveChatViewController: UIViewController {
         participantsCollectionView.dataSource = self
         
         participantsCollectionView.registerNib(ParticipantCollectionViewCell.self)
+    }
+    
+    @objc private func showActions() {
+        if viewModel.notificationsIsOn {
+            self.addActionSheet(titles: ["Профиль заведения","Отключить уведомления"], actions: [goToPlaceProfile, editNotifications], styles: [.default, .destructive])
+        } else {
+            self.addActionSheet(titles: ["Профиль заведения","Включить уведомления"], actions: [goToPlaceProfile, editNotifications], styles: [.default, .default])
+        }
+    }
+    
+    private func goToPlaceProfile() {
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.room.place)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func editNotifications() {
+        viewModel.editNotifications()
     }
 }
 

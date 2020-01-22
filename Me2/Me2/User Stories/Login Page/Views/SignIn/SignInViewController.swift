@@ -23,12 +23,23 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showFirstPrivacyPolicy()
+        
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         
         navigationController?.navigationBar.makeTransparentBar()
         navigationController?.navigationBar.shouldRemoveShadow(true)
         configureViews()
+    }
+    
+    private func showFirstPrivacyPolicy() {
+        if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) == nil {
+            UserDefaults().set(false, forKey: UserDefaultKeys.firstLaunch.rawValue)
+            
+            let vc = Storyboard.privacyPolicyViewController() as! PrivacyPolicyViewController
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     private func configureViews() {

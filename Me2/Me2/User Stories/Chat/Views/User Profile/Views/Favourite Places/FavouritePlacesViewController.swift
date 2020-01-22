@@ -95,13 +95,16 @@ extension FavouritePlacesViewController: UITableViewDelegate, UITableViewDataSou
     
         if editingStyle == .delete {
             viewModel.toDeletePlaceIndexPath = indexPath
-            addActionSheet(with: ["Удалить"], and: [removePlace], and: [.destructive])
+            addActionSheet(titles: ["Удалить"], actions: [removePlace], styles: [.destructive])
         }
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = Storyboard.placeProfileViewController()
+        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.favouritePlaces.value[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

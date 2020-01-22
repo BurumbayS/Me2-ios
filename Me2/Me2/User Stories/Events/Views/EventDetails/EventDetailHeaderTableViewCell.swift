@@ -16,6 +16,9 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     let eventTypeView = UIView()
     let eventTypeLabel = UILabel()
     let followButton = UIButton()
+    let shareButton = UIButton()
+    
+    var shareActionHandler: VoidBlock?
     
     var parentVC: UIViewController!
     var event: Event!
@@ -30,9 +33,10 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with event: Event, on vc: UIViewController) {
+    func configure(with event: Event, on vc: UIViewController, onShareAction: VoidBlock?) {
         self.parentVC = vc
         self.event = event
+        self.shareActionHandler = onShareAction
         
         eventTypeLabel.text = event.eventType
         followButton.setImage(event.flagImage, for: .normal)
@@ -98,7 +102,6 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
             followBtn.width == 38
         }
         
-        let shareButton = UIButton()
         shareButton.setImage(UIImage(named: "share_icon"), for: .normal)
         shareButton.backgroundColor = UIColor(red: 71/255, green: 71/255, blue: 71/255, alpha: 0.9)
         shareButton.layer.cornerRadius = 19
@@ -113,7 +116,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     }
     
     @objc private func shareEvent() {
-        
+        shareActionHandler?()
     }
     
     @objc private func close() {

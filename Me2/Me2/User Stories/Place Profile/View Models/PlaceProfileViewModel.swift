@@ -39,6 +39,7 @@ class PlaceProfileViewModel {
     var pageToShow: Dynamic<PlaceProfilePage>
     var placeStatus: PlaceStatus
     var place: Place
+    var placeJSON: JSON!
     
     var dataLoaded = false
     
@@ -64,8 +65,34 @@ class PlaceProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    self.placeJSON = json["data"]
                     self.place = Place(json: json["data"])
                     
+                    self.getSubsidiaries(completion: completion)
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    private func getSubsidiaries(completion: ResponseBlock?) {
+        let url = placeInfoURL + "?branch=\(place.branch)"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    var subsidiaries = [Place]()
+                    for item in json["data"]["results"].arrayValue {
+                        subsidiaries.append(Place(json: item))
+                    }
+                    
+                    self.place.subsidiaries = subsidiaries
                     self.dataLoaded = true
                     
                     completion?(.ok, "")

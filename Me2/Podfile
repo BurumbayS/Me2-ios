@@ -22,6 +22,7 @@ target 'Me2' do
   pod 'FacebookShare'
   pod 'RangeSeekSlider'
   pod 'ShimmerSwift'
+  pod 'SwiftyJWT'
   pod 'Starscream', '~> 3.0.2'
   pod 'NVActivityIndicatorView'
   pod 'OneSignal', '>= 2.6.2', '< 3.0'

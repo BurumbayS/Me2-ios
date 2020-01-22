@@ -12,6 +12,7 @@ import SwiftyJSON
 class EventDetailsViewModel {
     let eventID: Int
     var event: Event!
+    var eventJSON: JSON!
     
     init(eventID: Int) {
         self.eventID = eventID
@@ -27,6 +28,7 @@ class EventDetailsViewModel {
                     
                     let json = JSON(value)
                     
+                    self.eventJSON = json["data"]
                     self.event = Event(json: json["data"]) 
                     
                     completion?(.ok, "")

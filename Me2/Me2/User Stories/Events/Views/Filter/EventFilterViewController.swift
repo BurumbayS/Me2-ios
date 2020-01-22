@@ -15,11 +15,21 @@ class EventFilterViewController: UIViewController {
     
     let tagsList = TagsList()
     
+    var viewModel: EventFilterViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavBar()
         configureTableView()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.getFilters { [weak self] in
+            self?.tableView.isHidden = false
+            self?.tableView.reloadSections([0,1,2,3], with: .automatic)
+        }
     }
     
     private func configureNavBar() {
@@ -31,7 +41,7 @@ class EventFilterViewController: UIViewController {
         let leftItem = UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(discardFilters))
         leftItem.tintColor = Color.red
         navigationItem.leftBarButtonItem = leftItem
-        navigationItem.leftBarButtonItem?.isEnabled = false
+//        navigationItem.leftBarButtonItem?.isEnabled = false
         
         let rightItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(completeWithFilter))
         rightItem.tintColor = Color.blue
@@ -39,19 +49,22 @@ class EventFilterViewController: UIViewController {
     }
     
     @objc private func discardFilters() {
-//        viewModel.discardFilters { [weak self] in
-//            self?.tableView.reloadData()
-//        }
+        viewModel.discardFilters { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     @objc private func completeWithFilter() {
-        dismiss(animated: true, completion: nil)
+        viewModel.completeTagsChoice { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         tableView.backgroundColor = .white
@@ -68,7 +81,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
         
         let label = UILabel()
         label.textColor = .lightGray
-        label.text = "По типу"
+        label.text = viewModel.filterTypes[section].title
         label.font = UIFont(name: "Roboto-Regular", size: 13)
         
         header.addSubview(label)
@@ -90,7 +103,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
         moreButton.setTitleColor(Color.red, for: .normal)
         moreButton.titleLabel?.font = UIFont(name: "Roboto-Medium", size: 15)
         
-        let btnWidth: CGFloat = 0
+        let btnWidth: CGFloat = 0//(viewModel.shouldShowMore(forSection: section)) ? 60 : 0
         header.addSubview(moreButton)
         constrain(moreButton, line, label, header) { btn, line, label, header in
             btn.left == line.right + 10
@@ -109,7 +122,7 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return viewModel.filterTypes.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,17 +130,18 @@ extension EventFilterViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        let type = viewModel.filterTypes[indexPath.section]
+        switch type {
+        case .PRICE:
             
-            let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.selectionStyle = .none
-            cell.configure(tagsType: .selectable, tagsList: self.tagsList)
+            let cell: EventSliderFilterTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             return cell
             
         default:
             
-            let cell: EventSliderFilterTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.configure(tagsType: .selectable, tagsList: viewModel.tagsLists[type.rawValue] ?? TagsList(items: []))
             return cell
             
         }

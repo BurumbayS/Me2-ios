@@ -34,6 +34,8 @@ class EditProfileTagsTableViewCell: UITableViewCell {
     var tags = [String]()
     var dataToSave: UserDataToSave!
     
+    var tagsEditing = false
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -110,7 +112,7 @@ class EditProfileTagsTableViewCell: UITableViewCell {
             // calculate tag width by label width + sides padding and button size
             let width = tag.getWidth(with: UIFont(name: "Roboto-Regular", size: 15)!) + 50
             
-            if x + width + sidesPadding > UIScreen.main.bounds.width {
+            if x + width + sidesPadding > UIScreen.main.bounds.width - sidesPadding {
                 x = 0
                 y += itemHeight + itemPadding
             }
@@ -128,8 +130,7 @@ class EditProfileTagsTableViewCell: UITableViewCell {
     }
     
     private func setUpAddTagButton() {
-        x += 15
-        if x + addTagButtonWidth > UIScreen.main.bounds.width {
+        if x + addTagButtonWidth > UIScreen.main.bounds.width - sidesPadding {
             x = 0
             y += itemHeight + itemPadding
         }
@@ -139,6 +140,7 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         addTagButton.setTitleColor(Color.red, for: .normal)
         addTagButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
         addTagButton.addTarget(self, action: #selector(addNewTagPressed), for: .touchUpInside)
+        addTagButton.isHidden = tagsEditing
         
         tagsView.addSubview(addTagButton)
     }
@@ -148,7 +150,9 @@ class EditProfileTagsTableViewCell: UITableViewCell {
         textField.font = UIFont(name: "Roboto-Regular", size: 15)
         textField.textColor = .black
         textField.delegate = self
-        textField.isHidden = true
+        textField.returnKeyType = .next
+        textField.isHidden = !tagsEditing
+        if tagsEditing { textField.becomeFirstResponder() }
         
         tagsView.addSubview(textField)
     }
@@ -184,16 +188,29 @@ class EditProfileTagsTableViewCell: UITableViewCell {
 
 extension EditProfileTagsTableViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        tagsEditing = true
+        
         textField.isHidden = false
         addTagButton.isHidden = true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        tagsEditing = false
+        
         if let title = textField.text, title != "" {
+            addTag(with: title)
+        } else {
+            textField.isHidden = true
+            addTagButton.isHidden = false
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let title = textField.text, title != "" {
+            textField.text = ""
             addTag(with: title)
         }
         
-        textField.isHidden = true
-        addTagButton.isHidden = false
+        return true
     }
 }

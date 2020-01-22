@@ -53,6 +53,9 @@ extension Storyboard {
     static var confirmCodeViewController = {
         return loginPage.storyboard.instantiateViewController(withIdentifier: "ConfirmCodeViewController")
     }
+    static var chooseSignInMethodViewController = {
+        return loginPage.storyboard.instantiateViewController(withIdentifier: "ChooseSignInMethodViewController")
+    }
     
     //Map tab view controllers
     static var mapViewController = {
@@ -134,10 +137,31 @@ extension Storyboard {
     static var profileHintViewController = {
         return profile.storyboard.instantiateViewController(withIdentifier: "ProfileHintViewController")
     }
+    static var blockedContactsViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "BlockedContactsViewController")
+    }
+    static var complainViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "ComplainViewController")
+    }
+    static var deleteAccountViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "DeleteAccountViewController")
+    }
+    static var setPasswordViewController = {
+        return profile.storyboard.instantiateViewController(withIdentifier: "SetPasswordViewController")
+    }
     
     //Place profile controllers
     static var placeProfileViewController = {
         return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceProfileViewController")
+    }
+    static var subsidiariesViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "SubsidiariesViewController")
+    }
+    static var placeOnMapViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "PlaceOnMapViewController")
+    }
+    static var ShareInAppViewController = {
+        return placeProfile.storyboard.instantiateViewController(withIdentifier: "ShareInAppViewController")
     }
     
     //Events tab controllers

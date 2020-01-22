@@ -111,6 +111,19 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GyZ-hS-OP3" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                        <rect key="frame" x="167.5" y="10" width="80" height="80"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="Kbj-sd-n84"/>
+                            <constraint firstAttribute="width" constant="80" id="m9y-bI-egd"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="40"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7Yf-uo-Itx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8ZD-1o-ZRk"/>
@@ -119,6 +132,9 @@
                     <constraint firstItem="7Yf-uo-Itx" firstAttribute="top" secondItem="ir6-5c-Ytk" secondAttribute="bottom" constant="20" id="DB7-q2-R5v"/>
                     <constraint firstItem="Wgk-Wt-uHg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="DL9-0l-ool"/>
                     <constraint firstItem="xEX-pK-hdA" firstAttribute="top" secondItem="7Yf-uo-Itx" secondAttribute="bottom" id="DjX-k5-hcU"/>
+                    <constraint firstItem="GyZ-hS-OP3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="HWb-yA-SFN"/>
+                    <constraint firstItem="7Yf-uo-Itx" firstAttribute="top" secondItem="GyZ-hS-OP3" secondAttribute="bottom" constant="20" id="HrQ-rR-UxD"/>
+                    <constraint firstItem="GyZ-hS-OP3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="K8L-Ze-5S3"/>
                     <constraint firstAttribute="trailing" secondItem="rVw-0N-CpR" secondAttribute="trailing" constant="20" id="MZ6-ni-uQE"/>
                     <constraint firstAttribute="bottom" secondItem="fDe-18-lOv" secondAttribute="bottom" id="PJ1-fI-EYf"/>
                     <constraint firstAttribute="trailing" secondItem="Wgk-Wt-uHg" secondAttribute="trailing" constant="20" id="Poe-AK-N4R"/>
@@ -134,6 +150,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarImageSlideShow" destination="GyZ-hS-OP3" id="Car-nu-CHl"/>
                 <outlet property="avatarImageView" destination="ir6-5c-Ytk" id="RJW-VK-Uzs"/>
                 <outlet property="bioLabel" destination="rVw-0N-CpR" id="kn8-1I-5Eg"/>
                 <outlet property="fullNameLabel" destination="xEX-pK-hdA" id="hrM-Dq-FBQ"/>

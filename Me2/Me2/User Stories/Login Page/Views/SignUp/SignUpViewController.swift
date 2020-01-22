@@ -26,6 +26,8 @@ class SignUpViewController: UIViewController {
     }
     
     private func configureViews() {
+        navigationController?.navigationBar.tintColor = Color.blue
+        
         googleSignInView.backgroundColor = .white
         googleSignInView.layer.borderColor = UIColor.lightGray.cgColor
         googleSignInView.layer.borderWidth = 1.0
@@ -94,7 +96,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
 

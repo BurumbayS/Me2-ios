@@ -17,6 +17,9 @@ class FavouritePlacesTableViewCell: UITableViewCell {
     
     var places = [Place]()
     
+    var placeSelectionHandler: ((Place) -> ())?
+    var addFirstPlaceHandler: VoidBlock?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -29,8 +32,10 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with places: [Place], profileType: ProfileType) {
+    func configure(with places: [Place], profileType: ProfileType, onPlaceSelected: ((Place) -> ())?, onAddFirstPlace: VoidBlock?) {
         self.places = places
+        self.placeSelectionHandler = onPlaceSelected
+        self.addFirstPlaceHandler = onAddFirstPlace
         
         switch profileType {
         case .myProfile:
@@ -52,6 +57,7 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         addPlacesButton.setTitleColor(Color.red, for: .normal)
         addPlacesButton.setTitle("+ Добавить любимое место", for: .normal)
         addPlacesButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 15)
+        addPlacesButton.addTarget(self, action: #selector(addFirstPlace), for: .touchUpInside)
         
         self.contentView.addSubview(addPlacesButton)
         constrain(addPlacesButton, self.contentView) { btn, view in
@@ -91,6 +97,10 @@ class FavouritePlacesTableViewCell: UITableViewCell {
         
         collectionView.register(FavouritePlaceCollectionViewCell.self)
     }
+    
+    @objc private func addFirstPlace() {
+        addFirstPlaceHandler?()
+    }
 }
 
 extension FavouritePlacesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -113,5 +123,9 @@ extension FavouritePlacesTableViewCell: UICollectionViewDelegate, UICollectionVi
         let cell: FavouritePlaceCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configure(with: places[indexPath.row].logo, and: places[indexPath.row].name)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        placeSelectionHandler?(places[indexPath.row])
     }
 }

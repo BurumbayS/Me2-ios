@@ -69,7 +69,7 @@ class ChatTabViewController: ListContainedViewController {
                 
                 if self?.viewModel.chatsList.count ?? 0 > 0 {
                     self?.hideEmptyListStatusLabel()
-                    self?.tableView.reloadSections([0], with: .automatic)
+                    self?.tableView.reloadData()
                 } else {
                     self?.showEmptyListStatusLabel(withText: "У вас пока нет активных чатов")
                 }
@@ -93,6 +93,7 @@ class ChatTabViewController: ListContainedViewController {
         
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
+        search.searchBar.delegate = self
         search.searchBar.placeholder = "Поиск"
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         navigationItem.searchController = search
@@ -115,7 +116,7 @@ class ChatTabViewController: ListContainedViewController {
         tableView.registerNib(ChatTableViewCell.self)
     }
     
-    private func createNewChat() {
+    @objc private func createNewChat() {
         let contactsVC = Storyboard.contactsViewController() as! ContactsViewController
         contactsVC.viewModel = ContactsViewModel(onContactSelected: { [weak self] (userID) in
             self?.openNewChat(withUser: userID)
@@ -157,7 +158,7 @@ class ChatTabViewController: ListContainedViewController {
     
     private func goToChat(room: Room) {
         switch room.type {
-        case .SIMPLE:
+        case .SIMPLE, .SERVICE:
             
             let vc = Storyboard.chatViewController() as! ChatViewController
             vc.viewModel = ChatViewModel(room: room)
@@ -191,10 +192,21 @@ class ChatTabViewController: ListContainedViewController {
     }
 }
 
-extension ChatTabViewController: UISearchResultsUpdating {
+extension ChatTabViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        viewModel.searchActivated = false
+        tableView.reloadSections([0], with: .automatic)
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        print(text)
+        
+        if text != "" {
+            viewModel.searchActivated = true
+            viewModel.searchChat(with: text) { [weak self] in
+                self?.tableView.reloadSections([0], with: .automatic)
+            }
+        }
     }
 }
 
@@ -213,23 +225,44 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.searchActivated {
+            return viewModel.searchResults.count
+        }
+        
         return viewModel.chatsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChatTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: viewModel.chatsList[indexPath.row])
+        let room = (viewModel.searchActivated) ? viewModel.searchResults[indexPath.row] : viewModel.chatsList[indexPath.row]
+        cell.configure(with: room)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Удалить"
-    }
+//    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+//        return "Удалить"
+//    }
+    
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+//            // delete item at indexPath
+//        }
+//
+//        let share = UITableViewRowAction(style: .default, title: "Disable") { (action, indexPath) in
+//            // share item at indexPath
+//        }
+//
+//        let backImage = UIImageView(image: UIImage(named: "location_icon"))
+//        backImage.contentMode = .scaleAspectFit
+//        share.backgroundColor = UIColor(patternImage: backImage.image!)
+//
+//        return [delete, share]
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            self.addActionSheet(with: ["Очистить чат", "Удалить чат"], and: [clearChat, deleteChat], and: [.default, .destructive])
+            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
         }
     }
     

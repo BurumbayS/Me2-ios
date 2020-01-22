@@ -38,6 +38,8 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
     }
     
     private func configureWorkTime() {
+        guard workingHours.weekDays.count > 0 else { return }
+        
         if isAllDays() {
             workingTimeLabel.text = "Ежедневно \(workingHours.weekDays[0].start)-\(workingHours.weekDays[0].end)"
         } else
@@ -58,7 +60,7 @@ class PlaceWorkTimeTableViewCell: UITableViewCell {
     }
     
     private func configureClosingTime() {
-        guard let workingHours = workingHours else { return }
+        guard workingHours.weekDays.count > 0 else { return }
         
         let today = Date().dayOfTheWeek()
         let day = workingHours.weekDays.filter { $0.title == today }[0]

@@ -93,6 +93,8 @@ class PlaceProfileViewController: UIViewController {
     }
     
     private func configureNavBar() {
+        navigationController?.navigationBar.isHidden = true
+        
         navBar.isHidden = true
         navBar.shouldRemoveShadow(true)
         
@@ -106,8 +108,25 @@ class PlaceProfileViewController: UIViewController {
         navItem.rightBarButtonItem = rightItem
     }
     
-    @objc private func sharePlace() {
+    @objc func sharePlace() {
+        self.addActionSheet(titles: ["Личным сообщением","Другие соц.сети"], actions: [sharePlaceInApp, sharePlaceViaSocial], styles: [.default, .default])
+    }
+    
+    private func sharePlaceViaSocial() {
+        let str = viewModel.place.generateShareInfo()
         
+        let activityViewController = UIActivityViewController(activityItems: [str], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func sharePlaceInApp() {
+        let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
+        let data = ["place": viewModel.placeJSON.dictionaryObject]
+        vc.viewModel = ShareInAppViewModel(data: data)
+        self.present(vc, animated: true, completion: nil)
     }
     
     private func configureCollectionView() {
@@ -223,13 +242,14 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(place: viewModel.place, viewController: self)
+            cell.configure(place: viewModel.place, viewController: self, onSharePressed: sharePlace)
+            
             return cell
             
         default:
             
             let cell: PlaceDetailsCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self)
+            cell.configure(with: viewModel.place, currentPage: viewModel.currentPage, presenterDelegate: self, viewController: self)
             return cell
             
         }
@@ -271,7 +291,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension PlaceProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .present:
             present(controller, animated: true, completion: nil)

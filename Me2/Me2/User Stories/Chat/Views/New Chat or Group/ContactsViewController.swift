@@ -15,8 +15,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var emptyContactListStatus: UILabel!
-    
-    let searchBar = SearchBar.instanceFromNib()
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel: ContactsViewModel!
     
@@ -28,6 +27,15 @@ class ContactsViewController: UIViewController {
         
         configureSearchBar()
         bindDynamics()
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
+        viewModel.getContacts { [weak self] (status, message) in
+            self?.emptyContactListStatus.isHidden = ((self?.viewModel.byLetterSections.count)! > 0) ? true : false
+            self?.tableView.reloadData()
+        }
     }
     
     private func setUpNavBar() {
@@ -48,6 +56,7 @@ class ContactsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
         
@@ -56,16 +65,11 @@ class ContactsViewController: UIViewController {
     }
     
     private func configureSearchBar() {
-        searchBar.configure(with: self) {
-            
-        }
-        
-        viewModel.searchValue = searchBar.searchValue
+        searchBar.delegate = self
+        searchBar.returnKeyType = .done
     }
     
     private func bindDynamics() {
-        viewModel.bindDynamics()
-        
         viewModel.updateSearchResults.bind { [weak self] (update) in
             self?.tableView.reloadData()
         }
@@ -90,90 +94,86 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         
-        switch section {
-        case 0:
-            
-            searchBar.backgroundColor = Color.lightGray
-    
-            headerView.addSubview(searchBar)
-            constrain(searchBar, headerView) { bar, view in
-                bar.left == view.left + 10
-                bar.right == view.right - 10
-                bar.centerY == view.centerY
-                bar.height == 36
-            }
-            
-        default:
-            
-            headerView.backgroundColor = Color.lightGray
+        headerView.backgroundColor = Color.lightGray
 
-            let letterLabel = UILabel()
-            letterLabel.text = "A"
-            letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
-            letterLabel.textColor = .gray
+        let letterLabel = UILabel()
+        letterLabel.font = UIFont(name: "Roboto-Regular", size: 13)
+        letterLabel.textColor = .gray
 
-            headerView.addSubview(letterLabel)
-            constrain(letterLabel, headerView) { letter, view in
-                letter.left == view.left + 26
-                letter.top == view.top
-                letter.bottom == view.bottom
-            }
-            
+        headerView.addSubview(letterLabel)
+        constrain(letterLabel, headerView) { letter, view in
+            letter.left == view.left + 26
+            letter.top == view.top
+            letter.bottom == view.bottom
         }
         
+        if viewModel.searchActivated {
+            letterLabel.text = "Результаты поиска"
+        } else {
+            letterLabel.text = viewModel.byLetterSections[section].letter
+        }
         
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 66
-        default:
-            return CGFloat.leastNormalMagnitude
-        }
+        return 15
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if viewModel.searchActivated {
+            return 1
+        } else {
+            return viewModel.byLetterSections.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 0
-        default:
+        if viewModel.searchActivated {
             return viewModel.searchResults.count
+        } else {
+            return viewModel.byLetterSections[section].contacts.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
             
-            return UITableViewCell()
-            
-        default:
-            
-            let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(contact: viewModel.searchResults[indexPath.row], selectable: false)
-            return cell
-            
-        }
+        let cell : ContactTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let contact = (viewModel.searchActivated) ? viewModel.searchResults[indexPath.row] : viewModel.byLetterSections[indexPath.section].contacts[indexPath.row]
+        cell.configure(contact: contact.user2, selectable: false)
+        return cell
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 1:
-            
-            self.view.endEditing(true)
-            
-            viewModel.contactSelectionHandler?(viewModel.searchResults[indexPath.row].id)
-            
-            dismiss(animated: true, completion: nil)
-            
-        default:
-            break;
+        self.view.endEditing(true)
+        
+        if viewModel.searchActivated {
+            viewModel.contactSelectionHandler?(viewModel.searchResults[indexPath.row].user2.id)
+        } else {
+            let contact = viewModel.byLetterSections[indexPath.section].contacts[indexPath.row]
+            viewModel.contactSelectionHandler?(contact.user2.id)
         }
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ContactsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            viewModel.searchActivated = false
+            tableView.reloadData()
+        } else {
+            viewModel.searchActivated = true
+            viewModel.searchContact(by: searchText)
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.searchActivated = false
+        self.view.endEditing(true)
+        
+        self.tableView.reloadData()
     }
 }

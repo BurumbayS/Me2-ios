@@ -86,13 +86,22 @@ class CustomLargeTitleBarButton: UIView {
         
         // Value of difference between icons for large and small states
         let sizeDiff = BarButtonConst.ButtonSizeForLargeState * (1.0 - factor) // 8.0
-        let yTranslation: CGFloat = {
+        var yTranslation: CGFloat = {
             /// This value = 14. It equals to difference of 12 and 6 (bottom margin for large and small states). Also it adds 8.0 (size difference when the image gets smaller size)
             let maxYTranslation = BarButtonConst.ButtonBottomMarginForLargeState - BarButtonConst.ButtonBottomMarginForSmallState + sizeDiff
             return max(0, min(maxYTranslation, (maxYTranslation - coeff * (BarButtonConst.ButtonBottomMarginForSmallState + sizeDiff))))
         }()
         
         let xTranslation = max(0, sizeDiff - coeff * sizeDiff)
+        
+        if #available(iOS 13.0, *) {
+           if height > 96 && height < 148 {
+               yTranslation = yTranslation - (height - 96)
+           }
+           if height >= 148 {
+               yTranslation = yTranslation - (148 - 96)
+           }
+        }
         
         self.transform = CGAffineTransform.identity
             .scaledBy(x: scale, y: scale)

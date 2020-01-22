@@ -21,6 +21,9 @@ class User {
     var bio: String?
     var birthDate: String?
     var gender: String?
+    var blocked: Bool
+    var contact: Contact?
+    var hasPassword: Bool
     var favouritePlaces = [Place]()
     var favouriteEvents = [Event]()
     var interests = [String]()
@@ -37,6 +40,9 @@ class User {
         email = json["email"].stringValue
         gender = json["gender"].stringValue
         bio = json["bio"].stringValue
+        contact = Contact(json: json["contact"])
+        blocked = json["blocked"].boolValue
+        hasPassword = json["has_password"].boolValue
         birthDate = convertBirthDate(from: json["birth_date"].stringValue)
         
         json["favourite_places"].arrayValue.forEach({ favouritePlaces.append(Place(json: $0)) })

@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "4A3ABD6C-D4E0-453F-B241-A7388FB63982"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97C98BB5-F02D-4C4B-AFB4-2B1C9C462D20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ManageAccountViewModel.swift"
+            timestampString = "597836898.939598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "updateNotificationData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B118538-DCA2-452C-AEB6-F75A327DC97F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Me2/User Stories/Chat/Views/User Profile/ViewModels/ManageAccountViewModel.swift"
+            timestampString = "597836898.940237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "updatePrivacyData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

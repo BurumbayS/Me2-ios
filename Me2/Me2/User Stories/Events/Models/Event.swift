@@ -146,4 +146,21 @@ class Event {
                 }
         }
     }
+    
+    func generateShareInfo() -> String {
+        var message = ""
+        
+        message =   "\(title!) в \(place.name ?? "")\n" +
+                    "\(getTime())" +
+                    "\n" +
+                    "\n" +
+                    "Для просмотра подробной информации откройте в приложении Me2" +
+                    "\n" +
+                    "\n" +
+                    "Доступно бесплатно в:\n" +
+                    "App store: www.me2.kz\n" +
+                    "Google play: www.me2.kz"
+        
+        return message
+    }
 }

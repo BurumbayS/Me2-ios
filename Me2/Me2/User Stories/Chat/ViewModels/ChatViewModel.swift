@@ -10,36 +10,83 @@ import Starscream
 import SwiftyJSON
 import Alamofire
 
+struct MessagesSection {
+    let date: String
+    var messages: [Message]
+}
+
 class ChatViewModel {
     var messages = [Message]()
+    var sections = [MessagesSection]()
     
     let room: Room
     var loadingMessages = false
     
     var adapter: ChatAdapter!
     
-    var onNewMessage: (([Message]) -> ())?
-    var onPrevMessagesLoad: (([Message], [Message]) -> ())?
+    var isFirstLaunch = true
     
-    init(room: Room) {
+    var onNewMessage: ((Message) -> ())?
+    var onMessagesLoad: VoidBlock?
+    var onMessageUpdate: ((Int) -> ())?
+    
+    var shouldWaveOnPresent = false
+    
+    init(room: Room, shouldWave: Bool = false) {
         self.room = room
+        self.shouldWaveOnPresent = shouldWave
+        
+        self.configureAdapter()
     }
     
-    func setUpConnection() {
+    private func configureAdapter() {
         adapter = ChatAdapter(uuid: room.uuid, onNewMessage: { [weak self] (message) in
-            self?.messages.append(message)
-            self?.onNewMessage?(self?.messages ?? [])
+            self?.addNewMessage(message: message)
+            }, onMessageUpdate: { [weak self] (message) in
+                self?.updateMessage(message: message)
         })
-        
-        adapter.setUpConnection()
+    }
+    
+    func reconnect() {
+        adapter.setUpConnection(completion: nil)
+    }
+    
+    func setUpConnection(completion: VoidBlock?) {
+        adapter.setUpConnection(completion: completion)
     }
     
     func abortConnection() {
        adapter.abortConnection()
     }
     
-    func sendMessage(with text: String) {
-        adapter.sendMessage(with: text)
+    private func addNewMessage(message: Message) {
+        onNewMessage?(message)
+    }
+    
+    private func updateMessage(message: Message) {
+        let lastSection = sections.count - 1
+        if let index = sections[lastSection].messages.firstIndex(where: { message.uuid == $0.uuid }) {
+            sections[lastSection].messages[index] = message
+            onMessageUpdate?(index)
+        }
+    }
+    
+    func sendMessage(ofType type: MessageType, text: String = "", videoURL: URL? = nil, thumbnail: UIImage? = nil, audio: Data? = nil) {
+        var messageJSON = JSON()
+        
+        let uuid = UUID().uuidString
+        let data: JSON = ["uuid": uuid]
+        
+        messageJSON = ["text": text, "created_at": Date().toString(), "message_type": type.rawValue, "file" : JSON(), "data": data]
+        let message = Message(json: messageJSON, status: .pending)
+        
+        if let image = thumbnail {
+            message.file?.thumbnailImage = image
+        }
+        
+        addNewMessage(message: message)
+        
+        adapter.sendMessage(message: message, videoURL: videoURL, thumbnail: thumbnail)
     }
     
     func loadMessages(completion: ResponseBlock?) {
@@ -66,9 +113,8 @@ class ChatViewModel {
                     }
                     
                     self?.messages = messages + ((self?.messages) ?? [])
-                    self?.onPrevMessagesLoad?(messages, self?.messages ?? [])
-                    
-                    completion?(.ok, "")
+                    self?.messages.sort(by: { $0.getDateString() < $1.getDateString() })
+                    self?.groupMessagesByDate(completion: completion)
                     
                 case .failure(let error):
                     print(error)
@@ -77,15 +123,72 @@ class ChatViewModel {
         }
     }
     
-    func heightForCell(at indexPath: IndexPath) -> CGFloat {
-        let message = messages[indexPath.row]
+    private func groupMessagesByDate(completion: ResponseBlock?) {
+        var currentDate = ""
+        var byDateMessages = [Message]()
+        var messageSections = [MessagesSection]()
         
-        if room.type == .LIVE && !message.isMine() {
-            let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
-            return height
+        for message in messages {
+            if currentDate != "" && message.getDateString() != currentDate {
+                let messageSection = MessagesSection(date: currentDate, messages: byDateMessages)
+                messageSections.append(messageSection)
+                
+                currentDate = message.getDateString()
+                byDateMessages = [message]
+            } else {
+                currentDate = message.getDateString()
+                byDateMessages.append(message)
+            }
         }
         
-        return message.height
+        if byDateMessages.count > 0 {
+            let messageSection = MessagesSection(date: currentDate, messages: byDateMessages)
+            messageSections.append(messageSection)
+        }
+        
+        self.sections = messageSections
+        
+        self.onMessagesLoad?()
+        completion?(.ok, "")
+    }
+    
+    func heightForCell(at indexPath: IndexPath) -> CGFloat {
+        let message = sections[indexPath.section].messages[indexPath.row]
+        
+        if let place = message.place, place.id != 0 {
+            return 200
+        }
+        
+        if let event = message.event, event.id != 0 {
+            return 200
+        }
+        
+        switch message.type {
+        case .TEXT, .BOOKING:
+        
+            if room.type == .LIVE && !message.isMine() {
+                let height = message.height + LiveChatMessageCollectionViewCell.usernameLabelHeight
+                return height
+            }
+            
+            return message.height
+            
+        case .IMAGE, .VIDEO:
+            
+            return 250
+            
+        case .WAVE:
+            
+            if message.isMine() {
+                return 50
+            }
+            
+            return 110
+            
+        default:
+            return 0
+        }
+    
     }
     
     let messagesListURL = Network.chat + "/message/?limit=20&"

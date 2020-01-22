@@ -84,9 +84,16 @@ class MapViewController: UIViewController {
         viewModel.getPlacesInRadius { [weak self] (status, message) in
             switch status {
             case .ok:
-                if (self?.viewModel.isMyLocationVisible.value)! {
+                if (self?.viewModel.isMyLocationVisible.value)! && (self?.viewModel.places.count)! > 0 {
                     self?.showCollectionView()
                     self?.showPinsInRadius()
+                } else {
+                    self?.viewModel.isMyLocationVisible.value = false
+                    self?.showDefaultAlert(title: "", message: "Возле Вас не обнаружено заведений. Попробуйте снова, когда измените свое местоположение.", doneTitle: "Попробовать снова", cancelTitle: "Отключить \"Я тут\"", doneAction: {
+                        self?.viewModel.isMyLocationVisible.value = true
+                    }, onCancel: {
+                        self?.viewModel.isMyLocationVisible.value = false
+                    })
                 }
             case .error:
                 print(message)
@@ -174,7 +181,6 @@ class MapViewController: UIViewController {
         
         setImHerePin()
         animatePulsingRadius()
-        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.getPlacesInRadius()
@@ -318,6 +324,14 @@ class MapViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    private func goToLiveChat(in place: Place) {
+        if viewModel.isMyLocationVisible.value {
+            PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(place.roomInfo?.uuid ?? "")")
+        } else {
+            self.showInfoAlert(title: "Предупреждение", message: "Вы не находитесь в этом заведении", onAccept: nil)
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -376,14 +390,17 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: viewModel.places[indexPath.row])
+        let place = viewModel.places[indexPath.row]
+        cell.configure(with: place) { [weak self] in
+            self?.goToLiveChat(in: place)
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
         vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-        present(controller: vc, presntationType: .push)
+        present(controller: vc, presntationType: .push, completion: nil)
     }
 }
 
@@ -417,7 +434,7 @@ extension MapViewController: UITextFieldDelegate {
 }
 
 extension MapViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)

@@ -73,7 +73,7 @@ enum ContactsListSection {
 
 struct ByLetterContactsSection {
     let letter: String
-    let contacts: [User]
+    let contacts: [Contact]
 }
 
 class MyContactsViewModel {
@@ -87,8 +87,15 @@ class MyContactsViewModel {
     var addContactAction: VoidBlock?
     var showBlockedContactsAction: VoidBlock?
     
-    var contacts: Dynamic<[User]>
+    var contacts: Dynamic<[Contact]>
+    var blockedContacts = [Contact]()
     var updateContactsList: Dynamic<Bool>
+    
+    var contactsListEditing = false
+    var contactsToDelete = [Contact]()
+    
+    var searchActivated = false
+    var searchResults = [Contact]()
 
     init(presenterDelegate: ControllerPresenterDelegate) {
         self.presenterDelegate = presenterDelegate
@@ -109,13 +116,63 @@ class MyContactsViewModel {
         addContactAction = {
             let vc = Storyboard.addContactViewController() as! AddContactViewController
             vc.viewModel = AddContactViewModel(currentContacts: self.contacts)
-            self.presenterDelegate.present(controller: vc, presntationType: .push)
+            self.presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         }
         showBlockedContactsAction = {
-            print("Show blocked users")
+            let vc = Storyboard.blockedContactsViewController() as! BlockedContactsViewController
+            vc.viewModel = BlockedContactsViewModel(contacts: self.blockedContacts, onUnblockUser: { [weak self] (contact) in
+                self?.contacts.value.append(contact)
+            })
+            self.presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         }
         
         actions = [addContactAction, showBlockedContactsAction]
+    }
+    
+    func select(cell : ContactTableViewCell, atIndexPath indexPath: IndexPath) {
+        cell.select()
+        
+        switch cell.checked {
+        case .checked:
+            if let contact = (searchActivated) ? searchResults[indexPath.row] : byLetterSections[indexPath.section]?.contacts[indexPath.row] {
+                contactsToDelete.append(contact)
+            }
+        default:
+            if let contact = (searchActivated) ? searchResults[indexPath.row] : byLetterSections[indexPath.section]?.contacts[indexPath.row] {
+                contactsToDelete.removeAll(where: { contact.id == $0.id })
+            }
+        }
+    }
+    
+    func deleteContacts(completion: ResponseBlock?) {
+        let url = Network.contact + "/delete_many/"
+        var contactIDs = [Int]()
+        contactsToDelete.forEach({ contactIDs.append($0.id) })
+        
+        let params = ["contact_ids": contactIDs]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    if json["code"].intValue == 0 {
+                        for contact in self.contactsToDelete {
+                            self.contacts.value.removeAll(where: { $0.id == contact.id })
+                        }
+                        
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, json["message"].stringValue)
+                    }
+
+                case .failure( _):
+                    print(JSON(response.data as Any))
+                }
+        }
     }
     
     func fetchMyContacts() {
@@ -129,9 +186,13 @@ class MyContactsViewModel {
                     let json = JSON(value)
                     print(json)
                     
-                    var contacts = [User]()
+                    var contacts = [Contact]()
                     for item in json["data"]["results"].arrayValue {
-                        contacts.append(User(json: item["user2"]))
+                        if item["blocked"].boolValue {
+                            self.blockedContacts.append(Contact(json: item))
+                        } else {
+                            contacts.append(Contact(json: item))
+                        }
                     }
                     
                     self.contacts.value = contacts
@@ -142,17 +203,17 @@ class MyContactsViewModel {
         }
     }
     
-    private func groupContactsByLetters(contactsToGroup: [User]) {
+    private func groupContactsByLetters(contactsToGroup: [Contact]) {
         var currentContacts = contactsToGroup
-        currentContacts.sort(by: { $0.username < $1.username })
+        currentContacts.sort(by: { $0.user2.username < $1.user2.username })
         
         var letter = ""
-        var contacts = [User]()
+        var contacts = [Contact]()
         
         self.sections = [.action]
         
         for contact in currentContacts {
-            if letter != String(contact.username.first!) {
+            if letter != String(contact.user2.username.first!) {
                 if letter != "" {
                     sections.append(.byLetterContacts)
                     
@@ -160,7 +221,7 @@ class MyContactsViewModel {
                     byLetterSections[sections.count - 1] = section
                 }
                 
-                letter = String(contact.username.first!)
+                letter = String(contact.user2.username.first!)
                 contacts = []
             }
             

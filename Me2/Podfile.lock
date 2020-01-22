@@ -62,7 +62,10 @@ PODS:
   - RangeSeekSlider (1.8.0)
   - ShimmerSwift (1.0.3)
   - Starscream (3.0.6)
+  - SwiftyCrypto (0.0.1)
   - SwiftyJSON (4.3.0)
+  - SwiftyJWT (0.0.3):
+    - SwiftyCrypto (~> 0.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -84,6 +87,7 @@ DEPENDENCIES:
   - ShimmerSwift
   - Starscream (~> 3.0.2)
   - SwiftyJSON (~> 4.0)
+  - SwiftyJWT
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -111,7 +115,9 @@ SPEC REPOS:
     - RangeSeekSlider
     - ShimmerSwift
     - Starscream
+    - SwiftyCrypto
     - SwiftyJSON
+    - SwiftyJWT
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -138,8 +144,10 @@ SPEC CHECKSUMS:
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   ShimmerSwift: 261828bd524cfe211a398cb97d01e03bc52cd395
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyCrypto: ab59cdb153a7ca99b657fa8d9ebd2ebbd7694bbe
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SwiftyJWT: e46e8457138c6567a1a9ff05a6efc8ef678c1187
 
-PODFILE CHECKSUM: f64f860ac8c1cc0ca5255de154b1935bd65edb57
+PODFILE CHECKSUM: b3a159cc821b4b68ce0d99c9614c7db10c353bf7
 
 COCOAPODS: 1.7.4

@@ -18,6 +18,8 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
     
     var viewModel: PlaceInfoViewModel!
     
+    var parentVC: UIViewController!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,10 +31,11 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate) {
+    func configure(itemSize: Dynamic<CGSize>?, place: Place, presenterDelegate: ControllerPresenterDelegate, viewController: UIViewController) {
         self.presenterDelegate = presenterDelegate
         self.tableSize = itemSize
         self.viewModel = PlaceInfoViewModel(place: place)
+        self.parentVC = viewController
     }
     
     override func reload () {
@@ -105,7 +108,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.placeInfo.phone, ans: viewModel.placeInfo.instagram)
+            cell.configure(with: viewModel.placeInfo.phone, and: viewModel.placeInfo.instagram, on: parentVC)
             return cell
             
         case .address:
@@ -147,7 +150,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceSubsidiariesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: 3)
+            cell.configure(with: viewModel.placeInfo.subsidiaries?.count ?? 0)
             return cell
         }
     }
@@ -155,16 +158,31 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel.placeSections[indexPath.row] {
         case .site:
+            
             guard let url = URL(string: viewModel.placeInfo.website ?? "") else { return }
             let svc = SFSafariViewController(url: url)
             
-            presenterDelegate.present(controller: svc, presntationType: .present)
+            presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
         case .mail:
+            
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([viewModel.placeInfo.email ?? ""])
             
-            presenterDelegate.present(controller: mail, presntationType: .present)
+            presenterDelegate.present(controller: mail, presntationType: .present, completion: nil)
+            
+        case .subsidiaries:
+            
+            let vc = Storyboard.subsidiariesViewController() as! SubsidiariesViewController
+            vc.subsidiaries = viewModel.placeInfo.subsidiaries ?? []
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
+            
+        case .address:
+            
+            let vc = Storyboard.placeOnMapViewController() as! PlaceOnMapViewController
+            vc.place = viewModel.placeInfo
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
+            
         default:
             break
         }

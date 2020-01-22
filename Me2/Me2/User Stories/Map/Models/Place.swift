@@ -32,6 +32,8 @@ class Place {
     var workingHours: WorkingHours?
     var roomInfo: RoomInfo?
     var tags = [String]()
+    var branch: Int
+    var subsidiaries: [Place]?
     
     init(json: JSON) {
         id = json["id"].intValue
@@ -52,6 +54,7 @@ class Place {
         website = json["website"].stringValue
         workingHours = WorkingHours(json: json["working_hours"])
         roomInfo = RoomInfo(json: json["room_info"])
+        branch = json["branch"].intValue
         
         images = []
         for image in json["images"].arrayValue {
@@ -68,5 +71,23 @@ class Place {
         for item in json["tags_display"].arrayValue {
             tags.append(item.stringValue)
         }
-     }
+    }
+    
+    func generateShareInfo() -> String {
+        var message = ""
+        
+        message =   "\(name!)\n" +
+                    "\(address1!)\n" +
+                    "\(instagram!)" +
+                    "\n" +
+                    "\n" +
+                    "Для просмотра подробной информации откройте в приложении Me2" +
+                    "\n" +
+                    "\n" +
+                    "Доступно бесплатно в:\n" +
+                    "App store: www.me2.kz\n" +
+                    "Google play: www.me2.kz"
+        
+        return message
+    }
 }

@@ -15,6 +15,9 @@ class ChatTabViewModel {
     var newChatRoom: Room!
     var roomUUIDToOpenFirst: Dynamic<String> = Dynamic("")
     
+    var searchResults = [Room]()
+    var searchActivated = false
+    
     func getChatList(completion: ResponseBlock?) {
         Alamofire.request(roomURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
@@ -75,6 +78,18 @@ class ChatTabViewModel {
                     completion?(.fail, "")
                 }
         }
+    }
+    
+    func searchChat(with substr: String, completion: VoidBlock?) {
+        searchResults = []
+        
+        chatsList.forEach { (room) in
+            if room.name.contains(substr) {
+                searchResults.append(room)
+            }
+        }
+        
+        completion?()
     }
     
     let roomURL = Network.chat + "/room/"

@@ -17,9 +17,11 @@ class EventsTabViewModel {
     var allEvents = [Event]()
     var savedEvents = [Event]()
     var listType: Dynamic<EventsListType>
+    var tagIDsToSearch: Dynamic<[Int]>
     
     init() {
         listType = Dynamic(.ByCategories)
+        tagIDsToSearch = Dynamic([])
         
         bindDynamics()
         configureCategories()

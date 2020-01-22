@@ -37,6 +37,8 @@ class PlaceReviewTableViewCell: UITableViewCell {
     }
     
     private func setUpViews() {
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = 20
         self.contentView.addSubview(avatarImageView)
         constrain(avatarImageView, self.contentView) { avatar, view in

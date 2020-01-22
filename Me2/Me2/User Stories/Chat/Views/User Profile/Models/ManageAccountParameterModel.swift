@@ -6,18 +6,24 @@
 //  Copyright © 2019 AVSoft. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class ManageAccountParameterModel {
     let title: String
     let type: ManageAccountSectionType
     var notificationParameter: NotificationParameter?
     var visibilityParameter: VisibilityParameter?
+    var securityParameterType: SecurityParameterType?
     
-    init(title: String, type: ManageAccountSectionType, notificationParameter: NotificationParameter? = nil, visibilityParameter: VisibilityParameter? = nil) {
+    init(title: String, type: ManageAccountSectionType,
+         notificationParameter: NotificationParameter? = nil,
+         visibilityParameter: VisibilityParameter? = nil,
+         securityParameterType: SecurityParameterType? = nil)
+    {
         self.title = title
         self.type = type
         self.notificationParameter = notificationParameter
         self.visibilityParameter = visibilityParameter
+        self.securityParameterType = securityParameterType
     }
 }

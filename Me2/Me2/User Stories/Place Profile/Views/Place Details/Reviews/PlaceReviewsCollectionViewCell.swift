@@ -17,6 +17,8 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
     
     let viewModel = PlaceReviewsViewModel()
     
+    var parentVC: UIViewController!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -64,8 +66,9 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
         tableView.register(ResponseReviewTableViewCell.self)
     }
     
-    func configure(itemSize: Dynamic<CGSize>?, placeID: Int) {
+    func configure(itemSize: Dynamic<CGSize>?, placeID: Int, vc: UIViewController) {
         self.tableSize = itemSize
+        self.parentVC = vc
         
         viewModel.configure(placeID: placeID)
     }
@@ -101,6 +104,19 @@ class PlaceReviewsCollectionViewCell: PlaceDetailCollectionCell {
             NotificationCenter.default.post(name: .updateCellheight, object: nil, userInfo: data)
         }
     }
+    
+    private func deleteReview() {
+        viewModel.deleteReview { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                self?.tableView.deleteSections([(self?.viewModel.reviewToDeleteIndex)!], with: .automatic)
+            case .error:
+                break
+            case .fail:
+                break
+            }
+        }
+    }
 }
 
 extension PlaceReviewsCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
@@ -131,6 +147,35 @@ extension PlaceReviewsCollectionViewCell: UITableViewDelegate, UITableViewDataSo
             cell.selectionStyle = .none
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Удалить"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            viewModel.reviewToDeleteIndex = indexPath.section
+            parentVC.addActionSheet(titles: ["Удалить"], actions: [deleteReview], styles: [.destructive])
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch indexPath.row {
+        case 0:
+            
+            if viewModel.reviews[indexPath.section].user.id == UserDefaults().object(forKey: UserDefaultKeys.userID.rawValue) as! Int {
+                return true
+            }
+            
+            return false
+            
+        default:
+            
+            return false
         }
     }
 }

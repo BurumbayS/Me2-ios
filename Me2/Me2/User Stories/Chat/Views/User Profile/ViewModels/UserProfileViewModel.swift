@@ -38,7 +38,7 @@ enum MyProfileAdditionalBlockCell: String {
 
 enum GuestProfileAdditionalBlockCell: String {
     case addContact = "Добавить в контакты"
-//    case removeContact = "Удалить из контактов"
+    case removeContact = "Удалить из контактов"
 //    case block = "Заблокировать"
 //    case compplain = "Пожаловаться на пользователя"
 }
@@ -65,17 +65,25 @@ class UserProfileViewModel {
     let userID: Int
     let profileType: ProfileType
     
+    var chatRoom: Room!
     var userInfo: Dynamic<User>!
     var favouritePlaces: Dynamic<[Place]>!
     
     var presenterDelegate: ControllerPresenterDelegate!
+    var parentVC: UserProfileViewController!
     
     var dataLoaded: Bool = false {
         didSet {
             if self.dataLoaded {
                 self.sections = [.bio, .interests, .favourite_places, .additional_block]
                 self.myProfileCells = [.contacts, .notifications, .settings, .feedback, .aboutApp, .logout]
-                self.guestProfileCells = [.addContact]
+                
+                if let contactID = self.userInfo.value.contact?.id, contactID != 0 {
+                    self.guestProfileCells = [.removeContact]
+                } else {
+                    self.guestProfileCells = [.addContact]
+                }
+                
             }
         }
     }
@@ -95,14 +103,50 @@ class UserProfileViewModel {
     }
     
     func fetchData(completion: ResponseBlock?) {
-        var url = ""
+        if let jsonString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String, profileType == .myProfile {
+            let userJSON = JSON(parseJSON: jsonString)
+            userInfo = Dynamic(User(json: userJSON))
+            favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
+            
+            dataLoaded = true
+            completion?(.ok, "")
+        }
         
+        var url = ""
+
         switch profileType {
         case .myProfile:
             url = myProfileURL
         case .guestProfile:
             url = Network.user + "/\(userID)/"
         }
+
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+
+                    let json = JSON(value)
+                    self.userInfo = Dynamic(User(json: json["data"]["user"]))
+                    self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
+                    if self.profileType == .myProfile {
+                        UserDefaults().set(json["data"]["user"].rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                    }
+
+                    self.dataLoaded = true
+                    completion?(.ok, "")
+
+                case .failure(_ ):
+                    print(JSON(response.data as Any))
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    func blockUser() {
+        userInfo.value.blocked = true
+        
+        let url = Network.user + "/\(userInfo.value.id)/block/"
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
@@ -110,15 +154,29 @@ class UserProfileViewModel {
                 case .success(let value):
                     
                     let json = JSON(value)
-                    self.userInfo = Dynamic(User(json: json["data"]["user"]))
-                    self.favouritePlaces = Dynamic(self.userInfo.value.favouritePlaces)
+                    print(json)
                     
-                    self.dataLoaded = true
-                    completion?(.ok, "")
+                case .failure(_):
+                    break
+                }
+        }
+    }
+    
+    func unblockUser() {
+        userInfo.value.blocked = true
+        
+        let url = Network.user + "/\(userInfo.value.id)/unblock/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
                     
-                case .failure(_ ):
-                    print(JSON(response.data as Any))
-                    completion?(.fail, "")
+                    let json = JSON(value)
+                    print(json)
+                    
+                case .failure(_):
+                    break
                 }
         }
     }
@@ -168,27 +226,27 @@ class UserProfileViewModel {
         case .aboutApp:
             
             let vc = Storyboard.aboutAppViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
         
         case .feedback:
             
             let vc = Storyboard.feedbackViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .notifications:
             
             let vc = Storyboard.notificationsViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .settings:
             
             let vc = Storyboard.manageAccountViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .contacts:
             
             let vc = Storyboard.myContactsViewController()
-            presenterDelegate.present(controller: vc, presntationType: .push)
+            presenterDelegate.present(controller: vc, presntationType: .push, completion: nil)
             
         case .logout:
             
@@ -196,10 +254,6 @@ class UserProfileViewModel {
             window.rootViewController = Storyboard.signInOrUpViewController()
             
         }
-    }
-    
-    private func selectedGuestProfileCell(at: IndexPath) {
-        
     }
     
     let myProfileURL = Network.user + "/get/"

@@ -12,6 +12,7 @@ enum RoomType: String {
     case SIMPLE
     case GROUP
     case LIVE
+    case SERVICE
 }
 
 class Room {
@@ -20,6 +21,7 @@ class Room {
     let name: String
     let avatarURL: String
     let lastMessage: Message
+    let place: Place
     var participants = [ChatParticipant]()
     
     init(json: JSON) {
@@ -28,6 +30,7 @@ class Room {
         name = json["name"].stringValue
         avatarURL = json["avatar"].stringValue
         lastMessage = Message(json: json["last_message"])
+        place = Place(json: json["place"])
         
         for item in json["participants"].arrayValue {
             participants.append(ChatParticipant(json: item))

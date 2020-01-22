@@ -26,10 +26,10 @@ class ChatTableViewCell: UITableViewCell {
 
     func configure(with roomInfo: Room) {
         switch roomInfo.type {
-        case .SIMPLE:
+        case .SIMPLE, .SERVICE:
             
             simpleChatNameLabel.text = roomInfo.name
-            simpleChatLastMessage.text = roomInfo.lastMessage.text
+            simpleChatLastMessage.text = getLastMessageString(from: roomInfo.lastMessage)
             
             simpleChatContextView.isHidden = false
             liveChatContextView.isHidden = true
@@ -39,7 +39,8 @@ class ChatTableViewCell: UITableViewCell {
             placeNameLabel.text = roomInfo.name
             
             if let lastMessageSender = roomInfo.getLastMessageSender() {
-                liveChatLastMessage.text = "\(lastMessageSender.username): \(roomInfo.lastMessage.text)"
+                let lastMessage = getLastMessageString(from: roomInfo.lastMessage)
+                liveChatLastMessage.text = "\(lastMessageSender.username): \(lastMessage)"
             }
             
             simpleChatContextView.isHidden = true
@@ -51,5 +52,36 @@ class ChatTableViewCell: UITableViewCell {
         
         avatarImageView.kf.setImage(with: URL(string: roomInfo.avatarURL), placeholder: UIImage(named: "placeholder_avatar"), options: [])
         dateTimeLabel.text = roomInfo.lastMessage.getTime()
+    }
+    
+    private func getLastMessageString(from message: Message) -> String {
+        if let place = message.place, place.id != 0 {
+            return "Заведение"
+        }
+        
+        if let event = message.event, event.id != 0 {
+            return "Событие"
+        }
+        
+        switch message.type {
+        case .TEXT:
+            
+            return message.text
+            
+        case .IMAGE:
+            
+            return "Фото"
+            
+        case .VIDEO:
+            
+            return "Видео"
+            
+        case .WAVE:
+            
+            return "Помахали"
+            
+        default:
+            return ""
+        }
     }
 }

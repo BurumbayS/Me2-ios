@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jmV-u6-mzY">
-                                        <rect key="frame" x="40" y="7.5" width="318" height="35"/>
+                                        <rect key="frame" x="52" y="7.5" width="306" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="lEH-yG-7tH"/>
@@ -160,12 +160,15 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNU-gB-qct">
-                                        <rect key="frame" x="11" y="16" width="18" height="18"/>
+                                        <rect key="frame" x="11" y="10" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="18" id="WVX-NB-rRK"/>
-                                            <constraint firstAttribute="height" constant="18" id="mXb-Tu-0Ry"/>
+                                            <constraint firstAttribute="width" constant="30" id="WVX-NB-rRK"/>
+                                            <constraint firstAttribute="height" constant="30" id="mXb-Tu-0Ry"/>
                                         </constraints>
                                         <state key="normal" image="plus_icon"/>
+                                        <connections>
+                                            <action selector="addAttachmentPressed:" destination="mvm-Fr-SLS" eventType="touchUpInside" id="iJU-rJ-DSh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK3-Nv-H28">
                                         <rect key="frame" x="369" y="8" width="34" height="34"/>
@@ -235,10 +238,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Obx-rX-fio">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш список контактов пока пуст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-6R-o53">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш список контактов пока пуст" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-6R-o53">
                                 <rect key="frame" x="61.5" y="417" width="291" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="b7S-47-mEu"/>
@@ -254,17 +257,24 @@
                                     <navigationItem title="Title" id="lFX-O0-lKD"/>
                                 </items>
                             </navigationBar>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-nb-Rfb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Obx-rX-fio" firstAttribute="top" secondItem="g7x-nb-Rfb" secondAttribute="bottom" id="1Fp-e8-vJF"/>
                             <constraint firstItem="XDd-zV-low" firstAttribute="trailing" secondItem="MTq-fj-Z17" secondAttribute="trailing" id="2hZ-hp-VXE"/>
                             <constraint firstItem="MTq-fj-Z17" firstAttribute="trailing" secondItem="Obx-rX-fio" secondAttribute="trailing" id="4zL-ni-BPB"/>
                             <constraint firstItem="NI0-6R-o53" firstAttribute="centerY" secondItem="MTq-fj-Z17" secondAttribute="centerY" id="Gb6-fG-cL6"/>
+                            <constraint firstItem="g7x-nb-Rfb" firstAttribute="trailing" secondItem="MTq-fj-Z17" secondAttribute="trailing" id="Gcv-JC-kIA"/>
                             <constraint firstItem="MTq-fj-Z17" firstAttribute="bottom" secondItem="Obx-rX-fio" secondAttribute="bottom" id="Ik0-Ph-St3"/>
                             <constraint firstItem="XDd-zV-low" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="LdE-Ji-fXh"/>
                             <constraint firstItem="Obx-rX-fio" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="NGf-ZF-vE9"/>
                             <constraint firstItem="NI0-6R-o53" firstAttribute="centerX" secondItem="MTq-fj-Z17" secondAttribute="centerX" id="RT6-wg-lHq"/>
-                            <constraint firstItem="Obx-rX-fio" firstAttribute="top" secondItem="XDd-zV-low" secondAttribute="bottom" id="dtI-ed-kqi"/>
+                            <constraint firstItem="g7x-nb-Rfb" firstAttribute="top" secondItem="XDd-zV-low" secondAttribute="bottom" id="UHS-A2-908"/>
+                            <constraint firstItem="g7x-nb-Rfb" firstAttribute="leading" secondItem="MTq-fj-Z17" secondAttribute="leading" id="bJz-Jb-Mwo"/>
                             <constraint firstItem="XDd-zV-low" firstAttribute="top" secondItem="MTq-fj-Z17" secondAttribute="top" id="vPd-pD-Wtk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MTq-fj-Z17"/>
@@ -274,6 +284,7 @@
                         <outlet property="emptyContactListStatus" destination="NI0-6R-o53" id="nGU-vw-n6I"/>
                         <outlet property="navBar" destination="XDd-zV-low" id="fcS-Ao-I5t"/>
                         <outlet property="navItem" destination="lFX-O0-lKD" id="rO5-9w-ZP4"/>
+                        <outlet property="searchBar" destination="g7x-nb-Rfb" id="nJj-nH-UG5"/>
                         <outlet property="tableView" destination="Obx-rX-fio" id="BWu-W4-nOI"/>
                     </connections>
                 </viewController>

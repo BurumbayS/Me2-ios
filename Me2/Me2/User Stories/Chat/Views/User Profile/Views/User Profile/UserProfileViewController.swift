@@ -35,11 +35,14 @@ class UserProfileViewController: UIViewController {
         configureViewModel()
         fetchData()
     }
-    
+
     private func configureNavBar() {
+        self.removeBackButton()
+        
         navBar.makeTransparentBar()
         navItem.title = ""
         navBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .black
         
         switch viewModel.profileType {
         case .guestProfile:
@@ -56,6 +59,7 @@ class UserProfileViewController: UIViewController {
     
     private func configureViewModel() {
         viewModel.presenterDelegate = self
+        viewModel.parentVC = self
     }
     
     private func configureTableView() {
@@ -108,23 +112,35 @@ class UserProfileViewController: UIViewController {
     }
     
     @objc private func moreActions() {
-        self.addActionSheet(with: ["Заблокировать пользователя", "Пожаловаться на пользователя"], and: [blockUser, complainToUser], and: [.destructive, .destructive])
+        if viewModel.userInfo.value.blocked {
+            self.addActionSheet(titles:  ["Разблокировать пользователя", "Пожаловаться на пользователя"], actions: [unblockUser, complainToUser], styles: [.default, .destructive])
+        } else {
+            self.addActionSheet(titles:  ["Заблокировать пользователя", "Пожаловаться на пользователя"], actions: [blockUser, complainToUser], styles: [.destructive, .destructive])
+        }
     }
     
     private func blockUser() {
-        
+        viewModel.blockUser()
+    }
+    
+    private func unblockUser() {
+        viewModel.unblockUser()
     }
     
     private func complainToUser() {
-        
+        let vc = Storyboard.complainViewController() as! ComplainViewController
+        vc.viewModel = ComplainViewModel(userID: viewModel.userID)
+        present(vc, animated: true, completion: nil)
     }
     
     private func showHint() {
         if UserDefaults().object(forKey: UserDefaultKeys.firstLaunch.rawValue) != nil { return }
         
-        let vc = Storyboard.profileHintViewController()
-        vc.modalPresentationStyle = .custom
-        present(vc, animated: false, completion: nil)
+        if viewModel.profileType == .myProfile {
+            let vc = Storyboard.profileHintViewController()
+            vc.modalPresentationStyle = .custom
+            present(vc, animated: false, completion: nil)
+        }
     }
 }
 
@@ -209,7 +225,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
                 
                 let cell: GuestProfileHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.selectionStyle = .none
-                cell.configure(user: viewModel.userInfo.value)
+                cell.configure(viewModel: viewModel, viewController: self)
                 return cell
                 
             }
@@ -242,7 +258,18 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
             
             let cell: FavouritePlacesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType)
+            cell.configure(with: viewModel.favouritePlaces.value, profileType: viewModel.profileType, onPlaceSelected: { [weak self] (place) in
+                let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+                vc.viewModel = PlaceProfileViewModel(place: place)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }) { [weak self] in
+                let vc = Storyboard.addFavouritePlaceViewController() as! AddFavouritePlaceViewController
+                vc.viewModel = AddFavouritePlaceViewModel(favouritePlaces: (self?.viewModel.favouritePlaces.value)!, onAddPlace: { [weak self] (place) in
+                    self?.viewModel.favouritePlaces.value.append(place)
+                    self?.tableView.reloadSections([0], with: .automatic)
+                })
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
             
         case .additional_block:
@@ -273,7 +300,7 @@ extension UserProfileViewController : UITableViewDelegate, UITableViewDataSource
 }
 
 extension UserProfileViewController: ControllerPresenterDelegate {
-    func present(controller: UIViewController, presntationType: PresentationType) {
+    func present(controller: UIViewController, presntationType: PresentationType, completion: VoidBlock?) {
         switch presntationType {
         case .push:
             navigationController?.pushViewController(controller, animated: true)
