@@ -16,10 +16,11 @@ extension MapViewController {
         
         for (i, place) in viewModel.placePins.enumerated() {
             let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-            marker.zIndex = Int32(i)
+            let point = mapView.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+            marker.zIndex = Int32(17 * Int(point.x * 100))
             let iconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             iconView.contentMode = .scaleAspectFit
-            iconView.layer.cornerRadius = 18
+            iconView.layer.cornerRadius = 15
             iconView.clipsToBounds = true
             iconView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
             marker.iconView = iconView
