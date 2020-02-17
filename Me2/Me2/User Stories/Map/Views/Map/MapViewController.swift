@@ -32,6 +32,7 @@ class MapViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
+    var clusterManager: GMUClusterManager!
     
     var myLocationMarker = GMSMarker()
     var imHereMarker = GMSMarker()
@@ -70,7 +71,8 @@ class MapViewController: UIViewController {
         viewModel.getPlacePins { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.setPins()
+                self?.setUpCLusterManager()
+//                self?.setPins()
                 self?.showHint()
             case .error:
                 break;

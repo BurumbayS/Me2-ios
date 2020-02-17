@@ -9,6 +9,7 @@
 import Alamofire
 import SwiftyJSON
 import GoogleMaps
+import RealmSwift
 
 enum ImhereIcon: String {
     case plain = "map_marker_icon"
