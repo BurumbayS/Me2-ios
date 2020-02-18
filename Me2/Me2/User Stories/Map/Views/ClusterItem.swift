@@ -9,11 +9,13 @@
 import Foundation
 
 class ClusterItem: NSObject, GMUClusterItem {
-  var position: CLLocationCoordinate2D
-  var name: String!
+    var position: CLLocationCoordinate2D
+    var name: String!
+    var icon: String?
 
-  init(position: CLLocationCoordinate2D, name: String) {
-    self.position = position
-    self.name = name
-  }
+    init(position: CLLocationCoordinate2D, name: String, icon: String?) {
+        self.position = position
+        self.name = name
+        self.icon = icon
+    }
 }
