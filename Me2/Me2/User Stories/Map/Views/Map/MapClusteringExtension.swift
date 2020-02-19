@@ -37,7 +37,7 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
     }
     
     func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
-        
+//        print(mapView.camera.zoom)
     }
     
     func renderer(_ renderer: GMUClusterRenderer, markerFor object: Any) -> GMSMarker? {

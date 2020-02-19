@@ -12,49 +12,58 @@ import GoogleMaps
 class LabelsView: UIView {
     var places = [PlacePin]()
     var map: GMSMapView!
-    var labels = [UILabel]()
+    var labels = [Int: UILabel]()
     var labelOverlapped = [Int: Bool]()
+    var labelSample = UILabel()
     
     func configure(with places: [PlacePin], on map: GMSMapView) {
-        self.labels.forEach { $0.removeFromSuperview() }
+        self.labels.values.forEach { $0.removeFromSuperview() }
         self.isHidden = false
         
         self.places = places
         self.map = map
-        self.labels = []
+        self.labels = [:]
         
-        for (i, place) in places.enumerated() {
-            let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)
+        labelSample.numberOfLines = 0
+        labelSample.font = UIFont(name: "Roboto-Medium", size: 13)
+        
+        updateCoordinates()
+//        for (i, place) in places.enumerated() {
+//            let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)
+//            let height = place.name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
+//
+//            let point = map.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+//            let x = point.x + 18 + 5
+//            let y = point.y - 18 - (height / 2)
+//
+//            let label = UILabel(frame: CGRect(x: x, y: y, width: min(120 , width), height: height))
+//            label.text = place.name
+//            label.numberOfLines = 0
+//            label.font = UIFont(name: "Roboto-Medium", size: 13)
+//
+//            label.tag = i
+//
+//            self.addSubview(label)
+//            labels.append(label)
+//            labelOverlapped[i] = false
+//        }
+    }
+    
+    func updateCoordinates() {
+        filterShowedLabels()
+        
+        for item in labels {
+            guard let place = places.first(where: { item.key == $0.id }) else { continue }
+            
             let height = place.name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
             
             let point = map.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
             let x = point.x + 18 + 5
             let y = point.y - 18 - (height / 2)
             
-            let label = UILabel(frame: CGRect(x: x, y: y, width: min(120 , width), height: height))
-            label.text = place.name
-            label.numberOfLines = 0
-            label.font = UIFont(name: "Roboto-Medium", size: 13)
-            
-            label.tag = i
-            
-            self.addSubview(label)
-            labels.append(label)
-            labelOverlapped[i] = false
-        }
-    }
-    
-    func updateCoordinates() {
-        for (i, label) in labels.enumerated() {
-            let height = places[i].name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
-            
-            let point = map.projection.point(for: CLLocationCoordinate2D(latitude: places[i].latitude, longitude: places[i].longitude))
-            let x = point.x + 18 + 5
-            let y = point.y - 18 - (height / 2)
-            
-            UIView.animate(withDuration: 0.000000001) {
-                label.frame.origin.x = x
-                label.frame.origin.y = y
+            UIView.animate(withDuration: 0.0000000001) {
+                item.value.frame.origin.x = x
+                item.value.frame.origin.y = y
 //                label.transform = CGAffineTransform.tra/
             }
         }
@@ -62,13 +71,43 @@ class LabelsView: UIView {
         hideOverlappingLabels()
     }
     
+    private func filterShowedLabels() {
+        for place in places {
+            labelOverlapped[place.id] = false
+            
+            let point = map.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+            if point.x > 0 && point.x < UIScreen.main.bounds.width && point.y > 0 && point.y < UIScreen.main.bounds.height && map.camera.zoom >= 15 {
+                guard labels[place.id] == nil else { continue }
+
+                let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)
+                let height = place.name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
+                
+                let x = point.x + 18 + 5
+                let y = point.y - 18 - (height / 2)
+                let label = UILabel(frame: CGRect(x: x, y: y, width: min(120 , width), height: height))
+                label.numberOfLines = 0
+                label.font = UIFont(name: "Roboto-Medium", size: 13)
+                label.textColor = .black
+                label.tag = place.id
+                
+                label.text = place.name
+                labels[place.id] = label
+                
+                self.addSubview(label)
+            } else {
+                labels[place.id]?.removeFromSuperview()
+                labels.removeValue(forKey: place.id)
+            }
+        }
+    }
+    
     private func hideOverlappingLabels() {
-        for (i, _) in labels.enumerated() { labelOverlapped[i] = false }
+        for i in labels.keys { labelOverlapped[i] = false }
         
-        let sortedByX = labels.sorted { $0.frame.origin.x > $1.frame.origin.x }
+        let sortedByX = labels.values.sorted { $0.frame.origin.x > $1.frame.origin.x }
         updateLabels(labels: sortedByX)
         
-        let sortedByY = labels.sorted { $0.frame.origin.y > $1.frame.origin.y }
+        let sortedByY = labels.values.sorted { $0.frame.origin.y > $1.frame.origin.y }
         updateLabels(labels: sortedByY)
         
         showNotOverlappedLabels()
@@ -76,11 +115,13 @@ class LabelsView: UIView {
     
     private func showNotOverlappedLabels() {
         for label in labels {
-            if !labelOverlapped[label.tag]! { label.isHidden = false } //else { label.isHidden = true }
+            if !labelOverlapped[label.key]! { label.value.isHidden = false } //else { label.isHidden = true }
         }
     }
     
     private func updateLabels(labels: [UILabel]) {
+        guard labels.count > 0 else { return }
+        
         var l = 0
         var r = 0
         while (true) {

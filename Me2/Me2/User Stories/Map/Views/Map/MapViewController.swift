@@ -344,9 +344,9 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         //update labels coordinates if there are
-        if labelsView.labels.count > 0 {
+//        if labelsView.labels.count > 0 {
             labelsView.updateCoordinates()
-        }
+//        }
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
