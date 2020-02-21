@@ -30,8 +30,8 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
     }
     
     func generateClusterItems(rendererr: GMUClusterRenderer) {
-        for item in viewModel.placePins {
-            let clusterItem = ClusterItem(position: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), name: item.name, icon: item.logo)
+        for (i, item) in viewModel.placePins.enumerated() {
+            let clusterItem = ClusterItem(position: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), name: item.name, icon: item.logo, id: i)
             clusterManager.add(clusterItem)
         }
     }
@@ -49,6 +49,7 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
             iconView.clipsToBounds = true
             iconView.kf.setImage(with: URL(string: model.icon ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
             marker.iconView = iconView
+            marker.title = "\(model.id!)"
             
             return marker
         }

@@ -12,10 +12,12 @@ class ClusterItem: NSObject, GMUClusterItem {
     var position: CLLocationCoordinate2D
     var name: String!
     var icon: String?
+    var id: Int!
 
-    init(position: CLLocationCoordinate2D, name: String, icon: String?) {
+    init(position: CLLocationCoordinate2D, name: String, icon: String?, id: Int) {
         self.position = position
         self.name = name
         self.icon = icon
+        self.id = id
     }
 }
