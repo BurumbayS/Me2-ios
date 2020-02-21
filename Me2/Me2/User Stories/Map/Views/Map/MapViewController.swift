@@ -72,7 +72,6 @@ class MapViewController: UIViewController {
             switch status {
             case .ok:
                 self?.setUpCLusterManager()
-//                self?.setPins()
                 self?.showHint()
             case .error:
                 break;
