@@ -27,6 +27,7 @@ class LabelsView: UIView {
         labelSample.numberOfLines = 0
         labelSample.font = UIFont(name: "Roboto-Medium", size: 13)
         
+        filterShowedLabels()
         updateCoordinates()
 //        for (i, place) in places.enumerated() {
 //            let width = place.name.getWidth(with: UIFont(name: "Roboto-Medium", size: 13)!)
@@ -55,16 +56,16 @@ class LabelsView: UIView {
         for item in labels {
             guard let place = places.first(where: { item.key == $0.id }) else { continue }
             
-            let height = place.name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
+            DispatchQueue.main.async {
+                let height = place.name.getHeight(withConstrainedWidth: 120, font: UIFont(name: "Roboto-Medium", size: 13)!)
+                
+                let point = self.map.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+                let x = point.x + 18 + 5
+                let y = point.y - 18 - (height / 2)
             
-            let point = map.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-            let x = point.x + 18 + 5
-            let y = point.y - 18 - (height / 2)
-            
-            UIView.animate(withDuration: 0.0000000001) {
-                item.value.frame.origin.x = x
-                item.value.frame.origin.y = y
-//                label.transform = CGAffineTransform.tra/
+                UIView.animate(withDuration: 0.000001) {
+                    item.value.frame.origin = CGPoint(x: x, y: y)
+                }
             }
         }
         

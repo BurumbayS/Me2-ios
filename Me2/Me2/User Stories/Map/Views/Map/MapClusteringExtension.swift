@@ -12,7 +12,7 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
     func setUpCLusterManager() {
         labelsView.configure(with: viewModel.placePins, on: mapView)
         
-        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let iconGenerator = GMUDefaultClusterIconGenerator(buckets: [10, 20, 50, 100, 200], backgroundColors: [UIColor(stringHex: "0084C5"),UIColor(stringHex: "0096E0"),UIColor(stringHex: "00AAFF"),UIColor(stringHex: "1FB4FF"),UIColor(stringHex: "41BFFF")])
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
         let renderer = GMUDefaultClusterRenderer(mapView: mapView,
                                     clusterIconGenerator: iconGenerator)

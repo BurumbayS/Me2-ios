@@ -27,7 +27,7 @@ class MapViewModel {
     var currentLiveRoomUUID = ""
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
-        let url = placesURL + "?limit=300"
+        let url = placesURL + "?limit=1000"
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {

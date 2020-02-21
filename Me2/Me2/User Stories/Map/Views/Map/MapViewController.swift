@@ -342,11 +342,13 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         viewModel.myLocation = locations.last! as CLLocation
     }
     
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        //update labels coordinates if there are
-//        if labelsView.labels.count > 0 {
-            labelsView.updateCoordinates()
-//        }
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        labelsView.updateCoordinates()
+        labelsView.isHidden = false
+    }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        labelsView.isHidden = gesture
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
