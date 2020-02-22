@@ -27,6 +27,10 @@ class MapViewModel {
     var currentLiveRoomUUID = ""
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
+        getPlacePinsFromDB(completion: completion)
+        
+        guard shouldUpdateDB() else { return }
+        
         let url = placesURL + "?limit=1000"
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
@@ -35,9 +39,7 @@ class MapViewModel {
                     
                     let json = JSON(value)
                     
-                    for item in json["data"]["results"].arrayValue {
-                        self.placePins.append(PlacePin.convert(from: item))
-                    }
+                    self.updateDB(wtih: json)
                     
                     completion?(.ok, "")
                     
@@ -46,6 +48,57 @@ class MapViewModel {
                     completion?(.fail, "")
                 }
         }
+    }
+    
+    private func getPlacePinsFromDB(completion: ResponseBlock?) {
+        let placePinDAOs = RealmAdapter.shared.objects(PlacePinDAO.self)
+        
+        for item in placePinDAOs {
+            placePins.append(item.place())
+        }
+        
+        completion?(.ok, "")
+    }
+    
+    private func updateDB(wtih json: JSON) {
+        let allPlacePins = RealmAdapter.shared.objects(PlacePinDAO.self)
+        try! RealmAdapter.shared.write {
+            RealmAdapter.shared.delete(allPlacePins)
+        }
+        
+        placePins = []
+        
+        for item in json["data"]["results"].arrayValue {
+            let placePin = PlacePin.convert(from: item)
+            self.placePins.append(placePin)
+            RealmAdapter.write(object: PlacePinDAO.object(fromPlace: placePin))
+        }
+        
+        updateDBDate()
+    }
+    
+    private func updateDBDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        
+        let date = Date()
+        
+        UserDefaults().set(dateFormatter.string(from: date), forKey: UserDefaultKeys.lastDbUpdate.rawValue)
+    }
+    
+    private func shouldUpdateDB() -> Bool {
+        guard  let prevUpdatedDate = UserDefaults().object(forKey: UserDefaultKeys.lastDbUpdate.rawValue) as? String else { return true }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        
+        let date = Date()
+        let prevDate = dateFormatter.date(from: prevUpdatedDate)
+        
+        let components = Calendar.current.dateComponents([.hour], from: prevDate!, to: date)
+        let diff = components.hour!
+        
+        return diff > 24
     }
     
     func getPlacesInRadius(completion: ResponseBlock?) {

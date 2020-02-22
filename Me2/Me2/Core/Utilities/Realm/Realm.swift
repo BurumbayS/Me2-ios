@@ -10,4 +10,10 @@ import RealmSwift
 
 class RealmAdapter {
     static let shared = try! Realm()
+    
+    static func write(object: Object) {
+        try! shared.write {
+            shared.add(object)
+        }
+    }
 }

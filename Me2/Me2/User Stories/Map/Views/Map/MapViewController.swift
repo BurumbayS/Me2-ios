@@ -49,8 +49,8 @@ class MapViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
-        fetchData()
         setUpViews()
+        fetchData()
         configureLocationManager()
         bindViewModel()
         configureCollectionView()
