@@ -350,6 +350,10 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         labelsView.isHidden = gesture
     }
     
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        labelsView.isHidden = true
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if viewModel.isMyLocationVisible.value {
             tappedPinInRadius(marker: marker)
