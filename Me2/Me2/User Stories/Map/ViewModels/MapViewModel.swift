@@ -31,7 +31,7 @@ class MapViewModel {
         
         guard shouldUpdateDB() else { return }
         
-        let url = placesURL + "?limit=1000"
+        let url = placesURL + "?limit=3000"
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { (response) in
                 switch response.result {
