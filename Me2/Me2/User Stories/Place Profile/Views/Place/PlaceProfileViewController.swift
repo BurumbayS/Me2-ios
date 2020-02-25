@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class PlaceProfileViewController: UIViewController {
+class PlaceProfileViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var actionButton: UIButton!

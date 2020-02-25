@@ -21,6 +21,7 @@
 		DD133B9423470EC300A5A9A7 /* EditProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */; };
 		DD133B9623475B8D00A5A9A7 /* EditProfileTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */; };
 		DD133B9823475D3600A5A9A7 /* RemovableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD133B9723475D3600A5A9A7 /* RemovableTag.swift */; };
+		DD1A2376240530A700A480CE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1A2375240530A700A480CE /* BaseViewController.swift */; };
 		DD2037C62376B673000485F2 /* CustomLargeTitleBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */; };
 		DD2037C923792623000485F2 /* GuestProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */; };
 		DD2037CA23792623000485F2 /* GuestProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */; };
@@ -378,6 +379,7 @@
 		DD133B9323470EC300A5A9A7 /* EditProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileBioTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9523475B8C00A5A9A7 /* EditProfileTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTagsTableViewCell.swift; sourceTree = "<group>"; };
 		DD133B9723475D3600A5A9A7 /* RemovableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovableTag.swift; sourceTree = "<group>"; };
+		DD1A2375240530A700A480CE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DD2037C52376B673000485F2 /* CustomLargeTitleBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLargeTitleBarButton.swift; sourceTree = "<group>"; };
 		DD2037C723792623000485F2 /* GuestProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DD2037C823792623000485F2 /* GuestProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -1244,6 +1246,7 @@
 				DDBCD720234F215800384DD5 /* UserDefaultsKeys.swift */,
 				DD2037EC237983EA000485F2 /* PushNotificationService.swift */,
 				DD2037EE237BF805000485F2 /* PushNotificationsRouter.swift */,
+				DD1A2375240530A700A480CE /* BaseViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2196,6 +2199,7 @@
 				DD720703238152960090F12C /* MyContactsViewController.swift in Sources */,
 				DD5653C122F0693E003A67C3 /* ConfirmPinCodeViewModel.swift in Sources */,
 				DD720700238039070090F12C /* AddFavouritePlaceViewModel.swift in Sources */,
+				DD1A2376240530A700A480CE /* BaseViewController.swift in Sources */,
 				DD345CC923FABD05000836FC /* GMUWeightedLatLng.m in Sources */,
 				DDA1424B231FC87900C721A3 /* AccessCodeViewModel.swift in Sources */,
 				DD345CCC23FABD05000836FC /* GMUKMLParser.m in Sources */,
