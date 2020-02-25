@@ -211,7 +211,8 @@ class MapSearchFilterViewModel {
                 
             case .nearby:
                 
-                break
+                data.append(FilterData(key: "latitude", value: Location.my.coordinate.latitude))
+                data.append(FilterData(key: "longitude", value: Location.my.coordinate.longitude))
             
             case .high_rating:
                 

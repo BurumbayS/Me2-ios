@@ -19,7 +19,11 @@ enum ImhereIcon: String {
 
 class MapViewModel {
     var isMyLocationVisible: Dynamic<Bool> = Dynamic(false)
-    var myLocation = CLLocation()
+    var myLocation = CLLocation() {
+        didSet {
+            Location.my = self.myLocation
+        }
+    }
     var placePins = [PlacePin]()
     var places = [Place]()
     

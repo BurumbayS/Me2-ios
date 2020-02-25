@@ -258,6 +258,7 @@
 		DDD82BDF238270FF00B878C5 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */; };
 		DDD82BE12382783F00B878C5 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */; };
 		DDD82BE42383F6EB00B878C5 /* ProfileHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */; };
+		DDDAB84E2403ED0700827B75 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDAB84D2403ED0700827B75 /* Location.swift */; };
 		DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */; };
 		DDE047D9233B780200E33046 /* EventsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */; };
 		DDE047DC233B7DC300E33046 /* ListOfAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */; };
@@ -661,6 +662,7 @@
 		DDD82BDE238270FE00B878C5 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		DDD82BE02382783F00B878C5 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddContactViewModel.swift; path = ../AddContactViewModel.swift; sourceTree = "<group>"; };
 		DDD82BE32383F6EB00B878C5 /* ProfileHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHintViewController.swift; sourceTree = "<group>"; };
+		DDDAB84D2403ED0700827B75 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		DDE047D6233B6FD900E33046 /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
 		DDE047D8233B780200E33046 /* EventsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewModel.swift; sourceTree = "<group>"; };
 		DDE047DB233B7DC300E33046 /* ListOfAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAllViewController.swift; sourceTree = "<group>"; };
@@ -1234,6 +1236,7 @@
 				DD5653D622F45AF5003A67C3 /* Storyboard.swift */,
 				DD5653F122F4DC19003A67C3 /* Color.swift */,
 				DDCE6E7622F7EED8006E54D1 /* Dynamic.swift */,
+				DDDAB84D2403ED0700827B75 /* Location.swift */,
 				DDF65B1222FD666200441035 /* Protocols.swift */,
 				DD5C2226231649FB00CF66CC /* Constants.swift */,
 				DDA1425023228E2500C721A3 /* Network.swift */,
@@ -2254,6 +2257,7 @@
 				DDF69EF5232F653700377796 /* ListItemTableViewCell.swift in Sources */,
 				DD2037EF237BF805000485F2 /* PushNotificationsRouter.swift in Sources */,
 				DD345C9523FABB72000836FC /* GMUClusterManager.m in Sources */,
+				DDDAB84E2403ED0700827B75 /* Location.swift in Sources */,
 				DD5C2241231CE4AD00CF66CC /* MenuFileTableViewCell.swift in Sources */,
 				DD345CDC23FAC12B000836FC /* ClusterItem.swift in Sources */,
 				DDC7F228230941080067C6C7 /* CustomSegmentedControlViewModel.swift in Sources */,
@@ -2610,7 +2614,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Me2/Me2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2618,6 +2622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
@@ -2636,7 +2641,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Me2/Me2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = "$(SRCROOT)/Me2/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2644,6 +2649,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
