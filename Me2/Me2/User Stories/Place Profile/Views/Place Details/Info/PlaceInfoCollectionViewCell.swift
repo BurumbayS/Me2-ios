@@ -165,11 +165,14 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
         case .mail:
             
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([viewModel.placeInfo.email ?? ""])
-            
-            presenterDelegate.present(controller: mail, presntationType: .present, completion: nil)
+            let email = viewModel.placeInfo.email
+            if let url = URL(string: "mailto:\(email!)") {
+              if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+              } else {
+                UIApplication.shared.openURL(url)
+              }
+            }
             
         case .subsidiaries:
             
