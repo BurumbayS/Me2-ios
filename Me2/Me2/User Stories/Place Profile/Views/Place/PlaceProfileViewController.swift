@@ -61,13 +61,6 @@ class PlaceProfileViewController: BaseViewController {
     }
     
     private func configureActionButton() {
-        if viewModel.placeStatus == .not_registered {
-            self.actionButton.setTitle("", for: .normal)
-            self.actionButton.isHidden = true
-            
-            return
-        }
-        
         actionButton.drawShadow(color: UIColor.gray.cgColor, forOpacity: 1, forOffset: CGSize(width: 0, height: 0), radius: 3)
         
         switch viewModel.pageToShow.value {
@@ -76,7 +69,7 @@ class PlaceProfileViewController: BaseViewController {
             self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
-            self.actionButton.isHidden = false
+            self.actionButton.isHidden = viewModel.placeStatus == .not_registered
             
         case .reviews:
             

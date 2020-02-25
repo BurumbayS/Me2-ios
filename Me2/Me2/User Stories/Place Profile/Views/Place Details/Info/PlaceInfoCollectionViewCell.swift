@@ -115,7 +115,8 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "1.3 км")
+            let location = CLLocation(latitude: viewModel.placeInfo.latitude, longitude: viewModel.placeInfo.longitute)
+            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "\(Location.distance(from: location)) км")
             return cell
             
         case .workTime:
