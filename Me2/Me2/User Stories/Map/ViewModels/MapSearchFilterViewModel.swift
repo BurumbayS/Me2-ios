@@ -115,6 +115,15 @@ class MapSearchFilterViewModel {
         
         createCells()
         configureFilters()
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        tag_ids.bind { [weak self] (tags) in
+            if tags.count > 0 {
+                self?.filtersSelected.value = true
+            }
+        }
     }
     
     private func createCells() {
@@ -187,6 +196,7 @@ class MapSearchFilterViewModel {
     
     func discardFilters(completion: VoidBlock?) {
         selectedFilters = []
+        tag_ids.value = []
         
         filtersSelected.value = false
         
