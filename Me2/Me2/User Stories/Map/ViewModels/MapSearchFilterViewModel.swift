@@ -134,6 +134,11 @@ class MapSearchFilterViewModel {
             if filtersData.value.contains(where: { $0.key == filter.key }) {
                 selectedFilters.append(i)
             }
+            if filter == .nearby {
+                if filtersData.value.contains(where: { $0.key == "latitude" }) {
+                    selectedFilters.append(i)
+                }
+            }
         }
         
         if let filter = filtersData.value.first(where: { $0.key == "tag_ids" }) {
@@ -176,7 +181,6 @@ class MapSearchFilterViewModel {
         default:
             break
         }
-        
         
         filtersSelected.value = selectedFilters.count > 0
     }

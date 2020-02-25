@@ -8,4 +8,13 @@
 
 class Location {
     static var my = CLLocation()
+    
+    // calculate distance from my location in km with 1 item after point
+    static func distance(from location: CLLocation) -> Double {
+        let distance = my.distance(from: location)
+        
+        let distanceInkm = Double(Int(distance/100)) / 10
+        
+        return distanceInkm
+    }
 }
