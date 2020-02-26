@@ -14,7 +14,7 @@ import MapKit
 import Cartography
 import OneSignal
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
     var collectionView: UICollectionView!
     let searchContainerView = UIView()
     let searchBar: SearchBar = {

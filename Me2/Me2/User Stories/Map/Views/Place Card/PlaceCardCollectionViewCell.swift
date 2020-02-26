@@ -54,7 +54,7 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
             ratingView.isHidden = true
         }
         
-        configureAvalabilityView(with: place.workingHours)
+//        configureAvalabilityView(with: place.workingHours)
         configureRoomInfo(with: place.roomInfo)
     }
     

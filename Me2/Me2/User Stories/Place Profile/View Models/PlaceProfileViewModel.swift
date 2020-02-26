@@ -43,6 +43,8 @@ class PlaceProfileViewModel {
     
     var dataLoaded = false
     
+    var isFollowed: Dynamic<Bool> = Dynamic(false)
+    
     init(place: Place) {
         self.place = place
         pageToShow = Dynamic(.info)
@@ -106,6 +108,57 @@ class PlaceProfileViewModel {
     
     func numberOfSections() -> Int {
         return (dataLoaded) ? 2 : 0
+    }
+    
+    func followPlace() {
+        isFollowed.value = !isFollowed.value
+        
+        followPressed(status: isFollowed.value) { [weak self] (status, message) in
+            switch status {
+            case .ok:
+                break
+            default:
+                self?.isFollowed.value = !(self?.isFollowed.value)!
+            }
+        }
+    }
+    
+    private func followPressed(status: Bool, completion: ResponseBlock?) {
+        status ? addToFavourite(completion: completion) : removeFromFavourite(completion: completion)
+    }
+    
+    private func addToFavourite(completion: ResponseBlock?) {
+        let url = Network.core + "/place/\(place.id ?? 0)/add_favourite/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success( _):
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
+    }
+    
+    private func removeFromFavourite(completion: ResponseBlock?) {
+        let url = Network.core + "/place/\(place.id ?? 0)/remove_favourite/"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .success( _):
+                    
+                    completion?(.ok, "")
+                    
+                case .failure(let error):
+                    print(error)
+                    completion?(.fail, "")
+                }
+        }
     }
     
     private let placeInfoURL = Network.core + "/place/"

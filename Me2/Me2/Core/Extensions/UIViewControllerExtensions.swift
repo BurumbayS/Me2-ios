@@ -79,12 +79,13 @@ extension UIViewController {
     }
     
     func safeAreaSize() -> CGSize {
-        var height = CGFloat()
+        var height = UIApplication.shared.statusBarFrame.height
         
         if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
-            height = tabBarHeight + (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
-        } else {
-            height = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
+            height += tabBarHeight
+        }
+        if let navBarHeight = self.navigationController?.navigationBar.frame.height {
+            height += navBarHeight
         }
         
         return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - height)
