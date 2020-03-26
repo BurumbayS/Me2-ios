@@ -355,12 +355,9 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if viewModel.isMyLocationVisible.value {
-            tappedPinInRadius(marker: marker)
-        } else {
-            mapView.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 16.5))
-            tappedSinglePlacePin(atIndex: Int(marker.title!)!)
-        }
+        guard viewModel.isMyLocationVisible.value  else { return false }
+            
+        tappedPinInRadius(marker: marker)
         
         return true
     }
@@ -371,6 +368,21 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
             mapView.animate(toZoom: 15.0)
             hideCollectionView()
         }
+    }
+    
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+        return false
+    }
+    
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap clusterItem: GMUClusterItem) -> Bool {
+        guard let cluster = clusterItem as? ClusterItem else { return false }
+        
+        guard !viewModel.isMyLocationVisible.value else { return false }
+        
+        mapView.animate(to: GMSCameraPosition(latitude: cluster.position.latitude, longitude: cluster.position.longitude, zoom: 16.5))
+        tappedSinglePlacePin(atIndex: cluster.id)
+        
+        return true
     }
 }
 

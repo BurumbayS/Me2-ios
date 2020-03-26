@@ -1077,11 +1077,10 @@
 		DD5653D822F4B3C7003A67C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDC1853A233498CD0052C371 /* Map */,
 				DD97CB65235996B1002291CA /* Place Card */,
 				DDF69EE7232B807E00377796 /* Filter */,
 				DDF69EE6232B806F00377796 /* Search */,
-				DDC1853A233498CD0052C371 /* Map */,
-				DD345CDB23FAC12B000836FC /* ClusterItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1469,6 +1468,7 @@
 				DD5653D222F44FB2003A67C3 /* MapViewController.swift */,
 				DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */,
 				DD345CDD23FAC31E000836FC /* MapClusteringExtension.swift */,
+				DD345CDB23FAC12B000836FC /* ClusterItem.swift */,
 				DDC1853B2334E94B0052C371 /* LabelsView.swift */,
 				DD97CB662359DB72002291CA /* PulsingLayer.swift */,
 				DDF69EDD232A15C600377796 /* MapConfig.json */,
@@ -2452,7 +2452,7 @@
 			baseConfigurationReference = 38987799EB551EDBA6B7702E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2461,6 +2461,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2474,7 +2475,7 @@
 			baseConfigurationReference = FA1FDE4A691C48A23CD6A467 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9M296R855U;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -2483,6 +2484,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2626,7 +2628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
@@ -2653,7 +2655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
