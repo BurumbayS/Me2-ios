@@ -42,6 +42,7 @@ class PlaceTableViewCell: UITableViewCell {
         addPlaceView.isHidden = (cellType == .toAdd) ? false : true
         addButton.isHidden = added
         addedLabel.isHidden = !added
+        distanceLabel.text = "\(Location.distance(from: CLLocation(latitude: place.latitude, longitude: place.longitute)))"
         
         self.addPressHandler = onAdd
     }

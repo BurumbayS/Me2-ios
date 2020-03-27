@@ -9,22 +9,34 @@
 import UIKit
 import Cartography
 
-class PlaceProfileViewController: UIViewController {
+class PlaceProfileViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var topBarView: UIView!
     
     var viewModel: PlaceProfileViewModel!
     
     var lastContentOffset: CGFloat = 0
     var collectionViewCellheight: CGFloat = 0
     
+    let followButton = FollowButton.instanceFromNib()
+    var followBtnSize = ConstraintGroup()
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .default
+    }
+    
+    var didLayoutSubviews: Bool = false {
+        didSet {
+            if self.didLayoutSubviews && !oldValue {
+                self.viewModel.isFollowed.value = self.viewModel.place.isFavourite
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -33,6 +45,7 @@ class PlaceProfileViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCellHeight(_:)), name: .updateCellheight, object: nil)
         
         fetchData()
+        setupTopBar()
         configureNavBar()
         configureCollectionView()
         configureCollectionCellDefaultHeight()
@@ -58,16 +71,18 @@ class PlaceProfileViewController: UIViewController {
         viewModel.pageToShow.bind { [unowned self] (page) in
             self.configureActionButton()
         }
+        
+        viewModel.isFollowed.bind { [weak self] (isFollowed) in
+            switch isFollowed {
+            case true:
+                self?.updateFollowBtnSize(with: 38, and: 38)
+            case false:
+                self?.updateFollowBtnSize(with: 38, and: 142)
+            }
+        }
     }
     
     private func configureActionButton() {
-        if viewModel.placeStatus == .not_registered {
-            self.actionButton.setTitle("", for: .normal)
-            self.actionButton.isHidden = true
-            
-            return
-        }
-        
         actionButton.drawShadow(color: UIColor.gray.cgColor, forOpacity: 1, forOffset: CGSize(width: 0, height: 0), radius: 3)
         
         switch viewModel.pageToShow.value {
@@ -76,7 +91,7 @@ class PlaceProfileViewController: UIViewController {
             self.actionButton.alpha = 1.0
             self.actionButton.backgroundColor = Color.red
             self.actionButton.setTitle("Забронировать столик", for: .normal)
-            self.actionButton.isHidden = false
+            self.actionButton.isHidden = viewModel.placeStatus == .not_registered
             
         case .reviews:
             
@@ -108,8 +123,67 @@ class PlaceProfileViewController: UIViewController {
         navItem.rightBarButtonItem = rightItem
     }
     
+    private func setupTopBar() {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "custom_back_button"), for: .normal)
+        backButton.addTarget(self, action: #selector(goBack), for: .touchDown)
+        
+        topBarView.addSubview(backButton)
+        constrain(backButton, self.topBarView) { btn, view in
+            btn.left == view.left + 17
+            btn.centerY == view.centerY
+            btn.width == 38
+            btn.height == 38
+        }
+        
+        //Share button
+        let shareView = UIView()
+        shareView.layer.cornerRadius = 19
+        shareView.backgroundColor = UIColor(red: 71/255, green: 71/255, blue: 71/255, alpha: 0.9)
+        
+        let shareButton = UIButton()
+        shareButton.setImage(UIImage(named: "share_icon"), for: .normal)
+        shareButton.addTarget(self, action: #selector(sharePlace), for: .touchDown)
+        shareView.addSubview(shareButton)
+        constrain(shareButton, shareView) { btn, view in
+            btn.centerX == view.centerX
+            btn.centerY == view.centerY
+            btn.width == 16
+            btn.height == 22
+        }
+        
+        self.topBarView.addSubview(shareView)
+        constrain(shareView, self.topBarView) { share, view in
+            share.right == view.right - 17
+            share.centerY == view.centerY
+            share.height == 38
+            share.width == 38
+        }
+        
+        //Follow button
+        followButton.configure(with: viewModel.isFollowed)
+        followButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(followPlace)))
+        self.topBarView.addSubview(followButton)
+        constrain(followButton, shareView, self.topBarView) { btn, share, view in
+            btn.right == share.left - 16
+            btn.centerY == view.centerY
+        }
+        constrain(followButton, replace: followBtnSize) { btn in
+            btn.height == 38
+            btn.width == 142
+        }
+    }
+    
+    @objc private func goBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func sharePlace() {
         self.addActionSheet(titles: ["Личным сообщением","Другие соц.сети"], actions: [sharePlaceInApp, sharePlaceViaSocial], styles: [.default, .default])
+    }
+    
+    @objc func followPlace() {
+        viewModel.followPlace()
     }
     
     private func sharePlaceViaSocial() {
@@ -125,8 +199,19 @@ class PlaceProfileViewController: UIViewController {
     private func sharePlaceInApp() {
         let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
         let data = ["place": viewModel.placeJSON.dictionaryObject]
-        vc.viewModel = ShareInAppViewModel(data: data)
+        vc.viewModel = ShareInAppViewModel(data: data as [String : Any])
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    private func updateFollowBtnSize(with height: CGFloat, and width: CGFloat) {
+        constrain(followButton, replace: followBtnSize) { btn in
+            btn.height == height
+            btn.width == width
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func configureCollectionView() {
@@ -261,6 +346,12 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let layout = collectionView.collectionViewLayout as? PlaceProfileCollectionLayout else { return }
+        
+        if collectionView.contentOffset.y > 100 {
+            topBarView.isHidden = true
+        } else {
+            topBarView.isHidden = false
+        }
         
         if collectionView.contentOffset.y > 0 {
             layout.turnPinToVisibleBounds()

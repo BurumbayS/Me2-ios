@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,6 +60,13 @@
                                     <action selector="actionButtonPressed:" destination="5dT-vX-XI3" eventType="touchUpInside" id="Ybs-eW-xVA"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6D-yW-XMD">
+                                <rect key="frame" x="0.0" y="50" width="414" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Eg7-wN-G6P"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -69,11 +74,14 @@
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="GXU-og-6vr"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="JSS-dL-rJh"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="top" secondItem="2gW-ph-Pcn" secondAttribute="top" id="NmM-xr-hrw"/>
+                            <constraint firstItem="k6D-yW-XMD" firstAttribute="top" secondItem="STx-9l-lKX" secondAttribute="top" constant="50" id="POk-Pv-JMQ"/>
+                            <constraint firstItem="k6D-yW-XMD" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="TIn-U8-yJC"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="trailing" secondItem="2gW-ph-Pcn" secondAttribute="trailing" id="cYv-Bf-a23"/>
                             <constraint firstItem="t3Z-f7-7Ud" firstAttribute="leading" secondItem="2gW-ph-Pcn" secondAttribute="leading" id="ewA-J9-JCf"/>
                             <constraint firstItem="2gW-ph-Pcn" firstAttribute="bottom" secondItem="8JJ-2I-Nl8" secondAttribute="bottom" constant="50" id="hsD-du-F6m"/>
                             <constraint firstItem="8JJ-2I-Nl8" firstAttribute="centerX" secondItem="2gW-ph-Pcn" secondAttribute="centerX" id="kYb-dI-shk"/>
                             <constraint firstItem="0KZ-Mj-UgD" firstAttribute="top" secondItem="t3Z-f7-7Ud" secondAttribute="bottom" id="qBM-ve-AXX"/>
+                            <constraint firstItem="2gW-ph-Pcn" firstAttribute="trailing" secondItem="k6D-yW-XMD" secondAttribute="trailing" id="rpJ-gD-25b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2gW-ph-Pcn"/>
                     </view>
@@ -82,6 +90,7 @@
                         <outlet property="collectionView" destination="0KZ-Mj-UgD" id="Rv3-HH-ht6"/>
                         <outlet property="navBar" destination="t3Z-f7-7Ud" id="UJc-3p-Yfl"/>
                         <outlet property="navItem" destination="dxW-xr-wPq" id="CeK-Hg-Tec"/>
+                        <outlet property="topBarView" destination="k6D-yW-XMD" id="7uA-oX-NMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVJ-Hi-sv2" userLabel="First Responder" sceneMemberID="firstResponder"/>

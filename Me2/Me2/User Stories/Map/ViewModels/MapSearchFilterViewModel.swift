@@ -115,6 +115,15 @@ class MapSearchFilterViewModel {
         
         createCells()
         configureFilters()
+        bindDynamics()
+    }
+    
+    private func bindDynamics() {
+        tag_ids.bind { [weak self] (tags) in
+            if tags.count > 0 {
+                self?.filtersSelected.value = true
+            }
+        }
     }
     
     private func createCells() {
@@ -133,6 +142,11 @@ class MapSearchFilterViewModel {
         for (i, filter) in filters.enumerated() {
             if filtersData.value.contains(where: { $0.key == filter.key }) {
                 selectedFilters.append(i)
+            }
+            if filter == .nearby {
+                if filtersData.value.contains(where: { $0.key == "latitude" }) {
+                    selectedFilters.append(i)
+                }
             }
         }
         
@@ -177,12 +191,12 @@ class MapSearchFilterViewModel {
             break
         }
         
-        
         filtersSelected.value = selectedFilters.count > 0
     }
     
     func discardFilters(completion: VoidBlock?) {
         selectedFilters = []
+        tag_ids.value = []
         
         filtersSelected.value = false
         
@@ -211,7 +225,8 @@ class MapSearchFilterViewModel {
                 
             case .nearby:
                 
-                break
+                data.append(FilterData(key: "latitude", value: Location.my.coordinate.latitude))
+                data.append(FilterData(key: "longitude", value: Location.my.coordinate.longitude))
             
             case .high_rating:
                 

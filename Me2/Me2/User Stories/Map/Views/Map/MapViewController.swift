@@ -14,7 +14,7 @@ import MapKit
 import Cartography
 import OneSignal
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
     var collectionView: UICollectionView!
     let searchContainerView = UIView()
     let searchBar: SearchBar = {
@@ -32,6 +32,7 @@ class MapViewController: UIViewController {
     
     var locationManager = CLLocationManager()
     var mapView: GMSMapView!
+    var clusterManager: GMUClusterManager!
     
     var myLocationMarker = GMSMarker()
     var imHereMarker = GMSMarker()
@@ -48,8 +49,8 @@ class MapViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
-        fetchData()
         setUpViews()
+        fetchData()
         configureLocationManager()
         bindViewModel()
         configureCollectionView()
@@ -70,7 +71,7 @@ class MapViewController: UIViewController {
         viewModel.getPlacePins { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.setPins()
+                self?.setUpCLusterManager()
                 self?.showHint()
             case .error:
                 break;
@@ -340,20 +341,23 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
         viewModel.myLocation = locations.last! as CLLocation
     }
     
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        labelsView.updateCoordinates()
+        labelsView.isHidden = false
+    }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        labelsView.isHidden = gesture
+    }
+    
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        //update labels coordinates if there are
-        if labelsView.labels.count > 0 {
-            labelsView.updateCoordinates()
-        }
+        labelsView.isHidden = true
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if viewModel.isMyLocationVisible.value {
-            tappedPinInRadius(marker: marker)
-        } else {
-            mapView.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 16.5))
-            tappedSinglePlacePin(atIndex: Int(marker.title!)!)
-        }
+        guard viewModel.isMyLocationVisible.value  else { return false }
+            
+        tappedPinInRadius(marker: marker)
         
         return true
     }
@@ -364,6 +368,21 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
             mapView.animate(toZoom: 15.0)
             hideCollectionView()
         }
+    }
+    
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+        return false
+    }
+    
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap clusterItem: GMUClusterItem) -> Bool {
+        guard let cluster = clusterItem as? ClusterItem else { return false }
+        
+        guard !viewModel.isMyLocationVisible.value else { return false }
+        
+        mapView.animate(to: GMSCameraPosition(latitude: cluster.position.latitude, longitude: cluster.position.longitude, zoom: 16.5))
+        tappedSinglePlacePin(atIndex: cluster.id)
+        
+        return true
     }
 }
 

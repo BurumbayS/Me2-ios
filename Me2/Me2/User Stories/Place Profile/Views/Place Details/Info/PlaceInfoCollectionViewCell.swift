@@ -115,7 +115,8 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: AdressTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "1.3 км")
+            let location = CLLocation(latitude: viewModel.placeInfo.latitude, longitude: viewModel.placeInfo.longitute)
+            cell.configure(with: viewModel.placeInfo.address1, additionalInfo: viewModel.placeInfo.address2, distance: "\(Location.distance(from: location)) км")
             return cell
             
         case .workTime:
@@ -165,11 +166,14 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             presenterDelegate.present(controller: svc, presntationType: .present, completion: nil)
         case .mail:
             
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([viewModel.placeInfo.email ?? ""])
-            
-            presenterDelegate.present(controller: mail, presntationType: .present, completion: nil)
+            let email = viewModel.placeInfo.email
+            if let url = URL(string: "mailto:\(email!)") {
+              if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+              } else {
+                UIApplication.shared.openURL(url)
+              }
+            }
             
         case .subsidiaries:
             

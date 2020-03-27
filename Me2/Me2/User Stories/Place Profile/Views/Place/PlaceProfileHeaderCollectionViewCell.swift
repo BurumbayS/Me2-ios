@@ -151,7 +151,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     private func setUpViews() {
         setUpWallpaperView()
-        setUpTopBar()
+//        setUpTopBar()
         setUpPlaceHeader()
     }
     
@@ -196,7 +196,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     private func setUpTopBar() {
         let backButton = UIButton()
         backButton.setImage(UIImage(named: "custom_back_button"), for: .normal)
-        backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(goBack), for: .touchDown)
         
         self.contentView.addSubview(backButton)
         constrain(backButton, self.contentView) { btn, view in
@@ -213,7 +213,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         
         let shareButton = UIButton()
         shareButton.setImage(UIImage(named: "share_icon"), for: .normal)
-        shareButton.addTarget(self, action: #selector(shareWithPlace), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareWithPlace), for: .touchDown)
         shareView.addSubview(shareButton)
         constrain(shareButton, shareView) { btn, view in
             btn.centerX == view.centerX

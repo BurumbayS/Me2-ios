@@ -14,7 +14,7 @@ enum EventsListType {
     case AllInOne
 }
 
-class EventsTabViewController: UIViewController {
+class EventsTabViewController: BaseViewController {
 
     var searchBar = SearchBar.instanceFromNib()
     let searchView = UIView()
