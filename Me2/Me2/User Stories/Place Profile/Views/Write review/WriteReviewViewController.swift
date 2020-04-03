@@ -36,6 +36,7 @@ class WriteReviewViewController: UIViewController {
     
     private func configureNavBar() {
         navBar.tintColor = .black
+        navBar.isTranslucent = true
         
         setUpBackBarButton(for: navItem)
         
@@ -48,20 +49,21 @@ class WriteReviewViewController: UIViewController {
     
     @objc private func sendReview() {
         self.resignFirstResponder()
+        self.startLoader()
         
         viewModel.writeReview(with: reviewContent.text, and: ratingView.rating) { [weak self] (status, message) in
             switch status {
             case .ok:
+                self?.stopLoader()
+                
                 self?.thanksView.isHidden = false
                 NotificationCenter.default.post(.init(name: .updateReviews))
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     self?.navigationController?.popViewController(animated: true)
                 })
-            case .error:
-                break
-            case .fail:
-                break
+            case .error, .fail:
+                self?.stopLoader(withStatus: .fail, andText: message, completion: nil)
             }
         }
     }

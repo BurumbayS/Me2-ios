@@ -68,15 +68,16 @@ class MapViewController: BaseViewController {
     }
     
     private func fetchData() {
+        startLoader()
+        
         viewModel.getPlacePins { [weak self] (status, message) in
             switch status {
             case .ok:
+                self?.stopLoader()
                 self?.setUpCLusterManager()
                 self?.showHint()
-            case .error:
-                break;
-            case .fail:
-                break;
+            case .error, .fail:
+                self?.stopLoader(withStatus: .fail, andText: message, completion: nil)
             }
         }
     }

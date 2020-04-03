@@ -76,8 +76,11 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: Any) {
+        startLoader()
         
         viewModel.signUp(with: phoneTextField.text!) { [weak self] (status, message) in
+            self?.stopLoader()
+            
             switch status {
             case .ok:
                 

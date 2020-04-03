@@ -154,7 +154,11 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: Any) {
+        startLoader()
+        
         viewModel.signIn(with: loginTextField.text!, and: passwordTextField.text!) { [weak self] (status, message) in
+            self?.stopLoader()
+            
             switch status {
             case .ok:
                 window.rootViewController = Storyboard.mainTabsViewController()

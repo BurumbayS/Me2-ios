@@ -1099,7 +1099,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipB-Z7-b7Z">
-                                <rect key="frame" x="20" y="108" width="101.5" height="18"/>
+                                <rect key="frame" x="20" y="108" width="102.5" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="fcf-9k-sCM"/>
                                 </constraints>

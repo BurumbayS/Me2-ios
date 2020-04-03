@@ -26,6 +26,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     private func configureViews() {
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
         
+        placeLogoImageView.contentMode = .scaleAspectFill
+        
         backView.layer.cornerRadius = 5
         
         self.drawShadow(color: UIColor.black.cgColor, forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 5)
