@@ -63,9 +63,12 @@ class ChatTabViewController: ListContainedViewController {
     }
     
     private func loadChatsList() {
+        startLoader()
+        
         viewModel.getChatList { [weak self] (status, message) in
             switch status {
             case .ok:
+                self?.stopLoader()
                 
                 if self?.viewModel.chatsList.count ?? 0 > 0 {
                     self?.hideEmptyListStatusLabel()
@@ -74,10 +77,8 @@ class ChatTabViewController: ListContainedViewController {
                     self?.showEmptyListStatusLabel(withText: "У вас пока нет активных чатов")
                 }
                 
-            case .error:
-                break
-            case .fail:
-                break
+            case .error, .fail:
+                self?.stopLoader(withStatus: .fail, andText: message, completion: nil)
             }
         }
     }

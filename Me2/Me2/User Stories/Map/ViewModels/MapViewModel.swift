@@ -61,7 +61,9 @@ class MapViewModel {
             placePins.append(item.place())
         }
         
-        completion?(.ok, "")
+        if placePins.count > 0 {
+            completion?(.ok, "")
+        }
     }
     
     private func updateDB(wtih json: JSON) {

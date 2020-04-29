@@ -201,6 +201,9 @@
 		DDBCD725235458F500384DD5 /* PlaceReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */; };
 		DDBCD72723545A3500384DD5 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD72623545A3500384DD5 /* Review.swift */; };
 		DDBCD72923546A2700384DD5 /* ResponseReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCD72823546A2700384DD5 /* ResponseReviewTableViewCell.swift */; };
+		DDBEC24724379FAF000814C6 /* Loader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBEC24624379FAF000814C6 /* Loader.storyboard */; };
+		DDBEC24924379FE5000814C6 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEC24824379FE5000814C6 /* LoaderViewController.swift */; };
+		DDBEC24B2437B6F2000814C6 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEC24A2437B6F2000814C6 /* WriteReviewViewController.swift */; };
 		DDC18537233378420052C371 /* PlacePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC18536233378420052C371 /* PlacePin.swift */; };
 		DDC1853C2334E94C0052C371 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853B2334E94B0052C371 /* LabelsView.swift */; };
 		DDC185402338E2840052C371 /* SetUpViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */; };
@@ -276,7 +279,6 @@
 		DDE047FD233FA04700E33046 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FC233FA04700E33046 /* Tag.swift */; };
 		DDE04800233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */; };
 		DDE04801233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */; };
-		DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE04803233FD40000E33046 /* WriteReviewViewController.swift */; };
 		DDE048062341D16700E33046 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048052341D16700E33046 /* BookTableViewController.swift */; };
 		DDE048092341D71D00E33046 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048072341D71D00E33046 /* BookingTableViewCell.swift */; };
 		DDE0480E234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0480D234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift */; };
@@ -612,6 +614,9 @@
 		DDBCD724235458F500384DD5 /* PlaceReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReviewsViewModel.swift; sourceTree = "<group>"; };
 		DDBCD72623545A3500384DD5 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DDBCD72823546A2700384DD5 /* ResponseReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseReviewTableViewCell.swift; sourceTree = "<group>"; };
+		DDBEC24624379FAF000814C6 /* Loader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Loader.storyboard; sourceTree = "<group>"; };
+		DDBEC24824379FE5000814C6 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		DDBEC24A2437B6F2000814C6 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WriteReviewViewController.swift; path = "Me2/User Stories/Place Profile/Views/Write review/WriteReviewViewController.swift"; sourceTree = SOURCE_ROOT; };
 		DDC18536233378420052C371 /* PlacePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePin.swift; sourceTree = "<group>"; };
 		DDC1853B2334E94B0052C371 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
 		DDC1853F2338E2840052C371 /* SetUpViewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewsExtension.swift; sourceTree = "<group>"; };
@@ -681,7 +686,6 @@
 		DDE047FC233FA04700E33046 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DDE047FE233FBB7A00E33046 /* EventSliderFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSliderFilterTableViewCell.swift; sourceTree = "<group>"; };
 		DDE047FF233FBB7A00E33046 /* EventSliderFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSliderFilterTableViewCell.xib; sourceTree = "<group>"; };
-		DDE04803233FD40000E33046 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteReviewViewController.swift; path = ../WriteReviewViewController.swift; sourceTree = "<group>"; };
 		DDE048052341D16700E33046 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
 		DDE048072341D71D00E33046 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		DDE0480D234225FC00E33046 /* BookingDateAndTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDateAndTimeTableViewCell.swift; sourceTree = "<group>"; };
@@ -1462,6 +1466,23 @@
 			path = "Additional Block";
 			sourceTree = "<group>";
 		};
+		DDBEC24524379F97000814C6 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				DDBEC24824379FE5000814C6 /* LoaderViewController.swift */,
+				DDBEC24624379FAF000814C6 /* Loader.storyboard */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		DDBEC24C2437B744000814C6 /* Write review */ = {
+			isa = PBXGroup;
+			children = (
+				DDBEC24A2437B6F2000814C6 /* WriteReviewViewController.swift */,
+			);
+			path = "Write review";
+			sourceTree = "<group>";
+		};
 		DDC1853A233498CD0052C371 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1528,6 +1549,7 @@
 		DDC7F22223093FE60067C6C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDBEC24524379F97000814C6 /* Loader */,
 				DDE047F7233E460D00E33046 /* Tags */,
 				DDF69EF82330D1D500377796 /* Custom follow button */,
 				DDF65B2C2303C9B900441035 /* SearchBar */,
@@ -1715,14 +1737,6 @@
 			path = Place;
 			sourceTree = "<group>";
 		};
-		DDE0480B2342255000E33046 /* Write Review */ = {
-			isa = PBXGroup;
-			children = (
-				DDE04803233FD40000E33046 /* WriteReviewViewController.swift */,
-			);
-			path = "Write Review";
-			sourceTree = "<group>";
-		};
 		DDE0480C2342256B00E33046 /* Book Table */ = {
 			isa = PBXGroup;
 			children = (
@@ -1782,9 +1796,9 @@
 		DDF65B342308023900441035 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDBEC24C2437B744000814C6 /* Write review */,
 				DDE04802233FD3E200E33046 /* Place */,
 				DDC7F22B23097B240067C6C7 /* Place Details */,
-				DDE0480B2342255000E33046 /* Write Review */,
 				DDE0480C2342256B00E33046 /* Book Table */,
 			);
 			path = Views;
@@ -2014,6 +2028,7 @@
 				DD5653CF22F32770003A67C3 /* Map.storyboard in Resources */,
 				DDA2809E23AD118700632297 /* DeleteAccountTableViewCell.xib in Resources */,
 				DDCE6EA422F94295006E54D1 /* ContactTableViewCell.xib in Resources */,
+				DDBEC24724379FAF000814C6 /* Loader.storyboard in Resources */,
 				DDA2809523AB46D800632297 /* WaveCollectionViewCell.xib in Resources */,
 				DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */,
 				DD67A75822EF33B200D1D51D /* Assets.xcassets in Resources */,
@@ -2138,7 +2153,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDE04804233FD40000E33046 /* WriteReviewViewController.swift in Sources */,
 				DD5C2255231E7C6400CF66CC /* CreateNewPassViewController.swift in Sources */,
 				DDF7D06B237041300093FF4B /* Room.swift in Sources */,
 				DDA2809723AB871C00632297 /* EventFilterViewModel.swift in Sources */,
@@ -2220,6 +2234,7 @@
 				DD5C222923166E1500CF66CC /* PlaceDescriptionTableViewCell.swift in Sources */,
 				DD2387C623854182005AFBA6 /* MapHintViewController.swift in Sources */,
 				DD2795512391239600B316A6 /* SharedPlaceCollectionViewCell.swift in Sources */,
+				DDBEC24B2437B6F2000814C6 /* WriteReviewViewController.swift in Sources */,
 				DDB465D32344CBCB00EB71B9 /* FavouritePlaceCollectionViewCell.swift in Sources */,
 				DD67A75122EF33B000D1D51D /* AppDelegate.swift in Sources */,
 				DD133B8D23460D3800A5A9A7 /* EditProfileHeaderTableViewCell.swift in Sources */,
@@ -2301,6 +2316,7 @@
 				DD97CB502356E6FA002291CA /* EventCategoriesType.swift in Sources */,
 				DDE047D7233B6FD900E33046 /* EventsSearchViewController.swift in Sources */,
 				DD27954D238FE11100B316A6 /* Contact.swift in Sources */,
+				DDBEC24924379FE5000814C6 /* LoaderViewController.swift in Sources */,
 				DD5C224B231D451200CF66CC /* PlaceDetailCollectionCell.swift in Sources */,
 				DD32402923EC568B008BB4FC /* Realm.swift in Sources */,
 				DD133B8A2346099800A5A9A7 /* EditProfileViewController.swift in Sources */,
@@ -2461,7 +2477,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2484,7 +2500,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2628,7 +2644,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
@@ -2655,7 +2671,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.me2.me2app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Me2/Support/Google Maps Utils/Me2-Bridging-Header.h";
