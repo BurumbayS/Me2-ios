@@ -26,8 +26,8 @@ class MyContactsViewController: UIViewController {
         configureTableView()
         configureSearchBar()
         configureNavBar()
-        fetchData()
         bindDynamics()
+        fetchData()
     }
     
     private func fetchData() {
@@ -100,6 +100,8 @@ class MyContactsViewController: UIViewController {
         navItem.rightBarButtonItem?.isEnabled = true
         
         navItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        setUpBackBarButton(for: navItem)
         
         tableView.reloadData()
     }
