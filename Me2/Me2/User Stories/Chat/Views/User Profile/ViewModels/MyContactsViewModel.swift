@@ -230,7 +230,7 @@ class MyContactsViewModel {
         
         if contacts.count > 0 {
             sections.append(.byLetterContacts)
-             d
+            
             let section = ByLetterContactsSection(letter: letter, contacts: contacts)
             byLetterSections[sections.count - 1] = section
         }
