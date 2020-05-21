@@ -144,7 +144,7 @@ class ChatTabViewController: ListContainedViewController {
             switch status {
             case .ok:
                 
-                self?.loadChatsList()
+//                self?.loadChatsList()
                 if let room = self?.viewModel.newChatRoom {
                     self?.goToChat(room: room)
                 }

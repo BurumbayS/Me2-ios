@@ -28,7 +28,10 @@ class ChatTabViewModel {
                     
                     self.chatsList = []
                     for item in json["data"]["results"].arrayValue {
-                        self.chatsList.append(Room(json: item))
+                        let room = Room(json: item)
+                        if room.lastMessage.uuid != "" {
+                            self.chatsList.append(Room(json: item))
+                        }
                     }
                     
                     completion?(.ok, "")
