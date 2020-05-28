@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListOfAllViewController: UIViewController {
+class ListOfAllViewController: BaseViewController {
 
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!

@@ -40,7 +40,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
         
         eventTypeLabel.text = event.eventType
         followButton.setImage(event.flagImage, for: .normal)
-        eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "placeholder_image"), options: [])
+        eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_wallpaper"), options: [])
         
         layoutIfNeeded()
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
@@ -50,6 +50,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
     
     private func setUpViews() {
         eventImageView.contentMode = .scaleAspectFill
+        eventImageView.image = UIImage(named: "default_place_wallpaper")
         self.contentView.addSubview(eventImageView)
         constrain(eventImageView, self.contentView) { image, view in
             image.left == view.left
