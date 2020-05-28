@@ -129,6 +129,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
             switch status {
             case .ok:
                 break
+//                NotificationCenter.default.post(name: .updateFavouriteEvents, object: nil)
             default:
                 self?.event.isFavourite.value = !(self?.event.isFavourite.value)!
             }

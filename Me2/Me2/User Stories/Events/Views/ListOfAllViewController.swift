@@ -70,7 +70,16 @@ extension ListOfAllViewController: UITableViewDelegate, UITableViewDataSource {
         
             let cell: EventTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(wtih: viewModel.eventsList[indexPath.row])
+            
+            var onFollowPresed: VoidBlock? = nil
+            if viewModel.category == .saved {
+                onFollowPresed = { [weak self] in
+                    self?.viewModel.eventsList.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
+            
+            cell.configure(wtih: viewModel.eventsList[indexPath.row], onFollowPressed: onFollowPresed)
             return cell
         
         case .place:

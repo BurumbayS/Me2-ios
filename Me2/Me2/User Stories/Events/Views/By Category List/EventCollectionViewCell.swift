@@ -24,6 +24,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     var event: Event!
     
     private func configureViews() {
+        layoutIfNeeded()
+        
         eventTypeView.roundCorners([.topRight, .bottomRight], radius: 15, size: CGRect(x: 0, y: 0, width: eventTypeView.frame.width, height: eventTypeView.frame.height))
         
         placeLogoImageView.contentMode = .scaleAspectFill
@@ -56,8 +58,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
     
     private func bindDynamics() {
-        event.isFavourite.bind { [unowned self] (status) in
-            self.updateFlag()
+        event.isFavourite.bind { [weak self] (status) in
+            self?.updateFlag()
         }
     }
     

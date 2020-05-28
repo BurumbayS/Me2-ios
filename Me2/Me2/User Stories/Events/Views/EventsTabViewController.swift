@@ -30,6 +30,8 @@ class EventsTabViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSavedEvents), name: .updateFavouriteEvents, object: nil)
+        
         configureNavBar()
         setUpViews()
         configureTableView()
@@ -48,6 +50,13 @@ class EventsTabViewController: BaseViewController {
     private func getAllEvents() {
         viewModel.getAllEvents { [weak self] (status, message) in
             self?.tableView.reloadSections([0,1], with: .automatic)
+        }
+    }
+    
+    @objc private func updateSavedEvents() {
+        viewModel.loadSavedEvents()
+        if let _ = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
     }
     
