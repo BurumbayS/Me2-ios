@@ -52,8 +52,8 @@ class EventTableViewCell: UITableViewCell {
     }
     
     private func bindDynamics() {
-        event.isFavourite.bind { [unowned self] (status) in
-            self.updateFlag()
+        event.isFavourite.bind { [weak self] (status) in
+            self?.updateFlag()
         }
     }
     

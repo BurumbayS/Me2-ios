@@ -172,13 +172,15 @@ class MapViewController: BaseViewController {
         mapView.clear()
         
         pinsInRadius = []
-        setPins()
+        generateClusterItems()
+//        setPins()
     }
     
     private func showMyLocation() {
         helperView.isHidden = true
         if labelsView != nil { labelsView.isHidden = true }
         
+        hideCluster()
         mapView.clear()
         
         setImHerePin()
@@ -344,7 +346,7 @@ extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         labelsView.updateCoordinates()
-        labelsView.isHidden = false
+        labelsView.isHidden = viewModel.isMyLocationVisible.value
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {

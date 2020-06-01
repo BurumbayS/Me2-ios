@@ -21,6 +21,8 @@ class EventsListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: .updateFavouriteEvents, object: nil)
+        
         setUpViews()
         configureCollectionView()
     }
@@ -68,6 +70,10 @@ class EventsListTableViewCell: UITableViewCell {
             collection.bottom == view.bottom - 20
             collection.height == 216
         }
+    }
+    
+    @objc private func updateList() {
+        self.fetchData()
     }
 }
 
