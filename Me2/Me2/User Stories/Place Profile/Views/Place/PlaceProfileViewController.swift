@@ -31,6 +31,12 @@ class PlaceProfileViewController: BaseViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     var didLayoutSubviews: Bool = false {
         didSet {
             if self.didLayoutSubviews && !oldValue {

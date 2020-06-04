@@ -29,6 +29,9 @@ class ChatTabViewModel {
                     self.chatsList = []
                     for item in json["data"]["results"].arrayValue {
                         let room = Room(json: item)
+                        if room.type == .LIVE {
+                            self.chatsList.append(Room(json: item))
+                        } else
                         if room.lastMessage.uuid != "" {
                             self.chatsList.append(Room(json: item))
                         }
