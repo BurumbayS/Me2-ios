@@ -42,7 +42,7 @@ class EventDescriptionTableViewCell: UITableViewCell {
             desc.top == title.bottom + 12
             desc.leading == title.leading
             desc.trailing == title.trailing
-            desc.bottom == view.bottom
+            desc.bottom == view.bottom - 10
         }
     }
     

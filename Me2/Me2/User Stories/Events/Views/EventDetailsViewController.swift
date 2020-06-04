@@ -79,12 +79,12 @@ class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.event != nil { return 5 } else { return 0 }
+        return viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        switch viewModel.sections[indexPath.row] {
+        case .header:
             
             let cell: EventDetailHeaderTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
@@ -93,21 +93,21 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             }
             return cell
         
-        case 1:
+        case .description:
             
             let cell: EventDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(with: viewModel.event.title, and: viewModel.event.description ?? "")
             return cell
             
-        case 2:
+        case .tags:
             
             let cell: TagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
             cell.configure(tagsType: .unselectable, tagsList: TagsList(items: viewModel.event.tags))
             return cell
             
-        case 3:
+        case .placeLink:
             
             let cell: EventPlaceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
@@ -115,7 +115,7 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
             cell.configure(with: viewModel.event.place)
             return cell
             
-        case 4:
+        case .adress:
             
             let cell: EventAddressTimeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none

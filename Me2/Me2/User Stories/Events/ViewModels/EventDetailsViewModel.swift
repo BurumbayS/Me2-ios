@@ -9,10 +9,19 @@
 import Alamofire
 import SwiftyJSON
 
+enum EventDetailsSection {
+    case header
+    case description
+    case tags
+    case placeLink
+    case adress
+}
+
 class EventDetailsViewModel {
     let eventID: Int
     var event: Event!
     var eventJSON: JSON!
+    var sections = [EventDetailsSection]()
     
     init(eventID: Int) {
         self.eventID = eventID
@@ -29,15 +38,25 @@ class EventDetailsViewModel {
                     let json = JSON(value)
                     
                     self.eventJSON = json["data"]
-                    self.event = Event(json: json["data"]) 
+                    self.event = Event(json: json["data"])
                     
-                    completion?(.ok, "")
+                    self.configureSections(completion: completion)
                     
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion?(.fail, "")
                 }
         }
+    }
+    
+    private func configureSections(completion: ResponseBlock?) {
+        sections.append(.header)
+        sections.append(.description)
+        if (event.tags.count > 0) { sections.append(.tags) }
+        sections.append(.placeLink)
+        sections.append(.adress)
+        
+        completion?(.ok, "")
     }
     
     let eventDetailsURL = Network.core + "/event/"
