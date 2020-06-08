@@ -59,6 +59,7 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.7.0)
   - NVActivityIndicatorView/Presenter (4.7.0)
   - OneSignal (2.10.2)
+  - Pulsator (0.6.0)
   - RangeSeekSlider (1.8.0)
   - Realm (3.17.3):
     - Realm/Headers (= 3.17.3)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - KKPinCodeTextField
   - NVActivityIndicatorView
   - OneSignal (< 3.0, >= 2.6.2)
+  - Pulsator
   - RangeSeekSlider
   - RealmSwift
   - ShimmerSwift
@@ -96,7 +98,7 @@ DEPENDENCIES:
   - SwiftyJWT
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AppAuth
     - Cartography
@@ -126,6 +128,8 @@ SPEC REPOS:
     - SwiftyCrypto
     - SwiftyJSON
     - SwiftyJWT
+  trunk:
+    - Pulsator
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -149,6 +153,7 @@ SPEC CHECKSUMS:
   KKPinCodeTextField: 63a1fb841fd6a412cf664ef64dc065fc6767bd3c
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   OneSignal: 338d72b6fa63e38c4c877295e34575d3f43497ee
+  Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
@@ -158,6 +163,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SwiftyJWT: e46e8457138c6567a1a9ff05a6efc8ef678c1187
 
-PODFILE CHECKSUM: 62e8395cd98b8dce82e6a9d57c67e1e5446dcbe3
+PODFILE CHECKSUM: e977552060cadfaa077ff07cd314c682fe4ded2a
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.9.1

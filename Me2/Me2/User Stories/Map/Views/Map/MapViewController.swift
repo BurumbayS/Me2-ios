@@ -184,7 +184,6 @@ class MapViewController: BaseViewController {
         mapView.clear()
         
         setImHerePin()
-        animatePulsingRadius()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             self.getPlacesInRadius()
@@ -226,6 +225,8 @@ class MapViewController: BaseViewController {
         myLocationMarker.map = nil
         
         mapView.animate(to: GMSCameraPosition(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude, zoom: 16.5))
+        
+        animatePulsingRadius(atPosition: imHereMarker.position)
     }
     
     //MARK: -Animations
@@ -259,21 +260,25 @@ class MapViewController: BaseViewController {
         }
     }
     
-    private func animatePulsingRadius() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        view.layer.cornerRadius = 5
-        view.backgroundColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
-        
+    private func animatePulsingRadius(atPosition pos: CLLocationCoordinate2D) {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        let image = UIImageView(image: UIImage(named: "pulsingRadius"))
+        image.frame = CGRect(x: 5, y: 5, width: 295, height: 295)
+        view.addSubview(image)
+
         let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         pulsingAnimation.duration = 1
         pulsingAnimation.repeatCount = 50
         pulsingAnimation.autoreverses = false
         pulsingAnimation.fromValue = 0
-        pulsingAnimation.toValue = 30
-        
+        pulsingAnimation.toValue = 1
+
+        image.layer.add(pulsingAnimation, forKey: "scale")
         view.layer.add(pulsingAnimation, forKey: "scale")
         
-        pulsingRadius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        
+        pulsingRadius.position = pos
+        pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView
     }
