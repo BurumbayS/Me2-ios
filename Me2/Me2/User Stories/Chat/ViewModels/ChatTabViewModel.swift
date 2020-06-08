@@ -37,11 +37,15 @@ class ChatTabViewModel {
                         }
                     }
                     
-                    completion?(.ok, "")
+                    if json["code"] == 0 {
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, json["message"].stringValue)
+                    }
                     
                 case .failure(_ ):
                     print(JSON(response.data as Any))
-                    completion?(.fail, "")
+                    completion?(.fail, "Server Error")
                 }
         }
     }
