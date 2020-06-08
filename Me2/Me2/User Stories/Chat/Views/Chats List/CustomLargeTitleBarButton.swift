@@ -27,7 +27,7 @@ struct BarButtonConst {
 }
 
 class CustomLargeTitleBarButton: UIView {
-    let button = UIButton()
+    var button = UIButton()
     var buttonPressHandler: VoidBlock?
     
     override init(frame: CGRect) {
