@@ -128,7 +128,7 @@ extension EventDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 {
+        if viewModel.sections[indexPath.row] == .placeLink {
             let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
             vc.viewModel = PlaceProfileViewModel(place: viewModel.event.place)
             navigationController?.pushViewController(vc, animated: true)
