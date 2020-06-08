@@ -271,12 +271,12 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
 //        return [delete, share]
 //    }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        
+//        if editingStyle == .delete {
+//            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = viewModel.chatsList[indexPath.row]
