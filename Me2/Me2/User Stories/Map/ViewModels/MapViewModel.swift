@@ -175,6 +175,10 @@ class MapViewModel {
                     let json = JSON(value)
                     print(json)
                     
+                    if json["code"].intValue == 0 {
+                        UserDefaults().set(uuid, forKey: UserDefaultKeys.enteredRoom.rawValue)
+                    }
+                    
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -191,6 +195,10 @@ class MapViewModel {
                     
                     let json = JSON(value)
                     print(json)
+                    
+                    if json["code"].intValue == 0 {
+                        UserDefaults().removeObject(forKey: UserDefaultKeys.enteredRoom.rawValue)
+                    }
                     
                 case .failure(let error):
                     print(error.localizedDescription)

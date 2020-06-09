@@ -290,6 +290,7 @@
 		DDE0481A2343241300E33046 /* BookingWishesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE048192343241300E33046 /* BookingWishesTableViewCell.swift */; };
 		DDE0481C234329F400E33046 /* AddGuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0481B234329F400E33046 /* AddGuestsViewController.swift */; };
 		DDE0481E2343318F00E33046 /* AddGuestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */; };
+		DDEC415E248F57B80067E791 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEC415D248F57B80067E791 /* UIButtonExtensions.swift */; };
 		DDF65B0C22FD5C1400441035 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */; };
 		DDF65B1022FD5F9400441035 /* UserProfileHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */; };
 		DDF65B1122FD5F9400441035 /* UserProfileHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */; };
@@ -697,6 +698,7 @@
 		DDE048192343241300E33046 /* BookingWishesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingWishesTableViewCell.swift; sourceTree = "<group>"; };
 		DDE0481B234329F400E33046 /* AddGuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsViewController.swift; sourceTree = "<group>"; };
 		DDE0481D2343318F00E33046 /* AddGuestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsViewModel.swift; sourceTree = "<group>"; };
+		DDEC415D248F57B80067E791 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		DDF65B0B22FD5C1400441035 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		DDF65B0E22FD5F9400441035 /* UserProfileHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DDF65B0F22FD5F9400441035 /* UserProfileHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 				DDBCD71E234DBC6500384DD5 /* DateExtension.swift */,
 				DDF7D07A237581970093FF4B /* UINavigationItemExtension.swift */,
 				DD97CB47235574BD002291CA /* UIAlertControllerExtensions.swift */,
+				DDEC415D248F57B80067E791 /* UIButtonExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2418,6 +2421,7 @@
 				DD97CB64235996AB002291CA /* PlacesCollectionViewLayout.swift in Sources */,
 				DD5C224E231D4A8600CF66CC /* PlaceEventsCollectionViewCell.swift in Sources */,
 				DDF69EEB232B86E500377796 /* MapSearchFilterViewModel.swift in Sources */,
+				DDEC415E248F57B80067E791 /* UIButtonExtensions.swift in Sources */,
 				DDE048142342378500E33046 /* BookingPhoneNumberTableViewCell.swift in Sources */,
 				DDF7D05C236C27250093FF4B /* FeedbackViewController.swift in Sources */,
 			);

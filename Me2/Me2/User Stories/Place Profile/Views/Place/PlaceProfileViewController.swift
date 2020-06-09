@@ -202,6 +202,10 @@ class PlaceProfileViewController: BaseViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+    private func goToLiveChat() {
+        PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(viewModel.place.roomInfo?.uuid ?? "")")
+    }
+    
     private func sharePlaceInApp() {
         let vc = Storyboard.ShareInAppViewController() as! ShareInAppViewController
         let data = ["place": viewModel.placeJSON.dictionaryObject]
@@ -254,7 +258,6 @@ class PlaceProfileViewController: BaseViewController {
         Constants.shared.minContentSize = CGSize(width: safeAreaSize().width, height: safeAreaSize().height - 39)
         collectionViewCellheight = Constants.shared.minContentSize.height
     }
-    
     
     @IBAction func actionButtonPressed(_ sender: Any) {
         switch viewModel.pageToShow.value {
@@ -333,7 +336,7 @@ extension PlaceProfileViewController: UICollectionViewDelegate, UICollectionView
         case 0:
         
             let cell: PlaceProfileHeaderCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(place: viewModel.place, viewController: self, onSharePressed: sharePlace)
+            cell.configure(place: viewModel.place, viewController: self, onSharePressed: sharePlace, onLiveChatPressed: goToLiveChat)
             
             return cell
             
