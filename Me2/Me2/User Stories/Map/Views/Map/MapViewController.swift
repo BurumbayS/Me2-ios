@@ -68,7 +68,7 @@ class MapViewController: BaseViewController {
     }
     
     private func fetchData() {
-        startLoader()
+        startLoader(withText: "Идет загрузка карты...")
         
         viewModel.getPlacePins { [weak self] (status, message) in
             switch status {
