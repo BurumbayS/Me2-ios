@@ -27,6 +27,8 @@ class MapViewModel {
     var placePins = [PlacePin]()
     var places = [Place]()
     
+    var updatedPlaces = [JSON]()
+    
     var currentPlaceCardIndex = Dynamic(0)
     var currentLiveRoomUUID = ""
     
@@ -35,17 +37,27 @@ class MapViewModel {
         
         guard shouldUpdateDB() else { return }
         
-        let url = placesURL + "?limit=3000"
+        let url = placesURL + "?limit=500"
+        getPlaces(at: url, completion: completion)
+    }
+    private func getPlaces(at url: String, completion: ResponseBlock?) {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
-            .responseJSON { (response) in
+            .responseJSON { [weak self] (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
+                    for item in json["data"]["results"].arrayValue {
+                        self?.updatedPlaces.append(item)
+                    }
                     
-                    self.updateDB(wtih: json)
-                    
-                    completion?(.ok, "")
+                    let nextUrl = json["data"]["next"].stringValue
+                    if nextUrl == "" {
+                        self?.updateDB()
+                        completion?(.ok, "")
+                    } else {
+                        self?.getPlaces(at: nextUrl, completion: completion)
+                    }
                     
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -66,7 +78,7 @@ class MapViewModel {
         }
     }
     
-    private func updateDB(wtih json: JSON) {
+    private func updateDB() {
         let allPlacePins = RealmAdapter.shared.objects(PlacePinDAO.self)
         try! RealmAdapter.shared.write {
             RealmAdapter.shared.delete(allPlacePins)
@@ -74,7 +86,7 @@ class MapViewModel {
         
         placePins = []
         
-        for item in json["data"]["results"].arrayValue {
+        for item in updatedPlaces {
             let placePin = PlacePin.convert(from: item)
             self.placePins.append(placePin)
             RealmAdapter.write(object: PlacePinDAO.object(fromPlace: placePin))
