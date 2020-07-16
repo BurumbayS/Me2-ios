@@ -60,8 +60,9 @@ class BookTableViewController: UIViewController {
             switch status {
             case .ok:
                 
-                self?.stopLoader(withStatus: .success, andText: "Ваша бронь оформлена", completion: nil)
-                self?.dismiss(animated: true, completion: nil)
+                self?.stopLoader(withStatus: .success, andText: "Ваша бронь оформлена", completion: {
+                    self?.dismiss(animated: true, completion: nil)
+                })
                 
             case .error, .fail:
                 self?.stopLoader(withStatus: .fail, andText: message, completion: nil)
