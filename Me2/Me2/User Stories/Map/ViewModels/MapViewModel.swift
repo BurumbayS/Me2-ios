@@ -34,9 +34,9 @@ class MapViewModel {
     
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         getPlacePinsFromDB(completion: completion)
-        
+
         guard shouldUpdateDB() else { return }
-        
+
         let url = placesURL + "?limit=500"
         getPlaces(at: url, completion: completion)
     }
