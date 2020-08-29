@@ -52,6 +52,7 @@ class EventDetailHeaderTableViewCell: UITableViewCell {
         self.clipsToBounds = true
         
         eventImageView.contentMode = .scaleAspectFill
+        eventImageView.clipsToBounds = true
         eventImageView.image = UIImage(named: "default_place_wallpaper")
         self.contentView.addSubview(eventImageView)
         constrain(eventImageView, self.contentView) { image, view in
