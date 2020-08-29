@@ -30,8 +30,9 @@ class ChangePassViewModel {
                     }
                     
                 case .failure( _):
-                    print(JSON(response.data as Any))
-                    completion?(.fail, "")
+                    let json = JSON(response.data as Any)
+                    print(json)
+                    completion?(.fail, json["message"].stringValue)
                 }
         }
     }
