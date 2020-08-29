@@ -296,6 +296,10 @@ class ChatViewController: ListContainedViewController {
         viewModel.sendMessage(ofType: .WAVE)
     }
     
+    private func waveBack() {
+        viewModel.sendMessage(ofType: .WAVE)
+    }
+    
     private func takePhotoVideo() {
         imagePicker.sourceType = .camera
         imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
@@ -415,7 +419,7 @@ extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .WAVE:
             
             let cell: WaveCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(message: message, secondParticipantName: viewModel.room.getSecondParticipant().username, onWaveBack: self.wave, onBlockUser: nil)
+            cell.configure(message: message, secondParticipantName: viewModel.room.getSecondParticipant().username, onWaveBack: self.waveBack, onBlockUser: nil)
             return cell
 
         default:
