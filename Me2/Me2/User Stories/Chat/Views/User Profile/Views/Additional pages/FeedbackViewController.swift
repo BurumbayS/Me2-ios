@@ -52,14 +52,17 @@ class FeedbackViewController: UIViewController {
     }
     
     @objc private func sendFeedback() {
+        startLoader()
         viewModel.sendFeedback(withText: textView.text) { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.navigationController?.popViewController(animated: true)
-            case .error:
-                break
-            case .fail:
-                break
+                self?.stopLoader(withStatus: .success, andText: "Отзыв принят", completion: {
+                    self?.navigationController?.popViewController(animated: true)
+                })
+            case .error, .fail:
+                self?.stopLoader(withStatus: .fail, andText: "Ошибка сети", completion: {
+                    self?.textView.text = ""
+                })
             }
         }
     }
