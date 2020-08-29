@@ -29,7 +29,7 @@ class PlaceReviewTableViewCell: UITableViewCell {
     }
     
     func configure(with review: Review) {
-        avatarImageView.kf.setImage(with: URL(string: review.user.avatar ?? ""), placeholder: UIImage(named: "sample_avatar"), options: [])//image = UIImage(named: "sample_avatar")
+        avatarImageView.kf.setImage(with: URL(string: review.user.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])//image = UIImage(named: "sample_avatar")
         usernameLabel.text = review.user.username ?? ""
         ratingView.rating = review.rating
         dateLabel.text = "15 мин"
