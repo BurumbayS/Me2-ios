@@ -21,7 +21,7 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
         clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
         
         // Generate and add random items to the cluster manager.
-        generateClusterItems(rendererr: renderer)
+        generateClusterItems()
 
         // Call cluster() after items have been added to perform the clustering
         // and rendering on map.
@@ -29,15 +29,28 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
         clusterManager.setDelegate(self, mapDelegate: self)
     }
     
-    func generateClusterItems(rendererr: GMUClusterRenderer) {
+    func generateClusterItems() {
         for (i, item) in viewModel.placePins.enumerated() {
-            let clusterItem = ClusterItem(position: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), name: item.name, icon: item.logo, id: i)
+            let clusterItem = ClusterItem(position: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), name: item.name, icon: item.logo, id: i, placeID: item.id)
             clusterManager.add(clusterItem)
         }
     }
     
+    func hideCluster() {
+        labelsView.isHidden = true
+        clusterManager.clearItems()
+    }
+    
     func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
-//        print(mapView.camera.zoom)
+        let cluster = marker.userData as? GMUCluster
+        if let items = cluster?.items {
+            for item in items {
+                if let marker = item as? ClusterItem {
+                    labelsView.labels[marker.placeID]?.isHidden = true
+                    labelsView.labelToShow[marker.placeID] = false
+                }
+            }
+        }
     }
     
     func renderer(_ renderer: GMUClusterRenderer, markerFor object: Any) -> GMSMarker? {
@@ -50,6 +63,13 @@ extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelega
             iconView.kf.setImage(with: URL(string: model.icon ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
             marker.iconView = iconView
             marker.title = "\(model.id!)"
+            
+            if let overlapped = labelsView.labelOverlapped[model.placeID], !overlapped {
+                labelsView.labels[model.placeID]?.isHidden = false
+            } else {
+                labelsView.labels[model.placeID]?.isHidden = true
+            }
+            labelsView.labelToShow[model.placeID] = true
             
             return marker
         }

@@ -97,6 +97,8 @@ class ChatTabViewController: ListContainedViewController {
         search.searchBar.delegate = self
         search.searchBar.placeholder = "Поиск"
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        search.obscuresBackgroundDuringPresentation = false
+       
         navigationItem.searchController = search
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -144,7 +146,7 @@ class ChatTabViewController: ListContainedViewController {
             switch status {
             case .ok:
                 
-                self?.loadChatsList()
+//                self?.loadChatsList()
                 if let room = self?.viewModel.newChatRoom {
                     self?.goToChat(room: room)
                 }
@@ -195,8 +197,17 @@ class ChatTabViewController: ListContainedViewController {
 
 extension ChatTabViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        newChatButton.button.isHidden = false
         viewModel.searchActivated = false
         tableView.reloadSections([0], with: .automatic)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        newChatButton.button.isHidden = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        newChatButton.button.isHidden = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -260,12 +271,12 @@ extension ChatTabViewController: UITableViewDelegate, UITableViewDataSource, UIS
 //        return [delete, share]
 //    }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//        if editingStyle == .delete {
+//            self.addActionSheet(titles: ["Очистить чат", "Удалить чат"], actions: [clearChat, deleteChat], styles: [.default, .destructive])
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = viewModel.chatsList[indexPath.row]

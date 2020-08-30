@@ -19,4 +19,6 @@ enum UserDefaultKeys: String {
     case firstLaunch
     case seenNotifications
     case lastDbUpdate
+    case savedEvents
+    case enteredRoom
 }

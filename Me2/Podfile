@@ -27,6 +27,7 @@ target 'Me2' do
   pod 'NVActivityIndicatorView'
   pod 'OneSignal', '>= 2.6.2', '< 3.0'
   pod 'RealmSwift'
+  pod 'Pulsator'
 end
 
 target 'OneSignalNotificationServiceExtension' do

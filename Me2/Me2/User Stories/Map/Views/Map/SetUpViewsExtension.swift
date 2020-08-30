@@ -11,23 +11,23 @@ import Cartography
 import GoogleMaps
 
 extension MapViewController {
-    func setPins() {
-        labelsView.configure(with: viewModel.placePins, on: mapView)
-        
-        for (i, place) in viewModel.placePins.enumerated() {
-            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-            let point = mapView.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
-            marker.zIndex = Int32(17 * Int(point.x * 100))
-            let iconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            iconView.contentMode = .scaleAspectFit
-            iconView.layer.cornerRadius = 15
-            iconView.clipsToBounds = true
-            iconView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
-            marker.iconView = iconView
-            marker.title = "\(i)"
-            marker.map = mapView
-        }
-    }
+//    func setPins() {
+//        labelsView.configure(with: viewModel.placePins, on: mapView)
+//        
+//        for (i, place) in viewModel.placePins.enumerated() {
+//            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+//            let point = mapView.projection.point(for: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
+//            marker.zIndex = Int32(17 * Int(point.x * 100))
+//            let iconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//            iconView.contentMode = .scaleAspectFit
+//            iconView.layer.cornerRadius = 15
+//            iconView.clipsToBounds = true
+//            iconView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_pin"), options: [])
+//            marker.iconView = iconView
+//            marker.title = "\(i)"
+//            marker.map = mapView
+//        }
+//    }
     
     func setUpViews() {
         setUpMap()
@@ -38,6 +38,7 @@ extension MapViewController {
         setUpSearchBar()
         setUpImHereButton()
         setUpFilterButton()
+        prepareElements()
 //        setUpHelperView()
     }
     
@@ -220,5 +221,33 @@ extension MapViewController {
         let vc = Storyboard.mapHintViewController()
         vc.modalPresentationStyle = .custom
         present(vc, animated: false, completion: nil)
+    }
+    
+    private func prepareElements() {
+        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        radius.radius = viewModel.radius
+        radius.strokeColor = .clear
+        radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        let image = UIImageView(image: UIImage(named: "pulsingRadius"))
+        image.frame = CGRect(x: 5, y: 5, width: 295, height: 295)
+        view.addSubview(image)
+
+        let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
+        pulsingAnimation.duration = 1
+        pulsingAnimation.repeatCount = 50
+        pulsingAnimation.autoreverses = false
+        pulsingAnimation.fromValue = 0
+        pulsingAnimation.toValue = 1
+
+        image.layer.add(pulsingAnimation, forKey: "scale")
+        view.layer.add(pulsingAnimation, forKey: "scale")
+
+        pulsingRadius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
+        pulsingRadius.iconView = view
+        pulsingRadius.map = mapView
+        pulsingRadius.map = nil
     }
 }

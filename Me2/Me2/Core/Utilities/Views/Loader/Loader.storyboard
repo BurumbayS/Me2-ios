@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,39 +11,19 @@
         <array key="Roboto-Medium.ttf">
             <string>Roboto-Medium</string>
         </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Loader View Controller-->
         <scene sceneID="TJ9-Cf-GsQ">
             <objects>
-                <viewController storyboardIdentifier="LoaderViewController" id="LhF-Ui-rQH" customClass="LoaderViewController" customModule="Me2_Business" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoaderViewController" id="LhF-Ui-rQH" customClass="LoaderViewController" customModule="Me2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aJh-rI-nV4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwR-UL-lVS">
-                                <rect key="frame" x="167" y="363" width="80" height="80"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55H-ov-hcZ" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="5Xd-V8-Qjc"/>
-                                    <constraint firstItem="55H-ov-hcZ" firstAttribute="top" secondItem="SwR-UL-lVS" secondAttribute="top" constant="10" id="RNt-WM-o5H"/>
-                                    <constraint firstAttribute="height" constant="80" id="S9r-MS-Xkn"/>
-                                    <constraint firstAttribute="bottom" secondItem="55H-ov-hcZ" secondAttribute="bottom" constant="10" id="YGP-gz-zMe"/>
-                                    <constraint firstItem="55H-ov-hcZ" firstAttribute="leading" secondItem="SwR-UL-lVS" secondAttribute="leading" constant="10" id="eBk-h2-IN2"/>
-                                    <constraint firstAttribute="trailing" secondItem="55H-ov-hcZ" secondAttribute="trailing" constant="10" id="hwI-3l-qRK"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-HJ-0q7">
                                 <rect key="frame" x="72" y="352" width="270" height="102"/>
                                 <subviews>
@@ -86,6 +66,43 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwR-UL-lVS">
+                                <rect key="frame" x="167" y="363" width="80" height="80"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55H-ov-hcZ" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="eny-MU-u8u"/>
+                                            <constraint firstAttribute="width" constant="60" id="rae-AS-Z05"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIK-Cv-Km8">
+                                        <rect key="frame" x="10" y="75" width="60" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Cf6-RO-YvI"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="lWe-CU-bm2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jIK-Cv-Km8" secondAttribute="bottom" constant="5" id="Jhy-Dm-cNU"/>
+                                    <constraint firstItem="55H-ov-hcZ" firstAttribute="top" secondItem="SwR-UL-lVS" secondAttribute="top" constant="10" id="RNt-WM-o5H"/>
+                                    <constraint firstItem="jIK-Cv-Km8" firstAttribute="leading" secondItem="SwR-UL-lVS" secondAttribute="leading" constant="10" id="eCb-Kq-2ca"/>
+                                    <constraint firstItem="55H-ov-hcZ" firstAttribute="centerX" secondItem="SwR-UL-lVS" secondAttribute="centerX" id="lji-5J-ZlA"/>
+                                    <constraint firstItem="jIK-Cv-Km8" firstAttribute="top" secondItem="55H-ov-hcZ" secondAttribute="bottom" constant="5" id="rJ3-m0-u0b"/>
+                                    <constraint firstAttribute="trailing" secondItem="jIK-Cv-Km8" secondAttribute="trailing" constant="10" id="sb7-29-mDO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -99,6 +116,7 @@
                     <connections>
                         <outlet property="failIcon" destination="w1P-03-gCQ" id="uMi-nB-WFq"/>
                         <outlet property="loader" destination="55H-ov-hcZ" id="eWa-ma-OUU"/>
+                        <outlet property="loaderLabel" destination="jIK-Cv-Km8" id="jSJ-3b-1t6"/>
                         <outlet property="loaderView" destination="SwR-UL-lVS" id="f55-o9-xaY"/>
                         <outlet property="statusLabel" destination="xar-r4-4aB" id="h6X-Hz-akT"/>
                         <outlet property="statusView" destination="2K1-HJ-0q7" id="3XA-9q-A4x"/>

@@ -148,14 +148,14 @@ extension ContactsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
         
-        if viewModel.searchActivated {
-            viewModel.contactSelectionHandler?(viewModel.searchResults[indexPath.row].user2.id)
-        } else {
-            let contact = viewModel.byLetterSections[indexPath.section].contacts[indexPath.row]
-            viewModel.contactSelectionHandler?(contact.user2.id)
+        dismiss(animated: true) {
+            if self.viewModel.searchActivated {
+                self.viewModel.contactSelectionHandler?(self.viewModel.searchResults[indexPath.row].user2.id)
+            } else {
+                let contact = self.viewModel.byLetterSections[indexPath.section].contacts[indexPath.row]
+                self.viewModel.contactSelectionHandler?(contact.user2.id)
+            }
         }
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 

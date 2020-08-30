@@ -80,6 +80,22 @@ class PlaceInfoCollectionViewCell: PlaceDetailCollectionCell {
             table.bottom == view.bottom
         }
     }
+    
+    private func writeToAdmin() {
+        parentVC.startLoader()
+        viewModel.writeToPlaceAdmin { [weak self] (room, errorMessage) in
+            
+            if room != nil {
+                self?.parentVC.stopLoader()
+                
+                let vc = Storyboard.chatViewController() as! ChatViewController
+                vc.viewModel = ChatViewModel(room: room!)
+                self?.parentVC.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self?.parentVC.stopLoader(withStatus: .fail, andText: "Не удалось перейти к чату с администратором", completion: nil)
+            }
+        }
+    }
 }
 
 extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
@@ -108,7 +124,7 @@ extension PlaceInfoCollectionViewCell: UITableViewDelegate, UITableViewDataSourc
             
             let cell: PlaceContactsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.selectionStyle = .none
-            cell.configure(with: viewModel.placeInfo.phone, and: viewModel.placeInfo.instagram, on: parentVC)
+            cell.configure(with: viewModel.placeInfo.phone, and: viewModel.placeInfo.instagram, onChatPressed: writeToAdmin, on: parentVC)
             return cell
             
         case .address:

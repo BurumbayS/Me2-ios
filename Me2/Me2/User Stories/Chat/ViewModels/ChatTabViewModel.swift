@@ -28,14 +28,24 @@ class ChatTabViewModel {
                     
                     self.chatsList = []
                     for item in json["data"]["results"].arrayValue {
-                        self.chatsList.append(Room(json: item))
+                        let room = Room(json: item)
+                        if room.type == .LIVE {
+                            self.chatsList.append(Room(json: item))
+                        } else
+                        if room.lastMessage.uuid != "" {
+                            self.chatsList.append(Room(json: item))
+                        }
                     }
                     
-                    completion?(.ok, "")
+                    if json["code"] == 0 {
+                        completion?(.ok, "")
+                    } else {
+                        completion?(.error, json["message"].stringValue)
+                    }
                     
                 case .failure(_ ):
                     print(JSON(response.data as Any))
-                    completion?(.fail, "")
+                    completion?(.fail, "Server Error")
                 }
         }
     }

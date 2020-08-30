@@ -28,12 +28,12 @@ class ChatTableViewCell: UITableViewCell {
         switch roomInfo.type {
         case .SIMPLE, .SERVICE:
             
-            simpleChatNameLabel.text = roomInfo.name
+            simpleChatNameLabel.text = (roomInfo.type == .SIMPLE) ? roomInfo.name : roomInfo.place.name
             simpleChatLastMessage.text = getLastMessageString(from: roomInfo.lastMessage)
             
             simpleChatContextView.isHidden = false
             liveChatContextView.isHidden = true
-        
+            
         case .LIVE:
             
             placeNameLabel.text = roomInfo.name

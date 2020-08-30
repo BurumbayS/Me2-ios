@@ -30,6 +30,7 @@ class SignInViewModel {
                         UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
                         UserDefaults().set(id, forKey: UserDefaultKeys.userID.rawValue)
                         UserDefaults().set(json["data"]["user"].rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                        UserDefaults().set(json["data"]["user"]["favourite_events"].rawString(), forKey: UserDefaultKeys.savedEvents.rawValue)
                         
                         completion?(.ok, "")
                         
@@ -67,6 +68,7 @@ class SignInViewModel {
                         UserDefaults().set(token, forKey: UserDefaultKeys.token.rawValue)
                         UserDefaults().set(id, forKey: UserDefaultKeys.userID.rawValue)
                         UserDefaults().set(json["data"]["user"].rawString(), forKey: UserDefaultKeys.userInfo.rawValue)
+                        UserDefaults().set(json["data"]["user"]["favourite_events"].rawString(), forKey: UserDefaultKeys.savedEvents.rawValue)
                         
                         completion?(.ok, "")
                         

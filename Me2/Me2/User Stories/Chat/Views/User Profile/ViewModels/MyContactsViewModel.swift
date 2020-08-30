@@ -228,6 +228,13 @@ class MyContactsViewModel {
             contacts.append(contact)
         }
         
+        if contacts.count > 0 {
+            sections.append(.byLetterContacts)
+            
+            let section = ByLetterContactsSection(letter: letter, contacts: contacts)
+            byLetterSections[sections.count - 1] = section
+        }
+        
         self.updateContactsList.value = true
     }
 }

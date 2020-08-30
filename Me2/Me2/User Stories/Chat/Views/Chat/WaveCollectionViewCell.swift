@@ -56,4 +56,8 @@ class WaveCollectionViewCell: UICollectionViewCell {
         
         return attributedString
     }
+    
+    @IBAction func waveBackPressed(_ sender: Any) {
+        waveBackHandler?()
+    }
 }

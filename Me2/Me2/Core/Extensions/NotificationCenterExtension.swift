@@ -14,4 +14,5 @@ extension Notification.Name {
     static let updateCellheight = Notification.Name("updateCellheight")
     static let updateReviews = Notification.Name("updateReviews")
     static let openChatOnPush = Notification.Name("openChatOnPush")
+    static let updateFavouriteEvents = Notification.Name("updateFavouriteEvents")
 }

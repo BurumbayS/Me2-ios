@@ -51,14 +51,19 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func savePressed(_ sender: Any) {
         guard fieldsAreCorrect() else { return }
         
+        startLoader()
         viewModel.updatePassword(password:currentPasswordTextField.text!, with: newPasswordTextField.text!) { [weak self] (status, message) in
             switch status {
             case .ok:
-                self?.navigationController?.popViewController(animated: true)
-            case .error:
-                break
-            case .fail:
-                break
+                self?.stopLoader(withStatus: .success, andText: "Пароль успешно изменен", completion: {
+                    self?.navigationController?.popViewController(animated: true)
+                })
+            case .error, .fail:
+                self?.stopLoader(withStatus: .fail, andText: message, completion: {
+                    self?.currentPasswordTextField.text = ""
+                    self?.newPasswordTextField.text = ""
+                    self?.confirmPasswordTextField.text = ""
+                })
             }
         }
     }

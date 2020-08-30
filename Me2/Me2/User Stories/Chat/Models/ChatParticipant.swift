@@ -9,10 +9,10 @@
 import SwiftyJSON
 
 class ChatParticipant {
-    let id: Int
-    let avatar: String
-    let fullName: String
-    let username: String
+    var id: Int
+    var avatar: String
+    var fullName: String
+    var username: String
     
     init(json: JSON) {
         id = json["id"].intValue

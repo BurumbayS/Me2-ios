@@ -41,8 +41,11 @@ class Event {
     var date_type: DateType!
     var tags = [String]()
     var isFavourite: Dynamic<Bool>
+    var json = JSON()
     
     init(json: JSON) {
+        self.json = json
+        
         id = json["id"].intValue
         title = json["name"].stringValue
         description = json["description"].stringValue
@@ -62,6 +65,10 @@ class Event {
         
         bindDynamics()
     }
+    
+//    func toJSON() -> JSON {
+//        
+//    }
     
     private func bindDynamics() {
         isFavourite.bindAndFire({ (status) in
@@ -119,7 +126,17 @@ class Event {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
-                case .success( _):
+                case .success(let value):
+                    
+                    self.json["is_favourite"] = true
+     
+                    if let savedEventsString = UserDefaults().object(forKey: UserDefaultKeys.savedEvents.rawValue) as? String {
+                        var json = JSON(parseJSON: savedEventsString)
+                        json.arrayObject?.append(self.json)
+                        
+                        UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.savedEvents.rawValue)
+                        NotificationCenter.default.post(name: .updateFavouriteEvents, object: nil)
+                    }
                     
                     completion?(.ok, "")
                     
@@ -136,7 +153,24 @@ class Event {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
-                case .success( _):
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    print(json)
+                    
+                    if let savedEventsString = UserDefaults().object(forKey: UserDefaultKeys.savedEvents.rawValue) as? String {
+                        var json = JSON(parseJSON: savedEventsString)
+                        
+                        for (i, event) in json.arrayValue.enumerated() {
+                            if event["id"].intValue == self.json["id"].intValue {
+                                json.arrayObject?.remove(at: i)
+                                break
+                            }
+                        }
+                        
+                        UserDefaults().set(json.rawString(), forKey: UserDefaultKeys.savedEvents.rawValue)
+                        NotificationCenter.default.post(name: .updateFavouriteEvents, object: nil)
+                    }
                     
                     completion?(.ok, "")
                     

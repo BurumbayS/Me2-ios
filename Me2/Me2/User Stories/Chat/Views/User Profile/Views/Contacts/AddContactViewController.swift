@@ -37,12 +37,13 @@ class AddContactViewController: UIViewController {
         viewModel.parentVC = self
         
         viewModel.contactsSynchronized.bind { [weak self] (value) in
-            self?.viewModel.actionTypes = [.inviteFriend]
-            self?.tableView.reloadSections([0], with: .none)
-            
-            self?.viewModel.sections.append(.synchronizedContacts)
-            let indexSet = IndexSet(arrayLiteral: (self?.viewModel.sections.count)! - 1)
-            self?.tableView.insertSections(indexSet, with: .fade)
+            if ((self?.viewModel.synchronizedUsers.count)! > 0) {
+                self?.viewModel.sections.append(.synchronizedContacts)
+                let indexSet = IndexSet(arrayLiteral: (self?.viewModel.sections.count)! - 1)
+                self?.tableView.insertSections(indexSet, with: .fade)
+            } else {
+                self?.showInfoAlert(title: "Упс!", message: "Никто из списка ваших контактов не зарегестрирован в Me2", onAccept: {})
+            }
         }
         
 //        viewModel.updateSearchResults.bind { [weak self] (_) in

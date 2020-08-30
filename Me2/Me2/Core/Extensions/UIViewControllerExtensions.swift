@@ -92,8 +92,9 @@ extension UIViewController {
         return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - height)
     }
     
-    func startLoader() {
+    func startLoader(withText text: String = "") {
         loader.modalPresentationStyle = .custom
+        loader.loaderText = text
         present(loader, animated: false, completion: nil)
     }
     

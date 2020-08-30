@@ -14,6 +14,7 @@ class LabelsView: UIView {
     var map: GMSMapView!
     var labels = [Int: UILabel]()
     var labelOverlapped = [Int: Bool]()
+    var labelToShow = [Int: Bool]()
     var labelSample = UILabel()
     
     func configure(with places: [PlacePin], on map: GMSMapView) {
@@ -108,62 +109,109 @@ class LabelsView: UIView {
         let sortedByX = labels.values.sorted { $0.frame.origin.x > $1.frame.origin.x }
         updateLabels(labels: sortedByX)
         
-        let sortedByY = labels.values.sorted { $0.frame.origin.y > $1.frame.origin.y }
-        updateLabels(labels: sortedByY)
+//        let sortedByY = labels.values.sorted { $0.frame.origin.y > $1.frame.origin.y }
+//        updateLabels(labels: sortedByY)
         
         showNotOverlappedLabels()
     }
     
     private func showNotOverlappedLabels() {
         for label in labels {
-            if !labelOverlapped[label.key]! { label.value.isHidden = false } //else { label.isHidden = true }
+            if label.value.text == "Pinseria by Parmigiano Group" {
+                
+            }
+            if !labelOverlapped[label.key]! {
+                if let showLabel = labelToShow[label.key] {
+                    label.value.isHidden = !showLabel
+                } else {
+                    label.value.isHidden = false
+                }
+            }
         }
     }
     
     private func updateLabels(labels: [UILabel]) {
         guard labels.count > 0 else { return }
         
-        var l = 0
-        var r = 0
-        while (true) {
-            r += 1
-            
-            if r == labels.count { break }
-            
-            let label1 = labels[l]
-            let label2 = labels[r]
-            
-            let x1 = label1.frame.origin.x
-            let x2 = label2.frame.origin.x
-            let y1 = label1.frame.origin.y
-            let y2 = label2.frame.origin.y
-            let width1 = label1.frame.width
-            let width2 = label2.frame.width
-            let height1 = label1.frame.height
-            let height2 = label2.frame.height
-            
-            if x2 <= x1 && x2 + width2 >= x1 && y2 - height2 <= y1 && y2 >= y1 && !labelOverlapped[label1.tag]! {
-                label2.isHidden = true
-                labelOverlapped[label2.tag] = true
-                continue
+        for i in 0..<labels.count-1 {
+            for j in i+1..<labels.count {
+                if labels[i].text == "Pinseria by Parmigiano Group" && labels[j].text == "Starbucks Coffee" {
+                    
+                }
+                
+                if doOverlapp(label1: labels[i], label2: labels[j]) {
+                    labels[j].isHidden = true
+                    labelOverlapped[labels[j].tag] = true
+                }
             }
-            if x2 <= x1 && x2 + width2 >= x1 && y1 - height1 <= y2 && y1 >= y2 && !labelOverlapped[label1.tag]! {
-                label2.isHidden = true
-                labelOverlapped[label2.tag] = true
-                continue
-            }
-            if y1 >= y2 && y1 - height1 <= y2 && x1 <= x2 && x1 + width1 >= x2 && !labelOverlapped[label1.tag]! {
-                label2.isHidden = true
-                labelOverlapped[label2.tag] = true
-                continue
-            }
-            if y1 >= y2 && y1 - height1 <= y2 && x2 <= x1 && x2 + width2 >= x1 && !labelOverlapped[label1.tag]! {
-                label2.isHidden = true
-                labelOverlapped[label2.tag] = true
-                continue
-            }
- 
-            l = r
         }
+//        var l = 0
+//        var r = 0
+//        while (true) {
+//            r += 1
+//
+//            if r == labels.count { break }
+//
+//            let label1 = labels[l]
+//            let label2 = labels[r]
+//
+//            let x1 = label1.frame.origin.x
+//            let x2 = label2.frame.origin.x
+//            let y1 = label1.frame.origin.y
+//            let y2 = label2.frame.origin.y
+//            let width1 = label1.frame.width
+//            let width2 = label2.frame.width
+//            let height1 = label1.frame.height
+//            let height2 = label2.frame.height
+//
+//            if x2 <= x1 && x2 + width2 >= x1 && y2 - height2 <= y1 && y2 >= y1 && !labelOverlapped[label1.tag]! {
+//                label2.isHidden = true
+//                labelOverlapped[label2.tag] = true
+//                continue
+//            }
+//            if x2 <= x1 && x2 + width2 >= x1 && y1 - height1 <= y2 && y1 >= y2 && !labelOverlapped[label1.tag]! {
+//                label2.isHidden = true
+//                labelOverlapped[label2.tag] = true
+//                continue
+//            }
+//            if y1 >= y2 && y1 - height1 <= y2 && x1 <= x2 && x1 + width1 >= x2 && !labelOverlapped[label1.tag]! {
+//                label2.isHidden = true
+//                labelOverlapped[label2.tag] = true
+//                continue
+//            }
+//            if y1 >= y2 && y1 - height1 <= y2 && x2 <= x1 && x2 + width2 >= x1 && !labelOverlapped[label1.tag]! {
+//                label2.isHidden = true
+//                labelOverlapped[label2.tag] = true
+//                continue
+//            }
+//
+//            l = r
+//        }
+    }
+    
+    func doOverlapp(label1: UILabel, label2: UILabel) -> Bool {
+        let x1 = label1.frame.origin.x
+        let x2 = label2.frame.origin.x
+        let y1 = label1.frame.origin.y
+        let y2 = label2.frame.origin.y
+        let width1 = label1.frame.width
+        let width2 = label2.frame.width
+        let height1 = label1.frame.height
+        let height2 = label2.frame.height
+       
+        if x1 <= x2 && x1 + width1 >= x2 && y1 >= y2 && y1 - height1 <= y2 && !labelOverlapped[label1.tag]! {
+            return true
+        }
+        if x1 <= x2 && x1 + width1 >= x2 && y2 >= y1 && y2 - height2 <= y1 && !labelOverlapped[label1.tag]! {
+            return true
+        }
+        if x2 <= x1 && x2 + width2 >= x1 && y2 >= y1 && y2 - height2 <= y1 && !labelOverlapped[label1.tag]! {
+            return true
+        }
+        if x2 <= x1 && x2 + width2 >= x1 && y1 >= y2 && y1 - height1 <= y2 && !labelOverlapped[label1.tag]! {
+            return true
+        }
+        
+       return false
     }
 }

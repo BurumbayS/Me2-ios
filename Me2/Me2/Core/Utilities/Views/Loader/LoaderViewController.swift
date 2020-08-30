@@ -23,8 +23,11 @@ class LoaderViewController: UIViewController {
     @IBOutlet weak var successIcon: UIImageView!
     @IBOutlet weak var failIcon: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var loaderLabel: UILabel!
     
     var loadingCompletionHandler: VoidBlock?
+    
+    var loaderText = ""
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -36,6 +39,7 @@ class LoaderViewController: UIViewController {
         super.viewWillAppear(animated)
         
         loader.startAnimating()
+        loaderLabel.text = loaderText
     }
     
     override func viewDidLoad() {
@@ -46,6 +50,8 @@ class LoaderViewController: UIViewController {
 
     private func configureViews() {
         statusView.alpha = 0
+        
+        loaderLabel.text = loaderText
         
         loaderView.isHidden = false
         loader.color = .darkGray

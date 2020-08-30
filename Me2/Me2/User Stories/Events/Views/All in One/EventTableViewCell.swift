@@ -22,6 +22,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     var event: Event!
+    var followButtonHandler: VoidBlock?
     
     private func configureViews() {
         layoutIfNeeded()
@@ -34,8 +35,9 @@ class EventTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
     }
     
-    func configure(wtih event: Event) {
+    func configure(wtih event: Event, onFollowPressed: VoidBlock? = nil) {
         self.event = event
+        self.followButtonHandler = onFollowPressed
         
         placeLogoImageView.kf.setImage(with: URL(string: event.place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
         eventImageView.kf.setImage(with: URL(string: event.imageURL ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
@@ -50,8 +52,8 @@ class EventTableViewCell: UITableViewCell {
     }
     
     private func bindDynamics() {
-        event.isFavourite.bind { [unowned self] (status) in
-            self.updateFlag()
+        event.isFavourite.bind { [weak self] (status) in
+            self?.updateFlag()
         }
     }
     
@@ -61,7 +63,7 @@ class EventTableViewCell: UITableViewCell {
         event.changeFavouriteStatus { [weak self] (status, message) in
             switch status {
             case .ok:
-                break
+                self?.followButtonHandler?()
             default:
                 self?.event.isFavourite.value = !(self?.event.isFavourite.value)!
             }

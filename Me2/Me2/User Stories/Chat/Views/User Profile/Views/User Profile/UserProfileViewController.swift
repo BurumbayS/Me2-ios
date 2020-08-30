@@ -9,7 +9,7 @@
 import UIKit
 import Cartography
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: BaseViewController {
 
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var navBar: UINavigationBar!

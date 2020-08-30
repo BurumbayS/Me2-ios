@@ -58,7 +58,7 @@ class EventsSearchViewModel {
         let url = searchEventsURL + "\(subStr)" + "&tag_ids=\(tagIDsToString())"
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
-        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.prettyPrinted, headers: Network.getHeaders()).validate()
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, encoding: JSONEncoding.prettyPrinted, headers: Network.getAuthorizedHeaders()).validate()
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):

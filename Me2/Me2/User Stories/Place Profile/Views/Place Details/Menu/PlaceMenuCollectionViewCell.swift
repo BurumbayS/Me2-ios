@@ -31,6 +31,7 @@ class PlaceMenuCollectionViewCell: PlaceDetailCollectionCell {
     }
     
     private func setUpViews() {
+        self.contentView.backgroundColor = .white
         placeholderLabel.textColor = .darkGray
         placeholderLabel.font = UIFont(name: "Roboto-Regular", size: 17)
         placeholderLabel.text = "Пока нет меню"

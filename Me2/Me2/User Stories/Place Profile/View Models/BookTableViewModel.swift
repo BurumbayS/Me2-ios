@@ -73,18 +73,25 @@ class BookTableViewModel {
             }
         }
         
-        Alamofire.request(bookTableURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders()).validate()
+        Alamofire.request(bookTableURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Network.getAuthorizedHeaders())
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
                     
                     let json = JSON(value)
                     print(json)
-                    completion?(.ok, "")
+                    
+                    let code = json["code"].intValue
+                    switch code {
+                    case 0:
+                        completion?(.ok, "")
+                    default:
+                        completion?(.error, json["message"].stringValue)
+                    }
                     
                 case .failure(let error):
                     print(error.localizedDescription)
-                    completion?(.error, "")
+                    completion?(.error, "Ошибка связи или аутентификации ")
                 }
         }
     }

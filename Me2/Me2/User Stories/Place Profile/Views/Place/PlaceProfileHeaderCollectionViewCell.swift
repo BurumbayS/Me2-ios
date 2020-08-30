@@ -32,6 +32,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     var placeStatus: PlaceStatus!
     
     var shareActionHandler: VoidBlock?
+    var liveChatActionHandler: VoidBlock?
     
     var viewModel: PlaceHeaderViewModel!
     
@@ -60,8 +61,9 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         didLayoutSubviews = true
     }
     
-    func configure(place: Place, viewController: UIViewController, onSharePressed: VoidBlock?) {
+    func configure(place: Place, viewController: UIViewController, onSharePressed: VoidBlock?, onLiveChatPressed: VoidBlock?) {
         self.shareActionHandler = onSharePressed
+        self.liveChatActionHandler = onLiveChatPressed
         self.viewModel = PlaceHeaderViewModel(place: place)
         
         parentVC = viewController
@@ -112,6 +114,12 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     private func configureRoomInfo(with data: RoomInfo?) {
         guard let roomInfo = data else { return }
+        
+        if let uuid = UserDefaults().object(forKey: UserDefaultKeys.enteredRoom.rawValue) as? String, uuid == roomInfo.uuid {
+            liveChatButton.enable()
+        } else {
+            liveChatButton.disable()
+        }
         
         let limit = (roomInfo.usersCount > 3) ? 3 : roomInfo.usersCount
         
@@ -296,6 +304,7 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
         liveChatButton.layer.borderColor = Color.blue.cgColor
         liveChatButton.layer.borderWidth = 2.0
         liveChatButton.layer.cornerRadius = 5
+        liveChatButton.addTarget(self, action: #selector(goToLiveChat), for: .touchUpInside)
         view.addSubview(liveChatButton)
         constrain(liveChatButton, titleLabel, view) { btn, title, view in
             btn.left == title.right + 10
@@ -323,6 +332,10 @@ class PlaceProfileHeaderCollectionViewCell: UICollectionViewCell {
             view.bottom == superview.bottom
             view.height == 110
         }
+    }
+    
+    @objc private func goToLiveChat() {
+        liveChatActionHandler?()
     }
     
     @objc private func goBack() {

@@ -47,12 +47,12 @@ class EventsTabViewModel {
         }
     }
     
-    private func loadSavedEvents() {
-        if let userInfoString = UserDefaults().object(forKey: UserDefaultKeys.userInfo.rawValue) as? String {
-            let json = JSON(parseJSON: userInfoString)
+    func loadSavedEvents() {
+        if let savedEventsString = UserDefaults().object(forKey: UserDefaultKeys.savedEvents.rawValue) as? String {
+            let json = JSON(parseJSON: savedEventsString)
             
             savedEvents = []
-            for item in json["data"]["user"]["favourite_events"].arrayValue {
+            for item in json.arrayValue {
                 savedEvents.append(Event(json: item))
             }
         }

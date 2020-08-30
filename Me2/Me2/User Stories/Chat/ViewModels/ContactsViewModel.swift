@@ -75,6 +75,11 @@ class ContactsViewModel {
             contacts.append(contact)
         }
         
+        if contacts.count > 0 {
+            let byLetterSection = ByLetterContactsSection(letter: letter.uppercased(), contacts: contacts)
+            byLetterSections.append(byLetterSection)
+        }
+        
         completion?(.ok, "")
     }
     
