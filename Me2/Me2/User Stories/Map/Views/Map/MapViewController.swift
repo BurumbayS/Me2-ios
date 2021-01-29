@@ -9,7 +9,6 @@
 import UIKit
 import GooglePlaces
 import GoogleMaps
-import CoreLocation
 import MapKit
 import Cartography
 import OneSignal
@@ -51,10 +50,10 @@ class MapViewController: BaseViewController {
         
         setUpViews()
         fetchData()
-        configureLocationManager()
         bindViewModel()
         configureCollectionView()
         subscribeForNotifications()
+        self.viewModel.viewDidLoad()
     }
 
     private func subscribeForNotifications() {
@@ -116,7 +115,17 @@ class MapViewController: BaseViewController {
                 self?.hideMyLocation()
             }
         }
-        
+
+        viewModel.error.bindAndFire { [weak self] message in
+            guard let `self` = self,
+                  let message = message else {
+                return
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.showInfoAlert(title: "Ошибка".localized, message: message, onAccept: nil)
+            }
+        }
+
         viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
             self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
             self?.viewModel.enterNewRoom(at: index)
@@ -124,16 +133,6 @@ class MapViewController: BaseViewController {
     }
     
     //MARK: -Configures
-    private func configureLocationManager() {
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-    }
     
     private func configureCollectionView() {
         collectionView.delegate = self
@@ -151,16 +150,24 @@ class MapViewController: BaseViewController {
     }
     
     @objc func imereButtonPressed() {
-        viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
+        if let locationManagerError = self.viewModel.locationManagerError {
+            self.showDefaultAlert(title: "Ошибка", message: locationManagerError, doneAction: {
+                guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+                UIApplication.shared.open(settingURL)
+            }, onCancel: nil)
+        } else {
+            viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
+        }
     }
     
     @objc func locateMe() {
-        myLocationMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        myLocationMarker.position = self.viewModel.clLocationCoordinate2D
         myLocationMarker.icon = UIImage(named: "my_location_icon")
         myLocationMarker.appearAnimation = .pop
         myLocationMarker.map = mapView
-        
-        mapView.animate(to: GMSCameraPosition(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude, zoom: 16.5))
+
+        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude,
+                longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
     }
     
     //MARK: -My location actions
@@ -192,8 +199,8 @@ class MapViewController: BaseViewController {
     
     private func showPinsInRadius() {
         pulsingRadius.map = nil
-        
-        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+
+        radius.position = self.viewModel.clLocationCoordinate2D
         radius.radius = viewModel.radius
         radius.strokeColor = .clear
         radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
@@ -217,14 +224,14 @@ class MapViewController: BaseViewController {
     private func setImHerePin() {
         imHereMarker = GMSMarker()
         imHereMarker.zIndex = 100000
-        imHereMarker.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        imHereMarker.position = self.viewModel.clLocationCoordinate2D
         imHereMarker.icon = UIImage(named: "map_marker_icon")
         imHereMarker.appearAnimation = .pop
         imHereMarker.map = mapView
         
         myLocationMarker.map = nil
-        
-        mapView.animate(to: GMSCameraPosition(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude, zoom: 16.5))
+
+        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude, longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
         
         animatePulsingRadius(atPosition: imHereMarker.position)
     }
@@ -343,17 +350,13 @@ class MapViewController: BaseViewController {
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate, GMSMapViewDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-        viewModel.myLocation = locations.last! as CLLocation
-    }
-    
+extension MapViewController: GMSMapViewDelegate {
+
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         labelsView.updateCoordinates()
         labelsView.isHidden = viewModel.isMyLocationVisible.value
     }
-    
+
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         labelsView.isHidden = gesture
     }

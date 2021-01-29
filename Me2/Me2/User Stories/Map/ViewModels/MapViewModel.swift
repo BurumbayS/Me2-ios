@@ -18,28 +18,55 @@ enum ImhereIcon: String {
 }
 
 class MapViewModel {
-    var isMyLocationVisible: Dynamic<Bool> = Dynamic(false)
-    var myLocation = CLLocation() {
-        didSet {
-            Location.my = self.myLocation
-        }
+
+    var places: [Place]
+    var placePins: [PlacePin]
+    var updatedPlaces: [JSON]
+    let error: Dynamic<String?>
+    var currentLiveRoomUUID: String
+    var isMyLocationVisible: Dynamic<Bool>
+    var currentPlaceCardIndex: Dynamic<Int>
+    private let locationManager: LocationManagerInterface
+
+    public var locationManagerError: String? {
+        self.locationManager.statusObservable.value.errorReason
     }
-    var placePins = [PlacePin]()
-    var places = [Place]()
-    
-    var updatedPlaces = [JSON]()
-    
-    var currentPlaceCardIndex = Dynamic(0)
-    var currentLiveRoomUUID = ""
-    
+
+    init(places: [Place] = [],
+         updatedPlaces: [JSON] = [],
+         placePins: [PlacePin] = [],
+         currentLiveRoomUUID: String = "",
+         error: Dynamic<String?> = Dynamic.init(nil),
+         currentPlaceCardIndex: Dynamic<Int> = Dynamic(0),
+         isMyLocationVisible: Dynamic<Bool> = Dynamic(false),
+         locationManager: LocationManagerInterface = AppLocationManager()) {
+
+        self.error = error
+        self.places = places
+        self.placePins = placePins
+        self.updatedPlaces = updatedPlaces
+        self.locationManager = locationManager
+        self.isMyLocationVisible = isMyLocationVisible
+        self.currentLiveRoomUUID = currentLiveRoomUUID
+        self.currentPlaceCardIndex = currentPlaceCardIndex
+        self.viewDidLoad()
+    }
+
+    var clLocationCoordinate2D: CLLocationCoordinate2D {
+        return self.locationManager.locationCoordinate2D()
+    }
+
     func getPlacePins(completion: ((RequestStatus, String) -> ())?) {
         getPlacePinsFromDB(completion: completion)
 
-        guard shouldUpdateDB() else { return }
+        guard shouldUpdateDB() else {
+            return
+        }
 
         let url = placesURL + "?limit=500"
         getPlaces(at: url, completion: completion)
     }
+
     private func getPlaces(at url: String, completion: ResponseBlock?) {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
             .responseJSON { [weak self] (response) in
@@ -58,21 +85,32 @@ class MapViewModel {
                     } else {
                         self?.getPlaces(at: nextUrl, completion: completion)
                     }
-                    
+
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion?(.fail, "")
                 }
-        }
+            }
     }
-    
+
+    func viewDidLoad() {
+        self.locationManager.statusObservable.bind { [weak self] status in
+            self?.error.value = status.errorReason
+        }
+
+        self.locationManager.locationObservable.bind { location in
+            Location.my = location
+        }
+        self.locationManager.startMonitoring()
+    }
+
     private func getPlacePinsFromDB(completion: ResponseBlock?) {
         let placePinDAOs = RealmAdapter.shared.objects(PlacePinDAO.self)
-        
+
         for item in placePinDAOs {
             placePins.append(item.place())
         }
-        
+
         if placePins.count > 0 {
             completion?(.ok, "")
         }
@@ -219,25 +257,18 @@ class MapViewModel {
     }
     
     private func getPlacesInRadiusAsString() -> String {
-        var str = ""
-        
-        for place in placePins {
-            let location = CLLocation(latitude: place.latitude, longitude: place.longitude)
-            if myLocation.distance(from: location) <= 200 {
-                str += "\(place.id ?? 0),"
-            }
-        }
-        
-        if str != "" { str.removeLast() }
-        return str
+        return self.places.filter { [weak self] place in
+                    self?.locationManager.distance(to: .init(latitude: place.latitude, longitude: place.longitute)) ?? 0 <= 200
+                }
+                .compactMap({ $0.id?.description })
+                .joined(separator: ",")
     }
     
     private func sortPlacesByDistance() {
         for place in places {
             let location = CLLocation(latitude: place.latitude, longitude: place.longitute)
-            place.distance = myLocation.distance(from: location)
+            place.distance = self.locationManager.distance(to: location)
         }
-        
         places.sort(by: { $0.distance! < $1.distance! })
     }
     
@@ -245,4 +276,25 @@ class MapViewModel {
     private let roomURL = Network.chat + "/room/"
     
     let radius: CLLocationDistance = 200
+}
+
+
+extension CLAuthorizationStatus {
+    var errorReason: String? {
+        switch self {
+
+        case .notDetermined:
+            return "Пользователь еще не сделал выбор в отношении этого приложения".localized
+        case .restricted:
+            return "Это приложение не авторизовано для использования служб определения местоположения. Из-за активных ограничений на службы определения местоположения пользователь не может изменить этот статус и, возможно, лично не отказывал в авторизации.".localized
+        case .denied:
+            return "Пользователь явно отказал в авторизации для этого приложения, или службы определения местоположения отключены в Настройках"
+        case .authorizedAlways:
+            return nil
+        case .authorizedWhenInUse:
+            return nil
+        @unknown default:
+            return "Приложение не может найти вас на карте".localized
+        }
+    }
 }

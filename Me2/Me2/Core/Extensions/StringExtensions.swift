@@ -45,4 +45,8 @@ extension String {
         
         return false
     }
+
+    var localized: String {
+        NSLocalizedString(self, comment: self)
+    }
 }

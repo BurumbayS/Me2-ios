@@ -28,7 +28,9 @@ class PushNotificationsRouter {
     var data: Any?
     
     func shouldPush(to path: String) {
-        let url = URL(string: path)!
+        guard let url = URL(string: path) else {
+            fatalError("Wrong path of chat")
+        }
         
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         let pathItems = components.path.split(separator: "/")
