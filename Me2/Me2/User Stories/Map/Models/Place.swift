@@ -90,4 +90,8 @@ class Place {
         
         return message
     }
+
+    var location: CLLocation {
+        CLLocation.init(latitude: self.latitude ?? 0, longitude: self.longitute ?? 0)
+    }
 }

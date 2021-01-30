@@ -94,6 +94,7 @@ class MapViewController: BaseViewController {
                         self?.viewModel.isMyLocationVisible.value = true
                     }, onCancel: {
                         self?.viewModel.isMyLocationVisible.value = false
+                    
                     })
                 }
             case .error:

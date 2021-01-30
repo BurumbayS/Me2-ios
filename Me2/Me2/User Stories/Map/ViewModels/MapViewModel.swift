@@ -159,14 +159,12 @@ class MapViewModel {
     
     func getPlacesInRadius(completion: ResponseBlock?) {
         let idList = getPlacesInRadiusAsString()
-        if idList == "" {
+        if idList.isEmpty {
             places = []
             completion?(.ok, "")
-            
-            return 
+        } else {
+            getPlaces(idList: idList, completion: completion)
         }
-        
-        getPlaces(idList: getPlacesInRadiusAsString(), completion: completion)
     }
     
     func getPlaceCardInfo(with id: Int, completion: ResponseBlock?) {
@@ -181,18 +179,14 @@ class MapViewModel {
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
-                    
-                    let json = JSON(value)
-                    self.places = []
-                    for item in json["data"]["results"].arrayValue {
-                        let place = Place(json: item)
-                        self.places.append(place)
-                    }
-                    
-                    self.sortPlacesByDistance()
-                    
+                    self.places = JSON(value)["data"]["results"].arrayValue
+                            .map({ Place(json: $0) })
+                            .map { [weak self] place -> Place in
+                                place.distance = self?.locationManager.distance(to: place.location)
+                                return place
+                            }
+                            .sorted(by: { $0.distance ?? 0 < $1.distance ?? 0 })
                     completion?(.ok, "")
-                    
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion?(.fail, "")
@@ -229,8 +223,8 @@ class MapViewModel {
                         UserDefaults().set(uuid, forKey: UserDefaultKeys.enteredRoom.rawValue)
                     }
                     
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure(let errorR):
+                    self.error.value = errorR.localizedDescription
                 }
         }
     }
@@ -257,25 +251,18 @@ class MapViewModel {
     }
     
     private func getPlacesInRadiusAsString() -> String {
-        return self.places.filter { [weak self] place in
-                    self?.locationManager.distance(to: .init(latitude: place.latitude, longitude: place.longitute)) ?? 0 <= 200
-                }
-                .compactMap({ $0.id?.description })
-                .joined(separator: ",")
+        self.placePins.filter { [weak self] place in
+            guard let distance = self?.locationManager.distance(to: .init(latitude: place.latitude, longitude: place.longitude)) else {
+                return false
+            }
+            return distance < 200
+        }.compactMap({ $0.id?.description }).joined(separator: ",")
     }
-    
-    private func sortPlacesByDistance() {
-        for place in places {
-            let location = CLLocation(latitude: place.latitude, longitude: place.longitute)
-            place.distance = self.locationManager.distance(to: location)
-        }
-        places.sort(by: { $0.distance! < $1.distance! })
-    }
-    
+
     private let placesURL = Network.core + "/place/"
     private let roomURL = Network.chat + "/room/"
-    
-    let radius: CLLocationDistance = 200
+
+    let radius: CLLocationDistance = 1000
 }
 
 
