@@ -78,6 +78,7 @@ struct RoomInfo {
     var avatars: [String]
     
     init(json: JSON) {
+        print(json.description)
         uuid = json["uuid"].stringValue
         usersCount = json["users_count"].intValue
         

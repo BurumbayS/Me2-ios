@@ -12,6 +12,13 @@ enum RequestStatus {
     case ok
     case error
     case fail
+
+}
+
+enum Status<T> {
+    case success(T)
+    case fail(String)
+//    case error(Error)
 }
 
 class Network {

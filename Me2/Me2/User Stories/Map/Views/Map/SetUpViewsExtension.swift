@@ -29,20 +29,7 @@ extension MapViewController {
 //        }
 //    }
     
-    func setUpViews() {
-        setUpMap()
-        setUpMyLocationButton()
-        setUpLabelsView()
-        setUpCollectionView()
-        setUpContainerView()
-        setUpSearchBar()
-        setUpImHereButton()
-        setUpFilterButton()
-        prepareElements()
-//        setUpHelperView()
-    }
-    
-    private func setUpLabelsView() {
+     func setUpLabelsView() {
         labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         labelsView.backgroundColor = .clear
         labelsView.isUserInteractionEnabled = false
@@ -50,7 +37,7 @@ extension MapViewController {
         self.view.addSubview(labelsView)
     }
     
-    private func setUpCollectionView() {
+    func setUpCollectionView() {
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout())
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -68,7 +55,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpMap() {
+    func setUpMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 43.238949, longitude: 76.889709, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
@@ -87,7 +74,7 @@ extension MapViewController {
         self.view = mapView
     }
     
-    private func setUpSearchBar() {
+    func setUpSearchBar() {
         searchBar.configure(with: self, onSearchEnd: searchEnded)
         
         self.view.addSubview(searchBar)
@@ -98,7 +85,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpContainerView() {
+    func setUpContainerView() {
         let viewModel = MapSearchViewModel(searchValue: searchBar.searchValue)
         searchVC.configure(with: viewModel, delegate: self)
         
@@ -121,7 +108,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpImHereButton() {
+    func setUpImHereButton() {
         imhereButton.backgroundColor = .white
         imhereButton.layer.cornerRadius = 18
         imhereButton.addTarget(self, action: #selector(imereButtonPressed), for: .touchUpInside)
@@ -146,7 +133,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpFilterButton() {
+    func setUpFilterButton() {
         filterButton.imageView?.contentMode = .scaleAspectFit
         filterButton.setImage(UIImage(named: "filter_icon"), for: .normal)
         filterButton.addTarget(self, action: #selector(showFilter), for: .touchUpInside)
@@ -162,7 +149,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpHelperView() {
+    func setUpHelperView() {
         helperView.layer.cornerRadius = 10
         helperView.backgroundColor = .white
         helperView.alpha = 0.8
@@ -201,7 +188,7 @@ extension MapViewController {
         }
     }
     
-    private func setUpMyLocationButton() {
+    func setUpMyLocationButton() {
         myLocationButton.setImage(UIImage(named: "my_location_icon"), for: .normal)
         myLocationButton.drawShadow(forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 3)
         myLocationButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
@@ -223,9 +210,9 @@ extension MapViewController {
         present(vc, animated: false, completion: nil)
     }
     
-    private func prepareElements() {
-        radius.position = self.viewModel.clLocationCoordinate2D
-        radius.radius = viewModel.radius
+    func prepareElements() {
+//        radius.position = self.viewModel.clLocationCoordinate2D
+//        radius.radius = viewModel.radius
         radius.strokeColor = .clear
         radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
         
@@ -244,7 +231,7 @@ extension MapViewController {
         image.layer.add(pulsingAnimation, forKey: "scale")
         view.layer.add(pulsingAnimation, forKey: "scale")
 
-        pulsingRadius.position = self.viewModel.clLocationCoordinate2D
+//        pulsingRadius.position = self.viewModel.clLocationCoordinate2D
         pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView

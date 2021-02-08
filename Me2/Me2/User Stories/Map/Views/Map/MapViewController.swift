@@ -13,12 +13,10 @@ import MapKit
 import Cartography
 import OneSignal
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewControllerT<MapViewModel> {
     var collectionView: UICollectionView!
     let searchContainerView = UIView()
-    let searchBar: SearchBar = {
-        return SearchBar.instanceFromNib()
-    }()
+    let searchBar: SearchBar = SearchBar.instanceFromNib()
     let imhereButton = UIButton()
     let imhereIcon = UIImageView()
     let filterButton = UIButton()
@@ -40,99 +38,88 @@ class MapViewController: BaseViewController {
     var radius = GMSCircle()
     
     let searchVC = Storyboard.mapSearchViewController() as! MapSearchViewController
+
+    override func initViewModel() -> MapViewModel {
+        return MapViewModel.init()
+    }
     
-    let viewModel = MapViewModel()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationController?.navigationBar.isHidden = true
-        
-        setUpViews()
-        fetchData()
-        bindViewModel()
-        configureCollectionView()
-        subscribeForNotifications()
-        self.viewModel.viewDidLoad()
+    override func setupView() {
+        self.navigationController?.navigationBar.isHidden = true
+        setUpMap()
+        setUpMyLocationButton()
+        setUpLabelsView()
+        setUpCollectionView()
+        setUpContainerView()
+        setUpSearchBar()
+        setUpImHereButton()
+        setUpFilterButton()
+        prepareElements()
+        self.configureCollectionView()
     }
 
-    private func subscribeForNotifications() {
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            if accepted {
-                OneSignal.setSubscription(true)
-            } else {
-                OneSignal.setSubscription(false)
-            }
-        })
-    }
-    
-    private func fetchData() {
-        startLoader(withText: "Идет загрузка карты...")
-        
-        viewModel.getPlacePins { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                self?.stopLoader()
-                self?.setUpCLusterManager()
-                self?.showHint()
-            case .error, .fail:
-                self?.stopLoader(withStatus: .fail, andText: message, completion: nil)
-            }
-        }
-    }
-    
-    private func getPlacesInRadius() {
-        viewModel.getPlacesInRadius { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                if (self?.viewModel.isMyLocationVisible.value)! && (self?.viewModel.places.count)! > 0 {
-                    self?.showCollectionView()
-                    self?.showPinsInRadius()
-                } else {
-                    self?.viewModel.isMyLocationVisible.value = false
-                    self?.showDefaultAlert(title: "", message: "Возле Вас не обнаружено заведений. Попробуйте снова, когда измените свое местоположение.", doneTitle: "Попробовать снова", cancelTitle: "Отключить \"Я тут\"", doneAction: {
-                        self?.viewModel.isMyLocationVisible.value = true
-                    }, onCancel: {
-                        self?.viewModel.isMyLocationVisible.value = false
-                    
-                    })
-                }
-            case .error:
-                print(message)
-            case .fail:
-                print("Fail")
-            }
-        }
-    }
-    
-    private func bindViewModel() {
-        viewModel.isMyLocationVisible.bind { [weak self] (visible) in
-            self?.animateImhereIcon()
-            
-            if visible {
-                self?.showMyLocation()
-            } else {
-                self?.viewModel.exitAllRooms()
-                self?.hideMyLocation()
-            }
-        }
+//    private func getPlacesInRadius() {
+//        viewModel.getPlacesInRadius { [weak self] (status, message) in
+//            switch status {
+//            case .ok:
+//                if (self?.viewModel.isMyLocationVisible.value)! && (self?.viewModel.places.count)! > 0 {
+//                    self?.showCollectionView()
+//                    self?.с()
+//                } else {
+//                    self?.viewModel.isMyLocationVisible.value = false
+//                    self?.showDefaultAlert(title: "", message: "Возле Вас не обнаружено заведений. Попробуйте снова, когда измените свое местоположение.", doneTitle: "Попробовать снова", cancelTitle: "Отключить \"Я тут\"", doneAction: {
+//                        self?.viewModel.isMyLocationVisible.value = true
+//                    }, onCancel: {
+//                        self?.viewModel.isMyLocationVisible.value = false
+//
+//                    })
+//                }
+//            case .error:
+//                print(message)
+//            case .fail:
+//                print("Fail")
+//            }
+//        }
+//    }
 
-        viewModel.error.bindAndFire { [weak self] message in
-            guard let `self` = self,
-                  let message = message else {
-                return
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.showInfoAlert(title: "Ошибка".localized, message: message, onAccept: nil)
-            }
-        }
-
-        viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
-            self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
-            self?.viewModel.enterNewRoom(at: index)
-        }
+    override func setupViewSubscription() {
+        super.setupViewSubscription()
+//        OneSignal.promptForPushNotifications(userResponse: { accepted in
+//            OneSignal.setSubscription(accepted)
+//        })
+//
+//        viewModel.isMyLocationVisible.bind { [weak self] (visible) in
+//            self?.animateImhereIcon()
+//
+//            if visible {
+//                self?.showMyLocation()
+//            } else {
+//                self?.viewModel.exitAllRooms()
+//                self?.hideMyLocation()
+//            }
+//        }
+//
+//        self.viewModel.locationManager.statusObservable.bind { [weak self] status in
+//            if status.errorReason != nil {
+//                self?.showGeoPositionAlert()
+//            }
+//        }
+//
+//        viewModel.error.bindAndFire { [weak self] message in
+//            guard let `self` = self,
+//                  let message = message else {
+//                return
+//            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                self.showInfoAlert(title: "Ошибка".localized, message: message, onAccept: nil)
+//            }
+//        }
+//
+//        viewModel.currentPlaceCardIndex.bind { [weak self] (index) in
+//            self?.tappedPinInRadius(marker: (self?.pinsInRadius[index])!)
+//            self?.viewModel.enterNewRoom(at: index)
+//        }
     }
-    
+
     //MARK: -Configures
     
     private func configureCollectionView() {
@@ -151,24 +138,38 @@ class MapViewController: BaseViewController {
     }
     
     @objc func imereButtonPressed() {
-        if let locationManagerError = self.viewModel.locationManagerError {
-            self.showDefaultAlert(title: "Ошибка", message: locationManagerError, doneAction: {
-                guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
-                UIApplication.shared.open(settingURL)
-            }, onCancel: nil)
-        } else {
-            viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
-        }
+//        if self.viewModel.locationManagerError != nil {
+//            showGeoPositionAlert()
+//        } else {
+//            viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
+//        }
     }
-    
-    @objc func locateMe() {
-        myLocationMarker.position = self.viewModel.clLocationCoordinate2D
-        myLocationMarker.icon = UIImage(named: "my_location_icon")
-        myLocationMarker.appearAnimation = .pop
-        myLocationMarker.map = mapView
 
-        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude,
-                longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
+//    private func showGeoPositionAlert() {
+//        let alert = UIAlertController.init(title: "Доступ к геолокации запрещён", message: "Пожалуйста, откройте настройки и разрешите Me2 использовать ваше местонахождение", preferredStyle: .alert)
+//        alert.addAction(.init(title: "Настройки", style: .default) { _ in
+//            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+//            UIApplication.shared.open(settingURL)
+//        })
+//
+//        alert.addAction(.init(title: "Закрыть", style: .destructive))
+//
+//
+//        self.present(alert, animated: true)
+//    }
+
+    @objc func locateMe() {
+//        guard let viewModel = self.viewModel else { return
+//            return
+//        }
+//        myLocationMarker.position = viewModel.clLocationCoordinate2D
+//        myLocationMarker.icon = UIImage(named: "my_location_icon")
+//        myLocationMarker.appearAnimation = .pop
+//        myLocationMarker.map = mapView
+//
+//        mapView.animate(to: GMSCameraPosition(latitude: viewModel.clLocationCoordinate2D.latitude,
+//                                              longitude: viewModel.clLocationCoordinate2D.longitude,
+//                                              zoom: 16.5))
     }
     
     //MARK: -My location actions
@@ -184,141 +185,141 @@ class MapViewController: BaseViewController {
 //        setPins()
     }
     
-    private func showMyLocation() {
-        helperView.isHidden = true
-        if labelsView != nil { labelsView.isHidden = true }
-        
-        hideCluster()
-        mapView.clear()
-        
-        setImHerePin()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            self.getPlacesInRadius()
-        })
-    }
+//    private func showMyLocation() {
+//        helperView.isHidden = true
+//        if labelsView != nil { labelsView.isHidden = true }
+//
+//        hideCluster()
+//        mapView.clear()
+//
+//        setImHerePin()
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+//            self.getPlacesInRadius()
+//        })
+//    }
     
-    private func showPinsInRadius() {
-        pulsingRadius.map = nil
-
-        radius.position = self.viewModel.clLocationCoordinate2D
-        radius.radius = viewModel.radius
-        radius.strokeColor = .clear
-        radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
-        radius.map = mapView
-        
-        for (i, place) in viewModel.places.enumerated() {
-            let pin = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitute))
-            pin.icon = UIImage(named: "pin_in_radius")
-            pin.accessibilityHint = "\(i)"
-            pin.map = mapView
-            
-            pinsInRadius.append(pin)
-        }
-        
-        if pinsInRadius.count > 0 {
-            tappedPinInRadius(marker: pinsInRadius[0])
-            viewModel.currentPlaceCardIndex.value = 0
-        }
-    }
+//    private func showPinsInRadius() {
+//        pulsingRadius.map = nil
+//
+//        radius.position = self.viewModel.clLocationCoordinate2D
+//        radius.radius = viewModel.radius
+//        radius.strokeColor = .clear
+//        radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
+//        radius.map = mapView
+//
+//        for (i, place) in viewModel.places.enumerated() {
+//            let pin = GMSMarker(position: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitute))
+//            pin.icon = UIImage(named: "pin_in_radius")
+//            pin.accessibilityHint = "\(i)"
+//            pin.map = mapView
+//
+//            pinsInRadius.append(pin)
+//        }
+//
+//        if pinsInRadius.count > 0 {
+//            tappedPinInRadius(marker: pinsInRadius[0])
+//            viewModel.currentPlaceCardIndex.value = 0
+//        }
+//    }
     
-    private func setImHerePin() {
-        imHereMarker = GMSMarker()
-        imHereMarker.zIndex = 100000
-        imHereMarker.position = self.viewModel.clLocationCoordinate2D
-        imHereMarker.icon = UIImage(named: "map_marker_icon")
-        imHereMarker.appearAnimation = .pop
-        imHereMarker.map = mapView
-        
-        myLocationMarker.map = nil
-
-        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude, longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
-        
-        animatePulsingRadius(atPosition: imHereMarker.position)
-    }
+//    private func setImHerePin() {
+//        imHereMarker = GMSMarker()
+//        imHereMarker.zIndex = 100000
+//        imHereMarker.position = self.viewModel.clLocationCoordinate2D
+//        imHereMarker.icon = UIImage(named: "map_marker_icon")
+//        imHereMarker.appearAnimation = .pop
+//        imHereMarker.map = mapView
+//
+//        myLocationMarker.map = nil
+//
+//        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude, longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
+//
+//        animatePulsingRadius(atPosition: imHereMarker.position)
+//    }
     
     //MARK: -Animations
-    private func animateImhereIcon() {
-        imhereIcon.image = (viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.active.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
-        let height: CGFloat = (viewModel.isMyLocationVisible.value) ? 29 : 24
-        let width: CGFloat = (viewModel.isMyLocationVisible.value) ? 20 : 15
-        
-        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
-            icon.centerX == button.centerX
-            icon.centerY == button.centerY
-            icon.height == height
-            icon.width == width
-        }
-        
-        UIView.animate(withDuration: 0.1) {
-            self.view.layoutIfNeeded()
-        }
-        
-        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
-            icon.centerX == button.centerX
-            icon.centerY == button.centerY
-            icon.height == 20
-            icon.width == 12
-        }
-        
-        UIView.animate(withDuration: 0.1, delay: 0.2, options: .curveEaseIn, animations: {
-            self.view.layoutIfNeeded()
-        }) { (_) in
-            self.imhereIcon.image = (self.viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.plain.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
-        }
-    }
+//    private func animateImhereIcon() {
+//        imhereIcon.image = (viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.active.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
+//        let height: CGFloat = (viewModel.isMyLocationVisible.value) ? 29 : 24
+//        let width: CGFloat = (viewModel.isMyLocationVisible.value) ? 20 : 15
+//
+//        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
+//            icon.centerX == button.centerX
+//            icon.centerY == button.centerY
+//            icon.height == height
+//            icon.width == width
+//        }
+//
+//        UIView.animate(withDuration: 0.1) {
+//            self.view.layoutIfNeeded()
+//        }
+//
+//        constrain(imhereIcon, imhereButton, replace: imhereIconConstraints) { icon, button in
+//            icon.centerX == button.centerX
+//            icon.centerY == button.centerY
+//            icon.height == 20
+//            icon.width == 12
+//        }
+//
+//        UIView.animate(withDuration: 0.1, delay: 0.2, options: .curveEaseIn, animations: {
+//            self.view.layoutIfNeeded()
+//        }) { (_) in
+//            self.imhereIcon.image = (self.viewModel.isMyLocationVisible.value) ? UIImage(named: ImhereIcon.plain.rawValue) : UIImage(named: ImhereIcon.inactive.rawValue)
+//        }
+//    }
     
-    private func animatePulsingRadius(atPosition pos: CLLocationCoordinate2D) {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        let image = UIImageView(image: UIImage(named: "pulsingRadius"))
-        image.frame = CGRect(x: 5, y: 5, width: 295, height: 295)
-        view.addSubview(image)
-
-        let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
-        pulsingAnimation.duration = 1
-        pulsingAnimation.repeatCount = 50
-        pulsingAnimation.autoreverses = false
-        pulsingAnimation.fromValue = 0
-        pulsingAnimation.toValue = 1
-
-        image.layer.add(pulsingAnimation, forKey: "scale")
-        view.layer.add(pulsingAnimation, forKey: "scale")
-        
-        
-        pulsingRadius.position = pos
-        pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
-        pulsingRadius.iconView = view
-        pulsingRadius.map = mapView
-    }
+//    private func animatePulsingRadius(atPosition pos: CLLocationCoordinate2D) {
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+//        let image = UIImageView(image: UIImage(named: "pulsingRadius"))
+//        image.frame = CGRect(x: 5, y: 5, width: 295, height: 295)
+//        view.addSubview(image)
+//
+//        let pulsingAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
+//        pulsingAnimation.duration = 1
+//        pulsingAnimation.repeatCount = 50
+//        pulsingAnimation.autoreverses = false
+//        pulsingAnimation.fromValue = 0
+//        pulsingAnimation.toValue = 1
+//
+//        image.layer.add(pulsingAnimation, forKey: "scale")
+//        view.layer.add(pulsingAnimation, forKey: "scale")
+//
+//
+//        pulsingRadius.position = pos
+//        pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
+//        pulsingRadius.iconView = view
+//        pulsingRadius.map = mapView
+//    }
     
-    private func tappedPinInRadius(marker: GMSMarker) {
-        //Show previous selected marker
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
-            pin.map = mapView
-        }
-        
-        //Move imhere marker to selected position and remove marker on that position
-        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
-            pin.map = nil
-            imHereMarker.position = marker.position
-            
-            let index = Int(pin.accessibilityHint!) ?? 0
-            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
-        }
-    }
+//    private func tappedPinInRadius(marker: GMSMarker) {
+//        //Show previous selected marker
+//        if let pin = pinsInRadius.first(where: { $0.position.latitude == imHereMarker.position.latitude && $0.position.longitude == imHereMarker.position.longitude}) {
+//            pin.map = mapView
+//        }
+//
+//        //Move imhere marker to selected position and remove marker on that position
+//        if let pin = pinsInRadius.first(where: { $0.position.latitude == marker.position.latitude && $0.position.longitude == marker.position.longitude}) {
+//            pin.map = nil
+//            imHereMarker.position = marker.position
+//
+//            let index = Int(pin.accessibilityHint!) ?? 0
+//            collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+//        }
+//    }
     
-    private func tappedSinglePlacePin(atIndex index: Int) {
-        viewModel.getPlaceCardInfo(with: viewModel.placePins[index].id) { [weak self] (status, message) in
-            switch status {
-            case .ok:
-                self?.showCollectionView()
-            case .error:
-                print(message)
-            case .fail:
-                print("Fail")
-            }
-        }
-    }
+//    private func tappedSinglePlacePin(atIndex index: Int) {
+//        viewModel.getPlaceCardInfo(with: viewModel.placePins[index].id) { [weak self] (status, message) in
+//            switch status {
+//            case .ok:
+//                self?.showCollectionView()
+//            case .error:
+//                print(message)
+//            case .fail:
+//                print("Fail")
+//            }
+//        }
+//    }
     
     private func showCollectionView() {
         collectionView.reloadData()
@@ -369,7 +370,7 @@ extension MapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         guard viewModel.isMyLocationVisible.value  else { return false }
             
-        tappedPinInRadius(marker: marker)
+//        tappedPinInRadius(marker: marker)
         
         return true
     }
@@ -392,7 +393,7 @@ extension MapViewController: GMSMapViewDelegate {
         guard !viewModel.isMyLocationVisible.value else { return false }
         
         mapView.animate(to: GMSCameraPosition(latitude: cluster.position.latitude, longitude: cluster.position.longitude, zoom: 16.5))
-        tappedSinglePlacePin(atIndex: cluster.id)
+//        tappedSinglePlacePin(atIndex: cluster.id)
         
         return true
     }
@@ -429,9 +430,9 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
-        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
-        present(controller: vc, presntationType: .push, completion: nil)
+//        let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
+//        vc.viewModel = PlaceProfileViewModel(place: viewModel.places[indexPath.row])
+//        present(controller: vc, presntationType: .push, completion: nil)
     }
 }
 
