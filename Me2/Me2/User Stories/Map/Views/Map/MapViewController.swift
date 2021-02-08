@@ -36,13 +36,13 @@ class MapViewController: BaseViewControllerT<MapViewModel> {
     var pinsInRadius = [GMSMarker]()
     var pulsingRadius = GMSMarker()
     var radius = GMSCircle()
-    
+
     let searchVC = Storyboard.mapSearchViewController() as! MapSearchViewController
 
     override func initViewModel() -> MapViewModel {
         return MapViewModel.init()
     }
-    
+
     override func setupView() {
         self.navigationController?.navigationBar.isHidden = true
         setUpMap()
@@ -83,6 +83,10 @@ class MapViewController: BaseViewControllerT<MapViewModel> {
 
     override func setupViewSubscription() {
         super.setupViewSubscription()
+        self.viewModel.placePins.bind { [weak self] pins in
+            self?.setUpCLusterManager(pins: pins)
+            self?.showHint()
+        }
 //        OneSignal.promptForPushNotifications(userResponse: { accepted in
 //            OneSignal.setSubscription(accepted)
 //        })
@@ -145,19 +149,6 @@ class MapViewController: BaseViewControllerT<MapViewModel> {
 //        }
     }
 
-//    private func showGeoPositionAlert() {
-//        let alert = UIAlertController.init(title: "Доступ к геолокации запрещён", message: "Пожалуйста, откройте настройки и разрешите Me2 использовать ваше местонахождение", preferredStyle: .alert)
-//        alert.addAction(.init(title: "Настройки", style: .default) { _ in
-//            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
-//            UIApplication.shared.open(settingURL)
-//        })
-//
-//        alert.addAction(.init(title: "Закрыть", style: .destructive))
-//
-//
-//        self.present(alert, animated: true)
-//    }
-
     @objc func locateMe() {
 //        guard let viewModel = self.viewModel else { return
 //            return
@@ -181,7 +172,7 @@ class MapViewController: BaseViewControllerT<MapViewModel> {
         mapView.clear()
         
         pinsInRadius = []
-        generateClusterItems()
+        generateClusterItems(pins: [])
 //        setPins()
     }
     

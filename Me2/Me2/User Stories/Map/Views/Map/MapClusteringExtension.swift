@@ -9,33 +9,34 @@
 import UIKit
 
 extension MapViewController: GMUClusterManagerDelegate, GMUClusterRendererDelegate {
-    func setUpCLusterManager() {
-        labelsView.configure(with: viewModel.placePins, on: mapView)
-        
-        let iconGenerator = GMUDefaultClusterIconGenerator(buckets: [10, 20, 50, 100, 200, 500, 1000, 2000, 3000], backgroundColors: [UIColor(stringHex: "0084C5"),UIColor(stringHex: "0096E0"),UIColor(stringHex: "00AAFF"),UIColor(stringHex: "1FB4FF"),UIColor(stringHex: "41BFFF"),UIColor(stringHex: "41BFFF"),UIColor(stringHex: "41BFFF"),UIColor(stringHex: "41BFFF"),UIColor(stringHex: "41BFFF")])
+
+    func setUpCLusterManager(pins: [PlacePin]) {
+        labelsView.configure(with: pins, on: mapView)
+
+        let iconGenerator = GMUDefaultClusterIconGenerator(buckets: [10, 20, 50, 100, 200, 500, 1000, 2000, 3000],
+                backgroundColors: [UIColor(stringHex: "0084C5"), UIColor(stringHex: "0096E0"), UIColor(stringHex: "00AAFF"), UIColor(stringHex: "1FB4FF"), UIColor(stringHex: "41BFFF"), UIColor(stringHex: "41BFFF"), UIColor(stringHex: "41BFFF"), UIColor(stringHex: "41BFFF"), UIColor(stringHex: "41BFFF")])
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
-                                    clusterIconGenerator: iconGenerator)
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
         renderer.delegate = self
-        
+
         clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
-        
+
         // Generate and add random items to the cluster manager.
-        generateClusterItems()
+        generateClusterItems(pins: pins)
 
         // Call cluster() after items have been added to perform the clustering
         // and rendering on map.
         clusterManager.cluster()
         clusterManager.setDelegate(self, mapDelegate: self)
     }
-    
-    func generateClusterItems() {
-        for (i, item) in viewModel.placePins.enumerated() {
+
+    func generateClusterItems(pins: [PlacePin]) {
+        for (i, item) in pins.enumerated() {
             let clusterItem = ClusterItem(position: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), name: item.name, icon: item.logo, id: i, placeID: item.id)
             clusterManager.add(clusterItem)
         }
     }
-    
+
     func hideCluster() {
         labelsView.isHidden = true
         clusterManager.clearItems()

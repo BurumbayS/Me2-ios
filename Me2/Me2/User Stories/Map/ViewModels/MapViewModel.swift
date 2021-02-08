@@ -20,6 +20,7 @@ enum ImhereIcon: String {
 class BaseViewModel {
     var showLoading: Dynamic<String?> = .init(nil)
     var error: Dynamic<String?> = .init(nil)
+    var settingError: Dynamic<(title: String, message: String)?> = Dynamic.init(nil)
     var stopWithStatus: Dynamic<Status<String>> = .init(.success(""))
 
     func viewDidLoad() {
@@ -35,17 +36,16 @@ class MapViewModel: BaseViewModel {
 
 
     var places: [Place]
-    var placePins: [PlacePin]
+    let placePins: Dynamic<[PlacePin]>
     var currentLiveRoomUUID: String
     var isMyLocationVisible: Dynamic<Bool>
     var currentPlaceCardIndex: Dynamic<Int>
 
     let locationManager: LocationManagerInterface
-    private var settingError: Dynamic<String?> = Dynamic.init(nil)
 
     init(places: [Place] = [],
-         placePins: [PlacePin] = [],
          currentLiveRoomUUID: String = "",
+         placePins: Dynamic<[PlacePin]> = .init([]),
          currentPlaceCardIndex: Dynamic<Int> = Dynamic(0),
          isMyLocationVisible: Dynamic<Bool> = Dynamic(false),
          locationManager: LocationManagerInterface = AppLocationManager()) {
@@ -66,10 +66,12 @@ class MapViewModel: BaseViewModel {
         self.locationManager.statusObservable.bind { [weak self] status in
             switch status {
             case .authorized, .authorizedAlways, .authorizedWhenInUse:
-                self?.placePins.removeAll()
+                self?.placePins.value = []
                 self?.loadPlacePins()
             default:
-                self?.settingError.value = status.errorReason
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self?.settingError.value = ("Доступ к геолокации запрещён", "Пожалуйста, откройте настройки и разрешите Me2 использовать ваше местонахождение")
+                }
             }
         }
 
@@ -185,19 +187,24 @@ class MapViewModel: BaseViewModel {
 private extension MapViewModel {
     
     func loadPlacePins() {
-        self.placePins = RealmAdapter.shared.objects(PlacePinDAO.self).map({ $0.place() })
-
-        guard shouldUpdateDB() else {
-            return
-        }
-
+//        self.placePins.value = RealmAdapter.shared.objects(PlacePinDAO.self).map({ $0.place() })
+//
+//        guard shouldUpdateDB() else {
+//            return
+//        }
+        self.showLoading.value = "Загрука данных"
         let url = placesURL + "?limit=500"
         getPlaces(at: url) { [weak self] status in
+            guard let `self` = self else {
+                return
+            }
+            self.showLoading.value = nil
             switch status {
-            case .success:
-                self?.stopWithStatus.value = .success("Данные успешно скачены")
+            case .success(let pins):
+                self.updateDB(place: pins)
+                self.placePins.value = pins + self.placePins.value
             case .fail(let text):
-                self?.error.value = text
+                self.error.value = text
             }
         }
     }
@@ -220,18 +227,36 @@ private extension MapViewModel {
     }
 
     private func getPlaces(at url: String, completion: @escaping (Status<[PlacePin]>) -> Void) {
+        var totalPins: [PlacePin] = []
+        loadPinsOnRecycleCondition(url: url) { [weak self] status in
+            switch status {
+            case .success(let pins):
+                totalPins.append(contentsOf: pins)
+                if pins.isEmpty {
+                    completion(.success(totalPins))
+                }
+            case .fail(let text):
+                completion(.fail(text))
+            }
+        }
+    }
+
+    private func loadPinsOnRecycleCondition(url: String, completion: @escaping (Status<[PlacePin]>) -> ()) -> DataRequest {
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Network.getHeaders())
                 .responseJSON { [weak self] (response) in
-                    guard let `self` = self else { return }
+                    guard let `self` = self else {
+                        return
+                    }
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        self.placePins.append(contentsOf: json["data"]["results"].arrayValue.map({ PlacePin.convert(from: $0) }))
+                        let placePins = json["data"]["results"].arrayValue.map({ PlacePin.convert(from: $0) })
                         let nextURL = json["data"]["next"].stringValue
+                        completion(.success(placePins))
                         if nextURL.isEmpty {
-                            completion(.success(self.placePins))
+                            completion(.success([]))
                         } else {
-                            self.getPlaces(at: nextURL, completion: completion)
+                            self.loadPinsOnRecycleCondition(url: nextURL, completion: completion)
                         }
 
                     case .failure(let error):
@@ -244,11 +269,9 @@ private extension MapViewModel {
         let allPlacePins = RealmAdapter.shared.objects(PlacePinDAO.self)
         try! RealmAdapter.shared.write {
             RealmAdapter.shared.delete(allPlacePins)
+            RealmAdapter.shared.add(pins.map({ PlacePinDAO.object(fromPlace: $0) }))
         }
 
-        placePins.forEach { pin in
-            RealmAdapter.write(object: PlacePinDAO.object(fromPlace: pin))
-        }
         self.updateDBDate()
     }
 
@@ -260,18 +283,6 @@ private extension MapViewModel {
 
         UserDefaults().set(dateFormatter.string(from: date), forKey: UserDefaultKeys.lastDbUpdate.rawValue)
     }
-
-
-//      self.getPlacePins { [weak self] (status, message) in
-//            switch status {
-//            case .ok:
-//                self?.stopLoader()
-//                self?.setUpCLusterManager()
-//                self?.showHint()
-//            case .error, .fail:
-//
-//            }
-//        }
 }
 
 extension CLAuthorizationStatus {

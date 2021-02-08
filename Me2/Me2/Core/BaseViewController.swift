@@ -35,14 +35,25 @@ class BaseViewControllerT<T: BaseViewModel>: BaseViewController {
                 self?.stopLoader()
             }
         }
-        
-        self.viewModel.stopWithStatus.bind {[weak self] status in
-            switch status {
-            case .fail(let text):
-                self?.stopLoader(withStatus: .fail, andText: text, completion: nil)
-            case .success(let text):
-                self?.stopLoader(withStatus: .success, andText: text, completion: nil)
-            }
+
+//        self.viewModel.stopWithStatus.bind {[weak self] status in
+//            switch status {
+//            case .fail(let text):
+//                self?.stopLoader(withStatus: .fail, andText: text, completion: nil)
+//            case .success(let text):
+//                self?.stopLoader(withStatus: .success, andText: text, completion: nil)
+//            }
+//        }
+
+        self.viewModel.settingError.bind {[weak self] tuple in
+            guard let `self` = self, let tuple = tuple else { return }
+            let alert = UIAlertController.init(title: tuple.title, message: tuple.message, preferredStyle: .alert)
+            alert.addAction(.init(title: "Настройки", style: .default) { _ in
+                guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+                UIApplication.shared.open(settingURL)
+            })
+            alert.addAction(.init(title: "Закрыть", style: .destructive))
+            self.present(alert, animated: true)
         }
     }
 
