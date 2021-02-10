@@ -47,7 +47,7 @@ class MapSearchViewModel {
         }
         
         self.filterData.bind { [unowned self] (filters) in
-            self.searchPlace(by: "")
+            self.searchPlace(by:  self.searchValue.value)
         }
     }
     
