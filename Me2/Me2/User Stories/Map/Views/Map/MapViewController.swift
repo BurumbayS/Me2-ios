@@ -122,7 +122,7 @@ class MapViewController: BaseViewController {
                 return
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.showInfoAlert(title: "Ошибка".localized, message: message, onAccept: nil)
+                self.showLocationError(locationManagerError: message)
             }
         }
 
@@ -151,15 +151,23 @@ class MapViewController: BaseViewController {
     
     @objc func imereButtonPressed() {
         if let locationManagerError = self.viewModel.locationManagerError {
-            self.showDefaultAlert(title: "Ошибка", message: locationManagerError, doneAction: {
-                guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
-                UIApplication.shared.open(settingURL)
-            }, onCancel: nil)
+            self.showLocationError(locationManagerError: locationManagerError)
         } else {
             viewModel.isMyLocationVisible.value = !viewModel.isMyLocationVisible.value
         }
     }
-    
+
+    private func showLocationError(locationManagerError: String) {
+        let alert = UIAlertController(title: "Доступ к геолокации запрещён", message: locationManagerError, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "    Настройки  ", style: .default, handler: { (alert) in
+            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingURL)
+        }))
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     @objc func locateMe() {
         myLocationMarker.position = self.viewModel.clLocationCoordinate2D
         myLocationMarker.icon = UIImage(named: "my_location_icon")
