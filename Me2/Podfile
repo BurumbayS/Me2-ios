@@ -28,6 +28,7 @@ target 'Me2' do
   pod 'OneSignal', '>= 2.6.2', '< 3.0'
   pod 'RealmSwift'
   pod 'Pulsator'
+  pod 'SVProgressHUD'
 end
 
 target 'OneSignalNotificationServiceExtension' do

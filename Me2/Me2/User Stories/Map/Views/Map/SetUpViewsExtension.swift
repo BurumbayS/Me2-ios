@@ -30,10 +30,6 @@ extension MapViewController {
 //    }
     
      func setUpLabelsView() {
-        labelsView = LabelsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        labelsView.backgroundColor = .clear
-        labelsView.isUserInteractionEnabled = false
-        
         self.view.addSubview(labelsView)
     }
     
@@ -111,8 +107,11 @@ extension MapViewController {
     func setUpImHereButton() {
         imhereButton.backgroundColor = .white
         imhereButton.layer.cornerRadius = 18
-        imhereButton.addTarget(self, action: #selector(imereButtonPressed), for: .touchUpInside)
-        
+        imhereButton.addAction { [weak self] () in
+            guard let `self` = self else { return }
+            self.isMyLocationVisible.value = !self.isMyLocationVisible.value
+        }
+
         imhereIcon.image = UIImage(named: "inactive_map_marker_icon")
         imhereIcon.clipsToBounds = false
         imhereButton.addSubview(imhereIcon)
@@ -189,10 +188,22 @@ extension MapViewController {
     }
     
     func setUpMyLocationButton() {
+        let location = self.viewModel.locationManager.locationObservable.value.coordinate
         myLocationButton.setImage(UIImage(named: "my_location_icon"), for: .normal)
         myLocationButton.drawShadow(forOpacity: 0.3, forOffset: CGSize(width: 0, height: 0), radius: 3)
-        myLocationButton.addTarget(self, action: #selector(locateMe), for: .touchUpInside)
-        
+        myLocationButton.addAction { [weak self] () in
+                    guard let `self` = self else { return }
+        myLocationMarker.position = location
+        myLocationMarker.icon = UIImage(named: "my_location_icon")
+        myLocationMarker.appearAnimation = .pop
+        myLocationMarker.map = mapView
+
+        mapView.animate(to: GMSCameraPosition(latitude: location.latitude,
+                                              longitude: location.longitude,
+                                              zoom: 16.5))
+
+        }
+
         self.view.addSubview(myLocationButton)
         constrain(myLocationButton, self.view) { btn, view in
             btn.height == 36
@@ -210,9 +221,9 @@ extension MapViewController {
         present(vc, animated: false, completion: nil)
     }
     
-    func prepareElements() {
-//        radius.position = self.viewModel.clLocationCoordinate2D
-//        radius.radius = viewModel.radius
+    func prepareElements(position: CLLocationCoordinate2D, _radius: CLLocationDistance) {
+        radius.position = position
+        radius.radius = _radius
         radius.strokeColor = .clear
         radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
         
@@ -235,6 +246,26 @@ extension MapViewController {
         pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView
-        pulsingRadius.map = nil
+    }
+}
+
+
+@objc class ClosureSleeve: NSObject {
+    let closure: ()->()
+
+    init (_ closure: @escaping ()->()) {
+        self.closure = closure
+    }
+
+    @objc func invoke () {
+        closure()
+    }
+}
+
+extension UIControl {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping ()->()) {
+        let sleeve = ClosureSleeve(closure)
+        addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
+        objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
 }

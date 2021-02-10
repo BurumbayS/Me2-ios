@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class BaseViewControllerT<T: BaseViewModel>: BaseViewController {
 
@@ -28,22 +29,22 @@ class BaseViewControllerT<T: BaseViewModel>: BaseViewController {
             self?.showInfoAlert(title: "Ошибка", message: text, onAccept: nil)
         }
 
-        self.viewModel?.showLoading.bind { [weak self] text in
+        self.viewModel?.showLoading.bind { text in
             if let text = text, !text.isEmpty {
-                self?.startLoader(withText: text)
+                SVProgressHUD.show(withStatus: text)
             } else {
-                self?.stopLoader()
+                SVProgressHUD.dismiss()
             }
         }
 
-//        self.viewModel.stopWithStatus.bind {[weak self] status in
-//            switch status {
-//            case .fail(let text):
-//                self?.stopLoader(withStatus: .fail, andText: text, completion: nil)
-//            case .success(let text):
-//                self?.stopLoader(withStatus: .success, andText: text, completion: nil)
-//            }
-//        }
+        self.viewModel.showHub.bind { status in
+            switch status {
+            case .fail(let text):
+                SVProgressHUD.showError(withStatus: text)
+            case .success(let text):
+                SVProgressHUD.showSuccess(withStatus: text)
+            }
+        }
 
         self.viewModel.settingError.bind {[weak self] tuple in
             guard let `self` = self, let tuple = tuple else { return }
