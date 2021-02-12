@@ -37,7 +37,8 @@ class AppLocationManager: NSObject, LocationManagerInterface {
     var locationObservable: Dynamic<CLLocation>
 
     private var locationManager: CLLocationManager = .init()
-    private let testlocation: CLLocation = .init(latitude: 43.267643, longitude: 76.939123)
+
+    private let testlocation: CLLocation = .init(latitude: 43.245116, longitude: 76.937120)
 
 
     init(statusObservable: Dynamic<CLAuthorizationStatus> = .init(.denied),
