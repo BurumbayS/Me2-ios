@@ -15,6 +15,10 @@ enum BookingParameterType: String {
     case username = "Бронь на имя"
     case phoneNumber = "Телефон"
     case wishes = "Пожелания к брони"
+
+    static var paramsCount: Int {
+        return 5
+    }
 }
 
 class BookingParameter {
@@ -54,7 +58,10 @@ class BookTableViewModel {
     }
     
     func bookTable(completion: ResponseBlock?) {
-        if !fieldsFilledCorreclty() { return }
+        guard self.fieldsFilledCorreclty() else {
+            completion?(.fail, "Заполните все данные")
+            return
+        }
         
         var params = ["place" : placeID] as [String : Any]
         for parameter in bookingParameters {
