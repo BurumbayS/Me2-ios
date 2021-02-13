@@ -26,7 +26,7 @@ class ListForMapFilterViewController: UIViewController {
     private func configureNavBar() {
         navigationController?.navigationBar.tintColor = .black
         
-        navigationItem.title = "Тип заведения"
+//        navigationItem.title = "Тип заведения"
     }
     
     private func configureTableView() {
