@@ -25,16 +25,26 @@ class Review {
     let body: String
     let rating: Double
     let user: ReviewUser
+    let createdAt: Date
     var responses = [Review]()
     
     init(json: JSON) {
         id = json["id"].intValue
         body = json["body"].stringValue
         rating = json["rating"].doubleValue
+        self.createdAt = json["created_at"].stringValue.date() ?? Date()
         user = ReviewUser(json: json["user"])
         
         for item in json["reviews"].arrayValue {
             responses.append(Review(json: item))
+        }
+    }
+
+    var createdAtString: String? {
+        if #available(iOS 13.0, *) {
+            return self.createdAt.timeAgoDisplay()
+        } else {
+            return self.createdAt.getElapsedInterval()
         }
     }
 }

@@ -49,4 +49,17 @@ extension String {
     var localized: String {
         NSLocalizedString(self, comment: self)
     }
+    
+
+    func date(by format:DateFormat = .reviewDate ) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = format.rawValue
+        return dateFormatter.date(from: self)
+    }
+}
+
+enum DateFormat: String {
+    case reviewDate = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+    case reviewDateDisplay = "yyyy.MM.dd HH:mm"
 }
