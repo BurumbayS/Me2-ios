@@ -20,7 +20,7 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var availabilityStatusView: UIView!
-    
+
     var roomUUID = ""
     var liveChatPressHandler: VoidBlock?
     
@@ -38,14 +38,15 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
         livaChatButton.layer.borderColor = Color.blue.cgColor
         livaChatButton.layer.borderWidth = 1
     }
-    
-    func configure(with place: Place, onLiveChatPressed: VoidBlock?) {
+
+    func configure(with place: Place, isEnabledLiveButton: Bool = false, onLiveChatPressed: VoidBlock?) {
         self.roomUUID = place.roomInfo?.uuid ?? ""
         self.liveChatPressHandler = onLiveChatPressed
-        
+        self.livaChatButton.isEnabled = isEnabledLiveButton
+        livaChatButton.layer.borderColor = isEnabledLiveButton ? Color.blue.cgColor : Color.gray.cgColor
         titleLabel.text = place.name
         logoImageView.kf.setImage(with: URL(string: place.logo ?? ""), placeholder: UIImage(named: "default_place_logo"), options: [])
-        
+
         if let rating = place.rating {
             let roundedRating = Double(round(rating * 10) / 10)
             ratingView.rating = roundedRating

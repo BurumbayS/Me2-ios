@@ -429,7 +429,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PlaceCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         let place = viewModel.places[indexPath.row]
-        cell.configure(with: place) { [weak self] in
+        cell.configure(with: place, isEnabledLiveButton: self.viewModel.isMyLocationVisible.value) { [weak self] in
             self?.goToLiveChat(in: place)
         }
         return cell
