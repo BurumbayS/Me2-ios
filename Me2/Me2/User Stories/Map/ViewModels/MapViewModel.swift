@@ -201,16 +201,21 @@ class MapViewModel {
     }
     
     func enterNewRoom(at index: Int) {
+        guard let uuid = places[index].roomInfo?.uuid, !uuid.isEmpty else {
+            return
+        }
         let prevLiveRoomUUID = currentLiveRoomUUID
-        currentLiveRoomUUID = places[index].roomInfo?.uuid ?? ""
+        currentLiveRoomUUID =  uuid
         
         exitLiveRoom(with: prevLiveRoomUUID)
         enterLiveRoom(with: currentLiveRoomUUID)
     }
     
     func exitAllRooms() {
+        guard !self.currentLiveRoomUUID.isEmpty else {
+            return
+        }
         exitLiveRoom(with: currentLiveRoomUUID)
-        
         currentLiveRoomUUID = ""
     }
     
