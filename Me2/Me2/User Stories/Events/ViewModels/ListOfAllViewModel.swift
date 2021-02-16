@@ -62,10 +62,7 @@ class ListOfAllViewModel {
                     
                     let json = JSON(value)
                     
-                    self.placesList = []
-                    for item in json["data"]["results"].arrayValue {
-                        self.placesList.append(Place(json: item))
-                    }
+                    self.placesList = json["data"]["results"].arrayValue.compactMap({Place(json: $0)})
                     
                     completion?(.ok, "")
                     

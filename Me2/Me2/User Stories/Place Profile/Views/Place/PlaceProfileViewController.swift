@@ -203,7 +203,7 @@ class PlaceProfileViewController: BaseViewController {
     }
     
     private func goToLiveChat() {
-        PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(viewModel.place.roomInfo?.uuid ?? "")")
+        PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(viewModel.place.roomInfo.uuid)")
     }
     
     private func sharePlaceInApp() {

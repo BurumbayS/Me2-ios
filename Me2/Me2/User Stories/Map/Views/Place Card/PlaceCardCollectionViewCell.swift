@@ -40,7 +40,7 @@ class PlaceCardCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with place: Place, isEnabledLiveButton: Bool = false, onLiveChatPressed: VoidBlock?) {
-        self.roomUUID = place.roomInfo?.uuid ?? ""
+        self.roomUUID = place.roomInfo.uuid
         self.liveChatPressHandler = onLiveChatPressed
         self.livaChatButton.isEnabled = isEnabledLiveButton
         livaChatButton.layer.borderColor = isEnabledLiveButton ? Color.blue.cgColor : Color.gray.cgColor

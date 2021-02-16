@@ -56,11 +56,7 @@ class AddFavouritePlaceViewModel {
                     
                     let json = JSON(value)
                     
-                    self.searchResults = []
-                    for item in json["data"]["results"].arrayValue {
-                        let place = Place(json: item)
-                        self.searchResults.append(place)
-                    }
+                    self.searchResults = json["data"]["results"].arrayValue.compactMap({Place(json: $0)})
                     
                     self.updateSearchResults.value = true
                     

@@ -45,7 +45,8 @@ class User {
         hasPassword = json["has_password"].boolValue
         birthDate = convertBirthDate(from: json["birth_date"].stringValue)
         
-        json["favourite_places"].arrayValue.forEach({ favouritePlaces.append(Place(json: $0)) })
+        favouritePlaces.append(contentsOf: json["favourite_places"].arrayValue.compactMap({Place.init(json: $0)}))
+
         json["interests"].arrayValue.forEach({ interests.append($0.stringValue) })
     }
     
