@@ -20,7 +20,7 @@ class ChangePhoneViewModel {
         userPhone = ""
     }
     
-    func updatePhone(with newPhone: String, completion: ResponseBlock?) {
+    func updatePhone(with newPhone: String, completion: @escaping StatusBlock<Any, String>) {
         let phone = newPhone.applyPatternOnNumbers(pattern: "+###########", replacmentCharacter: "#")
         
         let params: [String : String] = ["phone": phone]
@@ -33,14 +33,23 @@ class ChangePhoneViewModel {
                     let json = JSON(value)
                     self?.activationID = json["data"]["activation"]["id"].intValue
                     
-                    completion?(.ok, "")
+                    completion(.success(json))
                     
                 case .failure(_ ):
-                    print("error = \(JSON(response.data as Any))")
-                    completion?(.fail, "")
+                    guard let data = response.data,
+                          let errorMessage = JSON.init(data).dictionaryValue["message"]?.stringValue else {
+                        return
+                    }
+                    completion(.fail(errorMessage))
                 }
         }
     }
     
     let updatePhoneURL = Network.user + "/change_phone/"
+}
+
+enum Status<T,R> {
+    case success(T)
+    case fail(R)
+    
 }

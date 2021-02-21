@@ -55,18 +55,15 @@ class ChangePhoneNumberViewController: UIViewController {
     }
 
     @IBAction func changePressed(_ sender: Any) {
-        viewModel.updatePhone(with: phoneNumberTextField.text!) { [weak self] (status, message) in
+        viewModel.updatePhone(with: phoneNumberTextField.text!) { [weak self] status in
             switch status {
-            case .ok:
-                
+            case .success:
                 let vc = Storyboard.confirmCodeViewController() as! ConfirmCodeViewController
                 vc.viewModel = ConfirmPinCodeViewModel(activationID: (self?.viewModel.activationID)!, confirmationType: .onChange)
                 self?.navigationController?.pushViewController(vc, animated: true)
+            case .fail(let message):
+                self?.showInfoAlert(title: "Внимание", message: message, onAccept: nil)
                 
-            case .error:
-                break
-            case .fail:
-                break
             }
         }
     }
