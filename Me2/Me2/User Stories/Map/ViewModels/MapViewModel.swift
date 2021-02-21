@@ -95,7 +95,20 @@ class MapViewModel {
 
     func viewDidLoad() {
         self.locationManager.statusObservable.bind { [weak self] status in
-            self?.error.value = status.errorReason
+            switch status {
+            case .notDetermined:
+                break
+            case .restricted:
+                break
+            case .denied:
+                self?.error.value = status.errorReason
+            case .authorizedAlways:
+                break
+            case .authorizedWhenInUse:
+                break
+            @unknown default:
+                self?.error.value = status.errorReason
+            }
         }
 
         self.locationManager.locationObservable.bind { location in
@@ -262,8 +275,8 @@ class MapViewModel {
     }
     
     private func getPlacesInRadiusAsString() -> String {
-        return self.places.filter { [weak self] place in
-                    self?.locationManager.distance(to: .init(latitude: place.latitude, longitude: place.longitute)) ?? 0 <= 200
+        return self.placePins.filter { [weak self] place in
+                    self?.locationManager.distance(to: .init(latitude: place.latitude, longitude: place.longitude)) ?? 0 <= 200
                 }
                 .compactMap({ $0.id?.description })
                 .joined(separator: ",")
