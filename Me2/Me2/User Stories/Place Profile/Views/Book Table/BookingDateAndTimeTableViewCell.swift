@@ -26,6 +26,10 @@ class BookingDateAndTimeTableViewCell: BookingTableViewCell {
         textField.inputView = datePicker
         textField.delegate = self
         
+        if #available(iOS 14.0, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+        
         constrain(textField, self.contentView) { textField, view in
             textField.bottom == view.bottom
         }
