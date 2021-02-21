@@ -65,7 +65,7 @@ extension Date {
     func date(by format: DateFormat = .reviewDateDisplay) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = format.rawValue
+        dateFormatter.dateFormat = format.dateFormat
         return dateFormatter.string(from: self)
     }
 

@@ -54,12 +54,24 @@ extension String {
     func date(by format:DateFormat = .reviewDate ) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = format.rawValue
+        dateFormatter.dateFormat = format.dateFormat
         return dateFormatter.date(from: self)
     }
 }
 
-enum DateFormat: String {
-    case reviewDate = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-    case reviewDateDisplay = "yyyy.MM.dd HH:mm"
+enum DateFormat {
+    case reviewDate
+    case reviewDateDisplay
+    case custom(format: String)
+    
+    var dateFormat: String {
+        switch self {
+        case .reviewDate:
+            return "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        case .reviewDateDisplay:
+            return "yyyy.MM.dd HH:mm"
+        case .custom(format: let format):
+            return format
+        }
+    }
 }

@@ -19,6 +19,6 @@ class UserNotification {
         id = json["id"].intValue
         iconURL = ""
         message = json["message"].stringValue
-        time = "15 мин"
+        time = json["created_at"].stringValue.date(by: .reviewDate)?.date(by: .custom(format: "MMM yyyy, hh:mm")) ?? ""
     }
 }
