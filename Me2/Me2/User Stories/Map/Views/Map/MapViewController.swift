@@ -169,13 +169,17 @@ class MapViewController: BaseViewController {
     }
 
     @objc func locateMe() {
-        myLocationMarker.position = self.viewModel.clLocationCoordinate2D
-        myLocationMarker.icon = UIImage(named: "my_location_icon")
-        myLocationMarker.appearAnimation = .pop
-        myLocationMarker.map = mapView
+        if let text = self.viewModel.locationManagerError {
+            self.showLocationError(locationManagerError: text)
+        } else {
+            myLocationMarker.position = self.viewModel.clLocationCoordinate2D
+            myLocationMarker.icon = UIImage(named: "my_location_icon")
+            myLocationMarker.appearAnimation = .pop
+            myLocationMarker.map = mapView
 
-        mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude,
-                longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
+            mapView.animate(to: GMSCameraPosition(latitude: self.viewModel.clLocationCoordinate2D.latitude,
+                    longitude: self.viewModel.clLocationCoordinate2D.longitude, zoom: 16.5))
+        }
     }
     
     //MARK: -My location actions
