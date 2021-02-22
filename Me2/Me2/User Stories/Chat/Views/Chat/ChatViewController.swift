@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
-import SwiftyJSON
-import NVActivityIndicatorView
-import Cartography
-import MobileCoreServices
 import AVKit
+import SwiftyJSON
+import Cartography
+import SVProgressHUD
+import MobileCoreServices
+import IQKeyboardManagerSwift
+import NVActivityIndicatorView
 
 class ChatViewController: ListContainedViewController {
 
@@ -111,6 +112,37 @@ class ChatViewController: ListContainedViewController {
             self.hideEmptyListStatusLabel()
             self.insertNewMessage(message: message)
         })
+        
+        viewModel.adapter.fileUploading.bind { [weak self] status in
+            DispatchQueue.main.async {
+                guard let `self` = self else {
+                    return
+                }
+                self.stopLoader(withStatus: .dismiss, andText: "", completion: nil)
+                switch status {
+                case .compression:
+                    SVProgressHUD.setBackgroundColor(.black)
+                    SVProgressHUD.show(withStatus: "Идет компрессия файла")
+                case .compressionFailed:
+                    SVProgressHUD.show(withStatus: "Компрессия не удалась")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                case .uploading:
+                    SVProgressHUD.show(withStatus: "Идет выгрузка файла")
+                case .uploaded:
+                    SVProgressHUD.show(withStatus: "Файл успешно выгружен")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                case .failed:
+                    SVProgressHUD.show(withStatus: "Выгрузка не удалась")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
+        }
         
         viewModel.onMessageUpdate = ({ index in
             self.collectionView.reloadItems(at: [IndexPath(row: index, section: self.viewModel.sections.count - 1)])

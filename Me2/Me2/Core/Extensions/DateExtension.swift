@@ -57,6 +57,7 @@ extension Date {
     func toString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        dateFormatter.locale = Locale.current
         let stringDate = dateFormatter.string(from: self)
 
         return stringDate
@@ -64,7 +65,7 @@ extension Date {
 
     func date(by format: DateFormat = .reviewDateDisplay) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = format.dateFormat
         return dateFormatter.string(from: self)
     }

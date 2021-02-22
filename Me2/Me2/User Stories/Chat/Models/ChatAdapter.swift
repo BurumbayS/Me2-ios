@@ -11,9 +11,19 @@ import SwiftyJSON
 import Alamofire
 import AVKit
 
+enum FileUploadingStatus {
+    case compression
+    case compressionFailed
+    case uploading
+    case uploaded
+    case failed
+}
+
 class ChatAdapter {
     let roomUUID: String
     var socket: WebSocket!
+    
+    var fileUploading: Dynamic<FileUploadingStatus> = Dynamic<FileUploadingStatus>.init(.compression)
     
     let newMessageHandler: ((Message) -> ())?
     let messageStatusUpdateHandler: ((Message) -> ())?
@@ -83,9 +93,13 @@ class ChatAdapter {
             }
             
         case .VIDEO:
-            
+            self.fileUploading.value = .compression
             VideoHelper.encodeVideo(videoUrl: videoURL) { [weak self] (encodedVideoURL) in
-                guard let url = encodedVideoURL else { return }
+                
+                guard let url = encodedVideoURL else {
+                    self?.fileUploading.value = .compressionFailed
+                    return
+                }
                 
                 let mediaData = try? Data(contentsOf: url)
                 self?.callUploadMedia(ofType: .VIDEO, media: mediaData, additionalData: data)
@@ -99,15 +113,19 @@ class ChatAdapter {
     
     private func callUploadMedia(ofType type: MessageType, media: Data?, additionalData: JSON) {
         guard let mediaData = media else { return }
-        
-        uploadMedia(ofType: type, data: mediaData) { (status, mediaID) in
+        self.fileUploading.value = .uploading
+        uploadMedia(ofType: type, data: mediaData) {[weak self] (status, mediaID) in
+            guard let `self` = self else {
+                return
+            }
             switch status {
             case .ok:
-                
+                self.fileUploading.value = .uploaded
                 let json: JSON = ["text": "", "message_type" : type.rawValue, "file": mediaID, "data": additionalData]
                 self.sendMessage(json: json)
                 
             default:
+                self.fileUploading.value = .failed
                 break
             }
         }
