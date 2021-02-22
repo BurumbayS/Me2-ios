@@ -115,13 +115,8 @@ class ChatViewController: ListContainedViewController {
         
         viewModel.adapter.fileUploading.bind { [weak self] status in
             DispatchQueue.main.async {
-                guard let `self` = self else {
-                    return
-                }
-                self.stopLoader(withStatus: .dismiss, andText: "", completion: nil)
                 switch status {
                 case .compression:
-                    SVProgressHUD.setBackgroundColor(.black)
                     SVProgressHUD.show(withStatus: "Идет компрессия файла")
                 case .compressionFailed:
                     SVProgressHUD.show(withStatus: "Компрессия не удалась")
@@ -185,6 +180,7 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func insertNewMessage(message: Message) {
+        self.viewModel.messages.append(message)
         var lastSection = self.viewModel.sections.count - 1 
         
         if lastSection >= 0 && viewModel.sections[lastSection].date == message.getDateString() {
