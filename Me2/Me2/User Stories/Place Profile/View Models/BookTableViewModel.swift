@@ -9,16 +9,12 @@
 import Alamofire
 import SwiftyJSON
 
-enum BookingParameterType: String {
+enum BookingParameterType: String, CaseIterable {
     case dateTime = "Дата и время"
     case numberOfGuest = "Количество гостей"
     case username = "Бронь на имя"
     case phoneNumber = "Телефон"
     case wishes = "Пожелания к брони"
-
-    static var paramsCount: Int {
-        return 5
-    }
 }
 
 class BookingParameter {
