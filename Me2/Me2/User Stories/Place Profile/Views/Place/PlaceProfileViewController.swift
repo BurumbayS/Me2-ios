@@ -85,6 +85,8 @@ class PlaceProfileViewController: BaseViewController {
             case false:
                 self?.updateFollowBtnSize(with: 38, and: 142)
             }
+            //TODO: уточнить про кейс когда отправлять нотификацию
+//            NotificationCenter.default.post(.init(name: .updateFavouriteEvents))
         }
     }
     
@@ -259,7 +261,7 @@ class PlaceProfileViewController: BaseViewController {
         collectionViewCellheight = Constants.shared.minContentSize.height
     }
     
-    @IBAction func actionButtonPressed(_ sender: Any) {
+    @IBAction private func actionButtonPressed(_ sender: Any) {
         switch viewModel.pageToShow.value {
         case .info:
             
