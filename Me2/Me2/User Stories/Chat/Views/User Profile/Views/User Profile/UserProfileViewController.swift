@@ -34,6 +34,8 @@ class UserProfileViewController: BaseViewController {
         configureTableView()
         configureViewModel()
         fetchData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: .updateFavouriteEvents, object: nil)
     }
 
     private func configureNavBar() {
@@ -141,6 +143,10 @@ class UserProfileViewController: BaseViewController {
             vc.modalPresentationStyle = .custom
             present(vc, animated: false, completion: nil)
         }
+    }
+    
+    @objc private func updateData() {
+        fetchData()
     }
 }
 

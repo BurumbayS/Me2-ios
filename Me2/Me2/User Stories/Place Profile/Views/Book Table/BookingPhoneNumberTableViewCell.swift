@@ -57,6 +57,8 @@ extension BookingPhoneNumberTableViewCell: UITextFieldDelegate {
         
         if text.count < "+# (###) ###-##-##".count {
             textField.text = text.applyPatternOnNumbers(pattern: "+# (###) ###-##-##", replacmentCharacter: "#")
+            guard let phone = textField.text else { return true }
+            validate(phone: phone)
             return true
         }
         
@@ -70,10 +72,8 @@ extension BookingPhoneNumberTableViewCell: UITextFieldDelegate {
         return false
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        
-        if text.count < "+# (###) ###-##-##".count {
+    private func validate(phone: String) {
+        if phone.count + 1 < "+# (###) ###-##-##".count {
             bookingParameter.filledCorrectly.value = false
         } else {
             bookingParameter.filledCorrectly.value = true

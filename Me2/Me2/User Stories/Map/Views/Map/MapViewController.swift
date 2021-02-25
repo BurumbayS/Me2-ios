@@ -355,7 +355,7 @@ class MapViewController: BaseViewController {
     
     private func goToLiveChat(in place: Place) {
         if viewModel.isMyLocationVisible.value {
-            PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(place.roomInfo?.uuid ?? "")")
+            PushNotificationsRouter.shared.shouldPush(to: "/chat/room/\(place.roomInfo.uuid)")
         } else {
             self.showInfoAlert(title: "Предупреждение", message: "Вы не находитесь в этом заведении", onAccept: nil)
         }

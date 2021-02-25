@@ -68,10 +68,12 @@ class PlaceProfileViewModel {
                     
                     let json = JSON(value)
                     self.placeJSON = json["data"]
-                    self.place = Place(json: json["data"])
-                    
+                    guard let place = Place(json: json["data"]) else {
+                        return self.getSubsidiaries(completion: completion)
+                    }
+                    self.place = place
+                    self.isFollowed.value = place.isFavourite
                     self.getSubsidiaries(completion: completion)
-                    
                 case .failure(let error):
                     print(error.localizedDescription)
                     completion?(.fail, "")
@@ -89,10 +91,7 @@ class PlaceProfileViewModel {
                     
                     let json = JSON(value)
                     
-                    var subsidiaries = [Place]()
-                    for item in json["data"]["results"].arrayValue {
-                        subsidiaries.append(Place(json: item))
-                    }
+                    let subsidiaries = json["data"]["results"].arrayValue.compactMap({Place(json: $0)})
                     
                     self.place.subsidiaries = subsidiaries
                     self.dataLoaded = true
@@ -134,7 +133,7 @@ class PlaceProfileViewModel {
             .responseJSON { (response) in
                 switch response.result {
                 case .success( _):
-                    
+                    NotificationCenter.default.post(name: .updateFavouriteEvents, object: nil)
                     completion?(.ok, "")
                     
                 case .failure(let error):
@@ -151,7 +150,7 @@ class PlaceProfileViewModel {
             .responseJSON { (response) in
                 switch response.result {
                 case .success( _):
-                    
+                    NotificationCenter.default.post(name: .updateFavouriteEvents, object: nil)
                     completion?(.ok, "")
                     
                 case .failure(let error):

@@ -30,12 +30,16 @@ class Place {
     var menus: [Menu]?
     var images = [String]()
     var workingHours: WorkingHours?
-    var roomInfo: RoomInfo?
+    var roomInfo: RoomInfo
     var tags = [String]()
     var branch: Int
     var subsidiaries: [Place]?
     
-    init(json: JSON) {
+    init?(json: JSON) {
+        
+        guard let roomInfo = RoomInfo(json: json["room_info"]) else {
+            return nil
+        }
         id = json["id"].intValue
         name = json["name"].stringValue
         category = json["place_type"]["name"].stringValue
@@ -53,7 +57,7 @@ class Place {
         phone = json["phone"].stringValue
         website = json["website"].stringValue
         workingHours = WorkingHours(json: json["working_hours"])
-        roomInfo = RoomInfo(json: json["room_info"])
+        self.roomInfo = roomInfo
         branch = json["branch"].intValue
         
         images = []
