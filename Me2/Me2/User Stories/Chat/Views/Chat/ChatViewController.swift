@@ -92,8 +92,8 @@ class ChatViewController: ListContainedViewController {
             
         case .SERVICE:
             
-            let place = viewModel.room.place.name ?? ""
-            let adress = viewModel.room.place.address1 ?? ""
+            let place = viewModel.room.place?.name ?? ""
+            let adress = viewModel.room.place?.address1 ?? ""
             self.navigationItem.twoLineTitleView(titles: [place, adress], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
             
         default:

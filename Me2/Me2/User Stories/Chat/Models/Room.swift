@@ -21,7 +21,7 @@ class Room {
     let name: String
     let avatarURL: String
     let lastMessage: Message
-    let place: Place
+    let place: Place?
     var participants = [ChatParticipant]()
     
     init(json: JSON) {
@@ -30,7 +30,7 @@ class Room {
         name = json["name"].stringValue
         avatarURL = json["avatar"].stringValue
         lastMessage = Message(json: json["last_message"])
-        place = Place(json: json["place"])!
+        place = Place(json: json["place"])
         
         for item in json["participants"].arrayValue {
             participants.append(ChatParticipant(json: item))
