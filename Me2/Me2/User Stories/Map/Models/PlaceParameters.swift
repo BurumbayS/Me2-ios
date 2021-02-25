@@ -76,15 +76,21 @@ struct RoomInfo {
     var uuid: String
     var usersCount: Int
     var avatars: [String]
-    
-    init(json: JSON) {
-        uuid = json["uuid"].stringValue
-        usersCount = json["users_count"].intValue
-        
+
+    init?(json: JSON) {
+
+        guard let uuid = json["uuid"].string,
+              let usersCount = json["users_count"].int else {
+            return nil
+        }
+
         avatars = [String]()
         for item in json["avatars"].arrayValue {
             avatars.append(item.stringValue)
         }
+        
+        self.uuid = uuid
+        self.usersCount = usersCount
     }
 }
 

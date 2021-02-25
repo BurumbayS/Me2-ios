@@ -27,10 +27,7 @@ class NewPlacesViewModel {
                     
                     let json = JSON(value)
                     
-                    self.places = []
-                    for item in json["data"]["results"].arrayValue {
-                        self.places.append(Place(json: item))
-                    }
+                    self.places = json["data"]["results"].arrayValue.compactMap({Place(json: $0)})
                     
                     self.dataLoaded = true
                     

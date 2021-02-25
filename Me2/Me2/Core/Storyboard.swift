@@ -17,7 +17,7 @@ enum Storyboard: String {
     case profile = "Profile"
     case placeProfile = "PlaceProfile"
     case events = "Events"
-    case loader = "Loader"
+    case loaderStoryboard = "Loader"
     
     private var storyboard: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: nil)
@@ -27,7 +27,7 @@ enum Storyboard: String {
 extension Storyboard {
     //Loader
     static var loaderViewController = {
-        return loader.storyboard.instantiateViewController(withIdentifier: "LoaderViewController")
+        return loaderStoryboard.storyboard.instantiateViewController(withIdentifier: "LoaderViewController")
     }
     
     //Onboarding

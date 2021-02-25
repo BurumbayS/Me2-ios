@@ -47,7 +47,7 @@ class MapSearchViewModel {
         }
         
         self.filterData.bind { [unowned self] (filters) in
-            self.searchPlace(by: "")
+            self.searchPlace(by:  self.searchValue.value)
         }
     }
     
@@ -69,11 +69,7 @@ class MapSearchViewModel {
                     
                     let json = JSON(value)
                     
-                    self.searchResults = []
-                    for item in json["data"]["results"].arrayValue {
-                        let place = Place(json: item)
-                        self.searchResults.append(place)
-                    }
+                    self.searchResults = json["data"]["results"].arrayValue.compactMap({Place(json: $0)})
                     
                     self.updateSearchResults.value = true
                     

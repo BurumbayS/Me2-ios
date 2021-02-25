@@ -14,9 +14,6 @@ class LiveChatViewController: UIViewController {
 
     @IBOutlet weak var participantsCollectionView: UICollectionView!
     @IBOutlet weak var chatView: UIView!
-    
-    let chatVC = Storyboard.chatViewController() as! ChatViewController
-    
     var viewModel: LiveChatViewModel!
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,15 +47,15 @@ class LiveChatViewController: UIViewController {
 
     private func configureViews() {
         participantsCollectionView.addUnderline(with: Color.gray, and: CGSize(width: participantsCollectionView.frame.width, height: participantsCollectionView.frame.height))
-        
+        guard let chatVC = Storyboard.chatViewController() as? ChatViewController else {
+            return
+        }
         chatVC.viewModel = ChatViewModel(room: viewModel.room)
         chatView.addSubview(chatVC.view)
-        constrain(chatVC.view, chatView) { chat, view in
-            chat.left == view.left
-            chat.right == view.right
-            chat.top == view.top
-            chat.bottom == view.bottom
-        }
+        chatVC.view.frame = CGRect.init(origin: .zero, size: self.chatView.frame.size)
+        self.addChild(chatVC)
+        chatVC.didMove(toParent: self)
+
     }
     
     private func configureNavBar() {
@@ -88,7 +85,7 @@ class LiveChatViewController: UIViewController {
     
     private func goToPlaceProfile() {
         let vc = Storyboard.placeProfileViewController() as! PlaceProfileViewController
-        vc.viewModel = PlaceProfileViewModel(place: viewModel.room.place)
+        vc.viewModel = PlaceProfileViewModel(place: viewModel.room.place!)
         navigationController?.pushViewController(vc, animated: true)
     }
     

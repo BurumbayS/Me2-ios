@@ -32,7 +32,7 @@ class PlaceReviewTableViewCell: UITableViewCell {
         avatarImageView.kf.setImage(with: URL(string: review.user.avatar ?? ""), placeholder: UIImage(named: "placeholder_avatar"), options: [])//image = UIImage(named: "sample_avatar")
         usernameLabel.text = review.user.username ?? ""
         ratingView.rating = review.rating
-        dateLabel.text = ""
+        dateLabel.text = review.createdAtString
         reviewLabel.text = review.body
     }
     

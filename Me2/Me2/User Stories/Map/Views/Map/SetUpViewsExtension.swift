@@ -224,7 +224,7 @@ extension MapViewController {
     }
     
     private func prepareElements() {
-        radius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        radius.position = self.viewModel.clLocationCoordinate2D
         radius.radius = viewModel.radius
         radius.strokeColor = .clear
         radius.fillColor = UIColor(red: 0/255, green: 170/255, blue: 255/255, alpha: 0.2)
@@ -244,7 +244,7 @@ extension MapViewController {
         image.layer.add(pulsingAnimation, forKey: "scale")
         view.layer.add(pulsingAnimation, forKey: "scale")
 
-        pulsingRadius.position = CLLocationCoordinate2D(latitude: viewModel.myLocation.coordinate.latitude, longitude: viewModel.myLocation.coordinate.longitude)
+        pulsingRadius.position = self.viewModel.clLocationCoordinate2D
         pulsingRadius.groundAnchor = CGPoint(x: 0.5, y: 0.5)// CGPointMake(0.5, 0.5);
         pulsingRadius.iconView = view
         pulsingRadius.map = mapView

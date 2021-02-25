@@ -10,3 +10,4 @@ import Foundation
 
 typealias VoidBlock = () -> ()
 typealias ResponseBlock = (RequestStatus, String) -> ()
+typealias StatusBlock<T, R> = (Status<T, R>) -> ()

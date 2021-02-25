@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-enum BookingParameterType: String {
+enum BookingParameterType: String, CaseIterable {
     case dateTime = "Дата и время"
     case numberOfGuest = "Количество гостей"
     case username = "Бронь на имя"
@@ -53,10 +53,12 @@ class BookTableViewModel {
         return filledCorrectly
     }
     
-    func bookTable(completion: ResponseBlock?) {
-        if !fieldsFilledCorreclty() { return }
-        
-        var params = ["place" : placeID] as [String : Any]
+    func bookTable(completion:@escaping ResponseBlock) {
+        guard self.fieldsFilledCorreclty() else {
+            return completion(.fail, "Заполните все данные")
+        }
+
+        var params = ["place": placeID] as [String: Any]
         for parameter in bookingParameters {
             switch parameter.type {
             case .dateTime:
@@ -84,14 +86,14 @@ class BookTableViewModel {
                     let code = json["code"].intValue
                     switch code {
                     case 0:
-                        completion?(.ok, "")
+                        completion(.ok, "")
                     default:
-                        completion?(.error, json["message"].stringValue)
+                        completion(.error, json["message"].stringValue)
                     }
                     
                 case .failure(let error):
                     print(error.localizedDescription)
-                    completion?(.error, "Ошибка связи или аутентификации ")
+                    completion(.error, "Ошибка связи или аутентификации ")
                 }
         }
     }

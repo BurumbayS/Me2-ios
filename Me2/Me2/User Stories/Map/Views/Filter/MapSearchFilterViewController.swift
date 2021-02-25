@@ -111,6 +111,7 @@ extension MapSearchFilterViewController: UITableViewDelegate, UITableViewDataSou
         case .selectable:
             let vc = Storyboard.listForMapFilterViewController() as! ListForMapFilterViewController
             vc.viewModel = ListForMapFilterViewModel(tag_type: viewModel.filters[indexPath.row].tag_type, tag_ids: viewModel.tag_ids)
+            vc.title = viewModel.filters[indexPath.row].rawValue
             navigationController?.pushViewController(vc, animated: true)
         default:
             viewModel.selectCell(at: indexPath)

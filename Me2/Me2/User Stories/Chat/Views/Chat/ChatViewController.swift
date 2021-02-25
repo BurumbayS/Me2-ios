@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
-import SwiftyJSON
-import NVActivityIndicatorView
-import Cartography
-import MobileCoreServices
 import AVKit
+import SwiftyJSON
+import Cartography
+import SVProgressHUD
+import MobileCoreServices
+import IQKeyboardManagerSwift
+import NVActivityIndicatorView
 
 class ChatViewController: ListContainedViewController {
 
@@ -92,8 +93,8 @@ class ChatViewController: ListContainedViewController {
             
         case .SERVICE:
             
-            let place = viewModel.room.place.name ?? ""
-            let adress = viewModel.room.place.address1 ?? ""
+            let place = viewModel.room.place?.name ?? ""
+            let adress = viewModel.room.place?.address1 ?? ""
             self.navigationItem.twoLineTitleView(titles: [place, adress], colors: [.black, .darkGray], fonts: [UIFont(name: "Roboto-Medium", size: 17)!, UIFont(name: "Roboto-Regular", size: 17)!])
             
         default:
@@ -111,6 +112,32 @@ class ChatViewController: ListContainedViewController {
             self.hideEmptyListStatusLabel()
             self.insertNewMessage(message: message)
         })
+        
+        viewModel.adapter.fileUploading.bind { [weak self] status in
+            DispatchQueue.main.async {
+                switch status {
+                case .compression:
+                    SVProgressHUD.show(withStatus: "Идет компрессия файла")
+                case .compressionFailed:
+                    SVProgressHUD.show(withStatus: "Компрессия не удалась")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                case .uploading:
+                    SVProgressHUD.show(withStatus: "Идет выгрузка файла")
+                case .uploaded:
+                    SVProgressHUD.show(withStatus: "Файл успешно выгружен")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                case .failed:
+                    SVProgressHUD.show(withStatus: "Выгрузка не удалась")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
+        }
         
         viewModel.onMessageUpdate = ({ index in
             self.collectionView.reloadItems(at: [IndexPath(row: index, section: self.viewModel.sections.count - 1)])
@@ -153,6 +180,7 @@ class ChatViewController: ListContainedViewController {
     }
     
     private func insertNewMessage(message: Message) {
+        self.viewModel.messages.append(message)
         var lastSection = self.viewModel.sections.count - 1 
         
         if lastSection >= 0 && viewModel.sections[lastSection].date == message.getDateString() {

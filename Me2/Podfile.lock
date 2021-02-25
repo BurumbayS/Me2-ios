@@ -68,6 +68,7 @@ PODS:
     - Realm (= 3.17.3)
   - ShimmerSwift (1.0.3)
   - Starscream (3.0.6)
+  - SVProgressHUD (2.2.5)
   - SwiftyCrypto (0.0.1)
   - SwiftyJSON (4.3.0)
   - SwiftyJWT (0.0.3):
@@ -94,6 +95,7 @@ DEPENDENCIES:
   - RealmSwift
   - ShimmerSwift
   - Starscream (~> 3.0.2)
+  - SVProgressHUD
   - SwiftyJSON (~> 4.0)
   - SwiftyJWT
 
@@ -130,6 +132,7 @@ SPEC REPOS:
     - SwiftyJWT
   trunk:
     - Pulsator
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -159,10 +162,11 @@ SPEC CHECKSUMS:
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   ShimmerSwift: 261828bd524cfe211a398cb97d01e03bc52cd395
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyCrypto: ab59cdb153a7ca99b657fa8d9ebd2ebbd7694bbe
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SwiftyJWT: e46e8457138c6567a1a9ff05a6efc8ef678c1187
 
-PODFILE CHECKSUM: e977552060cadfaa077ff07cd314c682fe4ded2a
+PODFILE CHECKSUM: ec60624d10f2d5eda0e8e7f7713bcd812074095d
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0

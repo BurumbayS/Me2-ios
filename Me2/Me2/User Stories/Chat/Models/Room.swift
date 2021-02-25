@@ -21,7 +21,7 @@ class Room {
     let name: String
     let avatarURL: String
     let lastMessage: Message
-    let place: Place
+    let place: Place?
     var participants = [ChatParticipant]()
     
     init(json: JSON) {
